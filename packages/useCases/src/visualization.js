@@ -7,6 +7,11 @@ const defaults = Object.assign({}, documentDefaults, {
 });
 
 export const createVisualization = data => {
+  if (!data.owner) {
+    return {
+      error: 'No owner specified, cannot create visualization.'
+    };
+  }
   return Visualization(Object.assign({}, defaults, data));
 };
 
