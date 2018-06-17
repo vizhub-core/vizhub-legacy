@@ -1,0 +1,19 @@
+{
+  "name": "datavis-tech-controllers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "test": "mocha -r esm"
+  },
+  "author": "Curran Kelleher",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "datavis-tech-gateway": "1",
+    "diff-match-patch": "^1.0.1",
+    "esm": "^3.0.51",
+    "json0-ot-diff": "^1.0.3",
+    "mocha": "^5.2.0"
+  }
+}
