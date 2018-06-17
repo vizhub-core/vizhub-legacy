@@ -1,72 +1,9 @@
-/**
- * next-auth.functions.js Example
- *
- * This file defines functions NextAuth to look up, add and update users.
- *
- * It returns a Promise with the functions matching these signatures:
- *
- * {
- *   find: ({
- *     id,
- *     email,
- *     emailToken,
- *     provider,
- *     poviderToken
- *   } = {}) => {},
- *   update: (user) => {},
- *   insert: (user) => {},
- *   remove: (id) => {},
- *   serialize: (user) => {},
- *   deserialize: (id) => {}
- * }
- *
- * Each function returns Promise.resolve() - or Promise.reject() on error.
- *
- * This specific example supports both MongoDB and NeDB, but can be refactored
- * to work with any database.
- *
- * Environment variables for this example:
- *
- * MONGO_URI=mongodb://localhost:27017/my-database
- * EMAIL_FROM=username@gmail.com
- * EMAIL_SERVER=smtp.gmail.com
- * EMAIL_PORT=465
- * EMAIL_USERNAME=username@gmail.com
- * EMAIL_PASSWORD=p4ssw0rd
- *
- * If you wish, you can put these in a `.env` to seperate your environment 
- * specific configuration from your code.
- **/
-
-// Load environment variables from a .env file if one exists
 require('dotenv').load()
 
-// This config file uses MongoDB for User accounts, as well as session storage.
-// This config includes options for NeDB, which it defaults to if no DB URI 
-// is specified. NeDB is an in-memory only database intended here for testing.
 const MongoClient = require('mongodb').MongoClient
 const NeDB = require('nedb')
 const MongoObjectId = (process.env.MONGO_URI) ? require('mongodb').ObjectId : (id) => { return id }
 
-// Use Node Mailer for email sign in
-const nodemailer = require('nodemailer')
-const nodemailerSmtpTransport = require('nodemailer-smtp-transport')
-const nodemailerDirectTransport = require('nodemailer-direct-transport')
-
-// Send email direct from localhost if no mail server configured
-let nodemailerTransport = nodemailerDirectTransport()
-if (process.env.EMAIL_SERVER && process.env.EMAIL_USERNAME && process.env.EMAIL_PASSWORD) {
-  nodemailerTransport = nodemailerSmtpTransport({
-      host: process.env.EMAIL_SERVER,
-      port: process.env.EMAIL_PORT || 25,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD
-      }
-    })
-}
-        
 module.exports = () => {
   return new Promise((resolve, reject) => {
     if (process.env.MONGO_URI) { 
@@ -192,29 +129,7 @@ module.exports = () => {
             })
           })
         })
-      },
-      // Define method for sending links for signing in over email.
-      sendSignInEmail: ({
-        email = null,
-        url = null
-        } = {}) => {
-        nodemailer
-        .createTransport(nodemailerTransport)
-        .sendMail({
-          to: email,
-          from: process.env.EMAIL_FROM,
-          subject: 'Sign in link',
-          text: `Use the link below to sign in:\n\n${url}\n\n`,
-          html: `<p>Use the link below to sign in:</p><p>${url}</p>`
-        }, (err) => {
-          if (err) {
-            console.error('Error sending email to ' + email, err)
-          }
-        })
-        if (process.env.NODE_ENV === 'development')  {
-          console.log('Generated sign in link ' + url + ' for ' + email)
-        }   
-      },
+      }
     })
   })
 }
