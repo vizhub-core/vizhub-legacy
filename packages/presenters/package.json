@@ -1,0 +1,17 @@
+{
+  "name": "datavis-tech-presenters",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "test": "mocha -r esm"
+  },
+  "author": "Curran Kelleher",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "esm": "^3.0.51",
+    "mocha": "^5.2.0",
+    "datavis-tech-gateway": "1"
+  }
+}
