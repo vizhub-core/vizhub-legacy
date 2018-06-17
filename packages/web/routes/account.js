@@ -17,8 +17,7 @@ module.exports = (expressApp, functions) => {
         if (!user) return res.status(500).json({error: 'Unable to fetch profile'})
         res.json({
           name: user.name,
-          email: user.email,
-          emailVerified: (user.emailVerified && user.emailVerified === true) ? true : false
+          email: user.email
         })
       })
       .catch(err => {
@@ -39,13 +38,6 @@ module.exports = (expressApp, functions) => {
         if (req.body.name)
           user.name = req.body.name
 
-        if (req.body.email) {
-          // Reset email verification field if email address has changed
-          if (req.body.email && req.body.email !== user.email)
-            user.emailVerified = false
-        
-          user.email = req.body.email
-        }
         return functions.update(user)
       })
       .then(user => {

@@ -23,7 +23,6 @@ export default class extends Page {
       isSignedIn: (props.session.user) ? true : false,
       name: '',
       email: '',
-      emailVerified: false,
       alertText: null,
       alertStyle: null
     }
@@ -59,8 +58,7 @@ export default class extends Page {
       if (!user.name || !user.email) return
       this.setState({
         name: user.name,
-        email: user.email,
-        emailVerified: user.emailVerified
+        email: user.email
       })
     })
   }

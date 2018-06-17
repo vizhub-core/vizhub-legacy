@@ -124,7 +124,6 @@ module.exports = () => {
               id: user._id,
               name: user.name,
               email: user.email,
-              emailVerified: user.emailVerified,
               admin: user.admin || false
             })
           })
