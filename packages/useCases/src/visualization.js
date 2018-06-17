@@ -1,6 +1,11 @@
-import { defaults as documentDefaults } from './document';
+import uuidV4 from 'uuid/v4'
+
 import { Visualization } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
+
+import { defaults as documentDefaults } from './document';
+
+const generateId = () => uuidV4().replace(/-/g, '');
 
 const defaults = Object.assign({}, documentDefaults, {
   files: {
@@ -11,10 +16,16 @@ const defaults = Object.assign({}, documentDefaults, {
 export const createVisualization = data => {
   if (!data.owner) {
     return {
+      type: 'error',
       error: i18n('errorNoOwner')
     };
   }
-  return Visualization(Object.assign({}, defaults, data));
+  return {
+    type: 'createVisualization',
+    data: Visualization(Object.assign({}, defaults, data, {
+      id: generateId()
+    }))
+  };
 };
 
 export const updateVisualization = () => {};

@@ -2,6 +2,9 @@
 // Dataset and Visualization extend Document.
 export const Document = data => ({
 
+  // The unique ID of the document.
+  id: data.id,
+
   // The title of the document.
   title: data.title,
 
