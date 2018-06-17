@@ -12,6 +12,7 @@
   "dependencies": {
     "esm": "^3.0.51",
     "mocha": "^5.2.0",
-    "datavis-tech-entities": "1"
+    "datavis-tech-entities": "1",
+    "datavis-tech-i18n": "1"
   }
 }

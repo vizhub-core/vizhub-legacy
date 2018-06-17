@@ -1,4 +1,5 @@
 import assert from 'assert';
+import { i18n } from 'datavis-tech-i18n';
 import { 
   createVisualization,
   updateVisualization
@@ -8,7 +9,7 @@ describe('Visualization Use Cases', () => {
   describe('createVisualization', () => {
     it('should return an error if no owner specified.', () => {
       assert.deepEqual(createVisualization({}), {
-        error: 'No owner specified, cannot create visualization.'
+        error: i18n('errorNoOwner')
       });
     });
 
