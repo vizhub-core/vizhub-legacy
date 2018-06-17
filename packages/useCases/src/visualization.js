@@ -7,6 +7,8 @@ import { defaults as documentDefaults } from './document';
 
 const generateId = () => uuidV4().replace(/-/g, '');
 
+const slugFromTitle = title => title.toLowerCase().replace(/ /g, '-');
+
 const defaults = Object.assign({}, documentDefaults, {
   files: {
     'index.html': '<h1>I AM VIZ</h1>'
@@ -20,10 +22,16 @@ export const createVisualization = data => {
       error: i18n('errorNoOwner')
     };
   }
+
+  const slug = data.title
+    ? slugFromTitle(data.title)
+    : data.slug || defaults.slug;
+
   return {
     type: 'createVisualization',
     data: Visualization(Object.assign({}, defaults, data, {
-      id: generateId()
+      id: generateId(),
+      slug
     }))
   };
 };

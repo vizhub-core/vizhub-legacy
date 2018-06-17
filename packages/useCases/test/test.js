@@ -23,16 +23,26 @@ describe('Visualization Use Cases', () => {
       assert.deepEqual(action, {
         type: 'createVisualization',
         data: {
-          'description': '',
-          'files': {
+          title: '',
+          slug: '',
+          description: '',
+          files: {
             'index.html': '<h1>I AM VIZ</h1>'
           },
-          'owner': '754328',
-          'slug': '',
-          'title': ''
+          owner: '754328'
         }
       });
     });
-    //it('should return a Visualization entity with given data.', function() {
+
+    it('should compute slug from provided title.', () => {
+      const action = createVisualization({
+        owner: '754328',
+        title: 'Foo the Great'
+      });
+      assert.equal(action.data.title, 'Foo the Great');
+      assert.equal(action.data.slug, 'foo-the-great');
+    });
+    // it('should override defaults with provided fields.', () => {
+    // it('should return a Visualization entity with given data.', () => {
   });
 });
