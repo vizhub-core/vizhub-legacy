@@ -19,7 +19,7 @@ export const createVisualization = data => {
   if (!data.owner) {
     return {
       type: 'error',
-      error: i18n('errorNoOwner')
+      message: i18n('errorNoOwner')
     };
   }
 

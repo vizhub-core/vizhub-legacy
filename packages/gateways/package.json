@@ -1,19 +1,18 @@
 {
-  "name": "datavis-tech-use-cases",
+  "name": "datavis-tech-gateways",
   "version": "1.0.0",
-  "private": true,
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "mocha -r esm"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-entities": "1",
-    "datavis-tech-i18n": "1",
     "esm": "^3.0.51",
     "mocha": "^5.2.0",
-    "uuid": "^3.2.1"
+    "datavis-tech-use-cases": "1",
+    "datavis-tech-i18n": "1"
   }
 }

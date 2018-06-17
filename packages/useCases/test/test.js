@@ -10,7 +10,7 @@ describe('Visualization Use Cases', () => {
     it('should return an error if no owner specified.', () => {
       assert.deepEqual(createVisualization({}), {
         type: 'error',
-        error: i18n('errorNoOwner')
+        message: i18n('errorNoOwner')
       });
     });
 
