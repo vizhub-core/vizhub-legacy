@@ -6,7 +6,7 @@ describe('Visualization Gateway', () => {
   describe('createVisualization', () => {
 
     it('should resolve to an error if no owner specified.', done => {
-      Gateway().createVisualization({}).catch(error => {
+      Gateway({}).createVisualization({}).catch(error => {
         assert.equal(error.message, i18n('errorNoOwner'))
         done();
       });

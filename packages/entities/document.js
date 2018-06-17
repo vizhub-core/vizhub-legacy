@@ -1,6 +1,9 @@
 // This file represents the domain entity called Document.
 // Dataset and Visualization extend Document.
-export const Document = data => ({
+export const Document = (data, type) => ({
+
+  // The type of the document. Either 'dataset' or 'visualization'.
+  type,
 
   // The unique ID of the document.
   id: data.id,

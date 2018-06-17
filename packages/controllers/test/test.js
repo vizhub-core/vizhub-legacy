@@ -1,21 +1,24 @@
 import assert from 'assert';
-import { VisualizationPresenter } from '../src';
+import { Controllers } from '../src';
 
+describe('Controllers', () => {
+  describe('changeDocument', () => {
 
-describe('Presenters', () => {
-  describe('VisualizationPresenter', () => {
+    it('should invoke gateway.changeDocument', () => {
+      let invoked = false;
+      const gateway = {
+        changeDocument: () => {
+          invoked = true;
+        }
+      };
 
-    it('should present visualization and owner', done => {
-      const visualizationPresenter = VisualizationPresenter({
-        fetchDocument: id => Promise.resolve({}),
-        fetchUser: id => Promise.resolve({})
-      }); 
+      const controllers = Controllers(gateway);
 
-      visualizationPresenter('123')
-        .then(({ visualization, owner }) => {
-          assert(true);// TODO
-          done();
-        });
+      assert(!invoked);
+      controllers.changeDocument({}, {});
+      assert(invoked);
     });
+
+    // TODO test that jsonDiff is called
   });
 });

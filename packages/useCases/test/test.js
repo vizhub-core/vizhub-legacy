@@ -23,6 +23,7 @@ describe('Visualization Use Cases', () => {
       assert.deepEqual(action, {
         type: 'createVisualization',
         data: {
+          type: 'visualization',
           title: '',
           slug: '',
           description: '',
