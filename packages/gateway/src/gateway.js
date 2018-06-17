@@ -6,5 +6,6 @@ export const Gateway = database => ({
     return action.type === 'error'
       ? Promise.reject(new Error(action.message))
       : database.createVisualization(action.data);
-  }
+  },
+  changeDocument: database.changeDocument
 });
