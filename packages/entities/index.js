@@ -1,2 +1,2 @@
-export { Dataset } from './Dataset';
-export { Visualization } from './Visualization';
+export { Dataset } from './dataset';
+export { Visualization } from './visualization';

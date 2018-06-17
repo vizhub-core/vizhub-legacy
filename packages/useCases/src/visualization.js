@@ -1,4 +1,5 @@
 import { defaults as documentDefaults } from './document';
+import { Visualization } from 'datavis-tech-entities';
 
 const defaults = Object.assign({}, documentDefaults, {
   files: {

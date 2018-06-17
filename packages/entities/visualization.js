@@ -1,5 +1,7 @@
+import { Document } from './document';
+
 // This file represents the domain entity called Visualization.
-export const Visualization = data => Object.assign(document(data), {
+export const Visualization = data => Object.assign(Document(data), {
 
   // A representation of "files",
   // where keys are file names,
