@@ -23,9 +23,14 @@ export const createVisualization = data => {
     };
   }
 
-  const slug = data.title
-    ? slugFromTitle(data.title)
-    : data.slug || defaults.slug;
+  const slug = (data.slug
+    ? data.slug
+    : (
+      data.title
+        ? slugFromTitle(data.title)
+        : defaults.slug
+    )
+  );
 
   return {
     type: 'createVisualization',

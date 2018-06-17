@@ -42,6 +42,15 @@ describe('Visualization Use Cases', () => {
       assert.equal(action.data.title, 'Foo the Great');
       assert.equal(action.data.slug, 'foo-the-great');
     });
+
+    it('should use slug if provided.', () => {
+      const action = createVisualization({
+        owner: '754328',
+        title: 'Foo the Great',
+        slug: 'foo'
+      });
+      assert.equal(action.data.slug, 'foo');
+    });
     // it('should override defaults with provided fields.', () => {
     // it('should return a Visualization entity with given data.', () => {
   });
