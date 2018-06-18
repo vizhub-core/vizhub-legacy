@@ -21,6 +21,8 @@ process.on('unhandledRejection', (reason, p) => {
 
 process.env.PORT = 3000;
 
+console.log(process.env.NODE_ENV);
+
 // Initialize Next.js
 const nextApp = next({
   dir: '.',
