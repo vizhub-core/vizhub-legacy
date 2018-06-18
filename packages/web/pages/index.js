@@ -8,7 +8,6 @@ export default class extends Page {
   render() {
     return (
       <Layout {...this.props} navmenu={false} container={false}>
-
       </Layout>
     )
   }
