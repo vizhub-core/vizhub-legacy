@@ -1,3 +1,6 @@
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { ANALYZE } = process.env
+
 module.exports = {
   webpack: (config, { dev }) => {
     config.module.rules.push(
@@ -17,6 +20,13 @@ module.exports = {
         loader: 'babel-loader!raw-loader!sass-loader'
       }
     )
+    if (ANALYZE) {
+      config.plugins.push(new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        analyzerPort: 8888,
+        openAnalyzer: true
+      }))
+    }
     return config
   }
 }

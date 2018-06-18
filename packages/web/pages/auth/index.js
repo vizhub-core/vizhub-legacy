@@ -2,7 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import Link from 'next/link'
-import { Row, Col } from 'reactstrap'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
 import Page from '../../components/page'
@@ -47,11 +46,11 @@ export default class extends Page {
       return (
         <Layout {...this.props} navmenu={false} signinBtn={false}>
           <h1 className="text-center display-4 mt-5">Sign up / Sign in</h1>
-          <Row className="mb-5">
-            <Col lg="8" className="mr-auto ml-auto" style={{marginBottom: 20}}>
+          <div className="mb-5">
+            <div lg="8" className="mr-auto ml-auto" style={{marginBottom: 20}}>
               <SignIn session={this.props.session} providers={this.props.providers}/>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Layout>
       )
     }

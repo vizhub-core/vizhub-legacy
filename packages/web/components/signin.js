@@ -1,6 +1,5 @@
 import React from 'react'
 import Router from 'next/router'
-import { Row, Col, Form, Input, Label, Button } from 'reactstrap'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
 
@@ -47,18 +46,18 @@ export default class extends React.Component {
       return (
         <React.Fragment>
           <p className="text-center" style={{marginTop: 10, marginBottom: 30}}>{`If you don't have an account, one will be created when you sign in.`}</p>
-          <Row>
-            <Col xs={12} md={6}>
-              <SignInButtons providers={this.props.providers}/>
-            </Col>
-          </Row>
+          <div>
+            <div xs={12} md={6}>
+              <SignIndivs providers={this.props.providers}/>
+            </div>
+          </div>
         </React.Fragment>
       )
     }
   }
 }
 
-export class SignInButtons extends React.Component {
+export class SignIndivs extends React.Component {
   render() {
     return (
       <React.Fragment>

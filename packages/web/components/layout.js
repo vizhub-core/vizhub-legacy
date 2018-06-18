@@ -2,9 +2,6 @@ import React from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Container, Row, Col, Nav, NavItem, Button, Form, NavLink, Collapse,
-         Navbar, NavbarToggler, NavbarBrand, Modal, ModalHeader, ModalBody,
-         ModalFooter, ListGroup, ListGroupItem } from 'reactstrap'
 import Signin from './signin'
 import { NextAuth } from 'next-auth/client'
 import Cookies from 'universal-cookie'
@@ -31,10 +28,10 @@ export default class extends React.Component {
       modal: false,
       providers: null
     }
-    this.toggleModal = this.toggleModal.bind(this)
+    this.togglediv = this.togglediv.bind(this)
   }
   
-  async toggleModal(e) {
+  async togglediv(e) {
     if (e) e.preventDefault()
 
     // Save current URL so user is redirected back here after signing in
@@ -59,24 +56,24 @@ export default class extends React.Component {
           <style dangerouslySetInnerHTML={{__html: Styles}}/>
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js"/>
         </Head>
-        <Navbar light className="navbar navbar-expand-md pt-3 pb-3">
+        <div light className="navbar navbar-expand-md pt-3 pb-3">
           <Link prefetch href="/">
-            <NavbarBrand href="/">
+            <div href="/">
               <span className="icon ion-md-home mr-1"></span> {Package.name}
-            </NavbarBrand>
+            </div>
           </Link>
           <input className="nojs-navbar-check" id="nojs-navbar-check" type="checkbox" aria-label="Menu"/>
           <label tabIndex="1" htmlFor="nojs-navbar-check" className="nojs-navbar-label mt-2" />
           <div className="nojs-navbar">
-            <Nav navbar>
-            </Nav>
-            <UserMenu session={this.props.session} toggleModal={this.toggleModal} signinBtn={this.props.signinBtn}/>
+            <div navbar>
+            </div>
+            <UserMenu session={this.props.session} togglediv={this.togglediv} signinBtn={this.props.signinBtn}/>
           </div>
-        </Navbar>
+        </div>
         <MainBody navmenu={this.props.navmenu} fluid={this.props.fluid} container={this.props.container}>
           {this.props.children}
         </MainBody>
-        <SigninModal modal={this.state.modal} toggleModal={this.toggleModal} session={this.props.session} providers={this.state.providers}/>
+        <Signindiv modal={this.state.modal} togglediv={this.togglediv} session={this.props.session} providers={this.state.providers}/>
       </React.Fragment>
     )
   }
@@ -92,39 +89,39 @@ export class MainBody extends React.Component {
       )
     } else if (this.props.navmenu === false) {
       return (
-        <Container fluid={this.props.fluid} style={{marginTop: '1em'}}>
+        <div fluid={this.props.fluid} style={{marginTop: '1em'}}>
           {this.props.children}
-        </Container>
+        </div>
       )
     } else {
       return (
-        <Container fluid={this.props.fluid} style={{marginTop: '1em'}}>
-          <Row>
-            <Col xs="12" md="9" lg="10">
+        <div>
+          <div>
+            <div xs="12" md="9" lg="10">
               {this.props.children}
-            </Col>
-            <Col xs="12" md="3" lg="2" style={{paddingTop: '1em'}}>
+            </div>
+            <div xs="12" md="3" lg="2" style={{paddingTop: '1em'}}>
               <h5 className="text-muted text-uppercase">Examples</h5>
-              <ListGroup>
-                <ListGroupItem>
+              <div>
+                <div>
                   <Link prefetch href="/examples/authentication"><a href="/examples/authentication" className="d-block">Auth</a></Link>
-                </ListGroupItem>
-                <ListGroupItem>
+                </div>
+                <div>
                     <Link prefetch href="/examples/async"><a href="/examples/async" className="d-block">Async</a></Link>
-                </ListGroupItem>
-                <ListGroupItem>
+                </div>
+                <div>
                   <Link prefetch href="/examples/layout"><a href="/examples/layout" className="d-block">Layout</a></Link>
-                </ListGroupItem>
-                <ListGroupItem>
+                </div>
+                <div>
                   <Link prefetch href="/examples/routing"><a href="/examples/routing" className="d-block">Routing</a></Link>
-                </ListGroupItem>
-                <ListGroupItem>
+                </div>
+                <div>
                     <Link prefetch href="/examples/styling"><a href="/examples/styling" className="d-block">Styling</a></Link>
-                </ListGroupItem>
-              </ListGroup>
-            </Col>
-          </Row>
-        </Container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )
     }
   }
@@ -152,7 +149,7 @@ export class UserMenu extends React.Component {
       // If signed in display user dropdown menu
       const session = this.props.session
       return (
-        <Nav className="ml-auto" navbar>
+        <div className="ml-auto" navbar>
           {/*<!-- Uses .nojs-dropdown CSS to for a dropdown that works without client side JavaScript ->*/}
           <div tabIndex="2" className="dropdown nojs-dropdown">
             <div className="nav-item">
@@ -171,14 +168,14 @@ export class UserMenu extends React.Component {
               <AdminMenuItem {...this.props}/>
               <div className="dropdown-divider d-none d-md-block"/>
               <div className="dropdown-item p-0">
-                <Form id="signout" method="post" action="/auth/signout" onSubmit={this.handleSignoutSubmit}>
+                <form id="signout" method="post" action="/auth/signout" onSubmit={this.handleSignoutSubmit}>
                   <input name="_csrf" type="hidden" value={this.props.session.csrfToken}/>
-                  <Button type="submit" block className="pl-4 rounded-0 text-left dropdown-item"><span className="icon ion-md-log-out mr-1"></span> Sign out</Button>
-                </Form>
+                  <div type="submit" block className="pl-4 rounded-0 text-left dropdown-item"><span className="icon ion-md-log-out mr-1"></span> Sign out</div>
+                </form>
               </div>
             </div>
           </div>
-        </Nav>
+        </div>
       )
      } if (this.props.signinBtn === false) {
        // If not signed in, don't display sign in button if disabled
@@ -186,16 +183,16 @@ export class UserMenu extends React.Component {
     } else {
       // If not signed in, display sign in button
       return (
-        <Nav className="ml-auto" navbar>
-          <NavItem>
+        <div className="ml-auto" navbar>
+          <div>
             {/**
               * @TODO Add support for passing current URL path as redirect URL
               * so that users without JavaScript are also redirected to the page
               * they were on before they signed in.
               **/}
-            <a href="/auth?redirect=/" className="btn btn-outline-primary" onClick={this.props.toggleModal}><span className="icon ion-md-log-in mr-1"></span> Sign up / Sign in</a>
-          </NavItem>
-        </Nav>
+            <a href="/auth?redirect=/" className="btn btn-outline-primary" onClick={this.props.togglediv}><span className="icon ion-md-log-in mr-1"></span> Sign up / Sign in</a>
+          </div>
+        </div>
       )
     }
   }
@@ -217,17 +214,17 @@ export class AdminMenuItem extends React.Component {
   }
 }
 
-export class SigninModal extends React.Component {
+export class Signindiv extends React.Component {
   render() {
     if (this.props.providers === null) return null
     
     return (
-      <Modal isOpen={this.props.modal} toggle={this.props.toggleModal} style={{maxWidth: 700}}>
-        <ModalHeader>Sign up / Sign in</ModalHeader>
-        <ModalBody style={{padding: '1em 2em'}}>
+      <div isOpen={this.props.modal} toggle={this.props.togglediv} style={{maxWidth: 700}}>
+        <div>Sign up / Sign in</div>
+        <div style={{padding: '1em 2em'}}>
           <Signin session={this.props.session} providers={this.props.providers}/>
-        </ModalBody>
-      </Modal>
+        </div>
+      </div>
     )
   }
 }

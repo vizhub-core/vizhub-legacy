@@ -9,27 +9,19 @@
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-wrap-in-js": "^1.1.1",
-    "bootstrap": "^4.1.1",
     "connect-mongo": "^2.0.1",
     "dotenv": "^5.0.1",
     "express-session": "^1.15.5",
-    "ionicons": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.2.1",
     "mongodb": "^3.0.7",
     "nedb": "^1.8.0",
     "next": "^6.0.0",
     "next-auth": "^1.8.5",
     "node-sass": "^4.8.3",
     "passport-github": "^1.1.0",
-    "popper.js": "^1.14.3",
     "raw-loader": "^0.5.1",
     "react": "^16.3.2",
-    "react-bootstrap-table": "^4.3.1",
     "react-dom": "^16.3.2",
-    "react-syntax-highlighter": "^7.0.4",
-    "react-transition-group": "^2.3.1",
-    "reactstrap": "^6.0.1",
     "sass-loader": "^7.0.1",
     "universal-cookie": "^2.1.2"
   },
@@ -39,6 +31,7 @@
     "eslint-config-xo-react": "^0.16.0",
     "eslint-config-xo-space": "^0.18.0",
     "eslint-plugin-react": "^7.7.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "xo": "^0.21.0"
   },
   "optionalDependencies": {
@@ -49,7 +42,8 @@
     "dev": "NODE_ENV=development node index.js",
     "build": "next build",
     "start": "NODE_ENV=production node index.js",
-    "postinstall": "next build"
+    "postinstall": "next build",
+    "analyze": "ANALYZE=true next build"
   },
   "xo": {
     "space:": 2,
