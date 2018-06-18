@@ -50,27 +50,4 @@ module.exports = (expressApp, functions) => {
       return res.status(403).json({error: 'Must be signed in to update profile'})
     }
   })
-  
-  // Expose a route to allow users to delete their profile.
-  expressApp.post('/account/delete', (req, res) => {
-    if (req.user) {
-      functions.remove(req.user.id)
-      .then(() => {
-        // Destroy local session after deleting account
-        req.logout()
-        req.session.destroy(() => {
-          // When the account has been deleted, redirect client to 
-          // /auth/callback to ensure the client has it's local session state 
-          // updated to reflect that the user is no longer logged in.          
-          return res.redirect(`/auth/callback?action=signout`)
-        })
-      })
-      .catch(err => {
-        return res.status(500).json({error: 'Unable to delete profile'})        
-      })
-    } else {
-      return res.status(403).json({error: 'Must be signed in to delete profile'})
-    }
-  })
-
 }
