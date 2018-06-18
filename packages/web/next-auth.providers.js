@@ -1,25 +1,3 @@
-/**
- * next-auth.providers.js Example
- *
- * This file returns a simple array of oAuth Provider objects for NextAuth.
- *
- * This example returns an array based on what environment variables are set,
- * with explicit support for Facebook, Google and Twitter, but it can be used
- * to add strategies for other oAuth providers.
- *
- * Environment variables for this example:
- *
- * FACEBOOK_ID=
- * FACEBOOK_SECRET=
- * GOOGLE_ID=
- * GOOGLE_SECRET=
- * TWITTER_KEY=
- * TWITTER_SECRET=
- *
- * If you wish, you can put these in a `.env` to seperate your environment 
- * specific configuration from your code.
- **/
-
 // Load environment variables from a .env file if one exists
 require('dotenv').load()
 
