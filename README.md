@@ -6,7 +6,7 @@ This project aspires to [Clean Architecture](https://8thlight.com/blog/uncle-bob
 
 # Entities
 
-![classDiagram](/uploads/820ac1b86ed258aa512a1061d11f65e3/classDiagram.png)
+![classDiagram](/uploads/0cf7704b5adaf788c479a759f5b9da99/classDiagram.png)
 
 Documentation for each entity can be found in `packages/entities/src`.
 

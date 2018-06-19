@@ -1,11 +1,17 @@
-import { createVisualization } from 'datavis-tech-use-cases';
+import { createVisualization } from './createVisualization';
+import { Visualization } from 'datavis-tech-entities';
 
 export const Gateway = database => ({
   createVisualization: data => {
-    const action = createVisualization(data);
-    return action.type === 'error'
-      ? Promise.reject(new Error(action.message))
-      : database.createVisualization(action.data);
+    const result = createVisualization(data);
+
+    if (result instanceof Visualization) {
+      return database.createVisualization(result);
+    }
+
+    if (result instanceof Error) {
+      return Promise.reject(result);
+    }
   },
   changeDocument: database.changeDocument
 });
