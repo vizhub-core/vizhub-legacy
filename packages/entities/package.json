@@ -5,8 +5,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r esm"
   },
   "author": "Curran Kelleher",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "esm": "^3.0.51",
+    "mocha": "^5.2.0"
+  }
 }
