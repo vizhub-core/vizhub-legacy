@@ -1,8 +1,8 @@
-export class DocumentInfo {
-  constructor(data) {
+import { DocumentPart } from './documentPart';
 
-    // The unique ID of this document.
-    this.id = data.id;
+export class DocumentInfo extends DocumentPart {
+  constructor(data) {
+    super(data.id);
 
     // The ID of the user that owns this document.
     this.owner = data.owner;

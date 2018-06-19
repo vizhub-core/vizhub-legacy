@@ -1,5 +1,6 @@
 import assert from 'assert';
 import {
+  DocumentPart,
   DocumentInfo,
   //VisualizationInfo,
   //DatasetInfo,
@@ -19,6 +20,7 @@ describe('Entities', () => {
       };
       const documentInfo = new DocumentInfo(data);
       assert(documentInfo instanceof DocumentInfo);
+      assert(documentInfo instanceof DocumentPart);
       assert.deepEqual(documentInfo, data);
     });
 
