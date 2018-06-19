@@ -1,11 +1,15 @@
 import assert from 'assert';
 import {
   User,
+
   DocumentPart,
   DocumentInfo,
   DocumentContent,
+
   VisualizationInfo,
   VisualizationContent,
+  Visualization,
+
   DatasetInfo,
   DatasetContent,
   //LibraryInfo
@@ -53,45 +57,63 @@ describe('Entities', () => {
     });
   });
 
+  const visualizationInfoData = Object.assign({}, documentInfoData, {
+    references: ['635', '925'],
+    referencedBy: ['946', '142'],
+    forks: ['946', '284'],
+    forkedFrom: '012',
+    thumbnail: 'base64-afhdjaskfhdasjkhfdjaks'
+  });
+
   describe('VisualizationInfo', () => {
     it('should expose expected fields', () => {
-      const data = Object.assign({}, documentInfoData, {
-        references: ['635', '925'],
-        referencedBy: ['946', '142'],
-        forks: ['946', '284'],
-        forkedFrom: '012',
-        thumbnail: 'base64-afhdjaskfhdasjkhfdjaks'
-      });
-      const visualizationInfo = new VisualizationInfo(data);
+      const visualizationInfo = new VisualizationInfo(visualizationInfoData);
       assert(visualizationInfo instanceof VisualizationInfo);
       assert(visualizationInfo instanceof DocumentInfo);
-      assert.deepEqual(visualizationInfo, data);
+      assert.deepEqual(visualizationInfo, visualizationInfoData);
     });
   });
 
+  const visualizationContentData = {
+    id: '123',
+    files: [
+      {
+        name: 'index.html',
+        text: '<script src="index.js">'
+      },
+      {
+        name: 'index.js',
+        text: "import foo from './foo'; console.log(foo);"
+      },
+      {
+        name: 'foo.js',
+        text: "export default 'I am foo';"
+      }
+    ]
+  };
+
   describe('VisualizationContent', () => {
     it('should expose expected fields', () => {
-      const data = {
-        id: '123',
-        files: [
-          {
-            name: 'index.html',
-            text: '<script src="index.js">'
-          },
-          {
-            name: 'index.js',
-            text: "import foo from './foo'; console.log(foo);"
-          },
-          {
-            name: 'foo.js',
-            text: "export default 'I am foo';"
-          }
-        ]
-      };
-      const visualizationContent = new VisualizationContent(data);
+      const visualizationContent = new VisualizationContent(visualizationContentData);
       assert(visualizationContent instanceof VisualizationContent);
       assert(visualizationContent instanceof DocumentContent);
-      assert.deepEqual(visualizationContent, data);
+      assert.deepEqual(visualizationContent, visualizationContentData);
+    });
+  });
+
+  describe('Visualization', () => {
+    it('should expose expected fields', () => {
+      const visualizationInfo = new VisualizationInfo(visualizationInfoData);
+      const visualizationContent = new VisualizationContent(visualizationContentData);
+      const visualization = new Visualization({
+        visualizationInfo,
+        visualizationContent
+      });
+      assert(visualization instanceof Visualization);
+      assert.deepEqual(visualization, {
+        info: visualizationInfo,
+        content: visualizationContent
+      });
     });
   });
 
