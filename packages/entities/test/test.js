@@ -12,6 +12,7 @@ import {
 
   DatasetInfo,
   DatasetContent,
+
   //LibraryInfo
   //LibraryContent
 } from '../src';
@@ -111,6 +112,7 @@ describe('Entities', () => {
       });
       assert(visualization instanceof Visualization);
       assert.deepEqual(visualization, {
+        id: visualizationInfo.id,
         info: visualizationInfo,
         content: visualizationContent
       });

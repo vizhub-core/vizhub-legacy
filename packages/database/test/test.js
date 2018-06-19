@@ -16,4 +16,5 @@ describe('Database', () => {
         done();
       });
   });
+  after(process.exit);
 });
