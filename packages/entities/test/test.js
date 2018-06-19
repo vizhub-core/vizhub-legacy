@@ -5,9 +5,9 @@ import {
   DocumentContent,
   VisualizationInfo,
   VisualizationContent,
-  //DatasetInfo,
+  DatasetInfo,
+  DatasetContent
   //LibraryInfo
-  //DatasetContent,
   //LibraryContent
 } from '../src';
 
@@ -77,6 +77,31 @@ describe('Entities', () => {
       assert(visualizationContent instanceof VisualizationContent);
       assert(visualizationContent instanceof DocumentContent);
       assert.deepEqual(visualizationContent, data);
+    });
+  });
+
+  describe('DatasetInfo', () => {
+    it('should expose expected fields', () => {
+      const data = Object.assign({}, documentInfoData, {
+        format: 'csv'
+      });
+      const datasetInfo = new DatasetInfo(data);
+      assert(datasetInfo instanceof DatasetInfo);
+      assert(datasetInfo instanceof DocumentInfo);
+      assert.deepEqual(datasetInfo, data);
+    });
+  });
+
+  describe('DatasetContent', () => {
+    it('should expose expected fields', () => {
+      const data = {
+        id: '123',
+        text: 'a,b,c\n1,2,3\n4,5,6'
+      };
+      const datasetContent = new DatasetContent(data);
+      assert(datasetContent instanceof DatasetContent);
+      assert(datasetContent instanceof DocumentContent);
+      assert.deepEqual(datasetContent, data);
     });
   });
 
