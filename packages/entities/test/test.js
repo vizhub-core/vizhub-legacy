@@ -2,9 +2,13 @@ import assert from 'assert';
 import {
   DocumentPart,
   DocumentInfo,
+  DocumentContent,
   VisualizationInfo,
+  VisualizationContent,
   //DatasetInfo,
   //LibraryInfo
+  //DatasetContent,
+  //LibraryContent
 } from '../src';
 
 describe('Entities', () => {
@@ -47,6 +51,32 @@ describe('Entities', () => {
       assert(visualizationInfo instanceof VisualizationInfo);
       assert(visualizationInfo instanceof DocumentInfo);
       assert.deepEqual(visualizationInfo, data);
+    });
+  });
+
+  describe('VisualizationContent', () => {
+    it('should expose expected fields', () => {
+      const data = {
+        id: '123',
+        files: [
+          {
+            name: 'index.html',
+            text: '<script src="index.js">'
+          },
+          {
+            name: 'index.js',
+            text: "import foo from './foo'; console.log(foo);"
+          },
+          {
+            name: 'foo.js',
+            text: "export default 'I am foo';"
+          }
+        ]
+      };
+      const visualizationContent = new VisualizationContent(data);
+      assert(visualizationContent instanceof VisualizationContent);
+      assert(visualizationContent instanceof DocumentContent);
+      assert.deepEqual(visualizationContent, data);
     });
   });
 
