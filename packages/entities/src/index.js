@@ -1,3 +1,4 @@
+export { User } from './user';
 export { DocumentPart } from './documentPart';
 export { DocumentInfo } from './documentInfo';
 export { DocumentContent } from './documentContent';

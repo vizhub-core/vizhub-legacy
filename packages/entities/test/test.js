@@ -1,17 +1,32 @@
 import assert from 'assert';
 import {
+  User,
   DocumentPart,
   DocumentInfo,
   DocumentContent,
   VisualizationInfo,
   VisualizationContent,
   DatasetInfo,
-  DatasetContent
+  DatasetContent,
   //LibraryInfo
   //LibraryContent
 } from '../src';
 
 describe('Entities', () => {
+
+  describe('User', () => {
+    it('should expose expected fields', () => {
+      const data = {
+        id: '37584032',
+        userName: 'alice',
+        fullName: 'Alice the Great',
+        email: 'alice@greatness.com'
+      };
+      const user = new User(data);
+      assert(user instanceof User);
+      assert.deepEqual(user, data);
+    });
+  });
 
   describe('DocumentPart', () => {
     it('should expose id', () => {
