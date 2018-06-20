@@ -14,12 +14,15 @@ The user is authenticated.
 
 ## Postconditions
 
-A new visualization was created, with the title specified by the user.
+A new visualization was created.
 
 ## Normal Course of Events
 
  * A user interface for creating a new visualization appears.
- * The user specifies the desired title for the visualization.
+ * The user is asked whether they want to
+   * start from scratch, or
+   * fork a template.
+ * The user specifies the desired title for the visualization (optional).
  * The user confirms that the visualization should be created.
  * The user is informed that the visualization was created.
  * The user is presented with the visualization editor interface.
@@ -28,7 +31,7 @@ A new visualization was created, with the title specified by the user.
 
 ### Missing Title
 
- * If the user confirms that the visualization should be created but has not entered a title, then an error should appear indicating that the title field is required.
+If the title is not specified, the title "Untitled" should be automatically used.
 
 ### Choose a Template
 
