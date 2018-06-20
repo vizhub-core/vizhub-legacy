@@ -34,25 +34,15 @@ export default class extends Page {
   }
   
   render() {
-    if (this.props.session.user) {
-      return (
-        <Layout {...this.props} navmenu={false}>
-          <p className="lead text-center mt-5 mb-5">
-            <Link href="/auth"><a>Manage your profile</a></Link>
-          </p>
-        </Layout>
-      )
-    } else {
-      return (
-        <Layout {...this.props} navmenu={false} signinBtn={false}>
-          <h1 className="text-center display-4 mt-5">Sign up / Sign in</h1>
-          <div className="mb-5">
-            <div lg="8" className="mr-auto ml-auto" style={{marginBottom: 20}}>
-              <SignIn session={this.props.session} providers={this.props.providers}/>
-            </div>
-          </div>
-        </Layout>
-      )
-    }
+    return (
+      <Layout
+        title='Datavis.tech | Sign in'
+        lang={this.props.lang}
+        session={this.props.session}
+      >
+        <h1>Sign up / Sign in</h1>
+        <SignIn session={this.props.session} providers={this.props.providers}/>
+      </Layout>
+    )
   }
 }

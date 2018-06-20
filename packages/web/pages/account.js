@@ -7,6 +7,8 @@ import Page from '../components/page'
 import Layout from '../components/layout'
 import Cookies from 'universal-cookie'
 
+const accountTitle = 'Datavis.tech | Account'
+
 export default class extends Page {
 
   static async getInitialProps({req}) {
@@ -22,8 +24,7 @@ export default class extends Page {
       isSignedIn: (props.session.user) ? true : false,
       name: '',
       email: '',
-      alertText: null,
-      alertStyle: null
+      alertText: null
     }
     if (props.session.user) {
       this.state.name = props.session.user.name
@@ -73,8 +74,7 @@ export default class extends Page {
     e.preventDefault()
     
     this.setState({
-      alertText: null,
-      alertStyle: null
+      alertText: null
     })
     
     const formData = {
@@ -103,7 +103,6 @@ export default class extends Page {
         this.getProfile()
         this.setState({
           alertText: 'Changes to your profile have been saved',
-          alertStyle: 'alert-success',
         })
         // Force update session so that changes to name or email are reflected
         // immediately in the navbar (as we pass our session to it).
@@ -114,7 +113,6 @@ export default class extends Page {
         this.setState({
           session: await NextAuth.init({force: true}), // Update session data
           alertText: 'Failed to save changes to your profile',
-          alertStyle: 'alert-danger',
         })
       }
     })
@@ -122,76 +120,47 @@ export default class extends Page {
   
   render() {
     if (this.state.isSignedIn === true) {
-      const alert = (this.state.alertText === null) ? <div/> : <div className={`alert ${this.state.alertStyle}`} role="alert">{this.state.alertText}</div>
+      const alert = (this.state.alertText === null)
+        ? <div/>
+        : (
+          <div>
+            {this.state.alertText}
+          </div>
+        )
       
       return (
-        <Layout {...this.props} navmenu={false}>
-          <div className="mb-1">
-            <div xs="12">
-              <h1 className="display-2">Your Account</h1>
-              <p className="lead text-muted">
-                Edit your profile and link accounts
-              </p>
-            </div>
-          </div>
+        <Layout
+          title={accountTitle}
+          lang={this.props.lang}
+          session={this.props.session}
+        >
           {alert}
-          <div className="mt-4">
-            <div xs="12" md="8" lg="9">
-              <form method="post" action="/account/user" onSubmit={this.onSubmit}>
-                <input name="_csrf" type="hidden" value={this.state.session.csrfToken} onChange={()=>{}}/>
-                <div row>
-                  <div sm={2}>Name:</div>
-                  <div sm={10} md={8}>
-                    <input name="name" value={this.state.name} onChange={this.handleChange}/>
-                  </div>
-                </div>
-                <div row>
-                  <div sm={2}>Email:</div>
-                  <div sm={10} md={8}>
-                    <input name="email" value={(this.state.email.match(/.*@localhost\.localdomain$/)) ? '' : this.state.email} onChange={this.handleChange}/>
-                  </div>
-                </div>
-                <div row>
-                  <div sm={12} md={10}>
-                    <p className="text-right">
-                      <div color="primary" type="submit">Save Changes</div>
-                    </p>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div xs="12" md="4" lg="3">
-            <LinkAccounts
-              session={this.props.session}
-              linkedAccounts={this.props.linkedAccounts}
-              />
-            </div>
-          </div>
+          <LinkAccounts
+            session={this.props.session}
+            linkedAccounts={this.props.linkedAccounts}
+          />
           <div>
-            <div>
-              <h2>Delete your account</h2>
-              <p>
-                If you delete your account it will be erased immediately.
-                You can sign up again at any time.
-              </p>
-              <form id="signout" method="post" action="/account/delete">
-                <input name="_csrf" type="hidden" value={this.state.session.csrfToken}/>
-                <div type="submit" color="outline-danger"><span className="icon ion-md-trash mr-1"></span> Delete Account</div>
-              </form>
-            </div>
+            <h2>Delete your account</h2>
+            <p>
+              If you delete your account it will be erased immediately.
+              All your data will be permanently lost.
+              You can sign up again at any time.
+            </p>
+            <form id="signout" method="post" action="/account/delete">
+              <input name="_csrf" type="hidden" value={this.state.session.csrfToken}/>
+              <button type="submit" >Delete Account</button>
+            </form>
           </div>
         </Layout>
       )
     } else {
       return (
-        <Layout {...this.props} navmenu={false}>
-          <div>
-            <div xs="12" className="text-center pt-5 pb-5">
-              <p className="lead m-0">
-                <Link href="/auth"><a>Sign in to manage your profile</a></Link>
-              </p>
-            </div>
-          </div>
+        <Layout
+          title={accountTitle}
+          lang={this.props.lang}
+          session={this.props.session}
+        >
+          <Link href="/auth"><a>Sign in to manage your profile</a></Link>
         </Layout>
       )
     }
@@ -203,9 +172,14 @@ export class LinkAccounts extends React.Component {
     return (
       <React.Fragment>
         {
-          Object.keys(this.props.linkedAccounts).map((provider, i) => {
-            return <LinkAccount key={i} provider={provider} session={this.props.session} linked={this.props.linkedAccounts[provider]}/>
-          })
+          Object.keys(this.props.linkedAccounts).map((provider, i) => (
+            <LinkAccount
+              key={i}
+              provider={provider}
+              session={this.props.session}
+              linked={this.props.linkedAccounts[provider]}
+            />
+          ))
         }
       </React.Fragment>
     )
@@ -218,11 +192,9 @@ export class LinkAccount extends React.Component {
       return (
         <form method="post" action={`/auth/oauth/${this.props.provider.toLowerCase()}/unlink`}>
           <input name="_csrf" type="hidden" value={this.props.session.csrfToken}/>
-          <p>
-            <button className="btn btn-block btn-outline-danger" type="submit">
-              Unlink from {this.props.provider}
-            </button>
-          </p>
+          <button type="submit">
+            Unlink from {this.props.provider}
+          </button>
         </form>
       )
     } else {
