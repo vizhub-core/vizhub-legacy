@@ -1,25 +1,9 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const withSass = require('@zeit/next-sass')
 const { ANALYZE } = process.env
 
-module.exports = {
+module.exports = withSass({
   webpack: (config, { dev }) => {
-    config.module.rules.push(
-      {
-        test: /\.(css|scss)/,
-        loader: 'emit-file-loader',
-        options: {
-          name: 'dist/[path][name].[ext]'
-        }
-      },
-      {
-        test: /\.css$/,
-        loader: 'babel-loader!raw-loader'
-      },
-      {
-        test: /\.scss$/,
-        loader: 'babel-loader!raw-loader!sass-loader'
-      }
-    )
     if (ANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({
         analyzerMode: 'server',
@@ -29,4 +13,4 @@ module.exports = {
     }
     return config
   }
-}
+});

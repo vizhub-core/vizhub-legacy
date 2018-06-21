@@ -4,7 +4,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Styles from '../css/index.scss'
+import '../css/index.sass'
 import { withRouter } from 'next/router'
 
 class ErrorPage extends React.Component {
@@ -29,7 +29,7 @@ class ErrorPage extends React.Component {
         response = (
           <div>
             <Head>
-              <style dangerouslySetInnerHTML={{__html: Styles}}/>
+              <link rel="stylesheet" href="/_next/static/style.css" />
             </Head>
             <div>
               <h1 className="display-4">Page Not Found</h1>
