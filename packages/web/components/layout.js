@@ -6,7 +6,7 @@ import Signin from './signin'
 import { NextAuth } from 'next-auth/client'
 import Cookies from 'universal-cookie'
 import Package from '../package'
-import Styles from '../css/index.scss'
+import '../css/index.sass'
 
 export default class extends React.Component {
 
@@ -36,7 +36,7 @@ export default class extends React.Component {
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <title>{this.props.title}</title>
-          <style dangerouslySetInnerHTML={{__html: Styles}}/>
+          <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
 
         <UserMenu

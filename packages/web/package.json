@@ -7,8 +7,10 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "@zeit/next-sass": "^0.2.0",
     "babel-core": "^6.26.3",
     "babel-plugin-wrap-in-js": "^1.1.1",
+    "bulma": "^0.7.1",
     "connect-mongo": "^2.0.1",
     "dotenv": "^5.0.1",
     "express-session": "^1.15.5",
@@ -17,12 +19,11 @@
     "nedb": "^1.8.0",
     "next": "^6.0.0",
     "next-auth": "^1.8.5",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.0",
     "passport-github": "^1.1.0",
     "raw-loader": "^0.5.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "sass-loader": "^7.0.1",
     "universal-cookie": "^2.1.2"
   },
   "devDependencies": {
@@ -42,7 +43,6 @@
     "dev": "NODE_ENV=development node index.js",
     "build": "next build",
     "start": "NODE_ENV=production node index.js",
-    "postinstall": "next build",
     "analyze": "ANALYZE=true next build"
   },
   "xo": {
