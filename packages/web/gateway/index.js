@@ -9,9 +9,7 @@ export const getGateway = () => {
     } else {
 
       // Dynamic require so it doesn't end up in the client bundle.
-      const ServerGateway = require('./server')
-
-      gateway = ServerGateway()
+      gateway = require('./server').ServerGateway()
     }
   }
   return gateway
