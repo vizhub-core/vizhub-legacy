@@ -7,11 +7,16 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "@teamwork/sharedb": "^1.1.5",
+    "@teamwork/sharedb-mingo-memory": "^1.0.2",
+    "@teamwork/websocket-json-stream": "^1.0.0",
     "@zeit/next-sass": "^0.2.0",
     "babel-core": "^6.26.3",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "bulma": "^0.7.1",
     "connect-mongo": "^2.0.1",
+    "datavis-tech-database": "1",
+    "datavis-tech-gateway": "1",
     "dotenv": "^5.0.1",
     "express-session": "^1.15.5",
     "isomorphic-fetch": "^2.2.1",
@@ -40,9 +45,9 @@
   },
   "scripts": {
     "test": "xo",
-    "dev": "NODE_ENV=development node index.js",
+    "dev": "NODE_ENV=development node -r esm index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node index.js",
+    "start": "NODE_ENV=production node -r esm index.js",
     "analyze": "ANALYZE=true next build"
   },
   "xo": {
