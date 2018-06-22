@@ -1,10 +1,10 @@
 import React from 'react'
+import Layout from '../../components/layout'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
-import Loader from '../../components/loader'
 
 export default class extends React.Component {
 
@@ -40,18 +40,14 @@ export default class extends React.Component {
   }
 
   render() {
-    // Provide a link for clients without JavaScript as a fallback.
     return (
-      <React.Fragment>
-        <Head>
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <script src="https://cdn.polyfill.io/v2/polyfill.min.js"/>
-        </Head>
-        <a href={this.props.redirectTo}>
-          <Loader fullscreen={true}/>
-        </a>
-      </React.Fragment>
+      <Layout
+        title='Datavis.tech | Loading...'
+        lang={this.props.lang}
+        session={this.props.session}
+      >
+        <div>Loading...</div>
+      </Layout>
     )
   }
 }

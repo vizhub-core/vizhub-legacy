@@ -10,7 +10,6 @@ export default class extends Page {
         lang={this.props.lang}
         session={this.props.session}
       >
-        <div className='large' >Large</div>
       </Layout>
     )
   }

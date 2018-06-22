@@ -5,7 +5,8 @@ import { Gateway } from 'datavis-tech-gateway';
 import { Database } from '../src';
 
 const shareDB = ShareDB({ db: new ShareDBMingoMemory() });
-const database = Database(shareDB.connect());
+const connection = shareDB.connect();
+const database = Database(connection);
 const gateway = Gateway(database);
 
 describe('Database', () => {
