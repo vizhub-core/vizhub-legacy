@@ -79,7 +79,12 @@ export class UserMenu extends React.Component {
       const session = this.props.session
       return (
         <div>
-          {session.user.name || session.user.email}
+          {session.user.name}
+          <div>
+            <Link href="/create-visualization">
+              <a>Create Visualization</a>
+            </Link>
+          </div>
           <div>
             <Link href="/account">
               <a>Your Account</a>
