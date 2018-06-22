@@ -1,4 +1,5 @@
 import React from 'react'
+import Layout from '../../components/layout'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
@@ -39,17 +40,14 @@ export default class extends React.Component {
   }
 
   render() {
-    // Provide a link for clients without JavaScript as a fallback.
     return (
-      <React.Fragment>
-        <Head>
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        </Head>
-        <a href={this.props.redirectTo}>
-          <div>Loading...</div>
-        </a>
-      </React.Fragment>
+      <Layout
+        title='Datavis.tech | Loading...'
+        lang={this.props.lang}
+        session={this.props.session}
+      >
+        <div>Loading...</div>
+      </Layout>
     )
   }
 }
