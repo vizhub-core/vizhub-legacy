@@ -40,7 +40,6 @@ export default class extends Page {
         lang={this.props.lang}
         session={this.props.session}
       >
-        <h1>Sign up / Sign in</h1>
         <SignIn session={this.props.session} providers={this.props.providers}/>
       </Layout>
     )

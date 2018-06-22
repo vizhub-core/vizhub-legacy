@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Router from 'next/router'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
-import Loader from '../../components/loader'
 
 export default class extends React.Component {
 
@@ -46,10 +45,9 @@ export default class extends React.Component {
         <Head>
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <script src="https://cdn.polyfill.io/v2/polyfill.min.js"/>
         </Head>
         <a href={this.props.redirectTo}>
-          <Loader fullscreen={true}/>
+          <div>Loading...</div>
         </a>
       </React.Fragment>
     )
