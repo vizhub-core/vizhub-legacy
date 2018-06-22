@@ -22,16 +22,9 @@ A new visualization was created.
  * The user is asked whether they want to
    * start from scratch, or
    * fork a template.
- * The user specifies the desired title for the visualization (optional).
  * The user confirms that the visualization should be created.
  * The user is informed that the visualization was created.
  * The user is presented with the visualization editor interface.
-
-## Alternative Courses of Events
-
-### Missing Title
-
-If the title is not specified, the title "Untitled" should be automatically used.
 
 ### Choose a Template
 
