@@ -30,3 +30,7 @@ A new visualization was created.
 
  * The user may chooses a template to start from.
  * In this case, the template visualization will be "forked".
+
+## Exceptional Case
+
+ * If the user is not authenticated, the user should be informed that they need to log in to create a visualization.
