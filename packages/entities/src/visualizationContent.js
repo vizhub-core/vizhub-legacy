@@ -22,6 +22,7 @@ export class VisualizationContent extends DocumentContent {
     //     Loading datasets may occur,
     //       of the form `${d3.fetch method}(./${username}/${slug}.${format})`
     //       where d3.fetch method is one of 'csv', 'tsv', 'json', or 'text';
+    //   styles.css - Optional, CSS file, could be any name ending with .css.
     this.files = data.files;
   }
 }
