@@ -13,12 +13,10 @@ export default class extends Page {
   }
 
   createVisualizationFromScratch() {
-    const { gateway, session } = this.props;
+    const { gateway, user } = this.props;
 
     gateway
-      .createVisualization({
-        owner: session.user.id
-      })
+      .createVisualization({ owner: user.id })
       .then(({id}) => {
         console.log("Created visualization with id " + id);
         console.log("TODO redirect to editor");
@@ -33,10 +31,10 @@ export default class extends Page {
       <Layout
         title='Datavis.tech'
         lang={this.props.lang}
-        session={this.props.session}
+        user={this.props.user}
       >
         {
-          this.props.session.user
+          this.props.user
             ? (
               <BodyAuthenticated
                 onFromScratchClick={this.createVisualizationFromScratch}

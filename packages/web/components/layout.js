@@ -10,19 +10,8 @@ import '../css/index.sass'
 
 export default class extends React.Component {
 
-  static propTypes() {
-    return {
-      session: React.PropTypes.object.isRequired,
-      providers: React.PropTypes.object.isRequired,
-      children: React.PropTypes.object.isRequired,
-    }
-  }
-  
   constructor(props) {
     super(props)
-    this.state = {
-      providers: null
-    }
   }
   
   render() {
@@ -40,17 +29,11 @@ export default class extends React.Component {
         </Head>
 
         <UserMenu
-          session={this.props.session}
-          togglediv={this.togglediv}
+          user={this.props.user}
+          csrfToken={this.props.csrfToken}
         />
 
         {this.props.children}
-
-        <Signindiv
-          togglediv={this.togglediv}
-          session={this.props.session}
-          providers={this.state.providers}
-        />
       </React.Fragment>
     )
   }
@@ -74,12 +57,12 @@ export class UserMenu extends React.Component {
   }
    
   render() {
+    const { user } = this.props;
 
-    if (this.props.session && this.props.session.user) {
-      const session = this.props.session
+    if (user.authenticated) {
       return (
         <div>
-          {session.user.name}
+          {user.fullName}
           <div>
             <Link href="/create-visualization">
               <a>Create Visualization</a>
@@ -96,7 +79,7 @@ export class UserMenu extends React.Component {
             action="/auth/signout"
             onSubmit={this.handleSignoutSubmit}
           >
-            <input name="_csrf" type="hidden" value={this.props.session.csrfToken}/>
+            <input name="_csrf" type="hidden" value={this.props.csrfToken}/>
             <button type="submit">Sign out</button>
           </form>
         </div>
@@ -109,18 +92,5 @@ export class UserMenu extends React.Component {
         </Link>
       )
     }
-  }
-}
-
-export class Signindiv extends React.Component {
-  render() {
-    if (this.props.providers === null) return null
-    
-    return (
-      <Signin
-        session={this.props.session}
-        providers={this.props.providers}
-      />
-    )
   }
 }

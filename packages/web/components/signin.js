@@ -9,7 +9,6 @@ export default class extends React.Component {
     super(props)
     this.state = {
       email: '',
-      session: this.props.session,
       providers: this.props.providers,
       submitting: false
     }
@@ -40,17 +39,13 @@ export default class extends React.Component {
   }
   
   render() {
-    if (this.props.session.user) {
-      return(<div/>)
+    if (this.props.user.authenticated) {
+      return null
     } else {
       return (
         <React.Fragment>
-          <p className="text-center" style={{marginTop: 10, marginBottom: 30}}>{`If you don't have an account, one will be created when you sign in.`}</p>
-          <div>
-            <div xs={12} md={6}>
-              <SignIndivs providers={this.props.providers}/>
-            </div>
-          </div>
+          <p>If you don't have an account, one will be created when you sign in.</p>
+          <SignIndivs providers={this.props.providers}/>
         </React.Fragment>
       )
     }
@@ -66,12 +61,10 @@ export class SignIndivs extends React.Component {
             if (!this.props.providers[provider].signin) return null
 
             return (
-              <p key={i}>
-                <a className="btn btn-block btn-outline-secondary" href={this.props.providers[provider].signin}>
-                  Sign in with {provider}
-                </a>
-              </p>
-              )              
+              <a key={i} href={this.props.providers[provider].signin}>
+                Sign in with {provider}
+              </a>
+            )
           })
         }
       </React.Fragment>

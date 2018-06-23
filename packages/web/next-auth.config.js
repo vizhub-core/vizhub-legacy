@@ -50,7 +50,7 @@ module.exports = () => {
         // starting Express, rather than leaving it to NextAuth.
         // port: process.env.PORT || 3000,
         // Secret used to encrypt session data on the server.
-        sessionSecret: 'change-me',
+        sessionSecret: 'fdhjasklds8anvr8398',
         // Maximum Session Age in ms (optional, default is 7 days).
         // The expiry time for a session is reset every time a user revisits 
         // the site or revalidates their session token. This is the maximum 

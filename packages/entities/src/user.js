@@ -1,6 +1,9 @@
 export class User {
   constructor(data) {
 
+    // Whether or not the user is authenticated or not (boolean).
+    this.authenticated = data.authenticated;
+
     // The unique ID of this user.
     this.id = data.id;
 

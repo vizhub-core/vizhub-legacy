@@ -57,6 +57,8 @@ module.exports = () => {
       //
       // You can use this to capture profile.avatar, profile.location, etc.
       insert: (user, oAuthProfile) => {
+        user.username = oAuthProfile.username;
+        user.gitHubId = oAuthProfile.id;
         return new Promise((resolve, reject) => {
           usersCollection.insert(user, (err, response) => {
             if (err) return reject(err)
@@ -124,7 +126,9 @@ module.exports = () => {
               id: user._id,
               name: user.name,
               email: user.email,
-              admin: user.admin || false
+              admin: user.admin || false,
+              username: user.username,
+              gitHubId: user.gitHubId
             })
           })
         })
