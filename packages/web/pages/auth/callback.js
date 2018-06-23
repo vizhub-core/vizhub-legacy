@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
+import { userFromSession } from '../../utils/userFromSession'
 
 export default class extends React.Component {
 
@@ -26,7 +27,9 @@ export default class extends React.Component {
     }
     
     return {
-      session: session,
+      user: userFromSession(session),
+      csrfToken: session.csrfToken,
+      lang: 'en',
       redirectTo: redirectTo
     }
   }
@@ -44,7 +47,8 @@ export default class extends React.Component {
       <Layout
         title='Datavis.tech | Loading...'
         lang={this.props.lang}
-        session={this.props.session}
+        user={this.props.user}
+        csrfToken={this.props.csrfToken}
       >
         <div>Loading...</div>
       </Layout>

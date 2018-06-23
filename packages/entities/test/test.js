@@ -22,6 +22,7 @@ describe('Entities', () => {
   describe('User', () => {
     it('should expose expected fields', () => {
       const data = {
+        authenticated: true,
         id: '37584032',
         userName: 'alice',
         fullName: 'Alice the Great',

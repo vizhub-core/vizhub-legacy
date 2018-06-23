@@ -7,16 +7,18 @@ import { NextAuth } from 'next-auth/client'
 import Page from '../../components/page'
 import Layout from '../../components/layout'
 import SignIn from '../../components/signin'
+import { userFromSession } from '../../utils/userFromSession'
 
 export default class extends Page {
   
   static async getInitialProps({req, res, query}) {
-    let props = await super.getInitialProps({req})
-    props.session = await NextAuth.init({force: true, req: req})
+    const props = await super.getInitialProps({req})
+    const session = await NextAuth.init({force: true, req: req})
+    props.user = userFromSession(session)
     props.providers = await NextAuth.providers({req})
     
     // If signed in already, redirect to account management page.
-    if (props.session.user) {
+    if (props.user.authenticated) {
       if (req) {
         res.redirect('/account')
       } else {
@@ -38,9 +40,12 @@ export default class extends Page {
       <Layout
         title='Datavis.tech | Sign in'
         lang={this.props.lang}
-        session={this.props.session}
+        user={this.props.user}
       >
-        <SignIn session={this.props.session} providers={this.props.providers}/>
+        <SignIn
+          user={this.props.user}
+          providers={this.props.providers}
+        />
       </Layout>
     )
   }

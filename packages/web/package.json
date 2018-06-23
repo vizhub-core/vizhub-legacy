@@ -17,6 +17,7 @@
     "connect-mongo": "^2.0.1",
     "datavis-tech-database": "1",
     "datavis-tech-gateway": "1",
+    "datavis-tech-entities": "1",
     "dotenv": "^5.0.1",
     "express-session": "^1.15.5",
     "isomorphic-fetch": "^2.2.1",
