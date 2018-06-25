@@ -5,7 +5,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "private": true,
-  "main": "index.js",
+  "main": "server/index.js",
   "dependencies": {
     "@teamwork/sharedb": "^1.1.5",
     "@teamwork/sharedb-mingo-memory": "^1.0.2",
@@ -46,9 +46,9 @@
   },
   "scripts": {
     "test": "xo",
-    "dev": "NODE_ENV=development node -r esm index.js",
+    "dev": "NODE_ENV=development node -r esm server/index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node -r esm index.js",
+    "start": "NODE_ENV=production node -r esm server/index.js",
     "analyze": "ANALYZE=true next build"
   },
   "xo": {
