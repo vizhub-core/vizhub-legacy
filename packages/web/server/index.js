@@ -1,11 +1,12 @@
-'use strict'
+import { createServer } from 'http';
+import next from 'next';
+import nextAuth from 'next-auth';
 
-const next = require('next')
-const nextAuth = require('next-auth')
-const nextAuthConfig = require('./next-auth.config')
+import { ShareDBServer } from './shareDBServer';
+import nextAuthConfig from './next-auth.config';
 
 const routes = {
-  account:  require('./routes/account')
+  account: require('./routes/account')
 }
 
 // Load environment variables from .env file if present
@@ -19,9 +20,10 @@ process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection: Promise:', p, 'Reason:', reason)
 })
 
-process.env.PORT = 3000;
+process.env.PORT = process.env.PORT || 3000;
 
 console.log(`NODE_ENV is ${process.env.NODE_ENV}`);
+console.log(`PORT is ${process.env.PORT}`);
 
 // Initialize Next.js
 const nextApp = next({
@@ -45,14 +47,24 @@ nextApp
     // Default catch-all handler to allow Next.js to handle all other routes
     expressApp.all('*', nextApp.getRequestHandler())
 
-    expressApp.listen(process.env.PORT, err => {
-      if (err) {
-        throw err
-      }
-      console.log('> Ready on http://localhost:' + process.env.PORT + ' [' + process.env.NODE_ENV + ']')
+    const httpServer = createServer(expressApp);
+
+    // Start the WebSocket ShareDB server.
+    ShareDBServer.start(httpServer);
+
+    httpServer
+      .listen(process.env.PORT, err => {
+        if (err) {
+          throw err
+        }
+        console.log([
+          '> Ready on http://localhost:',
+          process.env.PORT,
+          ' [' + process.env.NODE_ENV + ']'
+        ].join(''));
+      })
     })
-  })
-  .catch(err => {
-    console.log('An error occurred, unable to start the server')
-    console.log(err)
-  })
+    .catch(err => {
+      console.log('An error occurred, unable to start the server')
+      console.log(err)
+    })
