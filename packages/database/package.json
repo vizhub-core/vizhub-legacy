@@ -12,9 +12,11 @@
   "dependencies": {
     "@teamwork/sharedb": "^1.1.5",
     "@teamwork/sharedb-mingo-memory": "^1.0.2",
-    "esm": "^3.0.51",
+    "datavis-tech-entities": "*",
+    "datavis-tech-gateway": "*"
+  },
+  "devDependencies": {
     "mocha": "^5.2.0",
-    "datavis-tech-entities": "1",
-    "datavis-tech-gateway": "1"
+    "esm": "^3.0.55"
   }
 }

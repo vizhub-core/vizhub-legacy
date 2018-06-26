@@ -9,8 +9,8 @@
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
-  "dependencies": {
-    "esm": "^3.0.51",
-    "mocha": "^5.2.0"
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "esm": "^3.0.55"
   }
 }

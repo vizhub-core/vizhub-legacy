@@ -1,8 +1,9 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const withSass = require('@zeit/next-sass')
+const withCSS = require('@zeit/next-css')
 const { ANALYZE } = process.env
 
-module.exports = withSass({
+module.exports = withSass(withCSS({
   webpack: (config, { dev }) => {
     if (ANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({
@@ -13,4 +14,4 @@ module.exports = withSass({
     }
     return config
   }
-});
+}));

@@ -46,7 +46,8 @@ export default class extends Page {
       <Layout
         title={accountTitle}
         lang={this.props.lang}
-        session={this.props.session}
+        user={this.props.user}
+        csrfToken={this.props.csrfToken}
       >
         {
           this.state.alertText
