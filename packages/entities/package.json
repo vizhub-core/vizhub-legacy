@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "mocha -r esm"
+    "build-ts": "tsc",
+    "pretest": "npm run build-ts",
+    "postinstall": "npm run build-ts",
+    "test": "npm run build-ts; mocha -r esm"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
     "esm": "^3.0.51",
     "mocha": "^5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.2"
   }
 }

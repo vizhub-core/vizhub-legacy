@@ -15,7 +15,7 @@ import {
 
   //LibraryInfo
   //LibraryContent
-} from '../src';
+} from '../dist';
 
 describe('Entities', () => {
 

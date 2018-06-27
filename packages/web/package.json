@@ -33,6 +33,7 @@
     "universal-cookie": "^2.1.2"
   },
   "devDependencies": {
+    "esm": "^3.0.51",
     "eslint": "^4.19.1",
     "eslint-config-xo": "^0.22.1",
     "eslint-config-xo-react": "^0.16.0",
