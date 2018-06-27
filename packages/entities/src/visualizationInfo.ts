@@ -1,6 +1,25 @@
 import { DocumentInfo } from './documentInfo';
+import { DocumentId } from './documentId';
 
 export class VisualizationInfo extends DocumentInfo {
+
+  // The set of documents that this visualization references.
+  references: DocumentId[];
+
+  // The set of documents that reference into this visualization.
+  referencedBy: DocumentId[];
+
+  // The set of visualizations that are forks of this one.
+  forks: DocumentId[];
+
+  // The visualization that this visualization was forked from.
+  // (optional).
+  forkedFrom: DocumentId;
+
+  // The thumbnail of this visualization.
+  // 320 X 180 base 64 encoded PNG.
+  thumbnail: string;
+
   constructor(data) {
     super({
       id: data.id,

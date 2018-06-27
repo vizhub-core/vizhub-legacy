@@ -1,7 +1,14 @@
 import { DocumentInfo } from './documentInfo';
 
+type Format = 'csv' | 'tsv' | 'json' | 'geojson' | 'topojson' | 'txt';
+
 export class DatasetInfo extends DocumentInfo {
+
+  // The format of this dataset.
+  format: Format;
+
   constructor(data) {
+
     super({
       id: data.id,
       owner: data.owner,
@@ -10,8 +17,6 @@ export class DatasetInfo extends DocumentInfo {
       description: data.description,
     });
 
-    // The format of this dataset.
-    // One of: 'csv', 'tsv', 'json', 'geojson', 'topojson', or 'txt'.
     this.format = data.format;
   }
 }
