@@ -6,8 +6,9 @@ This project aspires to [Clean Architecture](https://8thlight.com/blog/uncle-bob
 
 Clean Architecture Resources:
 
- * [lukemorton/typescript-clean-architecture-example](https://github.com/lukemorton/typescript-clean-architecture-example)
- * [michaelklopf/clean-architecture](https://github.com/michaelklopf/clean-architecture)
+ * [Medium: Clean JavaScript: Using use-case interactors](https://medium.com/@dtinth/clean-javascript-using-use-case-interactors-f3a50c138154)
+ * [GitHub: lukemorton/typescript-clean-architecture-example](https://github.com/lukemorton/typescript-clean-architecture-example)
+ * [GitHub: michaelklopf/clean-architecture](https://github.com/michaelklopf/clean-architecture)
 
 
 # Entities

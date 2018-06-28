@@ -1,13 +1,11 @@
-import { UseCase, RequestModel, ResponseModel } from '../useCase';
+import { UseCase, Request, Response } from '../useCase';
 
-class CreateVisualizationRequestModel implements RequestModel {
-}
-
-class CreateVisualizationResponseModel implements ResponseModel {
-}
+// CV = CreateVisualization
+export interface CVRequest extends Request;
+export interface CVRequest extends Response;
 
 export class CreateVisualization implements UseCase{
-  execute(request: CreateVisualizationRequestModel):CreateVisualizationResponseModel {
+  execute(request: CVRequest): Promise<CVResponse> {
 
   }
 }

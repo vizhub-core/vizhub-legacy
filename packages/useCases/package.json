@@ -1,0 +1,22 @@
+{
+  "name": "datavis-tech-use-cases",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build-ts": "tsc",
+    "pretest": "npm run build-ts",
+    "postinstall": "npm run build-ts",
+    "test": "mocha -r esm"
+  },
+  "author": "Curran Kelleher",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "esm": "^3.0.51",
+    "mocha": "^5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  }
+}
