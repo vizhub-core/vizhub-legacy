@@ -9,3 +9,7 @@ export {
   CVRequest,
   CVResponse
 } from './createVisualization';
+
+export {
+  VisualizationGateway
+} from './gatewayInterfaces/visualizationGateway';

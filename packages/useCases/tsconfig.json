@@ -3,10 +3,9 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "strictNullChecks": true,
-    "module": "es6",
+    "module": "commonjs",
     "target": "es5",
-    "allowJs": true,
-    "lib": [ "es2018" ]
+    "lib": [ "ES2018" ]
   },
   "include": [
     "./src/"
