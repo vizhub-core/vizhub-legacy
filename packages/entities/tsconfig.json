@@ -3,8 +3,6 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "strictNullChecks": true,
-    "module": "commonjs",
-    "target": "es5",
     "lib": [ "ES2018" ]
   },
   "include": [
