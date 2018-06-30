@@ -6,17 +6,17 @@
   "main": "dist/index.js",
   "scripts": {
     "build-ts": "tsc",
-    "pretest": "npm run build-ts",
     "postinstall": "npm run build-ts",
-    "test": "mocha -r esm"
+    "test": "mocha -r ts-node/register test/**/test.ts"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "esm": "^3.0.51",
-    "mocha": "^5.2.0"
   },
   "devDependencies": {
-    "typescript": "^2.9.2"
+    "@types/mocha": "^5.2.3",
+    "typescript": "^2.9.2",
+    "ts-node": "^7.0.0",
+    "mocha": "^5.2.0"
   }
 }

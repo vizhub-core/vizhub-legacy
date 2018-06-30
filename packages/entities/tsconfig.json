@@ -1,12 +1,11 @@
-
 {
   "compilerOptions": {
     "outDir": "./dist/",
     "sourceMap": true,
     "strictNullChecks": true,
-    "module": "es6",
+    "module": "commonjs",
     "target": "es5",
-    "allowJs": true
+    "lib": [ "ES2018" ]
   },
   "include": [
     "./src/"
