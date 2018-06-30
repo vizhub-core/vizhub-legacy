@@ -10,8 +10,10 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
+    "datavis-tech-gateway": "1",
     "esm": "^3.0.51",
     "mocha": "^5.2.0",
-    "datavis-tech-gateway": "1"
+    "rollup": "^0.62.0",
+    "rollup-plugin-virtual": "^1.0.1"
   }
 }

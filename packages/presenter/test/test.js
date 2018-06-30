@@ -4,7 +4,7 @@ import { Presenter } from '../src';
 describe('Presenter', () => {
   describe('presentVisualization', () => {
 
-    it('should present visualization and owner', done => {
+    it('should compute references', done => {
       const gateway = {
         fetchDocument: id => Promise.resolve({}),
         fetchUser: id => Promise.resolve({})
@@ -12,8 +12,8 @@ describe('Presenter', () => {
       const presenter = Presenter(gateway);
 
       presenter.presentVisualization('123')
-        .then(({ visualization, owner }) => {
-          assert(true);// TODO actually test something
+        .then(({ references }) => {
+          assert.deepEqual(references, [ 'd3-selection', './bar' ]);
           done();
         });
     });
