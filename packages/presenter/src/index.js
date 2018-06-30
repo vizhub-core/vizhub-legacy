@@ -2,8 +2,8 @@ import { computeReferences } from './computeReferences';
 
 export const Presenter = gateway => ({
   presentVisualization: id => (
-    gateway.fetchDocument(id).then(visualization => {
-      const references = computeReferences(visualization.files);
+    gateway.fetchDocument(id).then(async visualization => {
+      const references = await computeReferences(visualization.files);
       return Promise
         .all([
           Promise.all(references.map(gateway.fetchDocument)),
