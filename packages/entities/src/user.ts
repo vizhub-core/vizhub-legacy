@@ -1,10 +1,14 @@
+
+// A unique identifier for a user.
+export type UserId = string;
+
 export class User {
 
   // Whether or not the user is authenticated.
   authenticated: boolean;
 
   // The unique ID of this user.
-  id: string;
+  id: UserId;
 
   // This user's unique camelCase user name.
   userName: string;

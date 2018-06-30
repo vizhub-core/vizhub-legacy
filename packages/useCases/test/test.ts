@@ -1,4 +1,5 @@
 import * as assert from 'assert';
+import { i18n } from 'datavis-tech-i18n';
 
 import {
   CreateVisualization,
@@ -20,10 +21,20 @@ describe('Use Cases', () => {
   describe('Create Visualization', () => {
     const createVisualization = new CreateVisualization(visualizationGateway);
 
-    it('should execute', async () => {
-      const request: CVRequest = {};
-      const response: CVResponse = await createVisualization.execute(request);
-      assert(response !== null);
+    it('should error if no owner specified.', done => {
+      const request: CVRequest = {
+        owner: null
+      };
+      createVisualization.execute(request).catch(error => {
+        assert.equal(error.message, i18n('errorNoOwner'))
+        done();
+      });
     });
+
+    //it('should execute', async () => {
+    //  const request: CVRequest = {};
+    //  const response: CVResponse = await createVisualization.execute(request);
+    //  assert(response !== null);
+    //});
   });
 });
