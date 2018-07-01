@@ -13,9 +13,7 @@ const detective = ({ detect }) => {
   };
 };
 
-const outputOptions = { format: 'iife', name: 'bundle' };
-
-export const computeReferences = async () => {
+export async function computeReferences(): Promise<string[]> {
 
   const indexJS = `
     import { selection } from "d3-selection";
@@ -39,7 +37,7 @@ export const computeReferences = async () => {
   });
 
   // const bundle = await rollup(inputOptions);
-  // const { code, map } = await bundle.generate(outputOptions);
+  // const { code, map } = await bundle.generate({ format: 'iife', name: 'bundle' });
   // console.log(code);
   // const localFileReferences = detective.references.filter(str => str.startsWith('./'));
   // console.log(localFileReferences);
