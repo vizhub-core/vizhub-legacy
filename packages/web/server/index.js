@@ -2,10 +2,11 @@ import { createServer } from 'http';
 import next from 'next';
 import nextAuth from 'next-auth';
 
-import { ShareDBServer } from './shareDBServer';
+import { routes } from '../routes';
 import nextAuthConfig from './next-auth.config';
+import { ShareDBServer } from './shareDBServer';
 
-const routes = {
+const nextStarterRoutes = {
   account: require('./routes/account')
 }
 
@@ -42,10 +43,10 @@ nextApp
     const expressApp = nextAuthOptions.expressApp
 
     // Add account management route - reuses functions defined for NextAuth
-    routes.account(expressApp, nextAuthOptions.functions)
+    nextStarterRoutes.account(expressApp, nextAuthOptions.functions)
 
-    // Default catch-all handler to allow Next.js to handle all other routes
-    expressApp.all('*', nextApp.getRequestHandler())
+    // Default catch-all handler to allow Next.js and Next-Routes to handle all other routes
+    expressApp.all('*', routes.getRequestHandler(nextApp))
 
     const httpServer = createServer(expressApp);
 

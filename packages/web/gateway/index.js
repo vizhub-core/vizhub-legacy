@@ -1,5 +1,6 @@
 import ClientGateway from './client'
 
+// Singleton.
 let gateway
 
 export const getGateway = () => {

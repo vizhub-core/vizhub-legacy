@@ -1,7 +1,10 @@
 import React from 'react'
+import Router from 'next/router'
 import Page from '../../components/page'
 import Layout from '../../components/layout'
+import { getGateway } from '../../gateway'
 import { BodyAuthenticated, BodyNotAuthenticated } from './body'
+import { edit } from '../../utils/routePaths'
 
 export default class extends Page {
   constructor() {
@@ -13,17 +16,10 @@ export default class extends Page {
   }
 
   createVisualizationFromScratch() {
-    const { gateway, user } = this.props;
-
-    gateway
-      .createVisualization({ owner: user.id })
-      .then(({id}) => {
-        console.log("Created visualization with id " + id);
-        console.log("TODO redirect to editor");
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    getGateway()
+      .createVisualization({ owner: this.props.user.id })
+      .then(({id}) => Router.push(edit({id})))
+      .catch(error => console.log(error));
   }
 
   render() {

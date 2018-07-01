@@ -10,11 +10,12 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
+    "datavis-tech-gateway": "1",
+    "datavis-tech-entities": "1",
     "@teamwork/sharedb": "^1.2.0",
     "@teamwork/sharedb-mingo-memory": "^1.0.2",
     "esm": "^3.0.58",
     "mocha": "^5.2.0",
-    "datavis-tech-entities": "1",
-    "datavis-tech-gateway": "1"
+    "esm": "^3.0.55"
   }
 }

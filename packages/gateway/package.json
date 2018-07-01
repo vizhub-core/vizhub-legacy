@@ -12,8 +12,10 @@
   "dependencies": {
     "datavis-tech-entities": "1",
     "datavis-tech-i18n": "1",
-    "esm": "^3.0.51",
-    "mocha": "^5.2.0",
     "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "esm": "^3.0.55"
   }
 }
