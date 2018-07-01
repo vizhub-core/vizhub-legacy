@@ -1,8 +1,23 @@
 @charset "utf-8"
-@import "../node_modules/bulma/sass/utilities/_all"
+
+@import "../node_modules/bulma/sass/utilities/initial-variables.sass"
+@import "../node_modules/bulma/sass/utilities/functions.sass"
+
+$family-sans-serif: "Ubuntu", sans-serif
+$family-monospace: "Ubuntu Mono", monospace
+$blue: hsl(184, 67%, 32%)
+
+@import "../node_modules/bulma/sass/utilities/derived-variables.sass"
+@import "../node_modules/bulma/sass/utilities/animations.sass"
+@import "../node_modules/bulma/sass/utilities/mixins.sass"
+@import "../node_modules/bulma/sass/utilities/controls.sass"
+
 @import "../node_modules/bulma/sass/base/_all"
 
 // @import "../node_modules/bulma/sass/elements/_all"
 // @import "../node_modules/bulma/sass/components/_all"
 // @import "../node_modules/bulma/sass/grid/_all"
 // @import "../node_modules/bulma/sass/layout/_all"
+
+.CodeMirror
+  font-family: $family-monospace
