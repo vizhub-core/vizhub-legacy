@@ -10,7 +10,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-gateway": "*",
+    "datavis-tech-gateway": "1",
     "diff-match-patch": "^1.0.1",
     "esm": "^3.0.58",
     "json0-ot-diff": "^1.0.3",
