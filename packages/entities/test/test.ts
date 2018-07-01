@@ -1,4 +1,4 @@
-import assert from 'assert';
+import * as assert from 'assert';
 import {
   User,
 
@@ -15,7 +15,7 @@ import {
 
   //LibraryInfo
   //LibraryContent
-} from '../src';
+} from '../dist';
 
 describe('Entities', () => {
 
@@ -29,7 +29,6 @@ describe('Entities', () => {
         email: 'alice@greatness.com'
       };
       const user = new User(data);
-      assert(user instanceof User);
       assert.deepEqual(user, data);
     });
   });
@@ -37,7 +36,6 @@ describe('Entities', () => {
   describe('DocumentPart', () => {
     it('should expose id', () => {
       const documentPart = new DocumentPart('123');
-      assert(documentPart instanceof DocumentPart);
       assert.equal(documentPart.id, '123');
     });
   });
@@ -53,8 +51,6 @@ describe('Entities', () => {
   describe('DocumentInfo', () => {
     it('should expose expected fields', () => {
       const documentInfo = new DocumentInfo(documentInfoData);
-      assert(documentInfo instanceof DocumentInfo);
-      assert(documentInfo instanceof DocumentPart);
       assert.deepEqual(documentInfo, documentInfoData);
     });
   });
@@ -70,8 +66,6 @@ describe('Entities', () => {
   describe('VisualizationInfo', () => {
     it('should expose expected fields', () => {
       const visualizationInfo = new VisualizationInfo(visualizationInfoData);
-      assert(visualizationInfo instanceof VisualizationInfo);
-      assert(visualizationInfo instanceof DocumentInfo);
       assert.deepEqual(visualizationInfo, visualizationInfoData);
     });
   });
@@ -97,8 +91,6 @@ describe('Entities', () => {
   describe('VisualizationContent', () => {
     it('should expose expected fields', () => {
       const visualizationContent = new VisualizationContent(visualizationContentData);
-      assert(visualizationContent instanceof VisualizationContent);
-      assert(visualizationContent instanceof DocumentContent);
       assert.deepEqual(visualizationContent, visualizationContentData);
     });
   });
@@ -111,7 +103,6 @@ describe('Entities', () => {
         visualizationInfo,
         visualizationContent
       });
-      assert(visualization instanceof Visualization);
       assert.deepEqual(visualization, {
         id: visualizationInfo.id,
         info: visualizationInfo,
@@ -126,8 +117,6 @@ describe('Entities', () => {
         format: 'csv'
       });
       const datasetInfo = new DatasetInfo(data);
-      assert(datasetInfo instanceof DatasetInfo);
-      assert(datasetInfo instanceof DocumentInfo);
       assert.deepEqual(datasetInfo, data);
     });
   });
@@ -139,8 +128,6 @@ describe('Entities', () => {
         text: 'a,b,c\n1,2,3\n4,5,6'
       };
       const datasetContent = new DatasetContent(data);
-      assert(datasetContent instanceof DatasetContent);
-      assert(datasetContent instanceof DocumentContent);
       assert.deepEqual(datasetContent, data);
     });
   });

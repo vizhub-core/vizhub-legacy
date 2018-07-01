@@ -12,11 +12,8 @@
   "dependencies": {
     "datavis-tech-gateway": "*",
     "diff-match-patch": "^1.0.1",
-    "esm": "^3.0.51",
-    "json0-ot-diff": "^1.0.3"
-  },
-  "devDependencies": {
-    "mocha": "^5.2.0",
-    "esm": "^3.0.55"
+    "esm": "^3.0.58",
+    "json0-ot-diff": "^1.0.3",
+    "mocha": "^5.2.0"
   }
 }

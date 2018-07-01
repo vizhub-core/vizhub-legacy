@@ -1,9 +1,9 @@
 {
-  "name": "datavis-tech-presenter",
+  "name": "datavis-tech-use-cases",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
   "private": true,
+  "description": "",
+  "main": "dist/index.js",
   "scripts": {
     "build-ts": "tsc",
     "postinstall": "npm run build-ts",
@@ -12,13 +12,11 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-use-cases": "1",
-    "mocha": "^5.2.0",
-    "rollup": "^0.62.0",
-    "rollup-plugin-virtual": "^1.0.1"
+    "datavis-tech-entities": "1",
+    "datavis-tech-i18n": "1"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.3",
+    "@types/mocha": "^5.2.4",
     "@types/node": "^10.5.1",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.0",

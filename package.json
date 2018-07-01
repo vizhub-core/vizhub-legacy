@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "cd packages/entities && npm test && cd ../gateway && npm test && cd ../presenter && npm test && cd ../controller && npm test && cd ../database && npm test && echo 'All tests pass!'"
+    "test": "cd packages/entities && npm test && cd ../useCases && npm test cd ../gateway && npm test && cd ../presenter && npm test && cd ../controller && npm test && cd ../database && npm test && echo 'All tests pass!'",
+    "updateDeps": "npm install -g npm-check-updates; ncu -a; cd packages/entities && ncu -a && cd ../useCases && ncu -a cd ../gateway && ncu -a && cd ../presenter && ncu -a && cd ../controller && ncu -a && cd ../database && ncu -a && echo 'All dependencies upgraded!'"
   },
 	"devDependencies": {
 		"lerna": "^2.11.0"

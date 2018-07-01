@@ -1,10 +1,12 @@
 import { DocumentContent } from './documentContent';
 
 export class DatasetContent extends DocumentContent {
+
+  // The text content of this dataset.
+  text: string;
+
   constructor(data) {
     super(data.id);
-
-    // The text content of this dataset.
     this.text = data.text;
   }
 }

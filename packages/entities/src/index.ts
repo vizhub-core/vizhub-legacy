@@ -1,4 +1,4 @@
-export { User } from './user';
+export { User, UserId } from './user';
 
 export { DocumentPart } from './documentPart';
 export { DocumentInfo } from './documentInfo';

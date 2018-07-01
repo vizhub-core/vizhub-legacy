@@ -30,10 +30,6 @@ const visualizationDefaults = Object.assign({}, documentDefaults, {
 
 export const createVisualization = data => {
 
-  if (!data.owner) {
-    return new Error(i18n('errorNoOwner'))
-  }
-
   // Mutates data.
   Object.assign(data, visualizationDefaults, data, {
     id: generateId(),
