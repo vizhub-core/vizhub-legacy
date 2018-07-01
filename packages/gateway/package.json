@@ -10,8 +10,8 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-entities": "*",
-    "datavis-tech-i18n": "*",
+    "datavis-tech-entities": "1",
+    "datavis-tech-i18n": "1",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
