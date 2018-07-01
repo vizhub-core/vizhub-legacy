@@ -1,33 +1,70 @@
 {
-	"dependencies": {
-		"@teamwork/sharedb": "^1.1.5",
-		"@teamwork/sharedb-mingo-memory": "^1.0.2",
-		"@teamwork/websocket-json-stream": "^1.0.0",
-		"@zeit/next-sass": "^0.2.0",
-		"babel-core": "^6.26.3",
-		"babel-plugin-wrap-in-js": "^1.1.1",
-		"bulma": "^0.7.1",
-		"connect-mongo": "^2.0.1",
-		"dotenv": "^5.0.1",
-		"eslint": "^4.19.1",
-		"eslint-config-xo": "^0.22.1",
-		"eslint-config-xo-react": "^0.16.0",
-		"eslint-config-xo-space": "^0.18.0",
-		"eslint-plugin-react": "^7.7.0",
-		"esm": "^3.0.51",
-		"express-session": "^1.15.5",
-		"isomorphic-fetch": "^2.2.1",
-		"mongodb": "^3.0.7",
-		"nedb": "^1.8.0",
-		"next": "^6.0.0",
-		"next-auth": "^1.8.5",
-		"node-sass": "^4.9.0",
-		"passport-github": "^1.1.0",
-		"raw-loader": "^0.5.1",
-		"react": "^16.3.2",
-		"react-dom": "^16.3.2",
-		"universal-cookie": "^2.1.2",
-		"webpack-bundle-analyzer": "^2.13.1",
-		"xo": "^0.21.0"
-	}
+  "name": "datavis-tech-web",
+  "version": "6.0.3",
+  "description": "A platform for teaching and learning data visualization with D3.js",
+  "author": "Curran Kelleher",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "server/index.js",
+  "dependencies": {
+    "@teamwork/sharedb": "^1.1.5",
+    "@teamwork/sharedb-mingo-memory": "^1.0.2",
+    "@teamwork/websocket-json-stream": "^1.0.0",
+    "@zeit/next-sass": "^0.2.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "bulma": "^0.7.1",
+    "connect-mongo": "^2.0.1",
+    "datavis-tech-database": "1",
+    "datavis-tech-gateway": "1",
+    "datavis-tech-entities": "1",
+    "dotenv": "^5.0.1",
+    "express-session": "^1.15.5",
+    "isomorphic-fetch": "^2.2.1",
+    "mongodb": "^3.0.7",
+    "nedb": "^1.8.0",
+    "next": "^6.0.0",
+    "next-auth": "^1.8.5",
+    "node-sass": "^4.9.0",
+    "passport-github": "^1.1.0",
+    "raw-loader": "^0.5.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "universal-cookie": "^2.1.2"
+  },
+  "devDependencies": {
+    "esm": "^3.0.51",
+    "eslint": "^4.19.1",
+    "eslint-config-xo": "^0.22.1",
+    "eslint-config-xo-react": "^0.16.0",
+    "eslint-config-xo-space": "^0.18.0",
+    "eslint-plugin-react": "^7.7.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "xo": "^0.21.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
+  "scripts": {
+    "test": "xo",
+    "dev": "NODE_ENV=development node -r esm server/index.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node -r esm server/index.js",
+    "analyze": "ANALYZE=true next build"
+  },
+  "xo": {
+    "space:": 2,
+    "semicolon": false,
+    "extends": [
+      "xo-space",
+      "xo-react/space"
+    ],
+    "ignores": [
+      "next.config.js"
+    ]
+  },
+  "now": {
+    "name": "nextjs-starter",
+    "alias": "nextjs-starter.now.sh"
+  }
 }
