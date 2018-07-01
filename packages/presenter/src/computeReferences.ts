@@ -1,12 +1,15 @@
 import { rollup } from 'rollup';
-import virtual from 'rollup-plugin-virtual';
+import * as virtual from 'rollup-plugin-virtual';
 
 // A Rollup plugin that detects and reports all unresolved references.
 const Detective = () => {
-  const references = [];
+  const references: string[] = [];
   return {
     name: 'detective',
-    resolveId: id => (references.push(id), `detected-${id}`),
+    resolveId: (id: string) => {
+      references.push(id);
+      return `detected-${id}`;
+    },
     load: id => 'detective-stub',
     references
   };
@@ -14,7 +17,7 @@ const Detective = () => {
 
 const outputOptions = { format: 'iife', name: 'bundle' };
 
-export const computeReferences = async visualization => {
+export const computeReferences = async () => {
 
   const indexJS = `
     import { selection } from "d3-selection";
