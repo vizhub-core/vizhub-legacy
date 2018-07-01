@@ -10,7 +10,7 @@ module.exports = withSass(withCSS({
     // Enable use of both .sass and .css.
     // Should be a temporary workaround.
     // See https://github.com/zeit/next-plugins/issues/127
-    config = commonsChunkConfig(config, /\.(sass|scss|css)$/);
+    config = commonsChunkConfig(config, /\.(sass|css)$/);
 
     if (ANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({
