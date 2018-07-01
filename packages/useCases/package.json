@@ -13,11 +13,12 @@
   "license": "UNLICENSED",
   "dependencies": {
     "datavis-tech-entities": "1",
-    "datavis-tech-i18n": "1",
-    "mocha": "^5.2.0"
+    "datavis-tech-i18n": "1"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.3",
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.1",
+    "mocha": "^5.2.0",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
   }

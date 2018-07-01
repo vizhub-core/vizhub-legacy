@@ -1,7 +1,7 @@
 
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
-image: node:latest
+image: node:10
 
 before_script:
   - npm install -g lerna

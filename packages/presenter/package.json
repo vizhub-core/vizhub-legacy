@@ -5,15 +5,23 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
-    "test": "mocha -r esm"
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "test": "mocha -r ts-node/register test/**/test.ts"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-gateway": "1",
-    "esm": "^3.0.51",
+    "datavis-tech-use-cases": "1",
     "mocha": "^5.2.0",
     "rollup": "^0.62.0",
     "rollup-plugin-virtual": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.3",
+    "@types/node": "^10.5.1",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
   }
 }
