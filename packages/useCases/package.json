@@ -16,8 +16,9 @@
     "datavis-tech-i18n": "1"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
     "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.1",
+    "mocha": "^5.2.0",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
   }
