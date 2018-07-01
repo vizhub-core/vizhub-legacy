@@ -2,16 +2,14 @@ import { rollup } from 'rollup';
 import * as virtual from 'rollup-plugin-virtual';
 
 // A Rollup plugin that detects and reports all unresolved references.
-const Detective = () => {
-  const references: string[] = [];
+const detective = ({ detect }) => {
   return {
     name: 'detective',
     resolveId: (id: string) => {
-      references.push(id);
+      detect(id);
       return `detected-${id}`;
     },
-    load: id => 'detective-stub',
-    references
+    load: id => 'detective-stub'
   };
 };
 
@@ -25,13 +23,18 @@ export const computeReferences = async () => {
     export const foo = "test";
   `;
 
-  const detective = Detective();
+  const references: string[] = [];
 
   await rollup({
     input: 'index.js',
     plugins: [
-      virtual({ 'index.js': indexJS }),
-      detective
+      virtual({
+        'index.js':
+        indexJS
+      }),
+      detective({
+        detect: id => references.push(id)
+      })
     ]
   });
 
@@ -41,5 +44,5 @@ export const computeReferences = async () => {
   // const localFileReferences = detective.references.filter(str => str.startsWith('./'));
   // console.log(localFileReferences);
 
-  return detective.references;
+  return references;
 }
