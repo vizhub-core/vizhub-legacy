@@ -1,13 +1,8 @@
 import { UserMenu } from './userMenu'
+import { SlightMargin } from '../slightMargin'
 
 export const NavBar = ({user, csrfToken}) => (
-  <React.Fragment>
-
-    <style jsx>{`
-      nav {
-        margin: 10px;
-      }
-    `}</style>
+  <SlightMargin>
 
     <nav className="level">
     
@@ -37,5 +32,5 @@ export const NavBar = ({user, csrfToken}) => (
       </div>
 
     </nav>
-  </React.Fragment>
+  </SlightMargin>
 );

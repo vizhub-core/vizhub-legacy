@@ -7,6 +7,7 @@ import { NextAuth } from 'next-auth/client'
 import Page from '../../components/page'
 import Layout from '../../components/layout'
 import { SignIn}  from '../../components/signIn'
+import { SlightMargin } from '../../components/slightMargin'
 import { userFromSession } from '../../utils/userFromSession'
 
 export default class extends Page {
@@ -42,10 +43,16 @@ export default class extends Page {
         lang={this.props.lang}
         user={this.props.user}
       >
-        <SignIn
-          user={this.props.user}
-          providers={this.props.providers}
-        />
+        <div className='container'>
+          <div className='box has-text-centered'>
+            <SlightMargin>
+              <SignIn
+                user={this.props.user}
+                providers={this.props.providers}
+              />
+            </SlightMargin>
+          </div>
+        </div>
       </Layout>
     )
   }

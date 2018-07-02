@@ -45,14 +45,18 @@ export class SignIn extends React.Component {
       return (
         <React.Fragment>
           <p>If you don't have an account, one will be created when you sign in.</p>
-          <SignIndivs providers={this.props.providers}/>
+          <section className='section'>
+            <SignInButtons providers={this.props.providers}/>
+          </section>
+
+          <p>By signing in you agree to our <a href='https://datavis.tech/static/legal/Terms%20of%20Use.pdf'>terms of use</a>.</p>
         </React.Fragment>
       )
     }
   }
 }
 
-export class SignIndivs extends React.Component {
+export class SignInButtons extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -61,7 +65,11 @@ export class SignIndivs extends React.Component {
             if (!this.props.providers[provider].signin) return null
 
             return (
-              <a key={i} href={this.props.providers[provider].signin}>
+              <a
+                className='button is-primary is-large'
+                key={i}
+                href={this.props.providers[provider].signin}
+              >
                 Sign in with {provider}
               </a>
             )

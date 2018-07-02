@@ -29,15 +29,17 @@ export default class extends Page {
         lang={this.props.lang}
         user={this.props.user}
       >
-        {
-          this.props.user
-            ? (
-              <BodyAuthenticated
-                onFromScratchClick={this.createVisualizationFromScratch}
-              />
-            )
-            : <BodyNotAuthenticated />
-        }
+        <div className='container'>
+          {
+            this.props.user
+              ? (
+                <BodyAuthenticated
+                  onFromScratchClick={this.createVisualizationFromScratch}
+                />
+              )
+              : <BodyNotAuthenticated />
+          }
+        </div>
       </Layout>
     )
   }
