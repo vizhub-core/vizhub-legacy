@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
 import Page from '../../components/page'
 import Layout from '../../components/layout'
-import SignIn from '../../components/signin'
+import { SignIn}  from '../../components/signIn'
 import { userFromSession } from '../../utils/userFromSession'
 
 export default class extends Page {

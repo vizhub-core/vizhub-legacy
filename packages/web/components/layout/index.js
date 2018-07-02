@@ -1,9 +1,6 @@
 import React from 'react'
-import Router from 'next/router'
 import Head from 'next/head'
-import Signin from './signin'
-import Package from '../package'
-import { UserMenu } from './userMenu'
+import { NavBar } from './navBar'
 
 export default class extends React.Component {
 
@@ -22,7 +19,7 @@ export default class extends React.Component {
           <title>{this.props.title}</title>
         </Head>
 
-        <UserMenu
+        <NavBar
           user={this.props.user}
           csrfToken={this.props.csrfToken}
         />
