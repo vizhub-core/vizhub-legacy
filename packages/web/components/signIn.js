@@ -3,7 +3,7 @@ import Router from 'next/router'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
 
-export default class extends React.Component {
+export class SignIn extends React.Component {
   
   constructor(props) {
     super(props)

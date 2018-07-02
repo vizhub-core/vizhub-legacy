@@ -64,7 +64,7 @@ export default class extends Page {
                   All your data will be permanently lost.
                   You can sign up again at any time.
                 </p>
-                <form id="signout" method="post" action="/account/delete">
+                <form id="delete" method="post" action="/account/delete">
                   <input name="_csrf" type="hidden" value={this.state.csrfToken}/>
                   <button type="submit" >Delete Account</button>
                 </form>

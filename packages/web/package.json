@@ -15,6 +15,7 @@
     "babel-core": "^6.26.3",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "bulma": "^0.7.1",
+    "classnames": "^2.2.6",
     "codemirror": "^5.39.0",
     "connect-mongo": "^2.0.1",
     "datavis-tech-database": "1",
@@ -38,13 +39,12 @@
     "ws": "^5.2.1"
   },
   "devDependencies": {
-    "esm": "^3.0.51",
+    "esm": "^3.0.55",
     "eslint": "^4.19.1",
     "eslint-config-xo": "^0.22.1",
     "eslint-config-xo-react": "^0.16.0",
     "eslint-config-xo-space": "^0.18.0",
     "eslint-plugin-react": "^7.7.0",
-    "esm": "^3.0.55",
     "webpack-bundle-analyzer": "^2.13.1",
     "xo": "^0.21.0"
   },
