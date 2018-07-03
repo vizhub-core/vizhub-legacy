@@ -1,17 +1,31 @@
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
+import '../../css/ubuntu.css';
 import {UnControlled as CodeMirror} from 'react-codemirror2';
  
-export const CodeEditor = () => (
-  <CodeMirror
-    value='<h1>I ♥ react-codemirror2</h1>'
-    options={{
-      mode: 'xml',
-      theme: 'material',
-      lineNumbers: true
-    }}
-    onChange={(editor, data, value) => {
-      console.log('change');
-    }}
-  />
-)
+function foo() {
+    var x = [...foo];
+    return x * 5;
+  /var/g
+}
+// This is jjkj
+// [...foo]
+
+export const CodeEditor = () => {
+  if (!process.browser) {
+    return null;
+  }
+  require('codemirror/mode/javascript/javascript');
+  return (
+    <CodeMirror
+      value='const x = "foo";'
+      options={{
+        mode: 'javascript',
+        theme: 'ubuntu',
+        lineNumbers: true
+      }}
+      onChange={(editor, data, value) => {
+        console.log('change');
+      }}
+    />
+  );
+}
