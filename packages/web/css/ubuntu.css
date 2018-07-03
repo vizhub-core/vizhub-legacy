@@ -1,0 +1,43 @@
+/* A CodeMirror theme that approximates Vim syntax highlighting in the Ubuntu terminal. */
+
+.cm-s-ubuntu.CodeMirror {
+  background-color: #300a24;
+  color: white;
+}
+.cm-s-ubuntu .CodeMirror-gutters {
+  background: #300a24;
+  color: white;
+  border: none;
+}
+.cm-s-ubuntu .CodeMirror-guttermarker, .cm-s-ubuntu .CodeMirror-guttermarker-subtle, .cm-s-ubuntu .CodeMirror-linenumber { color: #fce94f; }
+.cm-s-ubuntu .CodeMirror-cursor { border-left: 1px solid white; }
+.cm-s-ubuntu div.CodeMirror-selected { background: #6c6c6c; }
+.cm-s-ubuntu.CodeMirror-focused div.CodeMirror-selected { background: #6c6c6c; }
+
+.cm-s-ubuntu .cm-keyword { color: #34e2e2; font-weight: bold; }
+.cm-s-ubuntu .cm-operator { color: white; }
+.cm-s-ubuntu .cm-variable-2 { color: white; }
+.cm-s-ubuntu .cm-variable-3, .cm-s-ubuntu .cm-type { color: white; }
+.cm-s-ubuntu .cm-builtin { color: white; }
+.cm-s-ubuntu .cm-atom { color: #ad7fa8; }
+.cm-s-ubuntu .cm-number { color: white; }
+.cm-s-ubuntu .cm-def { color: white; }
+.cm-s-ubuntu .cm-string { color: #ad7fa8; }
+.cm-s-ubuntu .cm-string-2 { color: #ad7fa8; }
+.cm-s-ubuntu .cm-comment { color: #34e2e2; }
+.cm-s-ubuntu .cm-variable { color: white; }
+.cm-s-ubuntu .cm-tag { color: red; }
+.cm-s-ubuntu .cm-meta { color: white; }
+.cm-s-ubuntu .cm-attribute { color: red; }
+.cm-s-ubuntu .cm-property { color: white; }
+.cm-s-ubuntu .cm-qualifier { color: red; }
+.cm-s-ubuntu .cm-variable-3, .cm-s-ubuntu .cm-type { color: red; }
+.cm-s-ubuntu .cm-tag { color: red }
+.cm-s-ubuntu .cm-error {
+  color: red;
+  background-color: black;
+}
+.cm-s-ubuntu .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: #34e2e2 !important;
+}
