@@ -66,7 +66,7 @@ export class SignInButtons extends React.Component {
 
             return (
               <a
-                className='button is-primary is-large'
+                className='button is-large'
                 key={i}
                 href={this.props.providers[provider].signin}
               >

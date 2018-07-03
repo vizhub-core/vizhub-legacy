@@ -8,7 +8,7 @@ export const NavBar = ({user, csrfToken}) => (
     
       <div className="level-left">
         <div className="level-item">
-          VizHub.io
+          VizHub
         </div>
       </div>
 

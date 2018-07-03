@@ -2,11 +2,15 @@
 
 $family-sans-serif: "Ubuntu", sans-serif
 $family-monospace: "Ubuntu Mono", monospace
-$blue: hsl(184, 67%, 32%)
 $body-background-color: #fcfcfc
+$radius: 0px
 
 @import "../node_modules/bulma/sass/utilities/initial-variables"
 @import "../node_modules/bulma/sass/utilities/functions"
+
+$link: $grey
+$link-visited: $grey
+$link-focus-border: $grey
 
 @import "../node_modules/bulma/sass/utilities/derived-variables"
 @import "../node_modules/bulma/sass/utilities/animations"
@@ -34,3 +38,6 @@ $body-background-color: #fcfcfc
 
 .CodeMirror
   font-family: $family-monospace
+
+a
+  text-decoration: underline

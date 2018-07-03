@@ -4,11 +4,14 @@ import Router from 'next/router'
 import Link from 'next/link'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
+
 import Page from '../../components/page'
 import Layout from '../../components/layout'
-import { SignIn}  from '../../components/signIn'
 import { SlightMargin } from '../../components/slightMargin'
+
 import { userFromSession } from '../../utils/userFromSession'
+
+import { SignIn}  from './signIn'
 
 export default class extends Page {
   
@@ -43,7 +46,10 @@ export default class extends Page {
         lang={this.props.lang}
         user={this.props.user}
       >
-        <div className='container'>
+        <div
+          className='container section'
+          style={{maxWidth: '600px'}}
+        >
           <div className='box has-text-centered'>
             <SlightMargin>
               <SignIn
