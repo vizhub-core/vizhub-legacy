@@ -9,6 +9,7 @@ import Page from '../../components/page'
 import { TitledPage } from '../../components/atoms/titledPage'
 import { SlightMargin } from '../../components/atoms/slightMargin'
 import { SignIn } from '../../components/molecules/signIn'
+import { ActionBox } from '../../components/molecules/actionBox'
 import { NavBar } from '../../components/organisms/navBar'
 
 import { userFromSession } from '../../utils/userFromSession'
@@ -46,19 +47,12 @@ export default class extends Page {
           user={this.props.user}
           csrfToken={this.props.csrfToken}
         />
-        <div
-          className='container section'
-          style={{maxWidth: '600px'}}
-        >
-          <div className='box has-text-centered'>
-            <SlightMargin>
-              <SignIn
-                user={this.props.user}
-                providers={this.props.providers}
-              />
-            </SlightMargin>
-          </div>
-        </div>
+        <ActionBox title='Sign up or Sign in'>
+          <SignIn
+            user={this.props.user}
+            providers={this.props.providers}
+          />
+        </ActionBox>
       </TitledPage>
     )
   }
