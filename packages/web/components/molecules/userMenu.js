@@ -8,18 +8,13 @@ class UserMenuAuthenticated extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      open: false
-    };
+    this.state = { open: false };
 
-    this.onClick = () => {
-      this.setState({
-        open: !this.state.open
-      });
+    this.toggle = event => {
+      this.setState({ open: !this.state.open });
     };
 
     this.onSignOut = () => {
-      event.preventDefault();
       props.onSignOut();
     };
   }
@@ -29,8 +24,8 @@ class UserMenuAuthenticated extends React.Component {
     const { open } = this.state;
     return (
       <div
-        onClick={this.onClick}
-        className={classNames('dropdown', {'is-active': open})}
+        onClick={this.toggle}
+        className={classNames('dropdown is-right', {'is-active': open})}
       >
         <div className="dropdown-trigger">
           <button
@@ -38,12 +33,12 @@ class UserMenuAuthenticated extends React.Component {
             aria-haspopup="true"
             aria-controls="dropdown-menu"
           >
-            <span>{user.fullName}</span>
+            {user.fullName}
           </button>
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            <Link href="create-visualization">
+            <Link href="/create-visualization">
               <a className="dropdown-item">
                 Create Visualization
               </a>
@@ -113,8 +108,8 @@ export class UserMenu extends React.Component {
         />
       )
       : (
-        <Link href="/auth">
-          <a>Sign up / Sign in</a>
+        <Link href='/auth'>
+          <a className='button'>Sign up / Sign in</a>
         </Link>
       );
   }

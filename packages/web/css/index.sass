@@ -2,11 +2,18 @@
 
 $family-sans-serif: "Ubuntu", sans-serif
 $family-monospace: "Ubuntu Mono", monospace
-$blue: hsl(184, 67%, 32%)
-$body-background-color: #fcfcfc
+$body-background-color: hsl(0, 0%, 98%)
+$radius: 0px
+$radius-large: 0px
+$input-shadow: none
 
 @import "../node_modules/bulma/sass/utilities/initial-variables"
 @import "../node_modules/bulma/sass/utilities/functions"
+
+$link: $grey
+$link-visited: $grey
+$link-focus-border: $grey
+$box-shadow: 0 0 0 1px $grey-lighter
 
 @import "../node_modules/bulma/sass/utilities/derived-variables"
 @import "../node_modules/bulma/sass/utilities/animations"
@@ -33,4 +40,22 @@ $body-background-color: #fcfcfc
 @import "../node_modules/bulma/sass/layout/section"
 
 .CodeMirror
+  height: 100%
   font-family: $family-monospace
+  line-height: 1
+  font-size: 1.2rem
+
+.react-codemirror2
+  height: 100%
+
+.nav-brand
+  font-family: $family-monospace
+  margin-left: 8px
+
+a
+  text-decoration: underline
+
+a.button
+  text-decoration: none
+
+@import "./transitions"

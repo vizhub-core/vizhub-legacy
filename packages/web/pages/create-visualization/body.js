@@ -6,12 +6,11 @@ export const BodyAuthenticated = ({onFromScratchClick}) => {
 
   return (
     <React.Fragment>
-      <h1>Create Visualization</h1>
       <div>
-        <a href='#scratch' onClick={fromScratchClick}>Start from scratch</a>
+        <a className='button' href='#scratch' onClick={fromScratchClick}>Start from scratch</a>
       </div>
-      <div>
-        <a href='#template'>Choose a template (coming soon!)</a>
+      <div style={{ marginTop: '1.25rem' }} >
+        <a className='button' href='#template'>Choose a template (coming soon!)</a>
       </div>
     </React.Fragment>
   )

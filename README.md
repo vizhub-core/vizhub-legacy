@@ -31,3 +31,9 @@ lerna bootstrap
 The `lerna bootstrap` command links dependencies between local packages.
 
 Run `npm test` to test all packages.
+
+# Web
+
+The front end code is located in `packages/web`.
+
+The user interface code is organized using [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) [video](https://vimeo.com/67476280).

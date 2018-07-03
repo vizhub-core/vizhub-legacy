@@ -1,5 +1,7 @@
 import Page from '../../components/page'
-import Layout from '../../components/layout'
+import { TitledPage } from '../../components/atoms/titledPage'
+import { NavBar } from '../../components/organisms/navBar'
+import { FullPage } from '../../components/atoms/fullPage'
 import { CodeEditor } from './codeEditor'
 
 export default class extends Page {
@@ -9,14 +11,16 @@ export default class extends Page {
 
   render() {
     return (
-      <Layout
-        title='Datavis.tech'
-        lang={this.props.lang}
-        user={this.props.user}
-      >
-        <div>Editing {this.props.query.id}</div>
-        <CodeEditor />
-      </Layout>
+      <TitledPage title='Edit Visualization'>
+        <FullPage>
+          <NavBar
+            user={this.props.user}
+            csrfToken={this.props.csrfToken}
+          />
+          <div>Editing {this.props.query.id}</div>
+          <CodeEditor />
+        </FullPage>
+      </TitledPage>
     )
   }
 }

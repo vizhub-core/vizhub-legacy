@@ -4,10 +4,14 @@ import Router from 'next/router'
 import Link from 'next/link'
 import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
+
 import Page from '../../components/page'
-import Layout from '../../components/layout'
-import { SignIn}  from '../../components/signIn'
-import { SlightMargin } from '../../components/slightMargin'
+import { TitledPage } from '../../components/atoms/titledPage'
+import { SlightMargin } from '../../components/atoms/slightMargin'
+import { SignIn } from '../../components/molecules/signIn'
+import { ActionBox } from '../../components/molecules/actionBox'
+import { NavBar } from '../../components/organisms/navBar'
+
 import { userFromSession } from '../../utils/userFromSession'
 
 export default class extends Page {
@@ -38,22 +42,18 @@ export default class extends Page {
   
   render() {
     return (
-      <Layout
-        title='Datavis.tech | Sign in'
-        lang={this.props.lang}
-        user={this.props.user}
-      >
-        <div className='container'>
-          <div className='box has-text-centered'>
-            <SlightMargin>
-              <SignIn
-                user={this.props.user}
-                providers={this.props.providers}
-              />
-            </SlightMargin>
-          </div>
-        </div>
-      </Layout>
+      <TitledPage title='Datavis.tech'>
+        <NavBar
+          user={this.props.user}
+          csrfToken={this.props.csrfToken}
+        />
+        <ActionBox title='Sign up or Sign in'>
+          <SignIn
+            user={this.props.user}
+            providers={this.props.providers}
+          />
+        </ActionBox>
+      </TitledPage>
     )
   }
 }
