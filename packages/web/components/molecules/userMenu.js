@@ -8,14 +8,14 @@ class UserMenuAuthenticated extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      open: false
-    };
+    this.state = { open: false };
 
     this.onClick = () => {
-      this.setState({
-        open: !this.state.open
-      });
+      this.setState({ open: !this.state.open });
+    };
+
+    this.onBlur = () => {
+      this.setState({ open: false });
     };
 
     this.onSignOut = () => {
@@ -30,7 +30,8 @@ class UserMenuAuthenticated extends React.Component {
     return (
       <div
         onClick={this.onClick}
-        className={classNames('dropdown', {'is-active': open})}
+        onBlur={this.onBlur}
+        className={classNames('dropdown is-right', {'is-active': open})}
       >
         <div className="dropdown-trigger">
           <button
@@ -113,8 +114,8 @@ export class UserMenu extends React.Component {
         />
       )
       : (
-        <Link href="/auth">
-          <a>Sign up / Sign in</a>
+        <Link href='/auth'>
+          <a class='button'>Sign up / Sign in</a>
         </Link>
       );
   }

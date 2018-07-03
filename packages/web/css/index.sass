@@ -2,8 +2,10 @@
 
 $family-sans-serif: "Ubuntu", sans-serif
 $family-monospace: "Ubuntu Mono", monospace
-$body-background-color: #fcfcfc
+$body-background-color: hsl(0, 0%, 98%)
 $radius: 0px
+$radius-large: 0px
+$input-shadow: none
 
 @import "../node_modules/bulma/sass/utilities/initial-variables"
 @import "../node_modules/bulma/sass/utilities/functions"
@@ -11,6 +13,7 @@ $radius: 0px
 $link: $grey
 $link-visited: $grey
 $link-focus-border: $grey
+$box-shadow: 0 0 0 1px $grey-lighter
 
 @import "../node_modules/bulma/sass/utilities/derived-variables"
 @import "../node_modules/bulma/sass/utilities/animations"
@@ -36,8 +39,13 @@ $link-focus-border: $grey
 @import "../node_modules/bulma/sass/layout/hero"
 @import "../node_modules/bulma/sass/layout/section"
 
-.CodeMirror
+.CodeMirror, .nav-brand
   font-family: $family-monospace
 
 a
   text-decoration: underline
+
+a.button
+  text-decoration: none
+
+@import "./transitions"

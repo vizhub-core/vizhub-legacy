@@ -1,6 +1,5 @@
 import React from 'react'
-import Layout from '../../components/layout'
-import Head from 'next/head'
+import { TitledPage } from '../../components/atoms/titledPage'
 import Link from 'next/link'
 import Router from 'next/router'
 import Cookies from 'universal-cookie'
@@ -44,14 +43,9 @@ export default class extends React.Component {
 
   render() {
     return (
-      <Layout
-        title='Datavis.tech | Loading...'
-        lang={this.props.lang}
-        user={this.props.user}
-        csrfToken={this.props.csrfToken}
-      >
+      <TitledPage title='Loading...'>
         <div>Loading...</div>
-      </Layout>
+      </TitledPage>
     )
   }
 }

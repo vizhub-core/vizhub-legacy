@@ -62,17 +62,12 @@ export class SignInButtons extends React.Component {
       <React.Fragment>
         {
           Object.keys(this.props.providers).map((provider, i) => {
-            if (!this.props.providers[provider].signin) return null
-
-            return (
-              <a
-                className='button is-large'
-                key={i}
-                href={this.props.providers[provider].signin}
-              >
+            const signin = this.props.providers[provider].signin;
+            return signin ? (
+              <a className='button' key={i} href={signin} >
                 Sign in with {provider}
               </a>
-            )
+            ) : null;
           })
         }
       </React.Fragment>

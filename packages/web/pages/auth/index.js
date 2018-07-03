@@ -6,12 +6,12 @@ import Cookies from 'universal-cookie'
 import { NextAuth } from 'next-auth/client'
 
 import Page from '../../components/page'
-import Layout from '../../components/layout'
-import { SlightMargin } from '../../components/slightMargin'
+import { TitledPage } from '../../components/atoms/titledPage'
+import { SlightMargin } from '../../components/atoms/slightMargin'
+import { SignIn } from '../../components/molecules/signIn'
+import { NavBar } from '../../components/organisms/navBar'
 
 import { userFromSession } from '../../utils/userFromSession'
-
-import { SignIn}  from './signIn'
 
 export default class extends Page {
   
@@ -41,11 +41,11 @@ export default class extends Page {
   
   render() {
     return (
-      <Layout
-        title='Datavis.tech | Sign in'
-        lang={this.props.lang}
-        user={this.props.user}
-      >
+      <TitledPage title='Datavis.tech'>
+        <NavBar
+          user={this.props.user}
+          csrfToken={this.props.csrfToken}
+        />
         <div
           className='container section'
           style={{maxWidth: '600px'}}
@@ -59,7 +59,7 @@ export default class extends Page {
             </SlightMargin>
           </div>
         </div>
-      </Layout>
+      </TitledPage>
     )
   }
 }
