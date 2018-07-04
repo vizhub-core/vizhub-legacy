@@ -27,40 +27,40 @@ class UserMenuAuthenticated extends React.Component {
         onClick={this.toggle}
         className={classNames('dropdown is-right', {'is-active': open})}
       >
-        <div className="dropdown-trigger">
+        <div className='dropdown-trigger'>
           <button
-            className="button"
-            aria-haspopup="true"
-            aria-controls="dropdown-menu"
+            className='button'
+            aria-haspopup='true'
+            aria-controls='dropdown-menu'
           >
             {user.fullName}
           </button>
         </div>
-        <div className="dropdown-menu" id="dropdown-menu" role="menu">
-          <div className="dropdown-content">
-            <Link href="/create-visualization">
-              <a className="dropdown-item">
+        <div className='dropdown-menu' id='dropdown-menu' role='menu'>
+          <div className='dropdown-content'>
+            <Link href='/create-visualization'>
+              <a className='dropdown-item'>
                 Create Visualization
               </a>
             </Link>
-            <Link href="upload-dataset">
-              <a className="dropdown-item">
+            <Link href='/upload-dataset'>
+              <a className='dropdown-item'>
                 Upload Dataset
               </a>
             </Link>
-            <hr className="dropdown-divider" />
-            <Link href={user.userName}>
-              <a className="dropdown-item">
+            <hr className='dropdown-divider' />
+            <Link href={`/${user.userName}`}>
+              <a className='dropdown-item'>
                 Profile
               </a>
             </Link>
-            <Link href="account">
-              <a className="dropdown-item">
+            <Link href='/account'>
+              <a className='dropdown-item'>
                 Account
               </a>
             </Link>
-            <hr className="dropdown-divider" />
-            <a onClick={this.onSignOut} href="#" className="dropdown-item">
+            <hr className='dropdown-divider' />
+            <a onClick={this.onSignOut} href='#' className='dropdown-item'>
               Sign out
             </a>
           </div>
@@ -69,13 +69,13 @@ class UserMenuAuthenticated extends React.Component {
     );
     //return (
     //    <form
-    //      id="signout"
-    //      method="post"
-    //      action="/auth/signout"
+    //      id='signout'
+    //      method='post'
+    //      action='/auth/signout'
     //      onSubmit={this.handleSignoutSubmit}
     //    >
-    //      <input name="_csrf" type="hidden" value={this.props.csrfToken}/>
-    //      <button type="submit">Sign out</button>
+    //      <input name='_csrf' type='hidden' value={this.props.csrfToken}/>
+    //      <button type='submit'>Sign out</button>
     //    </form>
     //  </div>
     //);

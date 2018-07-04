@@ -96,18 +96,23 @@ describe('Entities', () => {
   });
 
   describe('Visualization', () => {
+    const visualizationInfo = new VisualizationInfo(visualizationInfoData);
+    const visualizationContent = new VisualizationContent(visualizationContentData);
+    const visualization = new Visualization({
+      visualizationInfo,
+      visualizationContent
+    });
+
     it('should expose expected fields', () => {
-      const visualizationInfo = new VisualizationInfo(visualizationInfoData);
-      const visualizationContent = new VisualizationContent(visualizationContentData);
-      const visualization = new Visualization({
-        visualizationInfo,
-        visualizationContent
-      });
       assert.deepEqual(visualization, {
         id: visualizationInfo.id,
         info: visualizationInfo,
         content: visualizationContent
       });
+    });
+
+    it('should stringify', () => {
+      assert.deepEqual(JSON.parse(JSON.stringify(visualization)), visualization);
     });
   });
 

@@ -1,6 +1,9 @@
 const strings = {
   errorNoOwner: {
     en: 'No owner specified, cannot create document.'
+  },
+  errorDocNotFound: {
+    en: 'The requested document does not exist'
   }
 };
 

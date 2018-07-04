@@ -4,11 +4,10 @@ import nextAuth from 'next-auth';
 
 import { routes } from '../routes';
 import nextAuthConfig from './next-auth.config';
-import { ShareDBServer } from './shareDBServer';
+// import { ShareDBServer } from './shareDBServer';
 
-const nextStarterRoutes = {
-  account: require('./routes/account')
-}
+import accountAPI from './api/account';
+import { visualizationAPI } from './api/visualization';
 
 // Load environment variables from .env file if present
 require('dotenv').load()
@@ -38,20 +37,18 @@ nextApp
   .then(nextAuthConfig)
   .then(nextAuthOptions => nextAuth(nextApp, nextAuthOptions))
   .then(nextAuthOptions => {
-    // Get Express and instance of Express from NextAuth
     const express = nextAuthOptions.express
     const expressApp = nextAuthOptions.expressApp
 
-    // Add account management route - reuses functions defined for NextAuth
-    nextStarterRoutes.account(expressApp, nextAuthOptions.functions)
+    accountAPI(expressApp, nextAuthOptions.functions)
+    visualizationAPI(expressApp)
 
-    // Default catch-all handler to allow Next.js and Next-Routes to handle all other routes
     expressApp.all('*', routes.getRequestHandler(nextApp))
 
     const httpServer = createServer(expressApp);
 
     // Start the WebSocket ShareDB server.
-    ShareDBServer.start(httpServer);
+    // ShareDBServer.start(httpServer);
 
     httpServer
       .listen(process.env.PORT, err => {

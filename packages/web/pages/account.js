@@ -1,14 +1,13 @@
 import React from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
-import fetch from 'isomorphic-fetch'
 import { NextAuth } from 'next-auth/client'
-import Page from '../components/page'
-import Layout from '../components/layout'
 import Cookies from 'universal-cookie'
+import Page from '../components/page'
+import { TitledPage } from '../components/atoms/titledPage'
+import { ActionBox } from '../components/molecules/actionBox'
+import { NavBar } from '../components/organisms/navBar'
 import { userFromSession } from '../utils/userFromSession'
-
-const accountTitle = 'Datavis.tech | Account'
 
 export default class extends Page {
 
@@ -43,12 +42,11 @@ export default class extends Page {
 
   render() {
     return (
-      <Layout
-        title={accountTitle}
-        lang={this.props.lang}
-        user={this.props.user}
-        csrfToken={this.props.csrfToken}
-      >
+      <TitledPage title='Account'>
+        <NavBar
+          user={this.props.user}
+          csrfToken={this.props.csrfToken}
+        />
         {
           this.state.alertText
             ? <div> {this.state.alertText} </div>
@@ -57,22 +55,27 @@ export default class extends Page {
         {
           this.state.user.authenticated
             ? (
-              <div>
-                <h2>Delete your account</h2>
+              <ActionBox title='Your Account'>
                 <p>
                   If you delete your account it will be erased immediately.
+                </p>
+                <p>
                   All your data will be permanently lost.
+                </p>
+                <p>
                   You can sign up again at any time.
                 </p>
-                <form id="delete" method="post" action="/account/delete">
-                  <input name="_csrf" type="hidden" value={this.state.csrfToken}/>
-                  <button type="submit" >Delete Account</button>
-                </form>
-              </div>
+                <section className='section'>
+                  <form id="delete" method="post" action="/account/delete">
+                    <input name="_csrf" type="hidden" value={this.state.csrfToken}/>
+                    <button className="button is-danger" type="submit" >Delete Account</button>
+                  </form>
+                </section>
+              </ActionBox>
             )
             : <Link href="/auth"><a>Sign in to manage your profile</a></Link>
         }
-      </Layout>
+      </TitledPage>
     )
   }
 }
