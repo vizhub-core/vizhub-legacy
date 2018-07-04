@@ -6,7 +6,7 @@ export const ActionBox = ({title, children}) => (
     style={{maxWidth: '600px'}}
   >
     <div className='box has-text-centered'>
-      <h1 class='title'>{title}</h1>
+      <h1 className='title'>{title}</h1>
       { children }
     </div>
   </div>

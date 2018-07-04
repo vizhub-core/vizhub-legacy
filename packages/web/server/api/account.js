@@ -1,8 +1,6 @@
 /**
  * Example account management routes
  **/
-'use strict'
-
 module.exports = (expressApp, functions) => {
 
   if (expressApp === null) {

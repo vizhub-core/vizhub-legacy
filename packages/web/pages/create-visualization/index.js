@@ -1,9 +1,8 @@
 import React from 'react'
 import Router from 'next/router'
 import Page from '../../components/page'
-import { getGateway } from '../../gateway'
 import { BodyAuthenticated, BodyNotAuthenticated } from './body'
-import { edit } from '../../utils/routePaths'
+import { edit } from '../../routes'
 import { TitledPage } from '../../components/atoms/titledPage'
 import { ActionBox } from '../../components/molecules/actionBox'
 import { NavBar } from '../../components/organisms/navBar'
@@ -18,8 +17,8 @@ export default class extends Page {
   }
 
   createVisualizationFromScratch() {
-    getGateway()
-      .createVisualization({ owner: this.props.user.id })
+    fetch('/api/visualization/create', { credentials: 'include' })
+      .then(r => r.json())
       .then(({id}) => Router.push(edit({id})))
       .catch(error => console.log(error));
   }

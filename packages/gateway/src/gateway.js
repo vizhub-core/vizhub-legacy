@@ -2,6 +2,7 @@ import { createVisualization } from './createVisualization';
 import { Visualization } from 'datavis-tech-entities';
 
 export const Gateway = database => ({
+
   createVisualization: data => {
     const result = createVisualization(data);
 
@@ -13,5 +14,9 @@ export const Gateway = database => ({
       return Promise.reject(result);
     }
   },
-  changeDocument: database.changeDocument
+
+  getVisualization: database.getVisualization,
+
+  saveVisualization: database.saveVisualization
+
 });

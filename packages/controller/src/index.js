@@ -1,5 +1,5 @@
-import jsonDiff from 'json0-ot-diff';
-import diffMatchPatch from 'diff-match-patch';
+import * as jsonDiff from 'json0-ot-diff';
+import * as diffMatchPatch from 'diff-match-patch';
 
 export const Controller = gateway => ({
   changeDocument: (oldDocument, newDocument) => {

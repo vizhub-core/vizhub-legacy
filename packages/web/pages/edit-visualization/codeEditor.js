@@ -1,30 +1,32 @@
 import 'codemirror/lib/codemirror.css';
 import '../../css/ubuntu.css';
 import {UnControlled as CodeMirror} from 'react-codemirror2';
- 
-function foo() {
-    var x = [...foo];
-    return x * 5;
-  /var/g
-}
-// This is jjkj
-// [...foo]
 
-export const CodeEditor = () => {
+export const CodeEditor = ({ value, onSave }) => {
   if (!process.browser) {
     return null;
   }
   require('codemirror/mode/javascript/javascript');
+  require('codemirror/mode/xml/xml')
+  require('codemirror/mode/css/css')
+  require('codemirror/mode/htmlmixed/htmlmixed')
+
   return (
     <CodeMirror
-      value='const x = "foo";'
+      value={value}
       options={{
-        mode: 'javascript',
+        mode: 'htmlmixed',
         theme: 'ubuntu',
         lineNumbers: true
       }}
       onChange={(editor, data, value) => {
         console.log('change');
+      }}
+      onKeyDown={(editor, event) => {
+        if (event.shiftKey && event.code === 'Enter') {
+          event.preventDefault();
+          onSave(editor.getValue());
+        }
       }}
     />
   );
