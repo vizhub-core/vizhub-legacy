@@ -2,12 +2,13 @@ import { createServer } from 'http';
 import next from 'next';
 import nextAuth from 'next-auth';
 
+import { getGateway } from '../gateway';
 import { routes } from '../routes';
 import nextAuthConfig from './next-auth.config';
 // import { ShareDBServer } from './shareDBServer';
-
 import accountAPI from './api/account';
-import { visualizationAPI } from './api/visualization';
+
+import { visualizationController } from 'datavis-tech-controllers'
 
 // Load environment variables from .env file if present
 require('dotenv').load()
@@ -41,7 +42,7 @@ nextApp
     const expressApp = nextAuthOptions.expressApp
 
     accountAPI(expressApp, nextAuthOptions.functions)
-    visualizationAPI(expressApp)
+    visualizationController(expressApp, getGateway())
 
     expressApp.all('*', routes.getRequestHandler(nextApp))
 
