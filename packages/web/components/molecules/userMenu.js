@@ -109,7 +109,7 @@ export class UserMenu extends React.Component {
       )
       : (
         <Link href='/auth'>
-          <a className='button'>Sign up / Sign in</a>
+          <a className='button test-user-menu-sign-in-link'>Sign up / Sign in</a>
         </Link>
       );
   }

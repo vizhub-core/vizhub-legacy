@@ -7,7 +7,7 @@ describe('Web', () => {
   let browser;
   let page;
 
-  describe('set up', async () => {
+  describe('set up', () => {
     it('should open page', async () => {
       browser = await puppeteer.launch({ headless: false });
       page = await browser.newPage();
@@ -16,6 +16,17 @@ describe('Web', () => {
         waitUntil: 'domcontentloaded'
       });
       assert.equal(response.status(), 200);
+    });
+  });
+
+  describe('authentication', () => {
+    it('should navigate to auth page', async () => {
+      const selector = '.test-user-menu-sign-in-link';
+      await page.waitFor(selector);
+      const navigation = page.waitForNavigation();
+      page.click(selector);
+      await navigation;
+      assert.equal(page.url(), 'http://localhost:3000/auth');
     });
   });
 
