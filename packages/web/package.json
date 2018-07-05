@@ -21,7 +21,7 @@
     "datavis-tech-database": "1",
     "datavis-tech-i18n": "1",
     "datavis-tech-entities": "1",
-    "datavis-tech-gateway": "1",
+    "datavis-tech-gateways": "1",
     "dotenv": "^6.0.0",
     "express-session": "^1.15.6",
     "isomorphic-fetch": "^2.2.1",
@@ -30,7 +30,7 @@
     "next": "^6.1.1",
     "next-auth": "^1.8.5",
     "next-routes": "^1.4.2",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.1",
     "passport-github": "^1.1.0",
     "raw-loader": "^0.5.1",
     "react": "^16.4.1",
@@ -41,37 +41,15 @@
   },
   "devDependencies": {
     "esm": "^3.0.62",
-    "eslint": "^5.0.1",
-    "eslint-config-xo": "^0.23.0",
-    "eslint-config-xo-react": "^0.17.0",
-    "eslint-config-xo-space": "^0.19.0",
-    "eslint-plugin-react": "^7.10.0",
-    "webpack-bundle-analyzer": "^2.13.1",
-    "xo": "^0.21.1"
+    "webpack-bundle-analyzer": "^2.13.1"
   },
   "optionalDependencies": {
     "fsevents": "*"
   },
   "scripts": {
-    "test": "xo",
     "dev": "NODE_ENV=development node -r esm server/index.js",
     "build": "next build",
     "start": "NODE_ENV=production node -r esm server/index.js",
     "analyze": "ANALYZE=true next build"
-  },
-  "xo": {
-    "space:": 2,
-    "semicolon": false,
-    "extends": [
-      "xo-space",
-      "xo-react/space"
-    ],
-    "ignores": [
-      "next.config.js"
-    ]
-  },
-  "now": {
-    "name": "nextjs-starter",
-    "alias": "nextjs-starter.now.sh"
   }
 }

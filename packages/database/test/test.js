@@ -1,7 +1,7 @@
 import assert from 'assert';
 import ShareDB from '@teamwork/sharedb';
 import ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
-import { Gateway } from 'datavis-tech-gateway';
+import { Gateway } from 'datavis-tech-gateways';
 import { Database } from '../src';
 
 const shareDB = ShareDB({ db: new ShareDBMingoMemory() });

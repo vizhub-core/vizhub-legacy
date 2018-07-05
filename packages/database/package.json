@@ -10,7 +10,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-gateway": "1",
+    "datavis-tech-gateways": "1",
     "datavis-tech-i18n": "1",
     "datavis-tech-entities": "1",
     "@teamwork/sharedb": "^1.2.0",
