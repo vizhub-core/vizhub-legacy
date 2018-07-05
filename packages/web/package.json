@@ -21,6 +21,7 @@
     "datavis-tech-database": "1",
     "datavis-tech-i18n": "1",
     "datavis-tech-entities": "1",
+    "datavis-tech-controllers": "1",
     "datavis-tech-gateways": "1",
     "dotenv": "^6.0.0",
     "express-session": "^1.15.6",
