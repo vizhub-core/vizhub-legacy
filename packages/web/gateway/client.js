@@ -1,5 +1,5 @@
 import ShareDB from '@teamwork/sharedb/lib/client'
-import { Gateway } from 'datavis-tech-gateway'
+import { Gateway } from 'datavis-tech-gateways'
 import { Database } from 'datavis-tech-database'
 
 const ClientGateway = () => {
