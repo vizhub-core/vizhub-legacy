@@ -59,7 +59,9 @@ export default class extends Page {
         <TitledPage title='Edit Visualization'>
           <FullPage>
             <NavBar user={user} csrfToken={csrfToken} />
-            <CodeEditor value={html} onSave={this.onSave} />
+            <div className='code-editor-container test-code-editor'>
+              <CodeEditor value={html} onSave={this.onSave} />
+            </div>
           </FullPage>
         </TitledPage>
       );
