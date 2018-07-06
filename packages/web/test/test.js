@@ -23,7 +23,7 @@ const retry = (fn, ms) => new Promise(resolve => {
 describe('Web', () => {
   let browser;
   let page;
-  let id;
+  // let id;
 
   describe('Setup', () => {
     it('should open page', async () => {
@@ -42,8 +42,8 @@ describe('Web', () => {
       assert.equal(page.url(), 'http://localhost:3000/auth');
     });
     it('should authenticate as CI', async () => {
-      (await page.waitFor('.test-sign-in-as-ci')).click();
-      await page.waitFor('.test-user-menu-button');
+      await (await page.waitFor('.test-sign-in-as-ci')).click();
+      await page.waitFor('.test-user-menu-button', { visible: true });
       const text = await page.evaluate(() => (
         document.querySelector('.test-user-menu-button').textContent)
       );
@@ -51,25 +51,30 @@ describe('Web', () => {
     });
   });
 
-  describe('Create Visualization', () => {
-    it('should navigate to create visualization page', async () => {
-      (await page.waitFor('.test-user-menu-button')).click(); // Open the menu.
-      const navigation = page.waitForNavigation();
-      (await page.waitFor('.test-user-menu-create-vis-link', {
-        visible: true // Wait until the link is visible (menu is opened).
-      })).click();
-      await navigation;
-      assert.equal(page.url(), 'http://localhost:3000/create-visualization');
-    });
-    it('should create visualization from scratch', async () => {
-      const navigation = page.waitForNavigation();
-      (await page.waitFor('.test-from-scratch-button')).click();
-      await navigation;
-      const url = page.url();
-      assert(url.startsWith('http://localhost:3000/edit-visualization'));
-      id = url.split('/').pop(); // Grab the id of the vis we're editing.
-    });
-  });
+  // describe('Create Visualization', () => {
+  //   it('should navigate to create visualization page', async () => {
+  //     (await page.waitFor('.test-user-menu-button')).click(); // Open the menu.
+  //     const navigation = page.waitForNavigation();
+  //     (await page.waitFor('.test-user-menu-create-vis-link', {
+  //       visible: true // Wait until the link is visible (menu is opened).
+  //     })).click();
+  //     await navigation;
+  //     assert.equal(page.url(), 'http://localhost:3000/create-visualization');
+  //   });
+  //   it('should create visualization from scratch', async () => {
+  //     const navigation = page.waitForNavigation();
+  //     (await page.waitFor('.test-from-scratch-button')).click();
+  //     await navigation;
+  //     const url = page.url();
+  //     assert(url.startsWith('http://localhost:3000/edit-visualization'));
+  //     //id = url.split('/').pop(); // Grab the id of the vis we're editing.
+  //   });
+  // });
+
+  // describe('Edit Visualization', () => {
+  //   it('should navigate to create visualization page', async () => {
+  //   });
+  // });
 
   describe('tear down', () => {
     it('should close', async () => {
