@@ -18,6 +18,7 @@ export default class extends React.Component {
     // were on before signing in. Defaults to '/'.
     let redirectTo = '/'
     if (session.user) {
+
       // Read redirect URL to redirect to from cookies
       redirectTo = cookies.get('redirect_url') || redirectTo
       

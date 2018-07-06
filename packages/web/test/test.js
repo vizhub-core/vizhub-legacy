@@ -3,11 +3,10 @@ import puppeteer from 'puppeteer';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 
-
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
-// Object.assign(puppeteerOptions, { slowMo: 500, headless: false });
+Object.assign(puppeteerOptions, { slowMo: 500, headless: false });
 
 const retry = (fn, ms) => new Promise(resolve => {
   fn()
@@ -42,6 +41,11 @@ describe('Web', () => {
       page.click(selector);
       await navigation;
       assert.equal(page.url(), 'http://localhost:3000/auth');
+    });
+    it('should authenticate as CI', async () => {
+      const selector = '.test-sign-in-as-ci';
+      await page.waitFor(selector);
+      page.click(selector);
     });
   });
 
