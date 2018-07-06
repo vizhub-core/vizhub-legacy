@@ -3,11 +3,11 @@ import puppeteer from 'puppeteer';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 
-// Use this for magic.
-// const puppeteerOptions = { slowMo: 500, headless: false };
 
-// Use this for speed.
-const puppeteerOptions = {};
+const puppeteerOptions = { args: ['--no-sandbox'] };
+
+// Use this for magic.
+// Object.assign(puppeteerOptions, { slowMo: 500, headless: false });
 
 const retry = (fn, ms) => new Promise(resolve => {
   fn()
