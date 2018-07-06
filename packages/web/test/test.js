@@ -54,9 +54,10 @@ describe('Web', () => {
 
   describe('Create Visualization', () => {
     it('should navigate to create visualization page', async () => {
-      (await page.waitFor('.test-user-menu-button')).click();
+      await (await page.waitFor('.test-user-menu-button')).click();
+      const navigation = page.waitForNavigation();
       page.click('.test-user-menu-create-vis-link');
-      await page.waitForNavigation();
+      await navigation;
       assert.equal(page.url(), 'http://localhost:3000/create-visualization');
     });
     it('should create visualization from scratch', async () => {
