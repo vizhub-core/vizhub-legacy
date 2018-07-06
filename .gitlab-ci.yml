@@ -7,4 +7,6 @@ before_script:
 
 test:
   script:
+    - cd ./packages/web; npm run --silent dev &
     - npm run test
+    - kill $(lsof -t -i:3000)

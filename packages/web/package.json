@@ -54,8 +54,6 @@
     "build": "next build",
     "start": "NODE_ENV=production node -r esm server/index.js",
     "analyze": "ANALYZE=true next build",
-    "pretest": "npm run --silent dev &",
-    "test": "mocha -r esm --timeout 60000",
-    "posttest": "kill $(lsof -t -i:3000)"
+    "test": "mocha -r esm --timeout 60000"
   }
 }
