@@ -1,7 +1,9 @@
 {
   "scripts": {
     "test": "cd packages/entities && npm test && cd ../useCases && npm test cd ../gateways && npm test && cd ../presenters && npm test && cd ../controllers && npm test && cd ../database && npm test && cd ../web && npm test && echo 'All tests pass!'",
-    "testE2E": "cd packages/web && npm test",
+    "startServer": "cd packages/web; npm run --silent dev &", 
+    "stopServer": "kill $(lsof -t -i:3000)",
+    "testE2E": "npm run startServer; cd packages/web; npm test; cd ../../; npm run stopServer",
     "updateDeps": "npm install -g npm-check-updates; ncu -a; cd packages/entities && ncu -a && cd ../useCases && ncu -a cd ../gateways && ncu -a && cd ../presenters && ncu -a && cd ../controllers && ncu -a && cd ../database && ncu -a && cd ../web && ncu -a && echo 'All dependencies upgraded!'"
   },
 	"devDependencies": {
