@@ -6,7 +6,7 @@ import puppeteer from 'puppeteer';
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
-Object.assign(puppeteerOptions, { slowMo: 500, headless: false });
+// Object.assign(puppeteerOptions, { slowMo: 500, headless: false });
 
 const retry = (fn, ms) => new Promise(resolve => {
   fn()
@@ -45,7 +45,17 @@ describe('Web', () => {
     it('should authenticate as CI', async () => {
       const selector = '.test-sign-in-as-ci';
       await page.waitFor(selector);
+      const navigation = page.waitForNavigation();
       page.click(selector);
+      await navigation;
+      assert.equal(page.url(), 'http://localhost:3000/auth/callback');
+    });
+    it('should display username in menu', async () => {
+      await page.waitFor('.test-user-menu-button');
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-user-menu-button').textContent)
+      );
+      assert.equal(text, 'CI');
     });
   });
 

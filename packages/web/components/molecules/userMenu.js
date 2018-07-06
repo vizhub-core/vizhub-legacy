@@ -29,7 +29,7 @@ class UserMenuAuthenticated extends React.Component {
       >
         <div className='dropdown-trigger'>
           <button
-            className='button'
+            className='button test-user-menu-button'
             aria-haspopup='true'
             aria-controls='dropdown-menu'
           >
