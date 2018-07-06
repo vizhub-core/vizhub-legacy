@@ -54,15 +54,16 @@ describe('Web', () => {
 
   describe('Create Visualization', () => {
     it('should navigate to create visualization page', async () => {
-      await (await page.waitFor('.test-user-menu-button')).click();
+      (await page.waitFor('.test-user-menu-button')).click();
       const navigation = page.waitForNavigation();
-      page.click('.test-user-menu-create-vis-link');
+      (await page.waitFor('.test-user-menu-create-vis-link')).click();
       await navigation;
       assert.equal(page.url(), 'http://localhost:3000/create-visualization');
     });
     it('should create visualization from scratch', async () => {
+      const navigation = page.waitForNavigation();
       (await page.waitFor('.test-from-scratch-button')).click();
-      await page.waitForNavigation();
+      await navigation;
       assert(page.url().startsWith('http://localhost:3000/edit-visualization'));
     });
   });
