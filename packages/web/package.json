@@ -42,6 +42,8 @@
   },
   "devDependencies": {
     "esm": "^3.0.62",
+    "mocha": "^5.2.0",
+    "puppeteer": "^1.5.0",
     "webpack-bundle-analyzer": "^2.13.1"
   },
   "optionalDependencies": {
@@ -51,6 +53,9 @@
     "dev": "NODE_ENV=development node -r esm server/index.js",
     "build": "next build",
     "start": "NODE_ENV=production node -r esm server/index.js",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "pretest": "npm run --silent dev &",
+    "test": "mocha -r esm --timeout 60000",
+    "posttest": "kill $(lsof -t -i:3000)"
   }
 }
