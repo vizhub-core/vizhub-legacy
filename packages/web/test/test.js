@@ -23,6 +23,7 @@ const retry = (fn, ms) => new Promise(resolve => {
 describe('Web', () => {
   let browser;
   let page;
+  let id;
 
   describe('Setup', () => {
     it('should open page', async () => {
@@ -35,10 +36,8 @@ describe('Web', () => {
 
   describe('Authentication', () => {
     it('should navigate to auth page', async () => {
-      const selector = '.test-user-menu-sign-in-link';
-      await page.waitFor(selector);
       const navigation = page.waitForNavigation();
-      page.click(selector);
+      (await page.waitFor('.test-user-menu-sign-in-link')).click();
       await navigation;
       assert.equal(page.url(), 'http://localhost:3000/auth');
     });
@@ -52,21 +51,23 @@ describe('Web', () => {
     });
   });
 
-  describe('Create Visualization', () => {
-    it('should navigate to create visualization page', async () => {
-      (await page.waitFor('.test-user-menu-button')).click();
-      const navigation = page.waitForNavigation();
-      (await page.waitFor('.test-user-menu-create-vis-link')).click();
-      await navigation;
-      assert.equal(page.url(), 'http://localhost:3000/create-visualization');
-    });
-    it('should create visualization from scratch', async () => {
-      const navigation = page.waitForNavigation();
-      (await page.waitFor('.test-from-scratch-button')).click();
-      await navigation;
-      assert(page.url().startsWith('http://localhost:3000/edit-visualization'));
-    });
-  });
+  //describe('Create Visualization', () => {
+  //  it('should navigate to create visualization page', async () => {
+  //    (await page.waitFor('.test-user-menu-button')).click();
+  //    const navigation = page.waitForNavigation();
+  //    (await page.waitFor('.test-user-menu-create-vis-link')).click();
+  //    await navigation;
+  //    assert.equal(page.url(), 'http://localhost:3000/create-visualization');
+  //  });
+  //  it('should create visualization from scratch', async () => {
+  //    const navigation = page.waitForNavigation();
+  //    (await page.waitFor('.test-from-scratch-button')).click();
+  //    await navigation;
+  //    const url = page.url();
+  //    assert(url.startsWith('http://localhost:3000/edit-visualization'));
+  //    id = url.split('/').pop(); // Grab the id of the vis we're editing.
+  //  });
+  //});
 
   describe('tear down', () => {
     it('should close', async () => {
