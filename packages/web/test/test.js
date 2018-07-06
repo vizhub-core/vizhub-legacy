@@ -24,7 +24,7 @@ describe('Web', () => {
   let browser;
   let page;
 
-  describe('set up', () => {
+  describe('Setup', () => {
     it('should open page', async () => {
       browser = await puppeteer.launch(puppeteerOptions);
       page = await browser.newPage();
@@ -33,7 +33,7 @@ describe('Web', () => {
     });
   });
 
-  describe('authentication', () => {
+  describe('Authentication', () => {
     it('should navigate to auth page', async () => {
       const selector = '.test-user-menu-sign-in-link';
       await page.waitFor(selector);
@@ -43,19 +43,26 @@ describe('Web', () => {
       assert.equal(page.url(), 'http://localhost:3000/auth');
     });
     it('should authenticate as CI', async () => {
-      const selector = '.test-sign-in-as-ci';
-      await page.waitFor(selector);
-      const navigation = page.waitForNavigation();
-      page.click(selector);
-      await navigation;
-      assert.equal(page.url(), 'http://localhost:3000/auth/callback');
-    });
-    it('should display username in menu', async () => {
+      (await page.waitFor('.test-sign-in-as-ci')).click();
       await page.waitFor('.test-user-menu-button');
       const text = await page.evaluate(() => (
         document.querySelector('.test-user-menu-button').textContent)
       );
       assert.equal(text, 'CI');
+    });
+  });
+
+  describe('Create Visualization', () => {
+    it('should navigate to create visualization page', async () => {
+      (await page.waitFor('.test-user-menu-button')).click();
+      page.click('.test-user-menu-create-vis-link');
+      await page.waitForNavigation();
+      assert.equal(page.url(), 'http://localhost:3000/create-visualization');
+    });
+    it('should create visualization from scratch', async () => {
+      (await page.waitFor('.test-from-scratch-button')).click();
+      await page.waitForNavigation();
+      assert(page.url().startsWith('http://localhost:3000/edit-visualization'));
     });
   });
 

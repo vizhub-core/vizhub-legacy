@@ -39,7 +39,7 @@ class UserMenuAuthenticated extends React.Component {
         <div className='dropdown-menu' id='dropdown-menu' role='menu'>
           <div className='dropdown-content'>
             <Link href='/create-visualization'>
-              <a className='dropdown-item'>
+              <a className='dropdown-item test-user-menu-create-vis-link'>
                 Create Visualization
               </a>
             </Link>
