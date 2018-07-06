@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "cd packages/entities && npm test && cd ../useCases && npm test cd ../gateways && npm test && cd ../presenters && npm test && cd ../controllers && npm test && cd ../database && npm test && cd ../web && npm test && echo 'All tests pass!'",
+    "test": "cd packages/entities && npm test && cd ../useCases && npm test cd ../gateways && npm test && cd ../presenters && npm test && cd ../controllers && npm test && cd ../database && npm test && echo 'All tests pass!'",
     "startServer": "cd packages/web; npm run --silent dev &", 
     "stopServer": "kill $(lsof -t -i:3000)",
     "testE2E": "npm run startServer; cd packages/web; npm test; cd ../../; npm run stopServer",
