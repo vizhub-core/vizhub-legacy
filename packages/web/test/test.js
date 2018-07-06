@@ -6,7 +6,10 @@ import puppeteer from 'puppeteer';
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
-// Object.assign(puppeteerOptions, { slowMo: 500, headless: false });
+// Object.assign(puppeteerOptions, {
+//   //slowMo: 500,
+//   headless: false
+// });
 
 const retry = (fn, ms) => new Promise(resolve => {
   fn()
@@ -71,10 +74,22 @@ describe('Web', () => {
     });
   });
 
-  // describe('Edit Visualization', () => {
-  //   it('should save new visualization content', async () => {
-  //   });
-  // });
+  describe('Edit Visualization', () => {
+    it('should save new visualization content', async () => {
+      await page.type('.test-code-editor textarea', 'New content');
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('Enter');
+      await page.keyboard.up('Shift');
+    });
+    // it('should display new visualization content', async () => {
+    //   await page.reload();
+    //   await page.waitFor('.test-code-editor textarea')
+    //   const text = await page.evaluate(() => (
+    //     document.querySelector('.test-code-editor textarea').value)
+    //   );
+    //   assert.equal(text, 'foo');
+    // });
+  });
 
   describe('tear down', () => {
     it('should close', async () => {
