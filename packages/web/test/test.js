@@ -3,7 +3,6 @@ import puppeteer from 'puppeteer';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 
-
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
@@ -24,8 +23,9 @@ const retry = (fn, ms) => new Promise(resolve => {
 describe('Web', () => {
   let browser;
   let page;
+  // let id;
 
-  describe('set up', () => {
+  describe('Setup', () => {
     it('should open page', async () => {
       browser = await puppeteer.launch(puppeteerOptions);
       page = await browser.newPage();
@@ -34,16 +34,47 @@ describe('Web', () => {
     });
   });
 
-  describe('authentication', () => {
+  describe('Authentication', () => {
     it('should navigate to auth page', async () => {
-      const selector = '.test-user-menu-sign-in-link';
-      await page.waitFor(selector);
       const navigation = page.waitForNavigation();
-      page.click(selector);
+      (await page.waitFor('.test-user-menu-sign-in-link')).click();
       await navigation;
       assert.equal(page.url(), 'http://localhost:3000/auth');
     });
+    it('should authenticate as CI', async () => {
+      await (await page.waitFor('.test-sign-in-as-ci')).click();
+      await page.waitFor('.test-user-menu-button', { visible: true });
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-user-menu-button').textContent)
+      );
+      assert.equal(text, 'CI');
+    });
   });
+
+  describe('Create Visualization', () => {
+    it('should navigate to create visualization page', async () => {
+      (await page.waitFor('.test-user-menu-button')).click(); // Open the menu.
+      const navigation = page.waitForNavigation();
+      (await page.waitFor('.test-user-menu-create-vis-link', {
+        visible: true // Wait until the link is visible (menu is opened).
+      })).click();
+      await navigation;
+      assert.equal(page.url(), 'http://localhost:3000/create-visualization');
+    });
+    it('should create visualization from scratch', async () => {
+      const navigation = page.waitForNavigation();
+      (await page.waitFor('.test-from-scratch-button')).click();
+      await navigation;
+      const url = page.url();
+      assert(url.startsWith('http://localhost:3000/edit-visualization'));
+      //id = url.split('/').pop(); // Grab the id of the vis we're editing.
+    });
+  });
+
+  // describe('Edit Visualization', () => {
+  //   it('should save new visualization content', async () => {
+  //   });
+  // });
 
   describe('tear down', () => {
     it('should close', async () => {

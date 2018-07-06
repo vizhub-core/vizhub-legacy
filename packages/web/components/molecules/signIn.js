@@ -7,35 +7,17 @@ export class SignIn extends React.Component {
   
   constructor(props) {
     super(props)
-    this.state = {
-      email: '',
-      providers: this.props.providers,
-      submitting: false
-    }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    
+    this.signInAsCI = this.signInAsCI.bind(this)
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
+  signInAsCI(event) {
+    const email = 'ci@foo.com';
+    const password = 'ci';
     
-    if (!this.state.email) return
-
-    this.setState({
-      submitting: true
-    })
-    
-    // Save current URL so user is redirected back here after signing in
-    const cookies = new Cookies()
-    cookies.set('redirect_url', window.location.pathname, { path: '/' })
-
-    NextAuth.signin(this.state.email)
-      .then(() => {
-        Router.push(`/auth/check-email?email=${this.state.email}`)
-      })
-      .catch(err => {
-        Router.push(`/auth/error?action=signin&type=email&email=${this.state.email}`)
-      })
+    NextAuth.signin({email, password})
+      .then(authenticated => {
+        Router.push(`/auth/callback`)
+      });
   }
   
   render() {
@@ -45,6 +27,16 @@ export class SignIn extends React.Component {
       return (
         <React.Fragment>
           <p>If you don't have an account, one will be created when you sign in.</p>
+
+          {
+            process.env.NODE_ENV === 'development'
+              ? (
+                <button className='button test-sign-in-as-ci' onClick={this.signInAsCI} >
+                  Sign in as CI
+                </button>
+              )
+              : null
+          }
           <section className='section'>
             <SignInButtons providers={this.props.providers}/>
           </section>
