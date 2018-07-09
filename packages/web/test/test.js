@@ -95,18 +95,18 @@ describe('Web', () => {
     });
   });
 
-  //describe('View Visualization', () => {
-  //  it('should navigate to visualization view', async () => {
-  //    const response = await page.goto(`http://localhost:3000/ci/${id}`);
-  //    assert.equal(response.status(), 200);
-  //  });
-  //  it('should display visualization title', async () => {
-  //    const text = await page.evaluate(() => (
-  //      document.querySelector('.test-document-title').textContent)
-  //    );
-  //    assert.equal(text, 'Untitled');
-  //  });
-  //});
+  describe('View Visualization', () => {
+    it('should navigate to visualization view', async () => {
+      const response = await page.goto(`http://localhost:3000/ci/${id}`);
+      assert.equal(response.status(), 200);
+    });
+    it('should display visualization title', async () => {
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-document-title').textContent)
+      );
+      assert.equal(text, 'Untitled');
+    });
+  });
 
   describe('tear down', () => {
     it('should close', async () => {
