@@ -28,7 +28,7 @@
 .cm-s-ubuntu .cm-variable { color: white; }
 .cm-s-ubuntu .cm-tag { color: white; }
 .cm-s-ubuntu .cm-meta { color: white; }
-.cm-s-ubuntu .cm-attribute { color: red; }
+.cm-s-ubuntu .cm-attribute { color: #34e2e2; }
 .cm-s-ubuntu .cm-property { color: white; }
 .cm-s-ubuntu .cm-qualifier { color: red; }
 .cm-s-ubuntu .cm-variable-3, .cm-s-ubuntu .cm-type { color: red; }

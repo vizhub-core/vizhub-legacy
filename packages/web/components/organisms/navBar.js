@@ -1,7 +1,7 @@
 import { UserMenu } from '../molecules/userMenu'
 import { SlightMargin } from '../atoms/slightMargin'
 
-export const NavBar = ({user, csrfToken}) => (
+export const NavBar = ({user, csrfToken, dropUp}) => (
   <SlightMargin>
 
     <nav className='level'>
@@ -27,7 +27,7 @@ export const NavBar = ({user, csrfToken}) => (
 
       <div className='level-right'>
         <div className='level-item'>
-          <UserMenu user={user} csrfToken={csrfToken} />
+          <UserMenu user={user} csrfToken={csrfToken} dropUp={dropUp} />
         </div>
       </div>
 
