@@ -5,7 +5,7 @@ const commonsChunkConfig = require('@zeit/next-css/commons-chunk-config');
 const { ANALYZE } = process.env;
 
 module.exports = withSass(withCSS({
-  webpack: (config, { dev }) => {
+  webpack: config => {
 
     // Enable use of both .sass and .css.
     // Should be a temporary workaround.

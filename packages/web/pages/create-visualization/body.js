@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const BodyAuthenticated = ({onFromScratchClick}) => {
   const fromScratchClick = e => {
     e.preventDefault();

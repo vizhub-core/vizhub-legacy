@@ -1,9 +1,6 @@
 import assert from 'assert';
 import { i18n } from 'datavis-tech-i18n';
-import { 
-  createVisualization,
-  updateVisualization
-} from '../src';
+import { createVisualization } from '../src';
 
 describe('Visualization Use Cases', () => {
   describe('createVisualization', () => {

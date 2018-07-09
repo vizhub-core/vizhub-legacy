@@ -1,5 +1,4 @@
 import assert from 'assert';
-import { i18n } from 'datavis-tech-i18n';
 import { Gateway } from '../src';
 
 describe('Visualization Gateway', () => {
@@ -7,7 +6,7 @@ describe('Visualization Gateway', () => {
 
     it('should invoke db if success.', done => {
       const database = {
-        createVisualization: data => Promise.resolve({ id: '123' })
+        createVisualization: () => Promise.resolve({ id: '123' })
       };
       Gateway(database).createVisualization({ owner: 'bob' })
         .then(({id}) => {

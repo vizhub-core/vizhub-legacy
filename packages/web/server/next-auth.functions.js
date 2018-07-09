@@ -87,14 +87,12 @@ module.exports = () => {
         // with the users account on the oAuth service they are signing in with.
         //
         // You can use this to capture profile.avatar, profile.location, etc.
-        update: (user, profile) => {
-          return new Promise((resolve, reject) => {
-            usersCollection.update({_id: MongoObjectId(user._id)}, user, {}, (err) => {
-              if (err) return reject(err);
-              return resolve(user);
-            });
+        update: user => new Promise((resolve, reject) => {
+          usersCollection.update({_id: MongoObjectId(user._id)}, user, {}, (err) => {
+            if (err) return reject(err);
+            return resolve(user);
           });
-        },
+        }),
         // The remove parameter is passed the ID of a user account to delete.
         //
         // This method is not used in the current version of next-auth but will

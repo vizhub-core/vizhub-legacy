@@ -1,13 +1,10 @@
 import React from 'react';
-import Head from 'next/head';
 import Router from 'next/router';
-import Link from 'next/link';
 import Cookies from 'universal-cookie';
 import { NextAuth } from 'next-auth/client';
 
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
-import { SlightMargin } from '../../components/atoms/slightMargin';
 import { SignIn } from '../../components/molecules/signIn';
 import { ActionBox } from '../../components/molecules/actionBox';
 import { NavBar } from '../../components/organisms/navBar';

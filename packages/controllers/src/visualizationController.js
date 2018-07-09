@@ -15,7 +15,6 @@ export const visualizationController = (expressApp, gateway) => {
   });
 
   expressApp.post('/api/visualization/save/:id', (req, res) => {
-    const user = req.user;
     const html = req.body.html;
     const id = req.params.id;
     gateway.saveVisualization({ id, html })

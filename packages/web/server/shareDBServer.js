@@ -1,8 +1,8 @@
-import WebSocket from 'ws';
-import JSONStream from '@teamwork/websocket-json-stream';
-import { getShareDB } from './shareDB';
+//import WebSocket from 'ws';
+//import JSONStream from '@teamwork/websocket-json-stream';
+//import { getShareDB } from './shareDB';
 
-const start = httpServer => {
+const start = () => {
   throw new Error('ShareDB server not implemented');
   // TODO figure out where to put this. Separate package?
   // const webSocketServer = new WebSocket.Server({

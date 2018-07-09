@@ -8,7 +8,7 @@ import { TextContainer } from '../../components/atoms/textContainer';
 import { NavBar } from '../../components/organisms/navBar';
 
 export default class extends Page {
-  static async getInitialProps({req, res, query}) {
+  static async getInitialProps({req, query}) {
     const props = await super.getInitialProps({ req });
     const id = query.id;
 
@@ -24,7 +24,7 @@ export default class extends Page {
   }
 
   render() {
-    const { error, visualization, user, id, csrfToken } = this.props;
+    const { error, visualization, user, csrfToken } = this.props;
 
     const visualizationPresentation = visualization
       ? {

@@ -1,7 +1,9 @@
 import 'codemirror/lib/codemirror.css';
 import '../../css/ubuntu.css';
-import {UnControlled as CodeMirror} from 'react-codemirror2';
-export class CodeEditor extends React.Component {
+import React, { Component } from 'react';
+import { UnControlled as CodeMirror } from 'react-codemirror2';
+
+export class CodeEditor extends Component {
 
   constructor(props) {
     super(props);
@@ -38,9 +40,6 @@ export class CodeEditor extends React.Component {
             mode: 'htmlmixed',
             theme: 'ubuntu',
             lineNumbers: true
-          }}
-          onChange={(editor, data, value) => {
-            console.log('change');
           }}
           onKeyDown={(editor, event) => {
             if (event.shiftKey && event.code === 'Enter') {

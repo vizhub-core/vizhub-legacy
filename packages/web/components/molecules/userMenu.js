@@ -1,16 +1,17 @@
+import { Component } from 'react';
 import Cookies from 'universal-cookie';
 import classNames from 'classnames';
 import { NextAuth } from 'next-auth/client';
 import Link from 'next/link';
 
-class UserMenuAuthenticated extends React.Component {
+class UserMenuAuthenticated extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = { open: false };
 
-    this.toggle = event => {
+    this.toggle = () => {
       this.setState({ open: !this.state.open });
     };
 
@@ -85,7 +86,7 @@ class UserMenuAuthenticated extends React.Component {
   }
 }
 
-export class UserMenu extends React.Component {
+export class UserMenu extends Component {
   constructor(props) {
     super(props);
     this.onSignOut = this.onSignOut.bind(this);

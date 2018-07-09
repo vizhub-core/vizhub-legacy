@@ -1,6 +1,5 @@
 import React from 'react';
 import Router from 'next/router';
-import Cookies from 'universal-cookie';
 import { NextAuth } from 'next-auth/client';
 
 export class SignIn extends React.Component {
@@ -10,14 +9,12 @@ export class SignIn extends React.Component {
     this.signInAsCI = this.signInAsCI.bind(this);
   }
 
-  signInAsCI(event) {
+  signInAsCI() {
     const email = 'ci@foo.com';
     const password = 'ci';
     
     NextAuth.signin({email, password})
-      .then(authenticated => {
-        Router.push('/auth/callback');
-      });
+      .then(() => Router.push('/auth/callback'));
   }
   
   render() {
@@ -26,7 +23,7 @@ export class SignIn extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <p>If you don't have an account, one will be created when you sign in.</p>
+          <p>If you don&apos;t have an account, one will be created when you sign in.</p>
 
           {
             process.env.NODE_ENV === 'development'

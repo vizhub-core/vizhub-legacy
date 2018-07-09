@@ -33,13 +33,14 @@ export const Database = connection => ({
 
   createVisualization: visualization => {
     const id = visualization.id;
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       connection
         .get(collectionName(visualization.info), id)
         .create(visualization.info);
       connection
         .get(collectionName(visualization.content), id)
         .create(visualization.content);
+      // TODO test handling of errors here
       resolve({ id });
     });
   },

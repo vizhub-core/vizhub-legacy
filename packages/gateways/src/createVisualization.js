@@ -5,8 +5,6 @@ import {
   VisualizationContent
 } from 'datavis-tech-entities';
 
-import { i18n } from 'datavis-tech-i18n';
-
 const generateId = () => uuidV4().replace(/-/g, '');
 
 const slugFromTitle = title => title.toLowerCase().replace(/ /g, '-');

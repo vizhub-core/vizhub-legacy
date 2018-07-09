@@ -7,7 +7,7 @@ import { FullPage } from '../../components/atoms/fullPage';
 import { CodeEditor } from './codeEditor';
 
 export default class extends Page {
-  static async getInitialProps({req, res, query}) {
+  static async getInitialProps({req, query}) {
     const props = await super.getInitialProps({ req });
     const id = query.id;
 
@@ -38,12 +38,13 @@ export default class extends Page {
         body: JSON.stringify({ html })
       };
       const response = await (await fetch(url, options)).json();
-      // console.log(response);
+      console.log(response);
+      // TODO saving ... saved
     };
   }
 
   render() {
-    const { error, visualization, user, id, csrfToken } = this.props;
+    const { error, visualization, user, csrfToken } = this.props;
 
     const visualizationPresentation = visualization
       ? {

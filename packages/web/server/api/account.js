@@ -18,7 +18,7 @@ module.exports = (expressApp, functions) => {
             email: user.email
           });
         })
-        .catch(err => {
+        .catch(() => {
           return res.status(500).json({error: 'Unable to fetch profile'});        
         });
     } else {
@@ -44,10 +44,10 @@ module.exports = (expressApp, functions) => {
 
           return functions.update(user);
         })
-        .then(user => {
+        .then(() => {
           return res.status(204).redirect('/account');
         })
-        .catch(err => {
+        .catch(() => {
           return res.status(500).json({error: 'Unable to fetch profile'});        
         });
     } else {
@@ -69,7 +69,7 @@ module.exports = (expressApp, functions) => {
             return res.redirect('/auth/callback?action=signout');
           });
         })
-        .catch(err => {
+        .catch(() => {
           return res.status(500).json({error: 'Unable to delete profile'});        
         });
     } else {

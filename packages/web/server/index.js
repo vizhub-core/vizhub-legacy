@@ -38,7 +38,6 @@ nextApp
   .then(nextAuthConfig)
   .then(nextAuthOptions => nextAuth(nextApp, nextAuthOptions))
   .then(nextAuthOptions => {
-    const express = nextAuthOptions.express;
     const expressApp = nextAuthOptions.expressApp;
 
     accountAPI(expressApp, nextAuthOptions.functions);
