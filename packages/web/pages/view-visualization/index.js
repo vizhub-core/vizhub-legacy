@@ -3,7 +3,6 @@ import Error from 'next/error'
 import Page from '../../components/page'
 import { TitledPage } from '../../components/atoms/titledPage'
 import { NavBar } from '../../components/organisms/navBar'
-import { FullPage } from '../../components/atoms/fullPage'
 import { CodeEditor } from './codeEditor'
 
 export default class extends Page {
@@ -56,11 +55,11 @@ export default class extends Page {
     return error
       ? <Error statusCode={error.statusCode} />
       : (
-        <TitledPage title='Edit Visualization'>
-          <FullPage>
-            <NavBar user={user} csrfToken={csrfToken} />
-            <CodeEditor value={html} onSave={this.onSave} />
-          </FullPage>
+        <TitledPage title='View Visualization'>
+          <NavBar user={user} csrfToken={csrfToken} />
+          <pre>
+            { html }
+          </pre>
         </TitledPage>
       );
   }
