@@ -75,7 +75,11 @@ describe('Web', () => {
   });
 
   describe('Edit Visualization', () => {
+    let originalContent;
     it('should save new visualization content', async () => {
+      originalContent = await page.evaluate(() =>
+        document.querySelector('.test-code-editor').value
+      );
       await page.type('.test-code-editor textarea', 'New content');
       await page.keyboard.down('Shift');
       await page.keyboard.press('Enter');
@@ -87,7 +91,7 @@ describe('Web', () => {
       const text = await page.evaluate(() =>
         document.querySelector('.test-code-editor').value
       );
-      assert.equal(text, '<h1>I AM VIZ</h1>New content');
+      assert.equal(text, originalContent + 'New content');
     });
   });
 

@@ -20,12 +20,15 @@ class UserMenuAuthenticated extends React.Component {
   }
 
   render () {
-    const { user } = this.props;
+    const { user, dropUp } = this.props;
     const { open } = this.state;
     return (
       <div
         onClick={this.toggle}
-        className={classNames('dropdown is-right', {'is-active': open})}
+        className={classNames('dropdown is-right', {
+          'is-active': open,
+          'is-up': dropUp
+        })}
       >
         <div className='dropdown-trigger'>
           <button
@@ -99,12 +102,13 @@ export class UserMenu extends React.Component {
   }
    
   render() {
-    const { user } = this.props;
+    const { user, dropUp } = this.props;
     return user.authenticated
       ? (
         <UserMenuAuthenticated
           user={user}
           onSignOut={this.onSignOut}
+          dropUp={dropUp}
         />
       )
       : (

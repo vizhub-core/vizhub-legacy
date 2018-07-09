@@ -2,6 +2,9 @@ import fetch from 'isomorphic-fetch'
 import Error from 'next/error'
 import Page from '../../components/page'
 import { TitledPage } from '../../components/atoms/titledPage'
+import { Runner } from '../../components/atoms/runner'
+import { SlightMargin } from '../../components/atoms/slightMargin'
+import { TextContainer } from '../../components/atoms/textContainer'
 import { NavBar } from '../../components/organisms/navBar'
 
 export default class extends Page {
@@ -26,21 +29,33 @@ export default class extends Page {
     const visualizationPresentation = visualization
       ? {
         html: visualization.content.files['index.html'],
-        title: visualization.info.title
+        title: visualization.info.title,
+        width: 809, // visualization.info.width,
+        height: 500 // visualization.info.height
       }
       : {}
 
-    const { html, title } = visualizationPresentation;
+    const {
+      html,
+      title,
+      width,
+      height
+    } = visualizationPresentation;
 
     return error
       ? <Error statusCode={error.statusCode} />
       : (
         <TitledPage title='View Visualization'>
-          <NavBar user={user} csrfToken={csrfToken} />
-          <h1 className='title test-document-title'>{title}</h1>
-          <pre>
-            { html }
-          </pre>
+          <TextContainer>
+            <Runner html={html} width={width} height={height} />
+            <SlightMargin>
+              <h1 className='title test-document-title'>{title}</h1>
+              <pre>
+                { html }
+              </pre>
+            </SlightMargin>
+          </TextContainer>
+          <NavBar user={user} csrfToken={csrfToken} dropUp/>
         </TitledPage>
       );
   }
