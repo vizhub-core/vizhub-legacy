@@ -1,11 +1,11 @@
-import fetch from 'isomorphic-fetch'
-import Error from 'next/error'
-import Page from '../../components/page'
-import { TitledPage } from '../../components/atoms/titledPage'
-import { Runner } from '../../components/atoms/runner'
-import { SlightMargin } from '../../components/atoms/slightMargin'
-import { TextContainer } from '../../components/atoms/textContainer'
-import { NavBar } from '../../components/organisms/navBar'
+import fetch from 'isomorphic-fetch';
+import Error from 'next/error';
+import Page from '../../components/page';
+import { TitledPage } from '../../components/atoms/titledPage';
+import { Runner } from '../../components/atoms/runner';
+import { SlightMargin } from '../../components/atoms/slightMargin';
+import { TextContainer } from '../../components/atoms/textContainer';
+import { NavBar } from '../../components/organisms/navBar';
 
 export default class extends Page {
   static async getInitialProps({req, res, query}) {
@@ -33,7 +33,7 @@ export default class extends Page {
         width: 809, // visualization.info.width,
         height: 500 // visualization.info.height
       }
-      : {}
+      : {};
 
     const {
       html,

@@ -1,4 +1,4 @@
-import { User } from 'datavis-tech-entities'
+import { User } from 'datavis-tech-entities';
 
 // Creates a User entity from the Express session.
 export const userFromSession = session => (
@@ -11,4 +11,4 @@ export const userFromSession = session => (
       email: session.user.email
     })
     : new User({ authenticated: false })
-)
+);

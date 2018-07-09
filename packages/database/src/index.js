@@ -25,9 +25,9 @@ const fetchShareDBDoc = (collection, id, connection) => (
       : shareDBDoc.type
         ? resolve(shareDBDoc)
         : reject({ message: i18n('errorDocNotFound'), statusCode: 404 })
-    )
+    );
   })
-)
+);
 
 export const Database = connection => ({
 

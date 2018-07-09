@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 import JSONStream from '@teamwork/websocket-json-stream';
-import { getShareDB } from './shareDB'
+import { getShareDB } from './shareDB';
 
 const start = httpServer => {
   throw new Error('ShareDB server not implemented');

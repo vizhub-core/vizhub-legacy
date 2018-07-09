@@ -1,5 +1,5 @@
-import React from 'react'
-import Head from 'next/head'
+import React from 'react';
+import Head from 'next/head';
 
 export const TitledPage = ({title, children}) => {
   if (!title) {
@@ -12,5 +12,5 @@ export const TitledPage = ({title, children}) => {
       </Head>
       {children}
     </React.Fragment>
-  )
+  );
 };

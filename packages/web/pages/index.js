@@ -1,8 +1,8 @@
-import React from 'react'
-import Page from '../components/page'
-import { TitledPage } from '../components/atoms/titledPage'
-import { NavBar } from '../components/organisms/navBar'
-import { FullPage } from '../components/atoms/fullPage'
+import React from 'react';
+import Page from '../components/page';
+import { TitledPage } from '../components/atoms/titledPage';
+import { NavBar } from '../components/organisms/navBar';
+import { FullPage } from '../components/atoms/fullPage';
 
 export default class extends Page {
   render() {
@@ -33,6 +33,6 @@ export default class extends Page {
           </section>
         </FullPage>
       </TitledPage>
-    )
+    );
   }
 }

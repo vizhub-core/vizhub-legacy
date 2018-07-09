@@ -1,16 +1,16 @@
-import React from 'react'
-import Link from 'next/link'
-import Page from '../../components/page'
-import { TitledPage } from '../../components/atoms/titledPage'
+import React from 'react';
+import Link from 'next/link';
+import Page from '../../components/page';
+import { TitledPage } from '../../components/atoms/titledPage';
 
 export default class extends Page {
 
   static async getInitialProps({req, query}) {
-    let props = await super.getInitialProps({req})
-    props.action = query.action || null
-    props.type = query.type || null
-    props.service = query.service || null
-    return props
+    let props = await super.getInitialProps({req});
+    props.action = query.action || null;
+    props.type = query.type || null;
+    props.service = query.service || null;
+    return props;
   }
 
   render() {

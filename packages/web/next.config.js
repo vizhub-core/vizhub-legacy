@@ -1,8 +1,8 @@
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const withSass = require('@zeit/next-sass')
-const withCSS = require('@zeit/next-css')
-const commonsChunkConfig = require('@zeit/next-css/commons-chunk-config')
-const { ANALYZE } = process.env
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const withSass = require('@zeit/next-sass');
+const withCSS = require('@zeit/next-css');
+const commonsChunkConfig = require('@zeit/next-css/commons-chunk-config');
+const { ANALYZE } = process.env;
 
 module.exports = withSass(withCSS({
   webpack: (config, { dev }) => {
@@ -17,9 +17,9 @@ module.exports = withSass(withCSS({
         analyzerMode: 'server',
         analyzerPort: 8888,
         openAnalyzer: true
-      }))
+      }));
     }
 
-    return config
+    return config;
   }
 }));

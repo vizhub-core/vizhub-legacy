@@ -1,8 +1,8 @@
 // Load environment variables from a .env file if one exists
-require('dotenv').load()
+require('dotenv').load();
 
 module.exports = () => {
-  let providers = []
+  let providers = [];
 
   providers.push({
     providerName: 'GitHub',
@@ -21,9 +21,9 @@ module.exports = () => {
         id: profile.id,
         name: profile.displayName,
         email: profile._json.email
-      }
+      };
     }
-  })
+  });
   
-  return providers
-}
+  return providers;
+};

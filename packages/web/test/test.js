@@ -19,7 +19,7 @@ const retry = (fn, ms) => new Promise(resolve => {
         console.log('retrying...');
         retry(fn, ms).then(resolve);
       }, ms);
-    })
+    });
 });
 
 
@@ -87,7 +87,7 @@ describe('Web', () => {
     });
     it('should display newly saved content', async () => {
       await page.reload();
-      await page.waitFor('.test-code-editor')
+      await page.waitFor('.test-code-editor');
       const text = await page.evaluate(() =>
         document.querySelector('.test-code-editor').value
       );

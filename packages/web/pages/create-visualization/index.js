@@ -1,19 +1,19 @@
-import React from 'react'
-import Router from 'next/router'
-import Page from '../../components/page'
-import { BodyAuthenticated, BodyNotAuthenticated } from './body'
-import { edit } from '../../routes'
-import { TitledPage } from '../../components/atoms/titledPage'
-import { ActionBox } from '../../components/molecules/actionBox'
-import { NavBar } from '../../components/organisms/navBar'
+import React from 'react';
+import Router from 'next/router';
+import Page from '../../components/page';
+import { BodyAuthenticated, BodyNotAuthenticated } from './body';
+import { edit } from '../../routes';
+import { TitledPage } from '../../components/atoms/titledPage';
+import { ActionBox } from '../../components/molecules/actionBox';
+import { NavBar } from '../../components/organisms/navBar';
 
 export default class extends Page {
   constructor() {
-    super()
+    super();
 
     this.createVisualizationFromScratch = (
       this.createVisualizationFromScratch.bind(this)
-    )
+    );
   }
 
   createVisualizationFromScratch() {
@@ -42,6 +42,6 @@ export default class extends Page {
           }
         </ActionBox>
       </TitledPage>
-    )
+    );
   }
 }

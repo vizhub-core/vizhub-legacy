@@ -1,10 +1,10 @@
-import fetch from 'isomorphic-fetch'
-import Error from 'next/error'
-import Page from '../../components/page'
-import { TitledPage } from '../../components/atoms/titledPage'
-import { NavBar } from '../../components/organisms/navBar'
-import { FullPage } from '../../components/atoms/fullPage'
-import { CodeEditor } from './codeEditor'
+import fetch from 'isomorphic-fetch';
+import Error from 'next/error';
+import Page from '../../components/page';
+import { TitledPage } from '../../components/atoms/titledPage';
+import { NavBar } from '../../components/organisms/navBar';
+import { FullPage } from '../../components/atoms/fullPage';
+import { CodeEditor } from './codeEditor';
 
 export default class extends Page {
   static async getInitialProps({req, res, query}) {
@@ -49,7 +49,7 @@ export default class extends Page {
       ? {
         html: visualization.content.files['index.html']
       }
-      : {}
+      : {};
 
     const { html } = visualizationPresentation;
 

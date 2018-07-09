@@ -1,10 +1,10 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Head, Main, NextScript } from 'next/document';
 
-import '../css/index.sass'
+import '../css/index.sass';
 
 export default class DefaultDocument extends Document {
   static async getInitialProps (ctx) {
-    return await Document.getInitialProps(ctx)
+    return await Document.getInitialProps(ctx);
   }
 
   render() {
@@ -22,6 +22,6 @@ export default class DefaultDocument extends Document {
           <NextScript />
         </body>
       </html>
-    )
+    );
   }
 }

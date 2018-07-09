@@ -23,9 +23,9 @@ export class CodeEditor extends React.Component {
     }
 
     require('codemirror/mode/javascript/javascript');
-    require('codemirror/mode/xml/xml')
-    require('codemirror/mode/css/css')
-    require('codemirror/mode/htmlmixed/htmlmixed')
+    require('codemirror/mode/xml/xml');
+    require('codemirror/mode/css/css');
+    require('codemirror/mode/htmlmixed/htmlmixed');
 
     return (
       <div
