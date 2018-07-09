@@ -81,7 +81,7 @@ describe('Web', () => {
       await page.keyboard.press('Enter');
       await page.keyboard.up('Shift');
     });
-    it('should display new visualization content', async () => {
+    it('should display newly saved content', async () => {
       await page.reload();
       await page.waitFor('.test-code-editor')
       const text = await page.evaluate(() =>
@@ -90,6 +90,19 @@ describe('Web', () => {
       assert.equal(text, '<h1>I AM VIZ</h1>New content');
     });
   });
+
+  //describe('View Visualization', () => {
+  //  it('should navigate to visualization view', async () => {
+  //    const response = await page.goto(`http://localhost:3000/ci/${id}`);
+  //    assert.equal(response.status(), 200);
+  //  });
+  //  it('should display visualization title', async () => {
+  //    const text = await page.evaluate(() => (
+  //      document.querySelector('.test-document-title').textContent)
+  //    );
+  //    assert.equal(text, 'Untitled');
+  //  });
+  //});
 
   describe('tear down', () => {
     it('should close', async () => {

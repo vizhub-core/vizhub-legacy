@@ -3,7 +3,6 @@ import Error from 'next/error'
 import Page from '../../components/page'
 import { TitledPage } from '../../components/atoms/titledPage'
 import { NavBar } from '../../components/organisms/navBar'
-import { CodeEditor } from './codeEditor'
 
 export default class extends Page {
   static async getInitialProps({req, res, query}) {
@@ -21,42 +20,24 @@ export default class extends Page {
     return props;
   }
 
-  constructor(props) {
-    super(props);
-
-    this.onSave = async (html) => {
-      const { id, csrfToken } = props;
-      const url = `/api/visualization/save/${id}`;
-      const options = {
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-          'x-csrf-token': csrfToken,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ html })
-      };
-      const response = await (await fetch(url, options)).json();
-      console.log(response);
-    };
-  }
-
   render() {
     const { error, visualization, user, id, csrfToken } = this.props;
 
     const visualizationPresentation = visualization
       ? {
-        html: visualization.content.files['index.html']
+        html: visualization.content.files['index.html'],
+        title: visualization.info.title
       }
       : {}
 
-    const { html } = visualizationPresentation;
+    const { html, title } = visualizationPresentation;
 
     return error
       ? <Error statusCode={error.statusCode} />
       : (
         <TitledPage title='View Visualization'>
           <NavBar user={user} csrfToken={csrfToken} />
+          <h1 className='title test-document-title'>{title}</h1>
           <pre>
             { html }
           </pre>

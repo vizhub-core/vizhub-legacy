@@ -5,7 +5,7 @@ const NeDB = require('nedb')
 const MongoObjectId = (process.env.MONGO_URI) ? require('mongodb').ObjectId : (id) => { return id }
 
 const ciUser = {
-  id: 'ci-user',
+  id: '438754',
   name: 'CI',
   email: 'ci@foo.xom',
   admin: false,
@@ -124,7 +124,7 @@ module.exports = () => {
       // exported to clients. It should not return private/sensitive fields,
       // only fields you want to expose via the user interface.
       deserialize: (id) => {
-        if (id === 'ci-user') {
+        if (id === ciUser.id) {
           return Promise.resolve(ciUser);
         }
         return new Promise((resolve, reject) => {

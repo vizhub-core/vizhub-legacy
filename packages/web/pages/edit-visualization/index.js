@@ -38,7 +38,7 @@ export default class extends Page {
         body: JSON.stringify({ html })
       };
       const response = await (await fetch(url, options)).json();
-      console.log(response);
+      // console.log(response);
     };
   }
 

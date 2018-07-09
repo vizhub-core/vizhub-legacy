@@ -18,8 +18,8 @@ const computeSlug = data => data.slug
     : undefined;
 
 const documentDefaults = {
-  title: '',
-  description: ''
+  title: 'Untitled',
+  description: 'No description'
 };
 
 const visualizationDefaults = Object.assign({}, documentDefaults, {
