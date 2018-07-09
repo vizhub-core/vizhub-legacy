@@ -26,7 +26,7 @@ const retry = (fn, ms) => new Promise(resolve => {
 describe('Web', () => {
   let browser;
   let page;
-  // let id;
+  let id;
 
   describe('Setup', () => {
     it('should open page', async () => {
@@ -69,8 +69,8 @@ describe('Web', () => {
       (await page.waitFor('.test-from-scratch-button')).click();
       await navigation;
       const url = page.url();
-      assert(url.startsWith('http://localhost:3000/edit-visualization'));
-      //id = url.split('/').pop(); // Grab the id of the vis we're editing.
+      assert(url.startsWith('http://localhost:3000/edit'));
+      id = url.split('/').pop(); // Grab the id of the vis we're editing.
     });
   });
 
@@ -81,15 +81,28 @@ describe('Web', () => {
       await page.keyboard.press('Enter');
       await page.keyboard.up('Shift');
     });
-    // it('should display new visualization content', async () => {
-    //   await page.reload();
-    //   await page.waitFor('.test-code-editor textarea')
-    //   const text = await page.evaluate(() => (
-    //     document.querySelector('.test-code-editor textarea').value)
-    //   );
-    //   assert.equal(text, 'foo');
-    // });
+    it('should display newly saved content', async () => {
+      await page.reload();
+      await page.waitFor('.test-code-editor')
+      const text = await page.evaluate(() =>
+        document.querySelector('.test-code-editor').value
+      );
+      assert.equal(text, '<h1>I AM VIZ</h1>New content');
+    });
   });
+
+  //describe('View Visualization', () => {
+  //  it('should navigate to visualization view', async () => {
+  //    const response = await page.goto(`http://localhost:3000/ci/${id}`);
+  //    assert.equal(response.status(), 200);
+  //  });
+  //  it('should display visualization title', async () => {
+  //    const text = await page.evaluate(() => (
+  //      document.querySelector('.test-document-title').textContent)
+  //    );
+  //    assert.equal(text, 'Untitled');
+  //  });
+  //});
 
   describe('tear down', () => {
     it('should close', async () => {
