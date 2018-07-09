@@ -1,5 +1,3 @@
-import { SlightMargin } from '../atoms/slightMargin';
-
 export const ActionBox = ({title, children}) => (
   <div
     className='container section'

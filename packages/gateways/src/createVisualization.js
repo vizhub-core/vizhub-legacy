@@ -1,11 +1,9 @@
-import uuidV4 from 'uuid/v4'
+import uuidV4 from 'uuid/v4';
 import {
   Visualization,
   VisualizationInfo,
   VisualizationContent
 } from 'datavis-tech-entities';
-
-import { i18n } from 'datavis-tech-i18n';
 
 const generateId = () => uuidV4().replace(/-/g, '');
 

@@ -3,7 +3,7 @@
  * is acessible if logged in on a profile that has { "admin": true } set on it.
  * It is not used for anything else.
  */
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
 
 export default class {
   
@@ -14,17 +14,17 @@ export default class {
     return fetch(`/admin/users?page=${page}&size=${size}`, {
       credentials: 'same-origin'
     })
-    .then(response => {
-      if (response.ok) {
-        return Promise.resolve(response.json())
-      } else {
-        return Promise.reject(Error('HTTP error when trying to list users'))
-      }
-    })
-    .then(data => {
-      return data
-    })
-    .catch(() => Promise.reject(Error('Error trying to list users')))
+      .then(response => {
+        if (response.ok) {
+          return Promise.resolve(response.json());
+        } else {
+          return Promise.reject(Error('HTTP error when trying to list users'));
+        }
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(() => Promise.reject(Error('Error trying to list users')));
   }
 
 }

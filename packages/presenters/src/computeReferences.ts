@@ -9,7 +9,7 @@ const detective = ({ detect }) => {
       detect(id);
       return `detected-${id}`;
     },
-    load: id => 'detective-stub'
+    load: () => 'detective-stub'
   };
 };
 

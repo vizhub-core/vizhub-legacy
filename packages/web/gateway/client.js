@@ -1,12 +1,12 @@
-import ShareDB from '@teamwork/sharedb/lib/client'
-import { Gateway } from 'datavis-tech-gateways'
-import { Database } from 'datavis-tech-database'
+import ShareDB from '@teamwork/sharedb/lib/client';
+import { Gateway } from 'datavis-tech-gateways';
+import { Database } from 'datavis-tech-database';
 
 const ClientGateway = () => {
-  const socket = new WebSocket('ws://' + window.location.host)
-  const connection = new ShareDB.Connection(socket)
-  const database = Database(connection)
-  return Gateway(database)
-}
+  const socket = new WebSocket('ws://' + window.location.host);
+  const connection = new ShareDB.Connection(socket);
+  const database = Database(connection);
+  return Gateway(database);
+};
 
-export default ClientGateway
+export default ClientGateway;

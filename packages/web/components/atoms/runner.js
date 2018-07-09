@@ -1,5 +1,5 @@
-import { Component } from 'react'
-import Measure from 'react-measure'
+import { Component } from 'react';
+import Measure from 'react-measure';
 
 const RunnerIFrame = ({html, width, height, scale}) => (
   <iframe
@@ -41,6 +41,6 @@ export class Runner extends Component {
           </div>
         }
       </Measure>
-    )
+    );
   }
 }

@@ -1,4 +1,4 @@
-import NextRoutes from 'next-routes'
+import NextRoutes from 'next-routes';
 
 export const routes = NextRoutes()
   .add('auth/callback', '/auth/callback')

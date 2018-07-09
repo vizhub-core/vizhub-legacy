@@ -1,8 +1,10 @@
+import React from 'react';
+
 export const BodyAuthenticated = ({onFromScratchClick}) => {
   const fromScratchClick = e => {
-    e.preventDefault()
-    onFromScratchClick()
-  }
+    e.preventDefault();
+    onFromScratchClick();
+  };
 
   return (
     <React.Fragment>
@@ -17,9 +19,9 @@ export const BodyAuthenticated = ({onFromScratchClick}) => {
         </a>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export const BodyNotAuthenticated = () => (
   <div>You must first log in to create a visualization.</div>
-)
+);

@@ -25,21 +25,22 @@ const fetchShareDBDoc = (collection, id, connection) => (
       : shareDBDoc.type
         ? resolve(shareDBDoc)
         : reject({ message: i18n('errorDocNotFound'), statusCode: 404 })
-    )
+    );
   })
-)
+);
 
 export const Database = connection => ({
 
   createVisualization: visualization => {
     const id = visualization.id;
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       connection
         .get(collectionName(visualization.info), id)
         .create(visualization.info);
       connection
         .get(collectionName(visualization.content), id)
         .create(visualization.content);
+      // TODO test handling of errors here
       resolve({ id });
     });
   },

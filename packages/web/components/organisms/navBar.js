@@ -1,5 +1,5 @@
-import { UserMenu } from '../molecules/userMenu'
-import { SlightMargin } from '../atoms/slightMargin'
+import { UserMenu } from '../molecules/userMenu';
+import { SlightMargin } from '../atoms/slightMargin';
 
 export const NavBar = ({user, csrfToken, dropUp}) => (
   <SlightMargin>

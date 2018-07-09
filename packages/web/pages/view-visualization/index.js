@@ -1,14 +1,14 @@
-import fetch from 'isomorphic-fetch'
-import Error from 'next/error'
-import Page from '../../components/page'
-import { TitledPage } from '../../components/atoms/titledPage'
-import { Runner } from '../../components/atoms/runner'
-import { SlightMargin } from '../../components/atoms/slightMargin'
-import { TextContainer } from '../../components/atoms/textContainer'
-import { NavBar } from '../../components/organisms/navBar'
+import fetch from 'isomorphic-fetch';
+import Error from 'next/error';
+import Page from '../../components/page';
+import { TitledPage } from '../../components/atoms/titledPage';
+import { Runner } from '../../components/atoms/runner';
+import { SlightMargin } from '../../components/atoms/slightMargin';
+import { TextContainer } from '../../components/atoms/textContainer';
+import { NavBar } from '../../components/organisms/navBar';
 
 export default class extends Page {
-  static async getInitialProps({req, res, query}) {
+  static async getInitialProps({req, query}) {
     const props = await super.getInitialProps({ req });
     const id = query.id;
 
@@ -24,7 +24,7 @@ export default class extends Page {
   }
 
   render() {
-    const { error, visualization, user, id, csrfToken } = this.props;
+    const { error, visualization, user, csrfToken } = this.props;
 
     const visualizationPresentation = visualization
       ? {
@@ -33,7 +33,7 @@ export default class extends Page {
         width: 809, // visualization.info.width,
         height: 500 // visualization.info.height
       }
-      : {}
+      : {};
 
     const {
       html,
