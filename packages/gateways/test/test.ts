@@ -1,4 +1,4 @@
-import assert from 'assert';
+import * as assert from 'assert';
 import { Gateway } from '../src';
 
 describe('Visualization Gateway', () => {
@@ -6,7 +6,7 @@ describe('Visualization Gateway', () => {
 
     it('should invoke db if success.', done => {
       const database = {
-        createVisualization: () => Promise.resolve({ id: '123' })
+        createVisualization: async () => ({ id: '123' })
       };
       Gateway(database).createVisualization({ owner: 'bob' })
         .then(({id}) => {

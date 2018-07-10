@@ -2,20 +2,26 @@
   "name": "datavis-tech-gateways",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "private": true,
   "scripts": {
-    "test": "mocha -r esm"
+    "build-ts": "tsc",
+    "pretest": "npm run build-ts",
+    "test": "mocha -r ts-node/register test/**/test.ts"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
+    "@types/uuid": "^3.4.3",
     "datavis-tech-entities": "1",
     "datavis-tech-i18n": "1",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.1",
     "mocha": "^5.2.0",
-    "esm": "^3.0.55"
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
   }
 }
