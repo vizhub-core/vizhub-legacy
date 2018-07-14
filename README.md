@@ -12,7 +12,7 @@ Related products:
 
 This project aspires to [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) ([video](https://www.youtube.com/watch?v=o_TH-Y78tt4)).
 
-[![DVT2_Architecture.svg](/uploads/c05de870a6f3433a13d60c57d4ea90d8/DVT2_Architecture.svg)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
+[![DVT2_Architecture.svg](/uploads/c05de870a6f3433a13d60c57d4ea90d8/DVT2_Architecture.png)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
 
 Clean Architecture Resources:
 
