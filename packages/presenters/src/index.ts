@@ -1,29 +1,10 @@
-import { computeReferences } from './computeReferences';
-import { CVResponse } from 'datavis-tech-use-cases';
+import { CreateVisualizationResponseModel } from 'datavis-tech-use-cases';
+import { DocumentId } from 'datavis-tech-entities';
 
-export interface VisualizationViewModel {
-  references: string[]
+export interface CVViewModel {
+  id: DocumentId
 }
 
-export async function presentVisualization (): Promise<VisualizationViewModel> {
-  const references = await computeReferences();
-  return { references };
-};
-
-//export const presentVisualization = gateway => ({
-//  presentVisualization: id => (
-//    gateway.fetchDocument(id).then(async visualization => {
-//      //return await Promise
-//      //  .all([
-//      //    Promise.all(references.map(gateway.fetchDocument)),
-//      //    gateway.fetchUser(visualization.owner)
-//      //  ])
-//      //  .then((referencedDocuments, owner) => ({
-//      //    visualization,
-//      //    references,
-//      //    referencedDocuments,
-//      //    owner
-//      //  }));
-//    })
-//  )
-//});
+export function CVPresenter(response: CreateVisualizationResponseModel) : CVViewModel {
+  return { id: response.id };
+}

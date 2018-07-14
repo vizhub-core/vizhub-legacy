@@ -1,8 +1,18 @@
+# Product
+
+Related products:
+
+ * [https://bl.ocks.org](https://bl.ocks.org)
+ * [https://blockbuilder.org/](https://blockbuilder.org/)
+ * [https://observablehq.com](https://observablehq.com)
+ * [https://codesandbox.io](https://codesandbox.io)
+ * [https://stackblitz.com/](https://stackblitz.com/)
+
 # Architecture
 
 This project aspires to [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) ([video](https://www.youtube.com/watch?v=o_TH-Y78tt4)).
 
-[![DVT2_Architecture.svg](/uploads/6e4ca2215405eab4722e6891ee0693be/DVT2_Architecture.svg)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
+[![DVT2_Architecture.svg](/uploads/c05de870a6f3433a13d60c57d4ea90d8/DVT2_Architecture.svg)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
 
 Clean Architecture Resources:
 
@@ -12,10 +22,9 @@ Clean Architecture Resources:
  * [GitHub: lukemorton/typescript-clean-architecture-example](https://github.com/lukemorton/typescript-clean-architecture-example)
  * [GitHub: michaelklopf/clean-architecture](https://github.com/michaelklopf/clean-architecture)
 
-
 # Entities
 
-![classDiagram](/uploads/aedd845af9cb71dcb9bcc107bf7a1b87/classDiagram.png)
+![useCasesDiagram](/uploads/0cea6ef15982b5b26e96136f1916d108/useCasesDiagram.png)
 
 Documentation for each entity can be found in `packages/entities/src`.
 

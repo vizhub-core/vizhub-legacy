@@ -1,1 +1,1 @@
-export { Gateway } from './gateway';
+export { DatabaseVisualizationGateway } from './databaseVisualizationGateway';

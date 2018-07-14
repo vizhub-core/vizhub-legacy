@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { Gateway } from '../src';
+import { DatabaseVisualizationGateway } from '../src';
 
 describe('Visualization Gateway', () => {
   describe('createVisualization', () => {
@@ -8,7 +8,10 @@ describe('Visualization Gateway', () => {
       const database = {
         createVisualization: async () => ({ id: '123' })
       };
-      Gateway(database).createVisualization({ owner: 'bob' })
+
+      const visualizationGateway = new DatabaseVisualizationGateway(database);
+
+      visualizationGateway.createVisualization({ owner: 'bob' })
         .then(({id}) => {
           assert.equal(id, '123');
           done();

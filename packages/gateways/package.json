@@ -14,8 +14,8 @@
   "dependencies": {
     "@types/uuid": "^3.4.3",
     "datavis-tech-entities": "1",
-    "datavis-tech-i18n": "1",
-    "uuid": "^3.2.1"
+    "datavis-tech-use-cases": "1",
+    "datavis-tech-i18n": "1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.4",
