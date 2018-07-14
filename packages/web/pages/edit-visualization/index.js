@@ -6,6 +6,8 @@ import { NavBar } from '../../components/organisms/navBar';
 import { FullPage } from '../../components/atoms/fullPage';
 import { CodeEditor } from './codeEditor';
 
+const html = visualization => visualization.content.files[0].text;
+
 export default class extends Page {
   static async getInitialProps({req, query}) {
     const props = await super.getInitialProps({ req });
@@ -26,8 +28,11 @@ export default class extends Page {
     super(props);
 
     this.onSave = async (html) => {
-      const { id, csrfToken } = props;
-      const url = `/api/visualization/save/${id}`;
+      const visualization = props.visualization;
+      visualization.content.files[0].text = html;
+
+      const { csrfToken } = props;
+      const url = `/api/visualization/save`;
       const options = {
         credentials: 'include',
         method: 'POST',
@@ -35,7 +40,7 @@ export default class extends Page {
           'x-csrf-token': csrfToken,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ html })
+        body: JSON.stringify({ visualization })
       };
       const response = await (await fetch(url, options)).json();
       console.log(response);
@@ -46,21 +51,13 @@ export default class extends Page {
   render() {
     const { error, visualization, user, csrfToken } = this.props;
 
-    const visualizationPresentation = visualization
-      ? {
-        html: visualization.content.files['index.html']
-      }
-      : {};
-
-    const { html } = visualizationPresentation;
-
     return error
       ? <Error statusCode={error.statusCode} />
       : (
         <TitledPage title='Edit Visualization'>
           <FullPage>
             <NavBar user={user} csrfToken={csrfToken} />
-            <CodeEditor value={html} onSave={this.onSave} />
+            <CodeEditor value={html(visualization)} onSave={this.onSave} />
           </FullPage>
         </TitledPage>
       );

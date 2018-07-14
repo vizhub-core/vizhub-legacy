@@ -32,7 +32,7 @@ describe('Web', () => {
     it('should open page', async () => {
       browser = await puppeteer.launch(puppeteerOptions);
       page = await browser.newPage();
-      const response = await retry(() => page.goto('http://localhost:3000'), 1000);
+      const response = await retry(() => page.goto('http://localhost:3000'), 2000);
       assert.equal(response.status(), 200);
     });
   });

@@ -2,7 +2,7 @@
   "name": "datavis-tech-presenters",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "private": true,
   "scripts": {
     "build-ts": "tsc",
@@ -13,6 +13,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "datavis-tech-use-cases": "1",
+    "datavis-tech-entities": "1",
     "mocha": "^5.2.0",
     "rollup": "^0.62.0",
     "rollup-plugin-virtual": "^1.0.1"

@@ -1,15 +1,11 @@
 export {
-  UseCase,
-  Request,
-  Response
-} from './useCase';
-
-export {
-  CreateVisualization,
-  CVRequest,
-  CVResponse
-} from './createVisualization';
+  Interactor,
+  RequestModel,
+  ResponseModel
+} from './interactor';
 
 export {
   VisualizationGateway
 } from './gatewayInterfaces/visualizationGateway';
+
+export * from './interactors';

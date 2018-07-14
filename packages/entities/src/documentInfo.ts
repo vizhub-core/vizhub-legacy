@@ -9,7 +9,7 @@ export class DocumentInfo extends DocumentPart {
   title: string;
 
   // The URL slug for the document.
-  slug: string;
+  slug: string | undefined;
 
   // The Markdown description of the document.
   description: string;
