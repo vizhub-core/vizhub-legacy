@@ -6,15 +6,15 @@ import { Runner } from '../../components/atoms/runner';
 import { SlightMargin } from '../../components/atoms/slightMargin';
 import { TextContainer } from '../../components/atoms/textContainer';
 import { NavBar } from '../../components/organisms/navBar';
+import { getJSON } from '../../utils/getJSON';
+import { findFile } from '../../utils/files';
 
 export default class extends Page {
   static async getInitialProps({req, query}) {
     const props = await super.getInitialProps({ req });
     const id = query.id;
 
-    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
-    const url = `${baseUrl}/api/visualization/get/${id}`;
-    const response = await (await fetch(url)).json();
+    const response = await getJSON(`/api/visualization/get/${id}`, req);
 
     props.id = id;
     props.visualization = response.visualization;
@@ -26,37 +26,28 @@ export default class extends Page {
   render() {
     const { error, visualization, user, csrfToken } = this.props;
 
-    const visualizationPresentation = visualization
-      ? {
-        html: visualization.content.files['index.html'],
-        title: visualization.info.title,
-        width: 809, // visualization.info.width,
-        height: 500 // visualization.info.height
-      }
-      : {};
+    if (error) {
+      return <Error statusCode={error.statusCode} />
+    }
 
-    const {
-      html,
-      title,
-      width,
-      height
-    } = visualizationPresentation;
+    const title = visualization.info.title;
+    const width = 960;
+    const height = 500;
+    const html = findFile('index.html', visualization.content.files).text;
 
-    return error
-      ? <Error statusCode={error.statusCode} />
-      : (
-        <TitledPage title='View Visualization'>
-          <TextContainer>
-            <Runner html={html} width={width} height={height} />
-            <SlightMargin>
-              <h1 className='title test-document-title'>{title}</h1>
-              <pre>
-                { html }
-              </pre>
-            </SlightMargin>
-          </TextContainer>
-          <NavBar user={user} csrfToken={csrfToken} dropUp/>
-        </TitledPage>
-      );
+    return (
+      <TitledPage title='View Visualization'>
+        <TextContainer>
+          <Runner html={html} width={width} height={height} />
+          <SlightMargin>
+            <h1 className='title test-document-title'>{title}</h1>
+            <pre>
+              { html }
+            </pre>
+          </SlightMargin>
+        </TextContainer>
+        <NavBar user={user} csrfToken={csrfToken} dropUp/>
+      </TitledPage>
+    );
   }
 }

@@ -1,12 +1,14 @@
 import 'codemirror/lib/codemirror.css';
 import '../../css/ubuntu.css';
 import React, { Component } from 'react';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
+import { Controlled as CodeMirror } from 'react-codemirror2';
 
 export class CodeEditor extends Component {
 
   constructor(props) {
     super(props);
+
+    // For end-to-end testing.
     this.containerDiv = React.createRef();
     this.exposeValueOnContainerDiv = value => {
       this.containerDiv.current.value = value;
@@ -18,7 +20,7 @@ export class CodeEditor extends Component {
   }
 
   render() {
-    const { value, onSave } = this.props;
+    const { value, onSave, onTextChange } = this.props;
 
     if (!process.browser) {
       return null;
@@ -42,10 +44,15 @@ export class CodeEditor extends Component {
             lineNumbers: true
           }}
           onKeyDown={(editor, event) => {
+
+            // Shift+Enter is the interaction for saving.
             if (event.shiftKey && event.code === 'Enter') {
               event.preventDefault();
               onSave(editor.getValue());
             }
+          }}
+          onBeforeChange={(editor, data, value) => {
+            onTextChange(value)
           }}
           editorDidMount={editor => {
             this.value = editor.getValue();

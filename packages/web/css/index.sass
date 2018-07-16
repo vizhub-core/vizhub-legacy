@@ -1,21 +1,7 @@
 @charset "utf-8"
 
-$family-sans-serif: "Ubuntu", sans-serif
-$family-monospace: "Ubuntu Mono", monospace
-$body-background-color: hsl(0, 0%, 98%)
-$radius: 0px
-$radius-large: 0px
-$input-shadow: none
+@import "./variables"
 
-@import "../node_modules/bulma/sass/utilities/initial-variables"
-@import "../node_modules/bulma/sass/utilities/functions"
-
-$link: $grey
-$link-visited: $grey
-$link-focus-border: $grey
-$box-shadow: 0 0 0 1px $grey-lighter
-
-@import "../node_modules/bulma/sass/utilities/derived-variables"
 @import "../node_modules/bulma/sass/utilities/animations"
 @import "../node_modules/bulma/sass/utilities/mixins"
 @import "../node_modules/bulma/sass/utilities/controls"
@@ -43,7 +29,7 @@ $box-shadow: 0 0 0 1px $grey-lighter
   height: 100%
   font-family: $family-monospace
   line-height: 1
-  font-size: 1.2rem
+  font-size: $font-size-for-code
 
 .react-codemirror2, .code-editor-container
   height: 100%
