@@ -21,6 +21,7 @@
     "datavis-tech-controllers": "1",
     "datavis-tech-database": "1",
     "datavis-tech-entities": "1",
+    "datavis-tech-presenters": "1",
     "datavis-tech-gateways": "1",
     "datavis-tech-i18n": "1",
     "dotenv": "^6.0.0",

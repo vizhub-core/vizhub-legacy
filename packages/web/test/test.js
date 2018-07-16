@@ -71,6 +71,8 @@ describe('Web', () => {
       const url = page.url();
       assert(url.startsWith('http://localhost:3000/edit'));
       id = url.split('/').pop(); // Grab the id of the vis we're editing.
+
+      console.log(`\nNew visualization id:\n${id}\n`);
     });
   });
 

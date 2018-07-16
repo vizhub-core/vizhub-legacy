@@ -19,8 +19,13 @@ export default class extends Page {
   createVisualizationFromScratch() {
     fetch('/api/visualization/create', { credentials: 'include' })
       .then(r => r.json())
-      .then(({id}) => Router.push(edit({id})))
-      .catch(error => console.log(error));
+      .then(({id, error}) => {
+        if (error) {
+          console.log(error);
+        } else {
+          Router.push(edit({id}));
+        }
+      });
   }
 
   render() {

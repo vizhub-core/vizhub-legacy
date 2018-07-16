@@ -1,4 +1,5 @@
 import { GetVisualization } from 'datavis-tech-use-cases';
+import { visualizationToViewModel } from 'datavis-tech-presenters';
 
 export const getVisualizationController = (expressApp, visualizationGateway) => {
   const getVisualization = new GetVisualization({ visualizationGateway });
