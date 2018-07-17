@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
+import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { Runner } from '../../components/atoms/runner';
@@ -30,10 +31,8 @@ export default class extends Page {
       return <Error statusCode={error.statusCode} />
     }
 
-    const title = visualization.info.title;
-    const width = 960;
-    const height = 500;
-    const html = findFile('index.html', visualization.content.files).text;
+    const { title, files, width, height } = new VisualizationViewModel(visualization);
+    const html = findFile('index.html', files).text;
 
     return (
       <TitledPage title='View Visualization'>

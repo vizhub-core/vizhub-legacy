@@ -1,18 +1,15 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
-
-import { visualizationToViewModel } from 'datavis-tech-presenters';
-
+import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { NavBar } from '../../components/organisms/navBar';
 import { FullPage } from '../../components/atoms/fullPage';
 import { getJSON } from '../../utils/getJSON';
-
-import { CodeEditor } from './codeEditor';
-import { EditorGrid } from './editorGrid';
-import { Files } from './files';
-import { findFile, hasName } from '../../utils/files';
+import { hasName, findFile } from '../../utils/files';
+import { Editor } from './editor';
+import { Runner } from '../../components/atoms/runner';
+import { IDEGrid } from './ideGrid';
 
 export default class extends Page {
   static async getInitialProps({req, query}) {
@@ -85,29 +82,27 @@ export default class extends Page {
       return <Error statusCode={error.statusCode} />
     }
 
-    const { files } = visualization.content;
-    const activeFile = findFile(activeFileName, files);
+    const { files, width, height } = new VisualizationViewModel(visualization);
+    const html = findFile('index.html', files).text;
 
     return (
       <TitledPage title='Edit Visualization'>
         <FullPage>
           <NavBar user={user} csrfToken={csrfToken} />
-          <EditorGrid>
-            <EditorGrid.Left>
-              <Files
-                files={files}
-                activeFileName={activeFileName}
-                onFileClick={this.onFileClick}
-              />
-            </EditorGrid.Left>
-            <EditorGrid.Center>
-              <CodeEditor
-                value={activeFile.text}
-                onSave={this.onSave}
-                onTextChange={this.onTextChange}
-              />
-            </EditorGrid.Center>
-          </EditorGrid>
+            <IDEGrid>
+              <IDEGrid.Left>
+                <Editor
+                  files={files}
+                  activeFileName={activeFileName}
+                  onFileClick={this.onFileClick}
+                  onSave={this.onSave}
+                  onTextChange={this.onTextChange}
+                />
+              </IDEGrid.Left>
+              <IDEGrid.Right>
+                <Runner html={html} width={width} height={height} />
+              </IDEGrid.Right>
+            </IDEGrid>
         </FullPage>
       </TitledPage>
     );

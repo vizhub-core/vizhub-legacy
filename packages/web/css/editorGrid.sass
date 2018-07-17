@@ -1,12 +1,20 @@
 @import "./variables"
 
+$editor-break-small: 700px
+$editor-split-border: 1px solid #5e4e59
+
 .editor-grid
   display: flex
   width: 100%
   height: 100%
   background-color: #300a24
+  @media only screen and (max-width: $editor-break-small)
+    flex-direction: column
   .editor-grid-left
-    border-right: 1px solid #5e4e59
+    @media screen and (max-width: $editor-break-small)
+      border-bottom: $editor-split-border
+    @media screen and (min-width: $editor-break-small)
+      border-right: $editor-split-border
     color: white
     font-size: $font-size-for-code
     font-family: $family-monospace

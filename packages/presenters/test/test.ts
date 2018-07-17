@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { visualizationToViewModel } from '../src';
+import { VisualizationViewModel } from '../src';
 
 describe('Presenters', () => {
   describe('CreateVisualizationPresenter', () => {
@@ -14,12 +14,11 @@ describe('Presenters', () => {
           ]
         }
       };
-      assert.deepEqual(visualizationToViewModel(visualization), {
+      assert.deepEqual(new VisualizationViewModel(visualization), {
         files: visualization.content.files,
         width: 960,
         height: 500,
-        title: 'Foo',
-        visualization: visualization
+        title: 'Foo'
       });
     });
   });
