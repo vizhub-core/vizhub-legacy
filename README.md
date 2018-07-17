@@ -22,6 +22,8 @@ This project aspires to [Clean Architecture](https://8thlight.com/blog/uncle-bob
 
 [![DVT2_Architecture.svg](/uploads/325fa67893239c8bcf6463d7a0d85193/DVT2_Architecture.png)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
 
+The UI package will be Open Source, following the [Open Core Model](https://en.wikipedia.org/wiki/Open_core), inspired by the success of this model with [CodeSandbox.io](https://github.com/CompuIves/codesandbox-client). The idea is that users and supporters of the product can contribute UI tweaks, but the actual architectural core will remain proprietary, so that commercial features can be offered.
+
 Clean Architecture Resources:
 
  * [YouTube: Reactive, Clean Architecture](https://www.youtube.com/watch?v=16wPp91kyuE)
