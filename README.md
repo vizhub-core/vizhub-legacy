@@ -12,7 +12,7 @@ Related products:
 
 This project aspires to [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) ([video](https://www.youtube.com/watch?v=o_TH-Y78tt4)).
 
-[![DVT2_Architecture.svg](/uploads/c05de870a6f3433a13d60c57d4ea90d8/DVT2_Architecture.png)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
+[![DVT2_Architecture.svg](/uploads/325fa67893239c8bcf6463d7a0d85193/DVT2_Architecture.png)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
 
 Clean Architecture Resources:
 
@@ -23,10 +23,14 @@ Clean Architecture Resources:
  * [GitHub: michaelklopf/clean-architecture](https://github.com/michaelklopf/clean-architecture)
 
 # Entities
+`packages/entities`
+
+![entityDiagram](/uploads/bc903e6205d329906b9fc8c2f34842b7/entityDiagram.png)
+
+# Use Cases
+`packages/useCases`
 
 ![useCasesDiagram](/uploads/0cea6ef15982b5b26e96136f1916d108/useCasesDiagram.png)
-
-Documentation for each entity can be found in `packages/entities/src`.
 
 # Development
 
@@ -39,10 +43,29 @@ lerna bootstrap
 
 The `lerna bootstrap` command links dependencies between local packages.
 
-Run `npm test` to test all packages.
+Run `npm test` to test all packages except `web`.
+
 
 # Web
+`packages/web`
 
-The front end code is located in `packages/web`.
+To start the dev server:
+
+```
+cd packages/web
+npm run dev
+```
+
+Run `npm run testAll` to test all packages including `web` (depends on having the dev server running).
+
+**Note** You need to run `lerna bootstrap` for the `web` package to see changes made in other packages.
+
+Typical workflow:
+
+ * Change code in any package
+ * `lerna bootstrap && npm run testAll`
+ * Restart the dev server in a seperate terminal after `lerna bootstrap` is finished, to get the updates.
+ * Access `http://localhost:3000` for manual UI testing
+   * **Note** The end-to-end `web` test emits the IDs of created documents, which you can use to save manual testing time.
 
 The user interface code is organized using [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) [video](https://vimeo.com/67476280).
