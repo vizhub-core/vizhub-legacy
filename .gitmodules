@@ -1,6 +1,3 @@
-[submodule "packages/--force"]
-	path = packages/--force
-	url = git@github.com:datavis-tech/vizhub-ui.git
 [submodule "packages/vizhub-ui"]
 	path = packages/ui
 	url = git@github.com:datavis-tech/vizhub-ui.git
