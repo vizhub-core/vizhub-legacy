@@ -1,3 +1,13 @@
+Table of Contents:
+
+ * [Product](#product)
+ * [Architecture](#architecture)
+ * [Entities](#entities)
+ * [Use Cases](#use-cases)
+ * [Development](#development)
+ * [Web](#web)
+ * [Production](docs/production.md)
+
 # Product
 
 >A platform to facilitate teaching and learning data visualization using D3.js and SVG.
