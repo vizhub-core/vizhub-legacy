@@ -1,5 +1,13 @@
 # Product
 
+>A platform to facilitate teaching and learning data visualization using D3.js and SVG.
+
+Target audience:
+
+ * Teachers of Data Visualization
+ * Students of Data Visualization
+ * Beta testing will occur with WPI Online Data Visualization course in Fall 2018
+
 Related products:
 
  * [https://bl.ocks.org](https://bl.ocks.org)
