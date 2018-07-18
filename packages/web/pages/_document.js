@@ -1,7 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 
-import '../css/index.sass';
-
 export default class DefaultDocument extends Document {
   static async getInitialProps (ctx) {
     return await Document.getInitialProps(ctx);
