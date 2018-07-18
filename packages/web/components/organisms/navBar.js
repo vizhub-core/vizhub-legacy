@@ -8,7 +8,7 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
     
       <div className='level-left'>
         <div className='level-item nav-brand'>
-          vizhub.io
+          vizhub.com
         </div>
       </div>
 
