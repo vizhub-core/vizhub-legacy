@@ -39,7 +39,7 @@ export default class extends Page {
   
   render() {
     return (
-      <TitledPage title='Datavis.tech'>
+      <TitledPage title='Sign in'>
         <NavBar
           user={this.props.user}
           csrfToken={this.props.csrfToken}

@@ -7,7 +7,7 @@ import { FullPage } from '../components/atoms/fullPage';
 export default class extends Page {
   render() {
     return (
-      <TitledPage title='Datavis.tech'>
+      <TitledPage title='VizHub.com'>
         <FullPage>
           <NavBar
             user={this.props.user}

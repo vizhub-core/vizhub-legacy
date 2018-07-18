@@ -35,7 +35,7 @@ export default class extends Page {
     const html = findFile('index.html', files).text;
 
     return (
-      <TitledPage title='View Visualization'>
+      <TitledPage title={title}>
         <TextContainer>
           <Runner html={html} width={width} height={height} />
           <SlightMargin>
