@@ -5,6 +5,6 @@ export const AlphaWarning = () => (
     color: 'white',
     textAlign: 'center'
   }}>
-    <strong style={{ color: 'white' }}>Warning!</strong> This site is alpha software. Your data will not be permanently saved.
+    <strong style={{ color: 'white' }}>Warning!</strong> This is <a href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha">alpha</a> software. Your data will not be permanently saved.
   </nav>
 )

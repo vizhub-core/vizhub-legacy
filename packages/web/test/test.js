@@ -22,7 +22,6 @@ const retry = (fn, ms) => new Promise(resolve => {
     });
 });
 
-
 describe('Web', () => {
   let browser;
   let page;
@@ -68,9 +67,13 @@ describe('Web', () => {
       const navigation = page.waitForNavigation();
       (await page.waitFor('.test-from-scratch-button')).click();
       await navigation;
+
       const url = page.url();
-      assert(url.startsWith('http://localhost:3000/edit'));
-      id = url.split('/').pop(); // Grab the id of the vis we're editing.
+      const split = url.split('/');
+      assert.equal(split[3], 'ci');
+      assert.equal(split[5], 'edit');
+
+      id = split[4]; // Grab the id of the vis we're editing.
 
       console.log(`\nNew visualization id:\n${id}\n`);
     });

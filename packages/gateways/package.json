@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "build-ts": "tsc",
-    "pretest": "npm run build-ts",
+    "postinstall": "npm run build-ts",
     "test": "mocha -r ts-node/register test/**/test.ts"
   },
   "author": "Curran Kelleher",

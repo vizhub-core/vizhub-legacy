@@ -23,7 +23,8 @@ export default class extends Page {
         if (error) {
           console.log(error);
         } else {
-          Router.push(edit({id}));
+          const userName = this.props.user.userName;
+          Router.push(edit({id, userName}));
         }
       });
   }
