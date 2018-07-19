@@ -11,8 +11,8 @@ module.exports = () => {
     },
     Strategy: require('passport-github').Strategy,
     strategyOptions: {
-      clientID: 'a225561936bbdcafb559', //process.env.GITHUB_ID,
-      clientSecret: '42a2d3f646ef4fd2568dc67eeb52bcfed9fd8abd', //process.env.GITHUB_SECRET,
+      clientID: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
       profileFields: ['id', 'displayName', 'email', 'link']
     },
     getProfile(profile) {
