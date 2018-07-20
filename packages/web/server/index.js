@@ -9,6 +9,7 @@ import accountAPI from './api/account';
 
 import { visualizationController } from 'datavis-tech-controllers';
 import { serverGateways } from './serverGateways';
+import { setupRaven } from './setupRaven';
 
 // Load environment variables from .env file if present
 require('dotenv').load();
@@ -39,13 +40,14 @@ nextApp
   .then(nextAuthOptions => nextAuth(nextApp, nextAuthOptions))
   .then(nextAuthOptions => {
     const expressApp = nextAuthOptions.expressApp;
-    accountAPI(expressApp, nextAuthOptions.functions);
 
+    setupRaven(expressApp);
+
+    accountAPI(expressApp, nextAuthOptions.functions);
 
     // Set up the server-side gateways and controller.
     const { visualizationGateway } = serverGateways();
     visualizationController(expressApp, visualizationGateway);
-
 
     expressApp.all('*', routes.getRequestHandler(nextApp));
 
