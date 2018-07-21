@@ -1,6 +1,14 @@
-# This script is for deploying a new build to production.
+#!/bin/bash
+
+PROJECT_DIR=$HOME/datavis-tech-2
+
+cd $PROJECT_DIR
 git checkout master
 git pull
+
+git submodule sync
+git submodule update --init
+
 lerna bootstrap
 cd packages/web
 npm run build
