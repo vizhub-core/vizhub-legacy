@@ -11,6 +11,9 @@ import { hasName } from '../../utils/files';
 import { Editor } from './editor';
 import { IDEGrid } from './ideGrid';
 
+import 'codemirror/lib/codemirror.css';
+import 'vizhub-ui/src/css/ubuntu.css';
+
 export default class extends Page {
   static async getInitialProps({req, query}) {
     const props = await super.getInitialProps({ req });

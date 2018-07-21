@@ -1,10 +1,18 @@
 import { EditorGrid } from './editorGrid';
-import { CodeEditor } from './codeEditor';
+import { CodeEditor } from 'vizhub-ui';
 import { Files } from './files';
-import { findFile } from '../../utils/files';
 
-export const Editor = ({ files, activeFileName, onFileClick, onSave, onTextChange }) => {
-  const value = findFile(activeFileName, files).text;
+export const Editor = props => {
+  const {
+    files,
+    activeFileName,
+    onFileClick,
+    onSave,
+    onTextChange
+  } = props;
+
+  const value = files.find(({name}) => name === activeFileName).text;
+
   return (
     <EditorGrid>
       <EditorGrid.Left>
