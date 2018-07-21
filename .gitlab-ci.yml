@@ -1,6 +1,8 @@
 image: node:10
 
 before_script:
+  - git submodule sync
+  - git submodule update --init
   - npm install -g lerna
   - lerna bootstrap
 

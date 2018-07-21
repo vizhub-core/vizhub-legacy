@@ -1,14 +1,14 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
+import { VisualizationRunner } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { NavBar } from '../../components/organisms/navBar';
 import { FullPage } from '../../components/atoms/fullPage';
 import { getJSON } from '../../utils/getJSON';
-import { hasName, findFile } from '../../utils/files';
+import { hasName } from '../../utils/files';
 import { Editor } from './editor';
-import { Runner } from '../../components/atoms/runner';
 import { IDEGrid } from './ideGrid';
 
 export default class extends Page {
@@ -83,7 +83,6 @@ export default class extends Page {
     }
 
     const { files, width, height } = new VisualizationViewModel(visualization);
-    const html = findFile('index.html', files).text;
 
     return (
       <TitledPage title='Edit Visualization'>
@@ -100,7 +99,7 @@ export default class extends Page {
                 />
               </IDEGrid.Left>
               <IDEGrid.Right>
-                <Runner html={html} width={width} height={height} />
+                <VisualizationRunner {...{files, width, height}} />
               </IDEGrid.Right>
             </IDEGrid>
         </FullPage>
