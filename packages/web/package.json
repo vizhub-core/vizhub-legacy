@@ -7,8 +7,8 @@
   "private": true,
   "main": "server/index.js",
   "dependencies": {
-    "@teamwork/sharedb": "^1.2.0",
-    "@teamwork/sharedb-mingo-memory": "^1.0.2",
+    "@teamwork/sharedb": "^2.0.1",
+    "@teamwork/sharedb-mingo-memory": "^1.0.5",
     "@teamwork/websocket-json-stream": "^1.0.0",
     "@zeit/next-css": "^0.2.0",
     "@zeit/next-sass": "^0.2.0",
@@ -16,8 +16,9 @@
     "babel-plugin-wrap-in-js": "^1.1.1",
     "bulma": "^0.7.1",
     "classnames": "^2.2.6",
-    "codemirror": "^5.39.0",
+    "codemirror": "^5.39.2",
     "connect-mongo": "^2.0.1",
+    "vizhub-ui": "1",
     "datavis-tech-controllers": "1",
     "datavis-tech-database": "1",
     "datavis-tech-entities": "1",
@@ -27,12 +28,12 @@
     "dotenv": "^6.0.0",
     "express-session": "^1.15.6",
     "isomorphic-fetch": "^2.2.1",
-    "mongodb": "^3.1.0",
+    "mongodb": "^3.1.1",
     "nedb": "^1.8.0",
     "next": "^6.1.1",
-    "next-auth": "^1.8.5",
+    "next-auth": "^1.9.1",
     "next-routes": "^1.4.2",
-    "node-sass": "^4.9.1",
+    "node-sass": "^4.9.2",
     "passport-github": "^1.1.0",
     "raven": "^2.6.3",
     "raw-loader": "^0.5.1",
@@ -41,12 +42,12 @@
     "react-dom": "^16.4.1",
     "react-measure": "^2.0.2",
     "universal-cookie": "^2.2.0",
-    "ws": "^5.2.1"
+    "ws": "^5.2.2"
   },
   "devDependencies": {
-    "esm": "^3.0.62",
+    "esm": "^3.0.72",
     "mocha": "^5.2.0",
-    "puppeteer": "^1.5.0",
+    "puppeteer": "^1.6.0",
     "webpack-bundle-analyzer": "^2.13.1"
   },
   "optionalDependencies": {

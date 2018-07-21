@@ -1,14 +1,13 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
+import { VisualizationRunner } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
-import { Runner } from '../../components/atoms/runner';
 import { SlightMargin } from '../../components/atoms/slightMargin';
 import { TextContainer } from '../../components/atoms/textContainer';
 import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
-import { findFile } from '../../utils/files';
 
 export default class extends Page {
   static async getInitialProps({req, query}) {
@@ -32,17 +31,21 @@ export default class extends Page {
     }
 
     const { title, files, width, height } = new VisualizationViewModel(visualization);
-    const html = findFile('index.html', files).text;
 
     return (
       <TitledPage title={title}>
         <TextContainer>
-          <Runner html={html} width={width} height={height} />
+          <VisualizationRunner {...{files, width, height}} />
           <SlightMargin>
             <h1 className='title test-document-title'>{title}</h1>
-            <pre>
-              { html }
-            </pre>
+            {
+              files.map(file => (
+                <React.Fragment key={file.name}>
+                  <div>{ file.name }</div>
+                  <pre>{ file.text }</pre>
+                </React.Fragment>
+              ))
+            }
           </SlightMargin>
         </TextContainer>
         <NavBar user={user} csrfToken={csrfToken} dropUp/>

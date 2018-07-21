@@ -1,3 +1,4 @@
+// TODO reduce duplication between here and vizhub-ui package.
 const defaultIndexHTML =
 `<!DOCTYPE html>
 <html>
@@ -5,6 +6,7 @@ const defaultIndexHTML =
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Untitled</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     Hello
