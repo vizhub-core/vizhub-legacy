@@ -82,3 +82,5 @@ tail /var/log/nginx/error.log
 ```
 
 Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntuartful-nginx
+
+Last but not least, configure the correct [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) in the file `packages/web/.env`.
