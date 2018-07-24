@@ -59,7 +59,7 @@ upstream app_vizhub {
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name datavis.tech;
+  server_name vizhub.com;
   access_log /var/log/nginx/vizhub.log;
 
   location / {
