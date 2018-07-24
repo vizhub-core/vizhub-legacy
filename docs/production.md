@@ -20,17 +20,16 @@ Install dependencies & bootstrap [Lerna](https://lernajs.io) packages
 
 ```
 cd datavis-tech-2/
+git submodule update --init
 npm install -g lerna
-lerna bootstrap
-npm run test
+lerna bootstrap && npm run test
 ```
 
 If errors occur regarding missing packages, try this:
 
 ```
 lerna clean
-lerna bootstrap
-npm run test
+lerna bootstrap && npm run test
 ```
 
 Start the Web server
