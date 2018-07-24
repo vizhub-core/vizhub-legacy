@@ -80,3 +80,5 @@ Put this configuration into action, check for errors.
 sudo /etc/init.d/nginx restart
 tail /var/log/nginx/error.log
 ```
+
+Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntuartful-nginx
