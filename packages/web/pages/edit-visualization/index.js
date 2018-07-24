@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
-import { VisualizationRunner } from 'vizhub-ui';
+import { IDE } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
@@ -8,8 +8,6 @@ import { NavBar } from '../../components/organisms/navBar';
 import { FullPage } from '../../components/atoms/fullPage';
 import { getJSON } from '../../utils/getJSON';
 import { hasName } from '../../utils/files';
-import { Editor } from './editor';
-import { IDEGrid } from './ideGrid';
 
 import 'codemirror/lib/codemirror.css';
 import 'vizhub-ui/src/css/ubuntu.css';
@@ -91,20 +89,7 @@ export default class extends Page {
       <TitledPage title='Edit Visualization'>
         <FullPage>
           <NavBar user={user} csrfToken={csrfToken} />
-            <IDEGrid>
-              <IDEGrid.Left>
-                <Editor
-                  files={files}
-                  activeFileName={activeFileName}
-                  onFileClick={this.onFileClick}
-                  onSave={this.onSave}
-                  onTextChange={this.onTextChange}
-                />
-              </IDEGrid.Left>
-              <IDEGrid.Right>
-                <VisualizationRunner {...{files, width, height}} />
-              </IDEGrid.Right>
-            </IDEGrid>
+          <IDE />
         </FullPage>
       </TitledPage>
     );
