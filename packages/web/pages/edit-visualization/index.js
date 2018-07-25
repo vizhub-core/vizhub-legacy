@@ -1,8 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import { IDE, FullPage, actionCreators, selectors } from 'vizhub-ui';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { createEpicMiddleware } from 'redux-observable';
+import { IDE, FullPage, actionCreators, selectors, epics } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
@@ -10,7 +11,6 @@ import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
 import { rootReducer } from '../../redux/rootReducer';
 import { IDEContainer } from './ideContainer';
-
 import 'codemirror/lib/codemirror.css';
 import 'vizhub-ui/dist/styles.css';
 
@@ -36,7 +36,14 @@ export default class extends Page {
     super(props);
     this.onSave = this.onSave.bind(this);
 
-    this.store = createStore(rootReducer);
+    const epicMiddleware = createEpicMiddleware();
+
+    this.store = createStore(
+      rootReducer,
+      applyMiddleware(epicMiddleware)
+    );
+
+    epicMiddleware.run(epics.runEpic);
     
     const {
       files,
