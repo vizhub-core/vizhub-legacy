@@ -14,7 +14,13 @@ import { IDEContainer } from './ideContainer';
 import 'codemirror/lib/codemirror.css';
 import 'vizhub-ui/dist/styles.css';
 
-const { initFiles, setActiveFile } = actionCreators;
+const {
+  initFiles,
+  setActiveFile,
+  setVisualizationWidth,
+  setVisualizationHeight
+} = actionCreators;
+
 const { getFiles } = selectors;
 
 export default class extends Page {
@@ -40,8 +46,8 @@ export default class extends Page {
 
     this.store.dispatch(initFiles(files));
     this.store.dispatch(setActiveFile('index.html'));
-    //this.store.dispatch(setVisualizationWidth(width))
-    //this.store.dispatch(setVisualizationHeight(height))
+    this.store.dispatch(setVisualizationWidth(width));
+    this.store.dispatch(setVisualizationHeight(height));
   }
 
   async onSave(html) {
