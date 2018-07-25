@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 import { FullPage, IDE, actionCreators, selectors } from 'vizhub-ui';
 
+// TODO move this into ui package
+
 const {
   getFiles,
   getActiveFileName,
   getActiveFileText,
   getVisualizationWidth,
-  getVisualizationHeight
+  getVisualizationHeight,
+  getRunId
 } = selectors;
 
 const {
@@ -20,7 +23,8 @@ const mapStateToProps = state => ({
   activeFileName: getActiveFileName(state),
   activeFileText: getActiveFileText(state),
   visualizationWidth: getVisualizationWidth(state),
-  visualizationHeight: getVisualizationHeight(state)
+  visualizationHeight: getVisualizationHeight(state),
+  runId: getRunId(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -42,5 +46,6 @@ export const IDEContainer = connect(
     onFileTextChange={props.onFileTextChange}
     visualizationWidth={props.visualizationWidth}
     visualizationHeight={props.visualizationHeight}
+    runId={props.runId}
   />
 ));
