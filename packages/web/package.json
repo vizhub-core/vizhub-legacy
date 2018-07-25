@@ -18,7 +18,6 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.39.2",
     "connect-mongo": "^2.0.1",
-    "vizhub-ui": "1",
     "datavis-tech-controllers": "1",
     "datavis-tech-database": "1",
     "datavis-tech-entities": "1",
@@ -41,7 +40,10 @@
     "react-codemirror2": "^5.1.0",
     "react-dom": "^16.4.1",
     "react-measure": "^2.0.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
     "universal-cookie": "^2.2.0",
+    "vizhub-ui": "1",
     "ws": "^5.2.2"
   },
   "devDependencies": {
