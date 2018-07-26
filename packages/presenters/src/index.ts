@@ -1,2 +1,2 @@
 export { VisualizationViewModel } from './visualizationViewModel';
-export { Bundler } from './bundler';
+export { bundle } from './bundle';

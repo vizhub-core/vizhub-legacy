@@ -45,7 +45,9 @@ export default class extends Page {
       applyMiddleware(epicMiddleware)
     );
 
-    epicMiddleware.run(rootEpic);
+    if (process.browser) {
+      epicMiddleware.run(rootEpic);
+    }
     
     const {
       files,

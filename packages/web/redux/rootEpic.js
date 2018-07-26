@@ -4,7 +4,7 @@ import {
   selectors as uiSelectors
 } from 'vizhub-ui';
 
-import  { Bundler } from 'datavis-tech-presenters';
+import  { bundle } from 'datavis-tech-presenters';
 
 import { combineEpics } from 'redux-observable';
 import { from } from 'rxjs';
@@ -23,7 +23,6 @@ const startBuildEpic = action$ =>
     mapTo(startBuild())
   );
 
-const { bundle } = Bundler();
 const buildEpic = (action$, state$) =>
   action$.ofType(START_BUILD).pipe(
     switchMap(() => from(bundle(getFiles(state$.value)))),
