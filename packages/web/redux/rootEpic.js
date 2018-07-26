@@ -17,9 +17,11 @@ const startBuildEpic = action$ =>
     mapTo(startBuild())
   );
 
+const bundler = Bundler();
 const buildEpic = action$ =>
   action$.ofType(START_BUILD).pipe(
-    delay(500), // TODO invoke rollup here
+    // TODO invoke rollup here
+    //map(bundler.bundle)
     map(() => [{ name: 'bundle.js', text: 'foo' + Math.random() }]),
     map(files => {
       //console.log(files);

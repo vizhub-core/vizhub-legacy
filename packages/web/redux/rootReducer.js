@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import { reducers } from 'vizhub-ui';
+import { reducers, selectors } from 'vizhub-ui';
 import { START_BUILD, BUILD_FINISHED } from './actionTypes';
 import set from 'lodash/fp/set';
 import unionBy from 'lodash/fp/unionBy';
 
 const { ide } = reducers;
+const { getFiles } = selectors;
+
 const uiReducer = combineReducers({ ide });
 
 const appReducer = (state, action) => {
@@ -14,7 +16,7 @@ const appReducer = (state, action) => {
         (
           unionBy(file => file.name)
             (action.files)
-            (state.ide.files)
+            (getFiles(state))
         )
         (state);
     default:
@@ -24,6 +26,5 @@ const appReducer = (state, action) => {
 
 export const rootReducer = (state, action) => {
   state = uiReducer(state, action);
-  state = appReducer(state, action);
-  return state;
+  return appReducer(state, action);
 };
