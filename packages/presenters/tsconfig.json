@@ -4,7 +4,8 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "lib": [ "ES2018" ],
-    "allowJs": true
+    "allowJs": true,
+    "target": "es5"
   },
   "include": [
     "./src/"

@@ -1,5 +1,5 @@
-// TODO reduce duplication between here and vizhub-ui package.
-const defaultIndexHTML =
+const files = [
+{ name: 'index.html', text:
 `<!DOCTYPE html>
 <html>
   <head>
@@ -10,22 +10,28 @@ const defaultIndexHTML =
   </head>
   <body>
     Hello
+    <script src="bundle.js"></script>
   </body>
-</html>`;
+</html>`},
 
-const defaultStylesCSS =
+{ name: 'styles.css', text:
 `body {
   background-color: red;
   margin 0px;
   font-size: 5em;
-}`;
+}`},
+
+{ name: 'index.js', text:
+`import { foo } from './foo';
+console.log(foo);`},
+
+{ name: 'foo.js', text:
+`export const foo = "Hello World!"`}
+];
 
 export const visualizationDefaults = {
   title: 'Untitled',
   slug: undefined,
   description: 'No description',
-  files: [
-    { name: 'index.html', text: defaultIndexHTML },
-    { name: 'styles.css', text: defaultStylesCSS }
-  ]
+  files
 };
