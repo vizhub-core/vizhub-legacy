@@ -7,10 +7,10 @@ import {
 import  { bundle } from 'datavis-tech-presenters';
 
 import { combineEpics } from 'redux-observable';
-import { from } from 'rxjs';
-import { debounceTime, delay, mapTo, map, switchMap } from 'rxjs/operators';
+import { of, from } from 'rxjs';
+import { debounceTime, delay, mapTo, map, switchMap, catchError } from 'rxjs/operators';
 
-import { START_BUILD, BUILD_FINISHED } from './actionTypes';
+import { START_BUILD, BUILD_FINISHED, BUILD_ERROR } from './actionTypes';
 import { startBuild, buildFinished } from './actionCreators';
 
 const { CHANGE_FILE_TEXT } = uiActionTypes;
@@ -25,8 +25,18 @@ const startBuildEpic = action$ =>
 
 const buildEpic = (action$, state$) =>
   action$.ofType(START_BUILD).pipe(
-    switchMap(() => from(bundle(getFiles(state$.value)))),
-    map(buildFinished)
+    switchMap(() => from(bundle(getFiles(state$.value))).pipe(
+      map(buildFinished),
+      catchError(error => {
+        if (process.browser) {
+          console.error(error);
+        }
+        return of({
+          type: BUILD_ERROR,
+          message: error.message
+        });
+      })
+    ))
   );
 
 const runBuildEpic = action$ =>
