@@ -12,8 +12,8 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-use-cases": "1",
     "datavis-tech-entities": "1",
+    "datavis-tech-use-cases": "1",
     "mocha": "^5.2.0",
     "rollup": "^0.63.4",
     "rollup-plugin-virtual": "^1.0.1"

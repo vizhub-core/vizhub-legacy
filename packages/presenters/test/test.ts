@@ -26,12 +26,13 @@ describe('Presenters', () => {
   describe('Bundler', () => {
     it('should bundle files using Rollup', async () => {
       const files = [
-        { name: 'index.js', text: 'import { foo } from "./foo";' },
+        { name: 'index.js', text: 'import { foo } from "./foo.js"; console.log(foo);' },
         { name: 'foo.js', text: 'export const foo = "bar";' }
       ];
-      assert.deepEqual(await Bundler().bundle(files), [
-        { name: 'bundle.js', text: 'blah' }
-      ]);
+      assert.deepEqual(await Bundler().bundle(files), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tconst foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
+      }]);
     });
   });
 });

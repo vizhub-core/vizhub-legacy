@@ -27,8 +27,7 @@ export async function computeReferences(): Promise<string[]> {
     input: 'index.js',
     plugins: [
       virtual({
-        'index.js':
-        indexJS
+        'index.js': indexJS
       }),
       detective({
         detect: id => references.push(id)
