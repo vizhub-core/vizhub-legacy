@@ -2,10 +2,11 @@ import {
   actionTypes as uiActionTypes,
   actionCreators as uiActionCreators
 } from 'vizhub-ui';
+
 import { START_BUILD, BUILD_FINISHED } from './actionTypes';
 import { startBuild, buildFinished } from './actionCreators';
 import { combineEpics } from 'redux-observable';
-import { debounceTime, delay, mapTo } from 'rxjs/operators';
+import { debounceTime, delay, mapTo, map } from 'rxjs/operators';
 
 const { CHANGE_FILE_TEXT } = uiActionTypes;
 const { runFiles } = uiActionCreators;
@@ -19,7 +20,11 @@ const startBuildEpic = action$ =>
 const buildEpic = action$ =>
   action$.ofType(START_BUILD).pipe(
     delay(500), // TODO invoke rollup here
-    mapTo(buildFinished())
+    map(() => [{ name: 'bundle.js', text: 'foo' + Math.random() }]),
+    map(files => {
+      //console.log(files);
+      return buildFinished(files);
+    })
   );
 
 const runBuildEpic = action$ =>
