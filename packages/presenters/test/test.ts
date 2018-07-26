@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import { VisualizationViewModel } from '../src';
-import { Bundler } from '../src';
+import { bundle } from '../src';
 
 describe('Presenters', () => {
   describe('VisualizationViewModel', () => {
@@ -29,7 +29,7 @@ describe('Presenters', () => {
         { name: 'index.js', text: 'import { foo } from "./foo.js"; console.log(foo);' },
         { name: 'foo.js', text: 'export const foo = "bar";' }
       ];
-      assert.deepEqual(await Bundler().bundle(files), [{
+      assert.deepEqual(await bundle(files), [{
         name: 'bundle.js',
         text: "(function () {\n\t'use strict';\n\n\tconst foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
       }]);
