@@ -3,8 +3,10 @@
 PROJECT_DIR=$HOME/datavis-tech-2
 
 cd $PROJECT_DIR
+git stash # Save local .env
 git checkout master
 git pull
+git stash pop # Restore local .env
 
 git submodule sync
 git submodule update --init
