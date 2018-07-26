@@ -3,13 +3,14 @@ import Error from 'next/error';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
-import { IDE, FullPage, actionCreators, selectors, epics } from 'vizhub-ui';
+import { IDE, FullPage, actionCreators, selectors } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
 import { rootReducer } from '../../redux/rootReducer';
+import { rootEpic } from '../../redux/rootEpic';
 import { IDEContainer } from './ideContainer';
 import 'codemirror/lib/codemirror.css';
 import 'vizhub-ui/dist/styles.css';
@@ -43,7 +44,7 @@ export default class extends Page {
       applyMiddleware(epicMiddleware)
     );
 
-    epicMiddleware.run(epics.runEpic);
+    epicMiddleware.run(rootEpic);
     
     const {
       files,
