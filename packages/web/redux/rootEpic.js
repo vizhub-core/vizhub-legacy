@@ -1,15 +1,21 @@
 import {
   actionTypes as uiActionTypes,
-  actionCreators as uiActionCreators
+  actionCreators as uiActionCreators,
+  selectors as uiSelectors
 } from 'vizhub-ui';
+
+import  { Bundler } from 'datavis-tech-presenters';
+
+import { combineEpics } from 'redux-observable';
+import { from } from 'rxjs';
+import { debounceTime, delay, mapTo, map, switchMap } from 'rxjs/operators';
 
 import { START_BUILD, BUILD_FINISHED } from './actionTypes';
 import { startBuild, buildFinished } from './actionCreators';
-import { combineEpics } from 'redux-observable';
-import { debounceTime, delay, mapTo, map } from 'rxjs/operators';
 
 const { CHANGE_FILE_TEXT } = uiActionTypes;
 const { runFiles } = uiActionCreators;
+const { getFiles } = uiSelectors;
 
 const startBuildEpic = action$ =>
   action$.ofType(CHANGE_FILE_TEXT).pipe(
@@ -17,16 +23,11 @@ const startBuildEpic = action$ =>
     mapTo(startBuild())
   );
 
-const bundler = Bundler();
-const buildEpic = action$ =>
+const { bundle } = Bundler();
+const buildEpic = (action$, state$) =>
   action$.ofType(START_BUILD).pipe(
-    // TODO invoke rollup here
-    //map(bundler.bundle)
-    map(() => [{ name: 'bundle.js', text: 'foo' + Math.random() }]),
-    map(files => {
-      //console.log(files);
-      return buildFinished(files);
-    })
+    switchMap(() => from(bundle(getFiles(state$.value)))),
+    map(buildFinished)
   );
 
 const runBuildEpic = action$ =>
