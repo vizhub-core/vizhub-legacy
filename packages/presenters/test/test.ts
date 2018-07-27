@@ -34,13 +34,24 @@ describe('Presenters', () => {
         text: "(function () {\n\t'use strict';\n\n\tconst foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
       }]);
     });
-    it('should refer to global d3 in bundle', async () => {
+
+    it('should refer to global d3 in bundle for d3 package', async () => {
       const files = [
         { name: 'index.js', text: 'import { select } from "d3"; console.log(select);' }
       ];
       assert.deepEqual(await bundle(files), [{
         name: 'bundle.js',
         text: "(function (d3) {\n\t'use strict';\n\n\tconsole.log(d3.select);\n\n}(d3));\n"
+      }]);
+    });
+
+    it('should refer to global d3 in bundle for d3-selection package', async () => {
+      const files = [
+        { name: 'index.js', text: 'import { select } from "d3-selection"; console.log(select);' }
+      ];
+      assert.deepEqual(await bundle(files), [{
+        name: 'bundle.js',
+        text: "(function (d3Selection) {\n\t'use strict';\n\n\tconsole.log(d3Selection.select);\n\n}(d3));\n"
       }]);
     });
   });
