@@ -51,11 +51,37 @@ describe('Use Cases', () => {
       }
     };
     const saveVisualization = new SaveVisualization({ visualizationGateway });
+
     it('should invoke saveVisualization in gateway.', async () => {
-      const requestModel = { visualization: {} };
+      const requestModel = {
+        visualization: {
+          info: {
+            owner: '123'
+          }
+        },
+        userId: '123'
+      };
       const responseModel = await saveVisualization.execute(requestModel);
       assert.equal(invocations, 1);
       assert.equal(responseModel.status, 'success');
+    });
+
+    it('should error if user does not match owner.', done => {
+      let invocations = 0;
+      const requestModel = {
+        visualization: {
+          info: {
+            owner: '123'
+          }
+        },
+        userId: '234'
+      };
+      saveVisualization.execute(requestModel)
+        .catch(error => {
+          assert.equal(invocations, 0);
+          assert.equal(error.message, i18n('errorNotOwnerCantSave'))
+          done();
+        });
     });
   });
 });
