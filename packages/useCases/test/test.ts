@@ -83,7 +83,8 @@ describe('Use Cases', () => {
       saveVisualization.execute(requestModel)
         .catch(error => {
           assert.equal(invocations, 0);
-          assert.equal(error.message, 'You must be the owner of the document in order to save it.');
+          assert.equal(error.message, i18n('errorNotOwnerCantSave'))
+          done();
         });
     });
   });
