@@ -19,12 +19,18 @@ const virtual = rollupPluginVirtual.default || rollupPluginVirtual;
 export const bundle = async (files) => {
   const rollupBundle = await rollup({
     input: 'index.js',
-    plugins: [ virtual(transformFilesToObject(files)) ]
+    plugins: [ virtual(transformFilesToObject(files)) ],
+    external: [
+      'd3'
+    ]
   });
 
   const { code, map } = await rollupBundle.generate({
     format: 'iife',
-    name: 'bundle'
+    name: 'bundle',
+    globals: {
+      'd3': 'd3'
+    }
   });
 
   return [{
