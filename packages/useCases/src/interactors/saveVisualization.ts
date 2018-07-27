@@ -1,9 +1,10 @@
-import { Visualization } from 'datavis-tech-entities';
+import { Visualization, User } from 'datavis-tech-entities';
 import { Interactor, RequestModel, ResponseModel } from '../interactor';
 import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway'
 
 export interface SaveVisualizationRequestModel extends RequestModel {
-  visualization: Visualization
+  visualization: Visualization,
+  user: User
 }
 
 export interface SaveVisualizationResponseModel extends ResponseModel {
