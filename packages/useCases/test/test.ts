@@ -59,9 +59,7 @@ describe('Use Cases', () => {
             owner: '123'
           }
         },
-        user: {
-          id: '123'
-        }
+        userId: '123'
       };
       const responseModel = await saveVisualization.execute(requestModel);
       assert.equal(invocations, 1);
@@ -76,9 +74,7 @@ describe('Use Cases', () => {
             owner: '123'
           }
         },
-        user: {
-          id: '234'
-        }
+        userId: '234'
       };
       saveVisualization.execute(requestModel)
         .catch(error => {
