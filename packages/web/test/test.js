@@ -75,7 +75,8 @@ describe('Web', () => {
 
       id = split[4]; // Grab the id of the vis we're editing.
 
-      console.log(`\nNew visualization id:\n${id}\n`);
+      // Output the link for manual testing.
+      console.log(`\nhttp://localhost:3000/ci/${id}/edit\n`);
     });
   });
 
