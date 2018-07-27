@@ -1,4 +1,5 @@
 const files = [
+
 { name: 'index.html', text:
 `<!DOCTYPE html>
 <html>
@@ -7,9 +8,10 @@ const files = [
     <meta name="viewport" content="width=device-width">
     <title>Untitled</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/d3@5.5.0/dist/d3.min.js"></script>
   </head>
   <body>
-    Hello
+    <div id="message"></div>
     <script src="bundle.js"></script>
   </body>
 </html>`},
@@ -18,15 +20,16 @@ const files = [
 `body {
   background-color: red;
   margin 0px;
-  font-size: 5em;
+  font-size: 8em;
 }`},
 
 { name: 'index.js', text:
-`import { foo } from './foo';
-console.log(foo);`},
+`import { select } from 'd3-selection';
+import { message } from './message';
+select('#message').text(message);`},
 
-{ name: 'foo.js', text:
-`export const foo = "Hello World!"`}
+{ name: 'message.js', text:
+`export const message = "D3 and ES6 imports are working !"`}
 ];
 
 export const visualizationDefaults = {
