@@ -3,27 +3,33 @@ import Error from 'next/error';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
-import { IDE, FullPage, actionCreators, selectors } from 'vizhub-ui';
+import { IDEContainer, FullPage, uiRedux } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
 import { rootReducer } from '../../redux/rootReducer';
-import { rootEpic } from '../../redux/rootEpic';
-import { startBuild } from '../../redux/actionCreators';
-import { IDEContainer } from './ideContainer';
+import { rootEpic } from '../../redux/epics';
+import {
+  startBuild,
+  setCsrfToken,
+  setVisualization
+} from '../../redux/actionCreators';
 import 'codemirror/lib/codemirror.css';
 import 'vizhub-ui/dist/styles.css';
 
 const {
-  initFiles,
-  setActiveFile,
-  setVisualizationWidth,
-  setVisualizationHeight
-} = actionCreators;
-
-const { getFiles } = selectors;
+  actionCreators: {
+    initFiles,
+    setActiveFile,
+    setVisualizationWidth,
+    setVisualizationHeight
+  },
+  selectors: {
+    getFiles
+  }
+} = uiRedux;
 
 export default class extends Page {
   static async getInitialProps({req, query}) {
@@ -36,7 +42,6 @@ export default class extends Page {
 
   constructor(props) {
     super(props);
-    this.onSave = this.onSave.bind(this);
 
     const epicMiddleware = createEpicMiddleware();
 
@@ -48,37 +53,25 @@ export default class extends Page {
     if (process.browser) {
       epicMiddleware.run(rootEpic);
     }
+
+    const { visualization } = this.props;
     
     const {
       files,
       width,
       height
-    } = new VisualizationViewModel(this.props.visualization);
+    } = new VisualizationViewModel(visualization);
 
+    this.store.dispatch(setVisualization(visualization));
+
+    // Possibly set these in an epic in response to setVisualization?
     this.store.dispatch(initFiles(files));
     this.store.dispatch(setActiveFile('index.html'));
     this.store.dispatch(setVisualizationWidth(width));
     this.store.dispatch(setVisualizationHeight(height));
     this.store.dispatch(startBuild());
-  }
 
-  async onSave(html) {
-    const { csrfToken, visualization } = this.props;
-    visualization.files = getFiles(this.store.getState());
-
-    const url = `/api/visualization/save`;
-    const options = {
-      credentials: 'include',
-      method: 'POST',
-      headers: {
-        'x-csrf-token': csrfToken,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ visualization })
-    };
-    const response = await (await fetch(url, options)).json();
-    console.log(response);
-    // TODO saving ... saved
+    this.store.dispatch(setCsrfToken(props.csrfToken));
   }
 
   render() {
@@ -93,7 +86,7 @@ export default class extends Page {
         <FullPage>
           <NavBar user={user} csrfToken={csrfToken} />
           <Provider store={this.store}>
-            <IDEContainer onSave={this.onSave} />
+            <IDEContainer />
           </Provider>
         </FullPage>
       </TitledPage>

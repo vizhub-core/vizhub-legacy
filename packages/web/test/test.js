@@ -1,5 +1,6 @@
 import assert from 'assert';
 import puppeteer from 'puppeteer';
+import { autoSaveDebounceTime } from 'vizhub-ui';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 
@@ -87,9 +88,9 @@ describe('Web', () => {
         document.querySelector('.test-code-editor').value
       );
       await page.type('.test-code-editor textarea', 'New content');
-      await page.keyboard.down('Shift');
-      await page.keyboard.press('Enter');
-      await page.keyboard.up('Shift');
+      await new Promise(resolve => {
+        setTimeout(resolve, autoSaveDebounceTime + 500)
+      });
     });
     it('should display newly saved content', async () => {
       await page.reload();
