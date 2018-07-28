@@ -1,20 +1,19 @@
-import { combineReducers } from 'redux';
-import {
-} from './actionTypes';
+import { SET_CSRF_TOKEN, SET_VISUALIZATION } from './actionTypes';
 
-//const visualizationHeight = (state = -1, action) => {
-//  switch (action.type) {
-//    case SET_VISUALIZATION_HEIGHT:
-//      return action.height;
-//    default:
-//      return state;
-//  }
-//};
-//
-//export const ide = combineReducers({
-//  files,
-//  activeFileName,
-//  visualizationWidth,
-//  visualizationHeight,
-//  runId
-//});
+export const csrfToken = (state = null, action) => {
+  switch (action.type) {
+    case SET_CSRF_TOKEN:
+      return action.csrfToken;
+    default:
+      return state;
+  }
+};
+
+export const visualization = (state = null, action) => {
+  switch (action.type) {
+    case SET_VISUALIZATION:
+      return action.visualization;
+    default:
+      return state;
+  }
+};
