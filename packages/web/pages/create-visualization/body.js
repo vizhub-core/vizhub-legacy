@@ -14,7 +14,7 @@ export const BodyAuthenticated = ({onFromScratchClick}) => {
         </a>
       </div>
       <div style={{ marginTop: '1.25rem' }} >
-        <a className='button' href='#template'>
+        <a className='button' href='https://github.com/datavis-tech/vizhub-ui/issues/46'>
           Choose a template (coming soon!)
         </a>
       </div>
