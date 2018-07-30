@@ -47,17 +47,13 @@ class UserMenuAuthenticated extends Component {
                 Create Visualization
               </a>
             </Link>
-            <Link href='/upload-dataset'>
-              <a className='dropdown-item'>
-                Upload Dataset
-              </a>
-            </Link>
+            <a href='https://github.com/datavis-tech/vizhub-ui/issues/45' className='dropdown-item'>
+              Upload Dataset
+            </a>
             <hr className='dropdown-divider' />
-            <Link href={`/${user.userName}`}>
-              <a className='dropdown-item'>
-                Profile
-              </a>
-            </Link>
+            <a href='https://github.com/datavis-tech/vizhub-ui/issues/42' className='dropdown-item'>
+              Profile
+            </a>
             <Link href='/account'>
               <a className='dropdown-item'>
                 Account
