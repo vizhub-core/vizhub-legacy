@@ -42,6 +42,9 @@ export default class extends Page {
 
   constructor(props) {
     super(props);
+    if (props.error) {
+      return;
+    }
 
     const epicMiddleware = createEpicMiddleware();
 

@@ -9,7 +9,7 @@ export const getVisualizationController = (expressApp, visualizationGateway) => 
       const responseModel = await getVisualization.execute(requestModel);
       res.json(responseModel);
     } catch (error) {
-      res.json({ error: error.message })
+      res.json({ error })
     }
   });
 }
