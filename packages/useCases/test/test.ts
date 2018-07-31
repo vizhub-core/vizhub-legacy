@@ -11,10 +11,14 @@ import {
   SaveVisualization,
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel,
-  VisualizationGateway
+  VisualizationGateway,
+  CreateDataset,
+  CreateDatasetRequestModel,
+  CreateDatasetResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {};
+const datasetGateway = {};
 
 describe('Use Cases', () => {
 
@@ -83,5 +87,23 @@ describe('Use Cases', () => {
           done();
         });
     });
+  });
+  describe('Create Dataset', () => {
+    const createDataset = new CreateDataset({ datasetGateway });
+    it('should error if no owner specified.', done => {
+      const requestModel: CreateDatasetRequestModel = {
+        owner: null,
+        title: 'Foo',
+        file: {
+          name: 'foo',
+          text: 'foo'
+        }
+      };
+      createDataset.execute(requestModel).catch(error => {
+        assert.equal(error.message, i18n('errorNoOwner'))
+        done();
+      });
+    });
+    // TODO test success case
   });
 });

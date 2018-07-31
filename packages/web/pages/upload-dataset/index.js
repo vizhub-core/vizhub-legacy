@@ -11,24 +11,34 @@ export default class extends Page {
   constructor() {
     super();
 
-    this.uploadDataset = (
-      this.uploadDataset.bind(this)
-    );
-  }
+    this.uploadDataset = async (dataset) => {
+      const { csrfToken } = this.props;
+      const { name, file } = dataset;
 
-  uploadDataset(dataset) {
-    console.log('uploading dataset')
-    console.log(dataset);
-    //fetch('/api/dataset/create', { credentials: 'include' })
-    //  .then(r => r.json())
-    //  .then(({id, error}) => {
-    //    if (error) {
-    //      console.log(error);
-    //    } else {
-    //      const userName = this.props.user.userName;
-    //      Router.push(edit({id, userName}));
-    //    }
-    //  });
+      // TODO rename name to title elsewhere.
+      const title = name;
+
+      const url = `/api/dataset/create`;
+      const options = {
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+          'x-csrf-token': csrfToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title,
+          file
+        })
+      };
+      const response = await (await fetch(url, options)).json();
+      console.log({response});
+      // Router.push(dataset({id, userName}));
+
+      // return response.error
+      //   ? saveError(response.error)
+      //   : saveSuccess();
+    };
   }
 
   render() {

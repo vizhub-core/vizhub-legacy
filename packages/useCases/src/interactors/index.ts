@@ -15,3 +15,9 @@ export {
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel
 } from './saveVisualization';
+
+export {
+  CreateDataset,
+  CreateDatasetRequestModel,
+  CreateDatasetResponseModel
+} from './createDataset';

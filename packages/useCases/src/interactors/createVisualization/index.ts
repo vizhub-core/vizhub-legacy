@@ -2,7 +2,7 @@ import { UserId, DocumentId } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../../interactor';
 import { VisualizationGateway } from '../../gatewayInterfaces/visualizationGateway'
-import { generateId } from './generateId';
+import { generateId } from '../generateId';
 import { visualizationDefaults } from './visualizationDefaults';
 
 export interface CreateVisualizationRequestModel extends RequestModel {
