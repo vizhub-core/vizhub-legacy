@@ -1,26 +1,8 @@
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
 import { FileUploader } from './fileUploader';
-import { ChosenFileIndicator } from './chosenFileIndicator';
 import { suggestedName } from './suggestedName';
-
-const AfterFileChosen = ({chosenFile, name}) => (
-  <Fragment>
-    <div className='field'>
-      <label className='label'>Name</label>
-      <div className='control'>
-        <input className='input' type='text' value={name} />
-      </div>
-    </div>
-    <div className='field'>
-      <ChosenFileIndicator chosenFile={chosenFile} />
-    </div>
-    <div className='field'>
-      <div className='button'>
-        Upload
-      </div>
-    </div>
-  </Fragment>
-);
+import { AfterFileChosen } from './afterFileChosen';
+import { toFileName } from './toFileName';
 
 export class BodyAuthenticated extends Component {
   
@@ -37,14 +19,36 @@ export class BodyAuthenticated extends Component {
         name: suggestedName(file.name)
       });
     };
+
+    this.onNameChange = name => {
+      this.setState({
+        chosenFile: Object.assign({}, this.state.chosenFile, {
+          name: toFileName(name)
+        }),
+        name
+      });
+    };
+
+    this.onUploadClick = () => {
+      this.props.onUploadDataset({
+        name: this.state.name,
+        file: this.state.chosenFile
+      });
+    };
   }
 
   render() {
     const { chosenFile, name } = this.state;
-
     return (
       chosenFile
-        ? <AfterFileChosen chosenFile={chosenFile} name={name} />
+        ? (
+          <AfterFileChosen
+            chosenFile={chosenFile}
+            name={name}
+            onNameChange={this.onNameChange}
+            onUploadClick={this.onUploadClick}
+          />
+        )
         : <FileUploader onFileChosen={this.onFileChosen} />
     );
   }

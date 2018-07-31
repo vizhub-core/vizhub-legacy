@@ -16,17 +16,19 @@ export default class extends Page {
     );
   }
 
-  uploadDataset() {
-    fetch('/api/dataset/create', { credentials: 'include' })
-      .then(r => r.json())
-      .then(({id, error}) => {
-        if (error) {
-          console.log(error);
-        } else {
-          const userName = this.props.user.userName;
-          Router.push(edit({id, userName}));
-        }
-      });
+  uploadDataset(dataset) {
+    console.log('uploading dataset')
+    console.log(dataset);
+    //fetch('/api/dataset/create', { credentials: 'include' })
+    //  .then(r => r.json())
+    //  .then(({id, error}) => {
+    //    if (error) {
+    //      console.log(error);
+    //    } else {
+    //      const userName = this.props.user.userName;
+    //      Router.push(edit({id, userName}));
+    //    }
+    //  });
   }
 
   render() {
