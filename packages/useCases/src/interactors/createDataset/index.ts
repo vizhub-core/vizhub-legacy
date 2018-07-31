@@ -30,6 +30,7 @@ export class CreateDataset implements Interactor {
 
     const { owner, title, file } = requestModel;
     const slug = file && file.name;
+    const text = file && file.text;
     const id = generateId();
 
     // TODO validate slug uniqueness within this owner
@@ -40,7 +41,7 @@ export class CreateDataset implements Interactor {
         id,
         title,
         slug,
-        file
+        text
       })
     )
   }

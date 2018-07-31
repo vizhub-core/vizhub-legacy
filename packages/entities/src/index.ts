@@ -11,3 +11,4 @@ export { File } from './file';
 
 export { DatasetInfo } from './datasetInfo';
 export { DatasetContent } from './datasetContent';
+export { Dataset } from './dataset';
