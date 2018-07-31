@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { CommentLink } from './commentLink';
 
 export const TitledPage = ({title, children}) => {
   if (!title) {
@@ -11,6 +12,7 @@ export const TitledPage = ({title, children}) => {
         <title>{title}</title>
       </Head>
       {children}
+      <CommentLink />
     </React.Fragment>
   );
 };
