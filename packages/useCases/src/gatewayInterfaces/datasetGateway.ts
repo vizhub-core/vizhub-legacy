@@ -7,7 +7,7 @@ import {
 import {
   CreateDatasetRequestModel,
   CreateDatasetResponseModel,
-  //GetDatasetRequestModel,
+  GetDatasetRequestModel,
   //GetDatasetResponseModel,
   //SaveDatasetRequestModel,
   //SaveDatasetResponseModel
@@ -23,8 +23,8 @@ export interface DatasetGateway {
     file: File
   }): Promise<CreateDatasetResponseModel>;
 
-  //getDataset(request: GetDatasetRequestModel):
-  //  Promise<GetDatasetResponseModel>;
+  getDataset(request: GetDatasetRequestModel):
+    Promise<GetDatasetResponseModel>;
 
   //saveDataset(request: SaveDatasetRequestModel):
   //  Promise<SaveDatasetResponseModel>;

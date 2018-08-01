@@ -21,3 +21,9 @@ export {
   CreateDatasetRequestModel,
   CreateDatasetResponseModel
 } from './createDataset';
+
+export {
+  GetDataset,
+  GetDatasetRequestModel,
+  GetDatasetResponseModel
+} from './getDataset';

@@ -15,6 +15,9 @@ import {
   CreateDataset,
   CreateDatasetRequestModel,
   CreateDatasetResponseModel,
+  GetDataset,
+  GetDatasetRequestModel,
+  GetDatasetResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {};
@@ -101,6 +104,20 @@ describe('Use Cases', () => {
       };
       createDataset.execute(requestModel).catch(error => {
         assert.equal(error.message, i18n('errorNoOwner'))
+        done();
+      });
+    });
+    // TODO test success case
+  });
+
+  describe('Get Dataset', () => {
+    const getDataset = new GetDataset({ datasetGateway });
+    it('should error if no slug specified.', done => {
+      const requestModel: GetDatasetRequestModel = {
+        slug: ''
+      };
+      getDataset.execute(requestModel).catch(error => {
+        assert.equal(error.message, i18n('errorNoId'))
         done();
       });
     });
