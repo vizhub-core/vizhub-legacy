@@ -8,7 +8,6 @@ import { datasetDefaults } from './datasetDefaults';
 
 export interface CreateDatasetRequestModel extends RequestModel {
   owner: UserId,
-  id: DocumentId,
   title: string,
   slug: string | undefined,
   description: string,

@@ -34,7 +34,6 @@ export default class extends Page {
 
     const { title, slug, text, format } = new DatasetViewModel(dataset);
 
-    console.log(datasetDownloadUrl);
     const downloadUrl = datasetDownloadUrl({
       userName: ownerUserName,
       slug,
