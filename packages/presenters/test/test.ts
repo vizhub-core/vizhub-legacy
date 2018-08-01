@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { VisualizationViewModel } from '../src';
+import { VisualizationViewModel, DatasetViewModel } from '../src';
 import { bundle } from '../src';
 
 describe('Presenters', () => {
@@ -23,6 +23,28 @@ describe('Presenters', () => {
       });
     });
   });
+
+  describe('DatasetViewModel', () => {
+    it('should present a Dataset', () => {
+      const dataset = {
+        info: {
+          title: 'Foo',
+          slug: 'foo',
+          format: 'csv'
+        },
+        content: {
+          text: 'coolness'
+        }
+      };
+      assert.deepEqual(new DatasetViewModel(dataset), {
+        title: 'Foo',
+        slug: 'foo',
+        text: 'coolness',
+        format: 'csv'
+      });
+    });
+  });
+
   describe('Bundler', () => {
     it('should bundle files using Rollup', async () => {
       const files = [

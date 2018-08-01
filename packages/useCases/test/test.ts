@@ -11,10 +11,17 @@ import {
   SaveVisualization,
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel,
-  VisualizationGateway
+  VisualizationGateway,
+  CreateDataset,
+  CreateDatasetRequestModel,
+  CreateDatasetResponseModel,
+  GetDataset,
+  GetDatasetRequestModel,
+  GetDatasetResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {};
+const datasetGateway = {};
 
 describe('Use Cases', () => {
 
@@ -83,5 +90,39 @@ describe('Use Cases', () => {
           done();
         });
     });
+  });
+  describe('Create Dataset', () => {
+    const createDataset = new CreateDataset({ datasetGateway });
+    it('should error if no owner specified.', done => {
+      const requestModel: CreateDatasetRequestModel = {
+        owner: null,
+        title: 'Foo',
+        slug: 'foo',
+        description: 'Foo is cool',
+        file: {
+          name: 'foo',
+          text: 'foo'
+        }
+      };
+      createDataset.execute(requestModel).catch(error => {
+        assert.equal(error.message, i18n('errorNoOwner'))
+        done();
+      });
+    });
+    // TODO test success case
+  });
+
+  describe('Get Dataset', () => {
+    const getDataset = new GetDataset({ datasetGateway });
+    it('should error if no slug specified.', done => {
+      const requestModel: GetDatasetRequestModel = {
+        slug: ''
+      };
+      getDataset.execute(requestModel).catch(error => {
+        assert.equal(error.message, i18n('errorNoId'))
+        done();
+      });
+    });
+    // TODO test success case
   });
 });

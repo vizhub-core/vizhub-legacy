@@ -7,7 +7,10 @@ import nextAuthConfig from './next-auth.config';
 // import { ShareDBServer } from './shareDBServer';
 import accountAPI from './api/account';
 
-import { visualizationController } from 'datavis-tech-controllers';
+import {
+  visualizationController,
+  datasetController
+} from 'datavis-tech-controllers';
 import { serverGateways } from './serverGateways';
 import { setupRaven } from './setupRaven';
 
@@ -46,8 +49,10 @@ nextApp
     accountAPI(expressApp, nextAuthOptions.functions);
 
     // Set up the server-side gateways and controller.
-    const { visualizationGateway } = serverGateways();
+    const { visualizationGateway, datasetGateway } = serverGateways();
+
     visualizationController(expressApp, visualizationGateway);
+    datasetController(expressApp, datasetGateway);
 
     expressApp.all('*', routes.getRequestHandler(nextApp));
 

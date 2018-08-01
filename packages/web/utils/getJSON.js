@@ -1,5 +1,6 @@
+import { baseUrl } from './baseUrl';
+
 export const getJSON = async (relativeUrl, req) => {
-  const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
-  const url = baseUrl + relativeUrl;
+  const url = baseUrl(req) + relativeUrl;
   return await (await fetch(url)).json();
 }

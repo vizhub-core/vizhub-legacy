@@ -1,6 +1,7 @@
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { autoSaveDebounceTime } from 'vizhub-ui';
+import { datasetRoute } from '../routes/routeGenerators';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 
@@ -72,7 +73,6 @@ describe('Web', () => {
       const url = page.url();
       const split = url.split('/');
       assert.equal(split[3], 'ci');
-      assert.equal(split[5], 'edit');
 
       id = split[4]; // Grab the id of the vis we're editing.
 
@@ -102,16 +102,38 @@ describe('Web', () => {
     });
   });
 
-  describe('View Visualization', () => {
-    it('should navigate to visualization view', async () => {
-      const response = await page.goto(`http://localhost:3000/ci/${id}`);
-      assert.equal(response.status(), 200);
+  describe('Create Dataset', () => {
+    it('should navigate to create dataset page', async () => {
+      (await page.waitFor('.test-user-menu-button')).click(); // Open the menu.
+      const navigation = page.waitForNavigation();
+      (await page.waitFor('.test-user-menu-create-dataset-link', {
+        visible: true // Wait until the link is visible (menu is opened).
+      })).click();
+      await navigation;
+      assert.equal(page.url(), 'http://localhost:3000/upload-dataset');
     });
-    it('should display visualization title', async () => {
+    it('should upload a dataset', async () => {
+      const fileInput = await page.waitFor('.test-dataset-upload-file-input');
+      await fileInput.uploadFile('test/flaring.csv');
+      // const nameInput = await page.waitFor('.test-dataset-upload-name-input');
+      // await nameInput.type('Natural Gas Flaring');
+      const submitButton = await page.waitFor('.test-dataset-upload-submit');
+      await submitButton.click();
+      await page.waitForNavigation();
+      const path = datasetRoute({ userName: 'ci', slug: 'flaring' });
+      assert.equal(page.url(), 'http://localhost:3000' + path);
+
+      // Output the link for manual testing.
+      console.log(`\n${page.url()}\n`);
+    });
+  });
+
+  describe('View Dataset', () => {
+    it('should display dataset title', async () => {
       const text = await page.evaluate(() => (
-        document.querySelector('.test-document-title').textContent)
+        document.querySelector('.test-dataset-title').textContent)
       );
-      assert.equal(text, 'Untitled');
+      assert.equal(text, 'Flaring');
     });
   });
 

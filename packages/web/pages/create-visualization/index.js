@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import Page from '../../components/page';
 import { BodyAuthenticated, BodyNotAuthenticated } from './body';
-import { edit } from '../../routes';
+import { visualizationRoute } from '../../routes/routeGenerators';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { ActionBox } from '../../components/molecules/actionBox';
 import { NavBar } from '../../components/organisms/navBar';
@@ -24,7 +24,7 @@ export default class extends Page {
           console.log(error);
         } else {
           const userName = this.props.user.userName;
-          Router.push(edit({id, userName}));
+          Router.push(visualizationRoute({id, userName}));
         }
       });
   }
