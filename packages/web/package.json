@@ -9,7 +9,7 @@
   "dependencies": {
     "@teamwork/sharedb": "^2.0.1",
     "@teamwork/sharedb-mingo-memory": "^1.0.5",
-    "@teamwork/websocket-json-stream": "^1.0.0",
+    "@teamwork/websocket-json-stream": "^1.1.0",
     "@zeit/next-css": "^0.2.0",
     "@zeit/next-sass": "^0.2.0",
     "babel-core": "^6.26.3",
@@ -47,12 +47,12 @@
     "rxjs": "^6.2.2",
     "universal-cookie": "^2.2.0",
     "vizhub-ui": "1",
-    "ws": "^5.2.2"
+    "ws": "^6.0.0"
   },
   "devDependencies": {
     "esm": "^3.0.72",
     "mocha": "^5.2.0",
-    "puppeteer": "^1.6.0",
+    "puppeteer": "^1.6.1",
     "webpack-bundle-analyzer": "^2.13.1"
   },
   "optionalDependencies": {

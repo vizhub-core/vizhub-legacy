@@ -97,6 +97,8 @@ describe('Use Cases', () => {
       const requestModel: CreateDatasetRequestModel = {
         owner: null,
         title: 'Foo',
+        slug: 'foo',
+        description: 'Foo is cool',
         file: {
           name: 'foo',
           text: 'foo'
