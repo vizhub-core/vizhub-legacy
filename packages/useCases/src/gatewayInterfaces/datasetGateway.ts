@@ -14,14 +14,8 @@ import {
 } from '../interactors';
 
 export interface DatasetGateway {
-  createDataset(options: {
-    owner: UserId,
-    id: DocumentId,
-    title: string,
-    slug: string | undefined,
-    description: string,
-    file: File
-  }): Promise<CreateDatasetResponseModel>;
+  createDataset(request: CreateDatasetRequestModel):
+    Promise<CreateDatasetResponseModel>;
 
   getDataset(request: GetDatasetRequestModel):
     Promise<GetDatasetResponseModel>;

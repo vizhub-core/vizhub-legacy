@@ -1,7 +1,7 @@
 import {
   DatasetGateway,
-  CreateDatasetRequest,
-  CreateDatasetResponse
+  CreateDatasetRequestModel,
+  CreateDatasetResponseModel
 } from 'datavis-tech-use-cases';
 
 import {
@@ -17,7 +17,7 @@ export class DatabaseDatasetGateway implements DatasetGateway {
     this.database = database;
   }
 
-  async createDataset(options): Promise<CreateDatasetResponse> {
+  async createDataset(options): Promise<CreateDatasetResponseModel> {
     const {
       owner,
       id,

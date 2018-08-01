@@ -2,17 +2,21 @@ import { UserId, DocumentId, File } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../../interactor';
 import { DatasetGateway } from '../../gatewayInterfaces/datasetGateway'
-import { generateId } from '../generateId';
+import { generateId } from '../../utils/generateId';
+import { removeExtension } from '../../utils/removeExtension';
 import { datasetDefaults } from './datasetDefaults';
 
 export interface CreateDatasetRequestModel extends RequestModel {
   owner: UserId,
+  id: DocumentId,
   title: string,
+  slug: string | undefined,
+  description: string,
   file: File
 }
 
 export interface CreateDatasetResponseModel extends ResponseModel {
-  id: DocumentId
+  slug: string
 }
 
 export class CreateDataset implements Interactor {
@@ -29,7 +33,7 @@ export class CreateDataset implements Interactor {
     }
 
     const { owner, title, file } = requestModel;
-    const slug = file && file.name;
+    const slug = file && removeExtension(file.name);
     const text = file && file.text;
     const id = generateId();
 

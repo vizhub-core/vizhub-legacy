@@ -114,12 +114,12 @@ describe('Web', () => {
     it('should upload a dataset', async () => {
       const fileInput = await page.waitFor('.test-dataset-upload-file-input');
       await fileInput.uploadFile('test/flaring.csv');
-      const nameInput = await page.waitFor('.test-dataset-upload-name-input');
-      await nameInput.type('Natural Gas Flaring');
+      // const nameInput = await page.waitFor('.test-dataset-upload-name-input');
+      // await nameInput.type('Natural Gas Flaring');
       const submitButton = await page.waitFor('.test-dataset-upload-submit');
       await submitButton.click();
       await page.waitForNavigation();
-      assert.equal(page.url(), 'http://localhost:3000/ci/datasets/natural-gas-flaring');
+      assert.equal(page.url(), 'http://localhost:3000/ci/datasets/flaring');
     });
   });
   //describe('View Dataset', () => {
