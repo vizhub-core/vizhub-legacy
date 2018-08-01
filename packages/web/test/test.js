@@ -1,3 +1,4 @@
+import fs from 'fs';
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { autoSaveDebounceTime } from 'vizhub-ui';
@@ -9,7 +10,7 @@ const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
 // Object.assign(puppeteerOptions, {
-//   //slowMo: 500,
+//   slowMo: 500,
 //   headless: false
 // });
 
@@ -134,6 +135,24 @@ describe('Web', () => {
         document.querySelector('.test-dataset-title').textContent)
       );
       assert.equal(text, 'Flaring');
+
+      const downloadLink = await page.waitFor('.test-dataset-download-link');
+      const downloadLinkHref = await page.evaluate(() => (
+        document.querySelector('.test-dataset-download-link')
+          .getAttribute('href')
+      ));
+      assert.equal(downloadLinkHref, 'http://localhost:3000/ci/datasets/flaring.csv');
+
+      const csvText = await page.evaluate(() => (
+        fetch('http://localhost:3000/ci/datasets/flaring.csv')
+          .then(r => r.text())
+      ));
+
+      const fileName = 'test/flaring.csv';
+      const expectedCsvText = fs.readFileSync(fileName, 'utf8');
+
+      assert.equal(csvText, expectedCsvText);
+
     });
   });
 
