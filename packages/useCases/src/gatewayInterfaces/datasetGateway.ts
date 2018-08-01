@@ -8,7 +8,7 @@ import {
   CreateDatasetRequestModel,
   CreateDatasetResponseModel,
   GetDatasetRequestModel,
-  //GetDatasetResponseModel,
+  GetDatasetResponseModel,
   //SaveDatasetRequestModel,
   //SaveDatasetResponseModel
 } from '../interactors';
