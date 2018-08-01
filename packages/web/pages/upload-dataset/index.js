@@ -2,17 +2,17 @@ import React from 'react';
 import Router from 'next/router';
 import Page from '../../components/page';
 import { BodyAuthenticated, BodyNotAuthenticated } from './body';
-import { edit } from '../../routes';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { ActionBox } from '../../components/molecules/actionBox';
 import { NavBar } from '../../components/organisms/navBar';
+import { datasetRoute } from '../../routes/routeGenerators';
 
 export default class extends Page {
   constructor() {
     super();
 
     this.uploadDataset = async (dataset) => {
-      const { csrfToken } = this.props;
+      const { csrfToken, user } = this.props;
       const { name, file } = dataset;
 
       // TODO rename name to title elsewhere.
@@ -31,9 +31,19 @@ export default class extends Page {
           file
         })
       };
+
       const response = await (await fetch(url, options)).json();
-      console.log({response});
-      // Router.push(dataset({id, userName}));
+      console.log(response);
+      const { error, slug } = response;
+
+      if (error) {
+        return setState({ error });
+      }
+
+      Router.push(datasetRoute({
+        userName: user.userName,
+        slug
+      }));
 
       // return response.error
       //   ? saveError(response.error)

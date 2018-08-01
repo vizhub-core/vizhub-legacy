@@ -15,7 +15,7 @@ export const FileUploader = ({ onFileChosen }) => (
     <label className='file-label'>
       <input
         onChange={onChange(onFileChosen)}
-        className='file-input'
+        className='file-input test-dataset-upload-file-input'
         type='file'
       />
       <span className='file-cta'>

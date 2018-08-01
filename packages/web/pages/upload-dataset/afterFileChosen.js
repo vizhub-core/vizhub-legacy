@@ -10,7 +10,7 @@ export const AfterFileChosen = props => {
         <label className='label'>Choose a name:</label>
         <div className='control'>
           <input
-            className='input'
+            className='input test-dataset-upload-name-input'
             type='text'
             value={name}
             onChange={event => onNameChange(event.target.value)}
@@ -24,7 +24,10 @@ export const AfterFileChosen = props => {
         <DatasetContentTextPreview text={chosenFile.text} />
       </div>
       <div className='field'>
-        <div className='button' onClick={onUploadClick}>
+        <div
+          className='button test-dataset-upload-submit'
+          onClick={onUploadClick}
+        >
           Upload
         </div>
       </div>
