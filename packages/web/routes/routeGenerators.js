@@ -7,5 +7,5 @@ export const datasetRoute = ({userName, slug}) =>
 export const datasetUrl = ({userName, slug}) =>
   `https://vizhub.com${datasetRoute({userName, slug})}`;
 
-export const datasetDownloadUrl = ({userName, slug, format}) =>
-  `https://vizhub.com${datasetRoute({userName, slug})}.${format}`;
+export const datasetDownloadUrl = ({userName, slug, format, baseUrl}) =>
+  `${baseUrl}${datasetRoute({userName, slug})}.${format}`;

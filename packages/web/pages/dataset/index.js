@@ -8,6 +8,7 @@ import { TextContainer } from '../../components/atoms/textContainer';
 import { DatasetContentTextPreview } from '../../components/atoms/datasetContentTextPreview';
 import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
+import { baseUrl } from '../../utils/baseUrl';
 import { datasetDownloadUrl } from '../../routes/routeGenerators';
 
 export default class extends Page {
@@ -21,12 +22,20 @@ export default class extends Page {
     props.dataset = response.dataset;
     props.error = response.error;
     props.ownerUserName = userName;
+    props.baseUrl = baseUrl(req);
 
     return props;
   }
 
   render() {
-    const { error, dataset, user, csrfToken, ownerUserName } = this.props;
+    const {
+      error,
+      dataset,
+      user,
+      csrfToken,
+      ownerUserName,
+      baseUrl
+    } = this.props;
 
     if (error) {
       return <Error statusCode={error.statusCode} />
@@ -35,6 +44,7 @@ export default class extends Page {
     const { title, slug, text, format } = new DatasetViewModel(dataset);
 
     const downloadUrl = datasetDownloadUrl({
+      baseUrl,
       userName: ownerUserName,
       slug,
       format
