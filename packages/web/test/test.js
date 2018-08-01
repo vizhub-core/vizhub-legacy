@@ -72,7 +72,6 @@ describe('Web', () => {
       const url = page.url();
       const split = url.split('/');
       assert.equal(split[3], 'ci');
-      assert.equal(split[5], 'edit');
 
       id = split[4]; // Grab the id of the vis we're editing.
 
@@ -102,18 +101,43 @@ describe('Web', () => {
     });
   });
 
-  describe('View Visualization', () => {
-    it('should navigate to visualization view', async () => {
-      const response = await page.goto(`http://localhost:3000/ci/${id}`);
-      assert.equal(response.status(), 200);
+  describe('Create Dataset', () => {
+    it('should navigate to create dataset page', async () => {
+      (await page.waitFor('.test-user-menu-button')).click(); // Open the menu.
+      const navigation = page.waitForNavigation();
+      (await page.waitFor('.test-user-menu-create-dataset-link', {
+        visible: true // Wait until the link is visible (menu is opened).
+      })).click();
+      await navigation;
+      assert.equal(page.url(), 'http://localhost:3000/upload-dataset');
     });
-    it('should display visualization title', async () => {
-      const text = await page.evaluate(() => (
-        document.querySelector('.test-document-title').textContent)
-      );
-      assert.equal(text, 'Untitled');
-    });
+  //  it('should create dataset from scratch', async () => {
+  //    const navigation = page.waitForNavigation();
+  //    (await page.waitFor('.test-from-scratch-button')).click();
+  //    await navigation;
+
+  //    const url = page.url();
+  //    const split = url.split('/');
+  //    assert.equal(split[3], 'ci');
+
+  //    id = split[4]; // Grab the id of the vis we're editing.
+
+  //    // Output the link for manual testing.
+  //    console.log(`\nhttp://localhost:3000/ci/${id}/edit\n`);
+  //  });
   });
+  //describe('View Dataset', () => {
+  //  it('should navigate to dataset view', async () => {
+  //    const response = await page.goto(`http://localhost:3000/ci/${id}`);
+  //    assert.equal(response.status(), 200);
+  //  });
+  //  it('should display dataset title', async () => {
+  //    const text = await page.evaluate(() => (
+  //      document.querySelector('.test-document-title').textContent)
+  //    );
+  //    assert.equal(text, 'Untitled');
+  //  });
+  //});
 
   describe('tear down', () => {
     it('should close', async () => {

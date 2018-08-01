@@ -48,7 +48,7 @@ class UserMenuAuthenticated extends Component {
               </a>
             </Link>
             <Link href='/upload-dataset'>
-              <a className='dropdown-item'>
+              <a className='dropdown-item test-user-menu-create-dataset-link'>
                 Upload Dataset
               </a>
             </Link>
