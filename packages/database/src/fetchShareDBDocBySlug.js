@@ -1,6 +1,6 @@
 import { i18n } from 'datavis-tech-i18n';
 
-export const fetchShareDBDoc = (collection, slug, connection) => (
+export const fetchShareDBDocBySlug = (collection, slug, connection) => (
   new Promise((resolve, reject) => {
     connection.createFetchQuery(collection, { slug }, {}, (error, results) => {
       error

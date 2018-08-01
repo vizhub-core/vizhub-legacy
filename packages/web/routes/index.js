@@ -5,4 +5,4 @@ export const routes = NextRoutes()
   .add('auth/error', '/auth/error')
   .add('auth', '/auth')
   .add('visualization', '/:userName/:id')
-  .add('dataset', '/:userName/dataset/:slug');
+  .add('dataset', '/:userName/datasets/:slug');

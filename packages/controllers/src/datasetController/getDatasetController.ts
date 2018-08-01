@@ -8,7 +8,12 @@ export const getDatasetController = (expressApp, datasetGateway) => {
       const responseModel = await getDataset.execute(requestModel);
       res.json(responseModel);
     } catch (error) {
-      res.json({ error })
+      // TODO unify error handling across the codebase.
+      res.json({
+        error: {
+          message: error.message
+        }
+      });
     }
   });
 }

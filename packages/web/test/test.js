@@ -1,6 +1,7 @@
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { autoSaveDebounceTime } from 'vizhub-ui';
+import { datasetRoute } from '../routes/routeGenerators';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 
@@ -119,21 +120,22 @@ describe('Web', () => {
       const submitButton = await page.waitFor('.test-dataset-upload-submit');
       await submitButton.click();
       await page.waitForNavigation();
-      assert.equal(page.url(), 'http://localhost:3000/ci/datasets/flaring');
+      const path = datasetRoute({ userName: 'ci', slug: 'flaring' });
+      assert.equal(page.url(), 'http://localhost:3000' + path);
+
+      // Output the link for manual testing.
+      console.log(`\n${page.url()}\n`);
     });
   });
-  //describe('View Dataset', () => {
-  //  it('should navigate to dataset view', async () => {
-  //    const response = await page.goto(`http://localhost:3000/ci/${id}`);
-  //    assert.equal(response.status(), 200);
-  //  });
-  //  it('should display dataset title', async () => {
-  //    const text = await page.evaluate(() => (
-  //      document.querySelector('.test-document-title').textContent)
-  //    );
-  //    assert.equal(text, 'Untitled');
-  //  });
-  //});
+
+  describe('View Dataset', () => {
+    it('should display dataset title', async () => {
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-dataset-title').textContent)
+      );
+      assert.equal(text, 'Flaring');
+    });
+  });
 
   describe('tear down', () => {
     it('should close', async () => {
