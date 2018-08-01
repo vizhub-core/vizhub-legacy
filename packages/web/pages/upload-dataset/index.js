@@ -51,7 +51,10 @@ export default class extends Page {
         <ActionBox title='Upload a Dataset'>
           {
             this.props.user
-              ? <BodyAuthenticated onUploadDataset={this.uploadDataset} />
+              ? <BodyAuthenticated
+                  onUploadDataset={this.uploadDataset}
+                  userName={this.props.user.userName}
+                />
               : <BodyNotAuthenticated />
           }
         </ActionBox>

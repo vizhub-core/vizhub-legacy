@@ -1,12 +1,13 @@
 import { Fragment } from 'react';
-import { ChosenFileIndicator } from './chosenFileIndicator';
+import { PermalinkPreview } from './permalinkPreview';
+import { DatasetContentTextPreview } from './datasetContentTextPreview';
 
 export const AfterFileChosen = props => {
-  const { chosenFile, name, onNameChange, onUploadClick } = props;
+  const { chosenFile, name, onNameChange, onUploadClick, userName } = props;
   return (
     <Fragment>
-      <div className='field'>
-        <label className='label'>Name</label>
+      <div className='field has-text-left'>
+        <label className='label'>Choose a name:</label>
         <div className='control'>
           <input
             className='input'
@@ -16,8 +17,11 @@ export const AfterFileChosen = props => {
           />
         </div>
       </div>
+      <div className='field has-text-left'>
+        <PermalinkPreview userName={userName} slug={chosenFile.name} />
+      </div>
       <div className='field'>
-        <ChosenFileIndicator chosenFile={chosenFile} />
+        <DatasetContentTextPreview text={chosenFile.text} />
       </div>
       <div className='field'>
         <div className='button' onClick={onUploadClick}>

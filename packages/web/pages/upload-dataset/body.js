@@ -39,6 +39,7 @@ export class BodyAuthenticated extends Component {
 
   render() {
     const { chosenFile, name } = this.state;
+    const { userName } = this.props;
     return (
       chosenFile
         ? (
@@ -47,6 +48,7 @@ export class BodyAuthenticated extends Component {
             name={name}
             onNameChange={this.onNameChange}
             onUploadClick={this.onUploadClick}
+            userName={userName}
           />
         )
         : <FileUploader onFileChosen={this.onFileChosen} />
