@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
-import { PermalinkPreview } from './permalinkPreview';
-import { DatasetContentTextPreview } from './datasetContentTextPreview';
+import { PermalinkPreview } from '../../components/atoms/permalinkPreview';
+import { DatasetContentTextPreview } from '../../components/atoms/datasetContentTextPreview';
 
 export const AfterFileChosen = props => {
   const { chosenFile, name, onNameChange, onUploadClick, userName } = props;
