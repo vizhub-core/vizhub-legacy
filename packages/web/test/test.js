@@ -1,3 +1,4 @@
+import fs from 'fs';
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { autoSaveDebounceTime } from 'vizhub-ui';
@@ -141,6 +142,16 @@ describe('Web', () => {
           .getAttribute('href')
       ));
       assert.equal(downloadLinkHref, 'http://localhost:3000/ci/datasets/flaring.csv');
+
+      const csvText = await page.evaluate(() => (
+        fetch('http://localhost:3000/ci/datasets/flaring.csv')
+          .then(r => r.text())
+      ));
+
+      const fileName = 'test/flaring.csv';
+      const expectedCsvText = fs.readFileSync(fileName, 'utf8');
+
+      assert.equal(csvText, expectedCsvText);
 
     });
   });
