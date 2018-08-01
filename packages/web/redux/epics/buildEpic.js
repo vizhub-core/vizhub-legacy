@@ -3,7 +3,7 @@ import { map, switchMap, catchError } from 'rxjs/operators';
 import { bundle } from 'datavis-tech-presenters';
 import { uiRedux } from 'vizhub-ui';
 import { START_BUILD, BUILD_ERROR } from '../actionTypes';
-import { buildFinished } from '../actionCreators';
+import { buildFinished, buildError } from '../actionCreators';
 
 const {
   selectors: {

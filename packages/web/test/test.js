@@ -78,7 +78,7 @@ describe('Web', () => {
       id = split[4]; // Grab the id of the vis we're editing.
 
       // Output the link for manual testing.
-      console.log(`\nhttp://localhost:3000/ci/${id}/edit\n`);
+      console.log(`\nhttp://localhost:3000/ci/${id}\n`);
     });
   });
 
