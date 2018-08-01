@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { VisualizationViewModel } from '../src';
+import { VisualizationViewModel, DatasetViewModel } from '../src';
 import { bundle } from '../src';
 
 describe('Presenters', () => {
@@ -53,6 +53,21 @@ describe('Presenters', () => {
         name: 'bundle.js',
         text: "(function (d3Selection) {\n\t'use strict';\n\n\tconsole.log(d3Selection.select);\n\n}(d3));\n"
       }]);
+    });
+  });
+  describe('DatasetViewModel', () => {
+    it('should present a Dataset', () => {
+      const dataset = {
+        info: {
+          title: 'Foo'
+        },
+        content: {
+          text: 'coolness'
+        }
+      };
+      assert.deepEqual(new DatasetViewModel(dataset), {
+        title: 'Foo'
+      });
     });
   });
 });

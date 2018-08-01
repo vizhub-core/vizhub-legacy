@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
-//import { DatasetViewModel } from 'datavis-tech-presenters';
+import { DatasetViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { SlightMargin } from '../../components/atoms/slightMargin';
@@ -29,29 +29,17 @@ export default class extends Page {
       return <Error statusCode={error.statusCode} />
     }
 
-    console.log({dataset});
+    const { title } = new DatasetViewModel(dataset);
 
-    //const { title, files, width, height } = new DatasetViewModel(dataset);
-    return <div></div>;
-
-    //return (
-    //  <TitledPage title={title}>
-    //    <TextContainer>
-    //      <DatasetRunner {...{files, width, height}} />
-    //      <SlightMargin>
-    //        <h1 className='title test-document-title'>{title}</h1>
-    //        {
-    //          files.map(file => (
-    //            <React.Fragment key={file.name}>
-    //              <div>{ file.name }</div>
-    //              <pre>{ file.text }</pre>
-    //            </React.Fragment>
-    //          ))
-    //        }
-    //      </SlightMargin>
-    //    </TextContainer>
-    //    <NavBar user={user} csrfToken={csrfToken} dropUp/>
-    //  </TitledPage>
-    //);
+    return (
+      <TitledPage title={title}>
+        <NavBar user={user} csrfToken={csrfToken}/>
+        <TextContainer>
+          <SlightMargin>
+            <h1 className='title test-dataset-title'>{title}</h1>
+          </SlightMargin>
+        </TextContainer>
+      </TitledPage>
+    );
   }
 }
