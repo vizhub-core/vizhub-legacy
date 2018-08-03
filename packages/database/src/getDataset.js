@@ -6,7 +6,8 @@ import { fetchShareDBQuery } from './fetchShareDBQuery';
 export const getDataset = connection => async ({ userName, slug }) => {
 
   const mongoQuery = { slug };
-  const info = await fetchShareDBQuery(DOCUMENT_INFO, mongoQuery, connection);
+  const results = await fetchShareDBQuery(DOCUMENT_INFO, mongoQuery, connection);
+  const info = results[0];
 
   const content = await fetchShareDBDoc(DOCUMENT_CONTENT, info.id, connection);
 
