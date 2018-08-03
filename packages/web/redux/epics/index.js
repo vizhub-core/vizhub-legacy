@@ -8,7 +8,10 @@ import { runNonJSEpic } from './runNonJS';
 
 const {
   epics: {
-    autoSaveEpic
+    autoSaveEpic,
+    promptForNewFileNameEpic,
+    promptForRenameEpic,
+    confirmDeleteEpic
   }
 } = uiRedux;
 
@@ -18,5 +21,8 @@ export const rootEpic = combineEpics(
   runBuildEpic,
   runNonJSEpic,
   autoSaveEpic,
-  saveEpic
+  saveEpic,
+  promptForNewFileNameEpic,
+  promptForRenameEpic,
+  confirmDeleteEpic
 );
