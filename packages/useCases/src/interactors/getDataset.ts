@@ -4,6 +4,7 @@ import { Interactor, RequestModel, ResponseModel } from '../interactor';
 import { DatasetGateway } from '../gatewayInterfaces/datasetGateway'
 
 export interface GetDatasetRequestModel extends RequestModel {
+  userName: string,
   slug: string
 }
 
@@ -24,6 +25,7 @@ export class GetDataset implements Interactor {
     }
 
     return await this.datasetGateway.getDataset({
+      userName: requestModel.userName,
       slug: requestModel.slug
     });
   }
