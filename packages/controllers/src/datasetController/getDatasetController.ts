@@ -2,9 +2,10 @@ import { GetDataset } from 'datavis-tech-use-cases';
 
 export const getDatasetController = (expressApp, datasetGateway) => {
   const getDataset = new GetDataset({ datasetGateway });
-  expressApp.get('/api/dataset/get/:slug', async (req, res) => {
+  expressApp.get('/api/dataset/get/:userName/:slug', async (req, res) => {
     try {
-      const requestModel = { slug: req.params.slug };
+      const { userName, slug } = req.params;
+      const requestModel = { userName, slug };
       const responseModel = await getDataset.execute(requestModel);
       res.json(responseModel);
     } catch (error) {

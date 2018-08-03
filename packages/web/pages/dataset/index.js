@@ -16,8 +16,7 @@ export default class extends Page {
     const props = await super.getInitialProps({ req });
     const { slug, userName } = query;
 
-    // TODO also query by username
-    const response = await getJSON(`/api/dataset/get/${slug}`, req);
+    const response = await getJSON(`/api/dataset/get/${userName}/${slug}`, req);
 
     props.dataset = response.dataset;
     props.error = response.error;

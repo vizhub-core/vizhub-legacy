@@ -1,9 +1,10 @@
 import { DocumentPart } from './documentPart';
+import { UserId } from './user';
 
 export class DocumentInfo extends DocumentPart {
 
   // The ID of the user that owns this document.
-  owner: string;
+  owner: UserId;
 
   // The title of the document.
   title: string;

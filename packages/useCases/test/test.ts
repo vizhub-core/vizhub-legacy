@@ -116,6 +116,7 @@ describe('Use Cases', () => {
     const getDataset = new GetDataset({ datasetGateway });
     it('should error if no slug specified.', done => {
       const requestModel: GetDatasetRequestModel = {
+        userName: 'thomas',
         slug: ''
       };
       getDataset.execute(requestModel).catch(error => {
