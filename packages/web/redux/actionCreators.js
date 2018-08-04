@@ -5,7 +5,8 @@ import {
   START_BUILD,
   BUILD_ERROR,
   SET_CSRF_TOKEN,
-  SET_VISUALIZATION
+  SET_VISUALIZATION,
+  FORK_VISUALIZATION
 } from './actionTypes';
 
 export const startBuild = () => ({
@@ -31,4 +32,8 @@ export const setCsrfToken = csrfToken => ({
 export const setVisualization = visualization => ({
   type: SET_VISUALIZATION,
   visualization
+});
+
+export const forkVisualization = () => ({
+  type: FORK_VISUALIZATION
 });
