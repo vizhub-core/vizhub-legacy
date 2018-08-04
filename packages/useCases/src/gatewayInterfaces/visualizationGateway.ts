@@ -20,7 +20,8 @@ export interface VisualizationGateway {
     title: string,
     slug: string | undefined,
     description: string,
-    files: File[]
+    files: File[],
+    forkedFrom: DocumentId
   }): Promise<CreateVisualizationResponseModel>;
 
   getVisualization(request: GetVisualizationRequestModel):

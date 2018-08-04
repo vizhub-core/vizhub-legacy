@@ -27,3 +27,9 @@ export {
   GetDatasetRequestModel,
   GetDatasetResponseModel
 } from './getDataset';
+
+export {
+  ForkVisualization,
+  ForkVisualizationRequestModel,
+  ForkVisualizationResponseModel
+} from './forkVisualization';
