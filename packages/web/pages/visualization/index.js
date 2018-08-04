@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
 import { Provider } from 'react-redux';
@@ -18,6 +19,21 @@ import {
 } from '../../redux/actionCreators';
 import 'codemirror/lib/codemirror.css';
 import 'vizhub-ui/dist/styles.css';
+
+const ForkInvitation = () => (
+  <section className='hero is-dark is-bold'>
+    <div className='hero-body'>
+      <div className='container'>
+        <h1 className='title'>
+          <a href='fork'>Fork this visualization</a>
+        </h1>
+        <h2 className='subtitle'>
+          if you want to save your changes.
+        </h2>
+      </div>
+    </div>
+  </section>
+);
 
 const {
   actionCreators: {
@@ -89,7 +105,10 @@ export default class extends Page {
         <FullPage>
           <NavBar user={user} csrfToken={csrfToken} />
           <Provider store={this.store}>
-            <IDEContainer />
+            <Fragment>
+              <ForkInvitation />
+              <IDEContainer />
+            </Fragment>
           </Provider>
         </FullPage>
       </TitledPage>
