@@ -83,4 +83,20 @@ tail /var/log/nginx/error.log
 
 Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntuartful-nginx
 
-Last but not least, configure the correct [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) in the file `packages/web/.env`.
+Install MongoDB (see also [Install MongoDB Community Edition on Ubuntu](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)):
+
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+sudo apt-get update
+sudo apt-get install mongodb-org -y
+sudo service mongod start
+```
+
+Last but not least, configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) and MongoDB URL following in `packages/web/.env`. Here's a sample of what the `.env` file should look like:
+
+```
+GITHUB_ID=1937fa078932032536f9
+GITHUB_SECRET=97892345784932b789a78f9d89c789c7890c2143
+MONGO_URI=mongodb://localhost:27017/vizhub
+```

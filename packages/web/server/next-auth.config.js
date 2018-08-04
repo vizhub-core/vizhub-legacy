@@ -29,7 +29,7 @@ if (process.env.MONGO_URI) {
   sessionStore = new MongoStore({
     url: process.env.MONGO_URI,
     autoRemove: 'interval',
-    autoRemoveInterval: 10, // Removes expired sessions every 10 minutes
+    autoRemoveInterval: 60 * 24, // Removes expired sessions every 24 hours
     collection: 'sessions',
     stringify: false
   });
@@ -64,7 +64,7 @@ module.exports = () => {
           // state correctly.
           // If set to 0 will revalidate a session before rendering every page.
           sessionRevalidateAge: 60000,
-          // Canonical URL of the server (optiona, but recommended).
+          // Canonical URL of the server (optional, but recommended).
           // e.g. 'http://localhost:3000' or 'https://www.example.com' 
           // Used in callbak URLs and email sign in links. It will be auto 
           // generated if not specified, which may cause problems if your site 
