@@ -133,7 +133,7 @@ module.exports = () => {
               if (!user) return resolve(null);
               
               return resolve({
-                id: user._id,
+                id: user._id.toString(),
                 name: user.name,
                 email: user.email,
                 admin: user.admin || false,
