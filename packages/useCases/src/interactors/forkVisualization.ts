@@ -27,16 +27,14 @@ export class ForkVisualization implements Interactor {
       throw new Error(i18n('errorNoOwner'))
     }
 
-    return await this.visualizationGateway.createVisualization(
-      Object.assign({}, visualization, {
-        owner: userId,
-        id: generateId(),
-        title: visualization.info.title,
-        slug: undefined,
-        description: visualization.info.description,
-        files: visualization.content.files,
-        forkedFrom: visualization.id
-      })
-    )
+    return await this.visualizationGateway.createVisualization({
+      owner: userId,
+      id: generateId(),
+      title: visualization.info.title,
+      slug: undefined,
+      description: visualization.info.description,
+      files: visualization.content.files,
+      forkedFrom: visualization.id
+    })
   }
 }

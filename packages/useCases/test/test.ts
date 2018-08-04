@@ -178,32 +178,14 @@ describe('Use Cases', () => {
       };
       await forkVisualization.execute(requestModel);
       assert.equal(invocations, 1);
-      console.log(JSON.stringify(arg, null, 2));
       const expected = {
-        "id": "d8f6ce847dc14150b6c71d18bbabbcf7",
-        "info": {
-          "owner": "123",
-          "title": "foo",
-          "description": "Foo is cool"
-        },
-        "content": {
-          "files": [
-            {
-              "name": "index.html",
-              "text": "HTML yes"
-            }
-          ]
-        },
+        "id": arg.id,
         "owner": "456",
         "title": "foo",
         "description": "Foo is cool",
-        "files": [
-          {
-            "name": "index.html",
-            "text": "HTML yes"
-          }
-        ],
-        "forkedFrom": "456"
+        "files": [ { "name": "index.html", "text": "HTML yes" } ],
+        "forkedFrom": "456",
+        "slug": undefined
       };
       assert.deepEqual(arg, expected);
     });
