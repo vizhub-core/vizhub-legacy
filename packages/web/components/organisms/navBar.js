@@ -21,7 +21,11 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
             <p className='control'>
               <input className='input' type='text' />
             </p>
-            <a href='https://github.com/datavis-tech/vizhub-ui/issues/36' className='control'>
+            <a
+              target="_blank"
+              href='https://github.com/datavis-tech/vizhub-ui/issues/36'
+              className='control'
+            >
               <button className='button'>
                 Search
               </button>
