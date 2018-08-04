@@ -25,7 +25,11 @@ export default class extends Page {
                 <h2 className='subtitle'>
                   using D3.js and SVG.
                 </h2>
-                <a className='button' href='https://github.com/datavis-tech/vizhub-ui/issues/34'>
+                <a
+                  target="_blank"
+                  className='button'
+                  href='https://github.com/datavis-tech/vizhub-ui/issues/34'
+                >
                   Get Started
                 </a>
               </div>
