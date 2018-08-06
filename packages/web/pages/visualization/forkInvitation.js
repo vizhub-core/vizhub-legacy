@@ -2,23 +2,31 @@ import { connect } from 'react-redux';
 import { getShowForkInvitation } from '../../redux/selectors';
 import { forkVisualization } from '../../redux/actionCreators';
 
-export const ForkInvitationPresentation = ({show}) => 
-  show
-    ? (
-      <section className='hero is-dark is-bold'>
-        <div className='hero-body'>
-          <div className='container'>
-            <h1 className='title'>
-              <a href='fork'>Fork this visualization</a>
-            </h1>
-            <h2 className='subtitle'>
-              if you want to save your changes.
-            </h2>
-          </div>
+export const ForkInvitationPresentation = ({show, onFork}) => {
+  if (!show) {
+    return null;
+  }
+  const onForkLinkClick = event => {
+    event.preventDefault();
+    onFork();
+  };
+  return (
+    <section className='hero is-dark is-bold'>
+      <div className='hero-body'>
+        <div className='container'>
+          <h1 className='title'>
+            <a href='#fork' onClick={onForkLinkClick}>
+              Fork this visualization
+            </a>
+          </h1>
+          <h2 className='subtitle'>
+            if you want to save your changes.
+          </h2>
         </div>
-      </section>
-    )
-  : null;
+      </div>
+    </section>
+  );
+}
 
 const mapStateToProps = state => ({
   show: getShowForkInvitation(state)

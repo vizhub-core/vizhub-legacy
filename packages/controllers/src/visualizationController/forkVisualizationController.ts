@@ -4,7 +4,7 @@ import { userIdFromReq } from '../userIdFromReq';
 export const forkVisualizationController = (expressApp, visualizationGateway) => {
   const forkVisualization = new ForkVisualization({ visualizationGateway });
 
-  expressApp.get('/api/visualization/fork', async (req, res) => {
+  expressApp.post('/api/visualization/fork', async (req, res) => {
     try {
       const requestModel = {
         visualization: req.body.visualization,

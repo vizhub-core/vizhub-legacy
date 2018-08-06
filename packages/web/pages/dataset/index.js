@@ -55,8 +55,12 @@ export default class extends Page {
         <TextContainer>
           <SlightMargin>
             <DatasetContentTextPreview text={text} />
-            <h1 className='title test-dataset-title'>{title}</h1>
-            <a class='test-dataset-download-link' href={downloadUrl}>download</a>
+            <h1 className='title test-dataset-title'>
+              {title}
+            </h1>
+            <a className='test-dataset-download-link' href={downloadUrl}>
+              download
+            </a>
           </SlightMargin>
         </TextContainer>
       </TitledPage>
