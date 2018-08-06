@@ -40,8 +40,10 @@ export const forkVisualization = () => ({
   type: FORK_VISUALIZATION
 });
 
-export const forkSuccess = () => ({
-  type: FORK_SUCCESS
+export const forkSuccess = (id, userName) => ({
+  type: FORK_SUCCESS,
+  id,
+  userName
 });
 
 export const forkError = () => ({

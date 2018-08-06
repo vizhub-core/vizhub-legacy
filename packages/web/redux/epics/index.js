@@ -6,6 +6,7 @@ import { buildEpic } from './buildEpic';
 import { runBuildEpic } from './runBuildEpic';
 import { runNonJSEpic } from './runNonJS';
 import { forkEpic } from './forkEpic';
+import { forkSuccessEpic } from './forkSuccessEpic';
 
 const {
   epics: {
@@ -26,5 +27,6 @@ export const rootEpic = combineEpics(
   promptForNewFileNameEpic,
   promptForRenameEpic,
   confirmDeleteEpic,
-  forkEpic
+  forkEpic,
+  forkSuccessEpic
 );

@@ -27,7 +27,7 @@ export class ForkVisualization implements Interactor {
       throw new Error(i18n('errorNoOwner'))
     }
 
-    return await this.visualizationGateway.createVisualization({
+    const { id } = await this.visualizationGateway.createVisualization({
       owner,
       id: generateId(),
       title: visualization.info.title,
@@ -36,5 +36,7 @@ export class ForkVisualization implements Interactor {
       files: visualization.content.files,
       forkedFrom: visualization.id
     })
+
+    return { id, userName: owner };
   }
 }

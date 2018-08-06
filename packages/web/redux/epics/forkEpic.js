@@ -14,7 +14,6 @@ const {
 export const forkEpic = (action$, state$) =>
   action$.ofType(FORK_VISUALIZATION).pipe(
     switchMap(action => defer(async () => {
-      console.log('Forking');
 
       const state = state$.value;
       const csrfToken = getCsrfToken(state);
@@ -39,10 +38,8 @@ export const forkEpic = (action$, state$) =>
       };
       const response = await (await fetch(url, options)).json();
 
-      console.log(response);
-
       return response.error
         ? forkError(response.error)
-        : forkSuccess();
+        : forkSuccess(response.id, response.userName);
     }))
   );
