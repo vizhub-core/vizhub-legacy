@@ -2,10 +2,15 @@ import { defer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { uiRedux } from 'vizhub-ui';
 import { getCsrfToken, getVisualization } from '../selectors';
-import { FORK_VISUALIZATION } from '../actionTypes';
-import { forkError, forkSuccess } from '../actionCreators';
 
 const {
+  actionTypes: {
+    FORK_VISUALIZATION
+  },
+  actionCreators: {
+    forkError,
+    forkSuccess
+  },
   selectors: {
     getFiles
   }
