@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
+import { Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
@@ -16,6 +17,7 @@ import {
   setCsrfToken,
   setVisualization
 } from '../../redux/actionCreators';
+import { ForkInvitation } from './forkInvitation';
 import 'codemirror/lib/codemirror.css';
 import 'vizhub-ui/dist/styles.css';
 
@@ -89,7 +91,10 @@ export default class extends Page {
         <FullPage>
           <NavBar user={user} csrfToken={csrfToken} />
           <Provider store={this.store}>
-            <IDEContainer />
+            <Fragment>
+              <ForkInvitation />
+              <IDEContainer />
+            </Fragment>
           </Provider>
         </FullPage>
       </TitledPage>

@@ -9,7 +9,7 @@ const strings = {
     en: 'The requested document does not exist'
   },
   errorNotOwnerCantSave: {
-    en: 'You must be the owner of the document in order to save it.'
+    en: 'Not saved'
   }
 };
 
