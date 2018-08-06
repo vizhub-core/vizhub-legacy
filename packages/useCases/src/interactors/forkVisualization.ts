@@ -6,7 +6,7 @@ import { generateId } from '../utils/generateId';
 
 export interface ForkVisualizationRequestModel extends RequestModel {
   visualization: Visualization,
-  userId: UserId
+  owner: UserId
 }
 
 export interface ForkVisualizationResponseModel extends ResponseModel {
@@ -21,14 +21,14 @@ export class ForkVisualization implements Interactor {
   }
 
   async execute(requestModel: ForkVisualizationRequestModel) {
-    const { visualization, userId } = requestModel;
+    const { visualization, owner } = requestModel;
 
-    if (!userId) {
+    if (!owner) {
       throw new Error(i18n('errorNoOwner'))
     }
 
     return await this.visualizationGateway.createVisualization({
-      owner: userId,
+      owner,
       id: generateId(),
       title: visualization.info.title,
       slug: undefined,

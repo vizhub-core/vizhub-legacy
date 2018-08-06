@@ -152,7 +152,7 @@ describe('Use Cases', () => {
             files: [{ name: 'index.html', text: 'HTML yes' }]
           }
         },
-        userId: null
+        owner: null
       };
       forkVisualization.execute(requestModel).catch(error => {
         assert.equal(error.message, i18n('errorNoOwner'))
@@ -174,7 +174,7 @@ describe('Use Cases', () => {
             files: [{ name: 'index.html', text: 'HTML yes' }]
           }
         },
-        userId: '456'
+        owner: '456'
       };
       await forkVisualization.execute(requestModel);
       assert.equal(invocations, 1);
