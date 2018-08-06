@@ -1,6 +1,12 @@
 import { connect } from 'react-redux';
+import { uiRedux } from 'vizhub-ui';
 import { getShowForkInvitation } from '../../redux/selectors';
-import { forkVisualization } from '../../redux/actionCreators';
+
+const {
+  actionCreators: {
+    forkVisualization
+  }
+} = uiRedux;
 
 export const ForkInvitationPresentation = ({show, onFork}) => {
   if (!show) {

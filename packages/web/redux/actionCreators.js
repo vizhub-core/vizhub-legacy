@@ -6,9 +6,6 @@ import {
   BUILD_ERROR,
   SET_CSRF_TOKEN,
   SET_VISUALIZATION,
-  FORK_VISUALIZATION,
-  FORK_ERROR,
-  FORK_SUCCESS
 } from './actionTypes';
 
 export const startBuild = () => ({
@@ -34,18 +31,4 @@ export const setCsrfToken = csrfToken => ({
 export const setVisualization = visualization => ({
   type: SET_VISUALIZATION,
   visualization
-});
-
-export const forkVisualization = () => ({
-  type: FORK_VISUALIZATION
-});
-
-export const forkSuccess = (id, userName) => ({
-  type: FORK_SUCCESS,
-  id,
-  userName
-});
-
-export const forkError = () => ({
-  type: FORK_ERROR
 });
