@@ -36,5 +36,6 @@ export const visualizationDefaults = {
   title: 'Untitled',
   slug: undefined,
   description: 'No description',
-  files
+  files,
+  forkedFrom: undefined
 };

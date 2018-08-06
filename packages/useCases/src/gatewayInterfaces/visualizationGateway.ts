@@ -21,7 +21,7 @@ export interface VisualizationGateway {
     slug: string | undefined,
     description: string,
     files: File[],
-    forkedFrom: DocumentId
+    forkedFrom: DocumentId | undefined
   }): Promise<CreateVisualizationResponseModel>;
 
   getVisualization(request: GetVisualizationRequestModel):
