@@ -13,7 +13,8 @@ const {
     autoSaveEpic,
     promptForNewFileNameEpic,
     promptForRenameEpic,
-    confirmDeleteEpic
+    confirmDeleteEpic,
+    updateTitleEpic
   }
 } = uiRedux;
 
@@ -28,5 +29,6 @@ export const rootEpic = combineEpics(
   promptForRenameEpic,
   confirmDeleteEpic,
   forkEpic,
-  forkSuccessEpic
+  forkSuccessEpic,
+  updateTitleEpic
 );
