@@ -5,26 +5,51 @@ import {
   CreateVisualization,
   CreateVisualizationRequestModel,
   CreateVisualizationResponseModel,
+
   GetVisualization,
   GetVisualizationRequestModel,
   GetVisualizationResponseModel,
+
   SaveVisualization,
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel,
-  VisualizationGateway,
+
   CreateDataset,
   CreateDatasetRequestModel,
   CreateDatasetResponseModel,
+
   GetDataset,
   GetDatasetRequestModel,
   GetDatasetResponseModel,
+
   ForkVisualization,
   ForkVisualizationRequestModel,
   ForkVisualizationResponseModel,
+  
+  CreateUser,
+  CreateUserRequestModel,
+  CreateUserResponseModel,
+
+  GetUser,
+  GetUserRequestModel,
+  GetUserResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {};
 const datasetGateway = {};
+
+const fakeUser = {
+  "authenticated": undefined,
+  "id": "84752",
+  "userName": "joe",
+  "fullName": "Joe Schmoe",
+  "email": "joe@datavis.tech",
+  "avatarUrl": "https://avatars3.githubusercontent.com/u/84752?v=4",
+  "company": "Schmoe INC",
+  "website": "joeschmoe.com",
+  "location": "Earth",
+  "bio": "Great guy"
+};
 
 describe('Use Cases', () => {
 
@@ -190,5 +215,42 @@ describe('Use Cases', () => {
       assert.deepEqual(arg, expected);
     });
     // TODO test success case
+  });
+
+  describe('Create User', () => {
+    const userGateway = { createUser: async (user) => user };
+    const createUser = new CreateUser({ userGateway });
+
+    it('should invoke gateway with user instance', async () => {
+      const requestModel: CreateUserRequestModel = {
+        "oAuthProfile": {
+          "id": "84752",
+          "displayName": "Joe Schmoe",
+          "username": "joe",
+          "_json": {
+            "avatar_url": "https://avatars3.githubusercontent.com/u/84752?v=4",
+            "name": "Joe Schmoe",
+            "company": "Schmoe INC",
+            "blog": "joeschmoe.com",
+            "location": "Earth",
+            "email": "joe@datavis.tech",
+            "bio": "Great guy",
+          }
+        }
+      };
+      const responseModel = await createUser.execute(requestModel);
+      assert.deepEqual(responseModel, { user: fakeUser });
+    });
+  });
+
+  describe('Get User', () => {
+    const userGateway = { getUser: async (id) => fakeUser };
+    const getUser = new GetUser({ userGateway });
+
+    it('should invoke gateway with user instance', async () => {
+      const requestModel: GetUserRequestModel = { id: "84752" };
+      const responseModel = await getUser.execute(requestModel);
+      assert.deepEqual(responseModel, { user: fakeUser });
+    });
   });
 });

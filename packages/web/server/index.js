@@ -9,8 +9,10 @@ import accountAPI from './api/account';
 
 import {
   visualizationController,
-  datasetController
+  datasetController,
+  userController
 } from 'datavis-tech-controllers';
+
 import { serverGateways } from './serverGateways';
 import { setupRaven } from './setupRaven';
 
@@ -36,10 +38,16 @@ const nextApp = next({
   dev: (process.env.NODE_ENV === 'development')
 });
 
+const {
+  visualizationGateway,
+  datasetGateway,
+  userGateway
+} = serverGateways();
+
 // Add next-auth to next app
 nextApp
   .prepare()
-  .then(nextAuthConfig)
+  .then(nextAuthConfig(userController(userGateway)))
   .then(nextAuthOptions => nextAuth(nextApp, nextAuthOptions))
   .then(nextAuthOptions => {
     const expressApp = nextAuthOptions.expressApp;
@@ -47,9 +55,6 @@ nextApp
     setupRaven(expressApp);
 
     accountAPI(expressApp, nextAuthOptions.functions);
-
-    // Set up the server-side gateways and controller.
-    const { visualizationGateway, datasetGateway } = serverGateways();
 
     visualizationController(expressApp, visualizationGateway);
     datasetController(expressApp, datasetGateway);

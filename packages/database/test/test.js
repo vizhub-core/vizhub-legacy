@@ -47,6 +47,21 @@ describe('Database', () => {
       }
     });
   });
-  // TODO
-  //after(process.exit);
+
+  it('should create a user', async () => {
+    const userIn = {
+      "authenticated": undefined,
+      "id": "84752",
+      "userName": "joe",
+      "fullName": "Joe Schmoe",
+      "email": "joe@datavis.tech",
+      "avatarUrl": "https://avatars3.githubusercontent.com/u/84752?v=4",
+      "company": "Schmoe INC",
+      "website": "joeschmoe.com",
+      "location": "Earth",
+      "bio": "Great guy"
+    };
+    const user = await database.createUser(userIn)
+    assert.deepEqual(user, userIn);
+  });
 });
