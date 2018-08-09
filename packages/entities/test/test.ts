@@ -22,11 +22,16 @@ describe('Entities', () => {
   describe('User', () => {
     it('should expose expected fields', () => {
       const data = {
-        authenticated: true,
-        id: '37584032',
-        userName: 'alice',
-        fullName: 'Alice the Great',
-        email: 'alice@greatness.com'
+        "authenticated": true,
+        "id": "84752",
+        "userName": "joe",
+        "fullName": "Joe Schmoe",
+        "email": "joe@datavis.tech",
+        "avatarUrl": "https://avatars3.githubusercontent.com/u/84752?v=4",
+        "company": "Schmoe INC",
+        "website": "joeschmoe.com",
+        "location": "Earth",
+        "bio": "Great guy"
       };
       const user = new User(data);
       assert.deepEqual(user, data);

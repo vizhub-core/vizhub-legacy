@@ -33,3 +33,15 @@ export {
   ForkVisualizationRequestModel,
   ForkVisualizationResponseModel
 } from './forkVisualization';
+
+export {
+  CreateUser,
+  CreateUserRequestModel,
+  CreateUserResponseModel
+} from './createUser';
+
+export {
+  GetUser,
+  GetUserRequestModel,
+  GetUserResponseModel
+} from './getUser';
