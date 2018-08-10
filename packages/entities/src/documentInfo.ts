@@ -16,7 +16,10 @@ export class DocumentInfo extends DocumentPart {
   description: string;
 
   constructor(data) {
-    super(data.id);
+    super({
+      id: data.id,
+      documentType: data.documentType
+    });
     this.owner = data.owner;
     this.title = data.title;
     this.slug = data.slug;

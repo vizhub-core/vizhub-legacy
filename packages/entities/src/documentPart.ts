@@ -6,7 +6,12 @@ export class DocumentPart {
   // that this document part is a part of.
   id: DocumentId;
 
-  constructor(id) {
-    this.id = id;
+  // The type of this document.
+  // Either documentTypes.VISUALIZATION_TYPE or documentTypes.DATASET_TYPE
+  documentType: string;
+
+  constructor(data) {
+    this.id = data.id;
+    this.documentType = data.documentType;
   }
 }

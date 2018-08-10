@@ -1,7 +1,8 @@
 import {
   UserId,
   DocumentId,
-  File
+  File,
+  VisualizationInfo
 } from 'datavis-tech-entities';
 
 import {
@@ -29,4 +30,6 @@ export interface VisualizationGateway {
 
   saveVisualization(request: SaveVisualizationRequestModel):
     Promise<SaveVisualizationResponseModel>;
+
+  getVisualizationInfosByUserId(id: UserId): Promise<[VisualizationInfo]>;
 }

@@ -45,6 +45,7 @@
     "redux": "^4.0.0",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.2.2",
+    "serve-favicon": "^2.5.0",
     "universal-cookie": "^2.2.0",
     "vizhub-ui": "1",
     "ws": "^6.0.0"

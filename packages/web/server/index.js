@@ -1,17 +1,15 @@
 import { createServer } from 'http';
 import next from 'next';
 import nextAuth from 'next-auth';
+import favicon from 'serve-favicon';
+import path from 'path';
 
 import { routes } from '../routes';
 import nextAuthConfig from './next-auth.config';
 // import { ShareDBServer } from './shareDBServer';
 import accountAPI from './api/account';
 
-import {
-  visualizationController,
-  datasetController,
-  userController
-} from 'datavis-tech-controllers';
+import { apiController, userController } from 'datavis-tech-controllers';
 
 import { serverGateways } from './serverGateways';
 import { setupRaven } from './setupRaven';
@@ -38,26 +36,23 @@ const nextApp = next({
   dev: (process.env.NODE_ENV === 'development')
 });
 
-const {
-  visualizationGateway,
-  datasetGateway,
-  userGateway
-} = serverGateways();
+const gateways = serverGateways();
 
 // Add next-auth to next app
 nextApp
   .prepare()
-  .then(nextAuthConfig(userController(userGateway)))
+  .then(nextAuthConfig(userController(gateways.userGateway)))
   .then(nextAuthOptions => nextAuth(nextApp, nextAuthOptions))
   .then(nextAuthOptions => {
     const expressApp = nextAuthOptions.expressApp;
+
+    expressApp.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 
     setupRaven(expressApp);
 
     accountAPI(expressApp, nextAuthOptions.functions);
 
-    visualizationController(expressApp, visualizationGateway);
-    datasetController(expressApp, datasetGateway);
+    apiController(expressApp, gateways);
 
     expressApp.all('*', routes.getRequestHandler(nextApp));
 

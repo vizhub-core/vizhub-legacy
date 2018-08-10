@@ -1,7 +1,10 @@
 import { DocumentPart } from './documentPart';
 
 export class DocumentContent extends DocumentPart {
-  constructor(id) {
-    super(id);
+  constructor(data) {
+    super({
+      id: data.id,
+      documentType: data.documentType
+    });
   }
 }

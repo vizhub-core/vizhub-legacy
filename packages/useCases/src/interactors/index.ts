@@ -45,3 +45,9 @@ export {
   GetUserRequestModel,
   GetUserResponseModel
 } from './getUser';
+
+export {
+  GetUserProfileData,
+  GetUserProfileDataRequestModel,
+  GetUserProfileDataResponseModel
+} from './getUserProfileData';

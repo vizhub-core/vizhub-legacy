@@ -1,4 +1,5 @@
 import { DocumentInfo } from './documentInfo';
+import { DATASET_TYPE } from './documentTypes';
 
 type Format = 'csv' | 'tsv' | 'json' | 'geojson' | 'topojson' | 'txt';
 
@@ -15,6 +16,7 @@ export class DatasetInfo extends DocumentInfo {
       title: data.title,
       slug: data.slug,
       description: data.description,
+      documentType: DATASET_TYPE
     });
 
     this.format = data.format;

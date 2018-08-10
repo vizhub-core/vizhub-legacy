@@ -53,9 +53,11 @@ class UserMenuAuthenticated extends Component {
               </a>
             </Link>
             <hr className='dropdown-divider' />
-            <a target="_blank" href='https://github.com/datavis-tech/vizhub-ui/issues/42' className='dropdown-item'>
-              Profile
-            </a>
+            <Link href={`/${user.userName}`}>
+              <a className='dropdown-item test-user-menu-profile-link'>
+                Profile
+              </a>
+            </Link>
             <Link href='/account'>
               <a className='dropdown-item'>
                 Account

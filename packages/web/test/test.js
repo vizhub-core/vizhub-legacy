@@ -2,6 +2,7 @@ import fs from 'fs';
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { autoSaveDebounceTime } from 'vizhub-ui';
+import { ciUser } from 'datavis-tech-entities';
 import { datasetRoute } from '../routes/routeGenerators';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
@@ -153,6 +154,35 @@ describe('Web', () => {
 
       assert.equal(csvText, expectedCsvText);
 
+    });
+  });
+
+  describe('Profile Page', () => {
+    it('should navigate to profile page', async () => {
+      (await page.waitFor('.test-user-menu-button')).click(); // Open the menu.
+      const navigation = page.waitForNavigation();
+      (await page.waitFor('.test-user-menu-profile-link', {
+        visible: true // Wait until the link is visible (menu is opened).
+      })).click();
+      await navigation;
+      assert.equal(page.url(), 'http://localhost:3000/ci');
+
+      // Output the link for manual testing.
+      console.log(`\n${page.url()}\n`);
+    });
+    it('should display full name of user', async () => {
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-profile-full-name').textContent)
+      );
+      assert.equal(text, ciUser.fullName);
+    });
+    it('should display list of visualizations', async () => {
+      const infoTitles = await page.evaluate(() => {
+        const selector = '.test-profile-visualization-info-title';
+        return Array.from(document.querySelectorAll(selector))
+          .map(el => el.textContent);
+      });
+      assert.deepEqual(infoTitles, ['Untitled']);
     });
   });
 

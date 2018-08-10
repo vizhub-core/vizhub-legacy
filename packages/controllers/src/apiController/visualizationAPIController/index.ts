@@ -3,7 +3,7 @@ import { getVisualizationController } from './getVisualizationController';
 import { saveVisualizationController } from './saveVisualizationController';
 import { forkVisualizationController } from './forkVisualizationController';
 
-export const visualizationController = (expressApp, visualizationGateway) => {
+export const visualizationAPIController = (expressApp, { visualizationGateway }) => {
   createVisualizationController(expressApp, visualizationGateway);
   getVisualizationController(expressApp, visualizationGateway);
   saveVisualizationController(expressApp, visualizationGateway);

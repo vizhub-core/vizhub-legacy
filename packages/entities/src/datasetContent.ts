@@ -1,4 +1,5 @@
 import { DocumentContent } from './documentContent';
+import { DATASET_TYPE } from './documentTypes';
 
 export class DatasetContent extends DocumentContent {
 
@@ -6,7 +7,10 @@ export class DatasetContent extends DocumentContent {
   text: string;
 
   constructor(data) {
-    super(data.id);
+    super({
+      id: data.id,
+      documentType: DATASET_TYPE
+    });
     this.text = data.text;
   }
 }
