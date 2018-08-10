@@ -5,6 +5,8 @@ import { createDataset } from './createDataset';
 import { getDataset } from './getDataset';
 import { createUser } from './createUser';
 import { getUser } from './getUser';
+import { getUserByUserName } from './getUserByUserName';
+import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 
 export const Database = connection => ({
   createVisualization: createVisualization(connection),
@@ -14,4 +16,6 @@ export const Database = connection => ({
   getDataset: getDataset(connection),
   createUser: createUser(connection),
   getUser: getUser(connection),
+  getUserByUserName: getUserByUserName(connection),
+  getVisualizationInfosByUserId: getVisualizationInfosByUserId(connection)
 });

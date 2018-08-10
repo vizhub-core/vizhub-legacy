@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import { i18n } from 'datavis-tech-i18n';
+import { ciUser } from 'datavis-tech-entities';
 
 import {
   CreateVisualization,
@@ -33,6 +34,10 @@ import {
   GetUser,
   GetUserRequestModel,
   GetUserResponseModel,
+
+  GetUserProfileData,
+  GetUserProfileDataRequestModel,
+  GetUserProfileDataResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {};
@@ -248,9 +253,48 @@ describe('Use Cases', () => {
     const getUser = new GetUser({ userGateway });
 
     it('should invoke gateway with user instance', async () => {
-      const requestModel: GetUserRequestModel = { id: "84752" };
+      const requestModel = { id: "84752" };
       const responseModel = await getUser.execute(requestModel);
       assert.deepEqual(responseModel, { user: fakeUser });
+    });
+
+    it('should return ci user for ci user id', async () => {
+      const requestModel = { id: ciUser.id };
+      const responseModel = await getUser.execute(requestModel);
+      assert.deepEqual(responseModel, { user: ciUser });
+    });
+  });
+
+  describe('Get User Profile Data', () => {
+    const fakeVisualizationInfos = [
+      { owner: fakeUser.id, title: 'Foo', description: 'Foo is cool' },
+      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' }
+    ];
+    const getUserProfileData = new GetUserProfileData({
+      userGateway: {
+        getUserByUserName: async (userName) => fakeUser
+      },
+      visualizationGateway: {
+        getVisualizationInfosByUserId: async (userId) => fakeVisualizationInfos
+      }
+    });
+
+    it('should get user and visualization infos from gateways', async () => {
+      const requestModel = { userName: 'bob' };
+      const responseModel = await getUserProfileData.execute(requestModel);
+      assert.deepEqual(responseModel, {
+        user: fakeUser,
+        visualizationInfos: fakeVisualizationInfos
+      });
+    });
+
+    it('should return ci user for ci userName', async () => {
+      const requestModel = { userName: 'ci' };
+      const responseModel = await getUserProfileData.execute(requestModel);
+      assert.deepEqual(responseModel, {
+        user: ciUser,
+        visualizationInfos: fakeVisualizationInfos
+      });
     });
   });
 });

@@ -8,6 +8,9 @@ const strings = {
   errorDocNotFound: {
     en: 'The requested document does not exist'
   },
+  errorUserNotFound: {
+    en: 'The requested user does not exist'
+  },
   errorNotOwnerCantSave: {
     en: 'Not saved'
   }

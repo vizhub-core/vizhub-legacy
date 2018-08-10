@@ -1,3 +1,5 @@
+import { ciUser } from 'datavis-tech-entities';
+
 require('dotenv').load();
 
 const updateUser = async (user) => {
@@ -16,13 +18,6 @@ const serializeUser = user => {
   } else {
     return Promise.reject(new Error('Unable to serialise user'));
   }
-};
-
-const ciUser = {
-  id: '47895473289547832938754',
-  fullName: 'CI',
-  email: 'ci@testing.com',
-  userName: 'ci'
 };
 
 module.exports = async (userController) => ({
@@ -46,10 +41,6 @@ module.exports = async (userController) => ({
   update: updateUser,
   remove: removeUser,
   serialize: serializeUser,
-  deserialize: async (id) => (
-    id === ciUser.id
-      ? ciUser
-      : await userController.getUser({ id })
-  ),
+  deserialize: async (id) => await userController.getUser({ id }),
   signIn: () => Promise.resolve(ciUser)
 });

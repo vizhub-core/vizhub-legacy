@@ -17,7 +17,7 @@ export class DatabaseUserGateway implements UserGateway {
     return await this.database.getUser(id);
   }
 
-  //async saveUser({ user }) {
-  //  return await this.database.saveUser({ user });
-  //}
+  async getUserByUserName(userName: string) {
+    return await this.database.getUserByUserName(userName);
+  }
 }

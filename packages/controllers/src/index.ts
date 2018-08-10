@@ -1,3 +1,2 @@
-export { visualizationController } from './visualizationController';
-export { datasetController } from './datasetController';
+export { apiController } from './apiController';
 export { userController } from './userController';
