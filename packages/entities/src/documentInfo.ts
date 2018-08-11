@@ -15,6 +15,14 @@ export class DocumentInfo extends DocumentPart {
   // The Markdown description of the document.
   description: string;
 
+  // The date at which this document was created.
+  // Formatted as an ISO date string, UTC.
+  createdDate: string;
+
+  // The date at which this document was last updated.
+  // Formatted as an ISO date string, UTC.
+  lastUpdatedDate: string;
+
   constructor(data) {
     super({
       id: data.id,
@@ -24,5 +32,7 @@ export class DocumentInfo extends DocumentPart {
     this.title = data.title;
     this.slug = data.slug;
     this.description = data.description;
+    this.createdDate = data.createdDate;
+    this.lastUpdatedDate = data.lastUpdatedDate;
   }
 }
