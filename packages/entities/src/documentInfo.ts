@@ -15,6 +15,12 @@ export class DocumentInfo extends DocumentPart {
   // The Markdown description of the document.
   description: string;
 
+  // The Unix timestamp at which this document was created.
+  createdTimestamp: number;
+
+  // The Unix timestamp at which this document was last updated.
+  lastUpdatedTimestamp: number;
+
   constructor(data) {
     super({
       id: data.id,
@@ -24,5 +30,7 @@ export class DocumentInfo extends DocumentPart {
     this.title = data.title;
     this.slug = data.slug;
     this.description = data.description;
+    this.createdTimestamp = data.createdTimestamp;
+    this.lastUpdatedTimestamp = data.lastUpdatedTimestamp;
   }
 }

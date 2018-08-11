@@ -14,6 +14,8 @@ import {
 } from '../interactors';
 
 export interface VisualizationGateway {
+
+  // TODO pass in a visualization here. Move logic from gateway to use case.
   createVisualization(options: {
     owner: UserId,
     id: DocumentId,
@@ -21,7 +23,9 @@ export interface VisualizationGateway {
     slug: string | undefined,
     description: string,
     files: File[],
-    forkedFrom: DocumentId | undefined
+    forkedFrom: DocumentId | undefined,
+    createdTimestamp: number,
+    lastUpdatedTimestamp: number,
   }): Promise<CreateVisualizationResponseModel>;
 
   getVisualization({ id }): Promise<Visualization>;

@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import { i18n } from 'datavis-tech-i18n';
-import { ciUser } from 'datavis-tech-entities';
+import { ciUser, testData, timestamp } from 'datavis-tech-entities';
 
 import {
   CreateVisualization,
@@ -40,7 +40,19 @@ import {
   GetUserProfileDataResponseModel,
 } from '../src/index';
 
-const visualizationGateway = {};
+const visualizationGateway = {
+  createVisualization: async (options) => {
+    const { id } = options;
+    options.info = options;
+    options.content = options;
+    visualizationGateway[id] = options;
+    return { id };
+  },
+  getVisualization: async ({ id }) => {
+    return visualizationGateway[id];
+  }
+};
+
 const datasetGateway = {};
 
 const fakeUser = {
@@ -58,6 +70,8 @@ const fakeUser = {
 
 describe('Use Cases', () => {
 
+  let visualizationId;
+
   describe('Create Visualization', () => {
     const createVisualization = new CreateVisualization({ visualizationGateway });
     it('should error if no owner specified.', done => {
@@ -67,7 +81,14 @@ describe('Use Cases', () => {
         done();
       });
     });
-    // TODO test success case
+    it('should return an id if success.', async () => {
+      const requestModel: CreateVisualizationRequestModel = {
+        owner: testData.user.id
+      };
+      const responseModel = await createVisualization.execute(requestModel);
+      assert.equal(responseModel.id.length, 32);
+      visualizationId = responseModel.id;
+    });
   });
 
   describe('Get Visualization', () => {
@@ -83,20 +104,31 @@ describe('Use Cases', () => {
         done();
       });
     });
-    // TODO test success case
+    it('should return stored object if success.', async () => {
+      const requestModel: GetVisualizationRequestModel = {
+        id: visualizationId
+      };
+      const { visualization } = await getVisualization.execute(requestModel);
+      const { createdTimestamp, lastUpdatedTimestamp } = visualization;
+      
+      assert(timestamp() - createdTimestamp < 1);
+      assert(timestamp() - lastUpdatedTimestamp < 1);
+    });
   });
 
   describe('Save Visualization', () => {
     let invocations = 0;
+    let vis;
     const visualizationGateway = {
-      saveVisualization: async () => {
+      saveVisualization: async ({ visualization }) => {
+        vis = visualization;
         invocations++;
         return { status: 'success' };
       }
     };
     const saveVisualization = new SaveVisualization({ visualizationGateway });
 
-    it('should invoke saveVisualization in gateway.', async () => {
+    it('should invoke saveVisualization with updated timestamp in gateway.', async () => {
       const requestModel = {
         visualization: {
           info: {
@@ -107,6 +139,7 @@ describe('Use Cases', () => {
       };
       const responseModel = await saveVisualization.execute(requestModel);
       assert.equal(invocations, 1);
+      assert(timestamp() - vis.info.lastUpdatedTimestamp < 1);
       assert.equal(responseModel.status, 'success');
     });
 
@@ -212,6 +245,13 @@ describe('Use Cases', () => {
       };
       await forkVisualization.execute(requestModel);
       assert.equal(invocations, 1);
+
+      assert(timestamp() - arg.createdTimestamp < 1);
+      assert(timestamp() - arg.lastUpdatedTimestamp < 1);
+
+      delete arg.createdTimestamp;
+      delete arg.lastUpdatedTimestamp;
+
       const expected = {
         "id": arg.id,
         "owner": "456",

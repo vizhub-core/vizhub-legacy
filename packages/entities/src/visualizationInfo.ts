@@ -9,12 +9,14 @@ export class VisualizationInfo extends DocumentInfo {
 
   constructor(data) {
     super({
+      documentType: VISUALIZATION_TYPE,
       id: data.id,
       owner: data.owner,
       title: data.title,
       slug: data.slug,
       description: data.description,
-      documentType: VISUALIZATION_TYPE
+      createdTimestamp: data.createdTimestamp,
+      lastUpdatedTimestamp: data.lastUpdatedTimestamp
     });
 
     this.forkedFrom = data.forkedFrom;
