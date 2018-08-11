@@ -69,7 +69,6 @@ export default class extends Page {
 
     this.store.dispatch(setVisualization(visualization));
 
-    // Possibly set these in an epic in response to setVisualization?
     this.store.dispatch(initFiles(files));
     this.store.dispatch(setActiveFile('index.html'));
     this.store.dispatch(setVisualizationWidth(width));

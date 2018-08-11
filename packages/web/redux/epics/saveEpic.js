@@ -12,7 +12,8 @@ const {
     saveError
   },
   selectors: {
-    getFiles
+    getFiles,
+    getVisualizationTitle
   }
 } = uiRedux;
 
@@ -22,11 +23,10 @@ export const saveEpic = (action$, state$) =>
       const state = state$.value;
       const csrfToken = getCsrfToken(state);
 
-      const visualization = Object.assign(
-        {},
-        getVisualization(state),
-        { files: getFiles(state) }
-      );
+      const visualization = getVisualization(state)
+
+      visualization.content.files = getFiles(state);
+      visualization.info.title = getVisualizationTitle(state);
 
       const url = `/api/visualization/save`;
       const options = {
