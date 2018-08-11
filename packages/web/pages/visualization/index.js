@@ -40,7 +40,13 @@ export default class extends Page {
     const response = await getJSON(`/api/visualization/get/${query.id}`, req);
     props.error = response.error;
     props.visualization = response.visualization;
-    props.ownerUser = response.ownerUser;
+    //props.ownerUser = response.ownerUser;
+    props.ownerUser = {
+      id: "84752",
+      userName: "joe",
+      fullName: "Joe Schmoe",
+      avatarUrl: "https://avatars3.githubusercontent.com/u/84752?v=4",
+    };
     return props;
   }
 
@@ -63,7 +69,7 @@ export default class extends Page {
 
     const {
       visualization,
-      visualizationOwnerUser
+      ownerUser
     } = this.props;
     
     const {

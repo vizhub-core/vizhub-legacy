@@ -13,9 +13,11 @@ export interface GetVisualizationResponseModel extends ResponseModel {
 
 export class GetVisualization implements Interactor {
   visualizationGateway: VisualizationGateway;
+  userGateway: VisualizationGateway;
 
-  constructor({ visualizationGateway }) {
+  constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
+    this.userGateway = userGateway;
   }
 
   async execute(requestModel: GetVisualizationRequestModel) {
@@ -23,8 +25,10 @@ export class GetVisualization implements Interactor {
       throw new Error(i18n('errorNoId'))
     }
 
-    return await this.visualizationGateway.getVisualization({
+    const { visualization } = await this.visualizationGateway.getVisualization({
       id: requestModel.id
     });
+
+    return { visualization };
   }
 }
