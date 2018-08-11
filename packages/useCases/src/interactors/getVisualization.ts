@@ -1,7 +1,9 @@
 import { Visualization, DocumentId } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../interactor';
-import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway'
+import { GetUser } from './getUser';
+import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway';
+import { UserGateway } from '../gatewayInterfaces/userGateway';
 
 export interface GetVisualizationRequestModel extends RequestModel {
   id: DocumentId
@@ -13,11 +15,11 @@ export interface GetVisualizationResponseModel extends ResponseModel {
 
 export class GetVisualization implements Interactor {
   visualizationGateway: VisualizationGateway;
-  userGateway: VisualizationGateway;
+  getUser: GetUser;
 
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
-    this.userGateway = userGateway;
+    this.getUser = new GetUser({ userGateway });
   }
 
   async execute(requestModel: GetVisualizationRequestModel) {
@@ -29,6 +31,13 @@ export class GetVisualization implements Interactor {
       id: requestModel.id
     });
 
-    return { visualization };
+    const { user } = await this.getUser.execute({
+      id: visualization.info.owner
+    })
+
+    return {
+      visualization,
+      ownerUser: user
+    };
   }
 }
