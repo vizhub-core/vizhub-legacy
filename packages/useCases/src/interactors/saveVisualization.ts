@@ -1,4 +1,4 @@
-import { Visualization, UserId } from 'datavis-tech-entities';
+import { Visualization, UserId, timestamp } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../interactor';
 import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway'
@@ -24,6 +24,7 @@ export class SaveVisualization implements Interactor {
     if (visualization.info.owner !== userId) {
       throw new Error(i18n('errorNotOwnerCantSave'))
     }
+    visualization.info.lastUpdatedTimestamp = timestamp();
     return await this.visualizationGateway.saveVisualization(requestModel);
   }
 }

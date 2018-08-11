@@ -118,15 +118,17 @@ describe('Use Cases', () => {
 
   describe('Save Visualization', () => {
     let invocations = 0;
+    let vis;
     const visualizationGateway = {
-      saveVisualization: async () => {
+      saveVisualization: async ({ visualization }) => {
+        vis = visualization;
         invocations++;
         return { status: 'success' };
       }
     };
     const saveVisualization = new SaveVisualization({ visualizationGateway });
 
-    it('should invoke saveVisualization in gateway.', async () => {
+    it('should invoke saveVisualization with updated timestamp in gateway.', async () => {
       const requestModel = {
         visualization: {
           info: {
@@ -137,6 +139,7 @@ describe('Use Cases', () => {
       };
       const responseModel = await saveVisualization.execute(requestModel);
       assert.equal(invocations, 1);
+      assert(timestamp() - vis.info.lastUpdatedTimestamp < 1);
       assert.equal(responseModel.status, 'success');
     });
 
@@ -242,6 +245,13 @@ describe('Use Cases', () => {
       };
       await forkVisualization.execute(requestModel);
       assert.equal(invocations, 1);
+
+      assert(timestamp() - arg.createdTimestamp < 1);
+      assert(timestamp() - arg.lastUpdatedTimestamp < 1);
+
+      delete arg.createdTimestamp;
+      delete arg.lastUpdatedTimestamp;
+
       const expected = {
         "id": arg.id,
         "owner": "456",
