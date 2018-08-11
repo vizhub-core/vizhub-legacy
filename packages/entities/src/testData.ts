@@ -49,7 +49,9 @@ export const documentInfoData = {
   owner: user.id,
   title: 'Foo',
   slug: 'foo',
-  description: 'Foo the great'
+  description: 'Foo the great',
+  createdDate: new Date().toUTCString(),
+  lastUpdatedDate: new Date().toUTCString()
 };
 
 export const visualizationInfoData = Object.assign({}, documentInfoData, {
