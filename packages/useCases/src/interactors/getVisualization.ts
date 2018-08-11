@@ -25,7 +25,7 @@ export class GetVisualization implements Interactor {
       throw new Error(i18n('errorNoId'))
     }
 
-    const { visualization } = await this.visualizationGateway.getVisualization({
+    const visualization = await this.visualizationGateway.getVisualization({
       id: requestModel.id
     });
 
