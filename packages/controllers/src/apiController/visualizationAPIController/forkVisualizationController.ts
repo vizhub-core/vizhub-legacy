@@ -1,8 +1,8 @@
 import { ForkVisualization } from 'datavis-tech-use-cases';
 import { userIdFromReq } from '../userIdFromReq';
 
-export const forkVisualizationController = (expressApp, visualizationGateway) => {
-  const forkVisualization = new ForkVisualization({ visualizationGateway });
+export const forkVisualizationController = (expressApp, gateways) => {
+  const forkVisualization = new ForkVisualization(gateways);
 
   expressApp.post('/api/visualization/fork', async (req, res) => {
     try {

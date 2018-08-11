@@ -71,7 +71,11 @@ describe('Use Cases', () => {
   });
 
   describe('Get Visualization', () => {
-    const getVisualization = new GetVisualization({ visualizationGateway });
+    const userGateway = { getUser: async (id) => fakeUser };
+    const getVisualization = new GetVisualization({
+      visualizationGateway,
+      userGateway
+    });
     it('should error if no id specified.', done => {
       const requestModel: GetVisualizationRequestModel = { id: null };
       getVisualization.execute(requestModel).catch(error => {

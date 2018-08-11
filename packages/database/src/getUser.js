@@ -1,10 +1,11 @@
+import { User } from 'datavis-tech-entities';
 import { USER } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 
 export const getUser = connection => async (id) => {
   try {
     const userDoc = await fetchShareDBDoc(USER, id, connection);
-    return userDoc.data;
+    return new User(userDoc.data);
   } catch (error) {
     return null;
   }

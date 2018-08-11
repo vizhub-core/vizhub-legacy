@@ -2,14 +2,13 @@ import {
   UserId,
   DocumentId,
   File,
-  VisualizationInfo
+  VisualizationInfo,
+  Visualization
 } from 'datavis-tech-entities';
 
 import {
   CreateVisualizationRequestModel,
   CreateVisualizationResponseModel,
-  GetVisualizationRequestModel,
-  GetVisualizationResponseModel,
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel
 } from '../interactors';
@@ -25,8 +24,7 @@ export interface VisualizationGateway {
     forkedFrom: DocumentId | undefined
   }): Promise<CreateVisualizationResponseModel>;
 
-  getVisualization(request: GetVisualizationRequestModel):
-    Promise<GetVisualizationResponseModel>;
+  getVisualization({ id }): Promise<Visualization>;
 
   saveVisualization(request: SaveVisualizationRequestModel):
     Promise<SaveVisualizationResponseModel>;

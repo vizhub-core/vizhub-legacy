@@ -1,7 +1,7 @@
 import { GetVisualization } from 'datavis-tech-use-cases';
 
-export const getVisualizationController = (expressApp, visualizationGateway) => {
-  const getVisualization = new GetVisualization({ visualizationGateway });
+export const getVisualizationController = (expressApp, gateways) => {
+  const getVisualization = new GetVisualization(gateways);
   expressApp.get('/api/visualization/get/:id', async (req, res) => {
     try {
       const requestModel = { id: req.params.id };

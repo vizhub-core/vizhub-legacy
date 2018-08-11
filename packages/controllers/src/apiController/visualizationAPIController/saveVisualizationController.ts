@@ -1,8 +1,8 @@
 import { SaveVisualization } from 'datavis-tech-use-cases';
 import { userIdFromReq } from '../userIdFromReq';
 
-export const saveVisualizationController = (expressApp, visualizationGateway) => {
-  const saveVisualization = new SaveVisualization({ visualizationGateway });
+export const saveVisualizationController = (expressApp, gateways) => {
+  const saveVisualization = new SaveVisualization(gateways);
 
   expressApp.post('/api/visualization/save', async (req, res) => {
     try {

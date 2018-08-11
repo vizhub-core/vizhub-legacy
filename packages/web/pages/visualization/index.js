@@ -26,7 +26,8 @@ const {
     initFiles,
     setActiveFile,
     setVisualizationWidth,
-    setVisualizationHeight
+    setVisualizationHeight,
+    setVisualizationOwnerUser
   },
   selectors: {
     getFiles
@@ -39,6 +40,7 @@ export default class extends Page {
     const response = await getJSON(`/api/visualization/get/${query.id}`, req);
     props.error = response.error;
     props.visualization = response.visualization;
+    props.ownerUser = response.ownerUser;
     return props;
   }
 
@@ -59,7 +61,10 @@ export default class extends Page {
       epicMiddleware.run(rootEpic);
     }
 
-    const { visualization } = this.props;
+    const {
+      visualization,
+      ownerUser
+    } = this.props;
     
     const {
       files,
@@ -73,6 +78,7 @@ export default class extends Page {
     this.store.dispatch(setActiveFile('index.html'));
     this.store.dispatch(setVisualizationWidth(width));
     this.store.dispatch(setVisualizationHeight(height));
+    this.store.dispatch(setVisualizationOwnerUser(ownerUser));
     this.store.dispatch(startBuild());
 
     this.store.dispatch(setCsrfToken(props.csrfToken));
