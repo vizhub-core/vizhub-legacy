@@ -6,6 +6,7 @@ import { Visualization } from './visualization';
 import { DatasetInfo } from './datasetInfo';
 import { DatasetContent } from './datasetContent';
 import { Dataset } from './dataset';
+import { timestamp } from './timestamp';
 
 export const userData = {
   authenticated: true,
@@ -50,8 +51,8 @@ export const documentInfoData = {
   title: 'Foo',
   slug: 'foo',
   description: 'Foo the great',
-  createdDate: new Date().toUTCString(),
-  lastUpdatedDate: new Date().toUTCString()
+  createdTimestamp: timestamp(),
+  lastUpdatedTimestamp: timestamp()
 };
 
 export const visualizationInfoData = Object.assign({}, documentInfoData, {

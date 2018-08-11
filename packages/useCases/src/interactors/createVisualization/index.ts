@@ -1,4 +1,4 @@
-import { UserId, DocumentId } from 'datavis-tech-entities';
+import { UserId, DocumentId, timestamp } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../../interactor';
 import { VisualizationGateway } from '../../gatewayInterfaces/visualizationGateway'
@@ -25,11 +25,15 @@ export class CreateVisualization implements Interactor {
     if (!requestModel.owner) {
       throw new Error(i18n('errorNoOwner'))
     }
+
+    const nowTimestamp = timestamp();
     
     return await this.visualizationGateway.createVisualization(
       Object.assign({}, visualizationDefaults, {
         owner: requestModel.owner,
-        id: generateId()
+        id: generateId(),
+        createdTimestamp: nowTimestamp,
+        lastUpdatedTimestamp: nowTimestamp
       })
     )
   }

@@ -15,8 +15,8 @@ export class VisualizationInfo extends DocumentInfo {
       title: data.title,
       slug: data.slug,
       description: data.description,
-      createdDate: data.createdDate,
-      lastUpdatedDate: data.lastUpdatedDate
+      createdTimestamp: data.createdTimestamp,
+      lastUpdatedTimestamp: data.lastUpdatedTimestamp
     });
 
     this.forkedFrom = data.forkedFrom;
