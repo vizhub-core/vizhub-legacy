@@ -11,7 +11,7 @@ import { TitledPage } from '../../components/atoms/titledPage';
 import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
 import { rootReducer } from '../../redux/rootReducer';
-import { rootEpic } from '../../redux/epics';
+import { rootEpicForBrowser, rootEpicForServer } from '../../redux/epics';
 import {
   startBuild,
   setCsrfToken,
@@ -57,9 +57,7 @@ export default class extends Page {
       applyMiddleware(epicMiddleware)
     );
 
-    if (process.browser) {
-      epicMiddleware.run(rootEpic);
-    }
+    epicMiddleware.run(process.browser ? rootEpicForBrowser : rootEpicForServer)
 
     const {
       visualization,
@@ -92,17 +90,15 @@ export default class extends Page {
     }
 
     return (
-      <TitledPage title='Edit Visualization'>
-        <FullPage>
-          <NavBar user={user} csrfToken={csrfToken} />
-          <Provider store={this.store}>
-            <Fragment>
-              <ForkInvitation />
-              <IDEContainer />
-            </Fragment>
-          </Provider>
-        </FullPage>
-      </TitledPage>
+      <Provider store={this.store}>
+        <TitledPage title='Edit Visualization'>
+          <FullPage>
+            <NavBar user={user} csrfToken={csrfToken} />
+            <ForkInvitation />
+            <IDEContainer />
+          </FullPage>
+        </TitledPage>
+      </Provider>
     );
   }
 }

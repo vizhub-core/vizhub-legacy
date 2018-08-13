@@ -13,6 +13,7 @@ const {
 export const runNonJSEpic = action$ =>
   action$.ofType(CHANGE_FILE_TEXT).pipe(
     filter(action => !action.fileName.endsWith('.js')),
+    filter(action => action.fileName !== 'README.md'),
     debounceTime(runDebounceTime),
     mapTo(runFiles())
   );

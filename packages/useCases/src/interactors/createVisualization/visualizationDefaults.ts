@@ -29,7 +29,10 @@ import { message } from './message';
 select('#message').text(message);`},
 
 { name: 'message.js', text:
-`export const message = "D3 and ES6 imports are working !"`}
+`export const message = "D3 and ES6 imports are working !"`},
+
+{ name: 'README.md', text:
+`This is a cool [dataviz](https://twitter.com/search?q=%23dataviz)!`},
 ];
 
 export const visualizationDefaults = {

@@ -14,11 +14,12 @@ const {
     promptForNewFileNameEpic,
     promptForRenameEpic,
     confirmDeleteEpic,
-    updateTitleEpic
+    updateTitleEpic,
+    updateDescriptionEpic,
   }
 } = uiRedux;
 
-export const rootEpic = combineEpics(
+export const rootEpicForBrowser = combineEpics(
   startBuildEpic,
   buildEpic,
   runBuildEpic,
@@ -30,5 +31,11 @@ export const rootEpic = combineEpics(
   confirmDeleteEpic,
   forkEpic,
   forkSuccessEpic,
-  updateTitleEpic
+  updateTitleEpic,
+  updateDescriptionEpic,
+);
+
+export const rootEpicForServer = combineEpics(
+  updateTitleEpic,
+  updateDescriptionEpic
 );
