@@ -12,6 +12,7 @@ const {
     saveError
   },
   selectors: {
+    getFile,
     getFiles,
     getVisualizationTitle
   }
@@ -27,6 +28,9 @@ export const saveEpic = (action$, state$) =>
 
       visualization.content.files = getFiles(state);
       visualization.info.title = getVisualizationTitle(state);
+
+      const readmeFile = getFile(state, 'README.md');
+      visualization.info.description = readmeFile ? readmeFile.text : '';
 
       const url = `/api/visualization/save`;
       const options = {
