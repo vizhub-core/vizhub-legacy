@@ -13,7 +13,7 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
           <div className='level-item nav-brand'>
             VizHub
             <sub>
-              <a href=''>
+              <a href='https://medium.com/@currankelleher/introducing-vizhub-beta-2edc4a0a1908'>
                 beta
               </a>
             </sub>
