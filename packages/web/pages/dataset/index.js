@@ -40,7 +40,14 @@ export default class extends Page {
       return <Error statusCode={error.statusCode} />
     }
 
-    const { title, slug, text, format } = new DatasetViewModel(dataset);
+    const {
+      title,
+      slug,
+      text,
+      format,
+      sourceName,
+      sourceUrl,
+    } = new DatasetViewModel(dataset);
 
     const downloadUrl = datasetDownloadUrl({
       baseUrl,
@@ -58,6 +65,9 @@ export default class extends Page {
             <h1 className='title test-dataset-title'>
               {title}
             </h1>
+            from <a className='test-dataset-source' href={sourceUrl}>
+              { sourceName }
+            </a>
             <a className='test-dataset-download-link' href={downloadUrl}>
               download
             </a>

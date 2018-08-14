@@ -3,6 +3,7 @@ import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 export const createDataset = connection => dataset => {
   const id = dataset.id;
   const slug = dataset.info.slug;
+
   return new Promise(resolve => {
 
     // TODO handle errors here.

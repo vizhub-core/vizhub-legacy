@@ -29,10 +29,20 @@ export class BodyAuthenticated extends Component {
       });
     };
 
+    this.onSourceChange = sourceName => {
+      this.setState({ sourceName });
+    };
+
+    this.onSourceUrlChange= sourceUrl => {
+      this.setState({ sourceUrl });
+    };
+
     this.onUploadClick = () => {
       this.props.onUploadDataset({
         name: this.state.name,
-        file: this.state.chosenFile
+        file: this.state.chosenFile,
+        sourceName: this.state.sourceName,
+        sourceUrl: this.state.sourceUrl,
       });
     };
   }
@@ -48,6 +58,8 @@ export class BodyAuthenticated extends Component {
             name={name}
             onNameChange={this.onNameChange}
             onUploadClick={this.onUploadClick}
+            onSourceChange={this.onSourceChange}
+            onSourceUrlChange={this.onSourceUrlChange}
             userName={userName}
           />
         )

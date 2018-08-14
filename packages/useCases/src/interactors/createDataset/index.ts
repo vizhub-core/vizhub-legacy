@@ -1,4 +1,4 @@
-import { UserId, DocumentId, File } from 'datavis-tech-entities';
+import { UserId, DocumentId, File, timestamp } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../../interactor';
 import { DatasetGateway } from '../../gatewayInterfaces/datasetGateway'
@@ -11,7 +11,9 @@ export interface CreateDatasetRequestModel extends RequestModel {
   title: string,
   slug: string | undefined,
   description: string,
-  file: File
+  file: File,
+  sourceName: string,
+  sourceUrl: string,
 }
 
 export interface CreateDatasetResponseModel extends ResponseModel {
@@ -31,12 +33,14 @@ export class CreateDataset implements Interactor {
       throw new Error(i18n('errorNoOwner'))
     }
 
-    const { owner, title, file } = requestModel;
+    const { owner, title, file, sourceName, sourceUrl } = requestModel;
     const slug = file && removeExtension(file.name);
     const text = file && file.text;
     const id = generateId();
 
     // TODO validate slug uniqueness within this owner
+
+    const nowTimestamp = timestamp();
     
     return await this.datasetGateway.createDataset(
       Object.assign({}, datasetDefaults, {
@@ -44,7 +48,11 @@ export class CreateDataset implements Interactor {
         id,
         title,
         slug,
-        text
+        text,
+        sourceName,
+        sourceUrl,
+        createdTimestamp: nowTimestamp,
+        lastUpdatedTimestamp: nowTimestamp
       })
     )
   }

@@ -13,7 +13,7 @@ export default class extends Page {
 
     this.uploadDataset = async (dataset) => {
       const { csrfToken, user } = this.props;
-      const { name, file } = dataset;
+      const { name, file, sourceName, sourceUrl } = dataset;
 
       // TODO rename name to title elsewhere.
       const title = name;
@@ -28,13 +28,13 @@ export default class extends Page {
         },
         body: JSON.stringify({
           title,
-          file
+          file,
+          sourceName,
+          sourceUrl
         })
       };
 
-      const response = await (await fetch(url, options)).json();
-      console.log(response);
-      const { error, slug } = response;
+      const { error, slug } = await (await fetch(url, options)).json();
 
       if (error) {
         return setState({ error });
@@ -44,10 +44,6 @@ export default class extends Page {
         userName: user.userName,
         slug
       }));
-
-      // return response.error
-      //   ? saveError(response.error)
-      //   : saveSuccess();
     };
   }
 

@@ -7,8 +7,9 @@ export const createDatasetController = (expressApp, datasetGateway) => {
   expressApp.post('/api/dataset/create', async (req, res) => {
     try {
       const owner = userIdFromReq(req);
-      const { title, file } = req.body;
-      const requestModel = { owner, title, file };
+      const { title, file, sourceName, sourceUrl } = req.body;
+
+      const requestModel = { owner, title, file, sourceName, sourceUrl };
       const responseModel = await createDataset.execute(requestModel);
       res.json(responseModel);
     } catch (error) {

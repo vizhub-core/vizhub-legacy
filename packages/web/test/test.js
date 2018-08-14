@@ -119,6 +119,11 @@ describe('Web', () => {
       await fileInput.uploadFile('test/flaring.csv');
       // const nameInput = await page.waitFor('.test-dataset-upload-name-input');
       // await nameInput.type('Natural Gas Flaring');
+      await page.waitFor('.test-dataset-upload-source-input');
+      
+      await page.type('.test-dataset-upload-source-input', 'Flaring Central');
+      await page.type('.test-dataset-upload-source-url-input', 'https://flaring.central/')
+
       const submitButton = await page.waitFor('.test-dataset-upload-submit');
       await submitButton.click();
       await page.waitForNavigation();
@@ -136,7 +141,23 @@ describe('Web', () => {
         document.querySelector('.test-dataset-title').textContent)
       );
       assert.equal(text, 'Flaring');
+    });
 
+    it('should display dataset source', async () => {
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-dataset-source').textContent)
+      );
+      assert.equal(text, 'Flaring Central');
+    });
+
+    it('should link to dataset source', async () => {
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-dataset-source').href)
+      );
+      assert.equal(text, 'https://flaring.central/');
+    });
+
+    it('should download dataset', async () => {
       const downloadLink = await page.waitFor('.test-dataset-download-link');
       const downloadLinkHref = await page.evaluate(() => (
         document.querySelector('.test-dataset-download-link')
