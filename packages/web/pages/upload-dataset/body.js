@@ -58,6 +58,8 @@ export class BodyAuthenticated extends Component {
             name={name}
             onNameChange={this.onNameChange}
             onUploadClick={this.onUploadClick}
+            onSourceChange={this.onSourceChange}
+            onSourceUrlChange={this.onSourceUrlChange}
             userName={userName}
           />
         )

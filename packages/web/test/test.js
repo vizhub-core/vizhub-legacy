@@ -119,6 +119,7 @@ describe('Web', () => {
       await fileInput.uploadFile('test/flaring.csv');
       // const nameInput = await page.waitFor('.test-dataset-upload-name-input');
       // await nameInput.type('Natural Gas Flaring');
+      await page.waitFor('.test-dataset-upload-source-input');
       
       await page.type('.test-dataset-upload-source-input', 'Flaring Central');
       await page.type('.test-dataset-upload-source-url-input', 'https://flaring.central/')
@@ -146,14 +147,14 @@ describe('Web', () => {
       const text = await page.evaluate(() => (
         document.querySelector('.test-dataset-source').textContent)
       );
-      assert.equal(text, 'FlaringCentral');
+      assert.equal(text, 'Flaring Central');
     });
 
     it('should link to dataset source', async () => {
       const text = await page.evaluate(() => (
         document.querySelector('.test-dataset-source').href)
       );
-      assert.equal(text, 'https://flaring/central');
+      assert.equal(text, 'https://flaring.central/');
     });
 
     it('should download dataset', async () => {

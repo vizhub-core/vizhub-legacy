@@ -1,4 +1,4 @@
-import { UserId, DocumentId, File } from 'datavis-tech-entities';
+import { UserId, DocumentId, File, timestamp } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../../interactor';
 import { DatasetGateway } from '../../gatewayInterfaces/datasetGateway'
@@ -39,6 +39,8 @@ export class CreateDataset implements Interactor {
     const id = generateId();
 
     // TODO validate slug uniqueness within this owner
+
+    const nowTimestamp = timestamp();
     
     return await this.datasetGateway.createDataset(
       Object.assign({}, datasetDefaults, {
@@ -48,7 +50,9 @@ export class CreateDataset implements Interactor {
         slug,
         text,
         sourceName,
-        sourceUrl
+        sourceUrl,
+        createdTimestamp: nowTimestamp,
+        lastUpdatedTimestamp: nowTimestamp
       })
     )
   }
