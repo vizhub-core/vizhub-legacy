@@ -11,11 +11,11 @@
     "updateDeps": "npm install -g npm-check-updates; ncu -a; cd packages/entities && ncu -a && cd ../useCases && ncu -a cd ../gateways && ncu -a && cd ../presenters && ncu -a && cd ../controllers && ncu -a && cd ../database && ncu -a && cd ../web && ncu -a && cd ../ui && ncu -a && echo 'All dependencies upgraded!'"
   },
   "devDependencies": {
-    "eslint": "^5.2.0",
-    "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-react": "^7.10.0",
-    "lerna": "^3.0.0-rc.0"
+    "eslint-plugin-react": "^7.11.0",
+    "lerna": "^3.0.4"
   }
 }

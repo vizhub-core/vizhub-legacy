@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserMenu } from '../molecules/userMenu';
 import { SlightMargin } from '../atoms/slightMargin';
+import { FaGithub } from 'react-icons/fa';
 
 export const NavBar = ({user, csrfToken, dropUp}) => (
   <React.Fragment>
@@ -37,6 +38,11 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
         </div>
 
         <div className='level-right'>
+          <div className='level-item'>
+            <a href='https://github.com/datavis-tech/vizhub-ui/'>
+              <FaGithub />
+            </a>
+          </div>
           <div className='level-item'>
             <UserMenu user={user} csrfToken={csrfToken} dropUp={dropUp} />
           </div>
