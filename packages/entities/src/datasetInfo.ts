@@ -8,6 +8,12 @@ export class DatasetInfo extends DocumentInfo {
   // The format of this dataset.
   format: Format;
 
+  // The name of the source of this dataset.
+  sourceName: string;
+
+  // The URL of the page from which this dataset was downloaded.
+  sourceUrl: string
+
   constructor(data) {
 
     super({
@@ -22,5 +28,7 @@ export class DatasetInfo extends DocumentInfo {
     });
 
     this.format = data.format;
+    this.sourceName = data.sourceName;
+    this.sourceUrl = data.sourceUrl;
   }
 }

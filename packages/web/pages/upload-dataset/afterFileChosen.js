@@ -12,6 +12,7 @@ export const AfterFileChosen = props => {
     onSourceChange,
     onSourceUrlChange
   } = props;
+
   return (
     <Fragment>
       <div className='field has-text-left'>

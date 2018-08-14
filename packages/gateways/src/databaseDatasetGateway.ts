@@ -25,7 +25,9 @@ export class DatabaseDatasetGateway implements DatasetGateway {
       slug,
       description,
       text,
-      format
+      format,
+      sourceName,
+      sourceUrl
     } = options;
 
     const dataset = new Dataset({
@@ -35,7 +37,9 @@ export class DatabaseDatasetGateway implements DatasetGateway {
         title,
         slug,
         description,
-        format
+        format,
+        sourceName,
+        sourceUrl
       }),
       datasetContent: new DatasetContent({
         id,

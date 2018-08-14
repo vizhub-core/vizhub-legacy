@@ -65,7 +65,9 @@ export const visualization = new Visualization({ visualizationInfo, visualizatio
 
 export const datasetInfoData = Object.assign({}, documentInfoData, {
   id: datasetId,
-  format: 'csv'
+  format: 'csv',
+  sourceName: 'Flaring Central',
+  sourceUrl: 'https://flaring.central/'
 });
 
 export const datasetContentData = {

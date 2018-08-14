@@ -11,7 +11,9 @@ export interface CreateDatasetRequestModel extends RequestModel {
   title: string,
   slug: string | undefined,
   description: string,
-  file: File
+  file: File,
+  sourceName: string,
+  sourceUrl: string,
 }
 
 export interface CreateDatasetResponseModel extends ResponseModel {
@@ -31,7 +33,7 @@ export class CreateDataset implements Interactor {
       throw new Error(i18n('errorNoOwner'))
     }
 
-    const { owner, title, file } = requestModel;
+    const { owner, title, file, sourceName, sourceUrl } = requestModel;
     const slug = file && removeExtension(file.name);
     const text = file && file.text;
     const id = generateId();
@@ -44,7 +46,9 @@ export class CreateDataset implements Interactor {
         id,
         title,
         slug,
-        text
+        text,
+        sourceName,
+        sourceUrl
       })
     )
   }
