@@ -27,22 +27,24 @@ export default class extends Page {
       return <Error statusCode={error.statusCode} />
     }
     return (
-      <TitledPage title='Account'>
+      <TitledPage title='Profile'>
         <NavBar user={user} csrfToken={csrfToken} />
         <SlightMargin>
           <div className='title test-profile-full-name'>
             {fullName}
           </div>
           {
-            profileData.visualizationInfos.map(({ id, title }) => (
-              <div key={id} >
-                <Link href={visualizationRoute({ userName, id })}>
-                  <a className='test-profile-visualization-info-title'>
-                    {title}
-                  </a>
-                </Link>
-              </div>
-            ))
+            (profileData && profileData.visualizationInfos)
+            ? profileData.visualizationInfos.map(({ id, title }) => (
+                <div key={id} >
+                  <Link href={visualizationRoute({ userName, id })}>
+                    <a className='test-profile-visualization-info-title'>
+                      {title}
+                    </a>
+                  </Link>
+                </div>
+              ))
+            : null
           }
         </SlightMargin>
       </TitledPage>
