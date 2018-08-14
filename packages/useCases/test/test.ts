@@ -172,7 +172,9 @@ describe('Use Cases', () => {
         file: {
           name: 'foo',
           text: 'foo'
-        }
+        },
+        sourceName: 'Flaring Central',
+        sourceUrl: 'https://flaring.central',
       };
       createDataset.execute(requestModel).catch(error => {
         assert.equal(error.message, i18n('errorNoOwner'))
