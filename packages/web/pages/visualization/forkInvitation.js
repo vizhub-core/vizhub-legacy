@@ -8,7 +8,7 @@ const {
   }
 } = uiRedux;
 
-export const ForkInvitationPresentation = ({show, onFork}) => {
+export const ForkInvitationPresentation = ({show, onFork, user}) => {
   if (!show) {
     return null;
   }
@@ -16,14 +16,25 @@ export const ForkInvitationPresentation = ({show, onFork}) => {
     event.preventDefault();
     onFork();
   };
+  console.log(user.authenticated);
   return (
     <section className='hero is-dark is-bold'>
       <div className='hero-body'>
         <div className='container'>
           <h1 className='title'>
-            <a href='#fork' onClick={onForkLinkClick}>
-              Fork this visualization
-            </a>
+            { 
+              user.authenticated
+                ? (
+                  <a href='#fork' onClick={onForkLinkClick}>
+                    Fork this visualization
+                  </a>
+                )
+                : (
+                  <a href='/auth'>
+                    Sign up / Sign in
+                  </a>
+                )
+            }
           </h1>
           <h2 className='subtitle'>
             if you want to save your changes.

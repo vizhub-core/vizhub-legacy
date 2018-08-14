@@ -94,7 +94,7 @@ export default class extends Page {
         <TitledPage title='Edit Visualization'>
           <FullPage>
             <NavBar user={user} csrfToken={csrfToken} />
-            <ForkInvitation />
+            <ForkInvitation user={user}/>
             <IDEContainer />
           </FullPage>
         </TitledPage>
