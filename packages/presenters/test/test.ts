@@ -1,46 +1,34 @@
 import * as assert from 'assert';
+import { testData } from 'datavis-tech-entities';
 import { VisualizationViewModel, DatasetViewModel } from '../src';
 import { bundle } from '../src';
+
+const {
+  visualization,
+  dataset
+} = testData;
 
 describe('Presenters', () => {
   describe('VisualizationViewModel', () => {
     it('should present a Visualization', () => {
-      const visualization = {
-        info: {
-          title: 'Foo'
-        },
-        content: {
-          files: [
-            { name: 'index.html', text: 'html text' }
-          ]
-        }
-      };
       assert.deepEqual(new VisualizationViewModel(visualization), {
         files: visualization.content.files,
+        title: "Foo",
         width: 960,
-        height: 500,
-        title: 'Foo'
+        height: 500
       });
     });
   });
 
   describe('DatasetViewModel', () => {
     it('should present a Dataset', () => {
-      const dataset = {
-        info: {
-          title: 'Foo',
-          slug: 'foo',
-          format: 'csv'
-        },
-        content: {
-          text: 'coolness'
-        }
-      };
       assert.deepEqual(new DatasetViewModel(dataset), {
-        title: 'Foo',
-        slug: 'foo',
-        text: 'coolness',
-        format: 'csv'
+        title: "Foo",
+        slug: "foo",
+        format: "csv",
+        sourceName: "Flaring Central",
+        sourceUrl: "https://flaring.central/",
+        text: "a,b,c\n1,2,3\n4,5,6"
       });
     });
   });
