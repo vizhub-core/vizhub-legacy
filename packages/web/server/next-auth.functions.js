@@ -41,6 +41,12 @@ module.exports = async (userController) => ({
   update: updateUser,
   remove: removeUser,
   serialize: serializeUser,
-  deserialize: async (id) => await userController.getUser({ id }),
+  deserialize: async (id) => {
+    const user = await userController.getUser({ id });
+    if (user) {
+      user.authenticated = true;
+    }
+    return user;
+  },
   signIn: () => Promise.resolve(ciUser)
 });
