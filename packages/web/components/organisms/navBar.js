@@ -1,11 +1,9 @@
 import React from 'react';
 import { UserMenu } from '../molecules/userMenu';
 import { SlightMargin } from '../atoms/slightMargin';
-import { AlphaWarning } from '../atoms/alphaWarning';
 
 export const NavBar = ({user, csrfToken, dropUp}) => (
   <React.Fragment>
-    <AlphaWarning />
     <SlightMargin>
 
       <nav className='level'>
@@ -13,6 +11,11 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
         <div className='level-left'>
           <div className='level-item nav-brand'>
             VizHub
+            <sub>
+              <a href=''>
+                beta
+              </a>
+            </sub>
           </div>
         </div>
 
