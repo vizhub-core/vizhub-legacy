@@ -26,9 +26,8 @@ export default class extends Page {
                   using D3.js and SVG.
                 </h2>
                 <a
-                  target="_blank"
                   className='button'
-                  href='https://github.com/datavis-tech/vizhub-ui/issues/34'
+                  href='https://vizhub.com/curran/86a75dc8bdbe4965ba353a79d4bd44c8'
                 >
                   Get Started
                 </a>
