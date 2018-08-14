@@ -6,6 +6,7 @@ const { ANALYZE } = process.env;
 
 module.exports = withSass(withCSS({
   webpack: config => {
+    config.resolve.extensions = [ '.mjs', '.js', '.jsx', '.json' ];
 
     // Enable use of both .sass and .css.
     // Should be a temporary workaround.
