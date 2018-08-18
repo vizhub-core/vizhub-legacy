@@ -58,6 +58,14 @@ Clean Architecture Resources:
 
 # Development
 
+Check out this [intro to VizHub Development video](https://www.youtube.com/watch?v=P-tilB8pMoI&feature=youtu.be)
+
+This project uses Git submodules, so first run this:
+
+```
+git submodule update --init
+```
+
 At the top level, [Lerna](https://lernajs.io) is used for organizing packages.
 
 ```
@@ -68,6 +76,9 @@ lerna bootstrap
 The `lerna bootstrap` command links dependencies between local packages.
 
 Run `npm test` to test all packages except `web`.
+Run `npm run testAll` to test all packages including `web`.
+
+The command `lerna bootstrap && npm run testAll` can be used to do a full check on the current code.
 
 
 # Web
