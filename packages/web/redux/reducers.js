@@ -6,7 +6,7 @@ const { actionTypes: { SAVE_ERROR } } = uiRedux;
 export const csrfToken = (state = null, action) => {
   switch (action.type) {
     case SET_CSRF_TOKEN:
-      return action.csrfToken;
+      return action.csrfToken || null;
     default:
       return state;
   }
