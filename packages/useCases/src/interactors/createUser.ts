@@ -21,9 +21,9 @@ export class CreateUser implements Interactor {
     const {
       oAuthProfile: {
         id,
-        displayName,
         username,
         _json: {
+          name,
           avatar_url,
           company,
           blog,
@@ -37,7 +37,7 @@ export class CreateUser implements Interactor {
     const user = new User({
       id,
       userName: username,
-      fullName: displayName,
+      fullName: name,
       email,
       avatarUrl: avatar_url,
       company,
