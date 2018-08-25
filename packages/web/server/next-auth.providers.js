@@ -19,7 +19,7 @@ module.exports = () => {
       // Normalize profile into one with {id, name, email} keys
       return {
         id: profile.id,
-        name: profile.displayName,
+        name: profile._json.name,
         email: profile._json.email
       };
     }
