@@ -249,6 +249,7 @@ describe('Use Cases', () => {
         },
         owner: '456'
       };
+
       const responseModel = await forkVisualization.execute(requestModel);
       assert.deepEqual(responseModel, {
         id: "1234",

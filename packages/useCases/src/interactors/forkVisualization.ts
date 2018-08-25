@@ -32,23 +32,21 @@ export class ForkVisualization implements Interactor {
 
     const nowTimestamp = timestamp();
 
-    const { id } = await this.visualizationGateway.createVisualization({
-      owner,
-      id: generateId(),
-      title: visualization.info.title,
-      slug: undefined,
-      description: visualization.info.description,
-      files: visualization.content.files,
-      forkedFrom: visualization.id,
-      createdTimestamp: nowTimestamp,
-      lastUpdatedTimestamp: nowTimestamp
-    })
+    const [{ id }, { userName }] = await Promise.all([
+      this.visualizationGateway.createVisualization({
+        owner,
+        id: generateId(),
+        title: visualization.info.title,
+        slug: undefined,
+        description: visualization.info.description,
+        files: visualization.content.files,
+        forkedFrom: visualization.id,
+        createdTimestamp: nowTimestamp,
+        lastUpdatedTimestamp: nowTimestamp
+      }),
+      this.userGateway.getUser(owner)
+    ]);
 
-    const { userName } = await this.userGateway.getUser(owner);
-
-    return {
-      id,
-      userName
-    };
+    return { id, userName };
   }
 }
