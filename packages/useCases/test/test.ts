@@ -202,6 +202,7 @@ describe('Use Cases', () => {
   describe('Fork Visualization', () => {
     let invocations = 0;
     let arg;
+    const userGateway = { getUser: async (id) => fakeUser };
     const visualizationGateway = {
       createVisualization: async (argument) => {
         arg = argument;
@@ -209,7 +210,10 @@ describe('Use Cases', () => {
         return { id: '1234' };
       }
     };
-    const forkVisualization = new ForkVisualization({ visualizationGateway });
+    const forkVisualization = new ForkVisualization({
+      visualizationGateway,
+      userGateway
+    });
     it('should error if no owner specified.', done => {
       const requestModel: ForkVisualizationRequestModel = {
         visualization: {
@@ -245,7 +249,12 @@ describe('Use Cases', () => {
         },
         owner: '456'
       };
-      await forkVisualization.execute(requestModel);
+      const responseModel = await forkVisualization.execute(requestModel);
+      assert.deepEqual(responseModel, {
+        id: "1234",
+        userName: "joe"
+      });
+
       assert.equal(invocations, 1);
 
       assert(timestamp() - arg.createdTimestamp < 1);

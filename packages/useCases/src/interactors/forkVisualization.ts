@@ -1,7 +1,8 @@
 import { Visualization, UserId, DocumentId, timestamp } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../interactor';
-import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway'
+import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway';
+import { UserGateway } from '../gatewayInterfaces/userGateway';
 import { generateId } from '../utils/generateId';
 
 export interface ForkVisualizationRequestModel extends RequestModel {
@@ -15,9 +16,11 @@ export interface ForkVisualizationResponseModel extends ResponseModel {
 
 export class ForkVisualization implements Interactor {
   visualizationGateway: VisualizationGateway;
+  userGateway: UserGateway;
 
-  constructor({ visualizationGateway }) {
+  constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
+    this.userGateway = userGateway;
   }
 
   async execute(requestModel: ForkVisualizationRequestModel) {
@@ -41,6 +44,11 @@ export class ForkVisualization implements Interactor {
       lastUpdatedTimestamp: nowTimestamp
     })
 
-    return { id, userName: owner };
+    const { userName } = await this.userGateway.getUser(owner);
+
+    return {
+      id,
+      userName
+    };
   }
 }

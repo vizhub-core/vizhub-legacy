@@ -16,7 +16,7 @@ export const ForkInvitationPresentation = ({show, onFork, user}) => {
     event.preventDefault();
     onFork();
   };
-  console.log(user.authenticated);
+
   return (
     <section className='hero is-dark is-bold'>
       <div className='hero-body'>
