@@ -10,6 +10,6 @@ export const zipVisualization = (visualization: Visualization) => {
   });
 
   const zipFileBuffer = zip.toBuffer();
-  const zipFileName = visualization.title + '.zip';
+  const zipFileName = visualization.info.title + '.zip';
   return { zipFileBuffer, zipFileName };
 }

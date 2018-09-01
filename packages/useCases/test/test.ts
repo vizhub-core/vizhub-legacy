@@ -369,7 +369,7 @@ describe('Use Cases', () => {
         done();
       });
     });
-    it('should return stored object if success.', async () => {
+    it('should return zipped stored object if success.', async () => {
       const requestModel: ExportVisualizationRequestModel = {
         id: visualizationId
       };
