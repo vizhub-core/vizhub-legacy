@@ -12,6 +12,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
+    "adm-zip": "^0.4.11",
     "datavis-tech-entities": "1",
     "datavis-tech-i18n": "1",
     "uuid": "^3.3.2"

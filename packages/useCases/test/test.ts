@@ -11,6 +11,10 @@ import {
   GetVisualizationRequestModel,
   GetVisualizationResponseModel,
 
+  ExportVisualization,
+  ExportVisualizationRequestModel,
+  ExportVisualizationResponseModel,
+
   SaveVisualization,
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel,
@@ -351,6 +355,31 @@ describe('Use Cases', () => {
         user: ciUser,
         visualizationInfos: fakeVisualizationInfos
       });
+    });
+  });
+
+  describe('Export Visualization', () => {
+    const exportVisualization = new ExportVisualization({
+      visualizationGateway
+    });
+    it('should error if no id specified.', done => {
+      const requestModel: ExportVisualizationRequestModel = { id: null };
+      exportVisualization.execute(requestModel).catch(error => {
+        assert.equal(error.message, i18n('errorNoId'))
+        done();
+      });
+    });
+    it('should return zipped stored object if success.', async () => {
+      const requestModel: ExportVisualizationRequestModel = {
+        id: visualizationId
+      };
+      const {
+        zipFileBuffer,
+        zipFileName
+      } = await exportVisualization.execute(requestModel);
+      
+      assert.equal(zipFileName, 'Untitled.zip');
+      //assert.equal(zipFileBuffer.toString('base64').length, 1540);
     });
   });
 });

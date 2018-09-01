@@ -25,6 +25,7 @@ const {
   actionCreators: {
     initFiles,
     setActiveFile,
+    setVisualizationId,
     setVisualizationWidth,
     setVisualizationHeight,
     setVisualizationOwnerUser
@@ -65,6 +66,7 @@ export default class extends Page {
     } = this.props;
     
     const {
+      id,
       files,
       width,
       height
@@ -74,6 +76,7 @@ export default class extends Page {
 
     this.store.dispatch(initFiles(files));
     this.store.dispatch(setActiveFile('index.html'));
+    this.store.dispatch(setVisualizationId(id));
     this.store.dispatch(setVisualizationWidth(width));
     this.store.dispatch(setVisualizationHeight(height));
     this.store.dispatch(setVisualizationOwnerUser(ownerUser));

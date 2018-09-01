@@ -11,6 +11,12 @@ export {
 } from './getVisualization';
 
 export {
+  ExportVisualization,
+  ExportVisualizationRequestModel,
+  ExportVisualizationResponseModel
+} from './exportVisualization';
+
+export {
   SaveVisualization,
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel
