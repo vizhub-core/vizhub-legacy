@@ -1,4 +1,4 @@
-import { Visualization, DocumentId } from 'datavis-tech-entities';
+import { Visualization, User, DocumentId } from 'datavis-tech-entities';
 import { i18n } from 'datavis-tech-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../interactor';
 import { GetUser } from './getUser';
@@ -10,7 +10,8 @@ export interface GetVisualizationRequestModel extends RequestModel {
 }
 
 export interface GetVisualizationResponseModel extends ResponseModel {
-  visualization: Visualization
+  visualization: Visualization,
+  user: User
 }
 
 export class GetVisualization implements Interactor {
