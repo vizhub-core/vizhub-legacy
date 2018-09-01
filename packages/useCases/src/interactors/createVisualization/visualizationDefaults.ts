@@ -24,7 +24,7 @@ const files = [
 }`},
 
 { name: 'index.js', text:
-`import { select } from 'd3-selection';
+`import { select } from 'd3';
 import { message } from './message';
 select('#message').text(message);`},
 
