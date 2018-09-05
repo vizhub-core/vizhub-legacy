@@ -355,7 +355,8 @@ describe('Use Cases', () => {
       const responseModel = await getUserProfileData.execute(requestModel);
       assert.deepEqual(responseModel, {
         user: fakeUser,
-        visualizationInfos: fakeVisualizationInfos
+        visualizationInfos: fakeVisualizationInfos,
+        datasetInfos: fakeDatasetInfos
       });
     });
 
