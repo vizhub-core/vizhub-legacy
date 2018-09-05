@@ -1,4 +1,6 @@
 import { createServer } from 'http';
+import express from 'express';
+import bodyParser from 'body-parser';
 import next from 'next';
 import nextAuth from 'next-auth';
 import favicon from 'serve-favicon';
@@ -38,13 +40,21 @@ const nextApp = next({
 
 const gateways = serverGateways();
 
+const expressApp = express();
+
+expressApp.use(bodyParser.json({
+  limit: '5mb'
+}));
+expressApp.use(bodyParser.urlencoded({
+  extended: true,
+}));
+
 // Add next-auth to next app
 nextApp
   .prepare()
-  .then(nextAuthConfig(userController(gateways.userGateway)))
+  .then(nextAuthConfig(userController(gateways.userGateway), expressApp))
   .then(nextAuthOptions => nextAuth(nextApp, nextAuthOptions))
   .then(nextAuthOptions => {
-    const expressApp = nextAuthOptions.expressApp;
 
     expressApp.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 
