@@ -15,6 +15,8 @@ export default class extends Page {
     const url = `/api/user/getProfileData/${query.userName}`;
     const response = await getJSON(url, req);
 
+    console.log({response});
+
     props.error = response.error;
     props.profileData = response;
     return props;
