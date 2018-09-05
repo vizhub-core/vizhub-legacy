@@ -35,7 +35,7 @@ if (process.env.MONGO_URI) {
   });
 }  
 
-module.exports = userController => () => {
+module.exports = (userController, expressApp) => () => {
   // We connect to the User DB before we define our functions. 
   // next-auth.functions.js returns an async method that does that and returns 
   // an object with the functions needed for authentication.
@@ -72,6 +72,13 @@ module.exports = userController => () => {
       sessionStore: sessionStore,
       // Define oAuth Providers
       providers: nextAuthProviders(),
+      // Disable body parser so we can customize how it's invoked.
+      bodyParser: false,
+      expressApp,
+
+      // Disable CSRF as this has lead to mysterious errors for legit users.
+      csrf: false,
+
       // Define functions for manging users and sending email.
       functions: functions
     }));
