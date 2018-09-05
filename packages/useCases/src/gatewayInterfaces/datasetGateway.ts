@@ -1,4 +1,4 @@
-import { UserId, DocumentId, File } from 'datavis-tech-entities';
+import { UserId, DocumentId, File, DatasetInfo } from 'datavis-tech-entities';
 
 import {
   CreateDatasetRequestModel,
@@ -17,6 +17,8 @@ export interface DatasetGateway {
     owner: UserId,
     slug: string
   }): Promise<GetDatasetResponseModel>;
+
+  getDatasetInfosByUserId(id: UserId): Promise<[DatasetInfo]>;
 
   //saveDataset(request: SaveDatasetRequestModel):
   //  Promise<SaveDatasetResponseModel>;

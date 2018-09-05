@@ -334,12 +334,19 @@ describe('Use Cases', () => {
       { owner: fakeUser.id, title: 'Foo', description: 'Foo is cool' },
       { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' }
     ];
+    const fakeDatasetInfos = [
+      { owner: fakeUser.id, title: 'Foo', description: 'Foo is cool' },
+      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' }
+    ];
     const getUserProfileData = new GetUserProfileData({
       userGateway: {
         getUserByUserName: async (userName) => fakeUser
       },
       visualizationGateway: {
         getVisualizationInfosByUserId: async (userId) => fakeVisualizationInfos
+      },
+      datasetGateway: {
+        getDatasetInfosByUserId: async (userId) => fakeDatasetInfos
       }
     });
 
@@ -348,7 +355,8 @@ describe('Use Cases', () => {
       const responseModel = await getUserProfileData.execute(requestModel);
       assert.deepEqual(responseModel, {
         user: fakeUser,
-        visualizationInfos: fakeVisualizationInfos
+        visualizationInfos: fakeVisualizationInfos,
+        datasetInfos: fakeDatasetInfos
       });
     });
 
@@ -357,7 +365,8 @@ describe('Use Cases', () => {
       const responseModel = await getUserProfileData.execute(requestModel);
       assert.deepEqual(responseModel, {
         user: ciUser,
-        visualizationInfos: fakeVisualizationInfos
+        visualizationInfos: fakeVisualizationInfos,
+        datasetInfos: fakeDatasetInfos
       });
     });
   });
