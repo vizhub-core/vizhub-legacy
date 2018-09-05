@@ -3,12 +3,12 @@ import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
-// TODO use user id not userName
-export const getDataset = connection => async ({ userName, slug }) => {
+export const getDataset = connection => async ({ owner, slug }) => {
 
   const mongoQuery = {
     documentType: DATASET_TYPE,
-    slug
+    slug,
+    owner
   };
   const results = await fetchShareDBQuery(DOCUMENT_INFO, mongoQuery, connection);
   const info = results[0];

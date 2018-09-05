@@ -1,7 +1,7 @@
 import { GetDataset } from 'datavis-tech-use-cases';
 
-export const getDatasetController = (expressApp, datasetGateway) => {
-  const getDataset = new GetDataset({ datasetGateway });
+export const getDatasetController = (expressApp, gateways) => {
+  const getDataset = new GetDataset(gateways);
   expressApp.get('/api/dataset/get/:userName/:slug', async (req, res) => {
     try {
       const { userName, slug } = req.params;
@@ -20,7 +20,8 @@ export const getDatasetController = (expressApp, datasetGateway) => {
 
   expressApp.get('/:userName/datasets/:slug.:format', async (req, res) => {
     try {
-      const requestModel = { slug: req.params.slug };
+      const { userName, slug } = req.params;
+      const requestModel = { userName, slug };
       const responseModel = await getDataset.execute(requestModel);
       res.setHeader('Content-Type', 'text/csv');
       res.send(responseModel.dataset.content.text);
