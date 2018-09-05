@@ -35,6 +35,7 @@ export default class extends Page {
           <div className='title test-profile-full-name'>
             {fullName}
           </div>
+          <div className='subtitle'>Visualizations</div>
           {
             (profileData && profileData.visualizationInfos)
             ? profileData.visualizationInfos.map(({ id, title }) => (
@@ -46,6 +47,11 @@ export default class extends Page {
                   </Link>
                 </div>
               ))
+            : null
+          }
+          {
+            (profileData && profileData.datasetInfos)
+            ? <div className='subtitle' style={{marginTop: '50px'}}>Datasets</div>
             : null
           }
           {
