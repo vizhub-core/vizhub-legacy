@@ -11,6 +11,12 @@ import { getJSON } from '../../utils/getJSON';
 import { baseUrl } from '../../utils/baseUrl';
 import { datasetDownloadUrl } from '../../routes/routeGenerators';
 
+const datasetLoadSnippet = url =>
+  `d3.csv('${url}')
+  .then(data => {
+    console.log(data);
+  });`;
+
 export default class extends Page {
   static async getInitialProps({ req, query }) {
     const props = await super.getInitialProps({ req });
@@ -65,12 +71,22 @@ export default class extends Page {
             <h1 className='title test-dataset-title'>
               {title}
             </h1>
-            from <a className='test-dataset-source' href={sourceUrl}>
-              { sourceName }
-            </a>
-            <a className='test-dataset-download-link' href={downloadUrl}>
-              download
-            </a>
+            <p>
+              from <a className='test-dataset-source' href={sourceUrl}>
+                { sourceName }
+              </a>
+            </p>
+            <p>
+              <a className='button test-dataset-download-link' href={downloadUrl}>
+                download
+              </a>
+            </p>
+            <p>
+              Code snippet for loading this dataset using D3:
+              <pre>
+                { datasetLoadSnippet(downloadUrl) }
+              </pre>
+            </p>
           </SlightMargin>
         </TextContainer>
       </TitledPage>

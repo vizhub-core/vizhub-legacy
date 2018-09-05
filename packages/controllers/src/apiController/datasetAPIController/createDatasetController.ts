@@ -1,8 +1,8 @@
 import { CreateDataset } from 'datavis-tech-use-cases';
 import { userIdFromReq } from '../userIdFromReq';
 
-export const createDatasetController = (expressApp, datasetGateway) => {
-  const createDataset = new CreateDataset({ datasetGateway });
+export const createDatasetController = (expressApp, gateways) => {
+  const createDataset = new CreateDataset(gateways);
 
   expressApp.post('/api/dataset/create', async (req, res) => {
     try {
