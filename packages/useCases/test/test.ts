@@ -189,7 +189,11 @@ describe('Use Cases', () => {
   });
 
   describe('Get Dataset', () => {
-    const getDataset = new GetDataset({ datasetGateway });
+    const userGateway = { getUser: async (id) => fakeUser };
+    const getDataset = new GetDataset({
+      datasetGateway,
+      userGateway
+    });
     it('should error if no slug specified.', done => {
       const requestModel: GetDatasetRequestModel = {
         userName: 'thomas',
