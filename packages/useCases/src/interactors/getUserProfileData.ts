@@ -21,6 +21,7 @@ export class GetUserProfileData implements Interactor {
   constructor({ userGateway, visualizationGateway, datasetGateway }) {
     this.userGateway = userGateway;
     this.visualizationGateway = visualizationGateway;
+    console.log({datasetGateway});
     this.datasetGateway = datasetGateway;
   }
 
