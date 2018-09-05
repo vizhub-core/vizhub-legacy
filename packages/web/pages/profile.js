@@ -56,9 +56,9 @@ export default class extends Page {
           }
           {
             (profileData && profileData.datasetInfos)
-            ? profileData.datasetInfos.map(({ id, title }) => (
+            ? profileData.datasetInfos.map(({ id, slug, title }) => (
                 <div key={id} >
-                  <Link href={datasetRoute({ userName, id })}>
+                  <Link href={datasetRoute({ userName, slug })}>
                     <a className='test-profile-dataset-info-title'>
                       {title}
                     </a>
