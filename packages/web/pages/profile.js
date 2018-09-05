@@ -6,7 +6,7 @@ import { TitledPage } from '../components/atoms/titledPage';
 import { SlightMargin } from '../components/atoms/slightMargin';
 import { NavBar } from '../components/organisms/navBar';
 import { getJSON } from '../utils/getJSON';
-import { visualizationRoute } from '../routes/routeGenerators';
+import { visualizationRoute, datasetRoute } from '../routes/routeGenerators';
 
 export default class extends Page {
 
@@ -39,6 +39,19 @@ export default class extends Page {
                 <div key={id} >
                   <Link href={visualizationRoute({ userName, id })}>
                     <a className='test-profile-visualization-info-title'>
+                      {title}
+                    </a>
+                  </Link>
+                </div>
+              ))
+            : null
+          }
+          {
+            (profileData && profileData.datasetInfos)
+            ? profileData.datasetInfos.map(({ id, title }) => (
+                <div key={id} >
+                  <Link href={datasetRoute({ userName, id })}>
+                    <a className='test-profile-dataset-info-title'>
                       {title}
                     </a>
                   </Link>

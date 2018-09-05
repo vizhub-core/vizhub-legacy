@@ -54,6 +54,10 @@ export class DatabaseDatasetGateway implements DatasetGateway {
     return await this.database.getDataset({ owner, slug });
   }
 
+  async getDatasetInfosByUserId(id) {
+    return await this.database.getDatasetInfosByUserId(id);
+  };
+
   //async saveDataset({ dataset }) {
   //  return await this.database.saveDataset({ dataset });
   //}
