@@ -6,6 +6,7 @@ cd $PROJECT_DIR
 git checkout master
 git pull
 
+cp .gitmodules-ci .gitmodules # Use HTTPS in deployment (so no SSH setup required)
 git submodule sync
 git submodule update --init
 
