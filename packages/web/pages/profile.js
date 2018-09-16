@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Error from 'next/error';
 import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
-import { SlightMargin } from '../components/atoms/slightMargin';
+import { TextContainer } from '../components/atoms/textContainer';
 import { NavBar } from '../components/organisms/navBar';
 import { getJSON } from '../utils/getJSON';
 import { visualizationRoute, datasetRoute } from '../routes/routeGenerators';
@@ -14,8 +14,6 @@ export default class extends Page {
     const props = await super.getInitialProps({ req });
     const url = `/api/user/getProfileData/${query.userName}`;
     const response = await getJSON(url, req);
-
-    console.log({response});
 
     props.error = response.error;
     props.profileData = response;
@@ -31,7 +29,7 @@ export default class extends Page {
     return (
       <TitledPage title='Profile'>
         <NavBar user={user} csrfToken={csrfToken} />
-        <SlightMargin>
+        <div style={{ margin: '30px' }}>
           <div className='title test-profile-full-name'>
             {fullName}
           </div>
@@ -67,7 +65,7 @@ export default class extends Page {
               ))
             : null
           }
-        </SlightMargin>
+        </div>
       </TitledPage>
     );
   }
