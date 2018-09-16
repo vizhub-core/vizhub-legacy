@@ -1,6 +1,7 @@
 image: node:10
 
 before_script:
+  - mv .gitmodules-ci .gitmodules # Use HTTPS in CI, SSH in dev (so no password prompt)
   - git submodule sync
   - git submodule update --init
   - npm install -g lerna
