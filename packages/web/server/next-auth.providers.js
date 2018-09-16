@@ -1,6 +1,9 @@
 // Load environment variables from a .env file if one exists
 require('dotenv').load();
 
+const DEV_GITHUB_ID = '75389c43f767c2dd2347';
+const DEV_GITHUB_SECRET = '99a50654eb1244953dcbbe9093703ff83c537b08';
+
 module.exports = () => {
   let providers = [];
 
@@ -11,8 +14,8 @@ module.exports = () => {
     },
     Strategy: require('passport-github').Strategy,
     strategyOptions: {
-      clientID: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientID: process.env.GITHUB_ID || DEV_GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET || DEV_GITHUB_SECRET,
       profileFields: ['id', 'displayName', 'email', 'link']
     },
     getProfile(profile) {
