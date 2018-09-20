@@ -24,7 +24,8 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
       title,
       slug,
       description,
-      files
+      files,
+      forkedFrom
     } = options;
 
     const visualization = new Visualization({
@@ -38,7 +39,7 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
         references: [],
         referencedBy: [],
         forks: [],
-        forkedFrom: undefined,
+        forkedFrom,
         thumbnail: undefined
       }),
       visualizationContent: new VisualizationContent({
