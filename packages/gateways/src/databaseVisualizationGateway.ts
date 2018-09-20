@@ -61,4 +61,8 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
   async getVisualizationInfosByUserId(id) {
     return await this.database.getVisualizationInfosByUserId(id);
   };
+
+  async getAllVisualizationInfos() {
+    return await this.database.getAllVisualizationInfos();
+  };
 }
