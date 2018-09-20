@@ -34,4 +34,6 @@ export interface VisualizationGateway {
     Promise<SaveVisualizationResponseModel>;
 
   getVisualizationInfosByUserId(id: UserId): Promise<[VisualizationInfo]>;
+
+  getAllVisualizationInfos(): Promise<[VisualizationInfo]>;
 }

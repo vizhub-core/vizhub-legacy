@@ -57,3 +57,8 @@ export {
   GetUserProfileDataRequestModel,
   GetUserProfileDataResponseModel
 } from './getUserProfileData';
+
+export {
+  GetAllVisualizationInfos,
+  GetAllVisualizationInfosResponseModel
+} from './getAllVisualizationInfos';

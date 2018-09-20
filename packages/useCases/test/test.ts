@@ -42,6 +42,9 @@ import {
   GetUserProfileData,
   GetUserProfileDataRequestModel,
   GetUserProfileDataResponseModel,
+
+  GetAllVisualizationInfos,
+  GetAllVisualizationInfosResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {
@@ -393,6 +396,26 @@ describe('Use Cases', () => {
       
       assert.equal(zipFileName, 'Untitled.zip');
       //assert.equal(zipFileBuffer.toString('base64').length, 1540);
+    });
+  });
+
+  describe('Get All Visualization Infos', () => {
+    const fakeVisualizationInfos = [
+      { owner: fakeUser.id, title: 'Foo', description: 'Foo is cool' },
+      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' }
+    ];
+
+    const getAllVisualizationInfos = new GetAllVisualizationInfos({
+      visualizationGateway: {
+        getAllVisualizationInfos: async () => fakeVisualizationInfos
+      }
+    });
+
+    it('should get visualization infos from gateway', async () => {
+      const responseModel = await getAllVisualizationInfos.execute();
+      assert.deepEqual(responseModel, {
+        visualizationInfos: fakeVisualizationInfos
+      });
     });
   });
 });
