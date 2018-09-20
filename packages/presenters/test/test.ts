@@ -16,7 +16,7 @@ describe('Presenters', () => {
         files: visualization.content.files,
         title: "Foo",
         width: 960,
-        height: 500
+        height: 600
       });
     });
   });

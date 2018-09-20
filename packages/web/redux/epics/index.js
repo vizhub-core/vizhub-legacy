@@ -12,6 +12,7 @@ const {
   epics: {
     autoSaveEpic,
     promptForNewFileNameEpic,
+    promptForNewHeightEpic,
     promptForRenameEpic,
     confirmDeleteEpic,
     updateTitleEpic,
@@ -27,6 +28,7 @@ export const rootEpicForBrowser = combineEpics(
   autoSaveEpic,
   saveEpic,
   promptForNewFileNameEpic,
+  promptForNewHeightEpic,
   promptForRenameEpic,
   confirmDeleteEpic,
   forkEpic,

@@ -12,6 +12,6 @@ export class VisualizationViewModel {
     this.files = visualization.content.files;
     this.title = visualization.info.title;
     this.width = 960; // visualization.info.width;
-    this.height = 500; // visualization.info.height
+    this.height = visualization.info.height || 500;
   }
 }

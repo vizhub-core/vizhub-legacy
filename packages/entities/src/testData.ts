@@ -56,7 +56,8 @@ export const documentInfoData = {
 };
 
 export const visualizationInfoData = Object.assign({}, documentInfoData, {
-  forkedFrom: '012'
+  forkedFrom: '012',
+  height: 600
 });
 
 export const visualizationInfo = new VisualizationInfo(visualizationInfoData);

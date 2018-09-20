@@ -7,6 +7,8 @@ export class VisualizationInfo extends DocumentInfo {
   // The visualization that this visualization was forked from.
   forkedFrom: DocumentId | undefined;
 
+  height: number;
+
   constructor(data) {
     super({
       documentType: VISUALIZATION_TYPE,
@@ -20,5 +22,6 @@ export class VisualizationInfo extends DocumentInfo {
     });
 
     this.forkedFrom = data.forkedFrom;
+    this.height = data.height;
   }
 }
