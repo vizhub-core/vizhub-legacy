@@ -43,4 +43,9 @@ describe('Database', () => {
     const visualizationInfos = await database.getVisualizationInfosByUserId(user.id);
     assert.deepEqual(visualizationInfos, [visualizationInfo]);
   });
+
+  it('should list all visualization infos', async () => {
+    const visualizationInfos = await database.getAllVisualizationInfos();
+    assert.deepEqual(visualizationInfos, [visualizationInfo]);
+  });
 });
