@@ -14,7 +14,8 @@ const {
   selectors: {
     getFile,
     getFiles,
-    getVisualizationTitle
+    getVisualizationTitle,
+    getVisualizationHeight
   }
 } = uiRedux;
 
@@ -28,6 +29,7 @@ export const saveEpic = (action$, state$) =>
 
       visualization.content.files = getFiles(state);
       visualization.info.title = getVisualizationTitle(state);
+      visualization.info.height = getVisualizationHeight(state);
 
       const readmeFile = getFile(state, 'README.md');
       visualization.info.description = readmeFile ? readmeFile.text : '';
