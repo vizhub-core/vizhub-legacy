@@ -33,7 +33,7 @@ export default class extends Page {
                 </a>
                 <div style={{ marginTop: '100px' }}>
                   <h2 className='subtitle'>
-                    Watch these videos to start learning!
+                    Take this <a href='https://curran.github.io/dataviz-course-2018/'>online course</a> to start learning!
                   </h2>
                   <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL9yYRbwpkykvOXrZumtZWbuaXWHvjD8gi" frameborder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                 </div>
