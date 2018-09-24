@@ -11,7 +11,7 @@ import {
 } from 'datavis-tech-entities';
 
 export class DatabaseDatasetGateway implements DatasetGateway {
-  database: any; // TODO Typescript - Database
+  database: any;
 
   constructor(database) {
     this.database = database;
