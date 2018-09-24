@@ -13,7 +13,7 @@ import accountAPI from './api/account';
 
 import { apiController, userController } from 'datavis-tech-controllers';
 
-import { serverGateways } from './serverGateways';
+import { serverGateways } from 'vizhub-server-gateways';
 import { setupRaven } from './setupRaven';
 
 // Load environment variables from .env file if present

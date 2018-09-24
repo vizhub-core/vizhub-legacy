@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "lib": [ "ES2018" ]
+  },
+  "include": [
+    "./src/"
+  ]
+}
