@@ -3,11 +3,9 @@ import { testData } from 'datavis-tech-entities';
 import { generateImages } from '../src/generateImages';
 import { computeImageDimensions } from '../src/computeImageDimensions';
 import { thumbnailDimensions, previewDimensions } from '../src/dimensions';
+import { expectedThumbnail, expectedPreview } from './expectedImages';
 
 const { visualization } = testData;
-
-const expectedThumbnail = 'fdsa';
-const expectedPreview = 'fdsa';
 
 describe('Thumbnails Service', () => {
   describe('computeImageDimensions', () => {
@@ -51,10 +49,15 @@ describe('Thumbnails Service', () => {
     });
   });
 
-  it('should make a thumbnail for a visualization', async () => {
-    const images = await generateImages(visualization);
-    //console.log(images.thumbnail);
-    //assert.equal(images.thumbnail, expectedThumbnail);
-    //assert.equal(images.preview, expectedPreview);
+  describe('image generation', () => {
+
+    it('should make a thumbnail for a visualization', async () => {
+      const { thumbnail, preview } = await generateImages(visualization);
+
+      console.log(thumbnail);
+
+      assert.equal(preview, expectedPreview);
+    }).timeout(6000);
+
   });
 });
