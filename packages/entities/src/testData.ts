@@ -31,7 +31,7 @@ export const visualizationContentData = {
   files: [
     {
       name: 'index.html',
-      text: '<script src="index.js">'
+      text: '<body><h1>Hello!</h1><script src="index.js"></body>'
     },
     {
       name: 'index.js',
