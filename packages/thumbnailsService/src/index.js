@@ -3,4 +3,5 @@
 
 export const thumbnailsService = gateways => {
   console.log('Start thumbnail service');
+  console.log('Start thumbnail service');
 };
