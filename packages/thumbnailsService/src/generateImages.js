@@ -1,6 +1,11 @@
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import { generateScreenshot } from './generateScreenshot';
-//import { resize } from './resize';
+import { resize } from './resize';
+
+const thumbnailDimensions = {
+  width: 230,
+  height: 120
+};
 
 export const generateImages = async visualization => {
   const visualizationViewModel = new VisualizationViewModel(visualization);
@@ -9,13 +14,11 @@ export const generateImages = async visualization => {
     visualizationViewModel
   });
 
-  console.log(screenshotBuffer.toString('base64'));
-
-  //const thumbnailBuffer = resize({
-  //  visualizationViewModel,
-  //  screenshotBuffer,
-  //  thumbnailDimensions
-  //});
+  const thumbnailBuffer = resize({
+    desiredDimensions: thumbnailDimensions,
+    visualizationViewModel,
+    screenshotBuffer
+  });
 
   //const previewBuffer = resize({
   //  visualizationViewModel,
@@ -24,7 +27,7 @@ export const generateImages = async visualization => {
   //});
 
   return {
-    thumbnail: 'fdsa',
+    thumbnail: thumbnailBuffer.toString('base64'),
     preview: 'fdas'
     //thumbnail: resize(screenshot, thumbnailDimensions)
     //preview: resize(screenshot, previewDimensions)
