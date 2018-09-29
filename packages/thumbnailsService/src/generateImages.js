@@ -5,14 +5,15 @@ import { thumbnailDimensions, previewDimensions } from './dimensions';
 
 export const generateImages = async visualization => {
   const visualizationViewModel = new VisualizationViewModel(visualization);
+  console.log(visualizationViewModel);
 
   const screenshotBuffer = await generateScreenshot({
     visualizationViewModel
   });
 
   const thumbnailBuffer = await resize({
+    actualDimensions: visualizationViewModel,
     desiredDimensions: thumbnailDimensions,
-    visualizationViewModel,
     screenshotBuffer
   });
 

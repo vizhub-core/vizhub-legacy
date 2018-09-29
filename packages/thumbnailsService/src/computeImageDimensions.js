@@ -3,7 +3,7 @@ export const computeImageDimensions = ({ actual, desired }) =>
     ?
       {
         width: desired.width,
-        height: Math.round(actual.width / actual.height * desired.width)
+        height: Math.round(actual.height / actual.width * desired.width)
       }
     :
       {

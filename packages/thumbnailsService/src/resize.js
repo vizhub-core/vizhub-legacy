@@ -3,15 +3,16 @@ import { computeImageDimensions } from './computeImageDimensions';
 
 export const resize = async options => {
   const {
-    visualizationViewModel,
-    screenshotBuffer,
-    desiredDimensions
+    actualDimensions: actual,
+    desiredDimensions: desired,
+    screenshotBuffer
   } = options;
 
-  const { width, height } = computeImageDimensions({
-    actual: visualizationViewModel,
-    desired: desiredDimensions
-  });
+  const { width, height } = computeImageDimensions({ actual, desired });
+
+  console.log(width / height);
+  console.log(actual.width / actual.height);
+  console.log({width, height});
 
   return await sharp(screenshotBuffer)
     .resize(width, height)

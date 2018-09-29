@@ -4,7 +4,7 @@ const aspectRatio = defaultWidth / defaultHeight;
 
 const dimensions = width => ({
   width,
-  height: Math.round(width/ aspectRatio)
+  height: Math.round(width / aspectRatio)
 });
 
 export const thumbnailDimensions = dimensions(230);
