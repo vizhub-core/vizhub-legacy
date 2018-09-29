@@ -1,7 +1,7 @@
 import { computeSrcDoc } from 'vizhub-ui';
 import puppeteer from 'puppeteer';
 
-const imageGenerationWaitTime = 2000;
+const imageGenerationWaitTime = 1000;
 
 export const generateScreenshot = async ({ visualizationViewModel }) => {
   const { width, height, files } = visualizationViewModel;

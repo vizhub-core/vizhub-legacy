@@ -14,7 +14,7 @@ export const generateImages = async visualization => {
     visualizationViewModel
   });
 
-  const thumbnailBuffer = resize({
+  const thumbnailBuffer = await resize({
     desiredDimensions: thumbnailDimensions,
     visualizationViewModel,
     screenshotBuffer

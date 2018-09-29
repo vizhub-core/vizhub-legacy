@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import { computeImageDimensions } from './computeImageDimensions';
 
-export const resize = options => {
+export const resize = async options => {
   const {
     visualizationViewModel,
     screenshotBuffer,
@@ -13,7 +13,7 @@ export const resize = options => {
     desired: desiredDimensions
   });
 
-  sharp(screenshotBuffer)
+  return await sharp(screenshotBuffer)
     .resize(width, height)
     .toBuffer();
 };

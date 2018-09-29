@@ -39,7 +39,6 @@ describe('Thumbnails Service', () => {
   it('should make a thumbnail for a visualization', async () => {
     const images = await generateImages(visualization);
     console.log(images.thumbnail);
-    console.log(images.preview);
     //assert.equal(images.thumbnail, expectedThumbnail);
     //assert.equal(images.preview, expectedPreview);
   });
