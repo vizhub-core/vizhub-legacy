@@ -1,6 +1,6 @@
-import * as ShareDB from '@teamwork/sharedb';
-import * as ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
-import * as ShareDBMongo from '@teamwork/sharedb-mongo';
+import ShareDB from '@teamwork/sharedb';
+import ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
+import ShareDBMongo from '@teamwork/sharedb-mongo';
 
 // Singletons.
 let shareDB;
