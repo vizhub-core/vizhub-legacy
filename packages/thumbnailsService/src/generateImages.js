@@ -1,11 +1,7 @@
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import { generateScreenshot } from './generateScreenshot';
 import { resize } from './resize';
-
-const thumbnailDimensions = {
-  width: 230,
-  height: 120
-};
+import { thumbnailDimensions, previewDimensions } from './dimensions';
 
 export const generateImages = async visualization => {
   const visualizationViewModel = new VisualizationViewModel(visualization);
