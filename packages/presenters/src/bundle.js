@@ -17,21 +17,25 @@ const transformFilesToObject = files => (
 // Handle inconsistencies between node.js vs. browser builds.
 const virtual = rollupPluginVirtual.default || rollupPluginVirtual;
 
+const outputOptions = {
+  format: 'iife',
+  name: 'bundle',
+  sourcemap: 'inline',
+  globals: d3Packages.reduce((accumulator, packageName) => {
+    accumulator[packageName] = 'd3';
+    return accumulator;
+  }, {})
+};
+
 export const bundle = async (files) => {
-  const rollupBundle = await rollup({
+  const inputOptions = {
     input: 'index.js',
     plugins: [ virtual(transformFilesToObject(files)) ],
     external: d3Packages
-  });
+  };
 
-  const { code, map } = await rollupBundle.generate({
-    format: 'iife',
-    name: 'bundle',
-    globals: d3Packages.reduce((accumulator, packageName) => {
-      accumulator[packageName] = 'd3';
-      return accumulator;
-    }, {})
-  });
+  const rollupBundle = await rollup(inputOptions);
+  const { code, map } = await rollupBundle.generate(outputOptions);
 
   return [{
     name: 'bundle.js',
