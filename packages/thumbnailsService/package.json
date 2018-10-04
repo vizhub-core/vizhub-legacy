@@ -1,0 +1,25 @@
+{
+  "name": "vizhub-thumbnails-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node -r esm src/index.js",
+    "dev": "NODE_ENV=development node -r esm src/index.js",
+    "test": "mocha -r esm test/test.js"
+  },
+  "author": "Curran Kelleher",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "puppeteer": "^1.8.0",
+    "sharp": "^0.20.8",
+    "vizhub-server-gateways": "1",
+    "vizhub-ui": "1",
+    "datavis-tech-entities": "1",
+    "datavis-tech-presenters": "1"
+  },
+  "devDependencies": {
+    "esm": "^3.0.84",
+    "mocha": "^5.2.0"
+  }
+}
