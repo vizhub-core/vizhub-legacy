@@ -37,8 +37,11 @@ export const bundle = async (files) => {
   const rollupBundle = await rollup(inputOptions);
   const { code, map } = await rollupBundle.generate(outputOptions);
 
+  // Inspired by https://github.com/rollup/rollup/issues/121
+  const codeWithSourceMap = code + '\n//# sourceMappingURL=' + map.toUrl();
+
   return [{
     name: 'bundle.js',
-    text: code
+    text: codeWithSourceMap
   }];
 };
