@@ -2,8 +2,6 @@ import { rollup } from 'rollup/dist/rollup.browser';
 import * as hypothetical from './hypothetical';
 import { d3Packages } from './d3Packages';
 
-console.log(hypothetical);
-
 const transformFilesToObject = files =>
   files
     .filter(file => file.name.endsWith('.js'))
