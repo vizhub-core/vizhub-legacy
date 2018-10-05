@@ -1,40 +1,46 @@
 import { rollup } from 'rollup/dist/rollup.browser';
-import * as rollupPluginVirtual from 'rollup-plugin-virtual';
+import * as hypothetical from './hypothetical';
 import { d3Packages } from './d3Packages';
 
-const transformFilesToObject = files => (
-  files.reduce((accumulator, file) => {
+console.log(hypothetical);
 
-    // Handle imports like './foo.js'.
-    accumulator[file.name] = file.text;
+const transformFilesToObject = files =>
+  files
+    .filter(file => file.name.endsWith('.js'))
+    .reduce((accumulator, file) => {
+      accumulator['./' + file.name] = file.text;
+      return accumulator;
+    }, {});
 
-    // Handle imports like './foo'.
-    accumulator[file.name.replace(/\.js/, '')] = file.text;
+const outputOptions = {
+  format: 'iife',
+  name: 'bundle',
+  sourcemap: 'inline',
+  globals: d3Packages.reduce((accumulator, packageName) => {
+    accumulator[packageName] = 'd3';
     return accumulator;
   }, {})
-);
-
-// Handle inconsistencies between node.js vs. browser builds.
-const virtual = rollupPluginVirtual.default || rollupPluginVirtual;
+};
 
 export const bundle = async (files) => {
-  const rollupBundle = await rollup({
-    input: 'index.js',
-    plugins: [ virtual(transformFilesToObject(files)) ],
+  const inputOptions = {
+    input: './index.js',
+    plugins: [
+      hypothetical({
+        files: transformFilesToObject(files)
+      })
+    ],
     external: d3Packages
-  });
+  };
 
-  const { code, map } = await rollupBundle.generate({
-    format: 'iife',
-    name: 'bundle',
-    globals: d3Packages.reduce((accumulator, packageName) => {
-      accumulator[packageName] = 'd3';
-      return accumulator;
-    }, {})
-  });
+  const rollupBundle = await rollup(inputOptions);
+  const { code, map } = await rollupBundle.generate(outputOptions);
+
+  // Inspired by https://github.com/rollup/rollup/issues/121
+  const codeWithSourceMap = code + '\n//# sourceMappingURL=' + map.toUrl();
 
   return [{
     name: 'bundle.js',
-    text: code
+    text: codeWithSourceMap
   }];
 };

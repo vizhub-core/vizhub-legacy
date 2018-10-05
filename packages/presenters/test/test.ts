@@ -8,6 +8,11 @@ const {
   dataset
 } = testData;
 
+const removeSourceMap = files => {
+  files[0].text = files[0].text.split('\n//# sourceMappingURL')[0];
+  return files;
+};
+
 describe('Presenters', () => {
   describe('VisualizationViewModel', () => {
     it('should present a Visualization', () => {
@@ -40,7 +45,7 @@ describe('Presenters', () => {
         { name: 'index.js', text: 'import { foo } from "./foo.js"; console.log(foo);' },
         { name: 'foo.js', text: 'export const foo = "bar";' }
       ];
-      assert.deepEqual(await bundle(files), [{
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
         text: "(function () {\n\t'use strict';\n\n\tconst foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
       }]);
@@ -50,7 +55,7 @@ describe('Presenters', () => {
       const files = [
         { name: 'index.js', text: 'import { select } from "d3"; console.log(select);' }
       ];
-      assert.deepEqual(await bundle(files), [{
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
         text: "(function (d3) {\n\t'use strict';\n\n\tconsole.log(d3.select);\n\n}(d3));\n"
       }]);
@@ -60,7 +65,7 @@ describe('Presenters', () => {
       const files = [
         { name: 'index.js', text: 'import { select } from "d3"; console.log(select);' }
       ];
-      assert.deepEqual(await bundle(files), [{
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
         text: "(function (d3) {\n\t'use strict';\n\n\tconsole.log(d3.select);\n\n}(d3));\n"
       }]);
