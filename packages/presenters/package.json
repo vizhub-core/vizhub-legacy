@@ -15,8 +15,8 @@
     "datavis-tech-entities": "1",
     "datavis-tech-use-cases": "1",
     "mocha": "^5.2.0",
-    "rollup": "^0.64.1",
-    "rollup-plugin-virtual": "^1.0.1"
+    "path-posix": "^1.0.0",
+    "rollup": "^0.64.1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",

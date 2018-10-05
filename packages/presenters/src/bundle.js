@@ -1,21 +1,16 @@
 import { rollup } from 'rollup/dist/rollup.browser';
-import * as rollupPluginVirtual from 'rollup-plugin-virtual';
+import * as hypothetical from './hypothetical';
 import { d3Packages } from './d3Packages';
 
-const transformFilesToObject = files => (
-  files.reduce((accumulator, file) => {
+console.log(hypothetical);
 
-    // Handle imports like './foo.js'.
-    accumulator[file.name] = file.text;
-
-    // Handle imports like './foo'.
-    accumulator[file.name.replace(/\.js/, '')] = file.text;
-    return accumulator;
-  }, {})
-);
-
-// Handle inconsistencies between node.js vs. browser builds.
-const virtual = rollupPluginVirtual.default || rollupPluginVirtual;
+const transformFilesToObject = files =>
+  files
+    .filter(file => file.name.endsWith('.js'))
+    .reduce((accumulator, file) => {
+      accumulator['./' + file.name] = file.text;
+      return accumulator;
+    }, {});
 
 const outputOptions = {
   format: 'iife',
@@ -29,8 +24,12 @@ const outputOptions = {
 
 export const bundle = async (files) => {
   const inputOptions = {
-    input: 'index.js',
-    plugins: [ virtual(transformFilesToObject(files)) ],
+    input: './index.js',
+    plugins: [
+      hypothetical({
+        files: transformFilesToObject(files)
+      })
+    ],
     external: d3Packages
   };
 
