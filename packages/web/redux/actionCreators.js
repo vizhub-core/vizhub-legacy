@@ -6,6 +6,8 @@ import {
   BUILD_ERROR,
   SET_CSRF_TOKEN,
   SET_VISUALIZATION,
+  VISUALIZATION_DELETE_ERROR,
+  VISUALIZATION_DELETE_SUCCESS
 } from './actionTypes';
 
 export const startBuild = () => ({
@@ -31,4 +33,12 @@ export const setCsrfToken = csrfToken => ({
 export const setVisualization = visualization => ({
   type: SET_VISUALIZATION,
   visualization
+});
+
+export const visualizationDeleteSuccess = () => ({
+  type: VISUALIZATION_DELETE_SUCCESS
+});
+
+export const visualizationDeleteError = () => ({
+  type: VISUALIZATION_DELETE_ERROR
 });

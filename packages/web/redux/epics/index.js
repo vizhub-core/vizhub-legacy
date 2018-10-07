@@ -7,6 +7,7 @@ import { runBuildEpic } from './runBuildEpic';
 import { runNonJSEpic } from './runNonJS';
 import { forkEpic } from './forkEpic';
 import { forkSuccessEpic } from './forkSuccessEpic';
+import { deleteVisualizationEpic } from './deleteVisualizationEpic';
 
 const {
   epics: {
@@ -37,6 +38,7 @@ export const rootEpicForBrowser = combineEpics(
   forkSuccessEpic,
   updateTitleEpic,
   updateDescriptionEpic,
+  deleteVisualizationEpic
 );
 
 export const rootEpicForServer = combineEpics(
