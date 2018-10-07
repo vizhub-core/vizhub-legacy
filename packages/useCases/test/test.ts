@@ -252,7 +252,8 @@ describe('Use Cases', () => {
           info: {
             owner: '123',
             title: 'foo',
-            description: 'Foo is cool'
+            description: 'Foo is cool',
+            height: 600
           },
           content: {
             files: [{ name: 'index.html', text: 'HTML yes' }]
@@ -276,13 +277,14 @@ describe('Use Cases', () => {
       delete arg.lastUpdatedTimestamp;
 
       const expected = {
-        "id": arg.id,
-        "owner": "456",
-        "title": "foo",
-        "description": "Foo is cool",
-        "files": [ { "name": "index.html", "text": "HTML yes" } ],
-        "forkedFrom": "456",
-        "slug": undefined
+        id: arg.id,
+        owner: "456",
+        title: "foo",
+        description: "Foo is cool",
+        files: [ { "name": "index.html", "text": "HTML yes" } ],
+        forkedFrom: "456",
+        slug: undefined,
+        height: 600
       };
       assert.deepEqual(arg, expected);
     });

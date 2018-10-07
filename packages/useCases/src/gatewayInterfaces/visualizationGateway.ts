@@ -21,6 +21,7 @@ export interface VisualizationGateway {
     id: DocumentId,
     title: string,
     slug: string | undefined,
+    height: number | undefined,
     description: string,
     files: File[],
     forkedFrom: DocumentId | undefined,
