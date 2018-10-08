@@ -62,3 +62,9 @@ export {
   GetAllVisualizationInfos,
   GetAllVisualizationInfosResponseModel
 } from './getAllVisualizationInfos';
+
+export {
+  DeleteVisualization,
+  DeleteVisualizationRequestModel,
+  DeleteVisualizationResponseModel
+} from './deleteVisualization';

@@ -45,6 +45,10 @@ import {
 
   GetAllVisualizationInfos,
   GetAllVisualizationInfosResponseModel,
+
+  DeleteVisualization,
+  DeleteVisualizationRequestModel,
+  DeleteVisualizationResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {
@@ -418,6 +422,35 @@ describe('Use Cases', () => {
       assert.deepEqual(responseModel, {
         visualizationInfos: fakeVisualizationInfos
       });
+    });
+  });
+
+  describe('Delete Visualization', () => {
+    const visualizationGateway = {
+      deleteVisualization: async ({ visualization }) => ({ status: 'success' }),
+      getVisualization: async ({ id }) => ({ info: { owner: '123' } })
+    };
+    const deleteVisualization = new DeleteVisualization({ visualizationGateway });
+
+    it('should invoke deleteVisualization in gateway.', async () => {
+      const requestModel = {
+        id: '47389',
+        userId: '123'
+      };
+      const responseModel = await deleteVisualization.execute(requestModel);
+      assert.equal(responseModel.status, 'success');
+    });
+
+    it('should error if user does not match owner.', done => {
+      const requestModel = {
+        id: '47389',
+        userId: '234'
+      };
+      deleteVisualization.execute(requestModel)
+        .catch(error => {
+          assert.equal(error.message, i18n('errorNotOwnerCantDelete'))
+          done();
+        });
     });
   });
 });

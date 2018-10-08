@@ -31,10 +31,13 @@ export interface VisualizationGateway {
 
   getVisualization({ id }): Promise<Visualization>;
 
-  saveVisualization(request: SaveVisualizationRequestModel):
-    Promise<SaveVisualizationResponseModel>;
-
   getVisualizationInfosByUserId(id: UserId): Promise<[VisualizationInfo]>;
 
   getAllVisualizationInfos(): Promise<[VisualizationInfo]>;
+
+  saveVisualization(request: SaveVisualizationRequestModel):
+    Promise<SaveVisualizationResponseModel>;
+
+  deleteVisualization(request: DeleteVisualizationRequestModel):
+    Promise<DeleteVisualizationResponseModel>;
 }

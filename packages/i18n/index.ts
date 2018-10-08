@@ -13,6 +13,9 @@ const strings = {
   },
   errorNotOwnerCantSave: {
     en: 'Not saved'
+  },
+  errorNotOwnerCantDelete: {
+    en: 'You must be the owner in order to delete.'
   }
 };
 
