@@ -7,7 +7,8 @@ import {
   SET_CSRF_TOKEN,
   SET_VISUALIZATION,
   VISUALIZATION_DELETE_ERROR,
-  VISUALIZATION_DELETE_SUCCESS
+  VISUALIZATION_DELETE_SUCCESS,
+  SET_USER,
 } from './actionTypes';
 
 export const startBuild = () => ({
@@ -41,4 +42,9 @@ export const visualizationDeleteSuccess = () => ({
 
 export const visualizationDeleteError = () => ({
   type: VISUALIZATION_DELETE_ERROR
+});
+
+export const setUser = user => ({
+  type: SET_USER,
+  user
 });

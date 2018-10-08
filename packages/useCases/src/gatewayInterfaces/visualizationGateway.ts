@@ -11,7 +11,6 @@ import {
   CreateVisualizationResponseModel,
   SaveVisualizationRequestModel,
   SaveVisualizationResponseModel,
-  DeleteVisualizationRequestModel,
   DeleteVisualizationResponseModel
 } from '../interactors';
 
@@ -40,6 +39,6 @@ export interface VisualizationGateway {
   saveVisualization(request: SaveVisualizationRequestModel):
     Promise<SaveVisualizationResponseModel>;
 
-  deleteVisualization(request: DeleteVisualizationRequestModel):
+  deleteVisualization({ id: string }):
     Promise<DeleteVisualizationResponseModel>;
 }
