@@ -68,4 +68,8 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
   async getAllVisualizationInfos() {
     return await this.database.getAllVisualizationInfos();
   };
+
+  async deleteVisualization({ id }) {
+    return await this.database.deleteVisualization({ id });
+  }
 }

@@ -10,7 +10,9 @@ import {
   CreateVisualizationRequestModel,
   CreateVisualizationResponseModel,
   SaveVisualizationRequestModel,
-  SaveVisualizationResponseModel
+  SaveVisualizationResponseModel,
+  DeleteVisualizationRequestModel,
+  DeleteVisualizationResponseModel
 } from '../interactors';
 
 export interface VisualizationGateway {
