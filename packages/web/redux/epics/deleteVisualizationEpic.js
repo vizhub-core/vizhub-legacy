@@ -25,6 +25,9 @@ export const deleteVisualizationEpic = (action$, state$) =>
       const options = {
         credentials: 'include',
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ id })
       };
       const response = await (await fetch(url, options)).json();

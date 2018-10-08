@@ -7,13 +7,15 @@ export const deleteDoc = doc => new Promise((resolve, reject) => {
   });
 });
 
-export const deleteVisualization = connection => ({ id }) =>
-  Promise.all([
-    fetchShareDBDoc(DOCUMENT_INFO, id, connection),
-    fetchShareDBDoc(DOCUMENT_CONTENT, id, connection)
-  ])
-  .then(([info, content]) => Promise.all([
-    deleteDoc(info),
-    deleteDoc(content)
-  ]))
-  .then(() => ({ status: 'success' }));
+export const deleteVisualization = connection => ({ id }) => {
+  return Promise
+    .all([
+      fetchShareDBDoc(DOCUMENT_INFO, id, connection),
+      fetchShareDBDoc(DOCUMENT_CONTENT, id, connection)
+    ])
+    .then(([info, content]) => Promise.all([
+      deleteDoc(info),
+      deleteDoc(content)
+    ]))
+    .then(() => ({ status: 'success' }));
+};
