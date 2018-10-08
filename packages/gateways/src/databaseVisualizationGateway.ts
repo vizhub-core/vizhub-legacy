@@ -25,7 +25,8 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
       slug,
       description,
       files,
-      forkedFrom
+      forkedFrom,
+      height
     } = options;
 
     const visualization = new Visualization({
@@ -40,7 +41,8 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
         referencedBy: [],
         forks: [],
         forkedFrom,
-        thumbnail: undefined
+        thumbnail: undefined,
+        height
       }),
       visualizationContent: new VisualizationContent({
         id,
@@ -66,4 +68,8 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
   async getAllVisualizationInfos() {
     return await this.database.getAllVisualizationInfos();
   };
+
+  async deleteVisualization({ id }) {
+    return await this.database.deleteVisualization({ id });
+  }
 }

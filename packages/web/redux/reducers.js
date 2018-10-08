@@ -1,4 +1,8 @@
-import { SET_CSRF_TOKEN, SET_VISUALIZATION } from './actionTypes';
+import {
+  SET_CSRF_TOKEN,
+  SET_VISUALIZATION,
+  SET_USER
+} from './actionTypes';
 import { uiRedux } from 'vizhub-ui';
 
 const { actionTypes: { SAVE_ERROR } } = uiRedux;
@@ -16,6 +20,15 @@ export const visualization = (state = null, action) => {
   switch (action.type) {
     case SET_VISUALIZATION:
       return action.visualization;
+    default:
+      return state;
+  }
+};
+
+export const user = (state = null, action) => {
+  switch (action.type) {
+    case SET_USER:
+      return action.user;
     default:
       return state;
   }

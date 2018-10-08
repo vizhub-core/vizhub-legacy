@@ -15,7 +15,8 @@ import { rootEpicForBrowser, rootEpicForServer } from '../../redux/epics';
 import {
   startBuild,
   setCsrfToken,
-  setVisualization
+  setVisualization,
+  setUser
 } from '../../redux/actionCreators';
 import { ForkInvitation } from './forkInvitation';
 import 'codemirror/lib/codemirror.css';
@@ -62,7 +63,8 @@ export default class extends Page {
 
     const {
       visualization,
-      ownerUser
+      ownerUser,
+      user
     } = this.props;
     
     const {
@@ -72,6 +74,7 @@ export default class extends Page {
       height
     } = new VisualizationViewModel(visualization);
 
+    this.store.dispatch(setUser(user));
     this.store.dispatch(setVisualization(visualization));
 
     this.store.dispatch(initFiles(files));

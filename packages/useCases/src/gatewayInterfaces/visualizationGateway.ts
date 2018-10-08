@@ -10,7 +10,8 @@ import {
   CreateVisualizationRequestModel,
   CreateVisualizationResponseModel,
   SaveVisualizationRequestModel,
-  SaveVisualizationResponseModel
+  SaveVisualizationResponseModel,
+  DeleteVisualizationResponseModel
 } from '../interactors';
 
 export interface VisualizationGateway {
@@ -21,6 +22,7 @@ export interface VisualizationGateway {
     id: DocumentId,
     title: string,
     slug: string | undefined,
+    height: number | undefined,
     description: string,
     files: File[],
     forkedFrom: DocumentId | undefined,
@@ -30,10 +32,13 @@ export interface VisualizationGateway {
 
   getVisualization({ id }): Promise<Visualization>;
 
-  saveVisualization(request: SaveVisualizationRequestModel):
-    Promise<SaveVisualizationResponseModel>;
-
   getVisualizationInfosByUserId(id: UserId): Promise<[VisualizationInfo]>;
 
   getAllVisualizationInfos(): Promise<[VisualizationInfo]>;
+
+  saveVisualization(request: SaveVisualizationRequestModel):
+    Promise<SaveVisualizationResponseModel>;
+
+  deleteVisualization({ id: string }):
+    Promise<DeleteVisualizationResponseModel>;
 }

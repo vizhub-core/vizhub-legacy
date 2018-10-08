@@ -1,3 +1,6 @@
+export const profileRoute = ({userName}) =>
+  `/${userName}`;
+
 export const visualizationRoute = ({userName, id}) =>
   `/${userName}/${id}`;
 

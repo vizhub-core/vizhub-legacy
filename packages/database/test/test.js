@@ -15,11 +15,14 @@ const {
   dataset
 } = testData;
 
+let createdVisualizationId;
+
 describe('Database', () => {
 
   it('should create a visualization', async () => {
     const { id } = await database.createVisualization(visualization);
     assert.equal(id, visualization.id);
+    createdVisualizationId = id;
   });
 
   it('should create a dataset', async () => {
@@ -47,5 +50,14 @@ describe('Database', () => {
   it('should list all visualization infos', async () => {
     const visualizationInfos = await database.getAllVisualizationInfos();
     assert.deepEqual(visualizationInfos, [visualizationInfo]);
+  });
+
+  it('should delete a visualization', async () => {
+    const { status } = await database.deleteVisualization({
+      id: createdVisualizationId
+    });
+    assert.equal(status, 'success');
+    const visualizationInfos = await database.getAllVisualizationInfos();
+    assert.equal(visualizationInfos.length, 0);
   });
 });

@@ -2,6 +2,7 @@ import { createVisualizationController } from './createVisualizationController';
 import { getVisualizationController } from './getVisualizationController';
 import { exportVisualizationController } from './exportVisualizationController';
 import { saveVisualizationController } from './saveVisualizationController';
+import { deleteVisualizationController } from './deleteVisualizationController';
 import { forkVisualizationController } from './forkVisualizationController';
 import { getAllVisualizationInfosController } from './getAllVisualizationInfosController';
 
@@ -10,6 +11,7 @@ export const visualizationAPIController = (expressApp, gateways) => {
   getVisualizationController(expressApp, gateways);
   exportVisualizationController(expressApp, gateways);
   saveVisualizationController(expressApp, gateways);
+  deleteVisualizationController(expressApp, gateways);
   forkVisualizationController(expressApp, gateways);
   getAllVisualizationInfosController(expressApp, gateways);
 };

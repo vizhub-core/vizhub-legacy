@@ -40,5 +40,6 @@ export const visualizationDefaults = {
   slug: undefined,
   description: 'No description',
   files,
-  forkedFrom: undefined
+  forkedFrom: undefined,
+  height: undefined
 };

@@ -39,6 +39,7 @@ export class ForkVisualization implements Interactor {
         title: visualization.info.title,
         slug: undefined,
         description: visualization.info.description,
+        height: visualization.info.height,
         files: visualization.content.files,
         forkedFrom: visualization.id,
         createdTimestamp: nowTimestamp,

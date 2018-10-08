@@ -7,6 +7,8 @@ import { runBuildEpic } from './runBuildEpic';
 import { runNonJSEpic } from './runNonJS';
 import { forkEpic } from './forkEpic';
 import { forkSuccessEpic } from './forkSuccessEpic';
+import { deleteVisualizationEpic } from './deleteVisualizationEpic';
+import { deleteVisualizationSuccessEpic } from './deleteVisualizationSuccessEpic';
 
 const {
   epics: {
@@ -14,7 +16,8 @@ const {
     promptForNewFileNameEpic,
     promptForNewHeightEpic,
     promptForRenameEpic,
-    confirmDeleteEpic,
+    confirmFileDeleteEpic,
+    confirmVisualizationDeleteEpic,
     updateTitleEpic,
     updateDescriptionEpic,
   }
@@ -30,11 +33,14 @@ export const rootEpicForBrowser = combineEpics(
   promptForNewFileNameEpic,
   promptForNewHeightEpic,
   promptForRenameEpic,
-  confirmDeleteEpic,
+  confirmFileDeleteEpic,
+  confirmVisualizationDeleteEpic,
   forkEpic,
   forkSuccessEpic,
   updateTitleEpic,
   updateDescriptionEpic,
+  deleteVisualizationEpic,
+  deleteVisualizationSuccessEpic
 );
 
 export const rootEpicForServer = combineEpics(

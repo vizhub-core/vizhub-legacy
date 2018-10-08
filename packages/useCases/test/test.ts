@@ -45,6 +45,10 @@ import {
 
   GetAllVisualizationInfos,
   GetAllVisualizationInfosResponseModel,
+
+  DeleteVisualization,
+  DeleteVisualizationRequestModel,
+  DeleteVisualizationResponseModel,
 } from '../src/index';
 
 const visualizationGateway = {
@@ -252,7 +256,8 @@ describe('Use Cases', () => {
           info: {
             owner: '123',
             title: 'foo',
-            description: 'Foo is cool'
+            description: 'Foo is cool',
+            height: 600
           },
           content: {
             files: [{ name: 'index.html', text: 'HTML yes' }]
@@ -276,13 +281,14 @@ describe('Use Cases', () => {
       delete arg.lastUpdatedTimestamp;
 
       const expected = {
-        "id": arg.id,
-        "owner": "456",
-        "title": "foo",
-        "description": "Foo is cool",
-        "files": [ { "name": "index.html", "text": "HTML yes" } ],
-        "forkedFrom": "456",
-        "slug": undefined
+        id: arg.id,
+        owner: "456",
+        title: "foo",
+        description: "Foo is cool",
+        files: [ { "name": "index.html", "text": "HTML yes" } ],
+        forkedFrom: "456",
+        slug: undefined,
+        height: 600
       };
       assert.deepEqual(arg, expected);
     });
@@ -416,6 +422,35 @@ describe('Use Cases', () => {
       assert.deepEqual(responseModel, {
         visualizationInfos: fakeVisualizationInfos
       });
+    });
+  });
+
+  describe('Delete Visualization', () => {
+    const visualizationGateway = {
+      deleteVisualization: async ({ visualization }) => ({ status: 'success' }),
+      getVisualization: async ({ id }) => ({ info: { owner: '123' } })
+    };
+    const deleteVisualization = new DeleteVisualization({ visualizationGateway });
+
+    it('should invoke deleteVisualization in gateway.', async () => {
+      const requestModel = {
+        id: '47389',
+        userId: '123'
+      };
+      const responseModel = await deleteVisualization.execute(requestModel);
+      assert.equal(responseModel.status, 'success');
+    });
+
+    it('should error if user does not match owner.', done => {
+      const requestModel = {
+        id: '47389',
+        userId: '234'
+      };
+      deleteVisualization.execute(requestModel)
+        .catch(error => {
+          assert.equal(error.message, i18n('errorNotOwnerCantDelete'))
+          done();
+        });
     });
   });
 });

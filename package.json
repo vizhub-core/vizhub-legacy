@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "bootstrap": "lerna bootstrap && echo -ne '\\007';sleep 0.2; echo -ne '\\007'; sleep 0.2; echo -ne '\\007' && npm run testAll",
     "lint": "eslint . --fix",
     "test": "cd packages/entities && npm test && cd ../useCases && npm test && cd ../gateways && npm test && cd ../presenters && npm test && cd ../controllers && npm test && cd ../database && npm test && echo 'All tests pass!'",
     "testAll": "npm run test && cd packages/web && npm test",
