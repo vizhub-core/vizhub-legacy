@@ -11,12 +11,44 @@ const {
   }
 } = uiRedux;
 
-const message = error => error.toString();
-const isSyntaxError = error => error.code === 'PARSE_ERROR';
-const loc = error => error.loc;
-const file = error => loc(error).file;
-const line = error => loc(error).line;
-const frame = error => error.frame;
+const relativeId = id =>
+  (typeof id === 'string' && id.length > 0 && id[0] === '/')
+    ? id.substr(1)
+    : id;
+
+// Inspired by https://github.com/rollup/rollup/blob/master/bin/src/logging.ts
+const logRollupError = error => {
+  const lines = [];
+
+  let message = error.message || error;
+  if (error.name) {
+    message = `${error.name}: ${message}`;
+  }
+
+  lines.push(`${message.toString()}`);
+
+  if (error.url) {
+    lines.push(error.url);
+  }
+
+  if (error.loc) {
+    lines.push(`${error.loc.file || error.id} (line ${error.loc.line})`);
+  } else if (error.id) {
+    lines.push(error.id);
+  }
+
+  if (error.frame) {
+    lines.push(error.frame);
+  }
+
+  // if (error.stack) {
+  //   lines.push(error.stack);
+  // }
+            
+  lines.push('(bundle.js not updated)');
+
+  console.error(lines.join('\n'));
+};
 
 export const buildEpic = (action$, state$) =>
   action$.ofType(START_BUILD).pipe(
@@ -24,12 +56,7 @@ export const buildEpic = (action$, state$) =>
       map(buildFinished),
       catchError(error => {
         if (process.browser) {
-          console.error([
-            message(error),
-            'in ' + file(error) + ' line ' + line(error),
-            '\n' + frame(error),
-            '(bundle.js not updated)'
-          ].join('\n'));
+          logRollupError(error);
         }
         return of(buildError(error));
       })
