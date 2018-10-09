@@ -39,12 +39,22 @@ const {
   }
 } = uiRedux;
 
+// Exclude file entries where name is null, as does happen.
+// Related https://github.com/datavis-tech/vizhub-ui/issues/162
+const filterBogusFiles = visualization => {
+  if (visualization && visualization.content && visualization.content.files) {
+    visualization.content.files = visualization.content.files
+      .filter(file => file.name);
+  }
+  return visualization;
+};
+
 export default class extends Page {
   static async getInitialProps({req, query}) {
     const props = await super.getInitialProps({ req });
     const response = await getJSON(`/api/visualization/get/${query.id}`, req);
     props.error = response.error;
-    props.visualization = response.visualization;
+    props.visualization = filterBogusFiles(response.visualization);
     props.ownerUser = response.ownerUser;
     return props;
   }
