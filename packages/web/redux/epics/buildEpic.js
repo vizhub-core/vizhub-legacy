@@ -24,14 +24,12 @@ export const buildEpic = (action$, state$) =>
       map(buildFinished),
       catchError(error => {
         if (process.browser) {
-          if (isSyntaxError(error)){
-            console.error([
-              message(error),
-              'in ' + file(error) + ' line ' + line(error),
-              '\n' + frame(error),
-              '(bundle.js not updated)'
-            ].join('\n'));
-          }
+          console.error([
+            message(error),
+            'in ' + file(error) + ' line ' + line(error),
+            '\n' + frame(error),
+            '(bundle.js not updated)'
+          ].join('\n'));
         }
         return of(buildError(error));
       })
