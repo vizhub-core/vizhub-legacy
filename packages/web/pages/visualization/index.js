@@ -20,6 +20,8 @@ import {
 } from '../../redux/actionCreators';
 import { ForkInvitation } from './forkInvitation';
 import 'codemirror/lib/codemirror.css';
+import 'codemirror/addon/fold/foldgutter.css';
+import 'codemirror/addon/dialog/dialog.css';
 import 'vizhub-ui/dist/styles.css';
 
 const {
