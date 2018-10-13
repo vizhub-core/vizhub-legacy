@@ -36,6 +36,9 @@ export default class extends Page {
                     Take this <a href='https://curran.github.io/dataviz-course-2018/'>online course</a> to start learning!
                   </h2>
                   <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL9yYRbwpkykvOXrZumtZWbuaXWHvjD8gi" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                  <h2 className='subtitle'>
+                    Also, check out what's new in <a href='https://medium.com/@currankelleher/vizhub-1-0-9fc56a70a464'>VizHub 1.0</a>!
+                  </h2>
                 </div>
               </div>
             </div>

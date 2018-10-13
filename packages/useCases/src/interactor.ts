@@ -3,5 +3,5 @@ export interface RequestModel {};
 export interface ResponseModel {};
 
 export interface Interactor {
-  execute(RequestModel): Promise<ResponseModel>;
+  execute(RequestModel | undefined): Promise<ResponseModel | undefined>;
 }
