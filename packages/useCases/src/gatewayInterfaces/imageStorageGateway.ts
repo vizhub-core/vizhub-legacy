@@ -1,5 +1,5 @@
 import { DocumentId, } from 'datavis-tech-entities';
-import { Images } from './imageGeneratorGateway';
+import { Visualization, Images } from 'datavis-tech-entities';
 
 export interface ImageStorageGateway {
   updateImages({ id: DocumentId, images: Images}): Promise<any>;

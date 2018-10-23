@@ -16,12 +16,6 @@ export const generateImages = async visualization => {
     screenshotBuffer
   });
 
-  //const previewBuffer = await resize({
-  //  desiredDimensions: previewDimensions,
-  //  visualizationViewModel,
-  //  screenshotBuffer
-  //});
-
   return {
     thumbnail: thumbnailBuffer.toString('base64'),
     preview: screenshotBuffer.toString('base64')

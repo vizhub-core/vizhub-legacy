@@ -16,7 +16,8 @@
     "vizhub-server-gateways": "1",
     "vizhub-ui": "1",
     "datavis-tech-entities": "1",
-    "datavis-tech-presenters": "1"
+    "datavis-tech-presenters": "1",
+    "datavis-tech-use-cases": "1"
   },
   "devDependencies": {
     "esm": "^3.0.84",
