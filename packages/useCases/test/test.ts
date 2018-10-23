@@ -460,16 +460,30 @@ describe('Use Cases', () => {
     const visualization = {
       info: {}
     };
+    const images = {
+      thumbnail: 'foo',
+      preview: 'bar'
+    };
+    let updatedImages;
     const updateImages = new UpdateImages({
       visualizationGateway: {
         getVisualization: async ({ id }) => visualization,
-        getAllVisualizationInfos: async () => [visualization]
+        getAllVisualizationInfos: async () => [visualization],
+        setImagesUpdatedTimestamp: async ({ id, imagesUpdatedTimestamp }) => 'success'
+      },
+      imageGeneratorGateway: {
+        generateImages: async () => images
+      },
+      imageStorageGateway: {
+        updateImages: async ({ id, images }) => {
+          updatedImages = images;
+        }
       }
     });
 
     it('should generate images for visualization with no image.', async () => {
       await updateImages.execute();
-      //assert.equal();
+      assert.deepEqual(updatedImages, images);
     });
   });
 });

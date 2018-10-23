@@ -10,10 +10,6 @@ export const resize = async options => {
 
   const { width, height } = computeImageDimensions({ actual, desired });
 
-  console.log(width / height);
-  console.log(actual.width / actual.height);
-  console.log({width, height});
-
   return await sharp(screenshotBuffer)
     .resize(width, height)
     .toBuffer();

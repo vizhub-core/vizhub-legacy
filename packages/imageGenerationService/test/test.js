@@ -48,11 +48,11 @@ describe('Thumbnails Service', () => {
     });
   });
 
-  //describe('image generation', () => {
-  //  it('should make a thumbnail for a visualization', async () => {
-  //    const { thumbnail, preview } = await generateImages(visualization);
-  //    console.log(thumbnail);
-  //    assert.equal(preview, expectedPreview);
-  //  }).timeout(6000);
-  //});
+  describe('image generation', () => {
+    it('should make a thumbnail for a visualization', async () => {
+      const { thumbnail, preview } = await generateImages(visualization);
+      assert.equal(preview, expectedPreview);
+      assert.equal(thumbnail, expectedThumbnail);
+    }).timeout(6000);
+  });
 });
