@@ -1,4 +1,5 @@
 import assert from 'assert';
+import { serverGateways } from 'vizhub-server-gateways';
 import { testData } from 'datavis-tech-entities';
 import { generateImages } from '../src/generateImages';
 import { computeImageDimensions } from '../src/computeImageDimensions';
@@ -53,6 +54,17 @@ describe('Thumbnails Service', () => {
       const { thumbnail, preview } = await generateImages(visualization, 500);
       assert.equal(preview, expectedPreview);
       assert.equal(thumbnail, expectedThumbnail);
+    });
+  });
+
+  describe('service integration', () => {
+    it('should generate images as a service', async () => {
+      const gateways = serverGateways();
+      const options = Object.assign({}, visualization.info, visualization.content);
+      await gateways.visualizationGateway.createVisualization(options);
+
+      // TODO start the service (with custom short wait time)
+      // TODO verify the images landed in the DB
     });
   });
 });
