@@ -50,9 +50,9 @@ describe('Thumbnails Service', () => {
 
   describe('image generation', () => {
     it('should make a thumbnail for a visualization', async () => {
-      const { thumbnail, preview } = await generateImages(visualization);
+      const { thumbnail, preview } = await generateImages(visualization, 500);
       assert.equal(preview, expectedPreview);
       assert.equal(thumbnail, expectedThumbnail);
-    }).timeout(6000);
+    });
   });
 });
