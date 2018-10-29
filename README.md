@@ -30,7 +30,7 @@ Related products:
 
 This project aspires to [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) ([video](https://www.youtube.com/watch?v=o_TH-Y78tt4)).
 
-[![DVT2_Architecture.svg](/uploads/325fa67893239c8bcf6463d7a0d85193/DVT2_Architecture.png)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
+[![DVT2_Architecture.svg](https://user-images.githubusercontent.com/68416/47646563-4ee6df80-db9a-11e8-96c5-d4ff35d625ed.png)](https://docs.google.com/drawings/d/1g7GpgpqFvLzh2RuON4Pe95Qt1Lj3pRmpOGFoIVrzd74/edit)
 
 The UI package will be Open Source, following the [Open Core Model](https://en.wikipedia.org/wiki/Open_core). This is inspired by the success of this model with [CodeSandbox.io](https://github.com/CompuIves/codesandbox-client). The idea is that the actual architectural core will remain proprietary so that commercial features can be offered, while enabling users and supporters of the product to:
 
@@ -49,12 +49,12 @@ Clean Architecture Resources:
 # Entities
 `packages/entities`
 
-![entityDiagram](/uploads/bc903e6205d329906b9fc8c2f34842b7/entityDiagram.png)
+![entityDiagram](https://user-images.githubusercontent.com/68416/47646746-e3e9d880-db9a-11e8-903b-640203f52787.png)
 
 # Use Cases
 `packages/useCases`
 
-![useCasesDiagram](/uploads/0cea6ef15982b5b26e96136f1916d108/useCasesDiagram.png)
+![useCasesDiagram](https://user-images.githubusercontent.com/68416/47646754-e9472300-db9a-11e8-82cb-74e1d7588904.png)
 
 # Development
 
