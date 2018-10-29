@@ -1,3 +1,9 @@
+# VizHub
+
+This repository contains the web app deployed to https://vizhub.com.
+
+See also https://github.com/datavis-tech/vizhub-ui
+
 Table of Contents:
 
  * [Product](#product)
