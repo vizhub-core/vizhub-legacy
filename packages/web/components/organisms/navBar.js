@@ -34,7 +34,7 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
 
         <div className='level-right'>
           <div className='level-item'>
-            <a href='https://github.com/datavis-tech/vizhub-ui/'>
+            <a href='https://github.com/datavis-tech/vizhub/'>
               <FaGithub />
             </a>
           </div>
