@@ -5,6 +5,7 @@ import { generateImages } from '../src/generateImages';
 import { computeImageDimensions } from '../src/computeImageDimensions';
 import { thumbnailDimensions, previewDimensions } from '../src/dimensions';
 import { expectedThumbnail, expectedPreview } from './expectedImages';
+import { startService } from '../src/service';
 
 const { visualization } = testData;
 
@@ -63,8 +64,12 @@ describe('Thumbnails Service', () => {
       const options = Object.assign({}, visualization.info, visualization.content);
       await gateways.visualizationGateway.createVisualization(options);
 
-      // TODO start the service (with custom short wait time)
+      const { stopService } = startService({
+        updateInterval: 1000
+      });
+
       // TODO verify the images landed in the DB
+      // TODO stop service
     });
   });
 });

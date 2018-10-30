@@ -2,7 +2,7 @@ import { serverGateways } from 'vizhub-server-gateways';
 import { UpdateImages } from 'datavis-tech-use-cases';
 import { generateImages } from './generateImages';
 
-export const startService = () => {
+export const startService = ({ updateInterval }) => {
 
   const gateways = Object.assign({}, serverGateways(), {
     imageGeneratorGateway: {
@@ -12,12 +12,18 @@ export const startService = () => {
 
   const updateImages = new UpdateImages(gateways);
 
-  const updateImagesInterval = 12 * 1000;
-
   console.log('Image generation service starting...');
 
-  setInterval(() => {
+  const interval = setInterval(() => {
     console.log('Checking for visualizations in need of images..');
     updateImages.execute();
-  }, updateImagesInterval);
+  }, updateInterval);
+
+  console.log(interval);
+
+  return {
+    stopService: () => {
+      clearInterval(interval);
+    }
+  };
 };
