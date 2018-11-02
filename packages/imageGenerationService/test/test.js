@@ -64,12 +64,28 @@ describe('Thumbnails Service', () => {
       const options = Object.assign({}, visualization.info, visualization.content);
       await gateways.visualizationGateway.createVisualization(options);
 
+      // test failure case when thumbnail is requested but does not exist
+      try {
+        const thumbnail = await gateways.imageStorageGateway.getThumbnail({ id: '123' });
+        console.log({ thumbnail });
+      } catch (error) {
+        assert.equal(error.message, 'Thumbnail does not exist for document 123');
+      }
+
       const { stopService } = startService({
         waitTime: 1000,
       });
 
-      // TODO verify the images landed in the DB
-      // TODO stop service
-    });
+      console.log('before');
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      console.log('after');
+      
+      const thumbnail = await gateways.imageStorageGateway.getThumbnail({ id: '123' });
+      assert.equal(thumbnail, expectedThumbnail);
+
+      // TODO address memory leak
+
+      //stopService();
+    }).timeout(10000);
   });
 });

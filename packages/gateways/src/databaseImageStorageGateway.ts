@@ -10,7 +10,10 @@ export class DatabaseImageStorageGateway implements ImageStorageGateway {
   }
 
   async updateImages(options){
-    console.log(options);
     return await this.database.updateImages(options);
+  }
+
+  async getThumbnail(options){
+    return await this.database.getThumbnail(options);
   }
 }
