@@ -10,6 +10,7 @@ import { getUserByUserName } from './getUserByUserName';
 import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
 import { getDatasetInfosByUserId } from './getDatasetInfosByUserId';
+import { updateImages } from './updateImages';
 
 export const Database = connection => ({
   createVisualization: createVisualization(connection),
@@ -23,5 +24,6 @@ export const Database = connection => ({
   getUserByUserName: getUserByUserName(connection),
   getVisualizationInfosByUserId: getVisualizationInfosByUserId(connection),
   getAllVisualizationInfos: getAllVisualizationInfos(connection),
-  getDatasetInfosByUserId: getDatasetInfosByUserId(connection)
+  getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
+  updateImages: updateImages(connection)
 });

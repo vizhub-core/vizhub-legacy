@@ -11,11 +11,13 @@ export class UpdateImages implements Interactor {
   visualizationGateway: VisualizationGateway;
   imageGeneratorGateway: ImageGeneratorGateway;
   imageStorageGateway: ImageStorageGateway;
+  waitTime: number;
 
-  constructor(gateways) {
+  constructor(gateways, waitTime) {
     this.visualizationGateway = gateways.visualizationGateway;
     this.imageGeneratorGateway = gateways.imageGeneratorGateway;
     this.imageStorageGateway = gateways.imageStorageGateway;
+    this.waitTime = waitTime;
   }
 
   async execute() {
@@ -37,7 +39,7 @@ export class UpdateImages implements Interactor {
       const imagesUpdatedTimestamp = timestamp();
       const id = visualizationInfosNeedingThumbnails[0].id;
       const visualization = await this.visualizationGateway.getVisualization({ id });
-      const images = await this.imageGeneratorGateway.generateImages(visualization);
+      const images = await this.imageGeneratorGateway.generateImages(visualization, this.waitTime);
 
       return await Promise.all([
         this.imageStorageGateway.updateImages({

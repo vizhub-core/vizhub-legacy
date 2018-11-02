@@ -65,7 +65,7 @@ describe('Thumbnails Service', () => {
       await gateways.visualizationGateway.createVisualization(options);
 
       const { stopService } = startService({
-        updateInterval: 1000
+        waitTime: 1000,
       });
 
       // TODO verify the images landed in the DB
