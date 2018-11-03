@@ -64,10 +64,11 @@ describe('Thumbnails Service', () => {
       const options = Object.assign({}, visualization.info, visualization.content);
       await gateways.visualizationGateway.createVisualization(options);
 
+      const id = visualization.id;
+
       // test failure case when thumbnail is requested but does not exist
       try {
-        const thumbnail = await gateways.imageStorageGateway.getThumbnail({ id: '123' });
-        console.log({ thumbnail });
+        await gateways.imageStorageGateway.getThumbnail({ id });
       } catch (error) {
         assert.equal(error.message, 'Thumbnail does not exist for document 123');
       }
@@ -76,16 +77,26 @@ describe('Thumbnails Service', () => {
         waitTime: 1000,
       });
 
-      console.log('before');
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      console.log('after');
+      await new Promise(resolve => setTimeout(resolve, 4000));
       
-      const thumbnail = await gateways.imageStorageGateway.getThumbnail({ id: '123' });
+      const thumbnail = await gateways.imageStorageGateway.getThumbnail({ id });
       assert.equal(thumbnail, expectedThumbnail);
 
-      // TODO address memory leak
+      // Test that the thumbnail is only generated if the existing one is outdated.
+      const before = (
+        await gateways.visualizationGateway.getAllVisualizationInfos()
+      )[0].imagesUpdatedTimestamp;
 
-      //stopService();
+      await new Promise(resolve => setTimeout(resolve, 4000));
+
+      const after = (
+        await gateways.visualizationGateway.getAllVisualizationInfos()
+      )[0].imagesUpdatedTimestamp;
+
+      assert.equal(before, after);
+      // TODO test that the thumbnail updates after the visualization was changed
+
+      stopService();
     }).timeout(10000);
   });
 });

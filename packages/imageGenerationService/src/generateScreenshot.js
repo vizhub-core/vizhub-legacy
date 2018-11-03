@@ -15,6 +15,7 @@ export const generateScreenshot = async ({ visualizationViewModel, waitTime }) =
 
   const screenshotBuffer = await page.screenshot();
   await page.close();
+  await browser.close();
 
   return screenshotBuffer;
 };

@@ -479,7 +479,7 @@ describe('Use Cases', () => {
           updatedImages = images;
         }
       }
-    });
+    }, 1000);
 
     it('should generate images for visualization with no image.', async () => {
       await updateImages.execute();

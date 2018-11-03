@@ -28,5 +28,6 @@ export class VisualizationInfo extends DocumentInfo {
 
     this.forkedFrom = data.forkedFrom;
     this.height = data.height;
+    this.imagesUpdatedTimestamp = data.imagesUpdatedTimestamp;
   }
 }
