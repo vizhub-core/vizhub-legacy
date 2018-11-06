@@ -5,6 +5,7 @@ import { saveVisualizationController } from './saveVisualizationController';
 import { deleteVisualizationController } from './deleteVisualizationController';
 import { forkVisualizationController } from './forkVisualizationController';
 import { getAllVisualizationInfosController } from './getAllVisualizationInfosController';
+import { getThumbnailController } from './getThumbnailController';
 
 export const visualizationAPIController = (expressApp, gateways) => {
   createVisualizationController(expressApp, gateways);
@@ -14,4 +15,5 @@ export const visualizationAPIController = (expressApp, gateways) => {
   deleteVisualizationController(expressApp, gateways);
   forkVisualizationController(expressApp, gateways);
   getAllVisualizationInfosController(expressApp, gateways);
+  getThumbnailController(expressApp, gateways);
 };
