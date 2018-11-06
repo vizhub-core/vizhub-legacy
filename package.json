@@ -4,11 +4,9 @@
     "lint": "eslint . --fix",
     "test": "cd packages/entities && npm test && cd ../useCases && npm test && cd ../gateways && npm test && cd ../presenters && npm test && cd ../controllers && npm test && cd ../database && npm test && echo 'All tests pass!'",
     "testAll": "npm run test && cd packages/web && npm test",
-
     "startServer": "cd packages/web; npm run --silent dev &",
     "stopServer": "kill $(lsof -t -i:3000)",
     "ci": "lerna bootstrap && npm run startServer && npm run testAll && npm run stopServer",
-
     "updateDeps": "npm install -g npm-check-updates; ncu -a; cd packages/entities && ncu -a && cd ../useCases && ncu -a cd ../gateways && ncu -a && cd ../presenters && ncu -a && cd ../controllers && ncu -a && cd ../database && ncu -a && cd ../web && ncu -a && cd ../ui && ncu -a && echo 'All dependencies upgraded!'"
   },
   "devDependencies": {
@@ -17,6 +15,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-react": "^7.11.0",
+    "esm": "^3.0.84",
     "lerna": "^3.0.4"
   }
 }

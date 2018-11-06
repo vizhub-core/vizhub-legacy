@@ -9,6 +9,11 @@ export class VisualizationInfo extends DocumentInfo {
 
   height: number;
 
+  // The Unix timestamp at which the thumbnail and preview
+  // images for this visualization were last updated.
+  // A value of undefined means there were never any images generated.
+  imagesUpdatedTimestamp: number | undefined;
+
   constructor(data) {
     super({
       documentType: VISUALIZATION_TYPE,
@@ -23,5 +28,6 @@ export class VisualizationInfo extends DocumentInfo {
 
     this.forkedFrom = data.forkedFrom;
     this.height = data.height;
+    this.imagesUpdatedTimestamp = data.imagesUpdatedTimestamp;
   }
 }

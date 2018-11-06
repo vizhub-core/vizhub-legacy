@@ -57,7 +57,8 @@ export const documentInfoData = {
 
 export const visualizationInfoData = Object.assign({}, documentInfoData, {
   forkedFrom: '012',
-  height: 600
+  height: 600,
+  imagesUpdatedTimestamp: 87432589
 });
 
 export const visualizationInfo = new VisualizationInfo(visualizationInfoData);

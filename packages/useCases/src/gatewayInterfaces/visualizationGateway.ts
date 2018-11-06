@@ -3,7 +3,8 @@ import {
   DocumentId,
   File,
   VisualizationInfo,
-  Visualization
+  Visualization,
+  Images
 } from 'datavis-tech-entities';
 
 import {
@@ -39,6 +40,9 @@ export interface VisualizationGateway {
   saveVisualization(request: SaveVisualizationRequestModel):
     Promise<SaveVisualizationResponseModel>;
 
-  deleteVisualization({ id: string }):
+  deleteVisualization({ id: DocumentId }):
     Promise<DeleteVisualizationResponseModel>;
+
+  setImagesUpdatedTimestamp({ id: DocumentId, imagesUpdatedTimestamp: number }):
+    Promise<any>;
 }
