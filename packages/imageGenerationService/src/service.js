@@ -18,10 +18,10 @@ export const startService = ({ waitTime = defaultWaitTime }) => {
 
   const updateImages = new UpdateImages(gateways, waitTime);
 
-  //console.log('Image generation service starting...');
+  console.log('Image generation service starting...');
 
   let loop = () => {
-    //console.log('Checking for visualizations in need of images..');
+    console.log('Checking for visualizations in need of images..');
     Promise.all([
       updateImages.execute(),
       new Promise(resolve => setTimeout(resolve, waitTime + downTime))
