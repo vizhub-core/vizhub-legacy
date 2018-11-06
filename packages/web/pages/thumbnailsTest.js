@@ -3,6 +3,8 @@ import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
 import { getJSON } from '../utils/getJSON';
 
+const thumbnailUrl = id => `/api/visualization/thumbnail/${id}.png`;
+
 export default class extends Page {
   static async getInitialProps({req}) {
     const props = await super.getInitialProps({ req });
@@ -13,7 +15,11 @@ export default class extends Page {
   render() {
     return (
       <TitledPage title='Thumbnails Test Page'>
-        <pre>{JSON.stringify(this.props.metadata)}</pre>
+      {
+        this.props.metadata.map(info => (
+          <img src={thumbnailUrl(info.id)}/>
+        ))
+      }
       </TitledPage>
     );
   }
