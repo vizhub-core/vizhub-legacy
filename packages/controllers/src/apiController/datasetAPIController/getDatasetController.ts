@@ -24,6 +24,8 @@ export const getDatasetController = (expressApp, gateways) => {
       const requestModel = { userName, slug };
       const responseModel = await getDataset.execute(requestModel);
       res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       res.send(responseModel.dataset.content.text);
     } catch (error) {
       // TODO unify error handling across the codebase.
