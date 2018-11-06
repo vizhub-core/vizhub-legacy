@@ -6,6 +6,7 @@ export const routes = NextRoutes()
   .add('auth', '/auth')
   .add('create-visualization', '/create-visualization')
   .add('upload-dataset', '/upload-dataset')
+  .add('thumbnailsTest', '/thumbnailsTest')
   .add('profile', '/:userName')
   .add('visualization', '/:userName/:id')
-  .add('dataset', '/:userName/datasets/:slug');
+  .add('dataset', '/:userName/datasets/:slug')
