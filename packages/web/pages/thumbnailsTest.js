@@ -8,7 +8,6 @@ const thumbnailUrl = id => `/api/visualization/thumbnail/${id}.png`;
 export default class extends Page {
   static async getInitialProps({req}) {
     const props = await super.getInitialProps({ req });
-    console.log(props);
     props.metadata = await getJSON(`/api/visualization/metadata`, req);;
     return props;
   }
@@ -17,7 +16,7 @@ export default class extends Page {
       <TitledPage title='Thumbnails Test Page'>
       {
         this.props.metadata.map(info => (
-          <img src={thumbnailUrl(info.id)}/>
+          <img key={info.id} src={thumbnailUrl(info.id)}/>
         ))
       }
       </TitledPage>
