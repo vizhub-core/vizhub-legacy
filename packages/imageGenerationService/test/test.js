@@ -59,34 +59,46 @@ describe('Thumbnails Service', () => {
   });
 
   describe('service integration', () => {
-    it('should generate images as a service', async () => {
-      const gateways = serverGateways();
-      const options = Object.assign({}, visualization.info, visualization.content);
-      await gateways.visualizationGateway.createVisualization(options);
+    const id = visualization.id;
+    const gateways = serverGateways();
+    let service;
 
-      const id = visualization.id;
-
-      // test failure case when thumbnail is requested but does not exist
+    it('should error when thumbnail is requested but does not exist', async () => {
       try {
         await gateways.imageStorageGateway.getThumbnail({ id });
       } catch (error) {
         assert.equal(error.message, 'Thumbnail does not exist for document 123');
       }
+    });
 
-      const { stopService } = startService({
-        waitTime: 1000,
-      });
+    it('should set up a visualization', async () => {
+      const options = Object.assign({}, visualization.info, visualization.content);
+      await gateways.visualizationGateway.createVisualization(options);
+    });
 
+    it('should start service', () => {
+      service = startService({ waitTime: 1000 });
+    });
+
+    it('should generate, store, and get a thumbnail', async () => {
+      // Wait for the service to generate and store the thumbnail.
       await new Promise(resolve => setTimeout(resolve, 4000));
       
       const thumbnail = await gateways.imageStorageGateway.getThumbnail({ id });
       assert.equal(thumbnail, expectedThumbnail);
+    }).timeout(5000);;
+    
+    //it('should generate, store, and get a preview image', async () => {
+    //  const preview = await gateways.imageStorageGateway.getPreview({ id });
+    //  assert.equal(preview, expectedThumbnail);
+    //});
 
-      // Test that the thumbnail is only generated if the existing one is outdated.
+    it('should generate thumbnail only if the existing one is outdated', async () => {
       const before = (
         await gateways.visualizationGateway.getAllVisualizationInfos()
       )[0].imagesUpdatedTimestamp;
 
+      // Let the service do its thing.
       await new Promise(resolve => setTimeout(resolve, 4000));
 
       const after = (
@@ -94,9 +106,10 @@ describe('Thumbnails Service', () => {
       )[0].imagesUpdatedTimestamp;
 
       assert.equal(before, after);
+
       // TODO test that the thumbnail updates after the visualization was changed
 
-      stopService();
-    }).timeout(10000);
+      service.stopService();
+    }).timeout(5000);;
   });
 });
