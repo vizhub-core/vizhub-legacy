@@ -39,6 +39,9 @@ export class UpdateImages implements Interactor {
       const imagesUpdatedTimestamp = timestamp();
       const id = visualizationInfosNeedingThumbnails[0].id;
       const visualization = await this.visualizationGateway.getVisualization({ id });
+
+      console.log('Generating images for ' + visualization.info.title + ' ' + visualization.id);
+
       const images = await this.imageGeneratorGateway.generateImages(visualization, this.waitTime);
 
       return await Promise.all([

@@ -4,6 +4,10 @@ import { generateImages, defaultWaitTime } from './generateImages';
 
 const noop = () => {};
 
+// Give some time after image generation for the images to be stored.
+// Otherwise we'd generate the same image twice in a row.
+const downTime = 1000;
+
 export const startService = ({ waitTime = defaultWaitTime }) => {
 
   const gateways = Object.assign({}, serverGateways(), {
@@ -20,7 +24,7 @@ export const startService = ({ waitTime = defaultWaitTime }) => {
     //console.log('Checking for visualizations in need of images..');
     Promise.all([
       updateImages.execute(),
-      new Promise(resolve => setTimeout(resolve, waitTime))
+      new Promise(resolve => setTimeout(resolve, waitTime + downTime))
     ]).then(loop);
   }
   loop();
