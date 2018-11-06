@@ -72,3 +72,10 @@ export {
 export {
   UpdateImages
 } from './updateImages';
+
+export {
+  GetThumbnail,
+  GetThumbnailRequestModel,
+  GetThumbnailResponseModel
+} from './getThumbnail';
+
