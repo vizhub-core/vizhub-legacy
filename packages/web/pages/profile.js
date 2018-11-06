@@ -7,6 +7,7 @@ import { TextContainer } from '../components/atoms/textContainer';
 import { NavBar } from '../components/organisms/navBar';
 import { getJSON } from '../utils/getJSON';
 import { visualizationRoute, datasetRoute } from '../routes/routeGenerators';
+import { VisualizationPreview } from '../components/atoms/visualizationPreview';
 
 export default class extends Page {
 
@@ -62,6 +63,13 @@ export default class extends Page {
                     </a>
                   </Link>
                 </div>
+              ))
+            : null
+          }
+          {
+            (profileData && profileData.visualizationInfos)
+            ? profileData.visualizationInfos.map(info => (
+                <VisualizationPreview key={info.id} info={info} userName={userName}/>
               ))
             : null
           }

@@ -1,9 +1,11 @@
 import React from 'react';
 import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
+import { VisualizationPreview } from '../components/atoms/visualizationPreview';
 import { getJSON } from '../utils/getJSON';
+import { testData } from 'datavis-tech-entities';
 
-const thumbnailUrl = id => `/api/visualization/thumbnail/${id}.png`;
+const { visualizationInfo } = testData;
 
 export default class extends Page {
   static async getInitialProps({req}) {
@@ -14,11 +16,13 @@ export default class extends Page {
   render() {
     return (
       <TitledPage title='Thumbnails Test Page'>
-      {
-        this.props.metadata.map(info => (
-          <img key={info.id} src={thumbnailUrl(info.id)}/>
-        ))
-      }
+        <h1>Preview</h1>
+        <VisualizationPreview info={visualizationInfo} userName='thomas'/>
+        {
+          this.props.metadata.map(info => (
+            <VisualizationPreview key={info.id} info={info} userName='undefined'/>
+          ))
+        }
       </TitledPage>
     );
   }

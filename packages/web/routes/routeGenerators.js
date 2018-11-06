@@ -1,3 +1,5 @@
+export const thumbnailUrl = id => `/api/visualization/thumbnail/${id}.png`;
+
 export const profileRoute = ({userName}) =>
   `/${userName}`;
 
