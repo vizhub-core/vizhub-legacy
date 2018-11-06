@@ -6,6 +6,7 @@ import { computeImageDimensions } from '../src/computeImageDimensions';
 import { thumbnailDimensions, previewDimensions } from '../src/dimensions';
 import { expectedThumbnail, expectedPreview } from './expectedImages';
 import { startService } from '../src/service';
+import { SaveVisualization } from 'datavis-tech-use-cases';
 
 const { visualization } = testData;
 
@@ -110,6 +111,27 @@ describe('Thumbnails Service', () => {
       // TODO test that the thumbnail updates after the visualization was changed
 
       service.stopService();
+    }).timeout(5000);;
+
+    it('should regenerate images after visualization was saved', async () => {
+      const before = (
+        await gateways.visualizationGateway.getAllVisualizationInfos()
+      )[0].imagesUpdatedTimestamp;
+      
+      // Save the visualization to trigger image regeneration.
+      await new SaveVisualization(gateways).execute({
+        visualization,
+        userId: visualization.info.owner
+      });
+
+      // Let the service do its thing.
+      await new Promise(resolve => setTimeout(resolve, 4000));
+
+      const after = (
+        await gateways.visualizationGateway.getAllVisualizationInfos()
+      )[0].imagesUpdatedTimestamp;
+
+      assert.notEqual(before, after);
     }).timeout(5000);;
   });
 });
