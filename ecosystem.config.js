@@ -18,7 +18,8 @@ module.exports = {
     },
     {
       name: 'thumbnailsService',
-      script: 'cd packages/thumbnailsService; npm start',
+      script: 'packages/imageGenerationService/src/index.js',
+      node_args: '-r esm',
       instances: 1,
       autorestart: true,
       watch: false,

@@ -72,4 +72,8 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
   async deleteVisualization({ id }) {
     return await this.database.deleteVisualization({ id });
   }
+
+  async setImagesUpdatedTimestamp(options) {
+    return await this.database.setImagesUpdatedTimestamp(options);
+  }
 }

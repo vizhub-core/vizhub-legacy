@@ -20,3 +20,5 @@ import * as testData from './testData';
 export { testData };
 
 export { timestamp } from './timestamp';
+
+export { Images } from './images';

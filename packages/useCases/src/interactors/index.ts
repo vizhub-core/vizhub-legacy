@@ -68,3 +68,7 @@ export {
   DeleteVisualizationRequestModel,
   DeleteVisualizationResponseModel
 } from './deleteVisualization';
+
+export {
+  UpdateImages
+} from './updateImages';

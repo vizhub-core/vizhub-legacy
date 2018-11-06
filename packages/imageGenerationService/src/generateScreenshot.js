@@ -1,9 +1,7 @@
 import { computeSrcDoc } from 'vizhub-ui';
 import puppeteer from 'puppeteer';
 
-const imageGenerationWaitTime = 5000;
-
-export const generateScreenshot = async ({ visualizationViewModel }) => {
+export const generateScreenshot = async ({ visualizationViewModel, waitTime }) => {
   const { width, height, files } = visualizationViewModel;
 
   const html = computeSrcDoc(files);
@@ -13,10 +11,11 @@ export const generateScreenshot = async ({ visualizationViewModel }) => {
 
   await page.setViewport({ width, height });
   await page.setContent(html);
-  await page.waitFor(imageGenerationWaitTime);
+  await page.waitFor(waitTime);
 
   const screenshotBuffer = await page.screenshot();
   await page.close();
+  await browser.close();
 
   return screenshotBuffer;
 };

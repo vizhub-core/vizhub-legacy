@@ -3,12 +3,14 @@ import { generateScreenshot } from './generateScreenshot';
 import { resize } from './resize';
 import { thumbnailDimensions, previewDimensions } from './dimensions';
 
-export const generateImages = async visualization => {
+export const defaultWaitTime = 10000;
+
+export const generateImages = async (visualization, waitTime) => {
   const visualizationViewModel = new VisualizationViewModel(visualization);
-  console.log(visualizationViewModel);
 
   const screenshotBuffer = await generateScreenshot({
-    visualizationViewModel
+    visualizationViewModel,
+    waitTime: waitTime || defaultWaitTime
   });
 
   const thumbnailBuffer = await resize({
@@ -16,12 +18,6 @@ export const generateImages = async visualization => {
     desiredDimensions: thumbnailDimensions,
     screenshotBuffer
   });
-
-  //const previewBuffer = await resize({
-  //  desiredDimensions: previewDimensions,
-  //  visualizationViewModel,
-  //  screenshotBuffer
-  //});
 
   return {
     thumbnail: thumbnailBuffer.toString('base64'),

@@ -49,6 +49,8 @@ import {
   DeleteVisualization,
   DeleteVisualizationRequestModel,
   DeleteVisualizationResponseModel,
+
+  UpdateImages
 } from '../src/index';
 
 const visualizationGateway = {
@@ -451,6 +453,37 @@ describe('Use Cases', () => {
           assert.equal(error.message, i18n('errorNotOwnerCantDelete'))
           done();
         });
+    });
+  });
+
+  describe('Update Images', () => {
+    const visualization = {
+      info: {}
+    };
+    const images = {
+      thumbnail: 'foo',
+      preview: 'bar'
+    };
+    let updatedImages;
+    const updateImages = new UpdateImages({
+      visualizationGateway: {
+        getVisualization: async ({ id }) => visualization,
+        getAllVisualizationInfos: async () => [visualization],
+        setImagesUpdatedTimestamp: async ({ id, imagesUpdatedTimestamp }) => 'success'
+      },
+      imageGeneratorGateway: {
+        generateImages: async () => images
+      },
+      imageStorageGateway: {
+        updateImages: async ({ id, images }) => {
+          updatedImages = images;
+        }
+      }
+    }, 1000);
+
+    it('should generate images for visualization with no image.', async () => {
+      await updateImages.execute();
+      assert.deepEqual(updatedImages, images);
     });
   });
 });
