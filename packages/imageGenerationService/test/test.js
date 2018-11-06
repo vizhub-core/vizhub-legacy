@@ -51,7 +51,7 @@ describe('Thumbnails Service', () => {
   });
 
   describe('image generation', () => {
-    it('should make a thumbnail for a visualization', async () => {
+    it('should generate screenshot images for a visualization', async () => {
       const { thumbnail, preview } = await generateImages(visualization, 500);
       assert.equal(preview, expectedPreview);
       assert.equal(thumbnail, expectedThumbnail);
@@ -88,10 +88,10 @@ describe('Thumbnails Service', () => {
       assert.equal(thumbnail, expectedThumbnail);
     }).timeout(5000);;
     
-    //it('should generate, store, and get a preview image', async () => {
-    //  const preview = await gateways.imageStorageGateway.getPreview({ id });
-    //  assert.equal(preview, expectedThumbnail);
-    //});
+    it('should generate, store, and get a preview image', async () => {
+      const preview = await gateways.imageStorageGateway.getPreview({ id });
+      assert.equal(preview, expectedPreview);
+    });
 
     it('should generate thumbnail only if the existing one is outdated', async () => {
       const before = (

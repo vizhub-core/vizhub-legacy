@@ -1,13 +1,6 @@
-import jsonDiff from 'json0-ot-diff';
-import diffMatchPatch from 'diff-match-patch';
 import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
-
-export const save = (doc, data) => new Promise((resolve, reject) => {
-  doc.submitOp(jsonDiff(doc.data, data, diffMatchPatch), error => (
-    error ? reject(error) : resolve({ status: 'success' })
-  ));
-});
+import { save } from './save';
 
 export const saveVisualization = connection => ({ visualization }) => (
   Promise.all([

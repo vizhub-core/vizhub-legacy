@@ -4,12 +4,10 @@ export const fetchShareDBDoc = (collection, id, connection) => (
   new Promise((resolve, reject) => {
     const shareDBDoc = connection.get(collection, id);
     shareDBDoc.fetch(error => {
-      error
-        ? reject(error)
-        : shareDBDoc.type
-          ? resolve(shareDBDoc)
-          : reject({ message: i18n('errorDocNotFound'), statusCode: 404 });
-      //shareDBDoc.destroy();
+      error ? reject(error) : resolve(shareDBDoc);
+      //  : shareDBDoc.type
+      //    ? resolve(shareDBDoc)
+      //    : reject({ message: i18n('errorDocNotFound'), statusCode: 404 });
     });
   })
 );

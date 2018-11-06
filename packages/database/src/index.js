@@ -12,6 +12,7 @@ import { getAllVisualizationInfos } from './getAllVisualizationInfos';
 import { getDatasetInfosByUserId } from './getDatasetInfosByUserId';
 import { updateImages } from './updateImages';
 import { getThumbnail } from './getThumbnail';
+import { getPreview } from './getPreview';
 import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
 
 export const Database = connection => ({
@@ -29,5 +30,6 @@ export const Database = connection => ({
   getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
   updateImages: updateImages(connection),
   getThumbnail: getThumbnail(connection),
+  getPreview: getPreview(connection),
   setImagesUpdatedTimestamp: setImagesUpdatedTimestamp(connection)
 });

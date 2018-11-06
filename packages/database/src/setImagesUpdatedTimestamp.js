@@ -2,7 +2,7 @@ import jsonDiff from 'json0-ot-diff';
 import diffMatchPatch from 'diff-match-patch';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
-import { save } from './saveVisualization';
+import { save } from './save';
 
 export const setImagesUpdatedTimestamp = connection => options => {
   const { id, imagesUpdatedTimestamp } = options;
