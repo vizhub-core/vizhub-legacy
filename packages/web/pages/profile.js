@@ -34,17 +34,10 @@ export default class extends Page {
           <div className='title test-profile-full-name'>
             {fullName}
           </div>
-          <div className='subtitle'>Visualizations</div>
           {
             (profileData && profileData.visualizationInfos)
-            ? profileData.visualizationInfos.map(({ id, title }) => (
-                <div key={id} >
-                  <Link href={visualizationRoute({ userName, id })}>
-                    <a className='test-profile-visualization-info-title'>
-                      {title}
-                    </a>
-                  </Link>
-                </div>
+            ? profileData.visualizationInfos.map(info => (
+                <VisualizationPreview key={info.id} info={info} userName={userName}/>
               ))
             : null
           }
@@ -63,13 +56,6 @@ export default class extends Page {
                     </a>
                   </Link>
                 </div>
-              ))
-            : null
-          }
-          {
-            (profileData && profileData.visualizationInfos)
-            ? profileData.visualizationInfos.map(info => (
-                <VisualizationPreview key={info.id} info={info} userName={userName}/>
               ))
             : null
           }
