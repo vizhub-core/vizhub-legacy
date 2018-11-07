@@ -7,6 +7,9 @@ import { testData } from 'datavis-tech-entities';
 
 const { visualizationInfo } = testData;
 
+// For testing long titles.
+visualizationInfo.title = 'fdhsasjkf dhsasjkfl dhsasjk lfhda sdjklfh as djk has klhfjksd';
+
 export default class extends Page {
   static async getInitialProps({req}) {
     const props = await super.getInitialProps({ req });
