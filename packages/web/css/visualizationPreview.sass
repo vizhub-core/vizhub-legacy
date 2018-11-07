@@ -1,12 +1,25 @@
 // Inspired by https://vega.github.io/vega/
 .visualization-preview
-  display: inline-block;
-  width: 230px;
-  height: 120px;
-  padding: 0;
-  outline: 1px solid #ddd;
-  background-position: left top;
-  background-size: cover;
-  overflow: hidden;
-  position: relative;
-  transition: background-position 2s;
+  display: inline-block
+  margin: 10px
+  width: 230px
+
+.visualization-preview-image
+  height: 120px
+  padding: 0px
+  background-position: left top
+  background-size: cover
+  overflow: hidden
+  position: relative
+  transition: background-position 3s
+  outline: 1px solid #ddd
+
+.visualization-preview:hover .visualization-preview-image
+  background-position: right bottom
+
+.visualization-preview-title
+  width: 230px
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  font-size: 0.8em
