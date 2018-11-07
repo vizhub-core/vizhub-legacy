@@ -9,5 +9,7 @@ export const getVisualizationInfosByUserId = connection => async (id) => {
     documentType: VISUALIZATION_TYPE
   };
   const results = await fetchShareDBQuery(DOCUMENT_INFO, mongoQuery, connection);
-  return results.map(shareDBDoc => new VisualizationInfo(shareDBDoc.data));
+  return results
+    .map(shareDBDoc => new VisualizationInfo(shareDBDoc.data))
+    .reverse(); // Show most recent first
 }
