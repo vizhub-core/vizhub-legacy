@@ -10,9 +10,9 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
       <nav className='level'>
       
         <div className='level-left'>
-          <div className='level-item nav-brand'>
+          <a href='/' className='level-item nav-brand'>
             VizHub
-          </div>
+          </a>
         </div>
 
         <div className='level-item has-text-centered'>
