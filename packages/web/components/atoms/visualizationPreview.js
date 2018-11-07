@@ -9,7 +9,7 @@ export const VisualizationPreview = ({ info, userName }) => (
     <div
       className='visualization-preview-image'
       style={{
-        'background-image': `url(${thumbnailUrl(info.id)})`
+        backgroundImage: `url(${thumbnailUrl(info.id)})`
 
         // For local testing:
         //'background-image': `url(https://vizhub.com/api/visualization/thumbnail/4f92c793909f48d28012e43ddab716df.png)`

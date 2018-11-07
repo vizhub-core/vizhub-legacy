@@ -199,7 +199,7 @@ describe('Web', () => {
     });
     it('should display list of visualizations', async () => {
       const infoTitles = await page.evaluate(() => {
-        const selector = '.test-profile-visualization-info-title';
+        const selector = '.visualization-preview-title';
         return Array.from(document.querySelectorAll(selector))
           .map(el => el.textContent);
       });
