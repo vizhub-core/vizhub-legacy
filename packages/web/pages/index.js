@@ -14,7 +14,7 @@ export default class extends Page {
 
     //const metadata = await getJSON(`/api/visualization/metadata`, req);;
 
-    props.metadata = metadata.reverse().slice(0, 50);
+    props.metadata = metadata.reverse().slice(0, 500);
     return props;
   }
   render() {
