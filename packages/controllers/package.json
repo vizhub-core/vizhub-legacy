@@ -2,26 +2,14 @@
   "name": "datavis-tech-controllers",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "private": true,
-  "scripts": {
-    "build-ts": "tsc",
-    "postinstall": "npm run build-ts",
-    "test": "mocha -r ts-node/register test/**/test.ts"
-  },
+  "main": "src/index.js",
   "author": "Curran Kelleher",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "diff-match-patch": "^1.0.1",
     "json0-ot-diff": "^1.0.3",
     "datavis-tech-use-cases": "1",
-    "datavis-tech-presenters": "1"
-  },
-  "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.7.0",
-    "mocha": "^5.2.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.0.1"
+    "datavis-tech-presenters": "1",
+    "datavis-tech-entities": "1"
   }
 }
