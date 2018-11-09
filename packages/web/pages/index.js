@@ -50,7 +50,7 @@ export default class extends Page {
                     <h2 className='subtitle'>
                       Check out this <a href='https://curran.github.io/dataviz-course-2018/'>online data visualization course</a>!
                     </h2>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/WoJxanRe06k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/jeKO0tsB7XI?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <h2 className='subtitle'>
                       <a href='https://medium.com/@currankelleher/vizhub-1-0-9fc56a70a464'>What's new in VizHub 1.0</a>
                     </h2>
