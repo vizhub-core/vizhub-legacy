@@ -83,6 +83,15 @@ describe('Web', () => {
     });
   });
 
+  describe('View Visualization', () => {
+    it('should display username', async () => {
+      const text = await page.evaluate(() => (
+        document.querySelector('.test-vis-view-user-name').textContent)
+      );
+      assert.equal(text, ciUser.userName);
+    });
+  });
+
   describe('Edit Visualization', () => {
     let originalContent;
     it('should save new visualization content', async () => {
@@ -191,11 +200,11 @@ describe('Web', () => {
       // Output the link for manual testing.
       console.log(`\n${page.url()}\n`);
     });
-    it('should display full name of user', async () => {
+    it('should display user name', async () => {
       const text = await page.evaluate(() => (
         document.querySelector('.test-profile-full-name').textContent)
       );
-      assert.equal(text, ciUser.fullName);
+      assert.equal(text, ciUser.userName);
     });
     it('should display list of visualizations', async () => {
       const infoTitles = await page.evaluate(() => {
