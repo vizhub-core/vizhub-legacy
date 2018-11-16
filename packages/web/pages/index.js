@@ -4,15 +4,16 @@ import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
 import { NavBar } from '../components/organisms/navBar';
 import { VisualizationPreview } from '../components/atoms/visualizationPreview';
+import { getJSON } from '../utils/getJSON';
 
 export default class extends Page {
   static async getInitialProps({req}) {
     const props = await super.getInitialProps({ req });
 
-    const url = 'https://vizhub.com/api/visualization/metadata';
-    const metadata = await (await fetch(url)).json();
+    //const url = 'https://vizhub.com/api/visualization/metadata';
+    //const metadata = await (await fetch(url)).json();
 
-    //const metadata = await getJSON(`/api/visualization/metadata`, req);;
+    const metadata = await getJSON(`/api/visualization/metadata`, req);;
 
     props.metadata = metadata.reverse().slice(0, 500);
     return props;
