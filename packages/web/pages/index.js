@@ -31,7 +31,7 @@ export default class extends Page {
               <div className='columns'>
                 <div className='column' style={{ marginTop: '120px' }}>
                   <h2 className='subtitle'>
-                    A platform for teaching & learning
+                    A platform for teaching, learning, and practicing
                   </h2>
                   <h1 className='title'>
                     Data Visualization
@@ -41,7 +41,7 @@ export default class extends Page {
                   </h2>
                   <a
                     className='button is-primary'
-                    href='https://vizhub.com/curran/86a75dc8bdbe4965ba353a79d4bd44c8'
+                    href='/create-visualization'
                   >
                     Get Started
                   </a>
