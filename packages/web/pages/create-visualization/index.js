@@ -6,8 +6,21 @@ import { visualizationRoute } from '../../routes/routeGenerators';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { ActionBox } from '../../components/molecules/actionBox';
 import { NavBar } from '../../components/organisms/navBar';
+import { getJSON } from '../../utils/getJSON';
 
 export default class extends Page {
+  static async getInitialProps({req}) {
+    const props = await super.getInitialProps({ req });
+
+    const url = 'https://vizhub.com/api/visualization/metadata';
+    const metadata = await (await fetch(url)).json();
+
+    //const metadata = await getJSON(`/api/visualization/metadata`, req);;
+
+    props.templates = metadata.filter(info => info.id === 'dd44f8fcdc8346ff90bddd63572bf638');
+    
+    return props;
+  }
   constructor() {
     super();
 
@@ -41,6 +54,7 @@ export default class extends Page {
             this.props.user
               ? (
                 <BodyAuthenticated
+                  templates={this.props.templates}
                   onFromScratchClick={this.createVisualizationFromScratch}
                 />
               )
