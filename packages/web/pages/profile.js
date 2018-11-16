@@ -23,7 +23,7 @@ export default class extends Page {
 
   render() {
     const { error, user, csrfToken, profileData } = this.props;
-    const { fullName, userName } = profileData.user;
+    const { userName } = profileData.user;
     if (error) {
       return <Error statusCode={error.statusCode} />
     }
@@ -32,7 +32,7 @@ export default class extends Page {
         <NavBar user={user} csrfToken={csrfToken} />
         <div style={{ margin: '30px' }}>
           <div className='title test-profile-full-name'>
-            {fullName}
+            {userName}
           </div>
           {
             (profileData && profileData.visualizationInfos)
