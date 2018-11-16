@@ -11,7 +11,7 @@ export const getThumbnailController = (expressApp, gateways) => {
       const responseModel = await getThumbnail.execute(requestModel);
       const thumbnail = responseModel.thumbnail;
 
-      var img = new Buffer(thumbnail, 'base64');
+      const img = new Buffer(thumbnail, 'base64');
 
       res.writeHead(200, {
         'Content-Type': 'image/png',
