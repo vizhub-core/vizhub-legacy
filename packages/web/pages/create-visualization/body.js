@@ -7,7 +7,7 @@ export const BodyAuthenticated = ({onFromScratchClick, templates}) => {
     onFromScratchClick();
   };
 
-  return false//process.env.NODE_ENV === 'development'
+  return process.env.NODE_ENV === 'development'
     ? (
       <a className='button test-from-scratch-button' href='#scratch' onClick={fromScratchClick}>
         Start from scratch
