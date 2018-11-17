@@ -33,10 +33,10 @@ export default class extends Page {
   static async getInitialProps({req}) {
     const props = await super.getInitialProps({ req });
 
-    const url = 'https://vizhub.com/api/visualization/metadata';
-    const metadata = await (await fetch(url)).json();
+    //const url = 'https://vizhub.com/api/visualization/metadata';
+    //const metadata = await (await fetch(url)).json();
 
-    //const metadata = await getJSON(`/api/visualization/metadata`, req);;
+    const metadata = await getJSON(`/api/visualization/metadata`, req);;
 
     props.templates = metadata.filter(info => templateIds[info.id]);
     

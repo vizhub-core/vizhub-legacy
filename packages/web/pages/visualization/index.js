@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
+import Head from 'next/head';
 import { Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -8,6 +9,7 @@ import { IDEContainer, FullPage, uiRedux } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
+import { Unfurl } from '../../components/atoms/unfurl';
 import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
 import { rootReducer } from '../../redux/rootReducer';
@@ -19,6 +21,7 @@ import {
   setUser
 } from '../../redux/actionCreators';
 import { ForkInvitation } from './forkInvitation';
+import { previewUrl, visualizationRoute, absolute } from '../../routes/routeGenerators';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/fold/foldgutter.css';
 import 'codemirror/addon/dialog/dialog.css';
@@ -102,22 +105,35 @@ export default class extends Page {
   }
 
   render() {
-    const { error, user, csrfToken } = this.props;
+    const { error, user, csrfToken, visualization, ownerUser } = this.props;
     
     if (error) {
       return <Error statusCode={error.statusCode} />
     }
 
+    const { id, title, description } = new VisualizationViewModel(visualization);
+    const userName = ownerUser.userName;
+
     return (
-      <Provider store={this.store}>
-        <TitledPage title='Edit Visualization'>
-          <FullPage>
-            <NavBar user={user} csrfToken={csrfToken} />
-            <ForkInvitation user={user}/>
-            <IDEContainer />
-          </FullPage>
-        </TitledPage>
-      </Provider>
+      <React.Fragment>
+        <Head>
+          <Unfurl
+            title={title}
+            description={description}
+            image={absolute(previewUrl(id))}
+            url={absolute(visualizationRoute({userName, id}))}
+          />
+        </Head>
+        <Provider store={this.store}>
+          <TitledPage title='Edit Visualization'>
+            <FullPage>
+              <NavBar user={user} csrfToken={csrfToken} />
+              <ForkInvitation user={user}/>
+              <IDEContainer />
+            </FullPage>
+          </TitledPage>
+        </Provider>
+      </React.Fragment>
     );
   }
 }

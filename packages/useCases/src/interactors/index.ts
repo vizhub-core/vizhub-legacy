@@ -79,3 +79,9 @@ export {
   GetThumbnailResponseModel
 } from './getThumbnail';
 
+export {
+  GetPreview,
+  GetPreviewRequestModel,
+  GetPreviewResponseModel
+} from './getPreview';
+
