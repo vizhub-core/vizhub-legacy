@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
+import Head from 'next/head';
 import { Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -19,6 +20,7 @@ import {
   setUser
 } from '../../redux/actionCreators';
 import { ForkInvitation } from './forkInvitation';
+import { previewUrl, visualizationRoute, absolute } from '../../routes/routeGenerators';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/fold/foldgutter.css';
 import 'codemirror/addon/dialog/dialog.css';
@@ -38,6 +40,22 @@ const {
     getFiles
   }
 } = uiRedux;
+
+const Unfurl = ({ title, description, image, url }) => (
+  <React.Fragment>
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:site' value='@datavis_tech' />
+    <meta name='twitter:title' value={title} />
+    <meta name='twitter:description' value={description} />
+    <meta name='twitter:image' content={image} />
+
+    <meta property='og:url' content={url}/>
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={image} />
+    <meta property='og:site_name' content='VizHub'/>
+  </React.Fragment>
+)
 
 // Exclude file entries where name is null, as does happen.
 // Related https://github.com/datavis-tech/vizhub-ui/issues/162
@@ -102,22 +120,34 @@ export default class extends Page {
   }
 
   render() {
-    const { error, user, csrfToken } = this.props;
+    const { error, user, csrfToken, visualization, ownerUser } = this.props;
+    const { id, title, description } = new VisualizationViewModel(visualization);
+    const userName = ownerUser.userName;
     
     if (error) {
       return <Error statusCode={error.statusCode} />
     }
 
     return (
-      <Provider store={this.store}>
-        <TitledPage title='Edit Visualization'>
-          <FullPage>
-            <NavBar user={user} csrfToken={csrfToken} />
-            <ForkInvitation user={user}/>
-            <IDEContainer />
-          </FullPage>
-        </TitledPage>
-      </Provider>
+      <React.Fragment>
+        <Head>
+          <Unfurl
+            title={title}
+            description={description}
+            image={absolute(previewUrl(id))}
+            url={absolute(visualizationRoute({userName, id}))}
+          />
+        </Head>
+        <Provider store={this.store}>
+          <TitledPage title='Edit Visualization'>
+            <FullPage>
+              <NavBar user={user} csrfToken={csrfToken} />
+              <ForkInvitation user={user}/>
+              <IDEContainer />
+            </FullPage>
+          </TitledPage>
+        </Provider>
+      </React.Fragment>
     );
   }
 }
