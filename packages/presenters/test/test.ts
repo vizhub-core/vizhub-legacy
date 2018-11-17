@@ -20,6 +20,7 @@ describe('Presenters', () => {
         id: visualization.id,
         files: visualization.content.files,
         title: "Foo",
+        description: "Foo the great",
         width: 960,
         height: 600
       });
