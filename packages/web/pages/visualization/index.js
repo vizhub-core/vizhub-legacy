@@ -9,6 +9,7 @@ import { IDEContainer, FullPage, uiRedux } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
+import { Unfurl } from '../../components/atoms/unfurl';
 import { NavBar } from '../../components/organisms/navBar';
 import { getJSON } from '../../utils/getJSON';
 import { rootReducer } from '../../redux/rootReducer';
@@ -40,22 +41,6 @@ const {
     getFiles
   }
 } = uiRedux;
-
-const Unfurl = ({ title, description, image, url }) => (
-  <React.Fragment>
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta name='twitter:site' value='@datavis_tech' />
-    <meta name='twitter:title' value={title} />
-    <meta name='twitter:description' value={description} />
-    <meta name='twitter:image' content={image} />
-
-    <meta property='og:url' content={url}/>
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={image} />
-    <meta property='og:site_name' content='VizHub'/>
-  </React.Fragment>
-)
 
 // Exclude file entries where name is null, as does happen.
 // Related https://github.com/datavis-tech/vizhub-ui/issues/162
@@ -121,12 +106,13 @@ export default class extends Page {
 
   render() {
     const { error, user, csrfToken, visualization, ownerUser } = this.props;
-    const { id, title, description } = new VisualizationViewModel(visualization);
-    const userName = ownerUser.userName;
     
     if (error) {
       return <Error statusCode={error.statusCode} />
     }
+
+    const { id, title, description } = new VisualizationViewModel(visualization);
+    const userName = ownerUser.userName;
 
     return (
       <React.Fragment>
