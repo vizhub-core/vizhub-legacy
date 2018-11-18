@@ -1,5 +1,24 @@
 What follows are the steps required to set up this app on a production instance.
 
+These instructions assume an Ubuntu server instance. In AWS, a "medium" instance is recommended. The build step may cause the VM to run out of memory on a "small" instance.
+
+## Preparing the VM
+
+Install Ubuntu packages required by NPM packages used by VizHub.
+
+Install dependencies of the `sharp` package
+
+```
+sudo apt update
+sudo apt install python build-essential
+```
+
+Install dependencies of [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md):
+
+```
+sudo apt install gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
+```
+
 Install Node.js using [NVM](https://github.com/creationix/nvm)
 
 ```
@@ -13,14 +32,24 @@ Set up SSH keys (see also [https://gitlab.com/profile/keys](https://gitlab.com/p
 ```
 ssh-keygen -t rsa -C "your.email@example.com" -b 4096
 cat ~/.ssh/id_rsa.pub
-git clone git@gitlab.com:curran/datavis-tech-2.git
+```
+
+## Setting Up VizHub
+
+```
+git clone git@github.com:datavis-tech/vizhub.git
+```
+
+Set up the [vizhub-ui](https://github.com/datavis-tech/vizhub-ui) submodule
+
+```
+cd vizhub
+git submodule update --init
 ```
 
 Install dependencies & bootstrap [Lerna](https://lernajs.io) packages
 
 ```
-cd datavis-tech-2/
-git submodule update --init
 npm install -g lerna
 lerna bootstrap && npm run test
 ```
