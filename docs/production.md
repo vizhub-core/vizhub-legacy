@@ -34,42 +34,6 @@ ssh-keygen -t rsa -C "your.email@example.com" -b 4096
 cat ~/.ssh/id_rsa.pub
 ```
 
-## Setting Up VizHub
-
-```
-git clone git@github.com:datavis-tech/vizhub.git
-```
-
-Set up the [vizhub-ui](https://github.com/datavis-tech/vizhub-ui) submodule
-
-```
-cd vizhub
-git submodule update --init
-```
-
-Install dependencies & bootstrap [Lerna](https://lernajs.io) packages
-
-```
-npm install -g lerna
-lerna bootstrap && npm run test
-```
-
-If errors occur regarding missing packages, try this:
-
-```
-lerna clean
-lerna bootstrap && npm run test
-```
-
-Start the Web server
-
-```
-cd packages/web/
-npm run build
-npm install -g pm2
-pm2 start npm -- start
-```
-
 Set up NGINX so that it will serve the app from port 3000 to port 80.
 
 ```
@@ -160,4 +124,41 @@ sudo vim /etc/mongod.conf
 #   dbPath: /data/mongodb
 sudo service mongod start
 tail -f /var/log/mongodb/mongod.log
+```
+
+
+## Set Up VizHub
+
+```
+git clone git@github.com:datavis-tech/vizhub.git
+```
+
+Set up the [vizhub-ui](https://github.com/datavis-tech/vizhub-ui) submodule
+
+```
+cd vizhub
+git submodule update --init
+```
+
+Install dependencies & bootstrap [Lerna](https://lernajs.io) packages
+
+```
+npm install -g lerna
+lerna bootstrap && npm run test
+```
+
+If errors occur regarding missing packages, try this:
+
+```
+lerna clean
+lerna bootstrap && npm run test
+```
+
+Start the Web server
+
+```
+cd packages/web/
+npm run build
+npm install -g pm2
+pm2 start npm -- start
 ```
