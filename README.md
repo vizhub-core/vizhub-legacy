@@ -5,6 +5,12 @@ This repository contains the web app deployed to https://vizhub.com.
 [![image](https://user-images.githubusercontent.com/68416/46601539-05f7ba00-cb0b-11e8-90eb-587dc927962e.png)](https://vizhub.com/curran/5c907e49d0294538aad03ad1f41e1e28)
 [try VizHub!](https://vizhub.com/curran/5c907e49d0294538aad03ad1f41e1e28)
 
+To get involved and stay updated:
+
+ * Join the `#vizhub` channel of the [D3 Slack](https://d3-slackin.herokuapp.com/)
+ * Check out the [VizHub Scrum Board](https://github.com/orgs/datavis-tech/projects/1).
+ * Follow [@datavis_tech on Twitter](https://twitter.com/datavis_tech)
+
 See also https://github.com/datavis-tech/vizhub-ui
 
 Table of Contents:
@@ -19,7 +25,7 @@ Table of Contents:
 
 # Product
 
->A platform to facilitate teaching and learning data visualization using D3.js and SVG.
+>A platform for teaching, learning, and practicing Data Visualization using D3.js and SVG.
 
 Target audience:
 
