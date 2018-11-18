@@ -9,6 +9,9 @@ export const profileRoute = ({userName}) =>
 export const visualizationRoute = ({userName, id}) =>
   `/${userName}/${id}`;
 
+export const visualizationRouteFullscreen = ({userName, id}) =>
+  `/${userName}/${id}/fullscreen`;
+
 export const datasetRoute = ({userName, slug}) =>
   `/${userName}/datasets/${slug}`;
 
