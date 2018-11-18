@@ -21,7 +21,7 @@ import {
   setUser
 } from '../../redux/actionCreators';
 import { ForkInvitation } from './forkInvitation';
-import { previewUrl, visualizationRoute, absolute } from '../../routes/routeGenerators';
+import { previewUrl, visualizationRoute, visualizationRouteFullscreen, absolute } from '../../routes/routeGenerators';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/fold/foldgutter.css';
 import 'codemirror/addon/dialog/dialog.css';
@@ -111,6 +111,7 @@ export default class extends Page {
       return <Error statusCode={error.statusCode} />
     }
 
+
     const { id, title, description } = new VisualizationViewModel(visualization);
     const userName = ownerUser.userName;
 
@@ -129,7 +130,7 @@ export default class extends Page {
             <FullPage>
               <NavBar user={user} csrfToken={csrfToken} />
               <ForkInvitation user={user}/>
-              <IDEContainer />
+              <IDEContainer fullScreenUrl={visualizationRouteFullscreen({userName, id})} />
             </FullPage>
           </TitledPage>
         </Provider>
