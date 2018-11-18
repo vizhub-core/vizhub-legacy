@@ -1,6 +1,6 @@
 What follows are the steps required to set up this app on a production instance.
 
-Install Node.js
+Install Node.js using [NVM](https://github.com/creationix/nvm)
 
 ```
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
