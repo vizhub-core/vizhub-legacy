@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { CommentLink } from './commentLink';
 
-export const TitledPage = ({title, children}) => {
+export const TitledPage = ({title, children, disableCommentLink}) => {
   if (!title) {
     throw new Error('The "title" prop is required for TitledPage.');
   }
@@ -11,8 +11,8 @@ export const TitledPage = ({title, children}) => {
       <Head>
         <title>{title}</title>
       </Head>
-      {children}
-      <CommentLink />
+      { children }
+      { disableCommentLink ? null : <CommentLink /> }
     </React.Fragment>
   );
 };

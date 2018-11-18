@@ -69,7 +69,7 @@ export default class extends Page {
 
     return (
       <React.Fragment>
-        <TitledPage title={title}>
+        <TitledPage title={title} disableCommentLink={true}>
           <FullPage>
             <VisualizationFullscreen
               width={width}
