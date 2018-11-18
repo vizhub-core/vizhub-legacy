@@ -125,7 +125,7 @@ export default class extends Page {
           />
         </Head>
         <Provider store={this.store}>
-          <TitledPage title='Edit Visualization'>
+          <TitledPage title={title}>
             <FullPage>
               <NavBar user={user} csrfToken={csrfToken} />
               <ForkInvitation user={user}/>
