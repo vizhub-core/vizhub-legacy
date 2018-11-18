@@ -2,29 +2,12 @@ import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
 import Head from 'next/head';
 import { Fragment } from 'react';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
 import { VisualizationFullscreen, FullPage, uiRedux } from 'vizhub-ui';
 import { VisualizationViewModel } from 'datavis-tech-presenters';
 import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
-import { Unfurl } from '../components/atoms/unfurl';
-import { NavBar } from '../components/organisms/navBar';
 import { getJSON } from '../utils/getJSON';
-import { rootReducer } from '../redux/rootReducer';
-import { rootEpicForBrowser, rootEpicForServer } from '../redux/epics';
-import {
-  startBuild,
-  setCsrfToken,
-  setVisualization,
-  setUser
-} from '../redux/actionCreators';
 import { previewUrl, visualizationRoute, absolute } from '../routes/routeGenerators';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/addon/fold/foldgutter.css';
-import 'codemirror/addon/dialog/dialog.css';
-import 'codemirror-inlet/inlet.css';
 import 'vizhub-ui/dist/styles.css';
 
 // Exclude file entries where name is null, as does happen.
