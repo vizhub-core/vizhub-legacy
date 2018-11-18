@@ -23,10 +23,10 @@ export default class extends Page {
 
   render() {
     const { error, user, csrfToken, profileData } = this.props;
-    const { userName } = profileData.user;
     if (error) {
       return <Error statusCode={error.statusCode} />
     }
+    const { userName } = profileData.user;
     return (
       <TitledPage title='Profile'>
         <NavBar user={user} csrfToken={csrfToken} />
