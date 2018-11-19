@@ -8,7 +8,6 @@ import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
 import { getJSON } from '../utils/getJSON';
 import { previewUrl, visualizationRoute, absolute } from '../routes/routeGenerators';
-import 'vizhub-ui/dist/styles.css';
 
 // Exclude file entries where name is null, as does happen.
 // Related https://github.com/datavis-tech/vizhub-ui/issues/162
