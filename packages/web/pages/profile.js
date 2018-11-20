@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Error from 'next/error';
+import { Avatar } from 'vizhub-ui';
 import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
 import { TextContainer } from '../components/atoms/textContainer';
@@ -26,12 +27,13 @@ export default class extends Page {
     if (error) {
       return <Error statusCode={error.statusCode} />
     }
-    const { userName } = profileData.user;
+    const { userName, avatarUrl } = profileData.user;
     return (
       <TitledPage title='Profile'>
         <NavBar user={user} csrfToken={csrfToken} />
         <div style={{ margin: '30px' }}>
-          <div className='title test-profile-full-name'>
+          <div className='title test-profile-full-name' style={{ marginLeft: '10px', marginBottom: '50px' }}>
+            <Avatar avatarUrl={avatarUrl} scale={120}/>
             {userName}
           </div>
           {
@@ -41,24 +43,26 @@ export default class extends Page {
               ))
             : null
           }
-          {
-            (profileData && profileData.datasetInfos)
-            ? <div className='subtitle' style={{marginTop: '50px'}}>Datasets</div>
-            : null
-          }
-          {
-            (profileData && profileData.datasetInfos)
-            ? profileData.datasetInfos.map(({ id, slug, title }) => (
-                <div key={id} >
-                  <Link href={datasetRoute({ userName, slug })}>
-                    <a className='test-profile-dataset-info-title'>
-                      {title}
-                    </a>
-                  </Link>
-                </div>
-              ))
-            : null
-          }
+          <div style={{ marginLeft: '10px' }}>
+            {
+              (profileData && profileData.datasetInfos)
+              ? <div className='subtitle' style={{marginTop: '50px'}}>Datasets</div>
+              : null
+            }
+            {
+              (profileData && profileData.datasetInfos)
+              ? profileData.datasetInfos.map(({ id, slug, title }) => (
+                  <div key={id} >
+                    <Link href={datasetRoute({ userName, slug })}>
+                      <a className='test-profile-dataset-info-title'>
+                        {title}
+                      </a>
+                    </Link>
+                  </div>
+                ))
+              : null
+            }
+          </div>
         </div>
       </TitledPage>
     );
