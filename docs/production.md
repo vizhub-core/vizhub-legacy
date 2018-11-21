@@ -86,7 +86,7 @@ sudo apt-get install mongodb-org -y
 sudo service mongod start
 ```
 
-Last but not least, configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) and MongoDB URL following in `packages/web/.env`. Here's a sample of what the `.env` file should look like:
+Configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) and MongoDB URL following in `packages/web/.env`. Here's a sample of what the `.env` file should look like:
 
 ```
 GITHUB_ID=1937fa078932032536f9
@@ -102,10 +102,12 @@ To set up, in AWS Web UI, create volume, attach to VM (use default of `dev/sdf`)
 
 See also http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
 
+Setting up for the first time:
+
 ```
 lsblk
 sudo file -s /dev/xvdf # should output "/dev/xvdf: data"
-sudo mkfs -t ext4 /dev/xvdf # Only run this if previous command said "data"
+sudo mkfs -t ext4 /dev/xvdf # [Initial setup only] Only run this if previous command said "data"
 sudo mkdir /data
 sudo mount /dev/xvdf /data
 sudo cp /etc/fstab /etc/fstab.orig
@@ -113,8 +115,8 @@ sudo vim /etc/fstab
 # paste this: /dev/xvdf       /data   ext4    defaults,nofail        0       2
 sudo mount -a
 
-sudo mkdir /data/mongodb
-sudo chmod go+w /data/mongodb
+sudo mkdir /data/mongodb # [Initial setup only]
+sudo chmod go+w /data/mongodb # [Initial setup only]
 
 sudo service mongod stop
 sudo vim /etc/mongod.conf
@@ -124,8 +126,10 @@ sudo vim /etc/mongod.conf
 #   dbPath: /data/mongodb
 sudo service mongod start
 tail -f /var/log/mongodb/mongod.log
-```
 
+# If you get permissions-related errors:
+sudo chown mongodb /data/mongodb -R
+```
 
 ## Set Up VizHub
 
@@ -154,11 +158,24 @@ lerna clean
 lerna bootstrap && npm run test
 ```
 
-Start the Web server
+Install PM2
+
+```
+npm install -g pm2
+```
+
+Build and start the Web server
 
 ```
 cd packages/web/
 npm run build
-npm install -g pm2
-pm2 start npm -- start
+pm2 start --name app npm -- start
+```
+
+Start image generation service
+
+```
+cd ../imageGenerationService/
+npm run build
+pm2 start --name image-generation-service npm -- start
 ```
