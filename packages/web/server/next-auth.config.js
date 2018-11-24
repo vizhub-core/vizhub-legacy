@@ -52,7 +52,7 @@ module.exports = (userController, expressApp) => () => {
       // The expiry time for a session is reset every time a user revisits 
       // the site or revalidates their session token. This is the maximum 
       // idle time value.
-      sessionMaxAge: 60000 * 60 * 24 * 7,
+      sessionMaxAge: 60000 * 60 * 24, // 24 hours
       // Session Revalidation in X ms (optional, default is 60 seconds).
       // Specifies how often a Single Page App should revalidate a session.
       // Does not impact the session life on the server, but causes clients 
