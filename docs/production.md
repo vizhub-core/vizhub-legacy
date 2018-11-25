@@ -1,6 +1,25 @@
 What follows are the steps required to set up this app on a production instance.
 
-Install Node.js
+These instructions assume an Ubuntu server instance. In AWS, a "medium" instance is recommended. The build step may cause the VM to run out of memory on a "small" instance.
+
+## Preparing the VM
+
+Install Ubuntu packages required by NPM packages used by VizHub.
+
+Install dependencies of the `sharp` package
+
+```
+sudo apt update
+sudo apt install python build-essential
+```
+
+Install dependencies of [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md):
+
+```
+sudo apt install gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
+```
+
+Install Node.js using [NVM](https://github.com/creationix/nvm)
 
 ```
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -13,32 +32,6 @@ Set up SSH keys (see also [https://gitlab.com/profile/keys](https://gitlab.com/p
 ```
 ssh-keygen -t rsa -C "your.email@example.com" -b 4096
 cat ~/.ssh/id_rsa.pub
-git clone git@gitlab.com:curran/datavis-tech-2.git
-```
-
-Install dependencies & bootstrap [Lerna](https://lernajs.io) packages
-
-```
-cd datavis-tech-2/
-git submodule update --init
-npm install -g lerna
-lerna bootstrap && npm run test
-```
-
-If errors occur regarding missing packages, try this:
-
-```
-lerna clean
-lerna bootstrap && npm run test
-```
-
-Start the Web server
-
-```
-cd packages/web/
-npm run build
-npm install -g pm2
-pm2 start npm -- start
 ```
 
 Set up NGINX so that it will serve the app from port 3000 to port 80.
@@ -93,7 +86,7 @@ sudo apt-get install mongodb-org -y
 sudo service mongod start
 ```
 
-Last but not least, configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) and MongoDB URL following in `packages/web/.env`. Here's a sample of what the `.env` file should look like:
+Configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) and MongoDB URL following in `packages/web/.env`. Here's a sample of what the `.env` file should look like:
 
 ```
 GITHUB_ID=1937fa078932032536f9
@@ -109,10 +102,12 @@ To set up, in AWS Web UI, create volume, attach to VM (use default of `dev/sdf`)
 
 See also http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
 
+Setting up for the first time:
+
 ```
 lsblk
 sudo file -s /dev/xvdf # should output "/dev/xvdf: data"
-sudo mkfs -t ext4 /dev/xvdf # Only run this if previous command said "data"
+sudo mkfs -t ext4 /dev/xvdf # [Initial setup only] Only run this if previous command said "data"
 sudo mkdir /data
 sudo mount /dev/xvdf /data
 sudo cp /etc/fstab /etc/fstab.orig
@@ -120,8 +115,8 @@ sudo vim /etc/fstab
 # paste this: /dev/xvdf       /data   ext4    defaults,nofail        0       2
 sudo mount -a
 
-sudo mkdir /data/mongodb
-sudo chmod go+w /data/mongodb
+sudo mkdir /data/mongodb # [Initial setup only]
+sudo chmod go+w /data/mongodb # [Initial setup only]
 
 sudo service mongod stop
 sudo vim /etc/mongod.conf
@@ -131,4 +126,56 @@ sudo vim /etc/mongod.conf
 #   dbPath: /data/mongodb
 sudo service mongod start
 tail -f /var/log/mongodb/mongod.log
+
+# If you get permissions-related errors:
+sudo chown mongodb /data/mongodb -R
+```
+
+## Set Up VizHub
+
+```
+git clone git@github.com:datavis-tech/vizhub.git
+```
+
+Set up the [vizhub-ui](https://github.com/datavis-tech/vizhub-ui) submodule
+
+```
+cd vizhub
+git submodule update --init
+```
+
+Install dependencies & bootstrap [Lerna](https://lernajs.io) packages
+
+```
+npm install -g lerna
+lerna bootstrap && npm run test
+```
+
+If errors occur regarding missing packages, try this:
+
+```
+lerna clean
+lerna bootstrap && npm run test
+```
+
+Install PM2
+
+```
+npm install -g pm2
+```
+
+Build and start the Web server
+
+```
+cd packages/web/
+npm run build
+pm2 start --name app npm -- start
+```
+
+Start image generation service
+
+```
+cd ../imageGenerationService/
+npm run build
+pm2 start --name image-generation-service npm -- start
 ```
