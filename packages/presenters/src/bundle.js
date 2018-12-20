@@ -1,6 +1,6 @@
 import { rollup } from 'rollup/dist/rollup.browser';
-import * as hypothetical from './hypothetical';
 import * as buble from 'rollup-plugin-buble';
+import * as hypothetical from './hypothetical';
 import { d3Packages } from './d3Packages';
 
 const transformFilesToObject = files =>
@@ -20,6 +20,9 @@ const outputOptions = {
     return accumulator;
   }, {})
 };
+
+// Typescript BS
+buble = buble.default ? buble.default : buble;
 
 export const bundle = async (files) => {
   const inputOptions = {
