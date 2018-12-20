@@ -48,7 +48,7 @@ describe('Presenters', () => {
       ];
       assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
-        text: "(function () {\n\t'use strict';\n\n\tconst foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
+        text: "(function () {\n\t'use strict';\n\n\tvar foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
       }]);
     });
 

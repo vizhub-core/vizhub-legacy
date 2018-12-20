@@ -1,5 +1,6 @@
 import { rollup } from 'rollup/dist/rollup.browser';
 import * as hypothetical from './hypothetical';
+import * as buble from 'rollup-plugin-buble';
 import { d3Packages } from './d3Packages';
 
 const transformFilesToObject = files =>
@@ -26,7 +27,8 @@ export const bundle = async (files) => {
     plugins: [
       hypothetical({
         files: transformFilesToObject(files)
-      })
+      }),
+      buble()
     ],
     external: d3Packages
   };
