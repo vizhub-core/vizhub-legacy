@@ -48,7 +48,7 @@ describe('Presenters', () => {
       ];
       assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
-        text: "(function () {\n\t'use strict';\n\n\tvar foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
+        text: "(function () {\n\t'use strict';\n\n\tconst foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
       }]);
     });
 
@@ -79,6 +79,16 @@ describe('Presenters', () => {
       assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
         text: "(function () {\n\t'use strict';\n\n\tReact.createElement( 'div', null, \"Hello JSX!\" );\n\n}());\n"
+      }]);
+    });
+
+    it('should not transpile ES6', async () => {
+      const files = [
+        { name: 'index.js', text: 'const fn = a => a * a; console.log(fn(4));' }
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tconst fn = a => a * a; console.log(fn(4));\n\n}());\n"
       }]);
     });
   });

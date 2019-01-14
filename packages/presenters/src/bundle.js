@@ -34,9 +34,12 @@ export const bundle = async (files) => {
         files: transformFilesToObject(files)
       }),
       buble({
-        // Disable all ES6 transforms,
-        // use Buble only for its JSX transform.
-        transforms: {}
+        // Disable most ES6 transforms,
+        // use Buble mainly for its JSX transform.
+        target: {
+          chrome: 71,
+          firefox: 64
+        }
       })
     ],
     external: d3Packages.concat('react')
