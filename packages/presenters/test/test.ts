@@ -62,13 +62,13 @@ describe('Presenters', () => {
       }]);
     });
 
-    it('should refer to global d3 in bundle for d3 package', async () => {
+    it('should transpile JSX', async () => {
       const files = [
-        { name: 'index.js', text: 'import { select } from "d3"; console.log(select);' }
+        { name: 'index.js', text: '<div>Hello JSX!</div>' }
       ];
       assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
-        text: "(function (d3) {\n\t'use strict';\n\n\tconsole.log(d3.select);\n\n}(d3));\n"
+        text: "(function () {\n\t'use strict';\n\n\tReact.createElement( 'div', null, \"Hello JSX!\" );\n\n}());\n"
       }]);
     });
   });
