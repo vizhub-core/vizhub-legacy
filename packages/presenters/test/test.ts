@@ -62,6 +62,16 @@ describe('Presenters', () => {
       }]);
     });
 
+    it('should refer to global React in bundle for React package', async () => {
+      const files = [
+        { name: 'index.js', text: 'import React from "react"; console.log(React);' }
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function (React) {\n\t'use strict';\n\n\tReact = React && React.hasOwnProperty('default') ? React['default'] : React;\n\n\tconsole.log(React);\n\n}(React));\n"
+      }]);
+    });
+
     it('should transpile JSX', async () => {
       const files = [
         { name: 'index.js', text: '<div>Hello JSX!</div>' }

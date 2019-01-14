@@ -18,7 +18,9 @@ const outputOptions = {
   globals: d3Packages.reduce((accumulator, packageName) => {
     accumulator[packageName] = 'd3';
     return accumulator;
-  }, {})
+  }, {
+    react: 'React'
+  })
 };
 
 // Typescript BS
@@ -31,9 +33,13 @@ export const bundle = async (files) => {
       hypothetical({
         files: transformFilesToObject(files)
       }),
-      buble()
+      buble({
+        // Disable all ES6 transforms,
+        // use Buble only for its JSX transform.
+        transforms: {}
+      })
     ],
-    external: d3Packages
+    external: d3Packages.concat('react')
   };
 
   const rollupBundle = await rollup(inputOptions);
