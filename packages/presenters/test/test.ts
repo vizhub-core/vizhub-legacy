@@ -91,5 +91,15 @@ describe('Presenters', () => {
         text: "(function () {\n\t'use strict';\n\n\tconst fn = a => a * a; console.log(fn(4));\n\n}());\n"
       }]);
     });
+
+    it('should allow generators', async () => {
+      const files = [
+        { name: 'index.js', text: 'console.log(function* () { yield 5; }().next().value)' }
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tconsole.log(function* () { yield 5; }().next().value);\n\n}());\n"
+      }]);
+    });
   });
 });

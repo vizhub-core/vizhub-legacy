@@ -37,8 +37,7 @@ export const bundle = async (files) => {
         // Disable most ES6 transforms,
         // use Buble mainly for its JSX transform.
         target: {
-          chrome: 71,
-          firefox: 64
+          chrome: 71
         }
       })
     ],
