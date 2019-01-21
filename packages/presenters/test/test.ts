@@ -62,13 +62,43 @@ describe('Presenters', () => {
       }]);
     });
 
-    it('should refer to global d3 in bundle for d3 package', async () => {
+    it('should refer to global React in bundle for React package', async () => {
       const files = [
-        { name: 'index.js', text: 'import { select } from "d3"; console.log(select);' }
+        { name: 'index.js', text: 'import React from "react"; console.log(React);' }
       ];
       assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
-        text: "(function (d3) {\n\t'use strict';\n\n\tconsole.log(d3.select);\n\n}(d3));\n"
+        text: "(function (React) {\n\t'use strict';\n\n\tReact = React && React.hasOwnProperty('default') ? React['default'] : React;\n\n\tconsole.log(React);\n\n}(React));\n"
+      }]);
+    });
+
+    it('should transpile JSX', async () => {
+      const files = [
+        { name: 'index.js', text: '<div>Hello JSX!</div>' }
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tReact.createElement( 'div', null, \"Hello JSX!\" );\n\n}());\n"
+      }]);
+    });
+
+    it('should not transpile ES6', async () => {
+      const files = [
+        { name: 'index.js', text: 'const fn = a => a * a; console.log(fn(4));' }
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tconst fn = a => a * a; console.log(fn(4));\n\n}());\n"
+      }]);
+    });
+
+    it('should allow generators', async () => {
+      const files = [
+        { name: 'index.js', text: 'console.log(function* () { yield 5; }().next().value)' }
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tconsole.log(function* () { yield 5; }().next().value);\n\n}());\n"
       }]);
     });
   });
