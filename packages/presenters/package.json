@@ -22,6 +22,7 @@
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.7.0",
     "mocha": "^5.2.0",
+    "rollup-plugin-buble": "^0.19.6",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.1"
   }
