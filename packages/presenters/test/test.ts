@@ -101,5 +101,15 @@ describe('Presenters', () => {
         text: "(function () {\n\t'use strict';\n\n\tconsole.log(function* () { yield 5; }().next().value);\n\n}());\n"
       }]);
     });
+
+    it('should allow characters outside of the Latin1 range', async () => {
+      const files = [
+        { name: 'index.js', text: 'console.log("Привет")' }
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tconsole.log(\"Привет\");\n\n}());\n"
+      }]);
+    });
   });
 });
