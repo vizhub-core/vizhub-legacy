@@ -44,36 +44,20 @@ export const bundle = async (files) => {
     external: d3Packages.concat('react')
   };
 
-  console.log('A')
-  const rollupBundle = await rollup(inputOptions);
-  console.log('B')
-  const { code, map } = await rollupBundle.generate(outputOptions);
-  console.log('B.5')
+const rollupBundle = await rollup(inputOptions);
+const { code, map } = await rollupBundle.generate(outputOptions);
 
-  // https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
-  function utoa(str) {
-    return window.btoa(unescape(encodeURIComponent(str)));
-  }
+// Monkey patch magic-string internals
+// to support characters outside of the Latin1 range, e.g. Cyrillic.
+//
+// Related reading:
+//  - https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
+//  - https://github.com/Rich-Harris/magic-string/blob/3466b0230dddc95eb378ed3e0d199e36fbd1f572/src/SourceMap.js#L3
+const toString = map.toString.bind(map);
+map.toString = () => unescape(encodeURIComponent(toString()));
 
-  // From https://github.com/Rich-Harris/magic-string/blob/3466b0230dddc95eb378ed3e0d199e36fbd1f572/src/SourceMap.js#L3
-  let btoa = () => {
-    throw new Error('This is the error');
-  };
-  if (typeof window !== 'undefined' && typeof window.btoa === 'function') {
-    btoa = utoa;
-  } else if (typeof Buffer === 'function') {
-    btoa = str => new Buffer(str).toString('base64');
-  }
-
-  // We use this instead of the provide map.toUrl,
-  // so that we can support characters outside of the Latin1 range, e.g. Cyrillic.
-  const toUrl = map => 
-    'data:application/json;charset=utf-8;base64,' + btoa(map.toString());
-
-  // Inspired by https://github.com/rollup/rollup/issues/121
-  const codeWithSourceMap = code + '\n//# sourceMappingURL=' + toUrl(map);
-
-  console.log('C')
+// Inspired by https://github.com/rollup/rollup/issues/121
+const codeWithSourceMap = code + '\n//# sourceMappingURL=' + map.toUrl();
 
   return [{
     name: 'bundle.js',
