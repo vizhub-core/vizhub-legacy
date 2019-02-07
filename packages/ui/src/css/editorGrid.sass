@@ -1,0 +1,29 @@
+.editor-grid
+  display: flex
+  height: 100%
+  background-color: #300a24
+  @media only screen and (max-width: $editor-break-small)
+    flex-direction: column
+  .editor-grid-left
+    @media screen and (max-width: $editor-break-small)
+      border-bottom: $editor-split-border
+    @media screen and (min-width: $editor-break-small)
+      border-right: $editor-split-border
+    color: white
+    font-size: $font-size-for-code
+    font-family: $family-monospace
+    .file-list:focus
+      outline: none
+    .file, .action-link
+      padding-left: 10px
+      padding-right: 10px
+      cursor: pointer
+      user-select: none
+    .file.active
+      background-color: #6c6c6c
+    .action-link
+      color: #7a5173
+      display: block
+  .editor-grid-center
+    flex: 1 1 auto
+
