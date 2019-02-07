@@ -71,11 +71,13 @@ export default class extends Page {
         >
           Recent Visualizations
         </div>
-        {
-          this.props.metadata.map(info => (
-            <VisualizationPreview key={info.id} info={info} userName='undefined'/>
-          ))
-        }
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          {
+            this.props.metadata.map(info => (
+              <VisualizationPreview key={info.id} info={info} userName='undefined'/>
+            ))
+          }
+        </div>
       </TitledPage>
     );
   }
