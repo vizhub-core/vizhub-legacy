@@ -1,0 +1,52 @@
+/*
+ * A CodeMirror theme that approximates Vim syntax highlighting in the Ubuntu terminal.
+ * Implementation inspired by https://github.com/codemirror/CodeMirror/blob/master/theme/material.css
+ */
+
+$editor-dark-background: #300a24;
+$editor-yellow: #fce94f;
+$editor-green: #87ffaf;
+$editor-selected-background: #6c6c6c;
+$editor-neon-blue: #34e2e2;
+$editor-purple: #ad7fa8;
+
+.cm-s-ubuntu.CodeMirror {
+  background-color: $editor-dark-background;
+  color: white;
+}
+.cm-s-ubuntu .CodeMirror-gutters {
+  background: $editor-dark-background;
+  color: white;
+  border: none;
+}
+.cm-s-ubuntu .CodeMirror-guttermarker, .cm-s-ubuntu .CodeMirror-guttermarker-subtle, .cm-s-ubuntu .CodeMirror-linenumber { color: $editor-yellow; }
+.cm-s-ubuntu .CodeMirror-cursor { border-left: 1px solid white; border-right: 1px solid white; }
+.cm-s-ubuntu div.CodeMirror-selected { background: $editor-selected-background; }
+.cm-s-ubuntu.CodeMirror-focused div.CodeMirror-selected { background: $editor-selected-background; }
+
+.cm-s-ubuntu .cm-keyword { color: $editor-neon-blue; font-weight: bold; }
+.cm-s-ubuntu .cm-operator { color: white; }
+.cm-s-ubuntu .cm-variable-2 { color: white; }
+.cm-s-ubuntu .cm-variable-3, .cm-s-ubuntu .cm-type { color: white; }
+.cm-s-ubuntu .cm-builtin { color: white; }
+.cm-s-ubuntu .cm-atom { color: $editor-purple; }
+.cm-s-ubuntu .cm-number { color: white; }
+.cm-s-ubuntu .cm-def { color: white; }
+.cm-s-ubuntu .cm-string { color: $editor-purple; }
+.cm-s-ubuntu .cm-string-2 { color: $editor-purple; }
+.cm-s-ubuntu .cm-comment { color: $editor-neon-blue; }
+.cm-s-ubuntu .cm-variable { color: white; }
+.cm-s-ubuntu .cm-tag { color: white; }
+.cm-s-ubuntu .cm-meta { color: white; }
+.cm-s-ubuntu .cm-attribute { color: $editor-neon-blue; }
+.cm-s-ubuntu .cm-property { color: $editor-green; }
+.cm-s-ubuntu .cm-qualifier { color: $editor-purple; }
+.cm-s-ubuntu .cm-variable-3, .cm-s-ubuntu .cm-type { color: red; }
+.cm-s-ubuntu .cm-error {
+  color: red;
+  background-color: black;
+}
+.cm-s-ubuntu .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: $editor-neon-blue !important;
+}
