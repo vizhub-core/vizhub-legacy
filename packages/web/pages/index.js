@@ -71,7 +71,7 @@ export default class extends Page {
         >
           Recent Visualizations
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           {
             this.props.metadata.map(info => (
               <VisualizationPreview key={info.id} info={info} userName='undefined'/>
