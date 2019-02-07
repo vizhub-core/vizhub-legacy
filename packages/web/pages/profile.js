@@ -38,9 +38,15 @@ export default class extends Page {
           </div>
           {
             (profileData && profileData.visualizationInfos)
-            ? profileData.visualizationInfos.map(info => (
-                <VisualizationPreview key={info.id} info={info} userName={userName}/>
-              ))
+            ? (
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                {
+                  profileData.visualizationInfos.map(info => (
+                    <VisualizationPreview key={info.id} info={info} userName={userName}/>
+                  ))
+                }
+              </div>
+            )
             : null
           }
           <div style={{ marginLeft: '10px' }}>
