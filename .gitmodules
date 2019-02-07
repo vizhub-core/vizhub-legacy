@@ -1,3 +1,0 @@
-[submodule "packages/vizhub-ui"]
-	path = packages/ui
-	url = git@github.com:datavis-tech/vizhub-ui.git
