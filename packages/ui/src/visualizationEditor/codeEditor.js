@@ -39,6 +39,7 @@ const modes = {
 };
 const extension = fileName => fileName.substr(fileName.lastIndexOf('.'));
 const getMode = fileName => modes[extension(fileName)];
+const getLineWrapping = fileName => extension(fileName) !== '.js';
 
 export class CodeEditor extends Component {
 
@@ -74,7 +75,7 @@ export class CodeEditor extends Component {
             mode: getMode(fileName),
             theme: 'ubuntu',
             lineNumbers: true,
-            lineWrapping: true,
+            lineWrapping: getLineWrapping(fileName),
             keyMap: 'sublime',
             autoCloseBrackets: true,
             matchBrackets: true,
