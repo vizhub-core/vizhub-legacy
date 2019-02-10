@@ -39,7 +39,7 @@ const modes = {
 };
 const extension = fileName => fileName.substr(fileName.lastIndexOf('.'));
 const getMode = fileName => modes[extension(fileName)];
-const getLineWrapping = fileName => extension(fileName) !== '.js';
+const getLineWrapping = fileName => extension(fileName) === '.md';
 
 export class CodeEditor extends Component {
 
