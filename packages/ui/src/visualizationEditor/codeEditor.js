@@ -18,7 +18,6 @@ if (process.browser) {
   require('codemirror/addon/search/search.js');
   require('codemirror/addon/dialog/dialog.js');
   require('codemirror/addon/edit/matchbrackets.js');
-  require('codemirror/addon/edit/closebrackets.js');
   require('codemirror/addon/wrap/hardwrap.js');
   require('codemirror/addon/fold/foldcode.js');
   require('codemirror/addon/fold/brace-fold.js');
@@ -76,7 +75,6 @@ export class CodeEditor extends Component {
             lineNumbers: true,
             lineWrapping: true,
             keyMap: 'sublime',
-            autoCloseBrackets: true,
             matchBrackets: true,
             showCursorWhenSelecting: true,
             tabSize: 2
