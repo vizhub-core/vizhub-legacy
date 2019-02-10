@@ -37,9 +37,9 @@ const modes = {
   '.js': 'jsx',
   '.md': 'markdown'
 };
-const extension = fileName => fileName.substr(fileName.lastIndexOf('.'));
-const getMode = fileName => modes[extension(fileName)];
-const getLineWrapping = fileName => extension(fileName) === '.md';
+const getExtension = fileName => fileName.substr(fileName.lastIndexOf('.'));
+const getMode = extension => modes[extension];
+const getLineWrapping = extension => extension === '.md';
 
 export class CodeEditor extends Component {
 
@@ -59,6 +59,7 @@ export class CodeEditor extends Component {
 
   render() {
     const { fileName, value, onTextChange } = this.props;
+    const extension = getExtension(fileName);
 
     if (!process.browser) {
       return null;
@@ -72,10 +73,10 @@ export class CodeEditor extends Component {
         <CodeMirror
           value={value}
           options={{
-            mode: getMode(fileName),
+            mode: getMode(extension),
             theme: 'ubuntu',
             lineNumbers: true,
-            lineWrapping: getLineWrapping(fileName),
+            lineWrapping: getLineWrapping(extension),
             keyMap: 'sublime',
             autoCloseBrackets: true,
             matchBrackets: true,
