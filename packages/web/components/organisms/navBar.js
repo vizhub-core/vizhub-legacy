@@ -1,17 +1,16 @@
 import React from 'react';
 import { UserMenu } from '../molecules/userMenu';
-import { SlightMargin } from '../atoms/slightMargin';
 import { FaGithub } from 'react-icons/fa';
 
 export const NavBar = ({user, csrfToken, dropUp}) => (
   <React.Fragment>
-    <SlightMargin>
+    <div style={{ margin: '5px' }}>
 
       <nav className='level'>
       
         <div className='level-left'>
           <a href='/' className='level-item nav-brand'>
-            VizHub
+            <img src='/static/logo.svg' />
           </a>
         </div>
 
@@ -44,6 +43,6 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
         </div>
 
       </nav>
-    </SlightMargin>
+    </div>
   </React.Fragment>
 );
