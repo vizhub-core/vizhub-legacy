@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import assert from 'assert';
 import { testData } from 'datavis-tech-entities';
 import { VisualizationViewModel, DatasetViewModel } from '../src';
 import { bundle } from '../src';

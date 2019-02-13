@@ -5,9 +5,7 @@
   "main": "dist/index.js",
   "private": true,
   "scripts": {
-    "build-ts": "tsc",
-    "postinstall": "npm run build-ts",
-    "test": "mocha -r ts-node/register test/**/test.ts"
+    "test": "mocha -r esm test/test.js"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
@@ -16,14 +14,11 @@
     "datavis-tech-use-cases": "1",
     "mocha": "^5.2.0",
     "path-posix": "^1.0.0",
-    "rollup": "^0.64.1"
+    "rollup": "^0.64.1",
+    "rollup-plugin-buble": "^0.19.6"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.7.0",
-    "mocha": "^5.2.0",
-    "rollup-plugin-buble": "^0.19.6",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.0.1"
+    "esm": "^3.0.84",
+    "mocha": "^5.2.0"
   }
 }
