@@ -1,14 +1,7 @@
 import { Dataset } from 'datavis-tech-entities';
 
 export class DatasetViewModel {
-  title: string;
-  slug: string;
-  format: string;
-  text: string;
-  sourceName: string;
-  sourceUrl: string
-
-  constructor(dataset: Dataset) {
+  constructor(dataset) {
     this.title = dataset.info.title;
     this.slug = dataset.info.slug;
     this.format = dataset.info.format;
