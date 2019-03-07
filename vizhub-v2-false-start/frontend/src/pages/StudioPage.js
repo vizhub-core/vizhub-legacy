@@ -30,7 +30,7 @@ export const StudioPage = withRouter(props => {
   const onConfiguratorSectionToggle = sectionId =>
     setShowConfigurator(
       props,
-      showConfigurator == sectionId ? true : sectionId
+      showConfigurator === sectionId ? true : sectionId
     );
 
   const onFileClick = clickedFile =>
