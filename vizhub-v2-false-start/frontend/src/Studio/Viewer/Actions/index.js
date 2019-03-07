@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { format } from 'd3-format';
-import { Wrapper, Icon } from './styles';
+import { URLStateContext } from '../../../urlState';
 import {
   ForkSVG,
   FullScreenSVG,
@@ -10,6 +10,7 @@ import {
   ShareSVG,
   DownloadSVG
 } from '../../../icons';
+import { Wrapper, Icon } from './styles';
 
 export const formatVotes = format(',');
 
@@ -32,11 +33,16 @@ export const FullScreen = () => <Action svg={FullScreenSVG}>Fullscreen</Action>;
 
 export const Fork = () => <Action svg={ForkSVG}>Fork</Action>;
 
-export const Edit = ({ onClick }) => (
-  <Action svg={EditSVG} onClick={onClick}>
-    Edit
-  </Action>
-);
+export const Edit = ({ onClick }) => {
+  const { showConfigurator, setShowConfigurator } = useContext(URLStateContext);
+  const toggleConfigurator = () => setShowConfigurator(!showConfigurator);
+
+  return (
+    <Action svg={EditSVG} onClick={toggleConfigurator}>
+      Edit
+    </Action>
+  );
+};
 
 export const Upvote = ({ upvotes }) => (
   <Action svg={UpvoteSVG}>{formatVotes(upvotes)}</Action>

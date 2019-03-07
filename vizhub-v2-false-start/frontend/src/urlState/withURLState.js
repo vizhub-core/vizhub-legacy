@@ -15,5 +15,5 @@ export const withURLState = Component =>
       file: getFile(props),
       setFile: setFile(props)
     };
-    return <Component urlState={urlState} />;
+    return <Component urlState={urlState} {...props} />;
   });

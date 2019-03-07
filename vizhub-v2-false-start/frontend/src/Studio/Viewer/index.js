@@ -31,7 +31,7 @@ import {
   Provenance
 } from './styles';
 
-export const Viewer = withTheme(({ theme, onEditClick }) => {
+export const Viewer = withTheme(({ theme }) => {
   // TODO get these from context.
   const loggedInUser = {
     gitHubId: '68416',
@@ -77,7 +77,7 @@ export const Viewer = withTheme(({ theme, onEditClick }) => {
           <Downvote downvotes={downvotes} />
           <Share />
           {/*<Fork />*/}
-          <Edit onClick={onEditClick} />
+          <Edit />
           <Download />
           <FullScreen />
         </Actions>
