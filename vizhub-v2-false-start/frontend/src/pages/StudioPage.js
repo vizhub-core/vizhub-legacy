@@ -10,12 +10,29 @@ import {
   setFile
 } from '../urlState';
 
-export const StudioPage = withRouter(props => {
+const withURLState = Component =>
+  withRouter(props => {
+    const urlState = {
+      getShowConfigurator: () => getShowConfigurator(props),
+      setShowConfigurator: value => setShowConfigurator(props, value),
+      getFile: () => getFile(props),
+      setFile: value => setFile(props, value)
+    };
+    return <Component urlState={urlState} />;
+  });
+
+export const StudioPage = withURLState(({ urlState }) => {
   const [loaded, setLoaded] = useState(false);
+  const {
+    getShowConfigurator,
+    setShowConfigurator,
+    getFile,
+    setFile
+  } = urlState;
 
-  const showConfigurator = getShowConfigurator(props);
+  const showConfigurator = getShowConfigurator();
 
-  const file = getFile(props);
+  const file = getFile();
   const showEditor = file !== undefined;
 
   useEffect(() => {
@@ -24,17 +41,14 @@ export const StudioPage = withRouter(props => {
     }, 1000);
   }, []);
 
-  const onEditClick = () => setShowConfigurator(props, !showConfigurator);
-  const onConfiguratorClose = () => setShowConfigurator(props, false);
+  const onEditClick = () => setShowConfigurator(!showConfigurator);
+  const onConfiguratorClose = () => setShowConfigurator(false);
 
   const onConfiguratorSectionToggle = sectionId =>
-    setShowConfigurator(
-      props,
-      showConfigurator === sectionId ? true : sectionId
-    );
+    setShowConfigurator(showConfigurator === sectionId ? true : sectionId);
 
   const onFileClick = clickedFile =>
-    setFile(props, clickedFile === file ? undefined : clickedFile);
+    setFile(clickedFile === file ? undefined : clickedFile);
 
   return loaded ? (
     <Studio
