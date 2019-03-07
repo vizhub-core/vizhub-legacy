@@ -10,9 +10,9 @@ import {
 export const withURLState = Component =>
   withRouter(props => {
     const urlState = {
-      getShowConfigurator: () => getShowConfigurator(props),
+      showConfigurator: getShowConfigurator(props),
       setShowConfigurator: value => setShowConfigurator(props, value),
-      getFile: () => getFile(props),
+      file: getFile(props),
       setFile: value => setFile(props, value)
     };
     return <Component urlState={urlState} />;

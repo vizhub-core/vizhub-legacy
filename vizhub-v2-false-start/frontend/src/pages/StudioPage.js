@@ -6,16 +6,8 @@ import { withURLState } from '../urlState';
 
 export const StudioPage = withURLState(({ urlState }) => {
   const [loaded, setLoaded] = useState(false);
-  const {
-    getShowConfigurator,
-    setShowConfigurator,
-    getFile,
-    setFile
-  } = urlState;
+  const { showConfigurator, setShowConfigurator, file, setFile } = urlState;
 
-  const showConfigurator = getShowConfigurator();
-
-  const file = getFile();
   const showEditor = file !== undefined;
 
   useEffect(() => {
