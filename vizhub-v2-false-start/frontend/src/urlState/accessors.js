@@ -5,7 +5,7 @@ const get = property => ({ location }) =>
   queryString.parse(location.search)[property];
 
 // Sets the value of a property in the location search query string.
-const set = property => ({ history, match, location }, value) => {
+const set = property => ({ history, match, location }) => value => {
   const query = queryString.parse(location.search);
   query[property] = value;
   history.push({
@@ -31,9 +31,8 @@ export const getShowConfigurator = props => {
 
 // Accepts a boolean value or string of
 // comma delimited section ids for showConfigurator.
-export const setShowConfigurator = (props, showConfigurator) =>
-  setShowConfiguratorQuery(
-    props,
+export const setShowConfigurator = props => showConfigurator =>
+  setShowConfiguratorQuery(props)(
     typeof showConfigurator === 'boolean'
       ? showConfigurator
         ? null

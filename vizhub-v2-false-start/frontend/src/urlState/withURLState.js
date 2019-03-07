@@ -1,3 +1,4 @@
+import React from 'react';
 import { withRouter } from 'react-router';
 import {
   getShowConfigurator,
@@ -9,10 +10,10 @@ import {
 export const withURLState = Component =>
   withRouter(props => {
     const urlState = {
-      getShowConfigurator: () => getShowConfigurator(props),
-      setShowConfigurator: value => setShowConfigurator(props, value),
-      getFile: () => getFile(props),
-      setFile: value => setFile(props, value)
+      showConfigurator: getShowConfigurator(props),
+      setShowConfigurator: setShowConfigurator(props),
+      file: getFile(props),
+      setFile: setFile(props)
     };
     return <Component urlState={urlState} />;
   });
