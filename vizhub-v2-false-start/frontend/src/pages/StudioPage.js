@@ -1,25 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { withRouter } from 'react-router';
 import { LoadingScreen } from '../LoadingScreen';
 import { Studio } from '../Studio';
-import {
-  getShowConfigurator,
-  setShowConfigurator,
-  getFile,
-  setFile
-} from '../urlState';
-
-const withURLState = Component =>
-  withRouter(props => {
-    const urlState = {
-      getShowConfigurator: () => getShowConfigurator(props),
-      setShowConfigurator: value => setShowConfigurator(props, value),
-      getFile: () => getFile(props),
-      setFile: value => setFile(props, value)
-    };
-    return <Component urlState={urlState} />;
-  });
+import { withURLState } from '../urlState';
 
 export const StudioPage = withURLState(({ urlState }) => {
   const [loaded, setLoaded] = useState(false);
