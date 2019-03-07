@@ -18,9 +18,6 @@ export const StudioPage = withURLState(({ urlState }) => {
 
   const onEditClick = () => setShowConfigurator(!showConfigurator);
 
-  const onConfiguratorSectionToggle = sectionId =>
-    setShowConfigurator(showConfigurator === sectionId ? true : sectionId);
-
   const onFileClick = clickedFile =>
     setFile(clickedFile === file ? undefined : clickedFile);
 
@@ -28,7 +25,6 @@ export const StudioPage = withURLState(({ urlState }) => {
     <URLStateProvider>
       <Studio
         showConfigurator={showConfigurator}
-        onConfiguratorSectionToggle={onConfiguratorSectionToggle}
         showEditor={showEditor}
         onEditClick={onEditClick}
         onFileClick={onFileClick}

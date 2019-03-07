@@ -15,12 +15,8 @@ import { Section } from './Section';
 
 const files = ['index.html', 'index.js', 'styles.css'];
 
-export const Configurator = ({
-  onFileClick,
-  onSectionToggle,
-  visibleSections
-}) => {
-  const { showConfigurator, setShowConfigurator } = useContext(URLStateContext);
+export const Configurator = ({ onFileClick, visibleSections }) => {
+  const { setShowConfigurator } = useContext(URLStateContext);
 
   return (
     <Wrapper>
@@ -31,12 +27,7 @@ export const Configurator = ({
         <HeaderTitle>Configurator</HeaderTitle>
       </Header>
 
-      <Section
-        title="Design"
-        id="design"
-        showConfigurator={showConfigurator}
-        onToggle={onSectionToggle}
-      >
+      <Section title="Design" id="design">
         <Widget>
           <WidgetTitle>Color</WidgetTitle>
           <WidgetValue fill="#e66465" />
@@ -47,12 +38,7 @@ export const Configurator = ({
         </Widget>
       </Section>
 
-      <Section
-        title="Code"
-        id="code"
-        showConfigurator={showConfigurator}
-        onToggle={onSectionToggle}
-      >
+      <Section title="Code" id="code">
         {files.map(file => (
           <File key={file} onClick={() => onFileClick(file)}>
             {file}
