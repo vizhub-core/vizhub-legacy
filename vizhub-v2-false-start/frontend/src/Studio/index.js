@@ -16,7 +16,6 @@ export const Studio = ({
   onConfiguratorClose,
   onConfiguratorSectionToggle,
   showEditor,
-  onEditClick,
   onFileClick
 }) => (
   <StudioWrapper showConfigurator={showConfigurator} showEditor={showEditor}>
@@ -40,7 +39,7 @@ export const Studio = ({
     </ThemeProvider>
     <ThemeProvider theme={light}>
       <ViewerWrapper>
-        <Viewer onEditClick={onEditClick} />
+        <Viewer />
       </ViewerWrapper>
     </ThemeProvider>
   </StudioWrapper>

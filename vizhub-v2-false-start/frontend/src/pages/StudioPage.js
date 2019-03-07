@@ -6,7 +6,7 @@ import { withURLState, URLStateProvider } from '../urlState';
 
 export const StudioPage = withURLState(({ urlState }) => {
   const [loaded, setLoaded] = useState(false);
-  const { showConfigurator, setShowConfigurator, file, setFile } = urlState;
+  const { showConfigurator, file, setFile } = urlState;
 
   const showEditor = file !== undefined;
 
@@ -16,8 +16,6 @@ export const StudioPage = withURLState(({ urlState }) => {
     }, 1000);
   }, []);
 
-  const onEditClick = () => setShowConfigurator(!showConfigurator);
-
   const onFileClick = clickedFile =>
     setFile(clickedFile === file ? undefined : clickedFile);
 
@@ -26,7 +24,6 @@ export const StudioPage = withURLState(({ urlState }) => {
       <Studio
         showConfigurator={showConfigurator}
         showEditor={showEditor}
-        onEditClick={onEditClick}
         onFileClick={onFileClick}
       />
     </URLStateProvider>
