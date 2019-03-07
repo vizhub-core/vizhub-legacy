@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { LoadingScreen } from '../LoadingScreen';
 import { Studio } from '../Studio';
-import { withURLState } from '../urlState';
+import { withURLState, URLStateProvider } from '../urlState';
 
 export const StudioPage = withURLState(({ urlState }) => {
   const [loaded, setLoaded] = useState(false);
@@ -17,7 +17,6 @@ export const StudioPage = withURLState(({ urlState }) => {
   }, []);
 
   const onEditClick = () => setShowConfigurator(!showConfigurator);
-  const onConfiguratorClose = () => setShowConfigurator(false);
 
   const onConfiguratorSectionToggle = sectionId =>
     setShowConfigurator(showConfigurator === sectionId ? true : sectionId);
@@ -26,14 +25,15 @@ export const StudioPage = withURLState(({ urlState }) => {
     setFile(clickedFile === file ? undefined : clickedFile);
 
   return loaded ? (
-    <Studio
-      showConfigurator={showConfigurator}
-      onConfiguratorClose={onConfiguratorClose}
-      onConfiguratorSectionToggle={onConfiguratorSectionToggle}
-      showEditor={showEditor}
-      onEditClick={onEditClick}
-      onFileClick={onFileClick}
-    />
+    <URLStateProvider>
+      <Studio
+        showConfigurator={showConfigurator}
+        onConfiguratorSectionToggle={onConfiguratorSectionToggle}
+        showEditor={showEditor}
+        onEditClick={onEditClick}
+        onFileClick={onFileClick}
+      />
+    </URLStateProvider>
   ) : (
     <LoadingScreen />
   );
