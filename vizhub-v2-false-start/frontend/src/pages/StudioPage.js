@@ -26,8 +26,13 @@ export const StudioPage = withRouter(props => {
 
   const onEditClick = () => setShowConfigurator(props, !showConfigurator);
   const onConfiguratorClose = () => setShowConfigurator(props, false);
+
   const onConfiguratorSectionToggle = sectionId =>
-    setShowConfigurator(props, sectionId);
+    setShowConfigurator(
+      props,
+      showConfigurator == sectionId ? true : sectionId
+    );
+
   const onFileClick = clickedFile =>
     setFile(props, clickedFile === file ? undefined : clickedFile);
 
