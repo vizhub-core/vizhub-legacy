@@ -2,13 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { LoadingScreen } from '../LoadingScreen';
 import { Studio } from '../Studio';
-import { withURLState, URLStateProvider } from '../urlState';
+import { URLStateProvider } from '../urlState';
 
-export const StudioPage = withURLState(({ urlState }) => {
+export const StudioPage = ({ urlState }) => {
   const [loaded, setLoaded] = useState(false);
-  const { showConfigurator, file, setFile } = urlState;
-
-  const showEditor = file !== undefined;
 
   useEffect(() => {
     setTimeout(() => {
@@ -16,18 +13,11 @@ export const StudioPage = withURLState(({ urlState }) => {
     }, 1000);
   }, []);
 
-  const onFileClick = clickedFile =>
-    setFile(clickedFile === file ? undefined : clickedFile);
-
   return loaded ? (
     <URLStateProvider>
-      <Studio
-        showConfigurator={showConfigurator}
-        showEditor={showEditor}
-        onFileClick={onFileClick}
-      />
+      <Studio />
     </URLStateProvider>
   ) : (
     <LoadingScreen />
   );
-});
+};

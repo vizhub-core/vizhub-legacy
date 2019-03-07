@@ -15,8 +15,11 @@ import { Section } from './Section';
 
 const files = ['index.html', 'index.js', 'styles.css'];
 
-export const Configurator = ({ onFileClick, visibleSections }) => {
-  const { setShowConfigurator } = useContext(URLStateContext);
+export const Configurator = () => {
+  const { setShowConfigurator, file, setFile } = useContext(URLStateContext);
+
+  const onFileClick = clickedFile =>
+    setFile(clickedFile === file ? undefined : clickedFile);
 
   return (
     <Wrapper>
