@@ -10,7 +10,6 @@ import { Configurator } from './Configurator';
 import { Editor } from './Editor';
 import { Viewer } from './Viewer';
 import { dark, light } from '../themes';
-import { visibleSections } from './visibleSections';
 
 export const Studio = ({
   showConfigurator,
@@ -29,7 +28,6 @@ export const Studio = ({
               onCloseClick={onConfiguratorClose}
               onFileClick={onFileClick}
               onSectionToggle={onConfiguratorSectionToggle}
-              visibleSections={visibleSections(showConfigurator)}
             />
           </ConfiguratorWrapper>
         ) : null}

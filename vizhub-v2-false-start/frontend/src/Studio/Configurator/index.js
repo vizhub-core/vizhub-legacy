@@ -20,7 +20,7 @@ export const Configurator = ({
   onSectionToggle,
   visibleSections
 }) => {
-  const { setShowConfigurator } = useContext(URLStateContext);
+  const { showConfigurator, setShowConfigurator } = useContext(URLStateContext);
 
   return (
     <Wrapper>
@@ -34,7 +34,7 @@ export const Configurator = ({
       <Section
         title="Design"
         id="design"
-        visibleSections={visibleSections}
+        showConfigurator={showConfigurator}
         onToggle={onSectionToggle}
       >
         <Widget>
@@ -50,7 +50,7 @@ export const Configurator = ({
       <Section
         title="Code"
         id="code"
-        visibleSections={visibleSections}
+        showConfigurator={showConfigurator}
         onToggle={onSectionToggle}
       >
         {files.map(file => (
