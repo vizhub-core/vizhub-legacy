@@ -15,10 +15,8 @@ import { Viewer } from './Viewer';
 export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
 
-  const showEditor = file !== undefined;
-
   return (
-    <StudioWrapper showConfigurator={showConfigurator} showEditor={showEditor}>
+    <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
       <ThemeProvider theme={dark}>
         <>
           {showConfigurator ? (
@@ -26,7 +24,7 @@ export const Studio = () => {
               <Configurator />
             </ConfiguratorWrapper>
           ) : null}
-          {showEditor ? (
+          {file ? (
             <EditorWrapper>
               <Editor />
             </EditorWrapper>
