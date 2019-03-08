@@ -16,14 +16,11 @@ import { Section } from './Section';
 const files = ['index.html', 'index.js', 'styles.css'];
 
 export const Configurator = () => {
-  const { setShowConfigurator, file, setFile } = useContext(URLStateContext);
-
-  const onFileClick = clickedFile =>
-    setFile(clickedFile === file ? undefined : clickedFile);
+  const { selectFile, hideConfigurator } = useContext(URLStateContext);
 
   return (
     <Wrapper>
-      <Header onClick={() => setShowConfigurator(false)}>
+      <Header onClick={hideConfigurator}>
         <HeaderIcon>
           <ArrowBackSVG fill={'white'} />
         </HeaderIcon>
@@ -43,7 +40,7 @@ export const Configurator = () => {
 
       <Section title="Code" id="code">
         {files.map(file => (
-          <File key={file} onClick={() => onFileClick(file)}>
+          <File key={file} onClick={selectFile(file)}>
             {file}
           </File>
         ))}

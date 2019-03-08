@@ -34,8 +34,7 @@ export const FullScreen = () => <Action svg={FullScreenSVG}>Fullscreen</Action>;
 export const Fork = () => <Action svg={ForkSVG}>Fork</Action>;
 
 export const Edit = ({ onClick }) => {
-  const { showConfigurator, setShowConfigurator } = useContext(URLStateContext);
-  const toggleConfigurator = () => setShowConfigurator(!showConfigurator);
+  const { toggleConfigurator } = useContext(URLStateContext);
 
   return (
     <Action svg={EditSVG} onClick={toggleConfigurator}>
