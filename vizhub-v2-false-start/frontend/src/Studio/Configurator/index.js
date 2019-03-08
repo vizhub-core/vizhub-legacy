@@ -45,6 +45,14 @@ export const Configurator = () => {
           </File>
         ))}
       </Section>
+
+      <Section title="Settings" id="settings">
+        <div>Auto-resize</div>
+        <div>Height</div>
+        <div>Background color</div>
+        <div>Privacy</div>
+        <div>Collaborators</div>
+      </Section>
     </Wrapper>
   );
 };
