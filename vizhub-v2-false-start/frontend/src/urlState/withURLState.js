@@ -2,13 +2,15 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { accessors } from './accessors';
 
+// Higher order component exposing URL state accessors.
 export const withURLState = Component =>
   withRouter(props => {
+    // Raw accessor functions for URL parameter state.
     const { edit, setEdit, file, setFile } = accessors(props);
 
-    // Returns true if configurator should be shown with no active sections.
-    // Returns the active section id string if a section is active.
-    // Returns false if the configurator should not be shown at all.
+    // True if configurator should be shown with no active sections.
+    // The active section id string if a section is active.
+    // False if the configurator should not be shown at all.
     const showConfigurator =
       edit === undefined ? false : edit === null ? true : edit;
 
@@ -16,12 +18,16 @@ export const withURLState = Component =>
     const setShowConfigurator = value =>
       setEdit(typeof value === 'boolean' ? (value ? null : undefined) : value);
 
+    // Derived accessors for URL state, exposed to components.
     const urlState = {
       file,
-      setFile,
+      selectFile: value => () => setFile(value === file ? undefined : value),
       showConfigurator,
-      setShowConfigurator
+      setShowConfigurator,
+      toggleConfigurator: () => setShowConfigurator(!showConfigurator),
+      hideConfigurator: () => setShowConfigurator(false)
     };
 
+    // Expose accessors to wrapped component as urlState prop.
     return <Component urlState={urlState} {...props} />;
   });
