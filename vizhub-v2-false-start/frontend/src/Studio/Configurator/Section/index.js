@@ -4,9 +4,10 @@ import { URLStateContext } from '../../../urlState';
 import { Wrapper, Header, HeaderIcon, HeaderTitle, Body } from './styles';
 
 export const Section = ({ id, title, children }) => {
-  const { showConfigurator, setShowConfigurator } = useContext(URLStateContext);
-  const isActive = id === showConfigurator;
-  const toggle = () => setShowConfigurator(isActive ? true : id);
+  const { activeSection, setActiveSection } = useContext(URLStateContext);
+  const isActive = id === activeSection;
+  const toggle = () => setActiveSection(isActive ? null : id);
+
   return (
     <Wrapper>
       <Header onClick={toggle}>

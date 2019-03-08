@@ -16,11 +16,11 @@ import { Section } from './Section';
 const files = ['index.html', 'index.js', 'styles.css'];
 
 export const Configurator = () => {
-  const { selectFile, hideConfigurator } = useContext(URLStateContext);
+  const { selectFile, toggleConfigurator } = useContext(URLStateContext);
 
   return (
     <Wrapper>
-      <Header onClick={hideConfigurator}>
+      <Header onClick={toggleConfigurator}>
         <HeaderIcon>
           <ArrowBackSVG fill={'white'} />
         </HeaderIcon>

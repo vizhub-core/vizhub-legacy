@@ -8,24 +8,32 @@ export const withURLState = Component =>
     // Raw accessor functions for URL parameter state.
     const { edit, setEdit, file, setFile } = accessors(props);
 
-    // True if configurator should be shown with no active sections.
-    // The active section id string if a section is active.
-    // False if the configurator should not be shown at all.
-    const showConfigurator =
-      edit === undefined ? false : edit === null ? true : edit;
+    // Boolean value, whether or not the configurator should be shown.
+    const showConfigurator = edit !== undefined;
+    const setShowConfigurator = value => setEdit(value ? null : undefined);
 
-    // Accepts a boolean value or section id string.
-    const setShowConfigurator = value =>
-      setEdit(typeof value === 'boolean' ? (value ? null : undefined) : value);
+    // Toggles the configurator to show and hide.
+    const toggleConfigurator = () => setShowConfigurator(!showConfigurator);
+
+    // The active configurator section id string if a section is active.
+    // null if no configurator section is active.
+    const activeSection = edit;
+
+    // Accepts a section id string.
+    const setActiveSection = setEdit;
+
+    // Invoked when a file is selected (clicked on).
+    const selectFile = selectedFile => () =>
+      setFile(selectedFile === file ? undefined : selectedFile);
 
     // Derived accessors for URL state, exposed to components.
     const urlState = {
       file,
-      selectFile: value => () => setFile(value === file ? undefined : value),
+      selectFile,
       showConfigurator,
-      setShowConfigurator,
-      toggleConfigurator: () => setShowConfigurator(!showConfigurator),
-      hideConfigurator: () => setShowConfigurator(false)
+      toggleConfigurator,
+      activeSection,
+      setActiveSection
     };
 
     // Expose accessors to wrapped component as urlState prop.

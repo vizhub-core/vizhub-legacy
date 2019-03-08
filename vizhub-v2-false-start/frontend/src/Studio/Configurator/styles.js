@@ -29,6 +29,7 @@ export const File = styled.div`
   font-family: monospace;
   font-size: 1.4em;
   cursor: pointer;
+  user-select: none;
 `;
 
 export const Widget = styled(Flex)`
