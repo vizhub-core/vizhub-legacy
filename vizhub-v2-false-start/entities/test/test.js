@@ -6,17 +6,30 @@ const vizData = {
   downvotes: 5,
   workingState: {
     state: {
-      title: "A Viz",
-      showGrid: true,
-      markColor: "#FFEEDD",
-      maxCircleRadius: 50
+      title: {
+        type: 'string',
+        value: 'A Viz'
+      },
+      showGrid: {
+        type: 'boolean',
+        value: true
+      },
+      markColor: {
+        type: 'color',
+        value: '#FFEEDD'
+      },
+      maxCircleRadius: {
+        type: 'number',
+        value: '30',
+        min: 0,
+        max: 100
+      }
     },
     files: {
-
       // Keys are random, so that file renames are trivial via JSON OT.
       '9043411906112002': {
         path: 'index.html',
-        
+
         // Parcel-style script tag declaration directly into ES6 module (magic).
         text: '<html><body>Hello World<script src="index.js"></body></html>',
 
@@ -26,7 +39,6 @@ const vizData = {
       },
 
       '15886149663202853': {
-
         // Directories are defined implicitly as part of file paths.
         // Similar to https://github.com/Permutatrix/rollup-plugin-hypothetical#usage
         path: 'styles/theme.css',
@@ -38,6 +50,7 @@ const vizData = {
 
   // References a Commit by id.
   head: '0c82a54f22f775a3ed8b97b2dea74036'
+};
 
 describe('Entities', () => {
   describe('Viz', () => {
@@ -45,3 +58,4 @@ describe('Entities', () => {
       assert.equal('a', 'a');
     });
   });
+});
