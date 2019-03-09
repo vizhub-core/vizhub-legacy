@@ -1,0 +1,15 @@
+{
+  "name": "entities",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r esm"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esm": "^3.2.14",
+    "mocha": "^6.0.2"
+  }
+}
