@@ -55,8 +55,9 @@ export const Configurator = () => {
       </Section>
 
       <Section title="Preferences" id="preferences">
-        <div>Auto-run</div>
-        <div>Auto-format</div>
+        <div>Grayscale</div>
+        <div>Auto run</div>
+        <div>Auto format</div>
         <div>Vim mode</div>
         <div>Theme</div>
         <div>Font family</div>
