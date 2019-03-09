@@ -27,7 +27,7 @@ export const Configurator = () => {
         <HeaderTitle>Configurator</HeaderTitle>
       </Header>
 
-      <Section title="Design" id="design">
+      <Section title="State" id="state">
         <Widget>
           <WidgetTitle>Color</WidgetTitle>
           <WidgetValue fill="#e66465" />
@@ -38,7 +38,7 @@ export const Configurator = () => {
         </Widget>
       </Section>
 
-      <Section title="Code" id="code">
+      <Section title="Files" id="files">
         {files.map(file => (
           <File key={file} onClick={selectFile(file)}>
             {file}
@@ -52,6 +52,16 @@ export const Configurator = () => {
         <div>Background color</div>
         <div>Privacy</div>
         <div>Collaborators</div>
+      </Section>
+
+      <Section title="Preferences" id="preferences">
+        <div>Auto-run</div>
+        <div>Auto-format</div>
+        <div>Vim mode</div>
+        <div>Theme</div>
+        <div>Font family</div>
+        <div>Font size</div>
+        <div>Ligatures</div>
       </Section>
     </Wrapper>
   );
