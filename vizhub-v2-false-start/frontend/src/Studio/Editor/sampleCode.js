@@ -1,4 +1,5 @@
-export const sampleCode = `import {
+export const sampleCode = `// Test: = =>{}
+import {
   select,
   scaleOrdinal,
   schemeSpectral
@@ -13,6 +14,7 @@ const colorLegendG = svg.append('g')
     .attr('transform', \`translate(40,310)\`);
 
 const colorScale = scaleOrdinal();
+
 
 // const colorValue = d => d.properties.income_grp;
 const colorValue = d => d.properties.economy;

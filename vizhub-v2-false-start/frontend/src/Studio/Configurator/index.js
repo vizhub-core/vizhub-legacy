@@ -12,11 +12,15 @@ import {
   WidgetValue
 } from './styles';
 import { Section } from './Section';
+import { usePreloadCodeFont } from './usePreloadCodeFont';
 
 const files = ['index.html', 'index.js', 'styles.css'];
 
 export const Configurator = () => {
   const { selectFile, toggleConfigurator } = useContext(URLStateContext);
+
+  // Preload code font so it's there when the user opens a file.
+  usePreloadCodeFont();
 
   return (
     <Wrapper>
