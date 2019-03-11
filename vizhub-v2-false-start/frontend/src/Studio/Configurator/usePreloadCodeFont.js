@@ -18,7 +18,9 @@ const createPreloadLink = href =>
 // This hook pre-loads the font used in the code editor.
 export const usePreloadCodeFont = () => {
   useEffect(() => {
-    document.head.appendChild(createPreloadLink(mono.url));
-    linkTagAppended = true;
+    if (!linkTagAppended) {
+      document.head.appendChild(createPreloadLink(mono.url));
+      linkTagAppended = true;
+    }
   }, []);
 };
