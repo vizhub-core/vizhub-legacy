@@ -37,6 +37,7 @@ const vizData = {
   },
 
   // References a Commit by id.
+  // Related https://www.npmjs.com/package/hat
   head: '0c82a54f22f775a3ed8b97b2dea74036'
 
 describe('Entities', () => {
