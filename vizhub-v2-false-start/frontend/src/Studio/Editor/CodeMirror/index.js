@@ -1,7 +1,6 @@
-import React, {useRef} from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   EditorState,
-  EditorSelection,
   EditorView,
   keymap,
   history,
@@ -16,18 +15,18 @@ import {
   matchBrackets,
   javascript,
   specialChars,
-  multipleSelections,
+  multipleSelections
 } from 'codemirror-6-prerelease';
 
-export const CodeMirror = () => {
+export const CodeMirror = ({ initialDoc }) => {
   const ref = useRef();
 
   useEffect(() => {
-    const mode = legacyMode({mode: javascript({indentUnit: 2}, {})});
+    const mode = legacyMode({ mode: javascript({ indentUnit: 2 }, {}) });
 
     const isMac = /Mac/.test(navigator.platform);
     const state = EditorState.create({
-      doc,
+      doc: initialDoc,
       extensions: [
         lineNumbers(),
         history(),
@@ -41,13 +40,13 @@ export const CodeMirror = () => {
           'Mod-u': view => undoSelection(view) || true,
           [isMac ? 'Mod-Shift-u' : 'Alt-u']: redoSelection,
           'Ctrl-y': isMac ? undefined : redo,
-          'Shift-Tab': indentSelection,
+          'Shift-Tab': indentSelection
         }),
-        keymap(baseKeymap),
-      ],
+        keymap(baseKeymap)
+      ]
     });
 
-    const view = (window.view = new EditorView({state}));
+    const view = (window.view = new EditorView({ state }));
     ref.current.appendChild(view.dom);
   }, []);
 
