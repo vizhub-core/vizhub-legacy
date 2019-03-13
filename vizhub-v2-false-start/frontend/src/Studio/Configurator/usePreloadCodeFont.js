@@ -12,6 +12,7 @@ const createPreloadLink = href =>
   Object.assign(document.createElement('link'), {
     rel: 'preload',
     as: 'font',
+    crossOrigin: 'anonymous',
     href
   });
 
