@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code } from './styles';
+import { CodeMirror } from './CodeMirror';
 import { sampleCode } from './sampleCode';
 
-export const Editor = () => <Code>{sampleCode}</Code>;
+export const Editor = () => <CodeMirror initialDoc={sampleCode}/>;
