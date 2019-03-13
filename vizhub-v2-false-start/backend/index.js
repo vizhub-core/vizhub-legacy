@@ -15,25 +15,25 @@ app.get('/api/get/data', (re, res) => {
   let token =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoidGVzdCIsImlkIjoiZGF0YS5pZCIsImlhdCI6MTU1MTI4NTE2NSwiZXhwIjoxNTUxMzcxNTY1fQ.e-0SBtbKYz5K7QAK9hDtfg0QFgf8cqsF365lco_0sm8';
   let details = jwt.verify(token, process.env.SECERT, {
-    ignoreExpiration: true,
+    ignoreExpiration: true
   });
 
   res.json({
-    data: details,
+    data: details
   });
 });
 
 app.get('/api/me', verifyToken, (req, res) => {
   // decode jwt to get data from it
   const details = jwt.verify(req.token, process.env.SECERT, {
-    ignoreExpiration: true,
+    ignoreExpiration: true
   });
 
   // TODO return data about the currently authenticated user.
   res.json({
     authenticated: true,
     id: details.id,
-    username: details.user,
+    username: details.user
   });
 });
 
@@ -46,7 +46,7 @@ app.post('/api/github/token', cors(), (req, res, next) => {
   const data = {
     client_id: process.env.GITHUB_CLIENT,
     client_secret: process.env.GITHUB_SECRET,
-    code: code,
+    code: code
   };
 
   // api calling for fetching github user profile
@@ -55,9 +55,9 @@ app.post('/api/github/token', cors(), (req, res, next) => {
     mode: 'cors',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   })
     .then(response => response.json())
     .then(data => {
@@ -72,28 +72,28 @@ app.post('/api/github/token', cors(), (req, res, next) => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `token ${accessToken}`,
-        },
+          Authorization: `token ${accessToken}`
+        }
       })
         .then(response => response.json())
         .then(data => {
           // storing user profile for creating access token
           const user = {
             user: data.login,
-            id: data.id,
+            id: data.id
           };
 
           // generating jwt token with expired in 24 hour and sending to front
           jwt.sign(
             user,
             process.env.SECERT,
-            {expiresIn: 60 * 60 * 24},
+            { expiresIn: 60 * 60 * 24 },
             (err, token) => {
               res.json({
-                token,
+                token
               });
               console.log('l' + token);
-            },
+            }
           );
         });
     })
@@ -120,7 +120,7 @@ function verifyToken(req, res, next) {
 
     if (bearerToken === 'null') {
       res.json({
-        authenticated: false,
+        authenticated: false
       });
     } else {
       // proceed next
@@ -129,7 +129,7 @@ function verifyToken(req, res, next) {
   } else {
     // res.status(401).send('User not authenticated!');
     res.json({
-      authenticated: false,
+      authenticated: false
     });
   }
 }

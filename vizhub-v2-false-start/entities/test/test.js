@@ -17,15 +17,28 @@ const vizData = {
 
     // The configurable state variables for the Viz.
     state: {
-      title: 'A Viz',
-      showGrid: true,
-      markColor: '#FFEEDD',
-      maxCircleRadius: 50,
+      title: {
+        type: 'string',
+        value: 'A Viz'
+      },
+      showGrid: {
+        type: 'boolean',
+        value: true
+      },
+      markColor: {
+        type: 'color',
+        value: '#FFEEDD'
+      },
+      maxCircleRadius: {
+        type: 'number',
+        value: '30',
+        min: 0,
+        max: 100
+      }
     },
 
     // The text files that define the Viz.
     files: {
-
       // Keys are random, so that file renames are trivial via JSON OT.
       '9043411906112002': {
 
@@ -48,6 +61,7 @@ const vizData = {
         // The path of the file in the hypothetical file system.
         // In this case, the file is located at `./styles/theme.css`.
         path: 'styles',
+
         text: 'body { margin: 0; }',
         hash: '45hd69',
       },

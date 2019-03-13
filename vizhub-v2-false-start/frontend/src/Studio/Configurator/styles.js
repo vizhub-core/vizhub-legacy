@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex } from '../../styles';
+import { Flex, mono } from '../../styles';
 
 export const Wrapper = styled.div`
   width: 250px;
@@ -26,7 +26,7 @@ export const HeaderTitle = styled.div`
 `;
 
 export const File = styled.div`
-  font-family: monospace;
+  font-family: '${mono.family}';
   font-size: 1.4em;
   cursor: pointer;
   user-select: none;
