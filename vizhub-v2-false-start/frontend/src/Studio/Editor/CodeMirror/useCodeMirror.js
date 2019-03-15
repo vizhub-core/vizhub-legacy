@@ -16,7 +16,7 @@ import {
   javascript,
   specialChars,
   multipleSelections
-} from 'codemirror-6-prerelease';
+} from '@datavis-tech/codemirror-6-prerelease';
 
 export const useCodeMirror = initialDoc => {
   const [view, setView] = useState();
