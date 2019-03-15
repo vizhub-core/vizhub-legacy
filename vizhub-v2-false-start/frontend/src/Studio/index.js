@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { dark, light } from '../themes';
+import * as themes from '../themes';
 import { URLStateContext } from '../urlState';
 import {
   StudioWrapper,
@@ -15,9 +15,12 @@ import { Viewer } from './Viewer';
 export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
 
+  // TODO make this configurable per user.
+  const selectedTheme = 'ubuntu';
+
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
-      <ThemeProvider theme={dark}>
+      <ThemeProvider theme={themes[selectedTheme]}>
         <>
           {showConfigurator ? (
             <ConfiguratorWrapper>
@@ -31,7 +34,7 @@ export const Studio = () => {
           ) : null}
         </>
       </ThemeProvider>
-      <ThemeProvider theme={light}>
+      <ThemeProvider theme={themes.light}>
         <ViewerWrapper>
           <Viewer />
         </ViewerWrapper>
