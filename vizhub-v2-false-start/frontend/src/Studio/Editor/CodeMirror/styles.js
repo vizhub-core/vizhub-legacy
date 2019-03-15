@@ -3,7 +3,7 @@ import { mono } from '../../../styles.js';
 
 export const Wrapper = styled.div`
   flex: 1;
-  background-color: #300a24;
+  background-color: ${props => props.theme.background};
   cursor: text;
 `;
 
@@ -14,19 +14,19 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     font-size: 24pt;
   }
   .codemirror, .codemirror-gutter {
-    background-color: #300a24;
+    background-color: ${props => props.theme.background};
   }
   .codemirror ::selection {
-    background-color: #b6b6b6;
+    background-color: ${props => props.theme.selection};
   }
   .codemirror-gutter {
-    border-right: 1px solid #533d51;
+    border-right: ${props => props.theme.gutterBorder};
   }
   .codemirror-gutter-element {
-    color: #fce94f;
+    color: red !important;
   }
   .codemirror-content {
-    caret-color: white;
+    caret-color: ${props => props.theme.foreground};
   }
 
   .cm-keyword,

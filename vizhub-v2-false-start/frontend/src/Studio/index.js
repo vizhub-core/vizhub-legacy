@@ -1,26 +1,39 @@
-import React, { useContext } from 'react';
-import { ThemeProvider } from 'styled-components';
+import React, {useContext} from 'react';
+import {ThemeProvider} from 'styled-components';
 import * as themes from '../themes';
-import { URLStateContext } from '../urlState';
+import {URLStateContext} from '../urlState';
 import {
   StudioWrapper,
   ConfiguratorWrapper,
   EditorWrapper,
-  ViewerWrapper
+  ViewerWrapper,
 } from './styles';
-import { Configurator } from './Configurator';
-import { Editor } from './Editor';
-import { Viewer } from './Viewer';
+import {Configurator} from './Configurator';
+import {Editor} from './Editor';
+import {Viewer} from './Viewer';
 
 export const Studio = () => {
-  const { showConfigurator, file } = useContext(URLStateContext);
+  const {showConfigurator, file} = useContext(URLStateContext);
 
   // TODO make this configurable per user.
   const selectedTheme = 'ubuntu';
+  const selectedFontFamily = 'Ubuntu Mono';
+  const selectedFontSize = '24pt';
+  const selectedLigatures = 'None'; // can be 'None', 'Arrows', or 'All'
+
+  const font = {
+    family:
+      selectedFontFamily + selectedLigatures === 'Arrows'
+        ? ' Arrowized'
+        : selectedLigatures === 'All'
+        ? ' Ligaturized'
+        : '',
+    size: selectedFontSize,
+  };
 
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
-      <ThemeProvider theme={themes[selectedTheme]}>
+      <ThemeProvider theme={Object.assign(themes[selectedTheme], {font})}>
         <>
           {showConfigurator ? (
             <ConfiguratorWrapper>
