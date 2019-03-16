@@ -26,18 +26,17 @@ export const HeaderTitle = styled.div`
   text-align: center;
 `;
 
-export const File = styled.div`
-  font-family: '${mono.family}';
-  font-size: ${mono.size};
-  line-height: ${mono.lineHeight};
-  cursor: pointer;
-  user-select: none;
-`;
-
 export const Item = styled.div`
   cursor: pointer;
   user-select: none;
   padding: 4px 0;
+  text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
+`;
+
+export const File = styled(Item)`
+  font-family: '${mono.family}';
+  font-size: ${mono.size};
+  line-height: ${mono.lineHeight};
 `;
 
 export const Widget = styled(Flex)`
