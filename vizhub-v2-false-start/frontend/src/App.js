@@ -1,16 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { StudioPage, HomePage } from './pages';
-import { AppWrapper, GlobalStyle } from './styles';
+import { AppWrapper } from './styles';
 
 export const App = () => (
-  <>
-    <GlobalStyle />
-    <Router>
-      <AppWrapper>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/:user/:id" component={StudioPage} />
-      </AppWrapper>
-    </Router>
-  </>
+  <Router>
+    <AppWrapper>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/:user/:id" component={StudioPage} />
+    </AppWrapper>
+  </Router>
 );

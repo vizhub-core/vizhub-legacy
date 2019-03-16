@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 // The monospace font used for code, 'Ubuntu Mono Ligaturized',
 // a mashup of Ubuntu Mono with the fat arrow ligature from FiraCode
@@ -11,18 +11,9 @@ import styled, { createGlobalStyle } from 'styled-components';
 //    This makes the ligatures align with existing characters (e.g. '=').
 export const mono = {
   family: 'Ubuntu Mono Arrowized',
-  url: '/fonts/UbuntuMonoArrowized.ttf',
-  format: 'truetype',
   lineHeight: '1.1',
   size: '18pt'
 };
-
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: '${mono.family}';
-    src: url('${mono.url}') format('${mono.format}');
-  }
-`;
 
 export const Flex = styled.div`
   display: flex;
