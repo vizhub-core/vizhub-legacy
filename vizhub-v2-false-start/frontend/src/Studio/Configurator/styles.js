@@ -31,6 +31,12 @@ export const Item = styled.div`
   user-select: none;
   padding: 4px 0;
   text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
+  display: flex;
+  align-items: center;
+`;
+export const ItemIcon = styled.div`
+  width: 16px;
+  margin: 0 7px -2px 0;
 `;
 
 export const File = styled(Item)`

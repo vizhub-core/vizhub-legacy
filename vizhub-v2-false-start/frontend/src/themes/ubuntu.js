@@ -8,7 +8,7 @@ const theme = {
   atom: '#ad7fa8',
   property: '#87ffaf'
 };
-theme.keyword = theme.lineNumbers;
+theme.keyword = theme.comment;
 theme.number = theme.foreground;
 theme.operator = theme.foreground;
 
