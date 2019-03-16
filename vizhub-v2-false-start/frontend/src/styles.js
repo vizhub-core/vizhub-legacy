@@ -10,8 +10,8 @@ import styled, { createGlobalStyle } from 'styled-components';
 //    glyph.transform(psMat.translate(0, -48))
 //    This makes the ligatures align with existing characters (e.g. '=').
 export const mono = {
-  family: 'VizHub Mono',
-  url: '/fonts/UbuntuMonoLigaturized.ttf',
+  family: 'Ubuntu Mono Arrowized',
+  url: '/fonts/UbuntuMonoArrowized.ttf',
   format: 'truetype'
 };
 

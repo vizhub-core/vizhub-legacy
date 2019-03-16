@@ -23,13 +23,12 @@ export const Studio = () => {
 
   const font = {
     family:
-      selectedFontFamily + selectedLigatures === 'Arrows'
-        ? ' Arrowized'
-        : selectedLigatures === 'All'
-        ? ' Ligaturized'
-        : '',
+      selectedFontFamily +
+      (selectedLigatures === 'All' ? ' Ligaturized' : ' Arrowized'),
     size: selectedFontSize,
   };
+
+  console.log(font);
 
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>

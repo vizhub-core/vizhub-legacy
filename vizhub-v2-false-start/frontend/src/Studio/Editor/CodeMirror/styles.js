@@ -23,7 +23,7 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     border-right: ${props => props.theme.gutterBorder};
   }
   .codemirror-gutter-element {
-    color: red !important;
+    color: ${props => props.theme.lineNumbersColor} !important;
   }
   .codemirror-content {
     caret-color: ${props => props.theme.foreground};
