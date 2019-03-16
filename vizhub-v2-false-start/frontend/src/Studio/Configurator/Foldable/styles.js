@@ -3,14 +3,15 @@ import { Flex } from '../../../styles';
 
 export const Wrapper = styled.div`
   color: ${props => props.theme.foreground};
-  font-size: 1.2em;
+  font-size: 16pt;
 `;
 
 export const Header = styled(Flex)`
-  padding: 10px;
+  padding: 4px 0;
   background: ${props => props.theme.sectionHeaderBackground}
   align-items: center;
   cursor: pointer;
+  margin-left: -3px;
 `;
 
 export const HeaderIcon = styled.div`
@@ -24,6 +25,6 @@ export const HeaderTitle = styled.div`
 `;
 
 export const Body = styled.div`
-  padding: 10px;
+  padding-left: 21px;
   background: ${props => props.theme.sectionBodyBackground};
 `;

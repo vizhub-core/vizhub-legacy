@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Foldable } from './Foldable';
+import { Item } from './styles';
 
 export const Menu = ({ title, options }) => {
   const [isActive, setIsActive] = useState(false);
@@ -8,7 +9,7 @@ export const Menu = ({ title, options }) => {
   return (
     <Foldable isActive={isActive} title={title} onClick={toggle}>
       {options.map(({ title, id }) => (
-        <div key={id}>{title}</div>
+        <Item key={id}>{title}</Item>
       ))}
     </Foldable>
   );

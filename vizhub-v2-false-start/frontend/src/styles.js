@@ -13,8 +13,8 @@ export const mono = {
   family: 'Ubuntu Mono Arrowized',
   url: '/fonts/UbuntuMonoArrowized.ttf',
   format: 'truetype',
-  size: '18pt',
-  lineHeight: '1.1'
+  lineHeight: '1.1',
+  size: '18pt'
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -33,8 +33,7 @@ export const AppWrapper = styled(Flex)`
   padding: 0;
   height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 `;

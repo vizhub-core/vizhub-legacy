@@ -4,6 +4,7 @@ import { ArrowBackSVG } from '../../icons';
 import {
   Wrapper,
   File,
+  Item,
   Header,
   HeaderIcon,
   HeaderTitle,
@@ -60,23 +61,23 @@ export const Configurator = () => {
       </Section>
 
       <Section title="Settings" id="settings">
-        <div>Auto-resize</div>
-        <div>Height</div>
-        <div>Background color</div>
-        <div>Privacy</div>
-        <div>Collaborators</div>
+        <Item>Auto-resize</Item>
+        <Item>Height</Item>
+        <Item>Background color</Item>
+        <Item>Privacy</Item>
+        <Item>Collaborators</Item>
       </Section>
 
       <Section title="Preferences" id="preferences">
-        <div>Grayscale</div>
-        <div>Auto run</div>
-        <div>Auto format</div>
-        <div>Vim mode</div>
-        <div>Theme</div>
-        <Menu title="Theme" options={themeOptions} />
-        <div>Font family</div>
-        <div>Font size</div>
-        <div>Ligatures</div>
+        <Menu title="Color Theme" options={themeOptions} />
+        <Item>Grayscale</Item>
+        <Item>Auto run</Item>
+        <Item>Auto format</Item>
+        <Item>Vim mode</Item>
+        <Item>Theme</Item>
+        <Item>Font family</Item>
+        <Item>Font size</Item>
+        <Item>Ligatures</Item>
       </Section>
     </Wrapper>
   );

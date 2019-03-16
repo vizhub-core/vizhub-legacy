@@ -3,6 +3,7 @@ import { Flex, mono } from '../../styles';
 
 export const Wrapper = styled.div`
   width: 250px;
+  padding-left: 10px;
 `;
 
 export const Header = styled(Flex)`
@@ -31,6 +32,12 @@ export const File = styled.div`
   line-height: ${mono.lineHeight};
   cursor: pointer;
   user-select: none;
+`;
+
+export const Item = styled.div`
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 0;
 `;
 
 export const Widget = styled(Flex)`
