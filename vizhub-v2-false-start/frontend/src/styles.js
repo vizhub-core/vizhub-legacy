@@ -12,7 +12,9 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const mono = {
   family: 'Ubuntu Mono Arrowized',
   url: '/fonts/UbuntuMonoArrowized.ttf',
-  format: 'truetype'
+  format: 'truetype',
+  size: '18pt',
+  lineHeight: '1.1'
 };
 
 export const GlobalStyle = createGlobalStyle`

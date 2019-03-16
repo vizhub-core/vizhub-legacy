@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
     font-family: '${mono.family}';
-    line-height: 1.1;
-    font-size: 24pt;
+    line-height: ${mono.lineHeight};
+    font-size: ${mono.size};
   }
   .codemirror, .codemirror-gutter {
     background-color: ${props => props.theme.background};

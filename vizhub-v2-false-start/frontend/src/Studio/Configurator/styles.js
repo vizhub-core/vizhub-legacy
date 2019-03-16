@@ -27,7 +27,8 @@ export const HeaderTitle = styled.div`
 
 export const File = styled.div`
   font-family: '${mono.family}';
-  font-size: 1.4em;
+  font-size: ${mono.size};
+  line-height: ${mono.lineHeight};
   cursor: pointer;
   user-select: none;
 `;

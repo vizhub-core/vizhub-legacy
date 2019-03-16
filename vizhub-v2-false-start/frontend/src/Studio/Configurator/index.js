@@ -14,9 +14,14 @@ import {
 import { Section } from './Section';
 import { usePreloadCodeFont } from './usePreloadCodeFont';
 import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
-import { Foldable } from './Foldable';
+import { Menu } from './Menu';
 
 const files = ['index.html', 'index.js', 'styles.css'];
+
+const themeOptions = [
+  { title: 'Ubuntu', id: 'ubuntu' },
+  { title: 'One Dark', id: 'one-dark' }
+];
 
 export const Configurator = () => {
   const { selectFile, toggleConfigurator } = useContext(URLStateContext);
@@ -68,10 +73,7 @@ export const Configurator = () => {
         <div>Auto format</div>
         <div>Vim mode</div>
         <div>Theme</div>
-        <Foldable title="Theme" isActive={true}>
-          <div>Ubuntu</div>
-          <div>One Dark</div>
-        </Foldable>
+        <Menu title="Theme" options={themeOptions} />
         <div>Font family</div>
         <div>Font size</div>
         <div>Ligatures</div>
