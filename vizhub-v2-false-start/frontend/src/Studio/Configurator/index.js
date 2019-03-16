@@ -26,6 +26,14 @@ const themeOptions = [
   { title: 'One Dark', id: 'oneDark' }
 ];
 
+const fontOptions = [
+  { title: 'Ubuntu Mono', id: 'ubuntuMono' },
+  { title: 'Fira Code', id: 'firaCode' }
+];
+
+const selectedFont = 'ubuntuMono';
+const setSelectedFont = () => {};
+
 export const Configurator = ({ selectedTheme, setSelectedTheme }) => {
   const { file: activeFile, selectFile, toggleConfigurator } = useContext(
     URLStateContext
@@ -83,6 +91,14 @@ export const Configurator = ({ selectedTheme, setSelectedTheme }) => {
           activeOption={selectedTheme}
           setActiveOption={setSelectedTheme}
         />
+        <Menu
+          title="Font Family"
+          options={fontOptions}
+          activeOption={selectedFont}
+          setActiveOption={setSelectedFont}
+        />
+        <Item>Font Size</Item>
+        <Item>Ligatures</Item>
         <Item>
           <ItemIcon>
             <CheckBoxSVG checked={true} />
@@ -107,9 +123,6 @@ export const Configurator = ({ selectedTheme, setSelectedTheme }) => {
           </ItemIcon>
           Vim mode
         </Item>
-        <Item>Font family</Item>
-        <Item>Font size</Item>
-        <Item>Ligatures</Item>
       </Section>
     </Wrapper>
   );
