@@ -7,6 +7,11 @@ export const Wrapper = styled.div`
   cursor: text;
 `;
 
+const color = key => props => {
+  const value = props.theme[key];
+  return 'color: ' + (value.color || value);
+};
+
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
     font-family: '${mono.family}';
@@ -30,21 +35,24 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   }
 
   .cm-keyword,
-  .cm-comment,
   .cm-bracket,
   .cm-attribute,
   .codemirror-matchingbracket {
-    color: #34e2e2; /* neon blue */
+    color: ${props => props.theme.keyword};
+  }
+
+  .cm-comment {
+    ${color('comment')};
   }
 
   .cm-atom,
   .cm-string,
   .cm-string-2,
   .cm-qualifier {
-    color: #ad7fa8; /* purple */
+    color: ${props => props.theme.atom};
   }
 
   .cm-property {
-    color: #87ffaf; /* pale green */
+    color: ${props => props.theme.property};
   }
 `;

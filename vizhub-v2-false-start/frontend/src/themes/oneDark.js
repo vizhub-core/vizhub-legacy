@@ -4,7 +4,14 @@ const theme = {
   background: '#282c34',
   selection: '#3e4451',
   gutterBorder: '1px solid #533d51',
-  lineNumbers: '#5c6370'
+  lineNumbers: '#5c6370',
+  keyword: '#c678dd',
+  atom: '#d19a66',
+  property:'#87ffaf',
+  comment:{
+    color: '#5c6370',
+    style: 'italic'
+  }
 };
 
 //  color: #abb2bf !important;
@@ -50,7 +57,6 @@ const theme = {
 //.cm-s-one-dark .cm-builtin {color: #e06c75;}
 //.cm-s-one-dark .cm-keyword {color: #c678dd;}
 //.cm-s-one-dark .cm-def {color: #e5c07b;} /* original:  #d19a66; */
-//.cm-s-one-dark .cm-atom {color: #d19a66;}
 //.cm-s-one-dark .cm-number {color: #d19a66;}
 //.cm-s-one-dark .cm-property {color: #56b6c2;} /* original: #abb2bf */
 //.cm-s-one-dark .cm-qualifier {color: #d19a66;}
@@ -60,7 +66,6 @@ const theme = {
 //.cm-s-one-dark .cm-operator {color: #56b6c2;} /* original: #abb2bf */
 //.cm-s-one-dark .cm-meta {color: #abb2bf;}
 //.cm-s-one-dark .cm-bracket {color: #abb2bf;}
-//.cm-s-one-dark .cm-comment {color: #5c6370;font-style: italic;}
 //.cm-s-one-dark .cm-error {color: #e06c75;}
 ///* css syntax corrections */
 //.cm-s-one-dark .cm-m-css.cm-variable {color: #828997;}
