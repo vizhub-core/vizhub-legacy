@@ -5,6 +5,7 @@ import {
   Wrapper,
   File,
   Item,
+  ItemIcon,
   Header,
   HeaderIcon,
   HeaderTitle,
@@ -12,9 +13,10 @@ import {
   WidgetTitle,
   WidgetValue
 } from './styles';
+import { CheckBoxSVG } from '../../icons';
+import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
 import { Section } from './Section';
 import { usePreloadCodeFont } from './usePreloadCodeFont';
-import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
 import { Menu } from './Menu';
 
 const files = ['index.html', 'index.js', 'styles.css'];
@@ -81,11 +83,30 @@ export const Configurator = ({ selectedTheme, setSelectedTheme }) => {
           activeOption={selectedTheme}
           setActiveOption={setSelectedTheme}
         />
-        <Item>Grayscale</Item>
-        <Item>Auto run</Item>
-        <Item>Auto format</Item>
-        <Item>Vim mode</Item>
-        <Item>Theme</Item>
+        <Item>
+          <ItemIcon>
+            <CheckBoxSVG checked={true} />
+          </ItemIcon>
+          Grayscale
+        </Item>
+        <Item>
+          <ItemIcon>
+            <CheckBoxSVG checked={true} />
+          </ItemIcon>
+          Auto run
+        </Item>
+        <Item>
+          <ItemIcon>
+            <CheckBoxSVG checked={true} />
+          </ItemIcon>
+          Auto format
+        </Item>
+        <Item>
+          <ItemIcon>
+            <CheckBoxSVG checked={true} />
+          </ItemIcon>
+          Vim mode
+        </Item>
         <Item>Font family</Item>
         <Item>Font size</Item>
         <Item>Ligatures</Item>
