@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { URLStateContext } from '../../urlState';
-import { ArrowBackSVG } from '../../icons';
+import React, {useContext} from 'react';
+import {URLStateContext} from '../../urlState';
+import {ArrowBackSVG} from '../../icons';
 import {
   Wrapper,
   File,
@@ -10,22 +10,22 @@ import {
   HeaderTitle,
   Widget,
   WidgetTitle,
-  WidgetValue
+  WidgetValue,
 } from './styles';
-import { Section } from './Section';
-import { usePreloadCodeFont } from './usePreloadCodeFont';
-import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
-import { Menu } from './Menu';
+import {Section} from './Section';
+import {usePreloadCodeFont} from './usePreloadCodeFont';
+import {useCodeMirrorDynamicImport} from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
+import {Menu} from './Menu';
 
 const files = ['index.html', 'index.js', 'styles.css'];
 
 const themeOptions = [
-  { title: 'Ubuntu', id: 'ubuntu' },
-  { title: 'One Dark', id: 'one-dark' }
+  {title: 'Ubuntu', id: 'ubuntu'},
+  {title: 'One Dark', id: 'oneDark'},
 ];
 
-export const Configurator = () => {
-  const { selectFile, toggleConfigurator } = useContext(URLStateContext);
+export const Configurator = ({selectedTheme, setSelectedTheme}) => {
+  const {selectFile, toggleConfigurator} = useContext(URLStateContext);
 
   // Preload code font and CodeMirror JS,
   // so the user doesn't need to wait for these to load when they open a file.
@@ -69,7 +69,12 @@ export const Configurator = () => {
       </Section>
 
       <Section title="Preferences" id="preferences">
-        <Menu title="Color Theme" options={themeOptions} />
+        <Menu
+          title="Color Theme"
+          options={themeOptions}
+          activeOption={selectedTheme}
+          setActiveOption={setSelectedTheme}
+        />
         <Item>Grayscale</Item>
         <Item>Auto run</Item>
         <Item>Auto format</Item>
