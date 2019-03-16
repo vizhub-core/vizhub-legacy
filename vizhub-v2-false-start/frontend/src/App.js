@@ -4,11 +4,13 @@ import { StudioPage, HomePage } from './pages';
 import { AppWrapper, GlobalStyle } from './styles';
 
 export const App = () => (
-  <Router>
-    <AppWrapper>
-      <GlobalStyle />
-      <Route exact path="/" component={HomePage} />
-      <Route path="/:user/:id" component={StudioPage} />
-    </AppWrapper>
-  </Router>
+  <>
+    <GlobalStyle />
+    <Router>
+      <AppWrapper>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/:user/:id" component={StudioPage} />
+      </AppWrapper>
+    </Router>
+  </>
 );

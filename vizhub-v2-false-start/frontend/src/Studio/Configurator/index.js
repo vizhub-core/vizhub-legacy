@@ -13,14 +13,17 @@ import {
 } from './styles';
 import { Section } from './Section';
 import { usePreloadCodeFont } from './usePreloadCodeFont';
+import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
 
 const files = ['index.html', 'index.js', 'styles.css'];
 
 export const Configurator = () => {
   const { selectFile, toggleConfigurator } = useContext(URLStateContext);
 
-  // Preload code font so it's there when the user opens a file.
+  // Preload code font and CodeMirror JS,
+  // so the user doesn't need to wait for these to load when they open a file.
   usePreloadCodeFont();
+  useCodeMirrorDynamicImport();
 
   return (
     <Wrapper>
