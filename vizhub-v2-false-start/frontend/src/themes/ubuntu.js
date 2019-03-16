@@ -4,11 +4,13 @@ const theme = {
   selection: '#b6b6b6',
   gutterBorder: '1px solid #533d51',
   lineNumbers: '#fce94f',
-  keyword: '#34e2e2',
-  atom:'#ad7fa8',
-  property:'#87ffaf',
+  comment: '#34e2e2',
+  atom: '#ad7fa8',
+  property: '#87ffaf'
 };
-theme.comment = theme.keyword;
+theme.keyword = theme.lineNumbers;
+theme.number = theme.foreground;
+theme.operator = theme.foreground;
 
 theme.textLight = theme.foreground;
 theme.configuratorHeaderBackground = theme.background;

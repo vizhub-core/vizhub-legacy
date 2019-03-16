@@ -7,10 +7,9 @@ export const Wrapper = styled.div`
   cursor: text;
 `;
 
-const color = key => props => {
-  const value = props.theme[key];
-  return 'color: ' + (value.color || value);
-};
+const color = key => ({ theme }) => `color: ${theme[key].color || theme[key]}`;
+const style = key => ({ theme }) =>
+  `font-style: ${theme[key].style || 'normal'}`;
 
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
@@ -19,40 +18,49 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     font-size: ${mono.size};
   }
   .codemirror, .codemirror-gutter {
-    background-color: ${props => props.theme.background};
+    background-${color('background')};
   }
   .codemirror ::selection {
-    background-color: ${props => props.theme.selection};
+    background-${color('selection')};
   }
   .codemirror-gutter {
     border-right: ${props => props.theme.gutterBorder};
   }
   .codemirror-gutter-element {
-    color: ${props => props.theme.lineNumbers} !important;
+    ${color('lineNumbers')} !important;
   }
   .codemirror-content {
-    caret-color: ${props => props.theme.foreground};
+    caret-${color('foreground')};
   }
 
   .cm-keyword,
   .cm-bracket,
   .cm-attribute,
   .codemirror-matchingbracket {
-    color: ${props => props.theme.keyword};
+    ${color('keyword')};
   }
 
   .cm-comment {
     ${color('comment')};
+    ${style('comment')};
   }
 
   .cm-atom,
   .cm-string,
   .cm-string-2,
   .cm-qualifier {
-    color: ${props => props.theme.atom};
+    ${color('atom')};
+  }
+
+  .cm-number {
+    ${color('number')};
+  }
+
+  .cm-operator {
+    ${color('operator')};
   }
 
   .cm-property {
-    color: ${props => props.theme.property};
+    ${color('property')};
   }
 `;
