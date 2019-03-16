@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
 export const Header = styled(Flex)`
   padding: 10px;
-  background: #363636;
+  background: ${props => props.theme.sectionHeaderBackground}
   align-items: center;
   cursor: pointer;
 `;
@@ -25,5 +25,5 @@ export const HeaderTitle = styled.div`
 
 export const Body = styled.div`
   padding: 10px;
-  background: #222222;
+  background: ${props => props.theme.sectionBodyBackground};
 `;

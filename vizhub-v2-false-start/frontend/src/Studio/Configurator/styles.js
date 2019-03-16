@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 export const Header = styled(Flex)`
   padding: 10px;
   color: ${props => props.theme.foreground};
-  background: #4d4d4d;
+  background: ${props => props.theme.configuratorHeaderBackground}
   font-size: 1.5em;
   align-items: center;
   cursor: pointer;

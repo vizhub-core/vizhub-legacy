@@ -14,6 +14,7 @@ import {
 import { Section } from './Section';
 import { usePreloadCodeFont } from './usePreloadCodeFont';
 import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
+import { Foldable } from './Foldable';
 
 const files = ['index.html', 'index.js', 'styles.css'];
 
@@ -67,6 +68,10 @@ export const Configurator = () => {
         <div>Auto format</div>
         <div>Vim mode</div>
         <div>Theme</div>
+        <Foldable title="Theme" isActive={true}>
+          <div>Ubuntu</div>
+          <div>One Dark</div>
+        </Foldable>
         <div>Font family</div>
         <div>Font size</div>
         <div>Ligatures</div>
