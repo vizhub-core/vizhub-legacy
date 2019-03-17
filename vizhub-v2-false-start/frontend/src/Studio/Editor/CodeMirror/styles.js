@@ -12,11 +12,21 @@ const style = key => ({ theme }) =>
 const weight = key => ({ theme }) =>
   `font-weight: ${theme[key].weight || 'normal'}`;
 
+// TODO bring this back if/when CodeMirror issue is resolved.
+// https://github.com/codemirror/codemirror.next/issues/89
+//const lineHeight = ({theme}) => {
+//  // Use startsWith to handle arrowized variants as well.
+//  if (theme.font.family.startsWith('Ubuntu Mono')) {
+//    return 1.1;
+//  }
+//  return 1.4;
+//}
+
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
     font-family: '${props => props.theme.font.family}';
     font-size: ${props => props.theme.font.size};
-    line-height: 1.1; /* TODO per font family */
+    line-height: 1.2;
   }
   .codemirror, .codemirror-gutter {
     background-${color('background')};
