@@ -40,7 +40,7 @@ export const Configurator = ({
 
   // Preload code font and CodeMirror JS,
   // so the user doesn't need to wait for these to load when they open a file.
-  usePreloadCodeFont();
+  usePreloadCodeFont(selectedFontFamily);
   useCodeMirrorDynamicImport();
 
   return (

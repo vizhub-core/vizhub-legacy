@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { mono } from '../../../styles.js';
 
 export const Wrapper = styled.div`
   flex: 1;
@@ -16,8 +15,8 @@ const weight = key => ({ theme }) =>
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
     font-family: '${props => props.theme.font.family}';
-    line-height: ${mono.lineHeight};
-    font-size: ${mono.size};
+    font-size: ${props => props.theme.font.size};
+    line-height: 1.1; /* TODO per font family */
   }
   .codemirror, .codemirror-gutter {
     background-${color('background')};

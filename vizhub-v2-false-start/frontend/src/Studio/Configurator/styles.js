@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex, mono } from '../../styles';
+import { Flex } from '../../styles';
 
 export const Wrapper = styled.div`
   width: 250px;
@@ -40,9 +40,8 @@ export const ItemIcon = styled.div`
 `;
 
 export const File = styled(Item)`
-  font-family: '${mono.family}';
-  font-size: ${mono.size};
-  line-height: ${mono.lineHeight};
+  font-family: '${props => props.theme.font.family}';
+  font-size: ${props => props.theme.font.size};
 `;
 
 export const Widget = styled(Flex)`
