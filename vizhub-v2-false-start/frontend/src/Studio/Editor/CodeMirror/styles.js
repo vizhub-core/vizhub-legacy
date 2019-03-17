@@ -15,7 +15,7 @@ const weight = key => ({ theme }) =>
 
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
-    font-family: '${mono.family}';
+    font-family: '${props => props.theme.font.family}';
     line-height: ${mono.lineHeight};
     font-size: ${mono.size};
   }

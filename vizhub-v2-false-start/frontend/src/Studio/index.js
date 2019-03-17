@@ -16,16 +16,15 @@ export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
 
   // TODO make this configurable per user.
-  const [selectedTheme, setSelectedTheme] = useState('ubuntu');
+  const [selectedColorTheme, setSelectedColorTheme] = useState('ubuntu');
+  const [selectedFontFamily, setSelectedFontFamily] = useState('Fira Code');
 
-  const selectedFontFamily = 'Ubuntu Mono';
   const selectedFontSize = '24pt';
   const selectedLigatures = 'None'; // can be 'None', 'Arrows', or 'All'
 
   const font = {
-    family:
-      selectedFontFamily +
-      (selectedLigatures === 'All' ? ' Ligaturized' : ' Arrowized'),
+    family: selectedFontFamily,
+    //+ (selectedLigatures === 'All' ? ' Ligaturized' : ' Arrowized'),
     size: selectedFontSize
   };
 
@@ -33,13 +32,17 @@ export const Studio = () => {
 
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
-      <ThemeProvider theme={Object.assign(themes[selectedTheme], { font })}>
+      <ThemeProvider
+        theme={Object.assign({}, themes[selectedColorTheme], { font })}
+      >
         <>
           {showConfigurator ? (
             <ConfiguratorWrapper>
               <Configurator
-                selectedTheme={selectedTheme}
-                setSelectedTheme={setSelectedTheme}
+                selectedColorTheme={selectedColorTheme}
+                setSelectedColorTheme={setSelectedColorTheme}
+                selectedFontFamily={selectedFontFamily}
+                setSelectedFontFamily={setSelectedFontFamily}
               />
             </ConfiguratorWrapper>
           ) : null}

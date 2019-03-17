@@ -9,14 +9,20 @@ export const Menu = ({ title, options, activeOption, setActiveOption }) => {
 
   return (
     <Foldable isActive={isActive} title={title} onClick={toggle}>
-      {options.map(({ title, id }) => (
-        <Item key={id} onClick={() => setActiveOption(id)}>
-          <ItemIcon>
-            <RadioButtonSVG checked={id === activeOption} />
-          </ItemIcon>
-          {title}
-        </Item>
-      ))}
+      {options.map(option => {
+        // Options can be strings or objects with { title, id }.
+        const title = option.title || option;
+        const id = option.id || option;
+
+        return (
+          <Item key={id} onClick={() => setActiveOption(id)}>
+            <ItemIcon>
+              <RadioButtonSVG checked={id === activeOption} />
+            </ItemIcon>
+            {title}
+          </Item>
+        );
+      })}
     </Foldable>
   );
 };

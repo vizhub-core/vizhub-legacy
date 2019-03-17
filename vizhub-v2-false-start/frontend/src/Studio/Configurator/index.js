@@ -26,15 +26,14 @@ const themeOptions = [
   { title: 'One Dark', id: 'oneDark' }
 ];
 
-const fontOptions = [
-  { title: 'Ubuntu Mono', id: 'ubuntuMono' },
-  { title: 'Fira Code', id: 'firaCode' }
-];
+const fontOptions = ['Ubuntu Mono', 'Fira Code'];
 
-const selectedFont = 'ubuntuMono';
-const setSelectedFont = () => {};
-
-export const Configurator = ({ selectedTheme, setSelectedTheme }) => {
+export const Configurator = ({
+  selectedColorTheme,
+  setSelectedColorTheme,
+  selectedFontFamily,
+  setSelectedFontFamily
+}) => {
   const { file: activeFile, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
@@ -88,14 +87,14 @@ export const Configurator = ({ selectedTheme, setSelectedTheme }) => {
         <Menu
           title="Color Theme"
           options={themeOptions}
-          activeOption={selectedTheme}
-          setActiveOption={setSelectedTheme}
+          activeOption={selectedColorTheme}
+          setActiveOption={setSelectedColorTheme}
         />
         <Menu
           title="Font Family"
           options={fontOptions}
-          activeOption={selectedFont}
-          setActiveOption={setSelectedFont}
+          activeOption={selectedFontFamily}
+          setActiveOption={setSelectedFontFamily}
         />
         <Item>Font Size</Item>
         <Item>Ligatures</Item>
