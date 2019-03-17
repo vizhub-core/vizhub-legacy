@@ -10,6 +10,8 @@ export const Wrapper = styled.div`
 const color = key => ({ theme }) => `color: ${theme[key].color || theme[key]}`;
 const style = key => ({ theme }) =>
   `font-style: ${theme[key].style || 'normal'}`;
+const weight = key => ({ theme }) =>
+  `font-weight: ${theme[key].weight || 'normal'}`;
 
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
@@ -34,10 +36,9 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   }
 
   .cm-keyword,
-  .cm-bracket,
-  .cm-attribute,
-  .codemirror-matchingbracket {
+  .cm-attribute {
     ${color('keyword')};
+    ${weight('keyword')};
   }
 
   .cm-comment {
