@@ -19,15 +19,14 @@ export const Studio = () => {
   const [selectedColorTheme, setSelectedColorTheme] = useState('ubuntu');
   const [selectedFontFamily, setSelectedFontFamily] = useState('Fira Code');
 
-  const selectedLigatures = 'None'; // can be 'None', 'Arrows', or 'All'
+  // TODO Ligature options
+  //const selectedLigatures = 'None'; // can be 'None', 'Arrows', or 'All'
 
   const font = {
     family: selectedFontFamily,
     //+ (selectedLigatures === 'All' ? ' Ligaturized' : ' Arrowized'),
     size: '18pt'
   };
-
-  console.log(font);
 
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
