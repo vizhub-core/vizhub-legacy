@@ -1,4 +1,4 @@
-export const sampleCode = `// Test: = =>{}
+export const sampleCode = `// Test: = =>{ a !== b 
 import {
   select,
   scaleOrdinal,

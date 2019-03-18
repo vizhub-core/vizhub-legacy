@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { dark, light } from '../themes';
+import * as themes from '../themes';
 import { URLStateContext } from '../urlState';
 import {
   StudioWrapper,
@@ -15,13 +15,36 @@ import { Viewer } from './Viewer';
 export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
 
+  // TODO make this configurable per user.
+  const [colorTheme, setColorTheme] = useState('ubuntu');
+  const [font, setFont] = useState('Ubuntu Mono');
+  const [ligatures, setLigatures] = useState('arrows');
+
+  // TODO optimize changing object using hooks
+  // e. g. useEffect(() => {}, [colorTheme, font, ligatures])
+  const theme = Object.assign({}, themes[colorTheme], {
+    font: {
+      family: font + (ligatures !== 'all' ? ' Arrowized' : ''),
+      size: '16pt',
+      ligatures: ligatures !== 'none'
+    }
+  });
+
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
-      <ThemeProvider theme={dark}>
+      <ThemeProvider theme={theme}>
         <>
           {showConfigurator ? (
             <ConfiguratorWrapper>
-              <Configurator />
+              <Configurator
+                colorTheme={colorTheme}
+                setColorTheme={setColorTheme}
+                preloadFontFamily={theme.font.family}
+                font={font}
+                setFont={setFont}
+                ligatures={ligatures}
+                setLigatures={setLigatures}
+              />
             </ConfiguratorWrapper>
           ) : null}
           {file ? (
@@ -31,7 +54,7 @@ export const Studio = () => {
           ) : null}
         </>
       </ThemeProvider>
-      <ThemeProvider theme={light}>
+      <ThemeProvider theme={themes.light}>
         <ViewerWrapper>
           <Viewer />
         </ViewerWrapper>
