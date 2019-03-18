@@ -16,7 +16,7 @@ export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
 
   // TODO make this configurable per user.
-  const [colorTheme, setcolor] = useState('ubuntu');
+  const [colorTheme, setColorTheme] = useState('ubuntu');
   const [font, setFont] = useState('Inconsolata-g');
   const [ligatures, setLigatures] = useState('arrows');
 
@@ -43,7 +43,7 @@ export const Studio = () => {
             <ConfiguratorWrapper>
               <Configurator
                 colorTheme={colorTheme}
-                setcolor={setcolor}
+                setColorTheme={setColorTheme}
                 preloadFontFamily={theme.font.family}
                 font={font}
                 setFont={setFont}

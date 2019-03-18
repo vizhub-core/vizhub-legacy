@@ -15,6 +15,10 @@ const theme = {
   }
 };
 
+theme.matchingBracket = `
+  border-bottom: 1px solid ${theme.property};
+`;
+
 theme.operator = theme.keyword;
 
 theme.textLight = theme.foreground;

@@ -8,6 +8,12 @@ const theme = {
   atom: '#ad7fa8',
   property: '#87ffaf'
 };
+
+theme.matchingBracket = `
+  color: ${theme.foreground};
+  background: #06989a;
+`;
+
 theme.keyword = {
   color: theme.comment,
   weight: 'bold'

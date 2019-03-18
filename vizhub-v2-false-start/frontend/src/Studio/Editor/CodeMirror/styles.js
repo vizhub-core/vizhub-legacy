@@ -46,6 +46,10 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     caret-${color('foreground')};
   }
 
+  .codemirror-matching-bracket {
+    ${props => props.theme.matchingBracket}
+  }
+
   .cm-keyword,
   .cm-attribute {
     ${color('keyword')};
