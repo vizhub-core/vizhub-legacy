@@ -16,7 +16,7 @@ import {
 import { CheckBoxSVG } from '../../icons';
 import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
 import { Section } from './Section';
-import { usePreloadCodeFont } from './usePreloadCodeFont';
+import { usePreloadFont } from './usePreloadFont';
 import { Menu } from './Menu';
 
 const files = ['index.html', 'index.js', 'styles.css'];
@@ -28,11 +28,20 @@ const themeOptions = [
 
 const fontOptions = ['Ubuntu Mono', 'Fira Code'];
 
+const ligaturesOptions = [
+  { title: 'None', id: 'none' },
+  { title: 'Arrows', id: 'arrows' },
+  { title: 'All', id: 'all' }
+];
+
 export const Configurator = ({
-  selectedColorTheme,
-  setSelectedColorTheme,
-  selectedFontFamily,
-  setSelectedFontFamily
+  colorTheme,
+  setColorTheme,
+  preloadFontFamily,
+  font,
+  setFont,
+  ligatures,
+  setLigatures
 }) => {
   const { file: activeFile, selectFile, toggleConfigurator } = useContext(
     URLStateContext
@@ -40,7 +49,7 @@ export const Configurator = ({
 
   // Preload code font and CodeMirror JS,
   // so the user doesn't need to wait for these to load when they open a file.
-  usePreloadCodeFont(selectedFontFamily);
+  usePreloadFont(preloadFontFamily);
   useCodeMirrorDynamicImport();
 
   return (
@@ -87,17 +96,22 @@ export const Configurator = ({
         <Menu
           title="Color Theme"
           options={themeOptions}
-          activeOption={selectedColorTheme}
-          setActiveOption={setSelectedColorTheme}
+          activeOption={colorTheme}
+          setActiveOption={setColorTheme}
         />
         <Menu
-          title="Font Family"
+          title="Font"
           options={fontOptions}
-          activeOption={selectedFontFamily}
-          setActiveOption={setSelectedFontFamily}
+          activeOption={font}
+          setActiveOption={setFont}
+        />
+        <Menu
+          title="Ligatures"
+          options={ligaturesOptions}
+          activeOption={ligatures}
+          setActiveOption={setLigatures}
         />
         <Item>Font Size</Item>
-        <Item>Ligatures</Item>
         <Item>
           <ItemIcon>
             <CheckBoxSVG checked={true} />

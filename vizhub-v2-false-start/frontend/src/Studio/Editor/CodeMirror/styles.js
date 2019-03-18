@@ -26,6 +26,8 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .codemirror {
     font-family: '${props => props.theme.font.family}';
     font-size: ${props => props.theme.font.size};
+    font-variant-ligatures: ${props =>
+      props.theme.font.ligatures ? 'normal' : 'none'};
     line-height: 1.2;
   }
   .codemirror, .codemirror-gutter {

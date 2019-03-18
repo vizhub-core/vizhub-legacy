@@ -3,10 +3,7 @@ import { useEffect } from 'react';
 // Track this globally so we append the link tag only once.
 let linkTagAppended = {};
 
-const woff = {
-  'Ubuntu Mono': '/fonts/UbuntuMonoArrowized.woff',
-  'Fira Code': '/fonts/FiraCode.woff'
-};
+const woff = fontFamily => `/fonts/${fontFamily.replace(/ /g, '')}.woff`;
 
 // This will tell the browser to prefetch the font file.
 // Inspired by
@@ -17,11 +14,11 @@ const createPreloadLink = fontFamily =>
     rel: 'preload',
     as: 'font',
     crossOrigin: 'anonymous',
-    href: woff[fontFamily]
+    href: woff(fontFamily)
   });
 
 // This hook pre-loads the font used in the code editor.
-export const usePreloadCodeFont = fontFamily => {
+export const usePreloadFont = fontFamily => {
   useEffect(() => {
     if (!linkTagAppended[fontFamily]) {
       document.head.appendChild(createPreloadLink(fontFamily));

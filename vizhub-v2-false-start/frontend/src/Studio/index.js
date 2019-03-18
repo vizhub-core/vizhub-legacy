@@ -16,31 +16,39 @@ export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
 
   // TODO make this configurable per user.
-  const [selectedColorTheme, setSelectedColorTheme] = useState('ubuntu');
-  const [selectedFontFamily, setSelectedFontFamily] = useState('Fira Code');
+  const [colorTheme, setcolor] = useState('ubuntu');
+  const [font, setFont] = useState('Fira Code');
+  const [ligatures, setLigatures] = useState('arrows');
 
   // TODO Ligature options
   //const selectedLigatures = 'None'; // can be 'None', 'Arrows', or 'All'
 
-  const font = {
-    family: selectedFontFamily,
-    //+ (selectedLigatures === 'All' ? ' Ligaturized' : ' Arrowized'),
-    size: '18pt'
-  };
+  // TODO optimize changing object using hooks
+  // e. g. useEffect(() => {}, [colorTheme, font, ligatures])
+  const theme = Object.assign({}, themes[colorTheme], {
+    font: {
+      family: font + (ligatures !== 'all' ? ' Arrowized' : ''),
+      size: '18pt',
+      ligatures: ligatures !== 'none'
+    }
+  });
+
+  console.log(theme.font);
 
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
-      <ThemeProvider
-        theme={Object.assign({}, themes[selectedColorTheme], { font })}
-      >
+      <ThemeProvider theme={theme}>
         <>
           {showConfigurator ? (
             <ConfiguratorWrapper>
               <Configurator
-                selectedColorTheme={selectedColorTheme}
-                setSelectedColorTheme={setSelectedColorTheme}
-                selectedFontFamily={selectedFontFamily}
-                setSelectedFontFamily={setSelectedFontFamily}
+                colorTheme={colorTheme}
+                setcolor={setcolor}
+                preloadFontFamily={theme.font.family}
+                font={font}
+                setFont={setFont}
+                ligatures={ligatures}
+                setLigatures={setLigatures}
               />
             </ConfiguratorWrapper>
           ) : null}
