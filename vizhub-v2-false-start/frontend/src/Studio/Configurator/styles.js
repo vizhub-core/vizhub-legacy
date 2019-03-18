@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import { Flex } from '../../styles';
 
 export const Wrapper = styled.div`
+  color: ${props => props.theme.container.color};
+  background: ${props => props.theme.container.background};
   width: 250px;
   padding-left: 10px;
 `;
 
 export const Header = styled(Flex)`
   padding: 10px;
-  color: ${props => props.theme.foreground};
-  background: ${props => props.theme.configuratorHeaderBackground}
   font-size: 1.5em;
   align-items: center;
   cursor: pointer;
