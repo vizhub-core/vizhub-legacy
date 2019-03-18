@@ -23,8 +23,16 @@ To correct for vertical alignment by adding the following to line 126 (inside `c
 
 `ligaturize.py`
 
+For Ubuntu Mono:
+
 ```
 glyph.transform(psMat.translate(0, -48))
+```
+
+For Inconsolata-g:
+
+```
+glyph.transform(psMat.translate(0, 42))
 ```
 
 This makes the ligatures align with existing characters (e.g. '=') for Ubuntu Mono.

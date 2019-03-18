@@ -26,7 +26,13 @@ const themeOptions = [
   { title: 'One Dark', id: 'oneDark' }
 ];
 
-const fontOptions = ['Ubuntu Mono', 'Fira Code', 'Deja Vu Sans Mono', 'Source Code Pro'];
+const fontOptions = [
+  'Ubuntu Mono',
+  'Fira Code',
+  'Deja Vu Sans Mono',
+  'Source Code Pro',
+  'Inconsolata-g'
+];
 
 const ligaturesOptions = [
   { title: 'None', id: 'none' },

@@ -17,7 +17,7 @@ export const Studio = () => {
 
   // TODO make this configurable per user.
   const [colorTheme, setcolor] = useState('ubuntu');
-  const [font, setFont] = useState('Fira Code');
+  const [font, setFont] = useState('Inconsolata-g');
   const [ligatures, setLigatures] = useState('arrows');
 
   // TODO Ligature options
