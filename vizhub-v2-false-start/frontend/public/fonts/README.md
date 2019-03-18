@@ -35,6 +35,12 @@ For Inconsolata-g:
 glyph.transform(psMat.translate(0, 42))
 ```
 
+For Source Code Pro
+
+```
+glyph.transform(psMat.translate(0, 24))
+```
+
 This makes the ligatures align with existing characters (e.g. '=') for Ubuntu Mono.
 
 # Character Copying
