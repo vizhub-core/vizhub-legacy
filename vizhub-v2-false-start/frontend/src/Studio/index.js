@@ -17,23 +17,18 @@ export const Studio = () => {
 
   // TODO make this configurable per user.
   const [colorTheme, setColorTheme] = useState('ubuntu');
-  const [font, setFont] = useState('Inconsolata-g');
+  const [font, setFont] = useState('Ubuntu Mono');
   const [ligatures, setLigatures] = useState('arrows');
-
-  // TODO Ligature options
-  //const selectedLigatures = 'None'; // can be 'None', 'Arrows', or 'All'
 
   // TODO optimize changing object using hooks
   // e. g. useEffect(() => {}, [colorTheme, font, ligatures])
   const theme = Object.assign({}, themes[colorTheme], {
     font: {
       family: font + (ligatures !== 'all' ? ' Arrowized' : ''),
-      size: '18pt',
+      size: '16pt',
       ligatures: ligatures !== 'none'
     }
   });
-
-  console.log(theme.font);
 
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
