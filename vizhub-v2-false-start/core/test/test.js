@@ -1,10 +1,16 @@
 import assert from 'assert';
+import set from 'lodash/fp/set';
+import {computeDiffOps} from '../src/computeDiffOps';
 
-const userPreferencesData = {
-  editorFont: 'Ubuntu Mono',
-  editorFontSize: '16pt',
-  editorFontLigatures: 'None', // or 'Arrows', 'All'
-  editorTheme: 'Ubuntu',
+const user = {
+  email: 'kung.fu@wizard.com',
+  username: 'kungfu',
+  preferences: {
+    font: 'Ubuntu Mono',
+    fontSize: '16pt',
+    fontLigatures: 'None', // or 'Arrows', 'All'
+    colorTheme: 'Ubuntu',
+  },
 };
 
 const vizData = {
@@ -14,34 +20,32 @@ const vizData = {
 
   // Akin to the "working directory" using Git.
   working: {
-
     // The configurable state variables for the Viz.
     state: {
       title: {
         type: 'string',
-        value: 'A Viz'
+        value: 'A Viz',
       },
       showGrid: {
         type: 'boolean',
-        value: true
+        value: true,
       },
       markColor: {
         type: 'color',
-        value: '#FFEEDD'
+        value: '#FFEEDD',
       },
       maxCircleRadius: {
         type: 'number',
         value: '30',
         min: 0,
-        max: 100
-      }
+        max: 100,
+      },
     },
 
     // The text files that define the Viz.
     files: {
       // Keys are random, so that file renames are trivial via JSON OT.
       '9043411906112002': {
-
         // The name of the file.
         name: 'index.html',
 
@@ -75,8 +79,11 @@ const vizData = {
 
 describe('Entities', () => {
   describe('Viz', () => {
-    it('', () => {
-      assert.equal('a', 'a');
+    it('should compute diff', () => {
+      const path = ['working', 'state', 'title', 'value'];
+      const vizData2 = set(path)('A Cool Viz')(vizData);
+      const ops = computeDiffOps(vizData, vizData2);
+      assert.deepEqual(ops, [{si: 'Cool ', p: path.concat(2)}]);
     });
   });
 });

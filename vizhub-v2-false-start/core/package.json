@@ -1,0 +1,21 @@
+{
+  "name": "entities",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r esm",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esm": "^3.2.14",
+    "mocha": "^6.0.2",
+    "prettier": "^1.16.4"
+  },
+  "dependencies": {
+    "diff-match-patch": "^1.0.4",
+    "json0-ot-diff": "^1.0.3"
+  }
+}
