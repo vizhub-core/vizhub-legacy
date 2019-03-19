@@ -39,7 +39,7 @@ export const vizData = {
 
         // Hash of text is stored to detect content changes in application code.
         // https://www.npmjs.com/package/@emotion/hash
-        hash: '12fj1d'
+        // hash: '12fj1d'
       },
 
       '15886149663202853': {
@@ -52,7 +52,6 @@ export const vizData = {
         path: 'styles',
 
         text: 'body { margin: 0; }',
-        hash: '45hd69'
       }
     }
   },
