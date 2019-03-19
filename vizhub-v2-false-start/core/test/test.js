@@ -1,89 +1,24 @@
 import assert from 'assert';
 import set from 'lodash/fp/set';
-import {computeDiffOps} from '../src/computeDiffOps';
+import { computeDiffOps } from '../src/computeDiffOps';
+import { type } from 'ot-json0';
+import { vizData } from './vizData';
 
-const user = {
-  email: 'kung.fu@wizard.com',
-  username: 'kungfu',
-  preferences: {
-    font: 'Ubuntu Mono',
-    fontSize: '16pt',
-    fontLigatures: 'None', // or 'Arrows', 'All'
-    colorTheme: 'Ubuntu',
-  },
-};
-
-const vizData = {
-  views: 1234,
-  upvotes: 2345,
-  downvotes: 5,
-
-  // Akin to the "working directory" using Git.
-  working: {
-    // The configurable state variables for the Viz.
-    state: {
-      title: {
-        type: 'string',
-        value: 'A Viz',
-      },
-      showGrid: {
-        type: 'boolean',
-        value: true,
-      },
-      markColor: {
-        type: 'color',
-        value: '#FFEEDD',
-      },
-      maxCircleRadius: {
-        type: 'number',
-        value: '30',
-        min: 0,
-        max: 100,
-      },
-    },
-
-    // The text files that define the Viz.
-    files: {
-      // Keys are random, so that file renames are trivial via JSON OT.
-      '9043411906112002': {
-        // The name of the file.
-        name: 'index.html',
-
-        // Parcel-style script tag declaration directly into ES6 module (magic).
-        text: '<html><body>Hello World<script src="index.js"></body></html>',
-
-        // Hash of text is stored to detect content changes in application code.
-        // https://www.npmjs.com/package/@emotion/hash
-        hash: '12fj1d',
-      },
-
-      '15886149663202853': {
-        // Directories are defined implicitly as part of file paths.
-        // Similar to https://github.com/Permutatrix/rollup-plugin-hypothetical#usage
-        name: 'theme.css',
-
-        // The path of the file in the hypothetical file system.
-        // In this case, the file is located at `./styles/theme.css`.
-        path: 'styles',
-
-        text: 'body { margin: 0; }',
-        hash: '45hd69',
-      },
-    },
-  },
-
-  // References a Commit by id.
-  // Related https://www.npmjs.com/package/hat
-  head: '0c82a54f22f775a3ed8b97b2dea74036',
-};
+const clone = obj => JSON.parse(JSON.stringify(obj));
 
 describe('Entities', () => {
   describe('Viz', () => {
+    const path = ['working', 'state', 'title', 'value'];
+    const vizData2 = set(path)('A Cool Viz')(vizData);
+    const ops = computeDiffOps(vizData, vizData2);
+
     it('should compute diff', () => {
-      const path = ['working', 'state', 'title', 'value'];
-      const vizData2 = set(path)('A Cool Viz')(vizData);
-      const ops = computeDiffOps(vizData, vizData2);
-      assert.deepEqual(ops, [{si: 'Cool ', p: path.concat(2)}]);
+      assert.deepEqual(ops, [{ si: 'Cool ', p: path.concat(2) }]);
+    });
+
+    it('should apply diff', () => {
+      const vizData3 = type.apply(clone(vizData), ops);
+      assert.deepEqual(vizData2, vizData3);
     });
   });
 });
