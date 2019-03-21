@@ -23,9 +23,10 @@ theme.gutter = Object.assign({}, theme.container, {
   borderRight: '1px solid rgba(255,255,255,0.1)'
 });
 
-theme.matchingBracket = Object.assign({}, theme.container, {
+theme.matchingbracket = {
+  color: theme.container.color,
   borderBottom: `1px solid ${theme.property.color}`
-});
+};
 
 theme.operator = theme.keyword;
 

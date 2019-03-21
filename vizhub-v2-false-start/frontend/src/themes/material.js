@@ -16,9 +16,10 @@ const theme = {
   content: { caretColor: '#ffcc00' }
 };
 
-theme.matchingBracket = Object.assign({}, theme.container, {
+theme.matchingBracket = {
+  color: theme.container.color,
   outline: '1px solid #696227'
-});
+};
 
 theme.gutter = Object.assign({}, theme.container, {
   borderRight: '1px solid rgba(255,255,255,0.1)'

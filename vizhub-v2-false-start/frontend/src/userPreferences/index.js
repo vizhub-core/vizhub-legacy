@@ -5,7 +5,8 @@ export const UserPreferencesContext = createContext();
 const colorThemeOptions = [
   { title: 'Ubuntu', id: 'ubuntu' },
   { title: 'One Dark', id: 'oneDark' },
-  { title: 'Material', id: 'material' }
+  { title: 'Material', id: 'material' },
+  { title: 'Dracula', id: 'dracula' }
 ];
 
 const fontOptions = [
