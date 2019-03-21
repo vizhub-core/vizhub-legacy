@@ -15,11 +15,11 @@ import { Comments } from './Comments';
 import { ForkedFrom } from './ForkedFrom';
 import { avatarUrl } from './avatarUrl';
 import { formatViewCount } from './formatViewCount';
+import { Runner } from './Runner';
 import {
   Wrapper,
   Padded,
   Header,
-  Runner,
   TitleActions,
   Logo,
   HeaderAvatar,
