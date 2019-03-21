@@ -13,9 +13,12 @@ const theme = {
   atom: { color: '#c3e88d' },
   property: { color: '#82aaff' },
   number: { color: '#f78c6c' },
-  content: { caretColor: '#ffcc00' },
-  matchingBracket: { border: '1px solid #696227' }
+  content: { caretColor: '#ffcc00' }
 };
+
+theme.matchingBracket = Object.assign({}, theme.container, {
+  outline: '1px solid #696227'
+});
 
 theme.gutter = Object.assign({}, theme.container, {
   borderRight: '1px solid rgba(255,255,255,0.1)'
