@@ -26,11 +26,6 @@ export const Logo = styled.img`
   height: ${props => props.theme.headerHeight}px;
 `;
 
-export const Runner = styled.div`
-  height: 300px;
-  background-color: #ddd;
-`;
-
 export const Title = styled(MainText)`
   font-size: 1.5em;
   margin-bottom: 2px;

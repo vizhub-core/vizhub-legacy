@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../../urlState';
 import { ArrowBackSVG } from '../../icons';
+import { UserPreferencesContext } from '../../userPreferences';
 import {
   Wrapper,
   File,
@@ -21,37 +22,24 @@ import { Menu } from './Menu';
 
 const files = ['index.html', 'index.js', 'styles.css'];
 
-const themeOptions = [
-  { title: 'Ubuntu', id: 'ubuntu' },
-  { title: 'One Dark', id: 'oneDark' }
-];
-
-const fontOptions = [
-  'Ubuntu Mono',
-  'Fira Code',
-  'Deja Vu Sans Mono',
-  'Source Code Pro',
-  'Inconsolata-g'
-];
-
-const ligaturesOptions = [
-  { title: 'None', id: 'none' },
-  { title: 'Arrows', id: 'arrows' },
-  { title: 'All', id: 'all' }
-];
-
-export const Configurator = ({
-  colorTheme,
-  setColorTheme,
-  preloadFontFamily,
-  font,
-  setFont,
-  ligatures,
-  setLigatures
-}) => {
+export const Configurator = ({ preloadFontFamily }) => {
   const { file: activeFile, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
+
+  const {
+    colorTheme,
+    colorThemeOptions,
+    setColorTheme,
+
+    font,
+    fontOptions,
+    setFont,
+
+    ligatures,
+    ligaturesOptions,
+    setLigatures
+  } = useContext(UserPreferencesContext);
 
   // Preload code font and CodeMirror JS,
   // so the user doesn't need to wait for these to load when they open a file.
@@ -101,7 +89,7 @@ export const Configurator = ({
       <Section title="Preferences" id="preferences">
         <Menu
           title="Color Theme"
-          options={themeOptions}
+          options={colorThemeOptions}
           activeOption={colorTheme}
           setActiveOption={setColorTheme}
         />

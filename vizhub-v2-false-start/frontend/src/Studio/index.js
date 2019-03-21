@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as themes from '../themes';
 import { URLStateContext } from '../urlState';
+import { UserPreferencesContext } from '../userPreferences';
 import {
   StudioWrapper,
   ConfiguratorWrapper,
@@ -15,10 +16,7 @@ import { Viewer } from './Viewer';
 export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
 
-  // TODO make this configurable per user.
-  const [colorTheme, setColorTheme] = useState('ubuntu');
-  const [font, setFont] = useState('Ubuntu Mono');
-  const [ligatures, setLigatures] = useState('arrows');
+  const { colorTheme, font, ligatures } = useContext(UserPreferencesContext);
 
   // TODO optimize changing object using hooks
   // e. g. useEffect(() => {}, [colorTheme, font, ligatures])
@@ -36,15 +34,7 @@ export const Studio = () => {
         <>
           {showConfigurator ? (
             <ConfiguratorWrapper>
-              <Configurator
-                colorTheme={colorTheme}
-                setColorTheme={setColorTheme}
-                preloadFontFamily={theme.font.family}
-                font={font}
-                setFont={setFont}
-                ligatures={ligatures}
-                setLigatures={setLigatures}
-              />
+              <Configurator preloadFontFamily={theme.font.family} />
             </ConfiguratorWrapper>
           ) : null}
           {file ? (
