@@ -3,9 +3,8 @@ import { Wrapper } from './styles';
 //import React, {useRef, useState, useEffect} from 'react';
 
 // TODO handle first page load using srcDoc from server.
-// TODO load Rollup dependency async as needed only.
+// TODO load ShareDB and Rollup dependencies async as needed only.
 //const runtime = (iframe, viz) => {
-//  const run = () => iframe.setAttribute('srcDoc', srcDoc(viz));
 //  run();
 //
 //  const update = op => {
@@ -23,5 +22,18 @@ export const Runner = () => {
   // const viz = useViz();
   // useEffect(() => viz && runtime(iframeRef.current, viz), [viz]);
   // return <iframe ref={iframeRef} width={width(viz)} height={height(viz)} />;
+  //
+  // Aha! Use srcDoc as a separate hook,
+  // so it can use server-generated or local-generated,
+  // depending on context.
+  //
+  const { srcDoc, srcDocHash } = useSrcDoc();
+
+  //useEffect(() => {
+  //  iframeRef.current.setAttribute('srcDoc', srcDoc);
+  //}, [srcDocHash]);
+  //
+  // This can also kick in once
+  // useRuntimePostMessages();
   return <Wrapper />;
 };
