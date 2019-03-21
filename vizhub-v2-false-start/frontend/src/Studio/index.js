@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import * as themes from '../themes';
 import { URLStateContext } from '../urlState';
-import { UserPreferencesContext } from '../userPreferences';
+import { light } from '../themes';
 import {
   StudioWrapper,
   ConfiguratorWrapper,
@@ -12,29 +11,19 @@ import {
 import { Configurator } from './Configurator';
 import { Editor } from './Editor';
 import { Viewer } from './Viewer';
+import { useEditorTheme } from './useEditorTheme';
 
 export const Studio = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
-
-  const { colorTheme, font, ligatures } = useContext(UserPreferencesContext);
-
-  // TODO optimize changing object using hooks
-  // e. g. useEffect(() => {}, [colorTheme, font, ligatures])
-  const theme = Object.assign({}, themes[colorTheme], {
-    font: {
-      family: font + (ligatures !== 'all' ? ' Arrowized' : ''),
-      size: '16pt',
-      ligatures: ligatures !== 'none'
-    }
-  });
+  const editorTheme = useEditorTheme();
 
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={editorTheme}>
         <>
           {showConfigurator ? (
             <ConfiguratorWrapper>
-              <Configurator preloadFontFamily={theme.font.family} />
+              <Configurator preloadFontFamily={editorTheme.font.family} />
             </ConfiguratorWrapper>
           ) : null}
           {file ? (
@@ -44,7 +33,7 @@ export const Studio = () => {
           ) : null}
         </>
       </ThemeProvider>
-      <ThemeProvider theme={themes.light}>
+      <ThemeProvider theme={light}>
         <ViewerWrapper>
           <Viewer />
         </ViewerWrapper>
