@@ -1,4 +1,4 @@
-import { useState, useMemo, useContext } from 'react';
+import { useMemo, useContext } from 'react';
 import { UserPreferencesContext } from '../userPreferences';
 import * as themes from '../themes';
 

@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { useCodeMirrorDynamicImport } from './useCodeMirrorDynamicImport';
 
 export const useCodeMirror = initialDoc => {
   const CodeMirror = useCodeMirrorDynamicImport();
-  const [view, setView] = useState();
-  useEffect(() => {
-    if (!CodeMirror) {
-      return;
-    }
+  return useMemo(() => {
+    if (!CodeMirror) return;
     const {
       EditorState,
       EditorView,
@@ -48,9 +45,6 @@ export const useCodeMirror = initialDoc => {
         keymap(baseKeymap)
       ]
     });
-    const view = new EditorView({ state });
-    setView(view);
+    return new EditorView({ state });
   }, [CodeMirror]);
-
-  return view;
 };
