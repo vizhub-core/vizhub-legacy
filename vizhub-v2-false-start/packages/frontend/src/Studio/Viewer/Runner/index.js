@@ -1,5 +1,6 @@
-import { Wrapper } from './styles';
 import React, { useRef, useEffect } from 'react';
+import { IFrame } from './styles';
+
 const useSrcDoc = () => {
   return { srcDoc: '<h1>Hello</h1>', srcDocHash: 'hfdsakyu' };
 };
@@ -36,5 +37,5 @@ export const Runner = () => {
     iframeRef.current.setAttribute('srcDoc', srcDoc);
   }, [srcDocHash]);
 
-  return <iframe ref={iframeRef} width="300" height="200" />;
+  return <IFrame ref={iframeRef} width="300" height="200" />;
 };
