@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { LoadingScreen } from '../LoadingScreen';
 import { Studio } from '../Studio';
-import { URLStateProvider } from '../urlState';
 
 export const StudioPage = ({ urlState }) => {
   const [loaded, setLoaded] = useState(false);
@@ -13,11 +12,5 @@ export const StudioPage = ({ urlState }) => {
     }, 1000);
   }, []);
 
-  return loaded ? (
-    <URLStateProvider>
-      <Studio />
-    </URLStateProvider>
-  ) : (
-    <LoadingScreen />
-  );
+  return loaded ? <Studio /> : <LoadingScreen />;
 };

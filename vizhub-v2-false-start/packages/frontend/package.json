@@ -1,6 +1,6 @@
 {
-  "name": "vizhub",
-  "version": "0.1.0",
+  "name": "vizhub-frontend",
+  "version": "1.0.0",
   "dependencies": {
     "@datavis-tech/codemirror-6-prerelease": "^4.3.0",
     "d3-color": "^1.2.3",
@@ -13,7 +13,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "styled-components": "^4.1.3",
-    "timeago-react": "^2.0.1"
+    "timeago-react": "^2.0.1",
+    "vizhub-core": "1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,6 +1,8 @@
-import React from 'react';
 import { Wrapper } from './styles';
-//import React, {useRef, useState, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
+const useSrcDoc = () => {
+  return { srcDoc: '<h1>Hello</h1>', srcDocHash: 'hfdsakyu' };
+};
 
 // TODO handle first page load using srcDoc from server.
 // TODO load ShareDB and Rollup dependencies async as needed only.
@@ -18,22 +20,21 @@ import { Wrapper } from './styles';
 //};
 
 export const Runner = () => {
-  // const iframeRef = useRef();
+  const iframeRef = useRef();
   // const viz = useViz();
   // useEffect(() => viz && runtime(iframeRef.current, viz), [viz]);
   // return <iframe ref={iframeRef} width={width(viz)} height={height(viz)} />;
   //
+  // useRuntimePostMessages();
+  //
   // Aha! Use srcDoc as a separate hook,
   // so it can use server-generated or local-generated,
   // depending on context.
-  //
   const { srcDoc, srcDocHash } = useSrcDoc();
 
-  //useEffect(() => {
-  //  iframeRef.current.setAttribute('srcDoc', srcDoc);
-  //}, [srcDocHash]);
-  //
-  // This can also kick in once
-  // useRuntimePostMessages();
-  return <Wrapper />;
+  useEffect(() => {
+    iframeRef.current.setAttribute('srcDoc', srcDoc);
+  }, [srcDocHash]);
+
+  return <iframe ref={iframeRef} width="300" height="200" />;
 };

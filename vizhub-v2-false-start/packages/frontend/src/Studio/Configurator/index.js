@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { URLStateContext } from '../../urlState';
+import { URLStateContext } from '../urlState';
 import { ArrowBackSVG } from '../../icons';
 import { UserPreferencesContext } from '../../userPreferences';
 import {

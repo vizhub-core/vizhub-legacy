@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { URLStateContext } from '../urlState';
+import { URLStateContext, URLStateProvider } from './urlState';
 import { light } from '../themes';
 import {
   StudioWrapper,
@@ -13,10 +13,9 @@ import { Editor } from './Editor';
 import { Viewer } from './Viewer';
 import { useEditorTheme } from './useEditorTheme';
 
-export const Studio = () => {
+const StudioBody = () => {
   const { showConfigurator, file } = useContext(URLStateContext);
   const editorTheme = useEditorTheme();
-
   return (
     <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
       <ThemeProvider theme={editorTheme}>
@@ -41,3 +40,9 @@ export const Studio = () => {
     </StudioWrapper>
   );
 };
+
+export const Studio = () => (
+  <URLStateProvider>
+    <StudioBody />
+  </URLStateProvider>
+);
