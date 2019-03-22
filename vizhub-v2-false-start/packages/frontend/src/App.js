@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { StudioPage, HomePage } from './pages';
-import { AppWrapper } from './styles';
+import { Studio } from './Studio';
+import { Home } from './Home';
+import { Wrapper } from './styles';
 import { UserPreferencesProvider } from './userPreferences';
 
 export const App = () => (
   <Router>
-    <UserPreferencesProvider>
-      <AppWrapper>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/:user/:id" component={StudioPage} />
-      </AppWrapper>
-    </UserPreferencesProvider>
+    <Wrapper>
+      <UserPreferencesProvider>
+        <Route exact path="/" component={Home} />
+        <Route path="/:user/:id" component={Studio} />
+      </UserPreferencesProvider>
+    </Wrapper>
   </Router>
 );

@@ -7,7 +7,7 @@ export const Flex = styled.div`
   display: flex;
 `;
 
-export const AppWrapper = styled(Flex)`
+export const Wrapper = styled(Flex)`
   margin: 0;
   padding: 0;
   height: 100vh;

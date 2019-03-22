@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const HomePage = () => (
+export const Home = () => (
   <ul>
     <li>
       <Link to="/someuser/7893274327">Viewer</Link>
