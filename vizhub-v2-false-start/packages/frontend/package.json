@@ -1,6 +1,7 @@
 {
   "name": "vizhub-frontend",
   "version": "1.0.0",
+  "private": true,
   "dependencies": {
     "@datavis-tech/codemirror-6-prerelease": "^4.3.0",
     "d3-color": "^1.2.3",
@@ -19,8 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,8 +30,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "prettier": "^1.16.4"
-  }
+  ]
 }

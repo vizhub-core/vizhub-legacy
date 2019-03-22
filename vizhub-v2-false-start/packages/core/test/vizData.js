@@ -35,7 +35,7 @@ export const vizData = {
         name: 'index.html',
 
         // Parcel-style script tag declaration directly into ES6 module (magic).
-        text: '<html><body>Hello World<script src="index.js"></body></html>',
+        text: '<html><body>Hello World<script src="index.js"></body></html>'
 
         // Hash of text is stored to detect content changes in application code.
         // https://www.npmjs.com/package/@emotion/hash
@@ -51,7 +51,7 @@ export const vizData = {
         // In this case, the file is located at `./styles/theme.css`.
         path: 'styles',
 
-        text: 'body { margin: 0; }',
+        text: 'body { margin: 0; }'
       }
     }
   },

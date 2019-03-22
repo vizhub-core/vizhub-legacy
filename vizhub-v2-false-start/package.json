@@ -1,7 +1,11 @@
 {
-  "name": "root",
+  "name": "vizhub",
   "private": true,
+  "scripts": {
+    "prettier": "prettier --single-quote --write 'packages/**/*.js' '!packages/frontend/build/**/*.js'"
+  },
   "devDependencies": {
-    "lerna": "^3.13.1"
+    "lerna": "^3.13.1",
+    "prettier": "^1.16.4"
   }
 }
