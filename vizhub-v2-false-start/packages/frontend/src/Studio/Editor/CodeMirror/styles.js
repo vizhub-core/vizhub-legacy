@@ -50,4 +50,6 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .cm-number { ${css('number')} }
   .cm-operator { ${css('operator')} }
   .cm-property { ${css('property')} }
+  .cm-variable { ${css('variable')} }
+  .cm-def { ${css('definition')} }
 `;

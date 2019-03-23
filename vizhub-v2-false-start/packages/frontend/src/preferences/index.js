@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useMemo } from 'react';
+import React, { createContext, useMemo } from 'react';
 import { colorThemeOptions, fontOptions, ligaturesOptions } from './options';
 import { preferencesMemoryGateway } from './preferencesMemoryGateway';
 import { usePreference } from './usePreference';

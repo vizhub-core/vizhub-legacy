@@ -2,7 +2,8 @@ export const colorThemeOptions = [
   { title: 'Ubuntu', id: 'ubuntu' },
   { title: 'One Dark', id: 'oneDark' },
   { title: 'Material', id: 'material' },
-  { title: 'Dracula', id: 'dracula' }
+  { title: 'Dracula', id: 'dracula' },
+  { title: 'Monokai', id: 'monokai' }
 ];
 
 export const fontOptions = [
