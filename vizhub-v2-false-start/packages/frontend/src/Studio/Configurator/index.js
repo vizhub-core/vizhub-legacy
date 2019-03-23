@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../urlState';
 import { ArrowBackSVG } from '../../icons';
-import { PreferencesContext } from '../../userPreferences';
+import { PreferencesContext } from '../../preferences';
 import {
   Wrapper,
   File,

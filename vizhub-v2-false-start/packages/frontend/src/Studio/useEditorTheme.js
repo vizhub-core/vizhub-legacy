@@ -1,5 +1,5 @@
 import { useMemo, useContext } from 'react';
-import { PreferencesContext } from '../userPreferences';
+import { PreferencesContext } from '../preferences';
 import * as themes from '../themes';
 
 export const useEditorTheme = () => {
