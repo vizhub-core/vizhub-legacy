@@ -1,0 +1,22 @@
+{
+  "name": "vizhub-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r esm index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {
+    "esm": "^3.2.5"
+  }
+}
