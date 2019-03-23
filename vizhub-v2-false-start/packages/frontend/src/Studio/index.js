@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { LoadingScreen } from '../LoadingScreen';
+import { PreferencesProvider } from '../userPreferences';
 import { URLStateProvider } from './urlState';
 import { StudioBody } from './StudioBody';
-import { LoadingScreen } from '../LoadingScreen';
 
 export const Studio = () => {
   // TODO load data from server API / gateway.
@@ -15,7 +16,9 @@ export const Studio = () => {
 
   return loaded ? (
     <URLStateProvider>
-      <StudioBody />
+      <PreferencesProvider>
+        <StudioBody />
+      </PreferencesProvider>
     </URLStateProvider>
   ) : (
     <LoadingScreen />

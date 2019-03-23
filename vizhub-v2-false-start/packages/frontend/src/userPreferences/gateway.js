@@ -1,14 +1,12 @@
 import EventEmitter from 'events';
 
-export const preferencesGateway = async () => {
-  const data = {
-    colorTheme: 'ubuntu'
-  };
-  const preferences = new EventEmitter();
-  preferences.get = key => preferences[key];
-  preferences.set = (key, value) => {
+export const preferencesMemoryGateway = () => {
+  const data = { colorTheme: 'ubuntu' };
+  const gateway = new EventEmitter();
+  gateway.get = key => data[key];
+  gateway.set = key => value => {
     data[key] = value;
-    preferences.emit('change', key);
+    gateway.emit('change', key);
   };
-  return preferences;
+  return gateway;
 };
