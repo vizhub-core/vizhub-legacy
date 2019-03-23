@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../urlState';
 import { ArrowBackSVG } from '../../icons';
-import { UserPreferencesContext } from '../../userPreferences';
+import { PreferencesContext } from '../../userPreferences';
 import {
   Wrapper,
   File,
@@ -39,7 +39,7 @@ export const Configurator = ({ preloadFontFamily }) => {
     ligatures,
     ligaturesOptions,
     setLigatures
-  } = useContext(UserPreferencesContext);
+  } = useContext(PreferencesContext);
 
   // Preload code font and CodeMirror JS,
   // so the user doesn't need to wait for these to load when they open a file.

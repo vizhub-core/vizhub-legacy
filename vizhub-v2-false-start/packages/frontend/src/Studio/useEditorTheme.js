@@ -1,9 +1,9 @@
 import { useMemo, useContext } from 'react';
-import { UserPreferencesContext } from '../userPreferences';
+import { PreferencesContext } from '../userPreferences';
 import * as themes from '../themes';
 
 export const useEditorTheme = () => {
-  const { colorTheme, font, ligatures } = useContext(UserPreferencesContext);
+  const { colorTheme, font, ligatures } = useContext(PreferencesContext);
   return useMemo(
     () =>
       Object.assign({}, themes[colorTheme], {

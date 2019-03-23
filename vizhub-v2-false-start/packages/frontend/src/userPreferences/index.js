@@ -1,29 +1,9 @@
 import React, { createContext, useState } from 'react';
+import { colorThemeOptions, fontOptions, ligaturesOptions } from './options';
 
-export const UserPreferencesContext = createContext();
+export const PreferencesContext = createContext();
 
-const colorThemeOptions = [
-  { title: 'Ubuntu', id: 'ubuntu' },
-  { title: 'One Dark', id: 'oneDark' },
-  { title: 'Material', id: 'material' },
-  { title: 'Dracula', id: 'dracula' }
-];
-
-const fontOptions = [
-  'Ubuntu Mono',
-  'Fira Code',
-  'Deja Vu Sans Mono',
-  'Source Code Pro',
-  'Inconsolata-g'
-];
-
-const ligaturesOptions = [
-  { title: 'None', id: 'none' },
-  { title: 'Arrows', id: 'arrows' },
-  { title: 'All', id: 'all' }
-];
-
-export const UserPreferencesProvider = ({ children }) => {
+export const PreferencesProvider = ({ children }) => {
   const [colorTheme, setColorTheme] = useState('ubuntu');
   const [font, setFont] = useState('Ubuntu Mono');
   const [ligatures, setLigatures] = useState('arrows');
@@ -42,8 +22,8 @@ export const UserPreferencesProvider = ({ children }) => {
     setLigatures
   };
   return (
-    <UserPreferencesContext.Provider value={userPreferences}>
+    <PreferencesContext.Provider value={userPreferences}>
       {children}
-    </UserPreferencesContext.Provider>
+    </PreferencesContext.Provider>
   );
 };
