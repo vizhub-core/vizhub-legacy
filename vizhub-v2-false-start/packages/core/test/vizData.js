@@ -1,5 +1,5 @@
 export const vizData = {
-  views: 1234,
+  viewCount: 2048,
   upvotes: 2345,
   downvotes: 5,
 

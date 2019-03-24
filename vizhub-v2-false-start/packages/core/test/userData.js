@@ -1,4 +1,6 @@
 export const userData = {
+  gitHubId: '68416',
+  name: 'Curran Kelleher',
   email: 'kung.fu@wizard.com',
   username: 'kungfu',
   preferences: {

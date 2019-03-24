@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
 import logo from '../../svg/logo.svg';
+import { ViewerDataContext } from '../ViewerDataContext';
 import { OwnerInfo } from './OwnerInfo';
 import {
   FullScreen,
@@ -32,15 +33,16 @@ import {
 } from './styles';
 
 export const Viewer = withTheme(({ theme }) => {
+  const {
+    userData,
+    vizData: { viewCount }
+  } = useContext(ViewerDataContext);
+
   // TODO get these from context.
-  const loggedInUser = {
-    gitHubId: '68416',
-    name: 'Curran Kelleher'
-  };
+  const loggedInUser = userData;
   const ownerUser = loggedInUser;
   const publishDate = new Date();
   const title = 'Visualization Title';
-  const viewCount = 1234;
   const upvotes = 2345;
   const downvotes = 5;
   const comments = [
