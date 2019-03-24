@@ -17,6 +17,7 @@ export const ConfiguratorWrapper = styled(ForegroundBackground)`
 `;
 
 export const EditorWrapper = styled(ForegroundBackground)`
+  display: flex;
   flex: 1;
   overflow: auto;
   height: 100%;
