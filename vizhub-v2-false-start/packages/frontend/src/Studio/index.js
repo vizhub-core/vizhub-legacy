@@ -7,6 +7,7 @@ import { useViewerData } from './useViewerData';
 
 export const Studio = () => {
   const viewerData = useViewerData();
+  console.log(viewerData);
 
   return viewerData ? (
     <URLStateProvider>
