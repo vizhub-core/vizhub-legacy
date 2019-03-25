@@ -2,15 +2,13 @@ export const vizData = {
   viewCount: 2048,
   upvotes: 2345,
   downvotes: 5,
+  publishDateISOString: new Date().toISOString(),
 
   // Akin to the "working directory" using Git.
   working: {
+    title: 'Visualization Title',
     // The configurable state variables for the Viz.
     state: {
-      title: {
-        type: 'string',
-        value: 'A Viz'
-      },
       showGrid: {
         type: 'boolean',
         value: true
@@ -35,7 +33,8 @@ export const vizData = {
         name: 'index.html',
 
         // Parcel-style script tag declaration directly into ES6 module (magic).
-        text: '<html><body>Hello World<script src="index.js"></body></html>'
+        text:
+          '<html><title>Visualization Title</title><body>Hello World<script src="index.js"></body></html>'
 
         // Hash of text is stored to detect content changes in application code.
         // https://www.npmjs.com/package/@emotion/hash

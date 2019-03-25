@@ -41,15 +41,11 @@ export const Viewer = withTheme(({ theme }) => {
     comments
   } = useContext(ViewerDataContext);
 
-  const { viewCount } = vizData;
-
+  const { viewCount, upvotes, downvotes, publishDateISOString } = vizData;
+  const publishDate = new Date(publishDateISOString);
+  const { title } = vizData.working;
   const authenticatedUserData = userData[authenticatedUserId];
   const ownerUserData = userData[ownerUserId];
-
-  const publishDate = new Date();
-  const title = 'Visualization Title';
-  const upvotes = 2345;
-  const downvotes = 5;
 
   return (
     <Wrapper>
