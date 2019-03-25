@@ -23,7 +23,7 @@ import { Menu } from './Menu';
 const files = ['index.html', 'index.js', 'styles.css'];
 
 export const Configurator = ({ preloadFontFamily }) => {
-  const { file: activeFile, selectFile, toggleConfigurator } = useContext(
+  const { activeFile, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
 

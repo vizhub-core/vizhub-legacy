@@ -14,10 +14,10 @@ import { Viewer } from './Viewer';
 import { useEditorTheme } from './useEditorTheme';
 
 export const StudioBody = () => {
-  const { showConfigurator, file } = useContext(URLStateContext);
+  const { showConfigurator, activeFile } = useContext(URLStateContext);
   const editorTheme = useEditorTheme();
   return (
-    <StudioWrapper showConfigurator={showConfigurator} showEditor={file}>
+    <StudioWrapper showConfigurator={showConfigurator} showEditor={activeFile}>
       <ThemeProvider theme={editorTheme}>
         <>
           {showConfigurator ? (
@@ -25,7 +25,7 @@ export const StudioBody = () => {
               <Configurator preloadFontFamily={editorTheme.font.family} />
             </ConfiguratorWrapper>
           ) : null}
-          {file ? (
+          {activeFile ? (
             <EditorWrapper>
               <Editor />
             </EditorWrapper>
