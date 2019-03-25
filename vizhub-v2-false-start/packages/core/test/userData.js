@@ -1,12 +1,28 @@
+const defaultPreferences = {
+  font: 'Ubuntu Mono',
+  fontSize: '16pt',
+  fontLigatures: 'None', // or 'Arrows', 'All'
+  colorTheme: 'Ubuntu'
+};
+
 export const userData = {
-  gitHubId: '68416',
-  name: 'Curran Kelleher',
-  email: 'kung.fu@wizard.com',
-  username: 'kungfu',
-  preferences: {
-    font: 'Ubuntu Mono',
-    fontSize: '16pt',
-    fontLigatures: 'None', // or 'Arrows', 'All'
-    colorTheme: 'Ubuntu'
+  '0c82a54f22f775a3ed8b97b2dea74036': {
+    // Globally unique VizHub ID for a user.
+    id: '0c82a54f22f775a3ed8b97b2dea74036',
+
+    gitHubId: '8503503',
+    name: 'Hazel Holland',
+    email: 'hazel.holland@wizard.com',
+    username: 'hazel',
+    preferences: Object.assign({}, defaultPreferences)
+  },
+  dashjfdsa8fdsa84hf84389g4839tr43: {
+    id: 'dashjfdsa8fdsa84hf84389g4839tr43',
+
+    gitHubId: '27710236',
+    name: 'Serenity Jordan',
+    email: 'serenity.jordan@school.com',
+    username: 'serenity',
+    preferences: Object.assign({}, defaultPreferences)
   }
 };

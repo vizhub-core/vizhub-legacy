@@ -34,36 +34,31 @@ import {
 
 export const Viewer = withTheme(({ theme }) => {
   const {
+    vizData,
     userData,
-    vizData: { viewCount }
+    authenticatedUserId,
+    ownerUserId,
+    comments
   } = useContext(ViewerDataContext);
 
-  // TODO get these from context.
-  const loggedInUser = userData;
-  const ownerUser = loggedInUser;
+  const { viewCount } = vizData;
+
+  const authenticatedUserData = userData[authenticatedUserId];
+  const ownerUserData = userData[ownerUserId];
+
   const publishDate = new Date();
   const title = 'Visualization Title';
   const upvotes = 2345;
   const downvotes = 5;
-  const comments = [
-    {
-      user: loggedInUser,
-      date: new Date('Fri Feb 15 2019'),
-      content: 'This is the text of the comment'
-    },
-    {
-      user: loggedInUser,
-      date: new Date(),
-      content: 'This is the text of the next comment'
-    }
-  ];
 
   return (
     <Wrapper>
       <Padded>
         <Header>
           <Logo src={logo} />
-          <HeaderAvatar src={avatarUrl(loggedInUser, theme.headerHeight)} />
+          <HeaderAvatar
+            src={avatarUrl(authenticatedUserData, theme.headerHeight)}
+          />
         </Header>
       </Padded>
       <Runner />
@@ -85,7 +80,7 @@ export const Viewer = withTheme(({ theme }) => {
         </Actions>
       </TitleActions>
       <Provenance>
-        <OwnerInfo user={ownerUser} publishDate={publishDate} />
+        <OwnerInfo user={ownerUserData} publishDate={publishDate} />
         <ForkedFrom />
       </Provenance>
       <Padded>
@@ -98,7 +93,7 @@ export const Viewer = withTheme(({ theme }) => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </Description>
-        <Comments comments={comments} />
+        <Comments userData={userData} comments={comments} />
       </Padded>
     </Wrapper>
   );
