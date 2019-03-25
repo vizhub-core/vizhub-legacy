@@ -43,17 +43,13 @@ const createView = (CodeMirror, id, text) => {
       keymap(baseKeymap)
     ]
   });
-  const view = new EditorView({ state });
-  views[id] = view;
-  return view;
+  return new EditorView({ state });
 };
 
-const getOrCreateEditorView = (CodeMirror, id, text) =>
+const getOrCreateView = (CodeMirror, id, text) =>
   views[id] || (views[id] = createView(CodeMirror, id, text));
 
 export const useCodeMirror = (id, text) => {
   const CodeMirror = useCodeMirrorDynamicImport();
-  return CodeMirror && id
-    ? getOrCreateEditorView(CodeMirror, id, text)
-    : undefined;
+  return CodeMirror && id && getOrCreateView(CodeMirror, id, text);
 };

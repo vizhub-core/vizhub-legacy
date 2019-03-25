@@ -18,7 +18,6 @@ export const Editor = ({ vizData, activeFileName }) => {
     if (view) {
       ref.current.appendChild(view.dom);
       return () => {
-        console.log('removing');
         ref.current.removeChild(view.dom);
       };
     }
