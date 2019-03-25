@@ -1,3 +1,4 @@
+export { findActiveFileId } from './src/vizAccessors';
 import { userData } from './test/userData';
 import { vizData } from './test/vizData';
 // TODO load data from server API / gateway.

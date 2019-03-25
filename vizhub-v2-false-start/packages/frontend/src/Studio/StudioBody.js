@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { URLStateContext } from './urlState';
+import { StudioDataContext } from './StudioDataContext';
 import { light } from '../themes';
 import {
   StudioWrapper,
@@ -14,10 +15,14 @@ import { Viewer } from './Viewer';
 import { useEditorTheme } from './useEditorTheme';
 
 export const StudioBody = () => {
-  const { showConfigurator, activeFile } = useContext(URLStateContext);
+  const { showConfigurator, activeFileName } = useContext(URLStateContext);
+  const { vizData } = useContext(StudioDataContext);
   const editorTheme = useEditorTheme();
   return (
-    <StudioWrapper showConfigurator={showConfigurator} showEditor={activeFile}>
+    <StudioWrapper
+      showConfigurator={showConfigurator}
+      showEditor={activeFileName}
+    >
       <ThemeProvider theme={editorTheme}>
         <>
           {showConfigurator ? (
@@ -25,9 +30,9 @@ export const StudioBody = () => {
               <Configurator preloadFontFamily={editorTheme.font.family} />
             </ConfiguratorWrapper>
           ) : null}
-          {activeFile ? (
+          {activeFileName ? (
             <EditorWrapper>
-              <Editor />
+              <Editor activeFileName={activeFileName} vizData={vizData} />
             </EditorWrapper>
           ) : null}
         </>

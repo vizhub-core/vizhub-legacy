@@ -15,7 +15,7 @@ import {
   WidgetValue
 } from './styles';
 import { CheckBoxSVG } from '../../icons';
-import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
+import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport';
 import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
 import { Menu } from './Menu';
@@ -23,7 +23,7 @@ import { Menu } from './Menu';
 const files = ['index.html', 'index.js', 'styles.css'];
 
 export const Configurator = ({ preloadFontFamily }) => {
-  const { activeFile, selectFile, toggleConfigurator } = useContext(
+  const { activeFileName, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
 
@@ -71,7 +71,7 @@ export const Configurator = ({ preloadFontFamily }) => {
           <File
             key={file}
             onClick={selectFile(file)}
-            isActive={file === activeFile}
+            isActive={file === activeFileName}
           >
             {file}
           </File>

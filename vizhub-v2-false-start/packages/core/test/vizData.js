@@ -1,3 +1,5 @@
+import { sampleCode } from './sampleCode';
+
 export const vizData = {
   viewCount: 2048,
   upvotes: 2345,
@@ -51,6 +53,10 @@ export const vizData = {
         path: 'styles',
 
         text: 'body { margin: 0; }'
+      },
+      '17438295784932853': {
+        name: 'index.js',
+        text: sampleCode
       }
     }
   },
