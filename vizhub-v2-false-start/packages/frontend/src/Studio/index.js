@@ -3,20 +3,20 @@ import { LoadingScreen } from '../LoadingScreen';
 import { PreferencesProvider } from '../preferences';
 import { URLStateProvider } from './urlState';
 import { StudioBody } from './StudioBody';
-import { useViewerData } from './useViewerData';
-import { ViewerDataContext } from './ViewerDataContext';
+import { useStudioData } from './useStudioData';
+import { StudioDataContext } from './StudioDataContext';
 
 export const Studio = () => {
-  const viewerData = useViewerData();
+  const studioData = useStudioData();
 
-  return viewerData ? (
-    <ViewerDataContext.Provider value={viewerData}>
+  return studioData ? (
+    <StudioDataContext.Provider value={studioData}>
       <URLStateProvider>
         <PreferencesProvider>
           <StudioBody />
         </PreferencesProvider>
       </URLStateProvider>
-    </ViewerDataContext.Provider>
+    </StudioDataContext.Provider>
   ) : (
     <LoadingScreen />
   );

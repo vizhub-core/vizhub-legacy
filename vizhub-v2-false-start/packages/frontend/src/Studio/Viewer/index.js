@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
 import logo from '../../svg/logo.svg';
-import { ViewerDataContext } from '../ViewerDataContext';
+import { StudioDataContext } from '../StudioDataContext';
 import { OwnerInfo } from './OwnerInfo';
 import {
   FullScreen,
@@ -39,7 +39,7 @@ export const Viewer = withTheme(({ theme }) => {
     authenticatedUserId,
     ownerUserId,
     comments
-  } = useContext(ViewerDataContext);
+  } = useContext(StudioDataContext);
 
   const { viewCount, upvotes, downvotes, publishDateISOString } = vizData;
   const publishDate = new Date(publishDateISOString);

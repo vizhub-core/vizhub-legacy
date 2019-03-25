@@ -7,7 +7,7 @@ import { vizData } from './test/vizData';
 //  - Visualization metadata
 //  - Visualization description
 //  - Server-computed srcDoc
-export const sampleViewerData = {
+export const sampleStudioData = {
   vizData,
   userData,
   authenticatedUserId: '0c82a54f22f775a3ed8b97b2dea74036',
