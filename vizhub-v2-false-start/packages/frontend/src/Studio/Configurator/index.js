@@ -22,21 +22,37 @@ import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
 import { Menu } from './Menu';
 
-export const Configurator = ({ preloadFontFamily }) => {
-  const { activeFileId, selectFile, toggleConfigurator } = useContext(
-    URLStateContext
-  );
-  const { vizData } = useContext(StudioDataContext);
-  const files = vizData.working.files;
-  const fileEntries = Object.entries(files)
+const getFileEntries = vizData =>
+  Object.entries(vizData.working.files)
     .map(([id, { path, text }]) => ({
       id,
       path,
       text
     }))
-    .sort((a, b) => {
-      ascending(a.path, b.path);
-    });
+    .sort((a, b) => ascending(a.path, b.path));
+
+const getFileTree = fileEntries => {
+  const fileTree = {};
+  fileEntries.forEach(fileEntry => {
+    const pathArray = fileEntry.path.split('/');
+    const n = pathArray.length;
+    let node = fileTree;
+    for (let i = 0; i < n; i++) {
+      const pathItem = pathArray[i];
+      node = node[pathItem] || (node[pathItem] = i < n - 1 ? {} : fileEntry);
+    }
+  });
+  return fileTree;
+};
+
+export const Configurator = ({ preloadFontFamily }) => {
+  const { activeFileId, selectFile, toggleConfigurator } = useContext(
+    URLStateContext
+  );
+  const { vizData } = useContext(StudioDataContext);
+  const fileEntries = getFileEntries(vizData);
+  const fileTree = getFileTree(fileEntries);
+  console.log(fileTree);
 
   const {
     colorTheme,
