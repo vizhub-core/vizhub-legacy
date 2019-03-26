@@ -37,10 +37,19 @@ const getFileTree = fileEntries => {
     const pathArray = fileEntry.path.split('/');
     const n = pathArray.length;
     let node = fileTree;
-    for (let i = 0; i < n; i++) {
+    for (let i = 1; i < n - 1; i++) {
       const pathItem = pathArray[i];
-      node = node[pathItem] || (node[pathItem] = i < n - 1 ? {} : fileEntry);
+      if (!node[pathItem]) {
+        node[pathItem] = {
+          name: pathItem
+        };
+        (node.children || (node.children = [])).push(node[pathItem]);
+      }
+      node = node[pathItem];
     }
+    const fileName = pathArray[n - 1];
+    fileEntry.name = fileName;
+    (node.children || (node.children = [])).push(fileEntry);
   });
   return fileTree;
 };
