@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+import { ascending } from 'd3-array';
 import { URLStateContext } from '../urlState';
+import { StudioDataContext } from '../StudioDataContext';
 import { ArrowBackSVG } from '../../icons';
 import { PreferencesContext } from '../../preferences';
 import {
@@ -20,12 +22,21 @@ import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
 import { Menu } from './Menu';
 
-const files = ['index.html', 'index.js', 'styles.css'];
-
 export const Configurator = ({ preloadFontFamily }) => {
-  const { activeFileName, selectFile, toggleConfigurator } = useContext(
+  const { activeFileId, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
+  const { vizData } = useContext(StudioDataContext);
+  const files = vizData.working.files;
+  const fileEntries = Object.entries(files)
+    .map(([id, { path, text }]) => ({
+      id,
+      path,
+      text
+    }))
+    .sort((a, b) => {
+      ascending(a.path, b.path);
+    });
 
   const {
     colorTheme,
@@ -67,13 +78,13 @@ export const Configurator = ({ preloadFontFamily }) => {
       </Section>
 
       <Section title="Files" id="files">
-        {files.map(file => (
+        {fileEntries.map(({ id, path, text }) => (
           <File
-            key={file}
-            onClick={selectFile(file)}
-            isActive={file === activeFileName}
+            key={id}
+            onClick={selectFile(id)}
+            isActive={id === activeFileId}
           >
-            {file}
+            {path}
           </File>
         ))}
       </Section>

@@ -31,8 +31,8 @@ export const vizData = {
     files: {
       // Keys are random, so that file renames are trivial via JSON OT.
       '9043411906112002': {
-        // The name of the file.
-        name: 'index.html',
+        // The path and name of the file.
+        path: './index.html',
 
         // Parcel-style script tag declaration directly into ES6 module (magic).
         text:
@@ -46,16 +46,12 @@ export const vizData = {
       '15886149663202853': {
         // Directories are defined implicitly as part of file paths.
         // Similar to https://github.com/Permutatrix/rollup-plugin-hypothetical#usage
-        name: 'theme.css',
-
-        // The path of the file in the hypothetical file system.
-        // In this case, the file is located at `./styles/theme.css`.
-        path: 'styles',
+        path: './styles/theme.css',
 
         text: 'body { margin: 0; }'
       },
       '17438295784932853': {
-        name: 'index.js',
+        path: './index.js',
         text: sampleCode
       }
     }

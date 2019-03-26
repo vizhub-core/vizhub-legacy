@@ -6,7 +6,7 @@ import { accessors } from './accessors';
 export const withURLState = Component =>
   withRouter(props => {
     // Raw accessor functions for URL parameter state.
-    const { edit, setEdit, file: activeFileName, setFile } = accessors(props);
+    const { edit, setEdit, file: activeFileId, setFile } = accessors(props);
 
     // Boolean value, whether or not the configurator should be shown.
     const showConfigurator = edit !== undefined;
@@ -24,11 +24,11 @@ export const withURLState = Component =>
 
     // Invoked when a file is selected (clicked on).
     const selectFile = selectedFile => () =>
-      setFile(selectedFile === activeFileName ? undefined : selectedFile);
+      setFile(selectedFile === activeFileId ? undefined : selectedFile);
 
     // Derived accessors for URL state, exposed to components.
     const urlState = {
-      activeFileName,
+      activeFileId,
       selectFile,
       showConfigurator,
       toggleConfigurator,

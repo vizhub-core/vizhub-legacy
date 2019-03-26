@@ -1,18 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { useCodeMirror } from './useCodeMirror';
 import { Wrapper, CodeMirrorGlobalStyle } from './styles';
-import { findActiveFileId } from 'vizhub-core';
 
-export const Editor = ({ vizData, activeFileName }) => {
+export const Editor = ({ vizData, activeFileId }) => {
+  const text = vizData.working.files[activeFileId].text;
+  const view = useCodeMirror(activeFileId, text);
   const ref = useRef();
-
-  let id, text;
-  if (vizData && activeFileName) {
-    id = findActiveFileId(vizData, activeFileName);
-    text = vizData.working.files[id].text;
-  }
-
-  const view = useCodeMirror(id, text);
 
   useEffect(() => {
     if (view) {

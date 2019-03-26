@@ -15,13 +15,13 @@ import { Viewer } from './Viewer';
 import { useEditorTheme } from './useEditorTheme';
 
 export const StudioBody = () => {
-  const { showConfigurator, activeFileName } = useContext(URLStateContext);
+  const { showConfigurator, activeFileId } = useContext(URLStateContext);
   const { vizData } = useContext(StudioDataContext);
   const editorTheme = useEditorTheme();
   return (
     <StudioWrapper
       showConfigurator={showConfigurator}
-      showEditor={activeFileName}
+      showEditor={activeFileId}
     >
       <ThemeProvider theme={editorTheme}>
         <>
@@ -30,9 +30,9 @@ export const StudioBody = () => {
               <Configurator preloadFontFamily={editorTheme.font.family} />
             </ConfiguratorWrapper>
           ) : null}
-          {activeFileName ? (
+          {activeFileId ? (
             <EditorWrapper>
-              <Editor activeFileName={activeFileName} vizData={vizData} />
+              <Editor activeFileId={activeFileId} vizData={vizData} />
             </EditorWrapper>
           ) : null}
         </>
