@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
-import { ascending } from 'd3-array';
 import { URLStateContext } from '../urlState';
 import { StudioDataContext } from '../StudioDataContext';
 import { ArrowBackSVG } from '../../icons';
 import { PreferencesContext } from '../../preferences';
+import { FileTree } from './FileTree';
 import {
   Wrapper,
-  File,
   Item,
   ItemIcon,
   Header,
@@ -21,43 +20,14 @@ import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport
 import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
 import { Menu } from './Menu';
-
-const getFileEntries = vizData =>
-  Object.entries(vizData.working.files)
-    .map(([id, { path, text }]) => ({
-      id,
-      path,
-      text
-    }))
-    .sort((a, b) => ascending(a.path, b.path));
-
-const getFileTree = fileEntries => {
-  const fileTree = {};
-  fileEntries.forEach(fileEntry => {
-    const pathArray = fileEntry.path.split('/');
-    const n = pathArray.length;
-    let node = fileTree;
-    for (let i = 1; i < n; i++) {
-      const pathItem = pathArray[i];
-      if (!node[pathItem]) {
-        node[pathItem] = Object.assign(i === n - 1 ? fileEntry : {}, {
-          name: pathItem
-        });
-        (node.children || (node.children = [])).push(node[pathItem]);
-      }
-      node = node[pathItem];
-    }
-  });
-  return fileTree;
-};
+import { getFileTree } from './getFileTree';
 
 export const Configurator = ({ preloadFontFamily }) => {
   const { activeFileId, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
   const { vizData } = useContext(StudioDataContext);
-  const fileEntries = getFileEntries(vizData);
-  const fileTree = getFileTree(fileEntries);
+  const fileTree = getFileTree(vizData);
   console.log(fileTree);
 
   const {
@@ -100,15 +70,11 @@ export const Configurator = ({ preloadFontFamily }) => {
       </Section>
 
       <Section title="Files" id="files">
-        {fileEntries.map(({ id, path, text }) => (
-          <File
-            key={id}
-            onClick={selectFile(id)}
-            isActive={id === activeFileId}
-          >
-            {path}
-          </File>
-        ))}
+        <FileTree
+          node={fileTree}
+          activeFileId={activeFileId}
+          selectFile={selectFile}
+        />
       </Section>
 
       <Section title="Settings" id="settings">
