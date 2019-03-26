@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Item, ItemIcon } from './styles';
 import { RadioButtonSVG } from '../../icons';
 import { Menu } from './Menu';

@@ -32,15 +32,13 @@ export const Item = styled(Flex)`
   padding: 4px 0;
   text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
   align-items: center;
+  font-family: ${props => (props.mono ? props.theme.font.family : 'unset')};
+  font-size: ${props => (props.mono ? props.theme.font.size : 'unset')};
 `;
+
 export const ItemIcon = styled.div`
   width: 16px;
   margin: 0 7px -2px 0;
-`;
-
-export const File = styled(Item)`
-  font-family: '${props => props.theme.font.family}';
-  font-size: ${props => props.theme.font.size};
 `;
 
 export const Widget = styled(Flex)`
