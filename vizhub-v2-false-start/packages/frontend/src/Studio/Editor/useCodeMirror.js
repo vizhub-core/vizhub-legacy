@@ -2,6 +2,14 @@ import { useCodeMirrorDynamicImport } from './useCodeMirrorDynamicImport';
 
 const views = {};
 
+// TODO use actual path.
+const path = [];
+
+const emitOps = ops => {
+  console.log('emit that shit');
+  console.log(JSON.stringify(ops));
+};
+
 const createView = (CodeMirror, id, text) => {
   const {
     EditorState,
@@ -19,7 +27,8 @@ const createView = (CodeMirror, id, text) => {
     matchBrackets,
     javascript,
     specialChars,
-    multipleSelections
+    multipleSelections,
+    ot
   } = CodeMirror;
   const mode = legacyMode({ mode: javascript({ indentUnit: 2 }, {}) });
   const isMac = /Mac/.test(navigator.platform);
@@ -40,7 +49,8 @@ const createView = (CodeMirror, id, text) => {
         'Ctrl-y': isMac ? undefined : redo,
         'Shift-Tab': indentSelection
       }),
-      keymap(baseKeymap)
+      keymap(baseKeymap),
+      ot(path, emitOps)
     ]
   });
   return new EditorView({ state });
