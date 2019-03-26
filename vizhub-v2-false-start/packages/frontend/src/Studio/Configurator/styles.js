@@ -26,12 +26,11 @@ export const HeaderTitle = styled.div`
   text-align: center;
 `;
 
-export const Item = styled.div`
+export const Item = styled(Flex)`
   cursor: pointer;
   user-select: none;
   padding: 4px 0;
   text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
-  display: flex;
   align-items: center;
 `;
 export const ItemIcon = styled.div`

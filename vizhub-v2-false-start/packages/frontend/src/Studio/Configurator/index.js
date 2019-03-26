@@ -28,7 +28,6 @@ export const Configurator = ({ preloadFontFamily }) => {
   );
   const { vizData } = useContext(StudioDataContext);
   const fileTree = getFileTree(vizData);
-  console.log(fileTree);
 
   const {
     colorTheme,
