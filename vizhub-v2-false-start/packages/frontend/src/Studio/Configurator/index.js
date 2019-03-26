@@ -19,7 +19,7 @@ import { CheckBoxSVG } from '../../icons';
 import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport';
 import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
-import { Menu } from './Menu';
+import { RadioMenu } from './RadioMenu';
 import { getFileTree } from './getFileTree';
 
 export const Configurator = ({ preloadFontFamily }) => {
@@ -86,19 +86,19 @@ export const Configurator = ({ preloadFontFamily }) => {
       </Section>
 
       <Section title="Preferences" id="preferences">
-        <Menu
+        <RadioMenu
           title="Color Theme"
           options={colorThemeOptions}
           activeOption={colorTheme}
           setActiveOption={setColorTheme}
         />
-        <Menu
+        <RadioMenu
           title="Font"
           options={fontOptions}
           activeOption={font}
           setActiveOption={setFont}
         />
-        <Menu
+        <RadioMenu
           title="Ligatures"
           options={ligaturesOptions}
           activeOption={ligatures}
