@@ -70,11 +70,14 @@ export const Configurator = ({ preloadFontFamily }) => {
       </Section>
 
       <Section title="Files" id="files">
-        <FileTree
-          node={fileTree}
-          activeFileId={activeFileId}
-          selectFile={selectFile}
-        />
+        {fileTree.children.map(child => (
+          <FileTree
+            key={child.name}
+            node={child}
+            activeFileId={activeFileId}
+            selectFile={selectFile}
+          />
+        ))}
       </Section>
 
       <Section title="Settings" id="settings">
