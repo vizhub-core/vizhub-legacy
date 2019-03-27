@@ -13,7 +13,8 @@ const createPreloadLink = fontFamily =>
   Object.assign(document.createElement('link'), {
     rel: 'preload',
     as: 'font',
-    crossOrigin: 'anonymous',
+    type: 'font/woff',
+    crossOrigin: '',
     href: woff(fontFamily)
   });
 
