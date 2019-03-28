@@ -14,21 +14,26 @@ import {
   AuthorNameTime
 } from './styles';
 
-export const Comments = withTheme(({ theme, comments }) => (
+export const Comments = withTheme(({ theme, userData, comments }) => (
   <Wrapper>
-    {comments.map(({ user, date, content }, i) => (
-      <Comment key={i}>
-        <CommentAvatar src={avatarUrl(user, theme.infoAvatarHeight)} />
-        <Right>
-          <AuthorNameTime>
-            <AuthorName>{user.name}</AuthorName>
-            <Time>
-              <TimeAgo datetime={date} />
-            </Time>
-          </AuthorNameTime>
-          <Content>{content}</Content>
-        </Right>
-      </Comment>
-    ))}
+    {comments.map(({ authorUserId, date, content }, i) => {
+      const authorUserData = userData[authorUserId];
+      return (
+        <Comment key={i}>
+          <CommentAvatar
+            src={avatarUrl(authorUserData, theme.infoAvatarHeight)}
+          />
+          <Right>
+            <AuthorNameTime>
+              <AuthorName>{authorUserData.name}</AuthorName>
+              <Time>
+                <TimeAgo datetime={date} />
+              </Time>
+            </AuthorNameTime>
+            <Content>{content}</Content>
+          </Right>
+        </Comment>
+      );
+    })}
   </Wrapper>
 ));

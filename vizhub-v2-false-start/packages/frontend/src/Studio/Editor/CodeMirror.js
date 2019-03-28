@@ -16,3 +16,4 @@ export {
   specialChars,
   multipleSelections
 } from '@datavis-tech/codemirror-6-prerelease';
+export { ot } from 'codemirror-ot';

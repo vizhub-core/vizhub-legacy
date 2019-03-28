@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../urlState';
+import { StudioDataContext } from '../StudioDataContext';
 import { ArrowBackSVG } from '../../icons';
 import { PreferencesContext } from '../../preferences';
+import { FileTree } from './FileTree';
 import {
   Wrapper,
-  File,
   Item,
   ItemIcon,
   Header,
@@ -15,17 +16,18 @@ import {
   WidgetValue
 } from './styles';
 import { CheckBoxSVG } from '../../icons';
-import { useCodeMirrorDynamicImport } from '../Editor/CodeMirror/useCodeMirrorDynamicImport';
+import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport';
 import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
-import { Menu } from './Menu';
-
-const files = ['index.html', 'index.js', 'styles.css'];
+import { RadioMenu } from './RadioMenu';
+import { getFileTree } from './getFileTree';
 
 export const Configurator = ({ preloadFontFamily }) => {
-  const { file: activeFile, selectFile, toggleConfigurator } = useContext(
+  const { activeFileId, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
+  const { vizData } = useContext(StudioDataContext);
+  const fileTree = getFileTree(vizData);
 
   const {
     colorTheme,
@@ -67,14 +69,13 @@ export const Configurator = ({ preloadFontFamily }) => {
       </Section>
 
       <Section title="Files" id="files">
-        {files.map(file => (
-          <File
-            key={file}
-            onClick={selectFile(file)}
-            isActive={file === activeFile}
-          >
-            {file}
-          </File>
+        {fileTree.children.map(child => (
+          <FileTree
+            key={child.name}
+            node={child}
+            activeFileId={activeFileId}
+            selectFile={selectFile}
+          />
         ))}
       </Section>
 
@@ -87,19 +88,19 @@ export const Configurator = ({ preloadFontFamily }) => {
       </Section>
 
       <Section title="Preferences" id="preferences">
-        <Menu
+        <RadioMenu
           title="Color Theme"
           options={colorThemeOptions}
           activeOption={colorTheme}
           setActiveOption={setColorTheme}
         />
-        <Menu
+        <RadioMenu
           title="Font"
           options={fontOptions}
           activeOption={font}
           setActiveOption={setFont}
         />
-        <Menu
+        <RadioMenu
           title="Ligatures"
           options={ligaturesOptions}
           activeOption={ligatures}

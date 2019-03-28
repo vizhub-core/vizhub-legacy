@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
 import logo from '../../svg/logo.svg';
+import { StudioDataContext } from '../StudioDataContext';
 import { OwnerInfo } from './OwnerInfo';
 import {
   FullScreen,
@@ -32,36 +33,28 @@ import {
 } from './styles';
 
 export const Viewer = withTheme(({ theme }) => {
-  // TODO get these from context.
-  const loggedInUser = {
-    gitHubId: '68416',
-    name: 'Curran Kelleher'
-  };
-  const ownerUser = loggedInUser;
-  const publishDate = new Date();
-  const title = 'Visualization Title';
-  const viewCount = 1234;
-  const upvotes = 2345;
-  const downvotes = 5;
-  const comments = [
-    {
-      user: loggedInUser,
-      date: new Date('Fri Feb 15 2019'),
-      content: 'This is the text of the comment'
-    },
-    {
-      user: loggedInUser,
-      date: new Date(),
-      content: 'This is the text of the next comment'
-    }
-  ];
+  const {
+    vizData,
+    userData,
+    authenticatedUserId,
+    ownerUserId,
+    comments
+  } = useContext(StudioDataContext);
+
+  const { viewCount, upvotes, downvotes, publishDateISOString } = vizData;
+  const publishDate = new Date(publishDateISOString);
+  const { title } = vizData.working;
+  const authenticatedUserData = userData[authenticatedUserId];
+  const ownerUserData = userData[ownerUserId];
 
   return (
     <Wrapper>
       <Padded>
         <Header>
           <Logo src={logo} />
-          <HeaderAvatar src={avatarUrl(loggedInUser, theme.headerHeight)} />
+          <HeaderAvatar
+            src={avatarUrl(authenticatedUserData, theme.headerHeight)}
+          />
         </Header>
       </Padded>
       <Runner />
@@ -83,7 +76,7 @@ export const Viewer = withTheme(({ theme }) => {
         </Actions>
       </TitleActions>
       <Provenance>
-        <OwnerInfo user={ownerUser} publishDate={publishDate} />
+        <OwnerInfo user={ownerUserData} publishDate={publishDate} />
         <ForkedFrom />
       </Provenance>
       <Padded>
@@ -96,7 +89,7 @@ export const Viewer = withTheme(({ theme }) => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </Description>
-        <Comments comments={comments} />
+        <Comments userData={userData} comments={comments} />
       </Padded>
     </Wrapper>
   );
