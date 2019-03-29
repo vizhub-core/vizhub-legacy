@@ -13,6 +13,7 @@ export {
   legacyMode,
   matchBrackets,
   javascript,
+  css,
   specialChars,
   multipleSelections
 } from '@datavis-tech/codemirror-6-prerelease';

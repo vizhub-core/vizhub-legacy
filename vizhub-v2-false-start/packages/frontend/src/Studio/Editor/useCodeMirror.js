@@ -2,15 +2,12 @@ import { useCodeMirrorDynamicImport } from './useCodeMirrorDynamicImport';
 
 const views = {};
 
-// TODO use actual path.
-const path = [];
-
 const emitOps = ops => {
   console.log('emit that shit');
   console.log(JSON.stringify(ops));
 };
 
-const createView = (CodeMirror, id, text) => {
+const createView = (CodeMirror, id, text, extension) => {
   const {
     EditorState,
     EditorView,
@@ -26,11 +23,15 @@ const createView = (CodeMirror, id, text) => {
     legacyMode,
     matchBrackets,
     javascript,
+    css,
     specialChars,
     multipleSelections,
     ot
   } = CodeMirror;
-  const mode = legacyMode({ mode: javascript({ indentUnit: 2 }, {}) });
+
+  const modesByExtension = { js: javascript, css };
+  const modeOfExtension = modesByExtension[extension] || javascript;
+  const mode = legacyMode({ mode: modeOfExtension({ indentUnit: 2 }, {}) });
   const isMac = /Mac/.test(navigator.platform);
   const state = EditorState.create({
     doc: text,
@@ -50,16 +51,15 @@ const createView = (CodeMirror, id, text) => {
         'Shift-Tab': indentSelection
       }),
       keymap(baseKeymap),
-      ot(path, emitOps)
+      ot(['working', 'files', id], emitOps)
     ]
   });
   return new EditorView({ state });
 };
+const getOrCreateView = (CodeMirror, id, text, extension) =>
+  views[id] || (views[id] = createView(CodeMirror, id, text, extension));
 
-const getOrCreateView = (CodeMirror, id, text) =>
-  views[id] || (views[id] = createView(CodeMirror, id, text));
-
-export const useCodeMirror = (id, text) => {
+export const useCodeMirror = (id, text, extension) => {
   const CodeMirror = useCodeMirrorDynamicImport();
-  return CodeMirror && id && getOrCreateView(CodeMirror, id, text);
+  return CodeMirror && id && getOrCreateView(CodeMirror, id, text, extension);
 };
