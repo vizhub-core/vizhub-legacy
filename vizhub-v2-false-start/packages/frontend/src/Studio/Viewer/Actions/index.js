@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { format } from 'd3-format';
-import { URLStateContext } from '../../urlState';
+import { URLStateContext } from '../../../contexts';
 import {
   ForkSVG,
   FullScreenSVG,

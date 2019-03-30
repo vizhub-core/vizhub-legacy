@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { URLStateContext } from '../urlState';
+import { URLStateContext } from '../../contexts';
 import { Foldable } from './Foldable';
 
 export const Section = ({ id, title, children }) => {

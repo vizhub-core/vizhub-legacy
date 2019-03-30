@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
-import { URLStateContext } from '../urlState';
 import { ArrowBackSVG } from '../../icons';
-import { PreferencesContext, StudioDataContext } from '../../contexts';
+import {
+  PreferencesContext,
+  StudioDataContext,
+  URLStateContext
+} from '../../contexts';
 import { FileTree } from './FileTree';
 import {
   Wrapper,

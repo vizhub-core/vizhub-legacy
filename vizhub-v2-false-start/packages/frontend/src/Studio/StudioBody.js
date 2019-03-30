@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { StudioDataContext } from '../contexts';
+import { StudioDataContext, URLStateContext } from '../contexts';
 import { light } from '../themes';
-import { URLStateContext } from './urlState';
 import {
   StudioWrapper,
   ConfiguratorWrapper,
