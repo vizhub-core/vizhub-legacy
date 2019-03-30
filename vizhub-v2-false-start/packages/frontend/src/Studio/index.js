@@ -1,6 +1,6 @@
 import React from 'react';
 import { LoadingScreen } from '../LoadingScreen';
-import { PreferencesProvider } from '../preferences';
+import { PreferencesProvider } from '../contexts';
 import { URLStateProvider } from './urlState';
 import { StudioBody } from './StudioBody';
 import { useStudioData } from './useStudioData';

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { URLStateContext } from '../urlState';
 import { StudioDataContext } from '../StudioDataContext';
 import { ArrowBackSVG } from '../../icons';
-import { PreferencesContext } from '../../preferences';
+import { PreferencesContext } from '../../contexts';
 import { FileTree } from './FileTree';
 import {
   Wrapper,
