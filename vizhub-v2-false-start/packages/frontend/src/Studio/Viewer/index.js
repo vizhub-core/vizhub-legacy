@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
 import logo from '../../svg/logo.svg';
-import { StudioDataContext } from '../StudioDataContext';
+import { StudioDataContext } from '../../contexts';
 import { OwnerInfo } from './OwnerInfo';
 import {
   FullScreen,
