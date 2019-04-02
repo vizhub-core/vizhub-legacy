@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
 import logo from '../../svg/logo.svg';
-import { StudioDataContext } from '../../contexts';
+import { StudioDataContext, VizContext } from '../../contexts';
 import { OwnerInfo } from './OwnerInfo';
 import {
   FullScreen,
@@ -33,17 +33,15 @@ import {
 } from './styles';
 
 export const Viewer = withTheme(({ theme }) => {
-  const {
-    vizData, // TODO use VizContext for dynamic data
-    userData,
-    authenticatedUserId,
-    ownerUserId,
-    comments
-  } = useContext(StudioDataContext);
+  const { userData, authenticatedUserId, ownerUserId, comments } = useContext(
+    StudioDataContext
+  );
 
-  const { viewCount, upvotes, downvotes, publishDateISOString } = vizData;
+  const viz = useContext(VizContext);
+
+  const { viewCount, upvotes, downvotes, publishDateISOString } = viz.data;
   const publishDate = new Date(publishDateISOString);
-  const { title } = vizData.working;
+  const { title } = viz.data.working;
   const authenticatedUserData = userData[authenticatedUserId];
   const ownerUserData = userData[ownerUserId];
 
@@ -57,7 +55,7 @@ export const Viewer = withTheme(({ theme }) => {
           />
         </Header>
       </Padded>
-      <Runner vizData={vizData} />
+      <Runner vizData={viz.data} />
       <TitleActions>
         <Padded>
           <TitleViewCount>

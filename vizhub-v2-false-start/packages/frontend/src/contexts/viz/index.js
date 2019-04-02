@@ -1,18 +1,20 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { StudioDataContext } from '../';
 import { type as json0 } from 'ot-json0';
 
 export const VizContext = createContext();
 
+const clone = obj => JSON.parse(JSON.stringify(obj));
+
 export const VizProvider = ({ children }) => {
   const { vizData } = useContext(StudioDataContext);
+
+  // TODO replace this with ShareDB Doc.
+  const [data, setData] = useState(vizData);
   const viz = {
-    data: vizData,
+    data,
     submitOp: op => {
-      console.log(op);
-      console.log(JSON.stringify(vizData.working.files, null, 2));
-      json0.apply(vizData, op);
-      console.log(JSON.stringify(vizData.working.files, null, 2));
+      setData(clone(json0.apply(data, op)));
     }
   };
 

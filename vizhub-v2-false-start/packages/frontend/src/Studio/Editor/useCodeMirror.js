@@ -52,6 +52,7 @@ const createView = (CodeMirror, id, options) => {
   });
   return new EditorView({ state });
 };
+
 const getOrCreateView = (CodeMirror, id, options) =>
   views[id] || (views[id] = createView(CodeMirror, id, options));
 
