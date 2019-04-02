@@ -3,8 +3,13 @@ import WebSocket from 'ws';
 import express from 'express';
 import ShareDB from 'sharedb';
 import JSONStream from '@teamwork/websocket-json-stream';
+import {sampleStudioData} from 'vizhub-core';
 
 const app = express();
+
+app.get('/api/studio', (req, res) => {
+  res.send(sampleStudioData);
+});
 
 const share = new ShareDB({
   disableDocAction: true,
