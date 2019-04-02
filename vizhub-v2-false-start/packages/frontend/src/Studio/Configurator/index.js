@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ArrowBackSVG } from '../../icons';
 import {
   PreferencesContext,
-  StudioDataContext,
+  VizContext,
   URLStateContext
 } from '../../contexts';
 import { FileTree } from './FileTree';
@@ -29,8 +29,8 @@ export const Configurator = ({ preloadFontFamily }) => {
   const { activeFileId, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
-  const { vizData } = useContext(StudioDataContext);
-  const fileTree = getFileTree(vizData);
+  const viz = useContext(VizContext);
+  const fileTree = getFileTree(viz.data);
 
   const {
     colorTheme,
