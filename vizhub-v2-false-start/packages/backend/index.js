@@ -3,7 +3,7 @@ import WebSocket from 'ws';
 import express from 'express';
 import ShareDB from 'sharedb';
 import JSONStream from '@teamwork/websocket-json-stream';
-import {sampleStudioData} from 'vizhub-core';
+import { sampleStudioData } from 'vizhub-core';
 
 const app = express();
 
