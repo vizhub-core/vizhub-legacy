@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { StudioDataContext } from '../';
+import { type as json0 } from 'ot-json0';
 
 export const VizContext = createContext();
 
@@ -8,8 +9,10 @@ export const VizProvider = ({ children }) => {
   const viz = {
     data: vizData,
     submitOp: op => {
-      console.log('submitt');
-      console.log(JSON.stringify(op));
+      console.log(op);
+      console.log(JSON.stringify(vizData.working.files, null, 2));
+      json0.apply(vizData, op);
+      console.log(JSON.stringify(vizData.working.files, null, 2));
     }
   };
 

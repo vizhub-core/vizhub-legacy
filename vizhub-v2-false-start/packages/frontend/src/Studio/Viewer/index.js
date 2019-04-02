@@ -34,7 +34,7 @@ import {
 
 export const Viewer = withTheme(({ theme }) => {
   const {
-    vizData,
+    vizData, // TODO use VizContext for dynamic data
     userData,
     authenticatedUserId,
     ownerUserId,

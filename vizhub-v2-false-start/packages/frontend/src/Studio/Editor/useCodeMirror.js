@@ -47,7 +47,7 @@ const createView = (CodeMirror, id, options) => {
         'Shift-Tab': indentSelection
       }),
       keymap(baseKeymap),
-      ot(['working', 'files', id], emitOps)
+      ot(['working', 'files', id, 'text'], emitOps)
     ]
   });
   return new EditorView({ state });
