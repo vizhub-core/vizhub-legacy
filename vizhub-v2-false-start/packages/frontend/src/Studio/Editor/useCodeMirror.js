@@ -2,12 +2,8 @@ import { useCodeMirrorDynamicImport } from './useCodeMirrorDynamicImport';
 
 const views = {};
 
-const emitOps = ops => {
-  console.log('emit that shit');
-  console.log(JSON.stringify(ops));
-};
-
-const createView = (CodeMirror, id, text, extension) => {
+const createView = (CodeMirror, id, options) => {
+  const { text, extension, emitOps } = options;
   const {
     EditorState,
     EditorView,
@@ -56,10 +52,10 @@ const createView = (CodeMirror, id, text, extension) => {
   });
   return new EditorView({ state });
 };
-const getOrCreateView = (CodeMirror, id, text, extension) =>
-  views[id] || (views[id] = createView(CodeMirror, id, text, extension));
+const getOrCreateView = (CodeMirror, id, options) =>
+  views[id] || (views[id] = createView(CodeMirror, id, options));
 
-export const useCodeMirror = (id, text, extension) => {
+export const useCodeMirror = (id, options) => {
   const CodeMirror = useCodeMirrorDynamicImport();
-  return CodeMirror && id && getOrCreateView(CodeMirror, id, text, extension);
+  return CodeMirror && id && getOrCreateView(CodeMirror, id, options);
 };

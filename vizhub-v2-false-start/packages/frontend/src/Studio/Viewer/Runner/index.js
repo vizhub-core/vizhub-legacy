@@ -33,7 +33,7 @@ export const Runner = ({ vizData }) => {
   // so it can use server-generated or local-generated,
   // depending on context.
   const srcDoc = useSrcDoc(vizData.working.files);
-  console.log(srcDoc);
+  //console.log(srcDoc);
 
   useEffect(() => {
     iframeRef.current.setAttribute('srcDoc', srcDoc);

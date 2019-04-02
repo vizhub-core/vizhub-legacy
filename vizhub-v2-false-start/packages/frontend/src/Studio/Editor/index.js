@@ -6,7 +6,14 @@ const extension = path => path.substr(path.lastIndexOf('.') + 1);
 
 export const Editor = ({ vizData, activeFileId }) => {
   const { text, path } = vizData.working.files[activeFileId];
-  const view = useCodeMirror(activeFileId, text, extension(path));
+  const view = useCodeMirror(activeFileId, {
+    text,
+    extension: extension(path),
+    emitOps: ops => {
+      console.log('emit');
+      console.log(JSON.stringify(ops));
+    }
+  });
   const ref = useRef();
 
   useEffect(() => {
