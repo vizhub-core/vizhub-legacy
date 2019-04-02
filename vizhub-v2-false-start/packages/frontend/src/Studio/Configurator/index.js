@@ -13,6 +13,7 @@ import {
   Header,
   HeaderIcon,
   HeaderTitle,
+  Body,
   Widget,
   WidgetTitle,
   WidgetValue
@@ -58,82 +59,83 @@ export const Configurator = ({ preloadFontFamily }) => {
         </HeaderIcon>
         <HeaderTitle>Configurator</HeaderTitle>
       </Header>
+      <Body>
+        <Section title="State" id="state">
+          <Widget>
+            <WidgetTitle>Color</WidgetTitle>
+            <WidgetValue fill="#e66465" />
+          </Widget>
+          <Widget isLast={true}>
+            <WidgetTitle>Color</WidgetTitle>
+            <WidgetValue fill="#e66465" />
+          </Widget>
+        </Section>
 
-      <Section title="State" id="state">
-        <Widget>
-          <WidgetTitle>Color</WidgetTitle>
-          <WidgetValue fill="#e66465" />
-        </Widget>
-        <Widget isLast={true}>
-          <WidgetTitle>Color</WidgetTitle>
-          <WidgetValue fill="#e66465" />
-        </Widget>
-      </Section>
+        <Section title="Files" id="files">
+          {fileTree.children.map(child => (
+            <FileTree
+              key={child.name}
+              node={child}
+              activeFileId={activeFileId}
+              selectFile={selectFile}
+            />
+          ))}
+        </Section>
 
-      <Section title="Files" id="files">
-        {fileTree.children.map(child => (
-          <FileTree
-            key={child.name}
-            node={child}
-            activeFileId={activeFileId}
-            selectFile={selectFile}
+        <Section title="Settings" id="settings">
+          <Item>Auto-resize</Item>
+          <Item>Height</Item>
+          <Item>Background color</Item>
+          <Item>Privacy</Item>
+          <Item>Collaborators</Item>
+        </Section>
+
+        <Section title="Preferences" id="preferences">
+          <RadioMenu
+            title="Color Theme"
+            options={colorThemeOptions}
+            activeOption={colorTheme}
+            setActiveOption={setColorTheme}
           />
-        ))}
-      </Section>
-
-      <Section title="Settings" id="settings">
-        <Item>Auto-resize</Item>
-        <Item>Height</Item>
-        <Item>Background color</Item>
-        <Item>Privacy</Item>
-        <Item>Collaborators</Item>
-      </Section>
-
-      <Section title="Preferences" id="preferences">
-        <RadioMenu
-          title="Color Theme"
-          options={colorThemeOptions}
-          activeOption={colorTheme}
-          setActiveOption={setColorTheme}
-        />
-        <RadioMenu
-          title="Font"
-          options={fontOptions}
-          activeOption={font}
-          setActiveOption={setFont}
-        />
-        <RadioMenu
-          title="Ligatures"
-          options={ligaturesOptions}
-          activeOption={ligatures}
-          setActiveOption={setLigatures}
-        />
-        <Item>Font Size</Item>
-        <Item>
-          <ItemIcon>
-            <CheckBoxSVG checked={true} />
-          </ItemIcon>
-          Grayscale
-        </Item>
-        <Item>
-          <ItemIcon>
-            <CheckBoxSVG checked={true} />
-          </ItemIcon>
-          Auto run
-        </Item>
-        <Item>
-          <ItemIcon>
-            <CheckBoxSVG checked={true} />
-          </ItemIcon>
-          Auto format
-        </Item>
-        <Item>
-          <ItemIcon>
-            <CheckBoxSVG checked={true} />
-          </ItemIcon>
-          Vim mode
-        </Item>
-      </Section>
+          <RadioMenu
+            title="Font"
+            options={fontOptions}
+            activeOption={font}
+            setActiveOption={setFont}
+          />
+          <RadioMenu
+            title="Ligatures"
+            options={ligaturesOptions}
+            activeOption={ligatures}
+            setActiveOption={setLigatures}
+          />
+          <Item>Font Size</Item>
+          <Item>
+            <ItemIcon>
+              <CheckBoxSVG checked={true} />
+            </ItemIcon>
+            Grayscale
+          </Item>
+          <Item>
+            <ItemIcon>
+              <CheckBoxSVG checked={true} />
+            </ItemIcon>
+            Auto run
+          </Item>
+          <Item>
+            <ItemIcon>
+              <CheckBoxSVG checked={true} />
+            </ItemIcon>
+            Auto format
+          </Item>
+          <Item>
+            <ItemIcon>
+              <CheckBoxSVG checked={true} />
+            </ItemIcon>
+            Vim mode
+          </Item>
+        </Section>
+      </Body>
     </Wrapper>
   );
 };

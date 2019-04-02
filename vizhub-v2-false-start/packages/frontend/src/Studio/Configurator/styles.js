@@ -4,11 +4,12 @@ import { Flex } from '../../styles';
 export const Wrapper = styled.div`
   color: ${props => props.theme.container.color};
   background: ${props => props.theme.container.background};
-  width: 250px;
   padding-left: 10px;
+  flex: 1;
 `;
 
 export const Header = styled(Flex)`
+  flex: 0;
   padding: 10px;
   font-size: 1.5em;
   align-items: center;
@@ -24,6 +25,12 @@ export const HeaderIcon = styled.div`
 export const HeaderTitle = styled.div`
   flex: 1;
   text-align: center;
+`;
+
+export const Body = styled(Flex)`
+  overflow: auto;
+  flex-direction: column;
+  height: 100%;
 `;
 
 export const Item = styled(Flex)`

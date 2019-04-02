@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Flex } from '../styles';
 
+const mobileBreakpoint = 450;
+
 export const StudioWrapper = styled(Flex)`
   flex: 1;
   overflow: hidden;
@@ -13,7 +15,14 @@ const ForegroundBackground = styled(Flex)`
 
 export const ConfiguratorWrapper = styled(ForegroundBackground)`
   flex: 0 0 auto;
-  overflow: auto;
+  display: flex;
+  min-width: 250px;
+  height: 100vh;
+
+  @media (max-width: ${mobileBreakpoint}px) {
+    position: absolute;
+    width: 100vw;
+  }
 `;
 
 export const EditorWrapper = styled(ForegroundBackground)`
