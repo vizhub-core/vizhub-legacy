@@ -35,8 +35,13 @@ export const vizData = {
         path: './index.html',
 
         // Parcel-style script tag declaration directly into ES6 module (magic).
-        text:
-          '<html><title>Visualization Title</title><body>Hello World<script src="index.js"></body></html>'
+        text: `<html>
+  <title>Visualization Title</title>
+  <body>
+    Hello World
+    <script src="index.js">
+  </body>
+</html>`
 
         // Hash of text is stored to detect content changes in application code.
         // https://www.npmjs.com/package/@emotion/hash

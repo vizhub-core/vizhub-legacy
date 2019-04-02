@@ -57,7 +57,7 @@ export const Viewer = withTheme(({ theme }) => {
           />
         </Header>
       </Padded>
-      <Runner />
+      <Runner vizData={vizData} />
       <TitleActions>
         <Padded>
           <TitleViewCount>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@datavis-tech/codemirror-6-prerelease": "^4.4.0",
+    "@emotion/hash": "^0.7.1",
     "codemirror-ot": "^2.0.0",
     "d3-array": "^2.0.3",
     "d3-color": "^1.2.3",

@@ -2,10 +2,11 @@ import React, { useRef, useEffect } from 'react';
 import { useCodeMirror } from './useCodeMirror';
 import { Wrapper, CodeMirrorGlobalStyle } from './styles';
 
+const extension = path => path.substr(path.lastIndexOf('.') + 1);
+
 export const Editor = ({ vizData, activeFileId }) => {
   const { text, path } = vizData.working.files[activeFileId];
-  const extension = path.substr(path.lastIndexOf('.') + 1);
-  const view = useCodeMirror(activeFileId, text, extension);
+  const view = useCodeMirror(activeFileId, text, extension(path));
   const ref = useRef();
 
   useEffect(() => {
