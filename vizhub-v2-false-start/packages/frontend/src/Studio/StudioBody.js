@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { StudioDataContext, URLStateContext } from '../contexts';
+import { URLStateContext } from '../contexts';
 import { light } from '../themes';
 import {
   StudioWrapper,
@@ -15,7 +15,6 @@ import { useEditorTheme } from './useEditorTheme';
 
 export const StudioBody = () => {
   const { showConfigurator, activeFileId } = useContext(URLStateContext);
-  const { vizData } = useContext(StudioDataContext);
   const editorTheme = useEditorTheme();
   return (
     <StudioWrapper
@@ -31,7 +30,7 @@ export const StudioBody = () => {
           ) : null}
           {activeFileId ? (
             <EditorWrapper>
-              <Editor activeFileId={activeFileId} vizData={vizData} />
+              <Editor activeFileId={activeFileId} />
             </EditorWrapper>
           ) : null}
         </>

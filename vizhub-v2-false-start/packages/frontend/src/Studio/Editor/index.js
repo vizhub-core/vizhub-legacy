@@ -1,18 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
+import { VizContext } from '../../contexts';
 import { useCodeMirror } from './useCodeMirror';
 import { Wrapper, CodeMirrorGlobalStyle } from './styles';
 
 const extension = path => path.substr(path.lastIndexOf('.') + 1);
 
-export const Editor = ({ vizData, activeFileId }) => {
-  const { text, path } = vizData.working.files[activeFileId];
+export const Editor = ({ activeFileId }) => {
+  const viz = useContext(VizContext);
+
+  const { text, path } = viz.data.working.files[activeFileId];
   const view = useCodeMirror(activeFileId, {
     text,
     extension: extension(path),
-    emitOps: ops => {
-      console.log('emit');
-      console.log(JSON.stringify(ops));
-    }
+    emitOps: viz.submitOp
   });
   const ref = useRef();
 
