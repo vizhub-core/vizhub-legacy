@@ -9,13 +9,13 @@ import {
 import { StudioBody } from './StudioBody';
 
 export const Studio = () => (
-  <StudioDataProvider fallback={<LoadingScreen />}>
-    <VizProvider>
-      <URLStateProvider>
+  <URLStateProvider>
+    <StudioDataProvider fallback={<LoadingScreen />}>
+      <VizProvider>
         <PreferencesProvider>
           <StudioBody />
         </PreferencesProvider>
-      </URLStateProvider>
-    </VizProvider>
-  </StudioDataProvider>
+      </VizProvider>
+    </StudioDataProvider>
+  </URLStateProvider>
 );

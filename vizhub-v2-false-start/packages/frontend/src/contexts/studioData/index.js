@@ -1,10 +1,12 @@
-import React, { createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { useStudioData } from './useStudioData';
+import { URLStateContext } from '../';
 
 export const StudioDataContext = createContext();
 
 export const StudioDataProvider = ({ fallback, children }) => {
-  const studioData = useStudioData();
+  const { vizId } = useContext(URLStateContext);
+  const studioData = useStudioData(vizId);
 
   return studioData ? (
     <StudioDataContext.Provider value={studioData}>

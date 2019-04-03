@@ -7,7 +7,8 @@ import { sampleStudioData } from 'vizhub-core';
 
 const app = express();
 
-app.get('/api/studio', (req, res) => {
+app.get('/api/studio/data/:id', (req, res) => {
+  console.log(req.params.id);
   res.send(sampleStudioData);
 });
 

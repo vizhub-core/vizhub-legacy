@@ -8,7 +8,7 @@ export const App = () => (
   <Router>
     <Wrapper>
       <Route exact path="/" component={Home} />
-      <Route path="/:user/:id" component={Studio} />
+      <Route path="/:userName/:vizId" component={Studio} />
     </Wrapper>
   </Router>
 );

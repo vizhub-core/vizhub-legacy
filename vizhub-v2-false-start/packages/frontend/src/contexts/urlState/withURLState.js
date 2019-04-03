@@ -26,6 +26,9 @@ export const withURLState = Component =>
     const selectFile = selectedFile => () =>
       setFile(selectedFile === activeFileId ? undefined : selectedFile);
 
+    // The ID of the visualization we are viewing.
+    const vizId = props.match.params.vizId;
+
     // Derived accessors for URL state, exposed to components.
     const urlState = {
       activeFileId,
@@ -33,7 +36,8 @@ export const withURLState = Component =>
       showConfigurator,
       toggleConfigurator,
       activeSection,
-      setActiveSection
+      setActiveSection,
+      vizId
     };
 
     // Expose accessors to wrapped component as urlState prop.
