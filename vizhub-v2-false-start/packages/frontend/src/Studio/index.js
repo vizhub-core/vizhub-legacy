@@ -8,9 +8,14 @@ import {
 } from '../contexts';
 import { StudioBody } from './StudioBody';
 
+const ErrorPage = ({ error }) => <div>Error: {error}</div>;
+
+const fallback = error =>
+  error ? <ErrorPage error={error} /> : <LoadingScreen />;
+
 export const Studio = () => (
   <URLStateProvider>
-    <StudioDataProvider fallback={<LoadingScreen />}>
+    <StudioDataProvider fallback={fallback}>
       <VizProvider>
         <PreferencesProvider>
           <StudioBody />

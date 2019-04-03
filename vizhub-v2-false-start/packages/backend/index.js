@@ -26,17 +26,33 @@ app.get('/api/studio/data/:vizId', (req, res) => {
   const { vizId } = req.params;
   const viz = connection.get('viz', vizId);
   viz.fetch(err => {
-    console.log(viz);
-    //if (err) {
-    //  // TODO figure out when this error would occur. Missing DB connection?
-    //  console.log('TODO test and handle this case');
-    //  return res.setStatus(500).send(err);
-    //}
-    //if (viz.type === null) {
-    //  return res.sendStatus(404);
-    //}
-    //return res.send(snapshot(viz));
-    res.send(sampleStudioData);
+    if (err) {
+      // TODO figure out when this error would occur. Missing DB connection?
+      console.log('TODO test and handle this case');
+      return res.setStatus(500).send(err);
+    }
+    if (viz.type === null) {
+      return res.sendStatus(404);
+    }
+    const {
+      userData,
+      authenticatedUserId,
+      ownerUserId,
+      comments
+    } = sampleStudioData;
+
+    const vizSnapshots = {};
+    vizSnapshots[vizId] = snapshot(viz);
+
+    const studioData = {
+      vizSnapshots,
+      userData,
+      authenticatedUserId,
+      ownerUserId,
+      comments
+    };
+    console.log(studioData);
+    res.send(studioData);
   });
 });
 
@@ -53,5 +69,7 @@ const initializeSampleStudioData = () => {
     }
   });
 };
+
+initializeSampleStudioData();
 
 server.listen(4000);

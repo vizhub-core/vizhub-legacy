@@ -6,6 +6,7 @@ import { wait } from './wait';
 // For that, use the Viz context.
 export const useStudioData = vizId => {
   const [studioData, setStudioData] = useState();
+  const [studioDataError, setStudioDataError] = useState();
 
   useEffect(() => {
     // If the vizId changed, clear out the old data
@@ -13,11 +14,14 @@ export const useStudioData = vizId => {
     setStudioData(undefined);
 
     Promise.all([
-      fetch(`/api/studio/data/${vizId}`).then(data => data.json()),
+      fetch(`/api/studio/data/${vizId}`),
       wait(800) // Let the loading animation play.
     ])
-      .then(([data]) => {
-        setStudioData(data);
+      .then(([response]) => {
+        if (!response.ok) {
+          return setStudioDataError(response.statusText);
+        }
+        response.json().then(setStudioData);
       })
       .catch(error => {
         console.log('Error while fetching studio data');
@@ -25,5 +29,8 @@ export const useStudioData = vizId => {
       });
   }, [vizId]);
 
-  return studioData;
+  return {
+    studioData,
+    studioDataError
+  };
 };
