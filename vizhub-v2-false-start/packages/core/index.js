@@ -1,5 +1,11 @@
 import { userData } from './test/userData';
-import { vizData } from './test/vizData';
+import { vizId, vizData } from './test/vizData';
+
+const vizSnapshots = {};
+vizSnapshots[vizId] = {
+  v: 0,
+  data: vizData
+};
 // TODO load data from server API / gateway.
 //
 // This will contain all the data required for the studio page:
@@ -8,7 +14,7 @@ import { vizData } from './test/vizData';
 //  - Visualization description
 //  - Server-computed srcDoc
 export const sampleStudioData = {
-  vizData,
+  vizSnapshots,
   userData,
   authenticatedUserId: '0c82a54f22f775a3ed8b97b2dea74036',
   ownerUserId: 'dashjfdsa8fdsa84hf84389g4839tr43',

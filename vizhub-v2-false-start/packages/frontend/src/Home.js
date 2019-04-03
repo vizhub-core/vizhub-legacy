@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { sampleStudioData } from 'vizhub-core';
+
+const vizId = Object.keys(sampleStudioData.vizSnapshots)[0];
+const userId = Object.keys(sampleStudioData.userData)[0];
+const userName = sampleStudioData.userData[userId].userName;
 
 export const Home = () => (
   <ul>
     <li>
-      <Link to="/someuser/7893274327">Viewer</Link>
-    </li>
-    <li>
-      <Link to="/someuser/7893274327?edit">Configurator</Link>
-    </li>
-    <li>
-      <Link to="/someuser/7893274327?edit&file=index.js">Configurator</Link>
+      <Link to={`${userName}/${vizId}`}>Viewer</Link>
     </li>
   </ul>
 );

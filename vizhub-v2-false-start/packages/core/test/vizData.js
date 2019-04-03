@@ -1,5 +1,7 @@
 import { sampleCode } from './sampleCode';
 
+export const vizId = '57890243754890';
+
 export const vizData = {
   viewCount: 2048,
   upvotes: 2345,
