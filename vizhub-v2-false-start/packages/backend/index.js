@@ -20,19 +20,35 @@ new WebSocket.Server({ server }).on('connection', ws => {
 
 const connection = share.connect();
 
+export const snapshot = ({ version, data }) => ({ v: version, data });
+
 app.get('/api/studio/data/:vizId', (req, res) => {
-  console.log(req.params.vizId);
-  res.send(sampleStudioData);
+  const { vizId } = req.params;
+  const viz = connection.get('viz', vizId);
+  viz.fetch(err => {
+    console.log(viz);
+    //if (err) {
+    //  // TODO figure out when this error would occur. Missing DB connection?
+    //  console.log('TODO test and handle this case');
+    //  return res.setStatus(500).send(err);
+    //}
+    //if (viz.type === null) {
+    //  return res.sendStatus(404);
+    //}
+    //return res.send(snapshot(viz));
+    res.send(sampleStudioData);
+  });
 });
 
 // Set up initial document for testing during development.
 const initializeSampleStudioData = () => {
-  const vizId = Object.keys(sampleStudioData.vizData)[0];
+  const vizId = Object.keys(sampleStudioData.vizSnapshots)[0];
+  const vizData = sampleStudioData.vizSnapshots[vizId].data;
   const viz = connection.get('viz', vizId);
   viz.fetch(err => {
     if (err) throw err;
     if (viz.type === null) {
-      viz.create(sampleStudioData.vizData[vizId]);
+      viz.create(vizData);
       return;
     }
   });

@@ -9,10 +9,10 @@ const clone = obj => JSON.parse(JSON.stringify(obj));
 
 export const VizProvider = ({ children }) => {
   const { vizId } = useContext(URLStateContext);
-  const { vizData } = useContext(StudioDataContext);
+  const { vizSnapshots } = useContext(StudioDataContext);
 
   // TODO replace this with ShareDB Doc.
-  const [data, setData] = useState(vizData[vizId]);
+  const [data, setData] = useState(vizSnapshots[vizId].data);
   const viz = {
     data,
     submitOp: op => {
