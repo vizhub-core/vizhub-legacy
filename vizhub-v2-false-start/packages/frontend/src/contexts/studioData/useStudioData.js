@@ -4,7 +4,8 @@ import { wait } from './wait';
 import { sampleStudioData } from 'vizhub-core';
 
 // Convenience for stubbing out the backend during development.
-const avoidBackend = true;
+//const avoidBackend = true;
+const avoidBackend = false;
 
 // This "Studio Data" means the initial API request for data
 // to hydrate the page. This is _not_ the real-time synchronized data.
