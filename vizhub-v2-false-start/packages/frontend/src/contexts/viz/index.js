@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
-import { StudioDataContext } from '../';
-import { URLStateContext } from '../';
+import { StudioDataContext } from '../studioData';
+import { URLStateContext } from '../urlState';
 import { type as json0 } from 'ot-json0';
 
 export const VizContext = createContext();

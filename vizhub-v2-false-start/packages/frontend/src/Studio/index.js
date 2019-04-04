@@ -4,23 +4,22 @@ import {
   PreferencesProvider,
   StudioDataProvider,
   VizProvider,
-  URLStateProvider
+  URLStateProvider,
+  ErrorProvider
 } from '../contexts';
 import { StudioBody } from './StudioBody';
-
-const ErrorPage = ({ error }) => <div>Error: {error}</div>;
-
-const fallback = error =>
-  error ? <ErrorPage error={error} /> : <LoadingScreen />;
+import { ErrorPage } from './ErrorPage';
 
 export const Studio = () => (
   <URLStateProvider>
-    <StudioDataProvider fallback={fallback}>
-      <VizProvider>
-        <PreferencesProvider>
-          <StudioBody />
-        </PreferencesProvider>
-      </VizProvider>
-    </StudioDataProvider>
+    <ErrorProvider errorPage={error => <ErrorPage error={error} />}>
+      <StudioDataProvider fallback={<LoadingScreen />}>
+        <VizProvider>
+          <PreferencesProvider>
+            <StudioBody />
+          </PreferencesProvider>
+        </VizProvider>
+      </StudioDataProvider>
+    </ErrorProvider>
   </URLStateProvider>
 );

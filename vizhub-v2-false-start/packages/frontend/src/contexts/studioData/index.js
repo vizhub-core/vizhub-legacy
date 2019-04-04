@@ -6,13 +6,13 @@ export const StudioDataContext = createContext();
 
 export const StudioDataProvider = ({ fallback, children }) => {
   const { vizId } = useContext(URLStateContext);
-  const { studioData, studioDataError } = useStudioData(vizId);
+  const studioData = useStudioData(vizId);
 
   return studioData ? (
     <StudioDataContext.Provider value={studioData}>
       {children}
     </StudioDataContext.Provider>
   ) : (
-    fallback(studioDataError)
+    fallback
   );
 };

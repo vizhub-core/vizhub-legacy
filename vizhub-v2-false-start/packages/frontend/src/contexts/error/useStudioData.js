@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
-import { ErrorContext } from '../error';
+import { useState, useEffect } from 'react';
 import { wait } from './wait';
 
 // This "Studio Data" means the initial API request for data
@@ -7,7 +6,7 @@ import { wait } from './wait';
 // For that, use the Viz context.
 export const useStudioData = vizId => {
   const [studioData, setStudioData] = useState();
-  const setError = useContext(ErrorContext);
+  const [studioDataError, setStudioDataError] = useState();
 
   useEffect(() => {
     // If the vizId changed, clear out the old data
@@ -20,19 +19,18 @@ export const useStudioData = vizId => {
     ])
       .then(([response]) => {
         if (!response.ok) {
-          response.text().then(text => {
-            setError({
-              statusCode: response.status,
-              title: response.statusText,
-              message: text
-            });
-          });
-        } else {
-          response.json().then(setStudioData);
+          return setStudioDataError(response.statusText);
         }
+        response.json().then(setStudioData);
       })
-      .catch(setError);
+      .catch(error => {
+        console.log('Error while fetching studio data');
+        throw error;
+      });
   }, [vizId]);
 
-  return studioData;
+  return {
+    studioData,
+    studioDataError
+  };
 };
