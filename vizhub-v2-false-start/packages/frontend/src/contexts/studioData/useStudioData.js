@@ -17,21 +17,19 @@ export const useStudioData = vizId => {
     Promise.all([
       fetch(`/api/studio/data/${vizId}`),
       wait(800) // Let the loading animation play.
-    ])
-      .then(([response]) => {
-        if (!response.ok) {
-          response.text().then(text => {
-            setError({
-              statusCode: response.status,
-              title: response.statusText,
-              message: text
-            });
+    ]).then(([response]) => {
+      if (!response.ok) {
+        response.text().then(text => {
+          setError({
+            statusCode: response.status,
+            title: response.statusText,
+            message: text
           });
-        } else {
-          response.json().then(setStudioData);
-        }
-      })
-      .catch(setError);
+        });
+      } else {
+        response.json().then(setStudioData);
+      }
+    });
   }, [vizId]);
 
   return studioData;

@@ -4,6 +4,7 @@ import { Flex } from '../styles';
 const mobileBreakpoint = 450;
 
 export const StudioWrapper = styled(Flex)`
+  height: 100vh;
   flex: 1;
   overflow: hidden;
 `;
