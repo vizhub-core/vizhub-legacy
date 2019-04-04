@@ -33,13 +33,19 @@ import {
 } from './styles';
 
 export const Viewer = withTheme(({ theme }) => {
-  const { userData, authenticatedUserId, ownerUserId, comments } = useContext(
+  const { userData, authenticatedUserId, comments } = useContext(
     StudioDataContext
   );
 
   const viz = useContext(VizContext);
 
-  const { viewCount, upvotes, downvotes, publishDateISOString } = viz.data;
+  const {
+    ownerUserId,
+    viewCount,
+    upvotes,
+    downvotes,
+    publishDateISOString
+  } = viz.data;
   const publishDate = new Date(publishDateISOString);
   const { title } = viz.data.working;
   const authenticatedUserData = userData[authenticatedUserId];

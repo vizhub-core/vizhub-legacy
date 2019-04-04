@@ -17,7 +17,6 @@ export const sampleStudioData = {
   vizSnapshots,
   userData,
   authenticatedUserId: '0c82a54f22f775a3ed8b97b2dea74036',
-  ownerUserId: 'dashjfdsa8fdsa84hf84389g4839tr43',
   // vizSrcDoc
   comments: [
     {

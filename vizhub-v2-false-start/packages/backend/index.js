@@ -48,7 +48,6 @@ app.get('/api/studio/data/:vizId', (req, res) => {
       vizSnapshots,
       userData,
       authenticatedUserId,
-      ownerUserId,
       comments
     };
     console.log(studioData);

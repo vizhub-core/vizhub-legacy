@@ -3,6 +3,7 @@ import { sampleCode } from './sampleCode';
 export const vizId = '57890243754890';
 
 export const vizData = {
+  ownerUserId: 'dashjfdsa8fdsa84hf84389g4839tr43',
   viewCount: 2048,
   upvotes: 2345,
   downvotes: 5,
