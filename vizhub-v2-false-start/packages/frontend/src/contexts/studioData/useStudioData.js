@@ -1,6 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { ErrorContext } from '../error';
 import { wait } from './wait';
+import { sampleStudioData } from 'vizhub-core';
+
+// Convenience for stubbing out the backend during development.
+const avoidBackend = true;
 
 // This "Studio Data" means the initial API request for data
 // to hydrate the page. This is _not_ the real-time synchronized data.
@@ -18,7 +22,9 @@ export const useStudioData = vizId => {
       fetch(`/api/studio/data/${vizId}`),
       wait(800) // Let the loading animation play.
     ]).then(([response]) => {
-      if (!response.ok) {
+      if (avoidBackend) {
+        setStudioData(sampleStudioData);
+      } else if (!response.ok) {
         response.text().then(text => {
           setError({
             statusCode: response.status,
