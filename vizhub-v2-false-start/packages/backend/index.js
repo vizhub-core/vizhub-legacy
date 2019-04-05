@@ -4,23 +4,20 @@ import express from 'express';
 import ShareDB from 'sharedb';
 import JSONStream from '@teamwork/websocket-json-stream';
 import { sampleStudioData } from 'vizhub-core';
+import { serveFrontend } from './serveFrontend';
 
 const app = express();
+const server = http.createServer(app);
 
 const share = new ShareDB({
   disableDocAction: true,
   disableSpaceDelimitedActions: true
 });
 
-const server = http.createServer(app);
-
-new WebSocket.Server({ server, path: '/api/websocket' }).on(
-  'connection',
-  ws => {
-    console.log('connection made');
-    share.listen(new JSONStream(ws));
-  }
-);
+new WebSocket.Server({ server }).on('connection', ws => {
+  console.log('connection made');
+  share.listen(new JSONStream(ws));
+});
 
 const connection = share.connect();
 
@@ -59,6 +56,8 @@ app.get('/api/studio/data/:vizId', (req, res) => {
   });
 });
 
+serveFrontend(app);
+
 // Set up initial document for testing during development.
 const initializeSampleStudioData = () => {
   const vizId = Object.keys(sampleStudioData.vizSnapshots)[0];
@@ -75,4 +74,7 @@ const initializeSampleStudioData = () => {
 
 initializeSampleStudioData();
 
-server.listen(4000);
+const port = 4000;
+server.listen(port);
+
+console.log(`Listening at http://localhost:${port}`);
