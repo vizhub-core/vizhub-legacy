@@ -1,14 +1,10 @@
 import { Connection } from 'sharedb/lib/client';
 //import WebSocket from 'reconnecting-websocket';
+import { webSocketURL } from '../../environment';
 
 let connection;
 const makeConnection = () => {
-  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-  //const url = protocol + '//' + window.location.host + '/api/websocket';
-
-  // TODO this is a mess
-  const url = protocol + '//' + 'localhost:4000' + '/api/websocket';
-  const ws = new WebSocket(url);
+  const ws = new WebSocket(webSocketURL);
 
   ws.onopen = () => {
     console.log('onopen');
