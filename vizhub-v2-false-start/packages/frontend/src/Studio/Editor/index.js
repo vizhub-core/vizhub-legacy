@@ -12,7 +12,7 @@ export const Editor = ({ activeFileId }) => {
   const view = useCodeMirror(activeFileId, {
     text,
     extension: extension(path),
-    emitOps: viz.submitOp
+    emitOps: viz.submitOp.bind(viz)
   });
   const ref = useRef();
 

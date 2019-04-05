@@ -14,9 +14,13 @@ const share = new ShareDB({
 
 const server = http.createServer(app);
 
-new WebSocket.Server({ server }).on('connection', ws => {
-  share.listen(new JSONStream(ws));
-});
+new WebSocket.Server({ server, path: '/api/websocket' }).on(
+  'connection',
+  ws => {
+    console.log('connection made');
+    share.listen(new JSONStream(ws));
+  }
+);
 
 const connection = share.connect();
 
@@ -50,7 +54,7 @@ app.get('/api/studio/data/:vizId', (req, res) => {
       authenticatedUserId,
       comments
     };
-    console.log(studioData);
+    //console.log(studioData);
     res.send(studioData);
   });
 });
