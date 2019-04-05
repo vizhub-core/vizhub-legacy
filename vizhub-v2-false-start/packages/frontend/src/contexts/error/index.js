@@ -1,13 +1,12 @@
 import React, { createContext, useState } from 'react';
+import { VizHubError } from './VizHubError';
 
 export const ErrorContext = createContext();
 
 export const ErrorProvider = ({ errorPage, children }) => {
-  // Error objects are expected to have the following fields:
-  //  - statusCode (optional) - for API requests, e.g. 404, 500
-  //  - title - the title to display for the error
-  //  - message - a longer description of the error
   const [error, setError] = useState();
+
+  if (!error instanceof VizHubError) throw Error();
 
   return error ? (
     errorPage(error)
@@ -15,3 +14,5 @@ export const ErrorProvider = ({ errorPage, children }) => {
     <ErrorContext.Provider value={setError}>{children}</ErrorContext.Provider>
   );
 };
+
+export { VizHubError };
