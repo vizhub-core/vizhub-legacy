@@ -1,6 +1,6 @@
 import ShareDB from 'sharedb';
 import WebSocket from 'ws';
-import JSONStream from '@teamwork/websocket-json-stream';
+import JSONStream from 'websocket-json-stream';
 
 // Set up the ShareDB instance and WebSocket server.
 export const serveShareDB = server => {

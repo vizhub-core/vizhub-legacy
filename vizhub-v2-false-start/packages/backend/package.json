@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@teamwork/websocket-json-stream": "^2.0.0",
+    "websocket-json-stream": "0.0.3",
     "express": "^4.16.4",
     "sharedb": "^1.0.0-beta.21",
     "ws": "^6.2.1",
