@@ -1,8 +1,5 @@
 import { sampleStudioData } from 'vizhub-core';
-
-// Convenience flag for stubbing out the backend during development.
-//const avoidBackend = true;
-const avoidBackend = false;
+import { avoidBackend } from '../../environment';
 
 const fetchRealStudioData = vizId => fetch(`/api/studio/data/${vizId}`);
 const fetchFakeStudioData = vizId =>
