@@ -13,7 +13,5 @@ export const VizProvider = ({ children }) => {
   const { vizId } = useContext(URLStateContext);
   const { vizSnapshots } = useContext(StudioDataContext);
   const viz = useViz(vizId, vizSnapshots);
-  return viz ? (
-    <VizContext.Provider value={viz}>{children}</VizContext.Provider>
-  ) : null;
+  return <VizContext.Provider value={viz}>{children}</VizContext.Provider>;
 };
