@@ -1,25 +1,27 @@
 import assert from 'assert';
 import set from 'lodash/fp/set';
-import { fork, vizId, vizData } from '../src';
+import { fork, vizId, vizData, forkVizId } from '../src';
 
 describe('fork', () => {
   it('should compute fork', () => {
-    const ownerUserId = '4732895';
-    const publishDateISOString = new Date().toISOString();
+    const forkOwnerUserId = '4732895';
+    const forkPublishDateISOString = new Date().toISOString();
     const forked = fork({
       vizId,
       vizData,
-      ownerUserId,
-      publishDateISOString
+      forkVizId,
+      forkOwnerUserId,
+      forkPublishDateISOString
     });
-    const expected = Object.assign({}, vizData, {
-      ownerUserId,
+    const forkVizData = Object.assign({}, vizData, {
+      ownerUserId: forkOwnerUserId,
       forkedFromVizId: vizId,
-      publishDateISOString,
+      publishDateISOString: forkPublishDateISOString,
       viewCount: 0,
       upvotes: 0,
       downvotes: 0
     });
-    assert.deepEqual(forked, expected);
+    assert.equal(forked.vizId, forkVizId);
+    assert.deepEqual(forked.vizData, forkVizData);
   });
 });

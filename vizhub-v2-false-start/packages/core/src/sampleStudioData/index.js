@@ -1,7 +1,7 @@
 import { userData } from './userData';
-import { vizId, vizData, vizSnapshots } from './vizData';
+import { vizId, vizData, forkVizId, vizSnapshots } from './vizData';
 
-export { vizId, vizData };
+export { vizId, vizData, forkVizId };
 
 // This will contain all the data required for the studio page:
 //  - Logged in user profile and preferences.

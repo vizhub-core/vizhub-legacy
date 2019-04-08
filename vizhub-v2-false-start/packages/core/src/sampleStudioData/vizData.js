@@ -1,7 +1,7 @@
 import { sampleCode } from './sampleCode';
 
 export const vizId = '57890243754890';
-export const vizId2 = '78594372895430';
+export const forkVizId = '78594372895430';
 
 export const vizData = {
   ownerUserId: 'dashjfdsa8fdsa84hf84389g4839tr43',
