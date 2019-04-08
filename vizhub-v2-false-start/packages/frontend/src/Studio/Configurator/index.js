@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { ArrowBackSVG } from '../../icons';
 import {
   PreferencesContext,
   VizContext,
   URLStateContext
 } from '../../contexts';
+import { CheckBoxSVG, ArrowBackSVG } from '../../svg';
+import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport';
 import { FileTree } from './FileTree';
 import {
   Wrapper,
@@ -18,8 +19,6 @@ import {
   WidgetTitle,
   WidgetValue
 } from './styles';
-import { CheckBoxSVG } from '../../icons';
-import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport';
 import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
 import { RadioMenu } from './RadioMenu';

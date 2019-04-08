@@ -1,9 +1,11 @@
 import React from 'react';
-import logo from '../svg/logo.svg';
-import { LoadingScreenWrapper, SpinningImage } from './styles';
+import { LogoSVG } from '../svg';
+import { LoadingScreenWrapper, SpinningLogo } from './styles';
 
 export const LoadingScreen = () => (
   <LoadingScreenWrapper>
-    <SpinningImage src={logo} />
+    <SpinningLogo>
+      <LogoSVG />
+    </SpinningLogo>
   </LoadingScreenWrapper>
 );

@@ -9,7 +9,7 @@ import {
   DownvoteSVG,
   ShareSVG,
   DownloadSVG
-} from '../../../icons';
+} from '../../../svg';
 import { Wrapper, Icon } from './styles';
 
 export const formatVotes = format(',');

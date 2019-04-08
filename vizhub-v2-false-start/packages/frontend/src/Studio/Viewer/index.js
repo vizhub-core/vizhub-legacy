@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
-import logo from '../../svg/logo.svg';
+import { LogoSVG } from '../../svg';
 import { StudioDataContext, VizContext } from '../../contexts';
 import { OwnerInfo } from './OwnerInfo';
 import {
@@ -55,7 +55,9 @@ export const Viewer = withTheme(({ theme }) => {
     <Wrapper>
       <Padded>
         <Header>
-          <Logo src={logo} />
+          <Logo>
+            <LogoSVG />
+          </Logo>
           <HeaderAvatar
             src={avatarUrl(authenticatedUserData, theme.headerHeight)}
           />

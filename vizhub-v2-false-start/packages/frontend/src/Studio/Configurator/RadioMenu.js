@@ -1,6 +1,6 @@
 import React from 'react';
+import { RadioButtonSVG } from '../../svg';
 import { Item, ItemIcon } from './styles';
-import { RadioButtonSVG } from '../../icons';
 import { Menu } from './Menu';
 
 export const RadioMenu = ({
