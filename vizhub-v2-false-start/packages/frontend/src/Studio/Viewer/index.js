@@ -37,7 +37,7 @@ export const Viewer = withTheme(({ theme }) => {
     StudioDataContext
   );
 
-  const viz = useContext(VizContext);
+  const { vizData } = useContext(VizContext);
 
   const {
     ownerUserId,
@@ -45,9 +45,10 @@ export const Viewer = withTheme(({ theme }) => {
     upvotes,
     downvotes,
     publishDateISOString
-  } = viz.data;
+  } = vizData;
+  const { title } = vizData.working;
+
   const publishDate = new Date(publishDateISOString);
-  const { title } = viz.data.working;
   const authenticatedUserData = userData[authenticatedUserId];
   const ownerUserData = userData[ownerUserId];
 
@@ -63,7 +64,7 @@ export const Viewer = withTheme(({ theme }) => {
           />
         </Header>
       </Padded>
-      <Runner vizData={viz.data} />
+      <Runner vizData={vizData} />
       <TitleActions>
         <Padded>
           <TitleViewCount>

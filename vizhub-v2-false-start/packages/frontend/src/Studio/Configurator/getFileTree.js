@@ -1,10 +1,11 @@
 import { ascending } from 'd3-array';
 
-export const getFileEntries = vizData =>
+const getFileEntries = vizData =>
   Object.entries(vizData.working.files)
     .map(([id, { path, text }]) => ({ id, path, text }))
     .sort((a, b) => ascending(a.path, b.path));
 
+// TODO move this to a centralized accessor home (core?).
 export const getFileTree = vizData => {
   const fileTree = {};
   getFileEntries(vizData).forEach(fileEntry => {

@@ -1,19 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { type as json0 } from 'ot-json0';
 const clone = obj => JSON.parse(JSON.stringify(obj));
 
 export const useVizStub = (vizId, vizSnapshots) => {
-  const [data, setData] = useState(vizSnapshots[vizId].data);
-  const [viz, setViz] = useState();
+  const [vizData, setVizData] = useState(vizSnapshots[vizId].data);
 
-  useEffect(() => {
-    setViz({
-      data,
-      submitOp: op => {
-        setData(clone(json0.apply(data, op)));
-      }
-    });
-  }, [vizId, data]);
+  const submitVizOp = op => {
+    setVizData(clone(json0.apply(vizData, op)));
+  };
 
-  return viz;
+  // Intentionally different from the ShareDB API,
+  // to decouple application logic from ShareDB.
+  return { vizData, submitVizOp };
 };

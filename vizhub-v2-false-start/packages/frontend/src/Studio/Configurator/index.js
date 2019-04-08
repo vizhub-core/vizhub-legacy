@@ -28,8 +28,8 @@ export const Configurator = ({ preloadFontFamily }) => {
   const { activeFileId, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
-  const viz = useContext(VizContext);
-  const fileTree = getFileTree(viz.data);
+  const { vizData } = useContext(VizContext);
+  const fileTree = getFileTree(vizData);
 
   const {
     colorTheme,

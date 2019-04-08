@@ -5,14 +5,18 @@ import { Wrapper, CodeMirrorGlobalStyle } from './styles';
 
 const extension = path => path.substr(path.lastIndexOf('.') + 1);
 
-export const Editor = ({ activeFileId }) => {
-  const viz = useContext(VizContext);
+// TODO move this to a central home for accessors (core?).
+const getWorkingFile = (vizData, fileId) => vizData.working.files[fileId];
 
-  const { text, path } = viz.data.working.files[activeFileId];
+export const Editor = ({ activeFileId }) => {
+  const { vizData, submitVizOp } = useContext(VizContext);
+
+  const { text, path } = getWorkingFile(vizData, activeFileId);
   const view = useCodeMirror(activeFileId, {
     text,
     extension: extension(path),
-    emitOps: viz.submitOp.bind(viz)
+    // TODO rename to emitOp upstream
+    emitOps: submitVizOp
   });
   const ref = useRef();
 
