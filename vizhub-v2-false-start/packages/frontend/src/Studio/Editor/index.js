@@ -23,7 +23,6 @@ export const Editor = ({ activeFileId }) => {
   //   });
   // }, [vizId]);
 
-
   const view = useCodeMirror(activeFileId, {
     text,
     extension: extension(path),

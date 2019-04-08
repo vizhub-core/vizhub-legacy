@@ -1,6 +1,7 @@
 import { sampleCode } from './sampleCode';
 
 export const vizId = '57890243754890';
+export const vizId2 = '78594372895430';
 
 export const vizData = {
   ownerUserId: 'dashjfdsa8fdsa84hf84389g4839tr43',
@@ -12,8 +13,13 @@ export const vizData = {
   // Akin to the "working directory" using Git.
   working: {
     title: 'Visualization Title',
+
     // The configurable state variables for the Viz.
     state: {
+      xAxisLabel: {
+        type: 'string',
+        value: 'The X Axis'
+      },
       showGrid: {
         type: 'boolean',
         value: true
@@ -67,5 +73,14 @@ export const vizData = {
 
   // References a Commit by id.
   // Related https://www.npmjs.com/package/hat
-  head: '0c82a54f22f775a3ed8b97b2dea74036'
+  head: '0c82a54f22f775a3ed8b97b2dea74036',
+
+  // The id of the Viz that this Viz was forked from.
+  forkedFromVizId: null
+};
+
+export const vizSnapshots = {};
+vizSnapshots[vizId] = {
+  v: 0,
+  data: vizData
 };

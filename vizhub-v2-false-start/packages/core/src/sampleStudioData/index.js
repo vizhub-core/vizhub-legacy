@@ -1,13 +1,8 @@
-import { userData } from './test/userData';
-import { vizId, vizData } from './test/vizData';
+import { userData } from './userData';
+import { vizId, vizData, vizSnapshots } from './vizData';
 
-const vizSnapshots = {};
-vizSnapshots[vizId] = {
-  v: 0,
-  data: vizData
-};
-// TODO load data from server API / gateway.
-//
+export { vizId, vizData };
+
 // This will contain all the data required for the studio page:
 //  - Logged in user profile and preferences.
 //  - Visualization metadata
