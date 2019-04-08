@@ -20,6 +20,10 @@ export const Editor = ({ activeFileId }) => {
   });
   const ref = useRef();
 
+  // Keep the DOM nodes around for each CodeMirror instance.
+  // Swap them out as the active file changes.
+  // This is more performant than re-initializeing CodeMirror
+  // each time the user changes the active file.
   useEffect(() => {
     if (view) {
       ref.current.appendChild(view.dom);

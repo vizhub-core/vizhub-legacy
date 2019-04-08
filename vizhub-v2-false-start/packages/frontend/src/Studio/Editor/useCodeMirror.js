@@ -2,7 +2,7 @@ import { useCodeMirrorDynamicImport } from './useCodeMirrorDynamicImport';
 
 const views = {};
 
-const createView = (CodeMirror, id, options) => {
+const createView = (CodeMirror, fileId, options) => {
   const { text, extension, emitOps } = options;
   const {
     EditorState,
@@ -24,6 +24,8 @@ const createView = (CodeMirror, id, options) => {
     multipleSelections,
     ot
   } = CodeMirror;
+
+  const path = ['working', 'files', fileId, 'text'];
 
   const modesByExtension = { js: javascript, css };
   const modeOfExtension = modesByExtension[extension] || javascript;
@@ -47,16 +49,16 @@ const createView = (CodeMirror, id, options) => {
         'Shift-Tab': indentSelection
       }),
       keymap(baseKeymap),
-      ot(['working', 'files', id, 'text'], emitOps)
+      ot(path, emitOps)
     ]
   });
   return new EditorView({ state });
 };
 
-const getOrCreateView = (CodeMirror, id, options) =>
-  views[id] || (views[id] = createView(CodeMirror, id, options));
+const getOrCreateView = (CodeMirror, fileId, options) =>
+  views[fileId] || (views[fileId] = createView(CodeMirror, fileId, options));
 
-export const useCodeMirror = (id, options) => {
+export const useCodeMirror = (fileId, options) => {
   const CodeMirror = useCodeMirrorDynamicImport();
-  return CodeMirror && id && getOrCreateView(CodeMirror, id, options);
+  return CodeMirror && fileId && getOrCreateView(CodeMirror, fileId, options);
 };
