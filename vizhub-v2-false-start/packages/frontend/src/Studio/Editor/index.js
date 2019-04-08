@@ -12,6 +12,18 @@ export const Editor = ({ activeFileId }) => {
   const { vizData, submitVizOp } = useContext(VizContext);
 
   const { text, path } = getWorkingFile(vizData, activeFileId);
+
+  // TODO clear out the cache of CodeMirror instances
+  // (and unsubscribe their ops streams)
+  // whenever the vizId changes.
+  // useEffect(() => {
+  //   Object.values(codeMirrorViewCache).forEach(view => {
+  //     view.destroy();
+  //     view.unsubscribeFromVizOps();
+  //   });
+  // }, [vizId]);
+
+
   const view = useCodeMirror(activeFileId, {
     text,
     extension: extension(path),
