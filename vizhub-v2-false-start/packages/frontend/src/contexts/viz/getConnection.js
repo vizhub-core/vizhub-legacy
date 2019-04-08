@@ -1,8 +1,10 @@
 import { Connection } from 'sharedb/lib/client';
-//import WebSocket from 'reconnecting-websocket';
+import WebSocket from 'reconnecting-websocket';
 import { webSocketURL } from '../../environment';
 
+// App-wide global singleton.
 let connection;
+
 const makeConnection = () => {
   const ws = new WebSocket(webSocketURL);
 
