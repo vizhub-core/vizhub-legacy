@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import { VizContext } from '../../contexts';
-import { useEditorView } from './useEditorView';
 import { useCodeMirror } from './useCodeMirror';
+import { useMode } from './useMode';
+import { useEditorView } from './useEditorView';
 import { Wrapper, CodeMirrorGlobalStyle } from './styles';
-
-const extension = path => path.substr(path.lastIndexOf('.') + 1);
 
 // TODO move this to a central home for accessors (core?).
 const getWorkingFile = (vizData, fileId) => vizData.working.files[fileId];
@@ -12,7 +11,7 @@ const getWorkingFile = (vizData, fileId) => vizData.working.files[fileId];
 export const Editor = ({ activeFileId }) => {
   const { vizData, submitVizOp, subscribeToVizOps } = useContext(VizContext);
 
-  const { text, path } = getWorkingFile(vizData, activeFileId);
+  const file = getWorkingFile(vizData, activeFileId);
 
   // TODO clear out the cache of CodeMirror instances
   // (and unsubscribe their ops streams)
@@ -24,12 +23,15 @@ export const Editor = ({ activeFileId }) => {
   //   });
   // }, [vizId]);
   const CodeMirror = useCodeMirror();
+  const mode = useMode(CodeMirror, file.path);
 
   console.log(subscribeToVizOps);
 
-  const editorView = useEditorView(CodeMirror, activeFileId, {
-    text,
-    extension: extension(path),
+  const editorView = useEditorView({
+    CodeMirror,
+    fileId: activeFileId,
+    text: file.text,
+    mode,
     // TODO rename to emitOp upstream
     emitOps: submitVizOp,
     subscribeToOps: subscribeToVizOps
