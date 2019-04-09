@@ -2,7 +2,8 @@
   "name": "vizhub",
   "private": true,
   "scripts": {
-    "prettier": "prettier --single-quote --write 'packages/**/*.js' '!packages/*/build/**/*.js'"
+    "prettier": "prettier --single-quote --write 'packages/**/*.js' '!packages/*/build/**/*.js'",
+    "count": "find ./packages/*/src -type f -exec wc -l {} + | sort -rn | head -20"
   },
   "devDependencies": {
     "lerna": "^3.13.1",
