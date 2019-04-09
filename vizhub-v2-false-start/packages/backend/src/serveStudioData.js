@@ -3,16 +3,12 @@ import { snapshot } from './snapshot';
 
 export const serveStudioData = connection => (req, res) => {
   const { vizId } = req.params;
-  const viz = connection.get('viz', vizId);
-  viz.fetch(err => {
-    if (err) {
-      // TODO figure out when this error would occur. Missing DB connection?
-      console.log('TODO test and handle this case');
-      return res.setStatus(500).send(err);
-    }
-    if (viz.type === null) {
-      return res.sendStatus(404);
-    }
+  const doc = connection.get('viz', vizId);
+  doc.fetch(err => {
+    if (err) return res.setStatus(500).send(err);
+    if (doc.type === null) return res.sendStatus(404);
+
+    // TODO migrate away from sample data
     const {
       userData,
       authenticatedUserId,
@@ -21,7 +17,7 @@ export const serveStudioData = connection => (req, res) => {
     } = sampleStudioData;
 
     const vizSnapshots = {};
-    vizSnapshots[vizId] = snapshot(viz);
+    vizSnapshots[vizId] = snapshot(doc);
 
     const studioData = {
       vizSnapshots,
@@ -29,7 +25,7 @@ export const serveStudioData = connection => (req, res) => {
       authenticatedUserId,
       comments
     };
-    //console.log(studioData);
+
     res.send(studioData);
   });
 };

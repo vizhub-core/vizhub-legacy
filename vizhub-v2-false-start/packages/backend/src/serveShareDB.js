@@ -10,7 +10,6 @@ export const serveShareDB = server => {
   });
 
   new WebSocket.Server({ server }).on('connection', ws => {
-    console.log('connection made');
     share.listen(new JSONStream(ws));
   });
 
