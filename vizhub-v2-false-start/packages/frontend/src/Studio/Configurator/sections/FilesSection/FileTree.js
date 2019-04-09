@@ -1,6 +1,6 @@
 import React from 'react';
-import { Item } from './styles';
-import { Menu } from './Menu';
+import { Item } from '../../styles';
+import { Menu } from '../../Menu';
 export const FileTree = ({
   node: { children, id, name },
   activeFileId,
