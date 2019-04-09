@@ -57,6 +57,8 @@ const createView = options => {
   const editorView = new EditorView({ state });
 
   // TODO unsubscribe
+  // consider "editor view pool" idea?
+  // or, unsubscribe from all views when vizId changes?
   subscribeToOps((op, originatedLocally) => {
     if (!originatedLocally && json0.canOpAffectPath(op[0], path)) {
       applyingOpTransaction = true;

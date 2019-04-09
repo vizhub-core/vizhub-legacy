@@ -25,8 +25,6 @@ export const Editor = ({ activeFileId }) => {
   const CodeMirror = useCodeMirror();
   const mode = useMode(CodeMirror, file.path);
 
-  console.log(subscribeToVizOps);
-
   const editorView = useEditorView({
     CodeMirror,
     fileId: activeFileId,

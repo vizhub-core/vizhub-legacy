@@ -48,7 +48,7 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
       // This should never happen. Not sure when it would.
       if (err) throw err;
 
-      console.log('subscribed');
+      // console.log('subscribed');
 
       // Avoid errors related to "this" binding.
       const submitOp = op => doc.submitOp(op);
