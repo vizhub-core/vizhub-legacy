@@ -18,7 +18,6 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "reconnecting-websocket": "^4.1.10",
     "sharedb": "^1.0.0-beta.21",
     "styled-components": "^4.2.0",
     "timeago-react": "^2.0.1",

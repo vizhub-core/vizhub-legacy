@@ -1,5 +1,5 @@
 import { Connection } from 'sharedb/lib/client';
-import WebSocket from 'reconnecting-websocket';
+// import WebSocket from 'reconnecting-websocket';
 import { webSocketURL } from '../../environment';
 
 // App-wide global singleton.
