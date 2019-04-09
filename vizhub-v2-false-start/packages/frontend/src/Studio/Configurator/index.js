@@ -5,7 +5,7 @@ import {
   URLStateContext
 } from '../../contexts';
 import { CheckBoxSVG, ArrowBackSVG } from '../../svg';
-import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport';
+import { useCodeMirror } from '../Editor/useCodeMirror';
 import { FileTree } from './FileTree';
 import {
   Wrapper,
@@ -48,7 +48,7 @@ export const Configurator = ({ preloadFontFamily }) => {
   // Preload code font and CodeMirror JS,
   // so the user doesn't need to wait for these to load when they open a file.
   usePreloadFont(preloadFontFamily);
-  useCodeMirrorDynamicImport();
+  useCodeMirror();
 
   return (
     <Wrapper>
