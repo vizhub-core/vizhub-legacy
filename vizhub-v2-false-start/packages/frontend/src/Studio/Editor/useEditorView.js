@@ -1,7 +1,10 @@
+import { type as json0 } from 'ot-json0';
+import { opsToTransaction } from 'codemirror-ot';
+
 const views = {};
 
 const createView = options => {
-  const { CodeMirror, fileId, text, mode, emitOps } = options;
+  const { CodeMirror, fileId, text, mode, emitOps, subscribeToOps } = options;
   const {
     EditorState,
     EditorView,
@@ -22,6 +25,13 @@ const createView = options => {
 
   const path = ['working', 'files', fileId, 'text'];
 
+  let applyingOpTransaction = false;
+  const emitLocalOps = ops => {
+    if (!applyingOpTransaction) {
+      emitOps(ops);
+    }
+  };
+
   const isMac = /Mac/.test(navigator.platform);
   const state = EditorState.create({
     doc: text,
@@ -41,10 +51,21 @@ const createView = options => {
         'Shift-Tab': indentSelection
       }),
       keymap(baseKeymap),
-      ot(path, emitOps)
+      ot(path, emitLocalOps)
     ]
   });
-  return new EditorView({ state });
+  const editorView = new EditorView({ state });
+
+  // TODO unsubscribe
+  subscribeToOps((op, originatedLocally) => {
+    if (!originatedLocally && json0.canOpAffectPath(op[0], path)) {
+      applyingOpTransaction = true;
+      editorView.dispatch(opsToTransaction(path, editorView.state, op));
+      applyingOpTransaction = false;
+    }
+  });
+
+  return editorView;
 };
 
 const getOrCreateView = options => {
