@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Flex } from '../../styles';
-import { LogoSVGAspectRatio } from '../../svg';
 
 export const MainText = styled.div`
   color: ${props => props.theme.textMain};
@@ -17,14 +16,6 @@ export const Wrapper = styled.div`
 
 export const Padded = styled.div`
   padding: 8px;
-`;
-
-export const Header = styled(Flex)`
-  justify-content: space-between;
-`;
-
-export const Logo = styled.div`
-  width: ${props => props.theme.headerHeight * LogoSVGAspectRatio}px;
 `;
 
 export const Title = styled(MainText)`
@@ -51,12 +42,6 @@ export const Avatar = styled.img`
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
 `;
 
-export const HeaderAvatar = styled(Avatar)`
-  height: ${props => props.theme.headerHeight}px;
-  cursor: pointer;
-`;
-
-// Aligns the description to match the author name.
 const authorAlign = ({ theme }) =>
   theme.infoAvatarHeight + theme.infoAvatarPadding;
 

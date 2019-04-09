@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
-import { LogoSVG } from '../../svg';
 import { StudioDataContext, VizContext } from '../../contexts';
 import { OwnerInfo } from './OwnerInfo';
 import {
@@ -14,16 +13,13 @@ import {
 } from './Actions';
 import { Comments } from './Comments';
 import { ForkedFrom } from './ForkedFrom';
-import { avatarUrl } from './avatarUrl';
 import { formatViewCount } from './formatViewCount';
+import { Header } from './Header';
 import { Runner } from './Runner';
 import {
   Wrapper,
   Padded,
-  Header,
   TitleActions,
-  Logo,
-  HeaderAvatar,
   Description,
   TitleViewCount,
   Actions,
@@ -54,16 +50,10 @@ export const Viewer = withTheme(({ theme }) => {
 
   return (
     <Wrapper>
-      <Padded>
-        <Header>
-          <Logo>
-            <LogoSVG />
-          </Logo>
-          <HeaderAvatar
-            src={avatarUrl(authenticatedUserData, theme.headerHeight)}
-          />
-        </Header>
-      </Padded>
+      <Header
+        authenticatedUserData={authenticatedUserData}
+        height={theme.headerHeight}
+      />
       <Runner vizData={vizData} />
       <TitleActions>
         <Padded>
