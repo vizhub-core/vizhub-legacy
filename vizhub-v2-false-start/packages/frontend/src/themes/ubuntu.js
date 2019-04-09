@@ -1,7 +1,7 @@
 const theme = {
   container: {
     color: 'white',
-    background: '#300a24'
+    background: '#2a031f'
   },
   selection: { background: '#b6b6b6' },
   lineNumbers: { color: '#fce94f' },
