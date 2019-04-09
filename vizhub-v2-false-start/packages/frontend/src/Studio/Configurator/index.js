@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { VizContext, URLStateContext } from '../../contexts';
+import { URLStateContext } from '../../contexts';
 import { ArrowBackSVG } from '../../svg';
 import { useCodeMirror } from '../Editor/useCodeMirror';
 import { Wrapper, Header, HeaderIcon, HeaderTitle, Body } from './styles';
 import { usePreloadFont } from './usePreloadFont';
+
 import {
   StateSection,
   FilesSection,
@@ -12,13 +13,11 @@ import {
 } from './sections';
 
 export const Configurator = ({ preloadFontFamily }) => {
-  const { activeFileId, selectFile, toggleConfigurator } = useContext(
-    URLStateContext
-  );
-  const { vizData } = useContext(VizContext);
+  const { toggleConfigurator } = useContext(URLStateContext);
 
   // Preload code font and CodeMirror JS,
-  // so the user doesn't need to wait for these to load when they open a file.
+  // so the user doesn't need to wait for these
+  // to load when they open a file.
   usePreloadFont(preloadFontFamily);
   useCodeMirror();
 
@@ -32,11 +31,7 @@ export const Configurator = ({ preloadFontFamily }) => {
       </Header>
       <Body>
         <StateSection />
-        <FilesSection
-          vizData={vizData}
-          activeFileId={activeFileId}
-          selectFile={selectFile}
-        />
+        <FilesSection />
         <SettingsSection />
         <PreferencesSection />
       </Body>
