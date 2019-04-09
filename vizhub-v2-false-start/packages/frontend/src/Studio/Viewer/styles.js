@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Flex } from '../../styles';
+import { LogoSVGAspectRatio } from '../../svg';
 
 export const MainText = styled.div`
   color: ${props => props.theme.textMain};
@@ -22,8 +23,8 @@ export const Header = styled(Flex)`
   justify-content: space-between;
 `;
 
-export const Logo = styled.img`
-  height: ${props => props.theme.headerHeight}px;
+export const Logo = styled.div`
+  width: ${props => props.theme.headerHeight * LogoSVGAspectRatio}px;
 `;
 
 export const Title = styled(MainText)`

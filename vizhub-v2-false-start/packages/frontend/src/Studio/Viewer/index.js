@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
-import logo from '../../svg/logo.svg';
+import { LogoSVG } from '../../svg';
 import { StudioDataContext, VizContext } from '../../contexts';
 import { OwnerInfo } from './OwnerInfo';
 import {
@@ -37,7 +37,7 @@ export const Viewer = withTheme(({ theme }) => {
     StudioDataContext
   );
 
-  const viz = useContext(VizContext);
+  const { vizData } = useContext(VizContext);
 
   const {
     ownerUserId,
@@ -45,9 +45,10 @@ export const Viewer = withTheme(({ theme }) => {
     upvotes,
     downvotes,
     publishDateISOString
-  } = viz.data;
+  } = vizData;
+  const { title } = vizData.working;
+
   const publishDate = new Date(publishDateISOString);
-  const { title } = viz.data.working;
   const authenticatedUserData = userData[authenticatedUserId];
   const ownerUserData = userData[ownerUserId];
 
@@ -55,13 +56,15 @@ export const Viewer = withTheme(({ theme }) => {
     <Wrapper>
       <Padded>
         <Header>
-          <Logo src={logo} />
+          <Logo>
+            <LogoSVG />
+          </Logo>
           <HeaderAvatar
             src={avatarUrl(authenticatedUserData, theme.headerHeight)}
           />
         </Header>
       </Padded>
-      <Runner vizData={viz.data} />
+      <Runner vizData={vizData} />
       <TitleActions>
         <Padded>
           <TitleViewCount>

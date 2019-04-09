@@ -2,14 +2,14 @@
   "name": "vizhub-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node -r esm index.js"
+    "start": "node -r esm src/index.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@teamwork/websocket-json-stream": "^2.0.0",
+    "websocket-json-stream": "0.0.3",
     "express": "^4.16.4",
     "sharedb": "^1.0.0-beta.21",
     "ws": "^6.2.1",

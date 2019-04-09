@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRightSVG, ArrowDownSVG } from '../../../icons';
+import { ArrowRightSVG, ArrowDownSVG } from '../../../svg';
 import { Wrapper, Header, HeaderIcon, HeaderTitle, Body } from './styles';
 
 export const Foldable = ({ onClick, isActive, title, children, mono }) => (

@@ -1,17 +1,28 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import { withRouter } from 'react-router';
+import { VizHubError } from './VizHubError';
 
 export const ErrorContext = createContext();
 
-export const ErrorProvider = ({ errorPage, children }) => {
-  // Error objects are expected to have the following fields:
-  //  - statusCode (optional) - for API requests, e.g. 404, 500
-  //  - title - the title to display for the error
-  //  - message - a longer description of the error
+export const ErrorProvider = withRouter(({ errorPage, children, history }) => {
   const [error, setError] = useState();
+
+  if (!error instanceof VizHubError) throw Error();
+
+  // Clear error on navigate (e.g. back button).
+  useEffect(
+    () =>
+      history.listen(() => {
+        setError(undefined);
+      }),
+    []
+  );
 
   return error ? (
     errorPage(error)
   ) : (
     <ErrorContext.Provider value={setError}>{children}</ErrorContext.Provider>
   );
-};
+});
+
+export { VizHubError };

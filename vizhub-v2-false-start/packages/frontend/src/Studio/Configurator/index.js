@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { ArrowBackSVG } from '../../icons';
 import {
   PreferencesContext,
   VizContext,
   URLStateContext
 } from '../../contexts';
+import { CheckBoxSVG, ArrowBackSVG } from '../../svg';
+import { useCodeMirror } from '../Editor/useCodeMirror';
 import { FileTree } from './FileTree';
 import {
   Wrapper,
@@ -18,8 +19,6 @@ import {
   WidgetTitle,
   WidgetValue
 } from './styles';
-import { CheckBoxSVG } from '../../icons';
-import { useCodeMirrorDynamicImport } from '../Editor/useCodeMirrorDynamicImport';
 import { Section } from './Section';
 import { usePreloadFont } from './usePreloadFont';
 import { RadioMenu } from './RadioMenu';
@@ -29,8 +28,8 @@ export const Configurator = ({ preloadFontFamily }) => {
   const { activeFileId, selectFile, toggleConfigurator } = useContext(
     URLStateContext
   );
-  const viz = useContext(VizContext);
-  const fileTree = getFileTree(viz.data);
+  const { vizData } = useContext(VizContext);
+  const fileTree = getFileTree(vizData);
 
   const {
     colorTheme,
@@ -49,7 +48,7 @@ export const Configurator = ({ preloadFontFamily }) => {
   // Preload code font and CodeMirror JS,
   // so the user doesn't need to wait for these to load when they open a file.
   usePreloadFont(preloadFontFamily);
-  useCodeMirrorDynamicImport();
+  useCodeMirror();
 
   return (
     <Wrapper>

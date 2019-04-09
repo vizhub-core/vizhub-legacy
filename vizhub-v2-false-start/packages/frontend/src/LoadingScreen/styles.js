@@ -14,7 +14,7 @@ const spin = keyframes`
   to { transform: rotate(360deg) scale(2); }
 `;
 
-export const SpinningImage = styled.img`
+export const SpinningLogo = styled.div`
   animation: ${spin} infinite 20s linear;
-  height: 25vmin;
+  width: 100vmin;
 `;

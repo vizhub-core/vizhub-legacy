@@ -2,17 +2,14 @@
   "name": "vizhub-core",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "mocha -r esm",
-    "prettier": "prettier --single-quote --write './**/*.js'"
+    "test": "mocha -r esm"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Curran Kelleher, Datavis Tech INC",
   "devDependencies": {
     "esm": "^3.2.14",
-    "mocha": "^6.0.2",
-    "prettier": "^1.16.4"
+    "mocha": "^6.0.2"
   },
   "dependencies": {
     "diff-match-patch": "^1.0.4",
