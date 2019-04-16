@@ -9,7 +9,12 @@ import { Wrapper, CodeMirrorGlobalStyle } from './styles';
 const getWorkingFile = (vizData, fileId) => vizData.working.files[fileId];
 
 export const Editor = ({ activeFileId }) => {
-  const { vizData, submitVizOp, subscribeToVizOps } = useContext(VizContext);
+  const {
+    vizData,
+    submitVizOp,
+    subscribeToVizOps,
+    submitVizPresence
+  } = useContext(VizContext);
 
   const file = getWorkingFile(vizData, activeFileId);
 
@@ -32,7 +37,11 @@ export const Editor = ({ activeFileId }) => {
     mode,
     // TODO rename to emitOp upstream
     emitOps: submitVizOp,
-    subscribeToOps: subscribeToVizOps
+    subscribeToOps: subscribeToVizOps,
+    submitPresence: submitVizPresence,
+
+    // TODO use the currently authenticated user.
+    userId: Math.random()
   });
   const ref = useRef();
 

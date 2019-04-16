@@ -4,7 +4,16 @@ import { opsToTransaction } from 'codemirror-ot';
 const views = {};
 
 const createView = options => {
-  const { CodeMirror, fileId, text, mode, emitOps, subscribeToOps } = options;
+  const {
+    CodeMirror,
+    fileId,
+    text,
+    mode,
+    emitOps,
+    subscribeToOps,
+    submitPresence,
+    userId
+  } = options;
   const {
     EditorState,
     EditorView,
@@ -26,9 +35,12 @@ const createView = options => {
 
   const path = ['working', 'files', fileId, 'text'];
 
-  let applyingOpTransaction = false;
+  let applyingRemoteOp = false;
+  const shouldSubmitPresence = () => !applyingRemoteOp;
+
+  // TODO change approach, use shouldSubmit
   const emitLocalOps = ops => {
-    if (!applyingOpTransaction) {
+    if (!applyingRemoteOp) {
       emitOps(ops);
     }
   };
@@ -53,7 +65,7 @@ const createView = options => {
       }),
       keymap(baseKeymap),
       ot(path, emitLocalOps),
-      presence()
+      presence(path, userId, submitPresence, shouldSubmitPresence)
     ]
   });
   const editorView = new EditorView({ state });
@@ -63,9 +75,9 @@ const createView = options => {
   // or, unsubscribe from all views when vizId changes?
   subscribeToOps((op, originatedLocally) => {
     if (!originatedLocally && json0.canOpAffectPath(op[0], path)) {
-      applyingOpTransaction = true;
+      applyingRemoteOp = true;
       editorView.dispatch(opsToTransaction(path, editorView.state, op));
-      applyingOpTransaction = false;
+      applyingRemoteOp = false;
     }
   });
 
