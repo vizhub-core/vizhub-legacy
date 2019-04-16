@@ -9,9 +9,10 @@ const createView = options => {
     fileId,
     text,
     mode,
-    emitOps,
+    emitOps, // TODO change to submitOp
     subscribeToOps,
     submitPresence,
+    subscribeToPresence,
     userId
   } = options;
 
@@ -81,6 +82,9 @@ const createView = options => {
       editorView.dispatch(opsToTransaction(path, editorView.state, op));
       isApplyingRemoteOp = false;
     }
+  });
+  subscribeToPresence(() => {
+    console.log('presence changed');
   });
 
   return editorView;

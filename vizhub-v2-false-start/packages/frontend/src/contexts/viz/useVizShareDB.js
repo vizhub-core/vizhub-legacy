@@ -44,6 +44,11 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
     return () => doc.off('op', handleOp);
   };
 
+  const subscribeToVizPresence = handlePresence => {
+    doc.on('presence', handlePresence);
+    return () => doc.off('presence', handlePresence);
+  };
+
   // Subscribe to document updates via WebSocket.
   useEffect(() => {
     doc.subscribe(err => {
@@ -77,7 +82,7 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
     vizData,
     submitVizOp,
     subscribeToVizOps,
-    submitVizPresence
-    //subscribeToVizPresence
+    submitVizPresence,
+    subscribeToVizPresence
   };
 };

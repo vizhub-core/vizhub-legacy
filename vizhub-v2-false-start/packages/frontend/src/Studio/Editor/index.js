@@ -13,7 +13,8 @@ export const Editor = ({ activeFileId }) => {
     vizData,
     submitVizOp,
     subscribeToVizOps,
-    submitVizPresence
+    submitVizPresence,
+    subscribeToVizPresence
   } = useContext(VizContext);
 
   const file = getWorkingFile(vizData, activeFileId);
@@ -39,6 +40,7 @@ export const Editor = ({ activeFileId }) => {
     emitOps: submitVizOp,
     subscribeToOps: subscribeToVizOps,
     submitPresence: submitVizPresence,
+    subscribeToPresence: subscribeToVizPresence,
 
     // TODO use the currently authenticated user.
     userId: Math.random()
