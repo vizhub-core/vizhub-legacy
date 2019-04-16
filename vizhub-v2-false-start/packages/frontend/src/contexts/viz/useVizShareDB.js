@@ -45,8 +45,11 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
   };
 
   const subscribeToVizPresence = handlePresence => {
-    doc.on('presence', handlePresence);
-    return () => doc.off('presence', handlePresence);
+    const callback = srcList => {
+      handlePresence(srcList.map(src => doc.presence[src]));
+    };
+    doc.on('presence', callback);
+    return () => doc.off('presence', callback);
   };
 
   // Subscribe to document updates via WebSocket.

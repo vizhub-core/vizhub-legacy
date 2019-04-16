@@ -41,6 +41,9 @@ export const Editor = ({ activeFileId }) => {
     subscribeToOps: subscribeToVizOps,
     submitPresence: submitVizPresence,
     subscribeToPresence: subscribeToVizPresence,
+    displayPresence: ({ x, y }) => {
+      console.log('display that ', x, y);
+    },
 
     // TODO use the currently authenticated user.
     userId: Math.random()

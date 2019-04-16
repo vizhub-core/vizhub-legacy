@@ -13,7 +13,8 @@ const createView = options => {
     subscribeToOps,
     submitPresence,
     subscribeToPresence,
-    userId
+    userId,
+    displayPresence
   } = options;
 
   const {
@@ -83,8 +84,13 @@ const createView = options => {
       isApplyingRemoteOp = false;
     }
   });
-  subscribeToPresence(() => {
-    console.log('presence changed');
+
+  subscribeToPresence(presenceObjects => {
+    presenceObjects.forEach(presenceObject => {
+      const [from, to] = presenceObject.s.s[0];
+      const { x, y } = editorView.coordsAtPos(from);
+      displayPresence({ x, y });
+    });
   });
 
   return editorView;
