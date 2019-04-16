@@ -14,6 +14,7 @@ const createView = options => {
     submitPresence,
     userId
   } = options;
+
   const {
     EditorState,
     EditorView,
@@ -35,12 +36,12 @@ const createView = options => {
 
   const path = ['working', 'files', fileId, 'text'];
 
-  let applyingRemoteOp = false;
-  const shouldSubmitPresence = () => !applyingRemoteOp;
+  let isApplyingRemoteOp = false;
+  const applyingRemoteOp = () => isApplyingRemoteOp;
 
-  // TODO change approach, use shouldSubmit
+  // TODO change upstream to accept applyingRemoteOp.
   const emitLocalOps = ops => {
-    if (!applyingRemoteOp) {
+    if (!isApplyingRemoteOp) {
       emitOps(ops);
     }
   };
@@ -65,9 +66,10 @@ const createView = options => {
       }),
       keymap(baseKeymap),
       ot(path, emitLocalOps),
-      presence(path, userId, submitPresence, shouldSubmitPresence)
+      presence(path, userId, submitPresence, applyingRemoteOp)
     ]
   });
+
   const editorView = new EditorView({ state });
 
   // TODO unsubscribe
@@ -75,9 +77,9 @@ const createView = options => {
   // or, unsubscribe from all views when vizId changes?
   subscribeToOps((op, originatedLocally) => {
     if (!originatedLocally && json0.canOpAffectPath(op[0], path)) {
-      applyingRemoteOp = true;
+      isApplyingRemoteOp = true;
       editorView.dispatch(opsToTransaction(path, editorView.state, op));
-      applyingRemoteOp = false;
+      isApplyingRemoteOp = false;
     }
   });
 
