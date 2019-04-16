@@ -7,11 +7,14 @@ export const presence = (path, userId, submitPresence, applyingRemoteOp) =>
     init: () => ({}),
     apply: (transaction, state) => {
       if (!applyingRemoteOp()) {
-        const { to, from } = transaction.selection.primary;
         submitPresence({
           p: path,
           t: 'text0',
-          s: { u: userId, c: 0, s: [[to, from]] }
+          s: {
+            u: userId,
+            c: 0, // TODO increment this (if/when use case emerges)
+            s: transaction.selection.ranges.map(range => [range.to, range.from])
+          }
         });
       }
       return state;
