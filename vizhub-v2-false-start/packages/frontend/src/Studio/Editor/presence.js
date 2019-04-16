@@ -13,7 +13,10 @@ export const presence = (path, userId, submitPresence, applyingRemoteOp) =>
           s: {
             u: userId,
             c: 0, // TODO increment this (if/when use case emerges)
-            s: transaction.selection.ranges.map(range => [range.to, range.from])
+            s: transaction.selection.ranges.map(range => [
+              range.anchor,
+              range.head
+            ])
           }
         });
       }

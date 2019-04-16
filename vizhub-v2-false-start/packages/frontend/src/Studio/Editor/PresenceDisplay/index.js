@@ -2,4 +2,8 @@ import React from 'react';
 import { Wrapper } from './styles';
 
 export const PresenceDisplay = ({ data }) =>
-  data ? <Wrapper x={data.x} y={data.y} height={data.height} /> : null;
+  data
+    ? data.map(({ x, y, height }, i) => (
+        <Wrapper key={i} x={x} y={y} height={height} />
+      ))
+    : null;

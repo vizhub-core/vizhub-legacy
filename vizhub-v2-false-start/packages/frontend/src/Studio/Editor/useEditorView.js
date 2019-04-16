@@ -86,10 +86,12 @@ const createView = options => {
   });
 
   subscribeToPresence(presenceObjects => {
-    presenceObjects.forEach(presenceObject => {
-      const [from /*, to */] = presenceObject.s.s[0];
-      displayPresence(editorView.coordsAtPos(from));
-    });
+    displayPresence(
+      presenceObjects.map(presenceObject => {
+        const [from /*, to */] = presenceObject.s.s[0];
+        return editorView.coordsAtPos(from);
+      })
+    );
   });
 
   return editorView;

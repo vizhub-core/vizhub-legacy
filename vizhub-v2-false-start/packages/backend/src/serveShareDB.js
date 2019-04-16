@@ -15,7 +15,14 @@ export const serveShareDB = server => {
   });
 
   new WebSocket.Server({ server }).on('connection', ws => {
-    share.listen(new JSONStream(ws));
+    const stream = new JSONStream(ws);
+
+    // Prevent server crashes on errors.
+    stream.on('error', error => {
+      console.log('WebSocket stream error: ' + error.message);
+    });
+
+    share.listen(stream);
   });
 
   return share;
