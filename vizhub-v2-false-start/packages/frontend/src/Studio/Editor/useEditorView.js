@@ -87,9 +87,8 @@ const createView = options => {
 
   subscribeToPresence(presenceObjects => {
     presenceObjects.forEach(presenceObject => {
-      const [from, to] = presenceObject.s.s[0];
-      const { x, y } = editorView.coordsAtPos(from);
-      displayPresence({ x, y });
+      const [from /*, to */] = presenceObject.s.s[0];
+      displayPresence(editorView.coordsAtPos(from));
     });
   });
 
