@@ -46,7 +46,6 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
 
   // Subscribe to document updates via WebSocket.
   useEffect(() => {
-
     doc.subscribe(err => {
       // This should never happen. Not sure when it would.
       if (err) throw err;
@@ -78,7 +77,7 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
     vizData,
     submitVizOp,
     subscribeToVizOps,
-    submitVizPresence,
+    submitVizPresence
     //subscribeToVizPresence
   };
 };

@@ -20,7 +20,8 @@ const createView = options => {
     matchBrackets,
     specialChars,
     multipleSelections,
-    ot
+    ot,
+    presence
   } = CodeMirror;
 
   const path = ['working', 'files', fileId, 'text'];
@@ -51,7 +52,8 @@ const createView = options => {
         'Shift-Tab': indentSelection
       }),
       keymap(baseKeymap),
-      ot(path, emitLocalOps)
+      ot(path, emitLocalOps),
+      presence()
     ]
   });
   const editorView = new EditorView({ state });
