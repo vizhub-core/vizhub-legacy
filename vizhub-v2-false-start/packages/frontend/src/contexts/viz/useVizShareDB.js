@@ -37,6 +37,8 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
     return shareDBDoc;
   }, [vizId]);
 
+  const submitVizPresence = useMemo(() => doc.submitPresence.bind(doc), [doc]);
+
   const subscribeToVizOps = handleOp => {
     doc.on('op', handleOp);
     return () => doc.off('op', handleOp);
@@ -44,11 +46,10 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
 
   // Subscribe to document updates via WebSocket.
   useEffect(() => {
+
     doc.subscribe(err => {
       // This should never happen. Not sure when it would.
       if (err) throw err;
-
-      // console.log('subscribed');
 
       // Avoid errors related to "this" binding.
       const submitOp = op => doc.submitOp(op);
@@ -76,6 +77,8 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
   return {
     vizData,
     submitVizOp,
-    subscribeToVizOps
+    subscribeToVizOps,
+    submitVizPresence,
+    //subscribeToVizPresence
   };
 };
