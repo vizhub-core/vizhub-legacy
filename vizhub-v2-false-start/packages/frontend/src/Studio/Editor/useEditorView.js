@@ -88,8 +88,12 @@ const createView = options => {
   subscribeToPresence(presenceObjects => {
     displayPresence(
       presenceObjects.map(presenceObject => {
-        const [from /*, to */] = presenceObject.s.s[0];
-        return editorView.coordsAtPos(from);
+        const [from, to] = presenceObject.s.s[0];
+        return {
+          presence: presenceObject,
+          pixelCoordsFrom: editorView.coordsAtPos(from),
+          pixelCoordsTo: editorView.coordsAtPos(to)
+        };
       })
     );
   });
