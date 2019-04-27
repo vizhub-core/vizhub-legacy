@@ -1,6 +1,10 @@
-import { Connection } from 'sharedb/lib/client';
-// import WebSocket from 'reconnecting-websocket';
+import ShareDB, { Connection } from '@teamwork/sharedb/lib/client';
+import json0 from '@datavis-tech/ot-json0';
 import { webSocketURL } from '../../environment';
+
+// TODO isolate this in vizhub-common
+ShareDB.types.register(json0.type);
+ShareDB.types.defaultType = json0.type;
 
 // App-wide global singleton.
 let connection;
@@ -11,12 +15,12 @@ const makeConnection = () => {
   ws.onopen = () => {
     console.log('onopen');
   };
+
   ws.onclose = event => {
     console.log('close');
     console.log(event);
   };
-  // TODO consider timeout error for development,
-  // as this fires only after 2 minutes.
+
   ws.onerror = event => {
     console.log('error');
     console.log(event);
@@ -25,9 +29,6 @@ const makeConnection = () => {
   connection = new Connection(ws);
   return connection;
 };
-
-//let i = 0;
-//setInterval(() => console.log(i++), 1000);
 
 //export const connection = new Connection(ws);
 export const getConnection = () => connection || makeConnection();

@@ -1,7 +1,7 @@
 // TODO use this
 // TODO move this to a central place
 export class Document {
-  // Returns an object containing the "vizData", documented in vizhub-core.
+  // Returns an object containing the "vizData", documented in vizhub-common.
   // The object should updated according to immutable update patterns.
   getData() {
     throw Error();

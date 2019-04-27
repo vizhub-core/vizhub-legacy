@@ -18,3 +18,4 @@ export {
   multipleSelections
 } from '@datavis-tech/codemirror-6-prerelease';
 export { ot } from 'codemirror-ot';
+export { presence } from './presence';

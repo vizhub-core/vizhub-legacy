@@ -1,4 +1,4 @@
-import { sampleStudioData } from 'vizhub-core';
+import { sampleStudioData } from 'vizhub-common';
 
 // Set up initial document for testing during development.
 export const initializeSampleStudioData = connection => {

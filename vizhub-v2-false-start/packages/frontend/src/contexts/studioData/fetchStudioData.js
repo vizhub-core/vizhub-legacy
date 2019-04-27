@@ -1,4 +1,4 @@
-import { sampleStudioData } from 'vizhub-core';
+import { sampleStudioData } from 'vizhub-common';
 import { avoidBackend } from '../../environment';
 
 const fetchRealStudioData = vizId => fetch(`/api/studio/data/${vizId}`);

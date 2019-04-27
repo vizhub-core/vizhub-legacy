@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { sampleStudioData } from 'vizhub-core';
+import { sampleStudioData } from 'vizhub-common';
 
 const vizId = Object.keys(sampleStudioData.vizSnapshots)[0];
 const userId = Object.keys(sampleStudioData.userData)[0];

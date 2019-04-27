@@ -1,4 +1,4 @@
-import { sampleStudioData } from 'vizhub-core';
+import { sampleStudioData } from 'vizhub-common';
 import { snapshot } from './snapshot';
 
 export const serveStudioData = connection => (req, res) => {

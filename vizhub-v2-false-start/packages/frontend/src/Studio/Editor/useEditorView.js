@@ -4,7 +4,19 @@ import { opsToTransaction } from 'codemirror-ot';
 const views = {};
 
 const createView = options => {
-  const { CodeMirror, fileId, text, mode, emitOps, subscribeToOps } = options;
+  const {
+    CodeMirror,
+    fileId,
+    text,
+    mode,
+    emitOps, // TODO change to submitOp
+    subscribeToOps,
+    submitPresence,
+    subscribeToPresence,
+    userId,
+    displayPresence
+  } = options;
+
   const {
     EditorState,
     EditorView,
@@ -20,14 +32,18 @@ const createView = options => {
     matchBrackets,
     specialChars,
     multipleSelections,
-    ot
+    ot,
+    presence
   } = CodeMirror;
 
   const path = ['working', 'files', fileId, 'text'];
 
-  let applyingOpTransaction = false;
+  let isApplyingRemoteOp = false;
+  const applyingRemoteOp = () => isApplyingRemoteOp;
+
+  // TODO change upstream to accept applyingRemoteOp.
   const emitLocalOps = ops => {
-    if (!applyingOpTransaction) {
+    if (!isApplyingRemoteOp) {
       emitOps(ops);
     }
   };
@@ -51,9 +67,11 @@ const createView = options => {
         'Shift-Tab': indentSelection
       }),
       keymap(baseKeymap),
-      ot(path, emitLocalOps)
+      ot(path, emitLocalOps),
+      presence(path, userId, submitPresence, applyingRemoteOp)
     ]
   });
+
   const editorView = new EditorView({ state });
 
   // TODO unsubscribe
@@ -61,10 +79,23 @@ const createView = options => {
   // or, unsubscribe from all views when vizId changes?
   subscribeToOps((op, originatedLocally) => {
     if (!originatedLocally && json0.canOpAffectPath(op[0], path)) {
-      applyingOpTransaction = true;
+      isApplyingRemoteOp = true;
       editorView.dispatch(opsToTransaction(path, editorView.state, op));
-      applyingOpTransaction = false;
+      isApplyingRemoteOp = false;
     }
+  });
+
+  subscribeToPresence(presenceObjects => {
+    displayPresence(
+      presenceObjects.map(presenceObject => {
+        const [from, to] = presenceObject.s.s[0];
+        return {
+          presence: presenceObject,
+          pixelCoordsFrom: editorView.coordsAtPos(from),
+          pixelCoordsTo: editorView.coordsAtPos(to)
+        };
+      })
+    );
   });
 
   return editorView;
