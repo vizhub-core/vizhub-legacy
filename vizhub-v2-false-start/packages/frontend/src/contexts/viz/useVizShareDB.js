@@ -46,7 +46,11 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
 
   const subscribeToVizPresence = handlePresence => {
     const callback = srcList => {
-      handlePresence(srcList.map(src => doc.presence[src]).filter(d => d));
+      //handlePresence(srcList.map(src => doc.presence[src]).filter(d => d));
+      //console.log(doc.presence);
+      //
+      // TODO add a test for this.
+      handlePresence(Object.values(doc.presence).filter(d => d));
     };
     doc.on('presence', callback);
     return () => doc.off('presence', callback);
