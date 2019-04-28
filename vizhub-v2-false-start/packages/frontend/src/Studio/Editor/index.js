@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext, useState } from 'react';
+import React, { useRef, useEffect, useContext, useState, useMemo } from 'react';
 import { VizContext } from '../../contexts';
 import { useCodeMirror } from './useCodeMirror';
 import { useMode } from './useMode';
@@ -33,6 +33,7 @@ export const Editor = ({ activeFileId }) => {
   // }, [vizId]);
   const CodeMirror = useCodeMirror();
   const mode = useMode(CodeMirror, file.path);
+  const userId = useMemo(() => Math.random(), []);
 
   const editorView = useEditorView({
     CodeMirror,
@@ -45,9 +46,7 @@ export const Editor = ({ activeFileId }) => {
     submitPresence: submitVizPresence,
     subscribeToPresence: subscribeToVizPresence,
     displayPresence: setPresenceDisplayData,
-
-    // TODO use the currently authenticated user.
-    userId: Math.random()
+    userId
   });
   const ref = useRef();
 
@@ -72,7 +71,7 @@ export const Editor = ({ activeFileId }) => {
     <>
       <CodeMirrorGlobalStyle />
       <Wrapper onClick={focusEditorView} ref={ref} />
-      <PresenceDisplay data={presenceDisplayData} />
+      <PresenceDisplay data={presenceDisplayData} userId={userId} />
     </>
   );
 };
