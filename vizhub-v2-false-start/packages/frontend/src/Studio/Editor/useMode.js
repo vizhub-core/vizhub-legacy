@@ -4,7 +4,7 @@ const extension = path => path.substr(path.lastIndexOf('.') + 1);
 const modeNameByExtension = {
   js: 'javascript',
   css: 'css',
-  html: 'javascript' // TODO change to html
+  html: 'xml' // TODO change to html
 };
 
 // Set up the mode based on the file extension, for syntax highlighting.
