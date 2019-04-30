@@ -15,8 +15,6 @@ export const useMode = (CodeMirror, filePath) => {
   const modeName = modeNameByExtension[extension(filePath)];
   const modeOfExtension = legacyModes[modeName];
 
-  console.log({modeOfExtension});
-
   return legacyMode({
     mode: modeOfExtension({ indentUnit: 2 }, {})
   });
