@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@datavis-tech/codemirror-6-prerelease": "^4.4.0",
+    "@datavis-tech/codemirror-6-prerelease": "^5.0.0",
     "@datavis-tech/ot-json0": "^1.2.0",
     "@emotion/hash": "^0.7.1",
     "@teamwork/sharedb": "^3.1.0",
