@@ -4,4 +4,7 @@ export {
   vizData,
   forkVizId
 } from './sampleStudioData';
+
 export { fork } from './fork';
+
+export { VizHubError } from './VizHubError';
