@@ -2,6 +2,7 @@
   "name": "vizhub",
   "private": true,
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "prettier": "prettier --single-quote --write 'packages/**/*.js' '!packages/*/build/**/*.js'",
     "count": "find ./packages/*/src -type f -exec wc -l {} + | sort -rn | head -20"
   },
