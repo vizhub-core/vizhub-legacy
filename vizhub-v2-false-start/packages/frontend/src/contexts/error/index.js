@@ -15,7 +15,7 @@ export const ErrorProvider = withRouter(({ errorPage, children, history }) => {
       history.listen(() => {
         setError(undefined);
       }),
-    []
+    [history]
   );
 
   return error ? (

@@ -11,9 +11,8 @@ export {
   baseKeymap,
   indentSelection,
   legacyMode,
+  legacyModes,
   matchBrackets,
-  javascript,
-  css,
   specialChars,
   multipleSelections
 } from '@datavis-tech/codemirror-6-prerelease';

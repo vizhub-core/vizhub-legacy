@@ -1,5 +1,6 @@
 import { type as json0 } from 'ot-json0';
 import { opsToTransaction } from 'codemirror-ot';
+import { enablePresence } from '../../environment';
 
 const views = {};
 
@@ -49,27 +50,31 @@ const createView = options => {
   };
 
   const isMac = /Mac/.test(navigator.platform);
+  const extensions = [
+    lineNumbers(),
+    history(),
+    specialChars(),
+    multipleSelections(),
+    mode,
+    matchBrackets(),
+    keymap({
+      'Mod-z': undo,
+      'Mod-Shift-z': redo,
+      'Mod-u': view => undoSelection(view) || true,
+      [isMac ? 'Mod-Shift-u' : 'Alt-u']: redoSelection,
+      'Ctrl-y': isMac ? undefined : redo,
+      'Shift-Tab': indentSelection
+    }),
+    keymap(baseKeymap),
+    ot(path, emitLocalOps),
+  ];
+  if (enablePresence) {
+    extensions.push(presence(path, userId, submitPresence, applyingRemoteOp));
+  }
+
   const state = EditorState.create({
     doc: text,
-    extensions: [
-      lineNumbers(),
-      history(),
-      specialChars(),
-      multipleSelections(),
-      mode,
-      matchBrackets(),
-      keymap({
-        'Mod-z': undo,
-        'Mod-Shift-z': redo,
-        'Mod-u': view => undoSelection(view) || true,
-        [isMac ? 'Mod-Shift-u' : 'Alt-u']: redoSelection,
-        'Ctrl-y': isMac ? undefined : redo,
-        'Shift-Tab': indentSelection
-      }),
-      keymap(baseKeymap),
-      ot(path, emitLocalOps),
-      presence(path, userId, submitPresence, applyingRemoteOp)
-    ]
+    extensions
   });
 
   const editorView = new EditorView({ state });

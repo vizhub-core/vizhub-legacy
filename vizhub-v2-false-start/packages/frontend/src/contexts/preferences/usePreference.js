@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 export const usePreference = (key, gateway) => {
+
   const [value, setValue] = useState(gateway.get(key));
+
   useEffect(() => {
     const listener = changed => {
       if (changed === key) {
@@ -11,6 +13,8 @@ export const usePreference = (key, gateway) => {
     return () => {
       gateway.off('change', listener);
     };
-  }, []);
+  }, [key, gateway]);
+
   return [value, gateway.set(key)];
+
 };
