@@ -34,9 +34,13 @@ export const Runner = ({ vizData }) => {
   // depending on context.
   const srcDoc = useSrcDoc(vizData.working.files);
 
+  // TODO investigate whether this is really necessary.
+  // We can know what changed directly based on Ops.
+  const srcDocHash = hash(srcDoc);
+
   useEffect(() => {
     iframeRef.current.setAttribute('srcDoc', srcDoc);
-  }, [hash(srcDoc)]);
+  }, [srcDocHash, srcDoc]);
 
   return <IFrame ref={iframeRef} width="300" height="200" />;
 };

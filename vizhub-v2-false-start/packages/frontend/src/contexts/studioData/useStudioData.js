@@ -30,7 +30,7 @@ export const useStudioData = vizId => {
         }
       });
     }
-  }, [vizId]);
+  }, [vizId, setError, state]);
 
   return state[vizId] && state[vizId].studioData;
 };

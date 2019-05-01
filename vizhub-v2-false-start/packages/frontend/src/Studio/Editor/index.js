@@ -56,9 +56,10 @@ export const Editor = ({ activeFileId }) => {
   // each time the user changes the active file.
   useEffect(() => {
     if (editorView) {
-      ref.current.appendChild(editorView.dom);
+      const current = ref.current;
+      current.appendChild(editorView.dom);
       return () => {
-        ref.current.removeChild(editorView.dom);
+        current.removeChild(editorView.dom);
       };
     }
   }, [editorView]);
