@@ -48,6 +48,7 @@ export const Editor = ({ activeFileId }) => {
     displayPresence: setPresenceDisplayData,
     userId
   });
+
   const ref = useRef();
 
   // Keep the DOM nodes around for each CodeMirror instance.

@@ -2,6 +2,11 @@ import { type as json0 } from 'ot-json0';
 import { opsToTransaction } from 'codemirror-ot';
 import { enablePresence } from '../../environment';
 
+// A cache of view instances.
+// The idea is that this will exist once per visualization.
+// When the user navigates between visualizations,
+// all these views (and their corresponding subscriptions)
+// should be cleaned up.
 const views = {};
 
 const createView = options => {
@@ -90,7 +95,10 @@ const createView = options => {
     }
   });
 
+  // TODO move this logic somewhere else.
+  // It doesn't feel right to have this subscription in each and every view.
   subscribeToPresence(presenceObjects => {
+    console.log('subscribed to presence in view for file ' + fileId);
     displayPresence(
       presenceObjects.map(presenceObject => {
         const [from, to] = presenceObject.s.s[0];
