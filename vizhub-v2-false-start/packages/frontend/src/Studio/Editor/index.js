@@ -72,7 +72,11 @@ export const Editor = ({ activeFileId }) => {
     <>
       <CodeMirrorGlobalStyle />
       <Wrapper onClick={focusEditorView} ref={ref} />
-      <PresenceDisplay data={presenceDisplayData} userId={userId} />
+      <PresenceDisplay
+        data={presenceDisplayData}
+        userId={userId}
+        activeFileId={activeFileId}
+      />
     </>
   );
 };

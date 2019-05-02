@@ -1,6 +1,5 @@
 export class VizHubError {
   constructor({ statusCode, title, message }) {
-
     // HTTP status code for API requests, e.g. "404", "500" (optional)
     this.statusCode = statusCode;
 
