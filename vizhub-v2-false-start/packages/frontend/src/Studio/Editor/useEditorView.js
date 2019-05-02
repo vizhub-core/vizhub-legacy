@@ -66,7 +66,7 @@ const createView = options => {
       'Shift-Tab': indentSelection
     }),
     keymap(baseKeymap),
-    ot(path, emitLocalOps),
+    ot(path, emitLocalOps)
   ];
   if (enablePresence) {
     extensions.push(presence(path, userId, submitPresence, applyingRemoteOp));

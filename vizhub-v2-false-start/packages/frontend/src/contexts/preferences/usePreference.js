@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 export const usePreference = (key, gateway) => {
-
   const [value, setValue] = useState(gateway.get(key));
 
   useEffect(() => {
@@ -16,5 +15,4 @@ export const usePreference = (key, gateway) => {
   }, [key, gateway]);
 
   return [value, gateway.set(key)];
-
 };

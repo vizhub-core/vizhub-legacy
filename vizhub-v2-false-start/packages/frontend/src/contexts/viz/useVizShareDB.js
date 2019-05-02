@@ -39,10 +39,13 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
 
   const submitVizPresence = useMemo(() => doc.submitPresence.bind(doc), [doc]);
 
-  const subscribeToVizOps = useCallback(handleOp => {
-    doc.on('op', handleOp);
-    return () => doc.off('op', handleOp);
-  }, [doc]);
+  const subscribeToVizOps = useCallback(
+    handleOp => {
+      doc.on('op', handleOp);
+      return () => doc.off('op', handleOp);
+    },
+    [doc]
+  );
 
   const subscribeToVizPresence = handlePresence => {
     const callback = srcList => {
@@ -58,7 +61,6 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
 
   // Subscribe to document updates via WebSocket.
   useEffect(() => {
-
     // TODO unsubscribe.
     doc.subscribe(err => {
       // This should never happen. Not sure when it would.
