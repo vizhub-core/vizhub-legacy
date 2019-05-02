@@ -60,7 +60,6 @@ const createView = options => {
     history(),
     specialChars(),
     multipleSelections(),
-    mode,
     matchBrackets(),
     keymap({
       'Mod-z': undo,
@@ -73,6 +72,11 @@ const createView = options => {
     keymap(baseKeymap),
     ot(path, emitLocalOps)
   ];
+
+  if (mode) {
+    extensions.push(mode);
+  }
+
   if (enablePresence) {
     extensions.push(presence(path, userId, submitPresence, applyingRemoteOp));
   }
@@ -82,6 +86,7 @@ const createView = options => {
     extensions
   });
 
+  // View construction can be an
   const editorView = new EditorView({ state });
 
   // TODO unsubscribe
@@ -95,6 +100,7 @@ const createView = options => {
     }
   });
 
+  // TODO unsubscribe
   // TODO move this logic somewhere else.
   // It doesn't feel right to have this subscription in each and every view.
   subscribeToPresence(presenceObjects => {
