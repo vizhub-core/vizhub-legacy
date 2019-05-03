@@ -24,9 +24,7 @@ describe('useEditorViewPool', () => {
   it('should clean up existing pool when vizId changes', done => {
     let destroyFirst = jest.fn();
     const Component = ({ vizId }) => {
-      console.log(vizId);
       const viewPool = useEditorViewPool(vizId);
-      console.log(viewPool);
 
       if (viewPool) {
         if (vizId === 'first') {
@@ -35,14 +33,11 @@ describe('useEditorViewPool', () => {
             viewPool.setView(fileId, { destroy: destroyFirst });
             expect(destroyFirst).toHaveBeenCalledTimes(0);
           }
-          //const view = viewPool.getView(fileId);
-          //const view = viewPool.getOrCreateView(fileId);
-          //expect(Object.keys(viewPool).length).toEqual(0);
-          //viewPool[fileId] = view;
-          //expect(Object.keys(viewPool).length).toEqual(1);
         }
-        if (vizId === 'second') {
-          //expect(destroyFirst).toHaveBeenCalledTimes(1);
+        // Sometimes these two values are inconsistent,
+        // while the next viewPool is "loading" asynchronously.
+        if (vizId === 'second' && viewPool.vizId === 'second') {
+          expect(destroyFirst).toHaveBeenCalledTimes(1);
           done();
         }
       }

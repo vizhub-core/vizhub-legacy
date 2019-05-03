@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react';
 // all these views (and their corresponding subscriptions)
 // should be cleaned up, making way for the views of the newly open visualization.
 class Pool {
-  constructor () {
+  constructor (vizId) {
 
     // - Keys are fileId values.
     // - Values are view instances created in useEditorView.
     this._views = {};
+
+    this.vizId = vizId;
   }
   getView (fileId) {
     return this._views[fileId];
@@ -30,7 +32,7 @@ const createPool = () => new Pool();
 export const useEditorViewPool = vizId => {
   const [pool, setPool] = useState();
   useEffect(() => {
-    const newPool = new Pool();
+    const newPool = new Pool(vizId);
     setPool(newPool);
     return () => newPool.destroy()
   }, [vizId]);
