@@ -15,13 +15,13 @@ describe('useEditorView', () => {
     expect(view).toBeFalsy();
   });
 
-  it('does create a CodeMirror view if CodeMirror and fileId are provided', () => {
-    const view = useEditorView({
-      CodeMirror,
-      fileId: 'foo',
-      subscribeToOps: jest.fn(),
-      subscribeToPresence: jest.fn()
-    });
+  it('creates a view and subscribes to ops and presence', () => {
+    const subscribeToOps = jest.fn();
+    const subscribeToPresence = jest.fn();
+    const fileId = 'foo';
+    const view = useEditorView({ CodeMirror, fileId, subscribeToOps, subscribeToPresence });
     expect(view).toBeTruthy();
+    expect(subscribeToOps).toHaveBeenCalled();
+    expect(subscribeToPresence).toHaveBeenCalled();
   });
 });
