@@ -117,6 +117,10 @@ const createView = options => {
     );
   });
 
+  editorView.destroy = () => {
+    console.log('TODO clean up that shit');
+  };
+
   return editorView;
 };
 

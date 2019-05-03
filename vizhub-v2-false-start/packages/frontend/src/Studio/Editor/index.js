@@ -5,12 +5,14 @@ import { useMode } from './useMode';
 import { useEditorView } from './useEditorView';
 import { Wrapper, CodeMirrorGlobalStyle } from './styles';
 import { PresenceDisplay } from './PresenceDisplay';
+import { useEditorViewPool } from './useEditorViewPool';
 
 // TODO move this to a central home for accessors (core?).
 const getWorkingFile = (vizData, fileId) => vizData.working.files[fileId];
 
 export const Editor = ({ activeFileId }) => {
   const {
+    vizId,
     vizData,
     submitVizOp,
     subscribeToVizOps,
@@ -35,7 +37,12 @@ export const Editor = ({ activeFileId }) => {
   const mode = useMode(CodeMirror, file.path);
   const userId = useMemo(() => Math.random(), []);
 
+  console.log('vizId');
+  console.log(vizId);
+  const editorViewPool = useEditorViewPool(vizId);
+
   const editorView = useEditorView({
+    editorViewPool,
     CodeMirror,
     fileId: activeFileId,
     text: file.text,
