@@ -21,13 +21,9 @@
 # pm2 monit
 
 ## Daily Deploy
-git checkout master
+# git checkout master
 git pull
-cd packages/
-cd backend/
-rm -rf build/
-cd ../
+rm -rf packages/backend/build/
 npm run bootstrap
-cd packages/frontend/
-npm run build
+cd packages/frontend/; npm run build
 pm2 restart all
