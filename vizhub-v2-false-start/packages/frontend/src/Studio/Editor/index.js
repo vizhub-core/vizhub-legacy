@@ -6,6 +6,7 @@ import { useEditorView } from './useEditorView';
 import { useEditorViewPool } from './useEditorViewPool';
 import { Wrapper, CodeMirrorGlobalStyle } from './styles';
 import { PresenceDisplay } from './PresenceDisplay';
+import { extension } from './extension';
 
 // TODO move this to a central home for accessors (core?).
 const getWorkingFile = (vizData, fileId) => vizData.working.files[fileId];
@@ -20,30 +21,25 @@ export const Editor = ({ activeFileId }) => {
     subscribeToVizPresence
   } = useContext(VizContext);
 
+  // TODO get this from the authentication context.
+  const userId = useMemo(() => Math.random(), []);
+
+  // TODO move this up the component tree, so that
+  // presence display(s) can be implemented elsewhere (e.g. on files in the configurator).
+  // Perhaps something like useContext(PresenceDisplayDataContext)
   const [presenceDisplayData, setPresenceDisplayData] = useState();
 
   const file = getWorkingFile(vizData, activeFileId);
 
-  // TODO clear out the cache of CodeMirror instances
-  // (and unsubscribe their ops streams)
-  // whenever the vizId changes.
-  // useEffect(() => {
-  //   Object.values(codeMirrorViewCache).forEach(view => {
-  //     view.destroy();
-  //     view.unsubscribeFromVizOps();
-  //   });
-  // }, [vizId]);
   const CodeMirror = useCodeMirror();
-  const mode = useMode(CodeMirror, file.path);
-
-  // TODO get this from the authentication context.
-  const userId = useMemo(() => Math.random(), []);
+  const mode = useMode(CodeMirror, extension(file.path));
 
   const editorViewPool = useEditorViewPool(vizId);
 
+  // Sanity check - does this occur?
   if (editorViewPool && editorViewPool.vizId !== vizId) {
     console.log('editorViewPool.vizId !== vizId');
-    console.log(editorViewPool.vizId, '!==',  vizId);
+    console.log(editorViewPool.vizId, '!==', vizId);
   }
 
   const editorView = useEditorView({

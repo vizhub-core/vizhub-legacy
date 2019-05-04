@@ -1,6 +1,7 @@
 import { type as json0 } from 'ot-json0';
 import { opsToTransaction } from 'codemirror-ot';
 import { enablePresence } from '../../environment';
+import { getFileId } from './PresenceDisplay/getFileId';
 
 const createView = options => {
   const {
@@ -85,7 +86,7 @@ const createView = options => {
   // TODO unsubscribe
   // consider "editor view pool" idea?
   // or, unsubscribe from all views when vizId changes?
-  subscribeToOps((op, originatedLocally) => {
+  const unsubscribeFromOps = subscribeToOps((op, originatedLocally) => {
     if (!originatedLocally && json0.canOpAffectPath(op[0], path)) {
       isApplyingRemoteOp = true;
       editorView.dispatch(opsToTransaction(path, editorView.state, op));
@@ -96,22 +97,33 @@ const createView = options => {
   // TODO unsubscribe
   // TODO move this logic somewhere else.
   // It doesn't feel right to have this subscription in each and every view.
-  subscribeToPresence(presenceObjects => {
+  const unsubscribeFromPresence = subscribeToPresence(presenceObjects => {
     console.log('subscribed to presence in view for file ' + fileId);
     displayPresence(
-      presenceObjects.map(presenceObject => {
-        const [from, to] = presenceObject.s.s[0];
-        return {
-          presence: presenceObject,
-          pixelCoordsFrom: editorView.coordsAtPos(from),
-          pixelCoordsTo: editorView.coordsAtPos(to)
-        };
-      })
+      presenceObjects
+        // TODO cover this with tests.
+        // Don't try to convert coordinates for presence in a different file.
+        .filter(presenceObject => getFileId(presenceObject) === fileId)
+        .map(presenceObject => {
+          const [from, to] = presenceObject.s.s[0];
+          return {
+            presence: presenceObject,
+            pixelCoordsFrom: editorView.coordsAtPos(from),
+            pixelCoordsTo: editorView.coordsAtPos(to)
+          };
+        })
     );
   });
 
   editorView.destroy = () => {
-    console.log('TODO clean up that shit');
+    // TODO add a test that covers this
+    console.log('cleaning up editor view');
+
+    // TODO test unsubscribe from ops
+    unsubscribeFromOps();
+
+    // TODO test unsubscribe from presence
+    unsubscribeFromPresence();
   };
 
   return editorView;
