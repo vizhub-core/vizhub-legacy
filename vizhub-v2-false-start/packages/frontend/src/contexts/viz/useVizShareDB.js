@@ -92,6 +92,7 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
   );
 
   return {
+    vizId,
     vizData,
     submitVizOp,
     subscribeToVizOps,

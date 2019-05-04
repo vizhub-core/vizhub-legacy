@@ -1,11 +1,6 @@
 import React from 'react';
 import { Wrapper } from './styles';
-
-// Gets the file ID in the presence path.
-// This is the file that the presence is "in".
-// The presence should be hidden if the current user
-// is not also "in" the same file.
-const fileId = p => p[p.length - 2];
+import { getFileId } from './getFileId';
 
 export const PresenceDisplay = ({ data, userId, activeFileId }) => {
   if (!data) return null;
@@ -14,7 +9,7 @@ export const PresenceDisplay = ({ data, userId, activeFileId }) => {
   data = data.filter(({ presence }) => presence.s.u !== userId);
 
   // Don't show presence for a file that's not open.
-  data = data.filter(({ presence }) => fileId(presence.p) === activeFileId);
+  data = data.filter(({ presence }) => getFileId(presence) === activeFileId);
 
   // Generate indicators for the selection start and end.
   return data.map(({ pixelCoordsFrom, pixelCoordsTo, presence }, i) => {

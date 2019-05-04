@@ -1,8 +1,7 @@
 import { type as json0 } from 'ot-json0';
 import { opsToTransaction } from 'codemirror-ot';
 import { enablePresence } from '../../environment';
-
-const views = {};
+import { getFileId } from './PresenceDisplay/getFileId';
 
 const createView = options => {
   const {
@@ -37,6 +36,7 @@ const createView = options => {
     presence
   } = CodeMirror;
 
+  // TODO extract to accessors/constructors
   const path = ['working', 'files', fileId, 'text'];
 
   let isApplyingRemoteOp = false;
@@ -55,7 +55,6 @@ const createView = options => {
     history(),
     specialChars(),
     multipleSelections(),
-    mode,
     matchBrackets(),
     keymap({
       'Mod-z': undo,
@@ -68,6 +67,11 @@ const createView = options => {
     keymap(baseKeymap),
     ot(path, emitLocalOps)
   ];
+
+  if (mode) {
+    extensions.push(mode);
+  }
+
   if (enablePresence) {
     extensions.push(presence(path, userId, submitPresence, applyingRemoteOp));
   }
@@ -77,12 +81,13 @@ const createView = options => {
     extensions
   });
 
+  // View construction can be an
   const editorView = new EditorView({ state });
 
   // TODO unsubscribe
   // consider "editor view pool" idea?
   // or, unsubscribe from all views when vizId changes?
-  subscribeToOps((op, originatedLocally) => {
+  const unsubscribeFromOps = subscribeToOps((op, originatedLocally) => {
     if (!originatedLocally && json0.canOpAffectPath(op[0], path)) {
       isApplyingRemoteOp = true;
       editorView.dispatch(opsToTransaction(path, editorView.state, op));
@@ -90,25 +95,48 @@ const createView = options => {
     }
   });
 
-  subscribeToPresence(presenceObjects => {
+  // TODO unsubscribe
+  // TODO move this logic somewhere else.
+  // It doesn't feel right to have this subscription in each and every view.
+  const unsubscribeFromPresence = subscribeToPresence(presenceObjects => {
+    console.log('subscribed to presence in view for file ' + fileId);
     displayPresence(
-      presenceObjects.map(presenceObject => {
-        const [from, to] = presenceObject.s.s[0];
-        return {
-          presence: presenceObject,
-          pixelCoordsFrom: editorView.coordsAtPos(from),
-          pixelCoordsTo: editorView.coordsAtPos(to)
-        };
-      })
+      presenceObjects
+        // TODO cover this with tests.
+        // Don't try to convert coordinates for presence in a different file.
+        .filter(presenceObject => getFileId(presenceObject) === fileId)
+        .map(presenceObject => {
+          const [from, to] = presenceObject.s.s[0];
+          return {
+            presence: presenceObject,
+            pixelCoordsFrom: editorView.coordsAtPos(from),
+            pixelCoordsTo: editorView.coordsAtPos(to)
+          };
+        })
     );
   });
+
+  editorView.destroy = () => {
+    // TODO add a test that covers this
+    console.log('cleaning up editor view');
+
+    // TODO test unsubscribe from ops
+    unsubscribeFromOps();
+
+    // TODO test unsubscribe from presence
+    unsubscribeFromPresence();
+  };
 
   return editorView;
 };
 
 const getOrCreateView = options => {
-  const id = options.fileId;
-  return views[id] || (views[id] = createView(options));
+  const { fileId, editorViewPool } = options;
+  const view = editorViewPool.getView(fileId);
+  if (!view) {
+    return editorViewPool.setView(fileId, createView(options));
+  }
+  return view;
 };
 
 export const useEditorView = options => {

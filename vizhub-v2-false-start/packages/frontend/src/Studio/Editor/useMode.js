@@ -1,6 +1,3 @@
-// Computes the file extension from the file path.
-const extension = path => path.substr(path.lastIndexOf('.') + 1);
-
 const modeNameByExtension = {
   js: 'javascript',
   css: 'css',
@@ -8,11 +5,11 @@ const modeNameByExtension = {
 };
 
 // Set up the mode based on the file extension, for syntax highlighting.
-export const useMode = (CodeMirror, filePath) => {
+export const useMode = (CodeMirror, fileExtension) => {
   if (!CodeMirror) return;
   const { legacyMode, legacyModes } = CodeMirror;
 
-  const modeName = modeNameByExtension[extension(filePath)];
+  const modeName = modeNameByExtension[fileExtension];
   const modeOfExtension = legacyModes[modeName];
 
   return legacyMode({
