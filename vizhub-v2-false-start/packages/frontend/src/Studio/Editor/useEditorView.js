@@ -36,6 +36,7 @@ const createView = options => {
     presence
   } = CodeMirror;
 
+  // TODO extract to accessors/constructors
   const path = ['working', 'files', fileId, 'text'];
 
   let isApplyingRemoteOp = false;
