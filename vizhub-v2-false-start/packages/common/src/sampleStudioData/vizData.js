@@ -1,4 +1,5 @@
 import { sampleCode } from './sampleCode';
+import { fork } from '../fork';
 
 export const vizId = '57890243754890';
 export const forkVizId = '78594372895430';
@@ -83,4 +84,20 @@ export const vizSnapshots = {};
 vizSnapshots[vizId] = {
   v: 0,
   data: vizData
+};
+
+const forkOwnerUserId = '0c82a54f22f775a3ed8b97b2dea74036';
+const forkPublishDateISOString = new Date().toISOString();
+
+const forked = fork({
+  vizId,
+  vizData,
+  forkVizId,
+  forkOwnerUserId,
+  forkPublishDateISOString
+});
+
+vizSnapshots[forkVizId] = {
+  v: 0,
+  data: forked.vizData
 };

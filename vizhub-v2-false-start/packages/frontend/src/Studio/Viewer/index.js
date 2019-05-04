@@ -40,8 +40,12 @@ export const Viewer = withTheme(({ theme }) => {
     viewCount,
     upvotes,
     downvotes,
-    publishDateISOString
+    publishDateISOString,
+    forkedFromVizId
   } = vizData;
+
+  const forkedFromUserId = 'todoDefineThis';
+
   const { title } = vizData.working;
 
   const publishDate = new Date(publishDateISOString);
@@ -74,7 +78,10 @@ export const Viewer = withTheme(({ theme }) => {
       </TitleActions>
       <Provenance>
         <OwnerInfo user={ownerUserData} publishDate={publishDate} />
-        <ForkedFrom />
+        <ForkedFrom
+          forkedFromVizId={forkedFromVizId}
+          forkedFromUserId={forkedFromUserId}
+        />
       </Provenance>
       <Padded>
         <Description>
