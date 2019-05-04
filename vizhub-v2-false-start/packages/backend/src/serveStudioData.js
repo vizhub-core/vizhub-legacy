@@ -16,16 +16,35 @@ export const serveStudioData = connection => (req, res) => {
       comments
     } = sampleStudioData;
 
-    const vizSnapshots = {};
-    vizSnapshots[vizId] = snapshot(doc);
+    // TODO query for owner user id of forked viz.
+    const forkedFromVizId = doc.data.forkedFromVizId;
+    let forkedDocPromise;
+    if (forkedFromVizId) {
+      forkedDocPromise = new Promise((resolve, reject) => {
+        const forkedDoc = connection.get('viz', doc.data.forkedFromVizId);
+        forkedDoc.fetch(err => {
+          resolve(forkedDoc);
+        });
+      });
+    } else {
+      forkedDocPromise = Promise.resolve(null);
+    }
 
-    const studioData = {
-      vizSnapshots,
-      userData,
-      authenticatedUserId,
-      comments
-    };
+    forkedDocPromise.then(forkedDoc => {
+      const vizSnapshots = {};
+      vizSnapshots[vizId] = snapshot(doc);
 
-    res.send(studioData);
+      if (forkedDoc) {
+        vizSnapshots[forkedFromVizId] = snapshot(forkedDoc);
+      }
+
+      const studioData = {
+        vizSnapshots,
+        userData,
+        authenticatedUserId,
+        comments
+      };
+      res.send(studioData);
+    });
   });
 };
