@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Wrapper, ForkedFromViz } from './styles';
 import { SmallText } from '../styles';
 
-export const ForkedFrom = ({ forkedFromVizId, forkedFromUserId }) =>
+export const ForkedFrom = ({ forkedFromVizId, forkedFromUserData }) =>
   forkedFromVizId ? (
     <Wrapper>
       <SmallText>Forked from:</SmallText>
-      <Link to={`/${forkedFromUserId}/${forkedFromVizId}`}>
+      <Link to={`/${forkedFromUserData.username}/${forkedFromVizId}`}>
         <ForkedFromViz />
       </Link>
     </Wrapper>

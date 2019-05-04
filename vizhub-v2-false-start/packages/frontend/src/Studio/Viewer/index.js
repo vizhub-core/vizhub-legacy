@@ -29,7 +29,7 @@ import {
 } from './styles';
 
 export const Viewer = withTheme(({ theme }) => {
-  const { userData, authenticatedUserId, comments } = useContext(
+  const { userData, authenticatedUserId, comments, vizSnapshots } = useContext(
     StudioDataContext
   );
 
@@ -44,13 +44,19 @@ export const Viewer = withTheme(({ theme }) => {
     forkedFromVizId
   } = vizData;
 
-  const forkedFromUserId = 'todoDefineThis';
-
   const { title } = vizData.working;
 
   const publishDate = new Date(publishDateISOString);
   const authenticatedUserData = userData[authenticatedUserId];
   const ownerUserData = userData[ownerUserId];
+
+  // Retreive the forked from viz, and its owner user id,
+  // to get at the username to include in the "forked from" link.
+  let forkedFromUserData;
+  if (forkedFromVizId) {
+    const forkedFromVizData = vizSnapshots[forkedFromVizId].data;
+    forkedFromUserData = userData[forkedFromVizData.ownerUserId];
+  }
 
   return (
     <Wrapper>
@@ -80,7 +86,7 @@ export const Viewer = withTheme(({ theme }) => {
         <OwnerInfo user={ownerUserData} publishDate={publishDate} />
         <ForkedFrom
           forkedFromVizId={forkedFromVizId}
-          forkedFromUserId={forkedFromUserId}
+          forkedFromUserData={forkedFromUserData}
         />
       </Provenance>
       <Padded>
