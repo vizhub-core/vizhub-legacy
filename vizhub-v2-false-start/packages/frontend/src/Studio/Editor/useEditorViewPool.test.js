@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useEditorViewPool } from './useEditorViewPool';
+import { EditorViewPool } from './EditorViewPool';
 
 describe('useEditorViewPool', () => {
   it('should create a pool for a given vizId', done => {
@@ -48,5 +49,13 @@ describe('useEditorViewPool', () => {
     ReactDOM.render(<Component vizId="first" />, div);
     ReactDOM.render(<Component vizId="second" />, div);
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('should return the value passed into setView', () => {
+    const vizId = 'foo';
+    const fileId = 'a';
+    const viewPool = new EditorViewPool(vizId);
+    const view = {};
+    expect(viewPool.setView(fileId, view)).toEqual(view);
   });
 });

@@ -3,9 +3,9 @@ import { VizContext } from '../../contexts';
 import { useCodeMirror } from './useCodeMirror';
 import { useMode } from './useMode';
 import { useEditorView } from './useEditorView';
+import { useEditorViewPool } from './useEditorViewPool';
 import { Wrapper, CodeMirrorGlobalStyle } from './styles';
 import { PresenceDisplay } from './PresenceDisplay';
-import { useEditorViewPool } from './useEditorViewPool';
 
 // TODO move this to a central home for accessors (core?).
 const getWorkingFile = (vizData, fileId) => vizData.working.files[fileId];
@@ -35,11 +35,16 @@ export const Editor = ({ activeFileId }) => {
   // }, [vizId]);
   const CodeMirror = useCodeMirror();
   const mode = useMode(CodeMirror, file.path);
+
+  // TODO get this from the authentication context.
   const userId = useMemo(() => Math.random(), []);
 
-  console.log('vizId');
-  console.log(vizId);
   const editorViewPool = useEditorViewPool(vizId);
+
+  if (editorViewPool && editorViewPool.vizId !== vizId) {
+    console.log('editorViewPool.vizId !== vizId');
+    console.log(editorViewPool.vizId, '!==',  vizId);
+  }
 
   const editorView = useEditorView({
     editorViewPool,
@@ -47,7 +52,6 @@ export const Editor = ({ activeFileId }) => {
     fileId: activeFileId,
     text: file.text,
     mode,
-    // TODO rename to emitOp upstream
     emitOps: submitVizOp,
     subscribeToOps: subscribeToVizOps,
     submitPresence: submitVizPresence,

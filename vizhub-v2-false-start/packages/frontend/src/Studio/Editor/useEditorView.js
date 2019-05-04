@@ -2,13 +2,6 @@ import { type as json0 } from 'ot-json0';
 import { opsToTransaction } from 'codemirror-ot';
 import { enablePresence } from '../../environment';
 
-// A cache of view instances.
-// The idea is that this will exist once per visualization.
-// When the user navigates between visualizations,
-// all these views (and their corresponding subscriptions)
-// should be cleaned up.
-const views = {};
-
 const createView = options => {
   const {
     CodeMirror,
@@ -125,8 +118,12 @@ const createView = options => {
 };
 
 const getOrCreateView = options => {
-  const id = options.fileId;
-  return views[id] || (views[id] = createView(options));
+  const { fileId, editorViewPool } = options;
+  const view = editorViewPool.getView(fileId);
+  if (!view) {
+    return editorViewPool.setView(fileId, createView(options));
+  }
+  return view;
 };
 
 export const useEditorView = options => {
