@@ -50,12 +50,13 @@ export const Viewer = withTheme(({ theme }) => {
   const authenticatedUserData = userData[authenticatedUserId];
   const ownerUserData = userData[ownerUserId];
 
+  // Retreive the forked from viz, and its owner user id,
+  // to get at the username to include in the "forked from" link.
   let forkedFromUserData;
   if (forkedFromVizId) {
     const forkedFromVizData = vizSnapshots[forkedFromVizId].data;
     forkedFromUserData = userData[forkedFromVizData.ownerUserId];
   }
-  console.log(forkedFromUserData);
 
   return (
     <Wrapper>

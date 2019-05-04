@@ -16,7 +16,9 @@ export const serveStudioData = connection => (req, res) => {
       comments
     } = sampleStudioData;
 
-    // TODO query for owner user id of forked viz.
+    // Query for a snapshot of the forked from viz,
+    // so that we can include the owner username
+    // in the "forked from" link URL.
     const forkedFromVizId = doc.data.forkedFromVizId;
     let forkedDocPromise;
     if (forkedFromVizId) {
