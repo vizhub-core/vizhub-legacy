@@ -25,14 +25,13 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
   const doc = useMemo(() => {
     const shareDBDoc = getConnection().get('viz', vizId);
 
-    // TODO check case of navigating between Viz pages
-    // if(!doc.type) {
-    //   doc.ingestSnapshot(vizSnapshots[vizId]);
-    // }
+    // TODO add automated test coverage for this case of navigating between Viz pages.
+    if(!shareDBDoc.type) {
 
-    // Hydrate the ShareDB document with the data from the API call.
-    // Without this we'd re-fetch the same data unnecessarily in doc.subscribe.
-    shareDBDoc.ingestSnapshot(vizSnapshots[vizId]);
+      // Hydrate the ShareDB document with the data from the API call.
+      // Without this we'd re-fetch the same data unnecessarily in doc.subscribe.
+      shareDBDoc.ingestSnapshot(vizSnapshots[vizId]);
+    }
 
     return shareDBDoc;
   }, [vizId, vizSnapshots]);
