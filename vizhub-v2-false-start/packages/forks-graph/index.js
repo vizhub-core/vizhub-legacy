@@ -2,8 +2,6 @@ import {
   select,
   json,
   tree,
-  hierarchy,
-  linkHorizontal,
   zoom,
   event,
   stratify
@@ -57,7 +55,10 @@ const buildHierarchy = data => {
     (data);
 };
 
-json('https://vizhub.com/api/visualization/metadata')
+const imageURL = id => `https://vizhub.com/api/visualization/thumbnail/${id}.png`;
+
+//json('https://vizhub.com/api/visualization/metadata')
+json('metadata.json')
   .then(data => {
     const root = buildHierarchy(data);
     const links = treeLayout(root).links();
@@ -73,5 +74,5 @@ json('https://vizhub.com/api/visualization/metadata')
         .attr('x', d => d.y - thumbnailWidth / 2)
         .attr('y', d => d.x - thumbnailHeight / 2)
         .attr('width', thumbnailWidth)
-        .attr('href', (d, i) => `/api/visualization/thumbnail/${d.id}.png`)
+        .attr('href', (d, i) => imageURL(d.id))
   });
