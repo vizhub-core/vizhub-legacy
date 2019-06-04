@@ -26,8 +26,7 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
     const shareDBDoc = getConnection().get('viz', vizId);
 
     // TODO add automated test coverage for this case of navigating between Viz pages.
-    if(!shareDBDoc.type) {
-
+    if (!shareDBDoc.type) {
       // Hydrate the ShareDB document with the data from the API call.
       // Without this we'd re-fetch the same data unnecessarily in doc.subscribe.
       shareDBDoc.ingestSnapshot(vizSnapshots[vizId]);
@@ -89,6 +88,12 @@ export const useVizShareDB = (vizId, vizSnapshots) => {
       }),
     [vizId, doc.data, subscribeToVizOps]
   );
+
+  // Handle the case of navigating back and forth between two visualizations
+  // whose StudioData has already been fetched.
+  useEffect(() => {
+    setVizData(doc.data);
+  }, [vizId, doc.data]);
 
   return {
     vizId,
