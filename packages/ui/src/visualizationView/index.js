@@ -40,7 +40,7 @@ export const VisualizationView = props => {
           {ownerUser.userName}
         </a>
         <div
-          className='visualization-view-description'
+          className='visualization-view-description content'
           dangerouslySetInnerHTML={{ __html: description }}
         >
         </div>
