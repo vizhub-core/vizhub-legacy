@@ -14,29 +14,7 @@ export const NavBar = ({user, csrfToken, dropUp}) => (
           </a>
         </div>
 
-        <div className='level-item has-text-centered'>
-          <div className='field has-addons'>
-            <p className='control'>
-              <input className='input' type='text' />
-            </p>
-            <a
-              target="_blank"
-              href='https://github.com/datavis-tech/vizhub-ui/issues/36'
-              className='control'
-            >
-              <button className='button'>
-                Search
-              </button>
-            </a>
-          </div>
-        </div>
-
         <div className='level-right'>
-          <div className='level-item'>
-            <a href='https://github.com/datavis-tech/vizhub/'>
-              <FaGithub />
-            </a>
-          </div>
           <div className='level-item'>
             <UserMenu user={user} csrfToken={csrfToken} dropUp={dropUp} />
           </div>
