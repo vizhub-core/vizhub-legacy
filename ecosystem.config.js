@@ -2,7 +2,11 @@ module.exports = {
   apps : [
     {
       name: 'web',
-      script: 'cd packages/web; npm run build && npm start',
+      script: 'npm',
+      cwd: './packages/web',
+      
+      // Note that `npm run build` must be invoked separately
+      args: 'start',
 
       // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
       instances: 1,
