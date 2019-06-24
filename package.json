@@ -7,7 +7,8 @@
     "startServer": "cd packages/web; npm run --silent dev &",
     "stopServer": "kill $(lsof -t -i:3000)",
     "ci": "lerna bootstrap && npm run startServer && npm run testAll && npm run stopServer",
-    "updateDeps": "npm install -g npm-check-updates; ncu -a; cd packages/entities && ncu -a && cd ../useCases && ncu -a cd ../gateways && ncu -a && cd ../presenters && ncu -a && cd ../controllers && ncu -a && cd ../database && ncu -a && cd ../web && ncu -a && cd ../ui && ncu -a && echo 'All dependencies upgraded!'"
+    "updateDeps": "npm install -g npm-check-updates; ncu -a; cd packages/entities && ncu -a && cd ../useCases && ncu -a cd ../gateways && ncu -a && cd ../presenters && ncu -a && cd ../controllers && ncu -a && cd ../database && ncu -a && cd ../web && ncu -a && cd ../ui && ncu -a && echo 'All dependencies upgraded!'",
+    "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete"
   },
   "devDependencies": {
     "eslint": "^5.3.0",
