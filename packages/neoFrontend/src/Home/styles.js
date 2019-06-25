@@ -22,4 +22,5 @@ export const Banner = styled.div`
 
 export const SignIn = styled.div`
   color: #f0353c;
+  font-weight: bold;
 `;
