@@ -1,0 +1,12 @@
+{
+  "name": "vizhub-neo-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "VizHub 2.0 frontend package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Datavis Tech INC",
+  "license": "UNLICENSED"
+}
