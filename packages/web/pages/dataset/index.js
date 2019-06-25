@@ -87,6 +87,9 @@ export default class extends Page {
                 { datasetLoadSnippet(downloadUrl) }
               </pre>
             </p>
+            <div className='field has-text-left'>
+              <PermalinkPreview userName={userName} slug={chosenFile.name} />
+            </div>
           </SlightMargin>
         </TextContainer>
       </TitledPage>
