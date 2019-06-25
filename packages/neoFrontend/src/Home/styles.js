@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LogoSVGAspectRatio } from '../svg/LogoSVG';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -23,4 +24,8 @@ export const Banner = styled.div`
 export const SignIn = styled.div`
   color: #f0353c;
   font-weight: bold;
+`;
+
+export const Logo = styled.div`
+  width: ${props => props.height * LogoSVGAspectRatio}px;
 `;
