@@ -14,6 +14,57 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>VizHub</title>
+    <style>
+      /* font-face does not work well in CSS-in-js (causes multiple fetches). */
+      @font-face {
+        font-family: 'Ubuntu Mono Arrowized';
+        src: url('/fonts/UbuntuMonoArrowized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Ubuntu Mono';
+        src: url('/fonts/UbuntuMonoLigaturized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Fira Code Arrowized';
+        src: url('/fonts/FiraCodeArrowized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Fira Code';
+        src: url('/fonts/FiraCode.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Deja Vu Sans Mono Arrowized';
+        src: url('/fonts/DejaVuSansMonoArrowized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Deja Vu Sans Mono';
+        src: url('/fonts/DejaVuSansMonoLigaturized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Source Code Pro Arrowized';
+        src: url('/fonts/SourceCodeProArrowized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Source Code Pro';
+        src: url('/fonts/SourceCodeProLigaturized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Inconsolata-g Arrowized';
+        src: url('/fonts/Inconsolata-gArrowized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Inconsolata-g';
+        src: url('/fonts/Inconsolata-gLigaturized.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Poppins';
+        src: url('/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+      }
+      body {
+        background-color: #f6ede3;
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
   </head>
   <body style="margin: 0">
     <noscript>You need to enable JavaScript to run this app.</noscript>
