@@ -5,8 +5,24 @@
   "description": "VizHub 2.0 frontend package.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build && cp -r build ../backend/build"
   },
+  "proxy": "http://localhost:4000/",
   "author": "Datavis Tech INC",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react-scripts": "^3.0.1",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "styled-components": "^4.3.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
