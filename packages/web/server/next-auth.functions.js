@@ -1,7 +1,5 @@
 import { ciUser } from 'datavis-tech-entities';
 
-require('dotenv').load();
-
 const updateUser = async (user) => {
   console.log('TODO implement updateUser');
   return user;

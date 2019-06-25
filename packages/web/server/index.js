@@ -17,7 +17,7 @@ import { serverGateways } from 'vizhub-server-gateways';
 import { setupRaven } from './setupRaven';
 
 // Load environment variables from .env file if present
-require('dotenv').load();
+require('dotenv').config();
 
 process.on('uncaughtException', function(err) {
   console.error('Uncaught Exception: ', err);

@@ -7,16 +7,16 @@
     "startServer": "cd packages/web; npm run --silent dev &",
     "stopServer": "kill $(lsof -t -i:3000)",
     "ci": "lerna bootstrap && npm run startServer && npm run testAll && npm run stopServer",
-    "updateDeps": "npm install -g npm-check-updates; ncu -a; cd packages/entities && ncu -a && cd ../useCases && ncu -a cd ../gateways && ncu -a && cd ../presenters && ncu -a && cd ../controllers && ncu -a && cd ../database && ncu -a && cd ../web && ncu -a && cd ../ui && ncu -a && echo 'All dependencies upgraded!'",
+    "updateDeps": "ncu -u; cd packages/entities && ncu -u && cd ../useCases && ncu -u cd ../gateways && ncu -u && cd ../presenters && ncu -u && cd ../controllers && ncu -u && cd ../database && ncu -u && cd ../web && ncu -u && cd ../ui && ncu -u && echo 'All dependencies upgraded!'",
     "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete"
   },
   "devDependencies": {
-    "eslint": "^5.3.0",
+    "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-react": "^7.11.0",
-    "esm": "^3.0.84",
-    "lerna": "^3.0.4"
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-react": "^7.14.2",
+    "esm": "^3.2.25",
+    "lerna": "^3.15.0"
   }
 }
