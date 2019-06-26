@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
-import { Success } from './styles';
+import { Success, Error } from './styles';
 
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to
@@ -14,26 +14,36 @@ export const AuthPopupPage = () => {
   // Get the code passed from OAuth out of the URL.
   const { code } = queryString.parse(window.location.search);
 
-  // Get the JWT token from backend API.
-  fetch('/api/auth/github', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: code
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
+  const [errorResponse, setErrorResponse] = useState();
+  const [successResponse, setSuccessResponse] = useState();
 
-      // TODO Pass the code from this popup to the parent page (opener).
-      //window.opener.postMessage({ vizHubJWT }, window.opener.location);
+  // Get the JWT token from backend API.
+  useEffect(() => {
+    fetch('/api/auth/github', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ code })
     })
-    .catch(error => {
-      console.log(error);
-    });
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          setErrorResponse(data);
+        } else {
+          setSuccessResponse();
+
+          // TODO Pass the code from this popup to the parent page (opener).
+          //window.opener.postMessage({ vizHubJWT }, window.opener.location);
+        }
+      });
+  }, [code]);
 
   // Render a success message.
-  return <Success>Success!</Success>;
+  return successResponse ? (
+    <Success>Success!</Success>
+  ) : errorResponse ? (
+    <Error>{errorResponse.errorDescription}</Error>
+  ) : null;
 };

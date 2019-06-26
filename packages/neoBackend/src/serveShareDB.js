@@ -9,7 +9,6 @@ ShareDB.types.defaultType = json0.type;
 
 // Set up the ShareDB instance and WebSocket server.
 export const serveShareDB = server => {
-
   // These options serve only to disable deprecation warnings.
   const options = {
     disableDocAction: true,
