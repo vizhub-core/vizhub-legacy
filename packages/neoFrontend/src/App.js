@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Home } from './pages';
+import { Home, Authenticated } from './pages';
+import { AuthContextProvider } from './authentication';
 
 export const App = () => (
-  <Router>
-    <Route exact path="/" component={Home} />
-  </Router>
+  <AuthContextProvider>
+    <Router>
+      <Route exact path="/" component={Home} />
+      <Route path="/authenticated" component={Authenticated} />
+    </Router>
+  </AuthContextProvider>
 );
