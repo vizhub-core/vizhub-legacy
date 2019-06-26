@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { LogoSVGAspectRatio } from '../svg/LogoSVG';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -13,19 +12,18 @@ export const Content = styled.div`
 `;
 
 export const Banner = styled.div`
-  padding-top: 32px;
-  padding-bottom: 32px;
-  margin: 6px;
+  height: 100px;
+  margin-left: 6px;
+  margin-right: 6px;
   flex: 1;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const SignIn = styled.div`
   color: #f0353c;
   font-weight: bold;
-`;
-
-export const Logo = styled.div`
-  width: ${props => props.height * LogoSVGAspectRatio}px;
+  cursor: pointer;
+  user-select: none;
 `;
