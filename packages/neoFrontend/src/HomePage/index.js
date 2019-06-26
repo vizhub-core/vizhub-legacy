@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Wrapper, Content, Banner, SignIn } from './styles';
-import { LogoSVG } from '../../svg';
-import { AuthContext } from '../../authentication';
+import { LogoSVG } from '../svg';
+import { AuthContext } from '../authentication';
 
-export const Home = () => {
+export const HomePage = () => {
   const { signIn } = useContext(AuthContext);
 
   return (
