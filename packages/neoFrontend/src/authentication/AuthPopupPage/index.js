@@ -32,24 +32,25 @@ export const AuthPopupPage = () => {
         if (data.error) {
           setErrorResponse(data);
         } else {
-          setSuccessResponse(true);
           console.log(data);
 
           console.log('fetching me');
 
           // TODO move this elsewhere,
           // include this stuff in original response.
-          fetch('/api/auth/me', {
-            method: 'GET',
-            credentials: 'same-origin'
-          })
+          fetch('/api/auth/me', { method: 'GET', credentials: 'same-origin' })
             .then(response => response.json())
             .then(data => {
               console.log(data);
-            });
+              if (data.error) {
+                setErrorResponse(data);
+              } else {
+                setSuccessResponse(true);
 
-          // TODO Pass the code from this popup to the parent page (opener).
-          //window.opener.postMessage({ vizHubJWT }, window.opener.location);
+                // TODO Pass the code from this popup to the parent page (opener).
+                //window.opener.postMessage({ vizHubJWT }, window.opener.location);
+              }
+            });
         }
       });
   }, [code]);
