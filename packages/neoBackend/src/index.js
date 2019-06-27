@@ -4,13 +4,13 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import { serveFrontend } from './serveFrontend';
 import { serveShareDB } from './serveShareDB';
-import { serveAuthAPI } from './serveAuthAPI';
+import { auth } from './auth';
 
 const app = express();
 app.use(compression());
 app.use(bodyParser.json());
 
-serveAuthAPI(app);
+auth(app);
 serveFrontend(app);
 
 const server = http.createServer(app);
