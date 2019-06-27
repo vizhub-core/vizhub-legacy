@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { ErrorResponse } from '../ErrorResponse';
+import { VizHubAPIError } from '../VizHubAPIError';
 
 const oAuthAccessTokenURL = 'https://github.com/login/oauth/access_token';
 const client_id = process.env.REACT_APP_VIZHUB_GITHUB_CLIENT_ID;
@@ -19,7 +19,7 @@ export const getAccessToken = async code => {
   const response = await fetch(oAuthAccessTokenURL, fetchOptions);
   const data = await response.json();
   if (data.error) {
-    throw ErrorResponse({
+    throw new VizHubAPIError({
       error: data.error,
       errorDescription: data.error_description,
       errorURL: data.error_uri

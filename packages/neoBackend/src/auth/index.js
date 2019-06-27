@@ -1,21 +1,26 @@
-import jwt from 'jsonwebtoken';
 import { getAccessToken } from './getAccessToken';
+import { getGitHubUser } from './getGitHubUser';
+import { getJWT } from './getJWT';
 import asyncHandler from 'express-async-handler';
+import { ErrorResponse } from '../ErrorResponse';
 
 const authGitHub = async (req, res) => {
   try {
     const accessToken = await getAccessToken(req.body.code);
-    res.send({ accessToken });
-  } catch (errorResponse) {
-    res.send(errorResponse);
+    const gitHubUser = await getGitHubUser(accessToken);
+    const vizHubJWT = await getJWT(gitHubUser);
+
+    // TODO set cookie here
+    res.send({ vizHubJWT });
+  } catch (error) {
+    res.send(ErrorResponse(error));
   }
 };
 
 export const auth = app => {
   app.post('/api/auth/github', asyncHandler(authGitHub));
 };
-//        // set token in header for fetching user
-//        // api for getting profile data
+
 //        return fetch('https://api.github.com/user', {
 //          method: 'GET',
 //          mode: 'cors',
