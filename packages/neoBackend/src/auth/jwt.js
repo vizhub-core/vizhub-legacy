@@ -5,7 +5,7 @@ import { getGitHubUser } from './getGitHubUser';
 
 const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
 
-export const getJWT = async gitHubUser => {
+export const jwtSign = async gitHubUser => {
   // TODO use VizHub User entity
   const { login, id, name } = gitHubUser;
   const user = { login, id, name };
@@ -18,4 +18,9 @@ export const getJWT = async gitHubUser => {
       errorDescription: error.message
     });
   }
+};
+
+export const jwtVerify = vizHubJWT => {
+  const { login, id, name } = jwt.verify(vizHubJWT, secret);
+  return { login, id, name };
 };
