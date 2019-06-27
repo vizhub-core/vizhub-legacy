@@ -33,7 +33,7 @@ export const AuthPopupPage = () => {
           setErrorResponse(data);
         } else {
           setSuccessResponse(true);
-          console.log(data.token);
+          console.log(data);
 
           // TODO Pass the code from this popup to the parent page (opener).
           //window.opener.postMessage({ vizHubJWT }, window.opener.location);
