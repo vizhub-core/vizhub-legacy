@@ -4,24 +4,19 @@ import { VizHubAPIError } from '../VizHubAPIError';
 import { getGitHubUser } from './getGitHubUser';
 
 const hours = n => 60 * 60 * n;
+const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
 
 export const getJWT = async gitHubUser => {
-  return 'poop';
+  // TODO use VizHub User entity
+  const { login, id } = gitHubUser;
+  const user = { login, id };
 
-  // console.log(data);
-
-  // // TODO use VizHub User entity?
-  // const user = {
-  //   login: data.login,
-  //   id: data.id
-  // };
-
-  // try {
-  //   return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: hours(24) });
-  // } catch (error) {
-  //   throw new VizHubAPIError({
-  //     error: 'jwt_signing_error',
-  //     errorDescription: error.message
-  //   });
-  // }
+  try {
+    return jwt.sign(user, secret, { expiresIn: hours(24) });
+  } catch (error) {
+    throw new VizHubAPIError({
+      error: 'jwt_signing_error',
+      errorDescription: error.message
+    });
+  }
 };

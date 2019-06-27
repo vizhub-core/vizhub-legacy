@@ -7,8 +7,8 @@ export const getGitHubUser = async accessToken => {
     method: 'GET',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
-      //Authorization: `token ${accessToken}`
+      'Content-Type': 'application/json',
+      Authorization: `token ${accessToken}`
     }
   };
 
