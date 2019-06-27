@@ -2,7 +2,7 @@
 // throughout the VizHub JSON API. Inspired by GitHub's format:
 // https://developer.github.com/apps/managing-oauth-apps/troubleshooting-oauth-app-access-token-request-errors/#bad-verification-code
 //
-export const errorResponse = options => {
+export const ErrorResponse = options => {
   if (!options.error) {
     throw new Error(
       'The field "error" must be specified for an error response. It should be a name for the error, such as "redirect_uri_mismatch" or "invalid_operation".'

@@ -1,10 +1,12 @@
 import { oAuthURL } from './constants';
 
+// Configure popup dimensions here (in pixels).
+const popupWidth = 1000;
+const popupHeight = 600;
+
 // Opens a popup window that uses OAuth to authenticate.
 // The popup ends up at the route /authenticated (see Authenticated.js).
 export const openPopup = () => {
-  const popupWidth = 1000;
-  const popupHeight = 600;
   const popupOptions = [
     'scrollbars=yes',
     `width=${popupWidth}`,
