@@ -1,22 +1,5 @@
-import { getAccessToken } from './getAccessToken';
-import { getGitHubUser } from './getGitHubUser';
-import { getJWT } from './getJWT';
 import asyncHandler from 'express-async-handler';
-import { ErrorResponse } from '../ErrorResponse';
-
-const authGitHub = async (req, res) => {
-  try {
-    const accessToken = await getAccessToken(req.body.code);
-    const gitHubUser = await getGitHubUser(accessToken);
-    const vizHubJWT = await getJWT(gitHubUser);
-
-    // TODO set cookie here
-    res.send({ vizHubJWT });
-  } catch (error) {
-    res.send(ErrorResponse(error));
-  }
-};
-
+import { authGitHub } from './authGitHub';
 export const auth = app => {
   app.post('/api/auth/github', asyncHandler(authGitHub));
 };

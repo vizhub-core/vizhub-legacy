@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { VizHubAPIError } from '../VizHubAPIError';
 import { getGitHubUser } from './getGitHubUser';
 
-const hours = n => 60 * 60 * n;
 const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
 
 export const getJWT = async gitHubUser => {
@@ -12,7 +11,7 @@ export const getJWT = async gitHubUser => {
   const user = { login, id };
 
   try {
-    return jwt.sign(user, secret, { expiresIn: hours(24) });
+    return jwt.sign(user, secret, { expiresIn: '2 days' });
   } catch (error) {
     throw new VizHubAPIError({
       error: 'jwt_signing_error',
