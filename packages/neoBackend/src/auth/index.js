@@ -1,19 +1,18 @@
 import jwt from 'jsonwebtoken';
-import { getAccessToken } from './auth/getAccessToken';
+import { getAccessToken } from './getAccessToken';
 import asyncHandler from 'express-async-handler';
 
-export const serveAuthAPI = app => {
-  app.post(
-    '/api/auth/github',
-    asyncHandler(async (req, res) => {
-      try {
-        const accessToken = await getAccessToken(req.body.code);
-        res.send({ accessToken });
-      } catch (errorResponse) {
-        res.send(errorResponse);
-      }
-    })
-  );
+const authGitHub = async (req, res) => {
+  try {
+    const accessToken = await getAccessToken(req.body.code);
+    res.send({ accessToken });
+  } catch (errorResponse) {
+    res.send(errorResponse);
+  }
+};
+
+export const auth = app => {
+  app.post('/api/auth/github', asyncHandler(authGitHub));
 };
 //        // set token in header for fetching user
 //        // api for getting profile data
