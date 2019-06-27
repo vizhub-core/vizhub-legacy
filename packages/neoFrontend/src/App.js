@@ -4,10 +4,10 @@ import { HomePage } from './HomePage';
 import { AuthPopupPage, AuthContextProvider } from './authentication';
 
 export const App = () => (
-  <AuthContextProvider>
-    <Router>
+  <Router>
+    <AuthContextProvider>
       <Route exact path="/" component={HomePage} />
-      <Route path="/authenticated" component={AuthPopupPage} />
-    </Router>
-  </AuthContextProvider>
+    </AuthContextProvider>
+    <Route path="/authenticated" component={AuthPopupPage} />
+  </Router>
 );

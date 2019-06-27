@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
-import { Success, Error } from './styles';
+import { Message, Error } from './styles';
 
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to
@@ -15,7 +15,6 @@ export const AuthPopupPage = () => {
   const { code } = queryString.parse(window.location.search);
 
   const [errorResponse, setErrorResponse] = useState();
-  const [successResponse, setSuccessResponse] = useState();
 
   // Get the JWT token from backend API.
   useEffect(() => {
@@ -32,33 +31,17 @@ export const AuthPopupPage = () => {
         if (data.error) {
           setErrorResponse(data);
         } else {
-          console.log(data);
-
-          console.log('fetching me');
-
-          // TODO move this elsewhere,
-          // include this stuff in original response.
-          fetch('/api/auth/me', { method: 'GET', credentials: 'same-origin' })
-            .then(response => response.json())
-            .then(data => {
-              console.log(data);
-              if (data.error) {
-                setErrorResponse(data);
-              } else {
-                setSuccessResponse(true);
-
-                // TODO Pass the code from this popup to the parent page (opener).
-                //window.opener.postMessage({ vizHubJWT }, window.opener.location);
-              }
-            });
+          window.opener.postMessage(
+            { vizHubAuthenticatedUser: data },
+            window.opener.location
+          );
         }
       });
   }, [code]);
 
-  // Render a success message.
-  return successResponse ? (
-    <Success>Success!</Success>
-  ) : errorResponse ? (
+  return errorResponse ? (
     <Error>{errorResponse.errorDescription}</Error>
-  ) : null;
+  ) : (
+    <Message>Signing in...</Message>
+  );
 };
