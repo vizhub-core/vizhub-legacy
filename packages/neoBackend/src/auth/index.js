@@ -1,7 +1,10 @@
 import asyncHandler from 'express-async-handler';
 import { authGitHub } from './authGitHub';
+import { authMe } from './authMe';
+
 export const auth = app => {
   app.post('/api/auth/github', asyncHandler(authGitHub));
+  app.get('/api/auth/me', authMe);
 };
 
 //        return fetch('https://api.github.com/user', {

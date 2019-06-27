@@ -7,8 +7,8 @@ const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
 
 export const getJWT = async gitHubUser => {
   // TODO use VizHub User entity
-  const { login, id } = gitHubUser;
-  const user = { login, id };
+  const { login, id, name } = gitHubUser;
+  const user = { login, id, name };
 
   try {
     return jwt.sign(user, secret, { expiresIn: '2 days' });
