@@ -1,9 +1,10 @@
-import { getAccessToken } from './getAccessToken';
-import { getGitHubUser } from './getGitHubUser';
-import { getJWT } from './getJWT';
-import { ErrorResponse } from '../ErrorResponse';
+import asyncHandler from 'express-async-handler';
+import { ErrorResponse } from '../../ErrorResponse';
+import { getAccessToken } from '../getAccessToken';
+import { getGitHubUser } from '../getGitHubUser';
+import { getJWT } from '../getJWT';
 
-export const authGitHub = async (req, res) => {
+export const authGitHub = asyncHandler(async (req, res) => {
   try {
     const accessToken = await getAccessToken(req.body.code);
     const gitHubUser = await getGitHubUser(accessToken);
@@ -13,4 +14,4 @@ export const authGitHub = async (req, res) => {
   } catch (error) {
     res.send(ErrorResponse(error));
   }
-};
+});

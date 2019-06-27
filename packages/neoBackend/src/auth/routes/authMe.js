@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
-import { getAccessToken } from './getAccessToken';
-import { getGitHubUser } from './getGitHubUser';
-import { getJWT } from './getJWT';
-import { ErrorResponse } from '../ErrorResponse';
-import { VizHubAPIError } from '../VizHubAPIError';
+import { ErrorResponse } from '../../ErrorResponse';
+import { VizHubAPIError } from '../../VizHubAPIError';
+import { getAccessToken } from '../getAccessToken';
+import { getGitHubUser } from '../getGitHubUser';
+import { getJWT } from '../getJWT';
 
 const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
 
