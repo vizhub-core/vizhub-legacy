@@ -10,6 +10,7 @@ export const authMe = (req, res) => {
     const { vizHubJWT } = req.cookies;
     res.send(jwtVerify(vizHubJWT));
   } catch (error) {
+    // TODO unify with logic in authGitHub
     if (error.name === 'JsonWebTokenError') {
       error = new VizHubAPIError({
         error: 'jwt_error',
