@@ -40,9 +40,9 @@
     "react-redux": "^7.1.0",
     "react-scripts": "3.0.1",
     "react-split-pane": "^0.1.87",
-    "redux": "^4.0.1",
-    "redux-observable": "^1.1.0",
-    "rxjs": "^6.5.2"
+    "redux": "^4.0.0",
+    "redux-observable": "^1.0.0",
+    "rxjs": "^6.2.2"
   },
   "author": "Datavis Tech INC.",
   "license": "GPL-3.0",
