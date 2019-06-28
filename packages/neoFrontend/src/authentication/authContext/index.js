@@ -1,6 +1,7 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState, useCallback } from 'react';
 import { fetchMe } from './fetchMe';
 import { AUTH_PENDING } from '../constants';
+import { signInFlow } from '../signInFlow';
 
 export const AuthContext = createContext();
 
@@ -27,9 +28,14 @@ export const AuthContextProvider = ({ children }) => {
     fetchMe().then(setMe);
   }, []);
 
+  const signIn = useCallback(signInFlow(setMe), [setMe]);
+
+  // TODO sign out flow
+  const signOut = () => setMe(null);
+
+  const contextValue = { me, signIn, signOut };
+
   return (
-    <AuthContext.Provider value={{ me, setMe }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
