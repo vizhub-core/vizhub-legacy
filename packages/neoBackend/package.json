@@ -1,0 +1,30 @@
+{
+  "name": "vizhub-neo-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "VizHub 2.0 backend package.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node -r esm src/index.js",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+  },
+  "author": "Datavis Tech INC",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "@datavis-tech/ot-json0": "^1.2.0",
+    "@teamwork/sharedb": "^3.1.0",
+    "@teamwork/websocket-json-stream": "^2.0.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.0",
+    "ws": "^7.0.1"
+  }
+}

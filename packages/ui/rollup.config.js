@@ -4,6 +4,7 @@ export default {
   input: 'src/exports.js',
   external: [
     'react',
+    'react-dom',
     'react-measure',
     'magic-sandbox',
     'react-codemirror2',
@@ -11,6 +12,10 @@ export default {
     'classnames',
     'react-redux',
     'lodash/fp/unionBy',
+    'rxjs',
+    'marked',
+    'react-split-pane',
+    'react-icons/md',
     'rxjs/operators'
   ],
   plugins: [

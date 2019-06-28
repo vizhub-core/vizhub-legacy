@@ -1,6 +1,3 @@
-// Load environment variables from a .env file if one exists
-require('dotenv').load();
-
 const DEV_GITHUB_ID = '75389c43f767c2dd2347';
 const DEV_GITHUB_SECRET = '99a50654eb1244953dcbbe9093703ff83c537b08';
 

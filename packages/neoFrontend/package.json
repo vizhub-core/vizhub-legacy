@@ -1,0 +1,33 @@
+{
+  "name": "vizhub-neo-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "VizHub 2.0 frontend package.",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && cp -r build ../backend/build",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+  },
+  "proxy": "http://localhost:4000/",
+  "author": "Datavis Tech INC",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "query-string": "^6.8.1",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.0.1",
+    "styled-components": "^4.3.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
