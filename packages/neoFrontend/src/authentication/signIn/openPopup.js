@@ -1,4 +1,4 @@
-import { oAuthURL } from './constants';
+import { oAuthURL } from '../constants';
 
 // Configure popup dimensions here (in pixels).
 const popupWidth = 1000;
