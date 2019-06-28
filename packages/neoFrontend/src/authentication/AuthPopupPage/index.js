@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import { Message, Error } from './styles';
+import { getJWT } from './getJWT';
+import { postMessageToOpener } from './postMessageToOpener';
 
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to
@@ -18,25 +20,9 @@ export const AuthPopupPage = () => {
 
   // Get the JWT token from backend API.
   useEffect(() => {
-    fetch('/api/auth/github', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ code })
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          setErrorResponse(data);
-        } else {
-          window.opener.postMessage(
-            { vizHubAuthenticatedUser: data },
-            window.opener.location
-          );
-        }
-      });
+    getJWT(code).then(data => {
+      data.error ? setErrorResponse(data) : postMessageToOpener(data);
+    });
   }, [code]);
 
   return errorResponse ? (
