@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, Content, Banner } from './styles';
+import { Wrapper, Content, Banner } from '../../styles';
 import { LogoSVG } from '../../svg';
 import { oAuthURL } from '../constants';
 
