@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Wrapper, Content, Banner, SignIn } from './styles';
+import { Wrapper, Content, Banner } from '../styles';
+import { SignIn } from './styles';
 import { LogoSVG } from '../svg';
 import { AuthContext, AUTH_PENDING } from '../authentication';
 

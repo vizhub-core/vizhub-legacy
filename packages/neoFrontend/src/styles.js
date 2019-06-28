@@ -1,3 +1,4 @@
+// Common styles used in multiple pages.
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -19,12 +20,4 @@ export const Banner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const SignIn = styled.div`
-  color: #f0353d;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  user-select: none;
 `;
