@@ -21,6 +21,13 @@ export const jwtSign = async gitHubUser => {
 };
 
 export const jwtVerify = vizHubJWT => {
-  const { login, id, name } = jwt.verify(vizHubJWT, secret);
-  return { login, id, name };
+  try {
+    const { login, id, name } = jwt.verify(vizHubJWT, secret);
+    return { login, id, name };
+  } catch {
+    // If there's an error verifying the JWT,
+    // e.g. if there is no token provided, or the provided one is expired,
+    // return null to signify that the user is not authenticated.
+    return null;
+  }
 };

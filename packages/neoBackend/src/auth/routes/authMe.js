@@ -8,7 +8,8 @@ import { jwtVerify } from '../jwt';
 export const authMe = (req, res) => {
   try {
     const { vizHubJWT } = req.cookies;
-    res.send(jwtVerify(vizHubJWT));
+    const me = jwtVerify(vizHubJWT);
+    res.send({ me });
   } catch (error) {
     // TODO unify with logic in authGitHub
     if (error.name === 'JsonWebTokenError') {
