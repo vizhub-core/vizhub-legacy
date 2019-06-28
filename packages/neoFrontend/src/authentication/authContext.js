@@ -1,21 +1,19 @@
-import React, { createContext, useEffect } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { signIn } from './signIn';
 
 // This context allows components to trigger the sign in flow.
 export const AuthContext = createContext();
 
-const auth = { signIn };
-
 export const AuthContextProvider = ({ children }) => {
+  const [me, setMe] = useState();
+
   useEffect(() => {
     fetch('/api/auth/me', { method: 'GET', credentials: 'same-origin' })
       .then(response => response.json())
-      .then(data => {
-        // TODO expose this to context
-        console.log('response from auth/me:');
-        console.log(data);
-      });
+      .then(setMe);
   }, []);
+
+  const auth = { signIn, me, setMe };
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };

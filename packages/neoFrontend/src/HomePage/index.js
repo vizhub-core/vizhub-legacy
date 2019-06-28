@@ -4,14 +4,18 @@ import { LogoSVG } from '../svg';
 import { AuthContext } from '../authentication';
 
 export const HomePage = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, me, setMe } = useContext(AuthContext);
 
   return (
     <Wrapper>
       <Content>
         <Banner>
           <LogoSVG height={40} fill="currentcolor" />
-          <SignIn onClick={signIn}>Sign up / Sign in</SignIn>
+          {me ? (
+            <div onClick={() => setMe()}>sign out</div>
+          ) : (
+            <SignIn onClick={signIn(setMe)}>Sign up / Sign in</SignIn>
+          )}
         </Banner>
       </Content>
     </Wrapper>
