@@ -25,26 +25,24 @@
     "UI"
   ],
   "dependencies": {
-    "classnames": "^2.2.6",
-    "codemirror": "^5.48.0",
-    "codemirror-inlet": "^0.1.10",
-    "lodash": "^4.17.11",
-    "magic-sandbox": "^1.2.0",
-    "marked": "^0.6.2",
-    "node-sass": "^4.12.0",
+    "classnames": "2.2.6",
+    "codemirror": "5.39.2",
+    "codemirror-inlet": "0.1.10",
+    "lodash": "4.17.10",
+    "magic-sandbox": "1.2.0",
+    "marked": "0.4.0",
+    "node-sass": "4.9.3",
     "react": "16.4.2",
-    "react-codemirror2": "^6.0.0",
+    "react-codemirror2": "5.1.0",
     "react-dom": "16.4.2",
-    "react-icons": "^3.7.0",
-    "react-measure": "^2.3.0",
-
+    "react-icons": "3.2.2",
+    "react-measure": "2.1.0",
     "react-redux": "5.0.7",
+    "react-scripts": "1.1.4",
+    "react-split-pane": "0.1.82",
     "redux": "4.0.0",
     "redux-observable": "1.0.0",
-    "rxjs": "6.2.2",
-
-    "react-scripts": "3.0.1",
-    "react-split-pane": "^0.1.87"
+    "rxjs": "6.2.2"
   },
   "author": "Datavis Tech INC.",
   "license": "GPL-3.0",
@@ -53,7 +51,7 @@
   },
   "homepage": "https://github.com/datavis-tech/vizhub-ui#readme",
   "devDependencies": {
-    "rollup": "^1.16.2",
-    "rollup-plugin-buble": "^0.19.6"
+    "rollup": "0.64.1",
+    "rollup-plugin-buble": "0.19.2"
   }
 }
