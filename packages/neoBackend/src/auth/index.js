@@ -1,8 +1,9 @@
-import { authGitHub, authMe } from './routes';
+import { authGitHub, authMe, authSignOut } from './routes';
 
 export const auth = app => {
   app.post('/api/auth/github', authGitHub);
   app.get('/api/auth/me', authMe);
+  app.get('/api/auth/signOut', authSignOut);
 };
 
 //        return fetch('https://api.github.com/user', {
