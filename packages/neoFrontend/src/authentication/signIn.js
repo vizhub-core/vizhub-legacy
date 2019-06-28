@@ -1,14 +1,13 @@
 import { openPopup } from './openPopup';
-import { listenForAuthenticatedUser } from './listenForAuthenticatedUser';
+import { listenForMe } from './listenForMe';
+
+// TODO make this its own dir.
 
 // Implements a popup-based OAuth sign in flow.
-export const signIn = () => {
+export const signIn = setMe => () => {
   const popup = openPopup();
-  const onAuthenticatedUserReceived = authenticatedUser => {
+  listenForMe(me => {
     popup.close();
-    console.log('authenticatedUser');
-    console.log(authenticatedUser);
-    // TODO use this in auth context
-  };
-  listenForAuthenticatedUser(onAuthenticatedUserReceived);
+    setMe(me);
+  });
 };
