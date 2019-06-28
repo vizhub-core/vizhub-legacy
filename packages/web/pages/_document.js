@@ -16,7 +16,6 @@ export default class DefaultDocument extends Document {
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73285761-2"></script>
         </Head>
         <body>
-          {this.props.customValue}
           <Main />
           <NextScript />
         </body>
