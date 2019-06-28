@@ -37,10 +37,12 @@
     "react-dom": "16.4.2",
     "react-icons": "^3.7.0",
     "react-measure": "^2.3.0",
+
     "react-redux": "5.0.7",
-    "redux": "^4.0.0",
-    "redux-observable": "^1.0.0",
-    "rxjs": "^6.2.2",
+    "redux": "4.0.0",
+    "redux-observable": "1.0.0",
+    "rxjs": "6.2.2",
+
     "serve-favicon": "^2.5.0",
     "universal-cookie": "^4.0.0",
     "vizhub-server-gateways": "1",
