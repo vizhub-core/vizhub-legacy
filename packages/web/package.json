@@ -32,12 +32,12 @@
     "passport-github": "^1.1.0",
     "raven": "^2.6.4",
     "raw-loader": "^3.0.0",
-    "react": "^16.8.6",
+    "react": "16.7.0",
     "react-codemirror2": "^6.0.0",
-    "react-dom": "^16.8.6",
+    "react-dom": "16.7.0",
     "react-icons": "^3.7.0",
     "react-measure": "^2.3.0",
-    "react-redux": "^7.1.0",
+    "react-redux": "5.0.7",
     "redux": "^4.0.1",
     "redux-observable": "^1.1.0",
     "rxjs": "^6.5.2",
@@ -50,7 +50,7 @@
   "devDependencies": {
     "esm": "^3.2.25",
     "mocha": "^6.1.4",
-    "puppeteer": "^1.18.0",
+    "puppeteer": "^1.18.1",
     "webpack-bundle-analyzer": "^3.3.2"
   },
   "optionalDependencies": {
