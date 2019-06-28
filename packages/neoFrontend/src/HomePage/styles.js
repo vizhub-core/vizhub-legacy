@@ -22,8 +22,9 @@ export const Banner = styled.div`
 `;
 
 export const SignIn = styled.div`
-  color: #f0353c;
+  color: #f0353d;
   font-weight: bold;
+  font-size: 14px;
   cursor: pointer;
   user-select: none;
 `;
