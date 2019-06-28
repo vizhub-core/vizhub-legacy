@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { signIn } from './signIn';
 
 // This context allows components to trigger the sign in flow.
 export const AuthContext = createContext();
@@ -13,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
       .then(setMe);
   }, []);
 
-  const auth = { signIn, me, setMe };
+  const auth = { me, setMe };
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
