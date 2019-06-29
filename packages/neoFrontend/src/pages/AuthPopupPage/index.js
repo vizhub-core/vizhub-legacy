@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
-import { Message, Error } from './styles';
+import { Title } from '../styles';
+import { Message } from './styles';
 import { getJWT } from './getJWT';
 import { postMessageToOpener } from './postMessageToOpener';
 
@@ -26,8 +27,10 @@ export const AuthPopupPage = () => {
   }, [code]);
 
   return errorResponse ? (
-    <Error>{errorResponse.errorDescription}</Error>
+    <Message>{errorResponse.errorDescription}</Message>
   ) : (
-    <Message>Signing in...</Message>
+    <Message>
+      <Title>Signing in...</Title>
+    </Message>
   );
 };
