@@ -1,4 +1,2 @@
 export { AuthContext, AuthContextProvider } from './authContext';
-export { AuthPopupPage } from './AuthPopupPage';
-export { AuthPage } from './AuthPage';
-export { AUTH_PENDING } from './constants';
+export { AUTH_PENDING, oAuthURL } from './constants';
