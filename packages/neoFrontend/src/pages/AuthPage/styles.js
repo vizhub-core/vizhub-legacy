@@ -30,9 +30,11 @@ export const Button = styled.a`
   border: solid 1px #161514;
 
   font-size: 12px;
-  color: currentColor;
+  color: ${props => props.theme.dark};
   text-decoration: none;
 
   :hover {
+    background-color: ${props => props.theme.dark};
+    color: white;
   }
 `;
