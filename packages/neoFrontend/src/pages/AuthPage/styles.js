@@ -7,6 +7,7 @@ export const BoxWrapper = styled.div`
 
 export const Box = styled.div`
   flex: 1;
+  flex-direction: column;
   display: flex;
   height: 412px;
   justify-content: center;
