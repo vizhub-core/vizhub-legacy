@@ -2,7 +2,7 @@ import React from 'react';
 import { Wrapper, Content, Banner } from '../styles';
 import { BoxWrapper, Box } from './styles';
 import { LogoSVG } from '../../svg';
-import { oAuthURL } from '../../authentication';
+import { GITHUB_OAUTH_URL } from '../../authentication';
 
 export const AuthPage = () => {
   return (
@@ -13,7 +13,7 @@ export const AuthPage = () => {
         </Banner>
         <BoxWrapper>
           <Box>
-            <a href={oAuthURL}>Sign in with GitHub</a>
+            <a href={GITHUB_OAUTH_URL}>Sign in with GitHub</a>
           </Box>
         </BoxWrapper>
       </Content>
