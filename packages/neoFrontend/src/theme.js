@@ -2,7 +2,8 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
 const theme = {
-  dark: '#161514'
+  dark: '#161514',
+  attentionGrabber: '#f0353d'
 };
 
 const Wrapper = styled.div`
