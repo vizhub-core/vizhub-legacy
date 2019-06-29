@@ -14,7 +14,7 @@ export const Content = styled.div`
 `;
 
 export const Banner = styled.div`
-  height: 100px;
+  min-height: 100px;
   margin-left: 6px;
   margin-right: 6px;
   flex: 1;
