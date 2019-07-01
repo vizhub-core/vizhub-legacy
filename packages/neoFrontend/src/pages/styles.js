@@ -22,3 +22,7 @@ export const Banner = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const Title = styled.div`
+  font-size: 22px;
+`;
