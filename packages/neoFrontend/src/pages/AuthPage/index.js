@@ -15,7 +15,7 @@ export const AuthPage = () => {
           <Box>
             <Title>Sign up or Sign in</Title>
             If you don't have an account, one will be created when you sign in.
-            <Octocat src="/images/GitHub-Mark-120px-plus.png" />
+            <Octocat width="120" height="120" src="/images/GitHub-Mark-120px-plus.png" />
             <Button href={GITHUB_OAUTH_URL}>Sign in with GitHub</Button>
             <Terms>
               By signing in you agree to our{' '}
