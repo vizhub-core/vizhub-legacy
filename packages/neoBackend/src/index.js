@@ -14,9 +14,6 @@ expressApp.use(compression());
 expressApp.use(bodyParser.json());
 expressApp.use(cookieParser());
 
-auth(expressApp);
-serveFrontend(expressApp);
-
 const server = http.createServer(expressApp);
 
 //serveShareDB(server);
@@ -24,7 +21,10 @@ const server = http.createServer(expressApp);
 //const connection = share.connect();
 
 const gateways = serverGateways();
+auth(expressApp, gateways.userGateway);
 apiController(expressApp, gateways);
+
+serveFrontend(expressApp);
 
 const port = 4000;
 server.listen(port);
