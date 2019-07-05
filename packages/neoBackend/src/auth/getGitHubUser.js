@@ -1,4 +1,4 @@
-import { VizHubAPIError } from '../VizHubAPIError';
+import { VizHubAPIError } from '../Error';
 import fetch from 'node-fetch';
 const gitHubUserURL = 'https://api.github.com/user';
 
