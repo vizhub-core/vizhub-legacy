@@ -1,7 +1,5 @@
-import fetch from 'node-fetch';
 import jwt from 'jsonwebtoken';
-import { VizHubAPIError } from '../VizHubAPIError';
-import { getGitHubUser } from './getGitHubUser';
+import { VizHubAPIError } from '../Error';
 
 const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
 
@@ -24,7 +22,7 @@ export const jwtVerify = vizHubJWT => {
   try {
     const { login, id, name } = jwt.verify(vizHubJWT, secret);
     return { login, id, name };
-  } catch {
+  } catch (error) {
     // If there's an error verifying the JWT,
     // e.g. if there is no token provided, or the provided one is expired,
     // return null to signify that the user is not authenticated.

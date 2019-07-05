@@ -6,11 +6,13 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node -r esm src/index.js",
-    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
   },
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "devDependencies": {
+    "eslint": "^6.0.1",
     "esm": "^3.2.25",
     "prettier": "^1.18.2"
   },
