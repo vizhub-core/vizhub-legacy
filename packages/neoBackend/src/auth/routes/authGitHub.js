@@ -4,7 +4,7 @@ import { getAccessToken } from '../getAccessToken';
 import { getGitHubUser } from '../getGitHubUser';
 import { jwtSign, jwtVerify } from '../jwt';
 
-export const authGitHub = asyncHandler(async (req, res) => {
+export const authGitHub = userGateway => asyncHandler(async (req, res) => {
   try {
     const accessToken = await getAccessToken(req.body.code);
     const gitHubUser = await getGitHubUser(accessToken);
