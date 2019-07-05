@@ -10,4 +10,13 @@ export const toVizHubAPIError = error => {
       errorDescription: error.message
     });
   }
+
+  console.log('');
+  console.log('Unknown error type passed into toVizHubAPIError.');
+  console.log(`\tName: ${error.name}`);
+  console.log(`\tMessage: ${error.message}`);
+  console.log('Consider handling this type of error..');
+  console.log('');
+
+  return error;
 };
