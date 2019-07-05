@@ -16,7 +16,9 @@ auth(app);
 serveFrontend(app);
 
 const server = http.createServer(app);
-const share = serveShareDB(server);
+
+serveShareDB(server);
+//const share = serveShareDB(server);
 //const connection = share.connect();
 
 const port = 4000;
