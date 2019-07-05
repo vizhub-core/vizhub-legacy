@@ -5,6 +5,7 @@ export type UserId = string;
 export class User {
 
   // Whether or not the user is authenticated.
+  // DEPRECATED (not used in neoFrontend, neoBackend).
   authenticated: boolean;
 
   // The unique ID of this user.
