@@ -1,4 +1,6 @@
-// TODO capitalize these for strong convention
+// These values are read in from environment variables.
+// See packages/neoBackend/README.md for details.
+//
 export const GITHUB_CLIENT_ID = process.env.REACT_APP_VIZHUB_GITHUB_CLIENT_ID;
 export const OAUTH_URL_BASE = 'https://github.com/login/oauth/authorize';
 export const GITHUB_OAUTH_URL =

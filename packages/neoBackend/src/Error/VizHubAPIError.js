@@ -19,7 +19,7 @@ const validate = options => {
   }
   if (!options.errorDescription) {
     throw new Error(
-      'The field "errorDescription" must be specified for an error response. It should be a long form human-readable description for the error, such as "The redirect_uri MUST match the registered callback URL for this application.".'
+      'The field "errorDescription" must be specified for an error response. It should be a long form human-readable description for the error.'
     );
   }
   if (!options.errorURL) {
