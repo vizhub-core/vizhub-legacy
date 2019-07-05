@@ -11,6 +11,7 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "devDependencies": {
+    "eslint": "^6.0.1",
     "esm": "^3.2.25",
     "prettier": "^1.18.2"
   },
