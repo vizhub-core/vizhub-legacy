@@ -2,7 +2,7 @@ import { authGitHub, authMe, authSignOut } from './routes';
 
 export const auth = (app, userGateway) => {
   app.post('/api/auth/github', authGitHub(userGateway));
-  app.get('/api/auth/me', authMe);
+  app.get('/api/auth/me', authMe(userGateway));
   app.get('/api/auth/signOut', authSignOut);
 };
 
