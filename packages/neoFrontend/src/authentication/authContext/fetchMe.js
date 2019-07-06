@@ -3,5 +3,6 @@ export const fetchMe = async () => {
     method: 'GET',
     credentials: 'same-origin'
   });
-  return await response.json();
+  const data = await response.json();
+  return data.me;
 };
