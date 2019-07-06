@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "datavis-tech-controllers": "1",
+    "datavis-tech-use-cases": "1",
     "vizhub-server-gateways": "1",
     "@datavis-tech/ot-json0": "^1.2.0",
     "@teamwork/sharedb": "^3.1.0",
