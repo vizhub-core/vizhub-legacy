@@ -3,37 +3,47 @@ import { CreateUser } from 'datavis-tech-use-cases';
 import { toErrorResponse } from '../../Error';
 import { getAccessToken } from '../getAccessToken';
 import { getGitHubUser } from '../getGitHubUser';
-import { jwtSign, jwtVerify } from '../jwt';
+import { jwtSign } from '../jwt';
 
-export const authGitHub = userGateway => asyncHandler(async (req, res) => {
-  try {
-    const accessToken = await getAccessToken(req.body.code);
-    const gitHubUser = await getGitHubUser(accessToken);
-    const userName = gitHubUser.login;
-
-    let user;
-
-    // TODO move logic into getOrCreateUser interactor (in useCases).
-    // TODO add tests for it
-    //  - user does not exist
-    //  - user exists
+export const authGitHub = userGateway => {
+  const createUser = new CreateUser({ userGateway });
+  return asyncHandler(async (req, res) => {
     try {
-      user = await userGateway.getUserByUserName(userName);
+      const accessToken = await getAccessToken(req.body.code);
+      const gitHubUser = await getGitHubUser(accessToken);
+      const userName = gitHubUser.login;
+
+      let user;
+
+      // TODO move logic into getOrCreateUser interactor (in useCases).
+      // TODO add tests for it
+      //  - user does not exist
+      //  - user exists
+      try {
+        // TODO should this be behind an interactor?
+        // Consider case of CI user.
+        user = await userGateway.getUserByUserName(userName);
+      } catch (error) {
+        const oAuthProfile = {
+          id: '' + gitHubUser.id,
+          username: gitHubUser.login,
+          _json: gitHubUser
+        };
+        const requestModel = { oAuthProfile };
+        const responseModel = await createUser.execute(requestModel);
+        user = responseModel.user;
+      }
+
+      // Generate a JWT with the user id as its payload.
+      const vizHubJWT = await jwtSign(user.id);
+
+      // Store the JWT securely in an httpOnly cookie.
+      res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true });
+
+      // Send the user data as the response (same response as authMe).
+      res.send(user);
     } catch (error) {
-      const createUser = new CreateUser({ userGateway });
-      const oAuthProfile = {
-        id: '' + gitHubUser.id,
-        username: gitHubUser.login,
-        _json: gitHubUser
-      };
-      const requestModel = { oAuthProfile };
-      const responseModel = await createUser.execute(requestModel);
-      user = responseModel.user;
+      res.send(toErrorResponse(error));
     }
-    const vizHubJWT = await jwtSign(user.id);
-    res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true });
-    res.send(jwtVerify(vizHubJWT));
-  } catch (error) {
-    res.send(toErrorResponse(error));
-  }
-});
+  });
+};
