@@ -28,6 +28,8 @@ export const AuthContextProvider = ({ children }) => {
     fetchMe().then(setMe);
   }, []);
 
+  console.log(me);
+
   const contextValue = {
     me,
     signIn: useCallback(signInFlow(setMe), [setMe]),
