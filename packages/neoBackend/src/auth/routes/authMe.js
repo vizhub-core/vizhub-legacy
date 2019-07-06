@@ -5,7 +5,7 @@ export const authMe = (req, res) => {
   try {
     const { vizHubJWT } = req.cookies;
     const me = jwtVerify(vizHubJWT);
-    res.send({ me });
+    res.send({me});
   } catch (error) {
     res.send(toErrorResponse(error));
   }

@@ -11,13 +11,15 @@ export const authGitHub = userGateway => asyncHandler(async (req, res) => {
     const gitHubUser = await getGitHubUser(accessToken);
     const userName = gitHubUser.login;
 
-    // TODO move this logic into getOrCreateUser interactor (in useCases).
+    let user;
+
+    // TODO move logic into getOrCreateUser interactor (in useCases).
+    // TODO add tests for it
+    //  - user does not exist
+    //  - user exists
     try {
-      const user = await userGateway.getUserByUserName(userName);
-      console.log('user exists!');
-      console.log(user);
+      user = await userGateway.getUserByUserName(userName);
     } catch (error) {
-      console.log('user does not exist, creating!');
       const createUser = new CreateUser({ userGateway });
       const oAuthProfile = {
         id: '' + gitHubUser.id,
@@ -26,10 +28,9 @@ export const authGitHub = userGateway => asyncHandler(async (req, res) => {
       };
       const requestModel = { oAuthProfile };
       const responseModel = await createUser.execute(requestModel);
-      console.log(responseModel);
+      user = responseModel.user;
     }
-
-    const vizHubJWT = await jwtSign(gitHubUser);
+    const vizHubJWT = await jwtSign(user.id);
     res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true });
     res.send(jwtVerify(vizHubJWT));
   } catch (error) {
