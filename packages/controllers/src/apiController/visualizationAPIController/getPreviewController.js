@@ -1,4 +1,4 @@
-import { GetPreview } from 'datavis-tech-use-cases';
+import { GetPreview } from 'vizhub-use-cases';
 
 export const getPreviewController = (expressApp, gateways) => {
   const getPreview = new GetPreview(gateways);

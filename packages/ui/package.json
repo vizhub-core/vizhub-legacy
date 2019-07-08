@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datavis-tech/vizhub-ui.git"
+    "url": "git+https://github.com/vizhub/vizhub-ui.git"
   },
   "keywords": [
     "data",
@@ -47,9 +47,9 @@
   "author": "Datavis Tech INC.",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/datavis-tech/vizhub-ui/issues"
+    "url": "https://github.com/vizhub/vizhub-ui/issues"
   },
-  "homepage": "https://github.com/datavis-tech/vizhub-ui#readme",
+  "homepage": "https://github.com/vizhub/vizhub-ui#readme",
   "devDependencies": {
     "rollup": "^1.16.2",
     "rollup-plugin-buble": "^0.19.6"

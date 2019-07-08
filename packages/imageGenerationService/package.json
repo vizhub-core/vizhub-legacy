@@ -11,9 +11,9 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "datavis-tech-entities": "1",
-    "datavis-tech-presenters": "1",
-    "datavis-tech-use-cases": "1",
+    "vizhub-entities": "1",
+    "vizhub-presenters": "1",
+    "vizhub-use-cases": "1",
     "dotenv": "^6.1.0",
     "puppeteer": "^1.8.0",
     "sharp": "^0.22.1",

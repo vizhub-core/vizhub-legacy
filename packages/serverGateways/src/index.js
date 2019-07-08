@@ -3,8 +3,8 @@ import {
   DatabaseDatasetGateway,
   DatabaseUserGateway,
   DatabaseImageStorageGateway
-} from 'datavis-tech-gateways';
-import { Database } from 'datavis-tech-database';
+} from 'vizhub-gateways';
+import { Database } from 'vizhub-database';
 import { getConnection } from './shareDB';
 
 export const serverGateways = () => {

@@ -1,4 +1,4 @@
-import { ciUser } from 'datavis-tech-entities';
+import { ciUser } from 'vizhub-entities';
 
 const updateUser = async (user) => {
   console.log('TODO implement updateUser');

@@ -1,5 +1,5 @@
-import { User } from 'datavis-tech-entities';
-import { CreateUser, GetUser } from 'datavis-tech-use-cases';
+import { User } from 'vizhub-entities';
+import { CreateUser, GetUser } from 'vizhub-use-cases';
 
 export const userController = userGateway => {
   const createUser = new CreateUser({ userGateway });

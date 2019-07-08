@@ -1,7 +1,7 @@
 import assert from 'assert';
 import ShareDB from '@teamwork/sharedb';
 import ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
-import { DATASET_TYPE, testData } from 'datavis-tech-entities';
+import { DATASET_TYPE, testData } from 'vizhub-entities';
 import { Database } from '../src';
 
 const shareDB = ShareDB({ db: new ShareDBMingoMemory() });

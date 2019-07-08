@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { testData } from 'datavis-tech-entities';
+import { testData } from 'vizhub-entities';
 import { VisualizationViewModel, DatasetViewModel } from '../src';
 import { bundle } from '../src';
 

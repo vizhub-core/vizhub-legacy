@@ -1,5 +1,5 @@
 import { computeReferences } from './computeReferences';
-import { CVResponse } from 'datavis-tech-use-cases';
+import { CVResponse } from 'vizhub-use-cases';
 
 export interface VisualizationViewModel {
   references: string[]

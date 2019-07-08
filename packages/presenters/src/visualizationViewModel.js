@@ -1,4 +1,4 @@
-import { Visualization, Files, DocumentId } from 'datavis-tech-entities';
+import { Visualization, Files, DocumentId } from 'vizhub-entities';
 
 export class VisualizationViewModel {
   constructor(visualization) {

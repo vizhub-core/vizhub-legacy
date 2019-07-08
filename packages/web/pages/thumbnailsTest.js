@@ -3,7 +3,7 @@ import Page from '../components/page';
 import { TitledPage } from '../components/atoms/titledPage';
 import { VisualizationPreview } from '../components/atoms/visualizationPreview';
 import { getJSON } from '../utils/getJSON';
-import { testData } from 'datavis-tech-entities';
+import { testData } from 'vizhub-entities';
 
 const { visualizationInfo } = testData;
 

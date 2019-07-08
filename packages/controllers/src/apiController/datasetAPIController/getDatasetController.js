@@ -1,4 +1,4 @@
-import { GetDataset } from 'datavis-tech-use-cases';
+import { GetDataset } from 'vizhub-use-cases';
 
 export const getDatasetController = (expressApp, gateways) => {
   const getDataset = new GetDataset(gateways);

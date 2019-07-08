@@ -1,6 +1,6 @@
-import { ImageStorageGateway } from 'datavis-tech-use-cases';
+import { ImageStorageGateway } from 'vizhub-use-cases';
 
-import { Images, DocumentId } from 'datavis-tech-entities';
+import { Images, DocumentId } from 'vizhub-entities';
 
 export class DatabaseImageStorageGateway implements ImageStorageGateway {
   database: any;
