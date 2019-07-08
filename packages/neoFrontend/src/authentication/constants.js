@@ -7,3 +7,5 @@ export const GITHUB_OAUTH_URL =
   OAUTH_URL_BASE + '?client_id=' + GITHUB_CLIENT_ID;
 
 export const AUTH_PENDING = 'AUTH_PENDING';
+export const CI_USER_CODE = 'ci';
+export const CI_AUTH_URL = '/authenticated?code=' + CI_USER_CODE;
