@@ -39,6 +39,10 @@ import {
   GetUserRequestModel,
   GetUserResponseModel,
 
+  GetOrCreateUser,
+  GetOrCreateUserRequestModel,
+  GetOrCreateUserResponseModel,
+
   GetUserProfileData,
   GetUserProfileDataRequestModel,
   GetUserProfileDataResponseModel,
@@ -297,28 +301,29 @@ describe('Use Cases', () => {
     // TODO test success case
   });
 
+  const createUserRequestModel: CreateUserRequestModel = {
+    "oAuthProfile": {
+      "id": "84752",
+      "displayName": "Joe Schmoe",
+      "username": "joe",
+      "_json": {
+        "avatar_url": "https://avatars3.githubusercontent.com/u/84752?v=4",
+        "name": "Joe Schmoe",
+        "company": "Schmoe INC",
+        "blog": "joeschmoe.com",
+        "location": "Earth",
+        "email": "joe@datavis.tech",
+        "bio": "Great guy",
+      }
+    }
+  };
+
   describe('Create User', () => {
     const userGateway = { createUser: async (user) => user };
     const createUser = new CreateUser({ userGateway });
 
     it('should invoke gateway with user instance', async () => {
-      const requestModel: CreateUserRequestModel = {
-        "oAuthProfile": {
-          "id": "84752",
-          "displayName": "Joe Schmoe",
-          "username": "joe",
-          "_json": {
-            "avatar_url": "https://avatars3.githubusercontent.com/u/84752?v=4",
-            "name": "Joe Schmoe",
-            "company": "Schmoe INC",
-            "blog": "joeschmoe.com",
-            "location": "Earth",
-            "email": "joe@datavis.tech",
-            "bio": "Great guy",
-          }
-        }
-      };
-      const responseModel = await createUser.execute(requestModel);
+      const responseModel = await createUser.execute(createUserRequestModel);
       assert.deepEqual(responseModel, { user: fakeUser });
     });
   });
@@ -337,6 +342,45 @@ describe('Use Cases', () => {
       const requestModel = { id: ciUser.id };
       const responseModel = await getUser.execute(requestModel);
       assert.deepEqual(responseModel, { user: ciUser });
+    });
+  });
+
+  describe('Get or Create User', () => {
+    let user;
+
+    it('should create user if not found', async () => {
+      let createCalled = false;
+      const userGateway = {
+        getUser: () => {
+          throw new Error('Not found');
+        },
+        createUser: async (user) => {
+          createCalled = true;
+          return user;
+        }
+      };
+
+      const getOrCreateUser = new GetOrCreateUser({ userGateway });
+      const responseModel = await getOrCreateUser.execute(createUserRequestModel);
+      user = responseModel.user;
+      assert.equal(user.userName, createUserRequestModel.oAuthProfile.username);
+      assert(createCalled);
+    });
+
+    it('should return user if found', async () => {
+      let createCalled = false;
+      const userGateway = {
+        getUser: () => user,
+        createUser: async (user) => {
+          createCalled = true;
+          return user;
+        }
+      };
+
+      const getOrCreateUser = new GetOrCreateUser({ userGateway });
+      const responseModel = await getOrCreateUser.execute(createUserRequestModel);
+      assert.equal(responseModel.user, user);
+      assert(!createCalled);
     });
   });
 
