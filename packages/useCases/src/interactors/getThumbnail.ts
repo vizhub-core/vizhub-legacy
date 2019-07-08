@@ -1,5 +1,5 @@
-import { Images, User, DocumentId } from 'datavis-tech-entities';
-import { i18n } from 'datavis-tech-i18n';
+import { Images, User, DocumentId } from 'vizhub-entities';
+import { i18n } from 'vizhub-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../interactor';
 import { ImageStorageGateway } from '../gatewayInterfaces/imageStorageGateway';
 import { UserGateway } from '../gatewayInterfaces/userGateway';

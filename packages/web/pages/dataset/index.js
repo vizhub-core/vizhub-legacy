@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
-import { DatasetViewModel } from 'datavis-tech-presenters';
+import { DatasetViewModel } from 'vizhub-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { SlightMargin } from '../../components/atoms/slightMargin';

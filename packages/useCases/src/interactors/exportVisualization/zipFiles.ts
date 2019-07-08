@@ -1,6 +1,6 @@
 import { constants } from 'fs';
 import * as AdmZip from 'adm-zip';
-import { File } from 'datavis-tech-entities';
+import { File } from 'vizhub-entities';
 
 export const zipFiles = (files: File[]) => {
   const zip = new AdmZip();

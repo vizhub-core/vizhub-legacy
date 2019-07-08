@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { IDEContainer, FullPage, uiRedux } from 'vizhub-ui';
-import { VisualizationViewModel } from 'datavis-tech-presenters';
+import { VisualizationViewModel } from 'vizhub-presenters';
 import Page from '../../components/page';
 import { TitledPage } from '../../components/atoms/titledPage';
 import { Unfurl } from '../../components/atoms/unfurl';
@@ -43,7 +43,7 @@ const {
 } = uiRedux;
 
 // Exclude file entries where name is null, as does happen.
-// Related https://github.com/datavis-tech/vizhub-ui/issues/162
+// Related https://github.com/vizhub/vizhub-ui/issues/162
 const filterBogusFiles = visualization => {
   if (visualization && visualization.content && visualization.content.files) {
     visualization.content.files = visualization.content.files

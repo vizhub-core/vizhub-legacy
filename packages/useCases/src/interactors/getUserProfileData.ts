@@ -1,4 +1,4 @@
-import { User, VisualizationInfo, ciUser } from 'datavis-tech-entities';
+import { User, VisualizationInfo, ciUser } from 'vizhub-entities';
 import { Interactor, RequestModel, ResponseModel } from '../interactor';
 import { UserGateway } from '../gatewayInterfaces/userGateway'
 import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway'

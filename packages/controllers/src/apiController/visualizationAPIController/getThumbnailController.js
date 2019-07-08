@@ -1,4 +1,4 @@
-import { GetThumbnail } from 'datavis-tech-use-cases';
+import { GetThumbnail } from 'vizhub-use-cases';
 
 export const getThumbnailController = (expressApp, gateways) => {
   const getThumbnail = new GetThumbnail(gateways);

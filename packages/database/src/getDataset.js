@@ -1,4 +1,4 @@
-import { Dataset, DatasetInfo, DatasetContent, DATASET_TYPE } from 'datavis-tech-entities';
+import { Dataset, DatasetInfo, DatasetContent, DATASET_TYPE } from 'vizhub-entities';
 import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 import { fetchShareDBQuery } from './fetchShareDBQuery';

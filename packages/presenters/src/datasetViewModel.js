@@ -1,4 +1,4 @@
-import { Dataset } from 'datavis-tech-entities';
+import { Dataset } from 'vizhub-entities';
 
 export class DatasetViewModel {
   constructor(dataset) {

@@ -1,5 +1,5 @@
 import { serverGateways } from 'vizhub-server-gateways';
-import { UpdateImages } from 'datavis-tech-use-cases';
+import { UpdateImages } from 'vizhub-use-cases';
 import { generateImages, defaultWaitTime } from './generateImages';
 
 const noop = () => {};

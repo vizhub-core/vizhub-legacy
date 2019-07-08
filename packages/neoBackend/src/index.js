@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { serverGateways } from 'vizhub-server-gateways';
-import { apiController } from 'datavis-tech-controllers';
+import { apiController } from 'vizhub-controllers';
 import { serveFrontend } from './serveFrontend';
 //import { serveShareDB } from './serveShareDB';
 import { auth } from './auth';

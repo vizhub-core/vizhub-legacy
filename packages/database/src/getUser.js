@@ -1,4 +1,4 @@
-import { User } from 'datavis-tech-entities';
+import { User } from 'vizhub-entities';
 import { USER } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 

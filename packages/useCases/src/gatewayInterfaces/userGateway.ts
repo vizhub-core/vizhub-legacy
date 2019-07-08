@@ -1,4 +1,4 @@
-import { User, UserId } from 'datavis-tech-entities';
+import { User, UserId } from 'vizhub-entities';
 
 export interface UserGateway {
   createUser(user: User): Promise<User>;

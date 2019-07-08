@@ -1,4 +1,4 @@
-import { UserId, DocumentId, File, DatasetInfo } from 'datavis-tech-entities';
+import { UserId, DocumentId, File, DatasetInfo } from 'vizhub-entities';
 
 import {
   CreateDatasetRequestModel,
