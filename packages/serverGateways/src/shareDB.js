@@ -6,16 +6,22 @@ import ShareDBMongo from '@teamwork/sharedb-mongo';
 let shareDB;
 let connection;
 
+// These options serve only to disable deprecation warnings.
+const options = {
+  disableDocAction: true,
+  disableSpaceDelimitedActions: true
+};
+
 export const getShareDB = () => {
   if (!shareDB) {
     if (process.env.MONGO_URI) { 
-      shareDB = ShareDB({
+      shareDB = ShareDB(Object.assign(options, {
         db: new ShareDBMongo(process.env.MONGO_URI)
-      });
+      }));
     } else {
-      shareDB = ShareDB({
+      shareDB = ShareDB(Object.assign(options, {
         db: new ShareDBMingoMemory()
-      });
+      }));
     }
   }
   return shareDB;
