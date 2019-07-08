@@ -346,6 +346,7 @@ describe('Use Cases', () => {
   });
 
   describe('Get or Create User', () => {
+    let user;
 
     it('should create user if not found', async () => {
       let createCalled = false;
@@ -360,16 +361,26 @@ describe('Use Cases', () => {
       };
 
       const getOrCreateUser = new GetOrCreateUser({ userGateway });
-      const requestModel = createUserRequestModel;
-      const responseModel = await getOrCreateUser.execute(requestModel);
+      const responseModel = await getOrCreateUser.execute(createUserRequestModel);
+      user = responseModel.user;
+      assert.equal(user.userName, createUserRequestModel.oAuthProfile.username);
       assert(createCalled);
     });
 
     it('should return user if found', async () => {
-      const requestModel = createUserRequestModel;
-      // const requestModel = { id: ciUser.id };
-      // const responseModel = await getOrCreateUser.execute(requestModel);
-      // assert.deepEqual(responseModel, { user: ciUser });
+      let createCalled = false;
+      const userGateway = {
+        getUser: () => user,
+        createUser: async (user) => {
+          createCalled = true;
+          return user;
+        }
+      };
+
+      const getOrCreateUser = new GetOrCreateUser({ userGateway });
+      const responseModel = await getOrCreateUser.execute(createUserRequestModel);
+      assert.equal(responseModel.user, user);
+      assert(!createCalled);
     });
   });
 
