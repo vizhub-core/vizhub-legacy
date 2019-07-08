@@ -346,17 +346,23 @@ describe('Use Cases', () => {
   });
 
   describe('Get or Create User', () => {
-    const userGateway = {
-      getUser: async (id) => fakeUser,
-      createUser: async (user) => user
-    };
-
-    const getOrCreateUser = new GetOrCreateUser({ userGateway });
 
     it('should create user if not found', async () => {
+      let createCalled = false;
+      const userGateway = {
+        getUser: () => {
+          throw new Error('Not found');
+        },
+        createUser: async (user) => {
+          createCalled = true;
+          return user;
+        }
+      };
+
+      const getOrCreateUser = new GetOrCreateUser({ userGateway });
       const requestModel = createUserRequestModel;
       const responseModel = await getOrCreateUser.execute(requestModel);
-      // assert.deepEqual(responseModel, { user: fakeUser });
+      assert(createCalled);
     });
 
     it('should return user if found', async () => {
