@@ -1,10 +1,8 @@
 import { CI_USER_CODE } from './constants';
 
 const url = code => {
-  const isCICode = code === CI_USER_CODE;
-  const isDev = process.env.NODE_ENV === 'development';
-  const isCI = isCICode && isDev;
-  return '/api/auth/' + isCI ? 'ci' : 'github';
+  const isCI = code === CI_USER_CODE;
+  return `/api/auth/${isCI ? 'ci' : 'github'}`;
 };
 
 export const getJWT = async code => {

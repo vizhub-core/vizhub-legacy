@@ -5,7 +5,8 @@
   "description": "VizHub 2.0 backend package.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node -r esm src/index.js",
+    "start": "NODE_ENV=production node -r esm src/index.js",
+    "dev": "NODE_ENV=development node -r esm src/index.js",
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
     "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
   },
@@ -17,6 +18,7 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
+    "datavis-tech-entities": "1",
     "datavis-tech-controllers": "1",
     "datavis-tech-use-cases": "1",
     "vizhub-server-gateways": "1",
