@@ -1,6 +1,6 @@
 import ShareDB from '@teamwork/sharedb/lib/client';
-import { Gateway } from 'datavis-tech-gateways';
-import { Database } from 'datavis-tech-database';
+import { Gateway } from 'vizhub-gateways';
+import { Database } from 'vizhub-database';
 
 const ClientGateway = () => {
   const socket = new WebSocket('ws://' + window.location.host);

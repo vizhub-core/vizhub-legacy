@@ -2,13 +2,13 @@ import {
   DatasetGateway,
   CreateDatasetRequestModel,
   CreateDatasetResponseModel
-} from 'datavis-tech-use-cases';
+} from 'vizhub-use-cases';
 
 import {
   Dataset,
   DatasetInfo,
   DatasetContent
-} from 'datavis-tech-entities';
+} from 'vizhub-entities';
 
 export class DatabaseDatasetGateway implements DatasetGateway {
   database: any;

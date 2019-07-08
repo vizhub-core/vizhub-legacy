@@ -5,7 +5,7 @@ import { retry } from './retry';
 import { navigateToAuthPage } from './navigateToAuthPage';
 import { authAsCI } from './authAsCI';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
-// import { ciUser } from 'datavis-tech-entities';
+// import { ciUser } from 'vizhub-entities';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 //

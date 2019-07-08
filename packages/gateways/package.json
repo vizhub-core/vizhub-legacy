@@ -1,5 +1,5 @@
 {
-  "name": "datavis-tech-gateways",
+  "name": "vizhub-gateways",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -13,9 +13,9 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@types/uuid": "^3.4.3",
-    "datavis-tech-entities": "1",
-    "datavis-tech-use-cases": "1",
-    "datavis-tech-i18n": "1"
+    "vizhub-entities": "1",
+    "vizhub-use-cases": "1",
+    "vizhub-i18n": "1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.4",

@@ -1,4 +1,4 @@
-import { DeleteVisualization } from 'datavis-tech-use-cases';
+import { DeleteVisualization } from 'vizhub-use-cases';
 import { userIdFromReq } from '../userIdFromReq';
 
 export const deleteVisualizationController = (expressApp, gateways) => {

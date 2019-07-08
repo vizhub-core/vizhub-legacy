@@ -11,7 +11,7 @@ import nextAuthConfig from './next-auth.config';
 // import { ShareDBServer } from './shareDBServer';
 import accountAPI from './api/account';
 
-import { apiController, userController } from 'datavis-tech-controllers';
+import { apiController, userController } from 'vizhub-controllers';
 
 import { serverGateways } from 'vizhub-server-gateways';
 import { setupRaven } from './setupRaven';

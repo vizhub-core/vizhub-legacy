@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { GetOrCreateUser } from 'datavis-tech-use-cases';
+import { GetOrCreateUser } from 'vizhub-use-cases';
 import { toErrorResponse } from '../../Error';
 import { getAccessToken } from '../getAccessToken';
 import { getGitHubUser } from '../getGitHubUser';

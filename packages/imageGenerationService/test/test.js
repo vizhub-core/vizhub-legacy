@@ -1,12 +1,12 @@
 import assert from 'assert';
 import { serverGateways } from 'vizhub-server-gateways';
-import { testData } from 'datavis-tech-entities';
+import { testData } from 'vizhub-entities';
 import { generateImages } from '../src/generateImages';
 import { computeImageDimensions } from '../src/computeImageDimensions';
 import { thumbnailDimensions, previewDimensions } from '../src/dimensions';
 import { expectedThumbnail, expectedPreview } from './expectedImages';
 import { startService } from '../src/service';
-import { SaveVisualization } from 'datavis-tech-use-cases';
+import { SaveVisualization } from 'vizhub-use-cases';
 
 const { visualization } = testData;
 

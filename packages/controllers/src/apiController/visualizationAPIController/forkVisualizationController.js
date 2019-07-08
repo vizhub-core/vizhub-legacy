@@ -1,4 +1,4 @@
-import { ForkVisualization } from 'datavis-tech-use-cases';
+import { ForkVisualization } from 'vizhub-use-cases';
 import { userIdFromReq } from '../userIdFromReq';
 
 export const forkVisualizationController = (expressApp, gateways) => {

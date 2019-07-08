@@ -1,4 +1,4 @@
-import { User } from 'datavis-tech-entities';
+import { User } from 'vizhub-entities';
 
 // Creates a User entity from the Express session.
 export const userFromSession = session => (

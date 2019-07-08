@@ -4,12 +4,12 @@ This package is being deprecated in favor of neoFrontent.
 
 This repository contains the core user interface components for [vizhub.com](https://vizhub.com).
 
-This is a submodule of https://github.com/datavis-tech/vizhub .
+This is a submodule of https://github.com/vizhub/vizhub .
 
-See also our [VizHub Scrum Board](https://github.com/orgs/datavis-tech/projects/1).
+See also our [VizHub Scrum Board](https://github.com/orgs/vizhub/projects/1).
 
  * If you want a certain feature, please give its corresponding GitHub issue a :thumbsup:
- * If you discover bugs or have ideas for new features, please [open an issue](https://github.com/datavis-tech/vizhub-ui/issues/new?template=upvotable.md).
+ * If you discover bugs or have ideas for new features, please [open an issue](https://github.com/vizhub/vizhub-ui/issues/new?template=upvotable.md).
  * If you want to contribute code changes, see [contribution guidelines](CONTRIBUTING.md).
 
 ### Medium Posts (reverse chronological order):

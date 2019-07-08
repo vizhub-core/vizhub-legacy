@@ -1,4 +1,4 @@
-import { GetVisualization } from 'datavis-tech-use-cases';
+import { GetVisualization } from 'vizhub-use-cases';
 
 export const getVisualizationController = (expressApp, gateways) => {
   const getVisualization = new GetVisualization(gateways);

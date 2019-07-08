@@ -1,4 +1,4 @@
-import { ExportVisualization } from 'datavis-tech-use-cases';
+import { ExportVisualization } from 'vizhub-use-cases';
 
 export const exportVisualizationController = (expressApp, gateways) => {
   const exportVisualization = new ExportVisualization(gateways);

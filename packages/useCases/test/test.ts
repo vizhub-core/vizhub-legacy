@@ -1,6 +1,6 @@
 import * as assert from 'assert';
-import { i18n } from 'datavis-tech-i18n';
-import { ciUser, testData, timestamp } from 'datavis-tech-entities';
+import { i18n } from 'vizhub-i18n';
+import { ciUser, testData, timestamp } from 'vizhub-entities';
 
 import {
   CreateVisualization,

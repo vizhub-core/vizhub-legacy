@@ -1,6 +1,6 @@
-import { UserGateway } from 'datavis-tech-use-cases';
+import { UserGateway } from 'vizhub-use-cases';
 
-import { User, UserId } from 'datavis-tech-entities';
+import { User, UserId } from 'vizhub-entities';
 
 export class DatabaseUserGateway implements UserGateway {
   database: any;

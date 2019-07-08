@@ -1,5 +1,5 @@
-import { i18n } from 'datavis-tech-i18n';
-import { VisualizationInfo, VISUALIZATION_TYPE } from 'datavis-tech-entities';
+import { i18n } from 'vizhub-i18n';
+import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 

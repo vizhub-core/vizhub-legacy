@@ -2,7 +2,7 @@ import {
   Visualization,
   VisualizationInfo,
   VisualizationContent
-} from 'datavis-tech-entities';
+} from 'vizhub-entities';
 import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 

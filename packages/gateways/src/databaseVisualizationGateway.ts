@@ -2,13 +2,13 @@ import {
   VisualizationGateway,
   CVRequest,
   CVResponse
-} from 'datavis-tech-use-cases';
+} from 'vizhub-use-cases';
 
 import {
   Visualization,
   VisualizationInfo,
   VisualizationContent
-} from 'datavis-tech-entities';
+} from 'vizhub-entities';
 
 export class DatabaseVisualizationGateway implements VisualizationGateway {
   database: any; // TODO Typescript - Database
