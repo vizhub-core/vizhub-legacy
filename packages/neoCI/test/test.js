@@ -3,6 +3,7 @@ import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { retry } from './retry';
 import { navigateToAuthPage } from './navigateToAuthPage';
+import { authAsCI } from './authAsCI';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'datavis-tech-entities';
 
@@ -43,12 +44,7 @@ describe('Web', () => {
     });
 
     it('should authenticate as CI', async () => {
-      await (await popup.waitFor('.test-sign-in-as-ci')).click();
-      await page.waitFor('.test-avatar-me');
-      const alt = await page.evaluate(
-        () => document.querySelector('.test-avatar-me').alt
-      );
-      assert(alt === 'ci');
+      await authAsCI(popup, page);
     });
   });
 
