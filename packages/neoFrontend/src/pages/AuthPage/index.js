@@ -2,13 +2,7 @@ import React from 'react';
 import { Wrapper, Content, Banner, Title } from '../styles';
 import { BoxWrapper, Box, Button, Octocat, Terms, DevsOnly } from './styles';
 import { LogoSVG } from '../../svg';
-import { GITHUB_OAUTH_URL } from '../../authentication';
-
-const signInAsCI = () => {
-  console.log('TODO sign in as CI');
-  // const email = 'ci@foo.com';
-  // const password = 'ci';
-};
+import { GITHUB_OAUTH_URL, CI_AUTH_URL } from '../../authentication';
 
 export const AuthPage = () => {
   return (
@@ -38,7 +32,7 @@ export const AuthPage = () => {
                 <DevsOnly>
                   <Title>For developers only</Title>
                 </DevsOnly>
-                <Button onClick={signInAsCI}>Sign in as CI</Button>
+                <Button href={CI_AUTH_URL}>Sign in as CI</Button>
               </>
             ) : null}
           </Box>
