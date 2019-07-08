@@ -2,13 +2,16 @@
   "name": "vizhub-ci",
   "private": true,
   "scripts": {
-    "test": "mocha -r esm --timeout 60000"
+    "test": "mocha -r esm --timeout 60000",
+    "prettier": "prettier --single-quote --write 'test/**/*.js'",
+    "lint": "eslint test -c ./.eslintrc.js --no-eslintrc --fix"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "esm": "^3.2.25",
     "mocha": "^6.1.4",
-    "puppeteer": "^1.18.1"
+    "puppeteer": "^1.18.1",
+    "eslint": "^6.0.1",
+    "prettier": "^1.18.2"
   }
 }
