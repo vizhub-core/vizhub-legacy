@@ -53,6 +53,12 @@ export {
 } from './getUser';
 
 export {
+  GetOrCreateUser,
+  GetOrCreateUserRequestModel,
+  GetOrCreateUserResponseModel
+} from './getOrCreateUser';
+
+export {
   GetUserProfileData,
   GetUserProfileDataRequestModel,
   GetUserProfileDataResponseModel
@@ -84,4 +90,3 @@ export {
   GetPreviewRequestModel,
   GetPreviewResponseModel
 } from './getPreview';
-
