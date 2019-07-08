@@ -14,7 +14,7 @@ export const authGitHub = userGateway => {
 
       const oAuthProfile = {
         id: '' + gitHubUser.id,
-        username: userName,
+        username: gitHubUser.login,
         _json: gitHubUser
       };
 
