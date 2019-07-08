@@ -1,0 +1,14 @@
+{
+  "name": "vizhub-ci",
+  "private": true,
+  "scripts": {
+    "test": "mocha -r esm --timeout 60000"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "mocha": "^6.1.4",
+    "puppeteer": "^1.18.1"
+  }
+}
