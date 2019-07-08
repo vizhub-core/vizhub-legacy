@@ -19,8 +19,10 @@ export const getAccessToken = async code => {
   const response = await fetch(oAuthAccessTokenURL, fetchOptions);
   const data = await response.json();
   if (data.error) {
-    if(data.error === 'Not Found'){
-      console.log('Check that you have your GitHub OAuth environment variables set');
+    if (data.error === 'Not Found') {
+      console.log(
+        'Check that you have your GitHub OAuth environment variables set'
+      );
     }
     throw new VizHubAPIError({
       error: data.error,

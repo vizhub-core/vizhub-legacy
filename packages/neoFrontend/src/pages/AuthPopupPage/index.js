@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
+import { getJWT, postMessageToOpener } from '../../authentication';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Message } from './styles';
-import { getJWT } from './getJWT';
-import { postMessageToOpener } from './postMessageToOpener';
 
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to

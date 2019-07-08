@@ -14,7 +14,7 @@ export const Box = styled.div`
   max-width: 713px;
 
   border-radius: 6px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: ${props => props.theme.shadow};
   background-color: #ffffff;
 
   padding-top: 60px;
@@ -49,4 +49,11 @@ export const Octocat = styled.img`
 export const Terms = styled.div`
   margin-top: 22px;
   font-size: 10px;
+`;
+
+export const DevsOnly = styled.div`
+  margin-top: 40px;
+  margin-bottom: 5px;
+  font-size: 10px;
+  color: ${props => props.theme.attentionGrabber};
 `;
