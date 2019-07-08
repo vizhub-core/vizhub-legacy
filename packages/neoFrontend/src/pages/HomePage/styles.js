@@ -8,5 +8,8 @@ export const SignIn = styled.div`
 `;
 
 export const Avatar = styled.img`
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+  width: 40px;
+  height: 40px;
+  box-shadow: ${props => props.theme.shadow};
+  border-radius: 20px;
 `;

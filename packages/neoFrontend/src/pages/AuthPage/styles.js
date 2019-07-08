@@ -14,7 +14,7 @@ export const Box = styled.div`
   max-width: 713px;
 
   border-radius: 6px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: ${props => props.theme.shadow};
   background-color: #ffffff;
 
   padding-top: 60px;
