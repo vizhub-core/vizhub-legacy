@@ -15,10 +15,10 @@ import { authAsCI } from './authAsCI';
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
-Object.assign(puppeteerOptions, {
-  slowMo: 500,
-  headless: false
-});
+// Object.assign(puppeteerOptions, {
+//   slowMo: 500,
+//   headless: false
+// });
 
 describe('Web', () => {
   let browser;
