@@ -1,4 +1,4 @@
-import { SaveVisualization } from 'datavis-tech-use-cases';
+import { SaveVisualization } from 'vizhub-use-cases';
 import { userIdFromReq } from '../userIdFromReq';
 
 export const saveVisualizationController = (expressApp, gateways) => {

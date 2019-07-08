@@ -1,5 +1,5 @@
-import { UserId, DocumentId, File, timestamp } from 'datavis-tech-entities';
-import { i18n } from 'datavis-tech-i18n';
+import { UserId, DocumentId, File, timestamp } from 'vizhub-entities';
+import { i18n } from 'vizhub-i18n';
 import { Interactor, RequestModel, ResponseModel } from '../../interactor';
 import { DatasetGateway } from '../../gatewayInterfaces/datasetGateway'
 import { generateId } from '../../utils/generateId';

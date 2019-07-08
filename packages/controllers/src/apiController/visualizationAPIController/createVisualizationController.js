@@ -1,4 +1,4 @@
-import { CreateVisualization } from 'datavis-tech-use-cases';
+import { CreateVisualization } from 'vizhub-use-cases';
 import { userIdFromReq } from '../userIdFromReq';
 
 export const createVisualizationController = (expressApp, gateways) => {

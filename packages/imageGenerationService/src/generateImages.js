@@ -1,4 +1,4 @@
-import { VisualizationViewModel } from 'datavis-tech-presenters';
+import { VisualizationViewModel } from 'vizhub-presenters';
 import { generateScreenshot } from './generateScreenshot';
 import { resize } from './resize';
 import { thumbnailDimensions, previewDimensions } from './dimensions';

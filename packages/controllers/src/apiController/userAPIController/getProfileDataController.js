@@ -1,4 +1,4 @@
-import { GetUserProfileData } from 'datavis-tech-use-cases';
+import { GetUserProfileData } from 'vizhub-use-cases';
 
 export const getProfileDataController = (expressApp, gateways) => {
 

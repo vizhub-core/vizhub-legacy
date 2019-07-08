@@ -1,6 +1,6 @@
 import ShareDB from '@teamwork/sharedb';
 import JSONStream from '@teamwork/websocket-json-stream';
-import json0 from '@datavis-tech/ot-json0';
+import json0 from '@vizhub/ot-json0';
 import WebSocket from 'ws';
 
 // Use our custom json0 fork that implements presence.

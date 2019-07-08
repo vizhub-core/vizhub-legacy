@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { GetUser } from 'datavis-tech-use-cases';
+import { GetUser } from 'vizhub-use-cases';
 import { jwtVerify } from '../jwt';
 import { toErrorResponse } from '../../Error';
 

@@ -5,7 +5,7 @@ import {
   VisualizationInfo,
   Visualization,
   Images
-} from 'datavis-tech-entities';
+} from 'vizhub-entities';
 
 import {
   CreateVisualizationRequestModel,

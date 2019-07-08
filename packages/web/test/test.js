@@ -2,7 +2,7 @@ import fs from 'fs';
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { autoSaveDebounceTime } from 'vizhub-ui';
-import { ciUser } from 'datavis-tech-entities';
+import { ciUser } from 'vizhub-entities';
 import { datasetRoute } from '../routes/routeGenerators';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407

@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { ciUser } from 'datavis-tech-entities';
+import { ciUser } from 'vizhub-entities';
 import { ErrorResponse, VizHubAPIError } from '../../Error';
 import { jwtSign } from '../jwt';
 

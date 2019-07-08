@@ -1,4 +1,4 @@
-import { i18n } from 'datavis-tech-i18n';
+import { i18n } from 'vizhub-i18n';
 import { USER } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
