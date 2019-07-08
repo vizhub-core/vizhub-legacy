@@ -32,7 +32,9 @@ export const AuthPage = () => {
                 <DevsOnly>
                   <Title>For developers only</Title>
                 </DevsOnly>
-                <Button href={CI_AUTH_URL}>Sign in as CI</Button>
+                <Button className="test-sign-in-as-ci" href={CI_AUTH_URL}>
+                  Sign in as CI
+                </Button>
               </>
             ) : null}
           </Box>

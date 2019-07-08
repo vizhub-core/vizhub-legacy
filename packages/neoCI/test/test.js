@@ -32,6 +32,7 @@ const retry = (fn, ms) =>
 describe('Web', () => {
   let browser;
   let page;
+  let popup;
   //let id;
 
   describe('Setup', () => {
@@ -56,20 +57,20 @@ describe('Web', () => {
 
       (await page.waitFor('.test-sign-in')).click();
 
-      const popup = await newPagePromise;
+      popup = await newPagePromise;
 
       assert.equal(popup.url(), 'http://localhost:3000/auth');
     });
+
+    it('should authenticate as CI', async () => {
+      await (await popup.waitFor('.test-sign-in-as-ci')).click();
+      await page.waitFor('.test-avatar-me');
+      const alt = await page.evaluate(
+        () => document.querySelector('.test-avatar-me').alt
+      );
+      assert(alt === 'ci');
+    });
   });
-  //  it('should authenticate as CI', async () => {
-  //    await (await page.waitFor('.test-sign-in-as-ci')).click();
-  //    await page.waitFor('.test-user-menu-button', { visible: true });
-  //    const text = await page.evaluate(() => (
-  //      document.querySelector('.test-user-menu-button').textContent)
-  //    );
-  //    assert.equal(text, 'CI');
-  //  });
-  //});
 
   //describe('Create Visualization', () => {
   //  it('should navigate to create visualization page', async () => {

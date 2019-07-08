@@ -20,8 +20,6 @@ export const authGitHub = userGateway => {
       //  - user does not exist
       //  - user exists
       try {
-        // TODO should this be behind an interactor?
-        // Consider case of CI user.
         user = await userGateway.getUserByUserName(userName);
       } catch (error) {
         const oAuthProfile = {
