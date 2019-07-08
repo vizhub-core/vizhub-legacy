@@ -1,6 +1,8 @@
 //import fs from 'fs';
 import assert from 'assert';
 import puppeteer from 'puppeteer';
+import { retry } from './retry';
+import { navigateToAuthPage } from './navigateToAuthPage';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'datavis-tech-entities';
 
@@ -12,22 +14,10 @@ import puppeteer from 'puppeteer';
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
-Object.assign(puppeteerOptions, {
-  slowMo: 500,
-  headless: false
-});
-
-const retry = (fn, ms) =>
-  new Promise(resolve => {
-    fn()
-      .then(resolve)
-      .catch(() => {
-        setTimeout(() => {
-          console.log('retrying...');
-          retry(fn, ms).then(resolve);
-        }, ms);
-      });
-  });
+// Object.assign(puppeteerOptions, {
+//   slowMo: 500,
+//   headless: false
+// });
 
 describe('Web', () => {
   let browser;
@@ -49,17 +39,7 @@ describe('Web', () => {
 
   describe('Authentication', () => {
     it('should navigate to auth page', async () => {
-      // Access the authentication popup.
-      // Draws from https://github.com/GoogleChrome/puppeteer/issues/2968#issuecomment-408526574
-      const newPagePromise = new Promise(resolve =>
-        browser.once('targetcreated', target => resolve(target.page()))
-      );
-
-      (await page.waitFor('.test-sign-in')).click();
-
-      popup = await newPagePromise;
-
-      assert.equal(popup.url(), 'http://localhost:3000/auth');
+      popup = await navigateToAuthPage(browser, page);
     });
 
     it('should authenticate as CI', async () => {
