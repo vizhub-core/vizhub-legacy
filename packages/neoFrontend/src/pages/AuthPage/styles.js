@@ -50,3 +50,10 @@ export const Terms = styled.div`
   margin-top: 22px;
   font-size: 10px;
 `;
+
+export const DevsOnly = styled.div`
+  margin-top: 40px;
+  margin-bottom: 5px;
+  font-size: 10px;
+  color: ${props => props.theme.attentionGrabber};
+`;

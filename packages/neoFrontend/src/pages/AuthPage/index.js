@@ -1,8 +1,14 @@
 import React from 'react';
 import { Wrapper, Content, Banner, Title } from '../styles';
-import { BoxWrapper, Box, Button, Octocat, Terms } from './styles';
+import { BoxWrapper, Box, Button, Octocat, Terms, DevsOnly } from './styles';
 import { LogoSVG } from '../../svg';
 import { GITHUB_OAUTH_URL } from '../../authentication';
+
+const signInAsCI = () => {
+  console.log('TODO sign in as CI');
+  // const email = 'ci@foo.com';
+  // const password = 'ci';
+};
 
 export const AuthPage = () => {
   return (
@@ -27,6 +33,14 @@ export const AuthPage = () => {
                 terms of use.
               </a>
             </Terms>
+            {process.env.NODE_ENV === 'development' ? (
+              <>
+                <DevsOnly>
+                  <Title>For developers only</Title>
+                </DevsOnly>
+                <Button onClick={signInAsCI}>Sign in as CI</Button>
+              </>
+            ) : null}
           </Box>
         </BoxWrapper>
       </Content>
