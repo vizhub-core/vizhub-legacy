@@ -1,8 +1,8 @@
 import React from 'react';
 import { Wrapper, Content, Banner, Title } from '../styles';
-import { BoxWrapper, Box, Button, Octocat, Terms } from './styles';
+import { BoxWrapper, Box, Button, Octocat, Terms, DevsOnly } from './styles';
 import { LogoSVG } from '../../svg';
-import { GITHUB_OAUTH_URL } from '../../authentication';
+import { GITHUB_OAUTH_URL, CI_AUTH_URL } from '../../authentication';
 
 export const AuthPage = () => {
   return (
@@ -27,6 +27,16 @@ export const AuthPage = () => {
                 terms of use.
               </a>
             </Terms>
+            {process.env.NODE_ENV === 'development' ? (
+              <>
+                <DevsOnly>
+                  <Title>For developers only</Title>
+                </DevsOnly>
+                <Button className="test-sign-in-as-ci" href={CI_AUTH_URL}>
+                  Sign in as CI
+                </Button>
+              </>
+            ) : null}
           </Box>
         </BoxWrapper>
       </Content>

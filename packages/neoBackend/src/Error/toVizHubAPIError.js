@@ -1,6 +1,5 @@
 import { VizHubAPIError } from './VizHubAPIError';
 export const toVizHubAPIError = error => {
-
   if (error instanceof VizHubAPIError) {
     return error;
   }
