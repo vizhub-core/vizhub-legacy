@@ -18,7 +18,7 @@ export const HomePage = () => {
             {me === AUTH_PENDING ? null : me ? (
               <Avatar src={me.avatarUrl + '&s=180'} onClick={signOut} />
             ) : (
-              <SignIn onClick={signIn}>Sign up / Sign in</SignIn>
+              <SignIn className='test-sign-in' onClick={signIn}>Sign up / Sign in</SignIn>
             )}
           </Banner>
         </Content>

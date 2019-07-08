@@ -1,10 +1,13 @@
-import fs from 'fs';
+//import fs from 'fs';
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'datavis-tech-entities';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
+//
+// Convention: All class names that are only used in tests
+// are prefixed with "test-".
 
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
@@ -14,38 +17,50 @@ Object.assign(puppeteerOptions, {
   headless: false
 });
 
-const retry = (fn, ms) => new Promise(resolve => {
-  fn()
-    .then(resolve)
-    .catch(() => {
-      setTimeout(() => {
-        console.log('retrying...');
-        retry(fn, ms).then(resolve);
-      }, ms);
-    });
-});
+const retry = (fn, ms) =>
+  new Promise(resolve => {
+    fn()
+      .then(resolve)
+      .catch(() => {
+        setTimeout(() => {
+          console.log('retrying...');
+          retry(fn, ms).then(resolve);
+        }, ms);
+      });
+  });
 
 describe('Web', () => {
   let browser;
   let page;
-  let id;
+  //let id;
 
   describe('Setup', () => {
     it('should open page', async () => {
       browser = await puppeteer.launch(puppeteerOptions);
       page = await browser.newPage();
-      const response = await retry(() => page.goto('http://localhost:3000'), 2000);
+      const response = await retry(
+        () => page.goto('http://localhost:3000'),
+        2000
+      );
       assert.equal(response.status(), 200);
     });
   });
 
-  //describe('Authentication', () => {
-  //  it('should navigate to auth page', async () => {
-  //    const navigation = page.waitForNavigation();
-  //    (await page.waitFor('.test-user-menu-sign-in-link')).click();
-  //    await navigation;
-  //    assert.equal(page.url(), 'http://localhost:3000/auth');
-  //  });
+  describe('Authentication', () => {
+    it('should navigate to auth page', async () => {
+      // Access the authentication popup.
+      // Draws from https://github.com/GoogleChrome/puppeteer/issues/2968#issuecomment-408526574
+      const newPagePromise = new Promise(resolve =>
+        browser.once('targetcreated', target => resolve(target.page()))
+      );
+
+      (await page.waitFor('.test-sign-in')).click();
+
+      const popup = await newPagePromise;
+
+      assert.equal(popup.url(), 'http://localhost:3000/auth');
+    });
+  });
   //  it('should authenticate as CI', async () => {
   //    await (await page.waitFor('.test-sign-in-as-ci')).click();
   //    await page.waitFor('.test-user-menu-button', { visible: true });
@@ -128,7 +143,7 @@ describe('Web', () => {
   //    // const nameInput = await page.waitFor('.test-dataset-upload-name-input');
   //    // await nameInput.type('Natural Gas Flaring');
   //    await page.waitFor('.test-dataset-upload-source-input');
-  //    
+  //
   //    await page.type('.test-dataset-upload-source-input', 'Flaring Central');
   //    await page.type('.test-dataset-upload-source-url-input', 'https://flaring.central/')
 
@@ -215,10 +230,9 @@ describe('Web', () => {
   //  });
   //});
 
-  //describe('tear down', () => {
-  //  it('should close', async () => {
-  //    await browser.close();
-  //  });
-  //});
-
+  describe('tear down', () => {
+    it('should close', async () => {
+      await browser.close();
+    });
+  });
 });
