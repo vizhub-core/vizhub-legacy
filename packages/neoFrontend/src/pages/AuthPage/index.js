@@ -1,5 +1,6 @@
 import React from 'react';
-import { Wrapper, Content, Banner, Title } from '../styles';
+import { Banner } from '../../styles';
+import { Wrapper, Content, Title } from '../styles';
 import { BoxWrapper, Box, Button, Octocat, Terms, DevsOnly } from './styles';
 import { LogoSVG } from '../../svg';
 import { GITHUB_OAUTH_URL, CI_AUTH_URL } from '../../authentication';

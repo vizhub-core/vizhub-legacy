@@ -32,7 +32,6 @@ export const Menu = styled.div`
   font-size: 12px;
   text-align: right;
   padding: 4px 0 3px 0;
-
 `;
 
 export const Item = styled.div`
