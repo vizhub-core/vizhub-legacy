@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ForkSVG = ({ height, fill = "currentcolor" }) => (
+export const ForkSVG = ({ height, fill = 'currentcolor' }) => (
   <svg height={height} viewBox={`0 0 12 16`}>
     <path
       fill={fill}
