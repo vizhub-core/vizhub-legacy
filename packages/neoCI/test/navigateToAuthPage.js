@@ -1,6 +1,7 @@
 import assert from 'assert';
 
-export const navigateToAuthPage = async (browser, page) => {
+export const navigateToAuthPage = async my => {
+  const { browser, page } = my;
   // Access the authentication popup.
   // Draws from https://github.com/GoogleChrome/puppeteer/issues/2968#issuecomment-408526574
   const newPagePromise = new Promise(resolve =>

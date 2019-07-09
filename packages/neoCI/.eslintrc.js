@@ -29,6 +29,7 @@ module.exports = {
             'error',
             'always'
         ],
-        'no-undef': 'off' // For Mocha.
+        'no-undef': 'off', // For Mocha.
+        'require-atomic-updates': 'off' // This is just fucking weird.
     }
 };
