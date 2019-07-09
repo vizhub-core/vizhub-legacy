@@ -13,4 +13,8 @@ export const AvatarOverlay = styled.div`
   border-radius: 20px;
   background-color: rgba(246, 238, 227, 0.83);
   pointer-events: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
