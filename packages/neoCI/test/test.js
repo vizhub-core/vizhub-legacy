@@ -4,6 +4,7 @@ import puppeteer from 'puppeteer';
 import { retry } from './retry';
 import { navigateToAuthPage } from './navigateToAuthPage';
 import { authAsCI } from './authAsCI';
+import { signOut } from './signOut';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'vizhub-entities';
 
@@ -16,35 +17,38 @@ const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
 // Object.assign(puppeteerOptions, {
-//   slowMo: 500,
+//   //slowMo: 500,
 //   headless: false
 // });
 
 describe('Web', () => {
-  let browser;
-  let page;
-  let popup;
-  //let id;
+  const my = {};
 
   describe('Setup', () => {
     it('should open page', async () => {
-      browser = await puppeteer.launch(puppeteerOptions);
-      page = await browser.newPage();
+      const browser = await puppeteer.launch(puppeteerOptions);
+      const page = await browser.newPage();
       const response = await retry(
         () => page.goto('http://localhost:3000'),
         2000
       );
       assert.equal(response.status(), 200);
+
+      my.browser = browser;
+      my.page = page;
     });
   });
 
   describe('Authentication', () => {
     it('should navigate to auth page', async () => {
-      popup = await navigateToAuthPage(browser, page);
+      my.popup = await navigateToAuthPage(my);
     });
 
-    it('should authenticate as CI', async () => {
-      await authAsCI(popup, page);
+    it('should authenticate as CI', authAsCI(my));
+    it('should sign out', signOut(my));
+    it('should sign in again', async () => {
+      my.popup = await navigateToAuthPage(my);
+      await authAsCI(my);
     });
   });
 
@@ -209,7 +213,7 @@ describe('Web', () => {
 
   describe('tear down', () => {
     it('should close', async () => {
-      await browser.close();
+      await my.browser.close();
     });
   });
 });
