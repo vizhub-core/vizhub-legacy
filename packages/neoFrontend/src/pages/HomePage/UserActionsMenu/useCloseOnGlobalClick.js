@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 
-// Close the menu if the user clicks anywhere else on the page.
-export const useCloseOnGlobalClick = (open, close) => {
+// Close the menu if the user clicks anywhere on the page.
+export const useCloseOnGlobalClick = (isOpen, close) => {
   useEffect(() => {
-    if (open) {
+    if (isOpen) {
       document.addEventListener('click', close);
       return () => {
         document.removeEventListener('click', close);
       };
     }
-  }, [open, close]);
+  }, [isOpen, close]);
 };

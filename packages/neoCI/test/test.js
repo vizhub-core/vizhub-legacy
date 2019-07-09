@@ -4,6 +4,7 @@ import puppeteer from 'puppeteer';
 import { retry } from './retry';
 import { navigateToAuthPage } from './navigateToAuthPage';
 import { authAsCI } from './authAsCI';
+import { signOut } from './signOut';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'vizhub-entities';
 
@@ -16,7 +17,7 @@ const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
 // Object.assign(puppeteerOptions, {
-//   slowMo: 500,
+//   //slowMo: 500,
 //   headless: false
 // });
 
@@ -44,6 +45,11 @@ describe('Web', () => {
     });
 
     it('should authenticate as CI', authAsCI(my));
+    it('should sign out', signOut(my));
+    it('should sign in again', async () => {
+      my.popup = await navigateToAuthPage(my);
+      await authAsCI(my);
+    });
   });
 
   //describe('Create Visualization', () => {

@@ -3,24 +3,21 @@ import { AuthContext } from '../../../authentication';
 import { Avatar } from '../Avatar';
 import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { CloseSVG } from '../../../svg';
-import { useToggle } from './useToggle';
-import { useClose } from './useClose';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
 export const UserActionsMenu = () => {
-  const { me } = useContext(AuthContext);
-  const [open, setOpen] = useState(true);
+  const { me, signOut } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = useToggle(open, setOpen);
+  const open = () => setIsOpen(true);
+  const close = () => setIsOpen(false);
 
-  const close = useClose(setOpen);
-
-  useCloseOnGlobalClick(open, close);
+  useCloseOnGlobalClick(isOpen, close);
 
   return (
     <Wrapper>
-      <Avatar user={me} onClick={toggle} />
-      {open ? (
+      <Avatar user={me} onClick={open} />
+      {isOpen ? (
         <>
           <AvatarOverlay>
             <CloseSVG />
@@ -28,7 +25,9 @@ export const UserActionsMenu = () => {
           <Menu>
             <Item>Create Visualization</Item>
             <HorizontalRule />
-            <Item>Sign out</Item>
+            <Item className="test-sign-out" onClick={signOut}>
+              Sign out
+            </Item>
           </Menu>
         </>
       ) : null}
@@ -37,6 +36,4 @@ export const UserActionsMenu = () => {
 };
 
 // TODO sign out flow
-// TODO add Puppeteer test for sign out flow FIRST
-// const { me, signOut } = useContext(AuthContext);
-// onClick={signOut} />;
+//  />;
