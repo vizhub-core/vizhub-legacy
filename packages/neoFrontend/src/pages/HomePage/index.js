@@ -4,7 +4,7 @@ import { AuthContext, AUTH_PENDING } from '../../authentication';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Banner } from '../styles';
 import { SignIn } from './styles';
-import { HomePageDataProvider } from './HomePageData';
+import { HomePageDataProvider } from './HomePageDataContext';
 import { UserActionsMenu } from './UserActionsMenu';
 
 export const HomePage = () => {
