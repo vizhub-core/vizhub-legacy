@@ -31,16 +31,18 @@ export const Menu = styled.div`
   font-size: 12px;
   text-align: right;
   padding: 4px 0 3px 0;
+
 `;
 
 export const Item = styled.div`
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
+  padding: 4px 10px 4px 10px;
+  color: ${props => props.theme.dark};
   &:hover {
     text-decoration: underline;
   }
-  padding: 4px 10px 4px 10px;
 `;
 
 export const HorizontalRule = styled.div`
