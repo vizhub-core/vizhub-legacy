@@ -23,7 +23,7 @@ export const UserActionsMenu = () => {
       {open ? (
         <>
           <AvatarOverlay>
-            <CloseSVG height="25" />
+            <CloseSVG />
           </AvatarOverlay>
           <Menu>
             <Item>Create Visualization</Item>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const CloseSVG = ({ height, fill = 'currentcolor' }) => (
+export const CloseSVG = ({ height = 20, fill = 'currentcolor' }) => (
   <svg height={height} viewBox={`0 0 20 20`}>
     <g fill={fill}>
       <rect

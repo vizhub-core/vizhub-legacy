@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ArrowLeftSVG = ({ height, fill = 'currentcolor' }) => (
+export const ArrowLeftSVG = ({ height = 18, fill = 'currentcolor' }) => (
   <svg height={height} viewBox={`0 0 11 20`}>
     <g fill={fill}>
       <rect

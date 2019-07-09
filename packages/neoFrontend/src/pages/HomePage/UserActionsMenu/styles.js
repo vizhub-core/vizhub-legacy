@@ -9,6 +9,7 @@ export const AvatarOverlay = styled.div`
   top: 0px;
   width: 40px;
   height: 40px;
+  box-sizing: border-box;
   border: solid 1px ${props => props.theme.dark};
   border-radius: 20px;
   background-color: rgba(246, 238, 227, 0.83);
