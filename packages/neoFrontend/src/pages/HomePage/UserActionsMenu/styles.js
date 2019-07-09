@@ -13,7 +13,6 @@ export const AvatarOverlay = styled.div`
   border: solid 1px ${props => props.theme.dark};
   border-radius: 20px;
   background-color: rgba(246, 238, 227, 0.83);
-  pointer-events: none;
 
   display: flex;
   align-items: center;
@@ -37,6 +36,7 @@ export const Menu = styled.div`
 export const Item = styled.div`
   white-space: nowrap;
   cursor: pointer;
+  user-select: none;
   &:hover {
     text-decoration: underline;
   }
