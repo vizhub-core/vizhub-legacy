@@ -3,6 +3,7 @@ import assert from 'assert';
 import puppeteer from 'puppeteer';
 import { retry } from './retry';
 import { navigateToAuthPage } from './navigateToAuthPage';
+import { navigateToCreateVizPage } from './navigateToCreateVizPage';
 import { authAsCI } from './authAsCI';
 import { signOut } from './signOut';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
@@ -21,7 +22,9 @@ const puppeteerOptions = { args: ['--no-sandbox'] };
 //   headless: false
 // });
 
-describe('Web', () => {
+describe('VizHub End to End Tests', () => {
+  // This object allows tests to be split into multiple files.
+  // It contains properties that mutate as the tests flow.
   const my = {};
 
   describe('Setup', () => {
@@ -43,40 +46,34 @@ describe('Web', () => {
     it('should navigate to auth page', async () => {
       my.popup = await navigateToAuthPage(my);
     });
-
     it('should authenticate as CI', authAsCI(my));
     it('should sign out', signOut(my));
-    it('should sign in again', async () => {
+    it('should navigate to auth page a second time', async () => {
       my.popup = await navigateToAuthPage(my);
-      await authAsCI(my);
     });
+    it('should authenticate as CI a second time', authAsCI(my));
   });
 
-  //describe('Create Visualization', () => {
-  //  it('should navigate to create visualization page', async () => {
-  //    (await page.waitFor('.test-user-menu-button')).click(); // Open the menu.
-  //    const navigation = page.waitForNavigation();
-  //    (await page.waitFor('.test-user-menu-create-vis-link', {
-  //      visible: true // Wait until the link is visible (menu is opened).
-  //    })).click();
-  //    await navigation;
-  //    assert.equal(page.url(), 'http://localhost:3000/create-visualization');
-  //  });
-  //  it('should create visualization from scratch', async () => {
-  //    const navigation = page.waitForNavigation();
-  //    (await page.waitFor('.test-from-scratch-button')).click();
-  //    await navigation;
+  describe('Create Visualization', () => {
+    it(
+      'should navigate to create visualization page',
+      navigateToCreateVizPage(my)
+    );
+    // it('should create visualization from scratch', async () => {
+    //   const navigation = page.waitForNavigation();
+    //   (await page.waitFor('.test-from-scratch-button')).click();
+    //   await navigation;
 
-  //    const url = page.url();
-  //    const split = url.split('/');
-  //    assert.equal(split[3], 'ci');
+    //   const url = page.url();
+    //   const split = url.split('/');
+    //   assert.equal(split[3], 'ci');
 
-  //    id = split[4]; // Grab the id of the vis we're editing.
+    //   id = split[4]; // Grab the id of the vis we're editing.
 
-  //    // Output the link for manual testing.
-  //    console.log(`\nhttp://localhost:3000/ci/${id}\n`);
-  //  });
-  //});
+    //   // Output the link for manual testing.
+    //   console.log(`\nhttp://localhost:3000/ci/${id}\n`);
+    // });
+  });
 
   //describe('View Visualization', () => {
   //  it('should display username', async () => {
