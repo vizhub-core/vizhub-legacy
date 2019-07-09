@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../authentication';
-import { Avatar } from '../Avatar';
-import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { CloseSVG } from '../../../svg';
+import { Avatar } from './Avatar';
+import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
 export const UserActionsMenu = () => {
@@ -39,6 +39,3 @@ export const UserActionsMenu = () => {
     </Wrapper>
   );
 };
-
-// TODO sign out flow
-//  />;
