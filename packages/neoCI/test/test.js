@@ -21,31 +21,29 @@ const puppeteerOptions = { args: ['--no-sandbox'] };
 // });
 
 describe('Web', () => {
-  let browser;
-  let page;
-  let popup;
-  //let id;
+  const my = {};
 
   describe('Setup', () => {
     it('should open page', async () => {
-      browser = await puppeteer.launch(puppeteerOptions);
-      page = await browser.newPage();
+      const browser = await puppeteer.launch(puppeteerOptions);
+      const page = await browser.newPage();
       const response = await retry(
         () => page.goto('http://localhost:3000'),
         2000
       );
       assert.equal(response.status(), 200);
+
+      my.browser = browser;
+      my.page = page;
     });
   });
 
   describe('Authentication', () => {
     it('should navigate to auth page', async () => {
-      popup = await navigateToAuthPage(browser, page);
+      my.popup = await navigateToAuthPage(my);
     });
 
-    it('should authenticate as CI', async () => {
-      await authAsCI(popup, page);
-    });
+    it('should authenticate as CI', authAsCI(my));
   });
 
   //describe('Create Visualization', () => {
@@ -209,7 +207,7 @@ describe('Web', () => {
 
   describe('tear down', () => {
     it('should close', async () => {
-      await browser.close();
+      await my.browser.close();
     });
   });
 });

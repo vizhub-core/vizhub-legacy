@@ -1,6 +1,7 @@
 import assert from 'assert';
 
-export const authAsCI = async (popup, page) => {
+export const authAsCI = my => async () => {
+  const { popup, page } = my;
   await (await popup.waitFor('.test-sign-in-as-ci')).click();
   await page.waitFor('.test-avatar-me');
   const alt = await page.evaluate(
