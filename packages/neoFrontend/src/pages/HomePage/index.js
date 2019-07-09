@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LogoSVG } from '../../svg';
+import { LogoSVG, SVGGallery } from '../../svg';
 import { AuthContext, AUTH_PENDING } from '../../authentication';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Banner } from '../styles';
@@ -31,6 +31,7 @@ export const HomePage = () => {
               </SignIn>
             )}
           </Banner>
+          <SVGGallery />
         </Content>
       </Wrapper>
     </HomePageDataProvider>
