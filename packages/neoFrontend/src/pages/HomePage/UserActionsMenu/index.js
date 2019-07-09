@@ -1,35 +1,19 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../authentication';
 import { Avatar } from '../Avatar';
 import { AvatarOverlay, AvatarWrapper } from './styles';
 import { CloseSVG } from '../../../svg';
-
-// Close the menu if the user clicks anywhere else on the page.
-const useCloseOnGlobalClick = (open, close) => {
-  useEffect(() => {
-    if (open) {
-      document.addEventListener('click', close);
-      return () => {
-        document.removeEventListener('click', close);
-      };
-    }
-  }, [open, close]);
-};
+import { useToggle } from './useToggle';
+import { useClose } from './useClose';
+import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
 export const UserActionsMenu = () => {
   const { me } = useContext(AuthContext);
   const [open, setOpen] = useState(true);
 
-  const toggle = useCallback(
-    event => {
-      setOpen(!open);
-    },
-    [open]
-  );
+  const toggle = useToggle(open, setOpen);
 
-  const close = useCallback(() => {
-    setOpen(false);
-  }, [setOpen]);
+  const close = useClose(setOpen);
 
   useCloseOnGlobalClick(open, close);
 
