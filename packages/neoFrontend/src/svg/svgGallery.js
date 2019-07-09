@@ -11,12 +11,12 @@ import { ArrowRightSVG } from './ArrowRightSVG';
 export const SVGGallery = () => (
   <>
     <LogoSVG height={40} />
-    <ForkSVG height={40} />
-    <ArrowLeftSVG height={40} />
-    <ArrowRightSVG height={40} />
-    <CloseSVG height={40} />
-    <PullSVG height={40} />
-    <SettingsSVG height={40} />
-    <ShareSVG height={40} />
+    <ForkSVG />
+    <ArrowLeftSVG />
+    <ArrowRightSVG />
+    <CloseSVG />
+    <PullSVG />
+    <SettingsSVG />
+    <ShareSVG />
   </>
 );
