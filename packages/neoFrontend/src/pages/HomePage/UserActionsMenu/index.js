@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../authentication';
 import { Avatar } from '../Avatar';
 import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
@@ -23,7 +24,11 @@ export const UserActionsMenu = () => {
             <CloseSVG />
           </AvatarOverlay>
           <Menu>
-            <Item>Create Visualization</Item>
+            <Link to="create-visualization">
+              <Item className="test-create-visualization">
+                Create Visualization
+              </Item>
+            </Link>
             <HorizontalRule />
             <Item className="test-sign-out" onClick={signOut}>
               Sign out
