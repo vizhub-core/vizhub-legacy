@@ -21,6 +21,4 @@ export { testData };
 
 export { timestamp } from './timestamp';
 
-export { Images } from './images';
-
 export { VizHubAPIError } from './VizHubAPIError';
