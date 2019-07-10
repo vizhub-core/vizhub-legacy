@@ -24,10 +24,8 @@ export const UserActionsMenu = () => {
             <CloseSVG />
           </AvatarOverlay>
           <Menu>
-            <Link to="create-visualization">
-              <Item className="test-create-visualization">
-                Create Visualization
-              </Item>
+            <Link to="create-viz">
+              <Item className="test-create-viz">Create Visualization</Item>
             </Link>
             <HorizontalRule />
             <Item className="test-sign-out" onClick={signOut}>
