@@ -21,26 +21,6 @@ export const Box = styled.div`
   padding-bottom: 60px;
 `;
 
-export const Button = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 232px;
-  height: 36px;
-  border-radius: 6px;
-  border: solid 1px #161514;
-
-  font-size: 12px;
-  color: ${props => props.theme.dark};
-  text-decoration: none;
-
-  :hover {
-    background-color: ${props => props.theme.dark};
-    color: white;
-  }
-`;
-
 export const Octocat = styled.img`
   margin-top: 20px;
   margin-bottom: 30px;
@@ -49,11 +29,4 @@ export const Octocat = styled.img`
 export const Terms = styled.div`
   margin-top: 22px;
   font-size: 10px;
-`;
-
-export const DevsOnly = styled.div`
-  margin-top: 40px;
-  margin-bottom: 5px;
-  font-size: 10px;
-  color: ${props => props.theme.attentionGrabber};
 `;

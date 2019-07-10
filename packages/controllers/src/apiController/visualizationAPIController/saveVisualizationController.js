@@ -13,7 +13,7 @@ export const saveVisualizationController = (expressApp, gateways) => {
       const responseModel = await saveVisualization.execute(requestModel);
       res.json(responseModel);
     } catch (error) {
-      res.json({ error: error.message })
+      res.json({ error: error.message });
     }
   });
-}
+};

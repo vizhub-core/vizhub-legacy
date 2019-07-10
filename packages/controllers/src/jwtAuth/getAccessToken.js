@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { VizHubAPIError } from '../Error';
+import { VizHubAPIError } from 'vizhub-entities';
 
 const oAuthAccessTokenURL = 'https://github.com/login/oauth/access_token';
 const client_id = process.env.REACT_APP_VIZHUB_GITHUB_CLIENT_ID;

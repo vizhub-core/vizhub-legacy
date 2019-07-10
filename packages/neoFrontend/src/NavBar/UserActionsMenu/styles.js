@@ -17,6 +17,7 @@ export const AvatarOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const Menu = styled.div`
@@ -37,10 +38,11 @@ export const Item = styled.div`
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
+  padding: 4px 10px 4px 10px;
+  color: ${props => props.theme.dark};
   &:hover {
     text-decoration: underline;
   }
-  padding: 4px 10px 4px 10px;
 `;
 
 export const HorizontalRule = styled.div`

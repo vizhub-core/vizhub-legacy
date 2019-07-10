@@ -28,6 +28,6 @@ export const AuthPopupPage = () => {
   return errorResponse ? (
     <Message>{errorResponse.errorDescription}</Message>
   ) : (
-    <LoadingScreen />
+    <LoadingScreen message="Signing in..." />
   );
 };

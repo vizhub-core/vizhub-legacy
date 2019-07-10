@@ -1,4 +1,4 @@
-import { VizHubAPIError } from './VizHubAPIError';
+import { VizHubAPIError } from 'vizhub-entities';
 
 // This module defines the standard error response format used
 // throughout the VizHub JSON API. Inspired by GitHub's format:

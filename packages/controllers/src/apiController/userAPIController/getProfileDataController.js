@@ -1,7 +1,6 @@
 import { GetUserProfileData } from 'vizhub-use-cases';
 
 export const getProfileDataController = (expressApp, gateways) => {
-
   const getUserProfileData = new GetUserProfileData(gateways);
 
   expressApp.get('/api/user/getProfileData/:userName', async (req, res) => {
@@ -19,4 +18,4 @@ export const getProfileDataController = (expressApp, gateways) => {
       });
     }
   });
-}
+};

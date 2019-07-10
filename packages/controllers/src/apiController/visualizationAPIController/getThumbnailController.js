@@ -16,9 +16,9 @@ export const getThumbnailController = (expressApp, gateways) => {
         'Content-Length': img.length
       });
 
-      res.end(img); 
+      res.end(img);
     } catch (error) {
-      res.json({ error })
+      res.json({ error });
     }
   });
-}
+};
