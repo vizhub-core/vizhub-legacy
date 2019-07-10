@@ -23,9 +23,10 @@ export class GetOrCreateUser implements Interactor {
 
   async execute(requestModel: GetOrCreateUserRequestModel) {
     const oAuthProfile = requestModel.oAuthProfile;
-    try {
-      return await this.getUser.execute(oAuthProfile.id);
-    } catch (error) {
+    const {user} = await this.getUser.execute(oAuthProfile.id);
+    if (user) {
+      return {user};
+    } else {
       return await this.createUser.execute({ oAuthProfile });
     }
   }
