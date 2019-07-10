@@ -18,7 +18,7 @@ export const authGitHub = userGateway => {
         _json: gitHubUser
       };
 
-      const user = await getOrCreateUser({ oAuthProfile });
+      const user = await getOrCreateUser.execute({ oAuthProfile });
 
       // Generate a JWT with the user id as its payload.
       const vizHubJWT = await jwtSign(user.id);

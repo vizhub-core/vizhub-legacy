@@ -1,21 +1,8 @@
 import { DocumentInfo } from './documentInfo';
 import { DATASET_TYPE } from './documentTypes';
 
-type Format = 'csv' | 'tsv' | 'json' | 'geojson' | 'topojson' | 'txt';
-
 export class DatasetInfo extends DocumentInfo {
-
-  // The format of this dataset.
-  format: Format;
-
-  // The name of the source of this dataset.
-  sourceName: string;
-
-  // The URL of the page from which this dataset was downloaded.
-  sourceUrl: string
-
   constructor(data) {
-
     super({
       documentType: DATASET_TYPE,
       id: data.id,
@@ -27,8 +14,14 @@ export class DatasetInfo extends DocumentInfo {
       lastUpdatedTimestamp: data.lastUpdatedTimestamp
     });
 
+    // The format of this dataset.
+    // 'csv' | 'tsv' | 'json' | 'geojson' | 'topojson' | 'txt'
     this.format = data.format;
+
+    // The name of the source of this dataset.
     this.sourceName = data.sourceName;
+
+    // The URL of the page from which this dataset was downloaded.
     this.sourceUrl = data.sourceUrl;
   }
 }

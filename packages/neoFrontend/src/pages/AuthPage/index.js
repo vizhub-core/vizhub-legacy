@@ -22,7 +22,9 @@ export const AuthPage = () => {
               height="120"
               src="/images/GitHub-Mark-120px-plus.png"
             />
-            <Button href={GITHUB_OAUTH_URL}>Sign in with GitHub</Button>
+            <a href={GITHUB_OAUTH_URL}>
+              <Button>Sign in with GitHub</Button>
+            </a>
             <Terms>
               By signing in you agree to our{' '}
               <a href="https://datavis.tech/static/legal/Terms%20of%20Use.pdf">

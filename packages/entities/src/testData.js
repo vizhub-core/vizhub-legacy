@@ -1,4 +1,4 @@
-import { VISUALIZATION_TYPE, DATASET_TYPE } from './documentTypes';
+import { VISUALIZATION_TYPE } from './documentTypes';
 import { User } from './user';
 import { VisualizationInfo } from './visualizationInfo';
 import { VisualizationContent } from './visualizationContent';
@@ -10,15 +10,15 @@ import { timestamp } from './timestamp';
 
 export const userData = {
   authenticated: true,
-  id: "84752",
-  userName: "joe",
-  fullName: "Joe Schmoe",
-  email: "joe@datavis.tech",
-  avatarUrl: "https://avatars3.githubusercontent.com/u/84752?v=4",
-  company: "Schmoe INC",
-  website: "joeschmoe.com",
-  location: "Earth",
-  bio: "Great guy"
+  id: '84752',
+  userName: 'joe',
+  fullName: 'Joe Schmoe',
+  email: 'joe@datavis.tech',
+  avatarUrl: 'https://avatars3.githubusercontent.com/u/84752?v=4',
+  company: 'Schmoe INC',
+  website: 'joeschmoe.com',
+  location: 'Earth',
+  bio: 'Great guy'
 };
 
 export const user = new User(userData);
@@ -62,8 +62,13 @@ export const visualizationInfoData = Object.assign({}, documentInfoData, {
 });
 
 export const visualizationInfo = new VisualizationInfo(visualizationInfoData);
-export const visualizationContent = new VisualizationContent(visualizationContentData);
-export const visualization = new Visualization({ visualizationInfo, visualizationContent });
+export const visualizationContent = new VisualizationContent(
+  visualizationContentData
+);
+export const visualization = new Visualization({
+  visualizationInfo,
+  visualizationContent
+});
 
 export const datasetInfoData = Object.assign({}, documentInfoData, {
   id: datasetId,
