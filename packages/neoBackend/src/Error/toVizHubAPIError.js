@@ -1,4 +1,4 @@
-import { VizHubAPIError } from './VizHubAPIError';
+import { VizHubAPIError } from 'vizhub-entities';
 export const toVizHubAPIError = error => {
   if (error instanceof VizHubAPIError) {
     return error;

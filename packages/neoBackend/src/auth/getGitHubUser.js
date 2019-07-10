@@ -1,4 +1,4 @@
-import { VizHubAPIError } from '../Error';
+import { VizHubAPIError } from 'vizhub-entities';
 import fetch from 'node-fetch';
 
 // Documentation: https://developer.github.com/v3/users/#get-the-authenticated-user
