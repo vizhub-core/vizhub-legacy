@@ -1,36 +1,17 @@
-import { UserId, DocumentId, File, timestamp } from 'vizhub-entities';
+import { timestamp } from 'vizhub-entities';
 import { i18n } from 'vizhub-i18n';
-import { Interactor, RequestModel, ResponseModel } from '../../interactor';
-import { DatasetGateway } from '../../gatewayInterfaces/datasetGateway'
 import { generateId } from '../../utils/generateId';
 import { removeExtension } from '../../utils/removeExtension';
 import { datasetDefaults } from './datasetDefaults';
 
-export interface CreateDatasetRequestModel extends RequestModel {
-  owner: UserId,
-  title: string,
-  slug: string | undefined,
-  description: string,
-  file: File,
-  sourceName: string,
-  sourceUrl: string,
-}
-
-export interface CreateDatasetResponseModel extends ResponseModel {
-  slug: string
-}
-
-export class CreateDataset implements Interactor {
-  datasetGateway: DatasetGateway;
-
+export class CreateDataset {
   constructor({ datasetGateway }) {
     this.datasetGateway = datasetGateway;
   }
 
-  async execute(requestModel: CreateDatasetRequestModel) {
-
+  async execute(requestModel) {
     if (!requestModel.owner) {
-      throw new Error(i18n('errorNoOwner'))
+      throw new Error(i18n('errorNoOwner'));
     }
 
     const { owner, title, file, sourceName, sourceUrl } = requestModel;
@@ -41,7 +22,7 @@ export class CreateDataset implements Interactor {
     // TODO validate slug uniqueness within this owner
 
     const nowTimestamp = timestamp();
-    
+
     return await this.datasetGateway.createDataset(
       Object.assign({}, datasetDefaults, {
         owner,
@@ -54,6 +35,6 @@ export class CreateDataset implements Interactor {
         createdTimestamp: nowTimestamp,
         lastUpdatedTimestamp: nowTimestamp
       })
-    )
+    );
   }
 }
