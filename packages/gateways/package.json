@@ -5,23 +5,21 @@
   "main": "dist/index.js",
   "private": true,
   "scripts": {
-    "build-ts": "tsc",
-    "postinstall": "npm run build-ts",
-    "test": "mocha -r ts-node/register test/**/test.ts"
+    "test": "mocha -r esm test/test.js",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "@types/uuid": "^3.4.3",
     "vizhub-entities": "1",
     "vizhub-use-cases": "1",
     "vizhub-i18n": "1"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.4",
-    "@types/node": "^10.5.1",
-    "mocha": "^5.2.0",
-    "ts-node": "^7.0.0",
-    "typescript": "^2.9.2"
+    "mocha": "^6.1.4",
+    "eslint": "^6.0.1",
+    "esm": "^3.2.25",
+    "prettier": "^1.18.2"
   }
 }
