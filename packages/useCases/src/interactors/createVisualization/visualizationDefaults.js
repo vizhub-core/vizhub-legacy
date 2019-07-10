@@ -1,7 +1,7 @@
 const files = [
-
-{ name: 'index.html', text:
-`<!DOCTYPE html>
+  {
+    name: 'index.html',
+    text: `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -14,25 +14,34 @@ const files = [
     <div id="message"></div>
     <script src="bundle.js"></script>
   </body>
-</html>`},
+</html>`
+  },
 
-{ name: 'styles.css', text:
-`body {
+  {
+    name: 'styles.css',
+    text: `body {
   background-color: red;
   margin 0px;
   font-size: 8em;
-}`},
+}`
+  },
 
-{ name: 'index.js', text:
-`import { select } from 'd3';
+  {
+    name: 'index.js',
+    text: `import { select } from 'd3';
 import { message } from './message';
-select('#message').text(message);`},
+select('#message').text(message);`
+  },
 
-{ name: 'message.js', text:
-`export const message = "D3 and ES6 imports are working !"`},
+  {
+    name: 'message.js',
+    text: 'export const message = "D3 and ES6 imports are working !"'
+  },
 
-{ name: 'README.md', text:
-`This is a cool [dataviz](https://twitter.com/search?q=%23dataviz)!`},
+  {
+    name: 'README.md',
+    text: 'This is a cool [dataviz](https://twitter.com/search?q=%23dataviz)!'
+  }
 ];
 
 export const visualizationDefaults = {
