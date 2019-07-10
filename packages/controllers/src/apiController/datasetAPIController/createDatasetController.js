@@ -16,4 +16,4 @@ export const createDatasetController = (expressApp, gateways) => {
       res.json({ error: error.message });
     }
   });
-}
+};
