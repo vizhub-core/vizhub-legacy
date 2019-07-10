@@ -1,33 +1,18 @@
-import { Visualization, UserId, DocumentId, timestamp } from 'vizhub-entities';
+import { timestamp } from 'vizhub-entities';
 import { i18n } from 'vizhub-i18n';
-import { Interactor, RequestModel, ResponseModel } from '../interactor';
-import { VisualizationGateway } from '../gatewayInterfaces/visualizationGateway';
-import { UserGateway } from '../gatewayInterfaces/userGateway';
 import { generateId } from '../utils/generateId';
 
-export interface ForkVisualizationRequestModel extends RequestModel {
-  visualization: Visualization,
-  owner: UserId
-}
-
-export interface ForkVisualizationResponseModel extends ResponseModel {
-  id: DocumentId
-}
-
-export class ForkVisualization implements Interactor {
-  visualizationGateway: VisualizationGateway;
-  userGateway: UserGateway;
-
+export class ForkVisualization {
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
     this.userGateway = userGateway;
   }
 
-  async execute(requestModel: ForkVisualizationRequestModel) {
+  async execute(requestModel) {
     const { visualization, owner } = requestModel;
 
     if (!owner) {
-      throw new Error(i18n('errorNoOwner'))
+      throw new Error(i18n('errorNoOwner'));
     }
 
     const nowTimestamp = timestamp();

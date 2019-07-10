@@ -1,28 +1,14 @@
-import { Visualization, DocumentId } from 'vizhub-entities';
 import { i18n } from 'vizhub-i18n';
-import { Interactor, RequestModel, ResponseModel } from '../../interactor';
-import { VisualizationGateway } from '../../gatewayInterfaces/visualizationGateway';
 import { zipFiles } from './zipFiles';
 
-export interface ExportVisualizationRequestModel extends RequestModel {
-  id: DocumentId
-}
-
-export interface ExportVisualizationResponseModel extends ResponseModel {
-  zipFileBuffer: any,
-  zipFileName: string
-}
-
-export class ExportVisualization implements Interactor {
-  visualizationGateway: VisualizationGateway;
-
+export class ExportVisualization {
   constructor({ visualizationGateway }) {
     this.visualizationGateway = visualizationGateway;
   }
 
-  async execute(requestModel: ExportVisualizationRequestModel) {
+  async execute(requestModel) {
     if (!requestModel.id) {
-      throw new Error(i18n('errorNoId'))
+      throw new Error(i18n('errorNoId'));
     }
 
     const visualization = await this.visualizationGateway.getVisualization({
@@ -60,6 +46,5 @@ export class ExportVisualization implements Interactor {
     const zipFileName = visualization.info.title + '.zip';
 
     return { zipFileBuffer, zipFileName };
-
   }
 }

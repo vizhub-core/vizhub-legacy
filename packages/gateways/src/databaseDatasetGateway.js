@@ -1,23 +1,11 @@
-import {
-  DatasetGateway,
-  CreateDatasetRequestModel,
-  CreateDatasetResponseModel
-} from 'vizhub-use-cases';
+import { Dataset, DatasetInfo, DatasetContent } from 'vizhub-entities';
 
-import {
-  Dataset,
-  DatasetInfo,
-  DatasetContent
-} from 'vizhub-entities';
-
-export class DatabaseDatasetGateway implements DatasetGateway {
-  database: any;
-
+export class DatabaseDatasetGateway {
   constructor(database) {
     this.database = database;
   }
 
-  async createDataset(options): Promise<CreateDatasetResponseModel> {
+  async createDataset(options) {
     const {
       owner,
       id,
@@ -56,7 +44,7 @@ export class DatabaseDatasetGateway implements DatasetGateway {
 
   async getDatasetInfosByUserId(id) {
     return await this.database.getDatasetInfosByUserId(id);
-  };
+  }
 
   //async saveDataset({ dataset }) {
   //  return await this.database.saveDataset({ dataset });

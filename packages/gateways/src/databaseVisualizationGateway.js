@@ -1,23 +1,15 @@
 import {
-  VisualizationGateway,
-  CVRequest,
-  CVResponse
-} from 'vizhub-use-cases';
-
-import {
   Visualization,
   VisualizationInfo,
   VisualizationContent
 } from 'vizhub-entities';
 
-export class DatabaseVisualizationGateway implements VisualizationGateway {
-  database: any; // TODO Typescript - Database
-
+export class DatabaseVisualizationGateway {
   constructor(database) {
     this.database = database;
   }
 
-  async createVisualization(options): Promise<CVResponse> {
+  async createVisualization(options) {
     const {
       owner,
       id,
@@ -63,11 +55,11 @@ export class DatabaseVisualizationGateway implements VisualizationGateway {
 
   async getVisualizationInfosByUserId(id) {
     return await this.database.getVisualizationInfosByUserId(id);
-  };
+  }
 
   async getAllVisualizationInfos() {
     return await this.database.getAllVisualizationInfos();
-  };
+  }
 
   async deleteVisualization({ id }) {
     return await this.database.deleteVisualization({ id });

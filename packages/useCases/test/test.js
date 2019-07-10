@@ -1,59 +1,21 @@
-import * as assert from 'assert';
+import assert from 'assert';
 import { i18n } from 'vizhub-i18n';
 import { ciUser, testData, timestamp } from 'vizhub-entities';
 
 import {
   CreateVisualization,
-  CreateVisualizationRequestModel,
-  CreateVisualizationResponseModel,
-
   GetVisualization,
-  GetVisualizationRequestModel,
-  GetVisualizationResponseModel,
-
   ExportVisualization,
-  ExportVisualizationRequestModel,
-  ExportVisualizationResponseModel,
-
   SaveVisualization,
-  SaveVisualizationRequestModel,
-  SaveVisualizationResponseModel,
-
   CreateDataset,
-  CreateDatasetRequestModel,
-  CreateDatasetResponseModel,
-
   GetDataset,
-  GetDatasetRequestModel,
-  GetDatasetResponseModel,
-
   ForkVisualization,
-  ForkVisualizationRequestModel,
-  ForkVisualizationResponseModel,
-  
   CreateUser,
-  CreateUserRequestModel,
-  CreateUserResponseModel,
-
   GetUser,
-  GetUserRequestModel,
-  GetUserResponseModel,
-
   GetOrCreateUser,
-  GetOrCreateUserRequestModel,
-  GetOrCreateUserResponseModel,
-
   GetUserProfileData,
-  GetUserProfileDataRequestModel,
-  GetUserProfileDataResponseModel,
-
   GetAllVisualizationInfos,
-  GetAllVisualizationInfosResponseModel,
-
   DeleteVisualization,
-  DeleteVisualizationRequestModel,
-  DeleteVisualizationResponseModel,
-
   UpdateImages
 } from '../src/index';
 
@@ -92,14 +54,14 @@ describe('Use Cases', () => {
   describe('Create Visualization', () => {
     const createVisualization = new CreateVisualization({ visualizationGateway });
     it('should error if no owner specified.', done => {
-      const requestModel: CreateVisualizationRequestModel = { owner: null };
+      const requestModel = { owner: null };
       createVisualization.execute(requestModel).catch(error => {
         assert.equal(error.message, i18n('errorNoOwner'))
         done();
       });
     });
     it('should return an id if success.', async () => {
-      const requestModel: CreateVisualizationRequestModel = {
+      const requestModel = {
         owner: testData.user.id
       };
       const responseModel = await createVisualization.execute(requestModel);
@@ -115,14 +77,14 @@ describe('Use Cases', () => {
       userGateway
     });
     it('should error if no id specified.', done => {
-      const requestModel: GetVisualizationRequestModel = { id: null };
+      const requestModel = { id: null };
       getVisualization.execute(requestModel).catch(error => {
         assert.equal(error.message, i18n('errorNoId'))
         done();
       });
     });
     it('should return stored object if success.', async () => {
-      const requestModel: GetVisualizationRequestModel = {
+      const requestModel = {
         id: visualizationId
       };
       const { visualization } = await getVisualization.execute(requestModel);
@@ -181,7 +143,7 @@ describe('Use Cases', () => {
   describe('Create Dataset', () => {
     const createDataset = new CreateDataset({ datasetGateway });
     it('should error if no owner specified.', done => {
-      const requestModel: CreateDatasetRequestModel = {
+      const requestModel = {
         owner: null,
         title: 'Foo',
         slug: 'foo',
@@ -208,7 +170,7 @@ describe('Use Cases', () => {
       userGateway
     });
     it('should error if no slug specified.', done => {
-      const requestModel: GetDatasetRequestModel = {
+      const requestModel = {
         userName: 'thomas',
         slug: ''
       };
@@ -236,7 +198,7 @@ describe('Use Cases', () => {
       userGateway
     });
     it('should error if no owner specified.', done => {
-      const requestModel: ForkVisualizationRequestModel = {
+      const requestModel = {
         visualization: {
           info: {
             id: '456',
@@ -256,7 +218,7 @@ describe('Use Cases', () => {
     });
 
     it('should invoke gateway if owner specified.', async () => {
-      const requestModel: ForkVisualizationRequestModel = {
+      const requestModel= {
         visualization: {
           id: '456',
           info: {
@@ -301,7 +263,7 @@ describe('Use Cases', () => {
     // TODO test success case
   });
 
-  const createUserRequestModel: CreateUserRequestModel = {
+  const createUserRequestModel= {
     "oAuthProfile": {
       "id": "84752",
       "displayName": "Joe Schmoe",
@@ -351,9 +313,7 @@ describe('Use Cases', () => {
     it('should create user if not found', async () => {
       let createCalled = false;
       const userGateway = {
-        getUser: () => {
-          throw new Error('Not found');
-        },
+        getUser: () => null,
         createUser: async (user) => {
           createCalled = true;
           return user;
@@ -431,14 +391,14 @@ describe('Use Cases', () => {
       visualizationGateway
     });
     it('should error if no id specified.', done => {
-      const requestModel: ExportVisualizationRequestModel = { id: null };
+      const requestModel= { id: null };
       exportVisualization.execute(requestModel).catch(error => {
         assert.equal(error.message, i18n('errorNoId'))
         done();
       });
     });
     it('should return zipped stored object if success.', async () => {
-      const requestModel: ExportVisualizationRequestModel = {
+      const requestModel= {
         id: visualizationId
       };
       const {
