@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-export const navigateToAuthPage = async my => {
+export const navigateToAuthPage = my => async () => {
   const { browser, page } = my;
   // Access the authentication popup.
   // Draws from https://github.com/GoogleChrome/puppeteer/issues/2968#issuecomment-408526574
@@ -14,5 +14,5 @@ export const navigateToAuthPage = async my => {
 
   assert.equal(popup.url(), 'http://localhost:3000/auth');
 
-  return popup;
+  my.popup = popup;
 };
