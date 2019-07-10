@@ -13,4 +13,4 @@ export const createVisualizationController = (expressApp, gateways) => {
       res.json({ error: error.message });
     }
   });
-}
+};

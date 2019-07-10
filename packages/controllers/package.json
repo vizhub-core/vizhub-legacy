@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
+  "scripts": {
+    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
+  },
   "author": "Curran Kelleher",
   "license": "MIT",
   "dependencies": {
@@ -14,5 +18,9 @@
     "vizhub-use-cases": "1",
     "vizhub-presenters": "1",
     "vizhub-entities": "1"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "prettier": "^1.18.2"
   }
 }

@@ -1,4 +1,3 @@
-import { User } from 'vizhub-entities';
 import { CreateUser, GetUser } from 'vizhub-use-cases';
 
 export const userController = userGateway => {
