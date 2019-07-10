@@ -24,7 +24,7 @@ export const DevsOnly = styled.div`
   color: ${props => props.theme.attentionGrabber};
 `;
 
-export const Button = styled.a`
+export const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

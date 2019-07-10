@@ -8,4 +8,4 @@ export const GITHUB_OAUTH_URL =
 
 export const AUTH_PENDING = 'AUTH_PENDING';
 export const CI_USER_CODE = 'ci';
-export const CI_AUTH_URL = '/authenticated?code=' + CI_USER_CODE;
+export const CI_AUTH_PATH = '/authenticated?code=' + CI_USER_CODE;

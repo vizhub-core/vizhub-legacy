@@ -18,3 +18,10 @@ export const SpinningLogo = styled.div`
   animation: ${spin} infinite 20s linear;
   width: 100vmin;
 `;
+
+export const Message = styled.div`
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  height: 20%;
+`;

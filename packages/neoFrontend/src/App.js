@@ -1,7 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { AuthContextProvider } from './authentication';
-import { AuthPage, AuthPopupPage, HomePage, CreateVizPage } from './pages';
+import {
+  AuthPage,
+  AuthPopupPage,
+  HomePage,
+  CreateVizPage,
+  CreatingVizFromScratchPage
+} from './pages';
 import { Themed } from './theme';
 
 export const App = () => (
@@ -11,6 +17,10 @@ export const App = () => (
         <Route exact path="/" component={HomePage} />
         <Route path="/auth" component={AuthPage} />
         <Route path="/create-viz" component={CreateVizPage} />
+        <Route
+          path="/creating-viz-from-scratch"
+          component={CreatingVizFromScratchPage}
+        />
       </AuthContextProvider>
       <Route path="/authenticated" component={AuthPopupPage} />
     </Router>

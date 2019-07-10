@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Banner } from '../../styles';
 import { Wrapper, Content, Title, Button, DevsOnly } from '../styles';
 import { BoxWrapper, Box, Octocat, Terms } from './styles';
 import { LogoSVG } from '../../svg';
-import { GITHUB_OAUTH_URL, CI_AUTH_URL } from '../../authentication';
+import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';
 
 export const AuthPage = () => {
   return (
@@ -33,9 +34,9 @@ export const AuthPage = () => {
                 <DevsOnly>
                   <Title>For developers only</Title>
                 </DevsOnly>
-                <Button className="test-sign-in-as-ci" href={CI_AUTH_URL}>
-                  Sign in as CI
-                </Button>
+                <Link to={CI_AUTH_PATH}>
+                  <Button className="test-sign-in-as-ci">Sign in as CI</Button>
+                </Link>
               </>
             ) : null}
           </Box>
