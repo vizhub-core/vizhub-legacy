@@ -6,3 +6,5 @@ export const jwtAuth = (app, userGateway) => {
   app.post('/api/auth/ci', authCI);
   app.get('/api/auth/signOut', authSignOut);
 };
+
+export { jwtVerify } from './jwt';
