@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { VizHubAPIError } from '../Error';
+import { VizHubAPIError } from 'vizhub-entities';
 
 const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
 
