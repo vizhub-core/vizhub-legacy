@@ -1,19 +1,7 @@
 import { DocumentInfo } from './documentInfo';
-import { DocumentId } from './documentId';
 import { VISUALIZATION_TYPE } from './documentTypes';
 
 export class VisualizationInfo extends DocumentInfo {
-
-  // The visualization that this visualization was forked from.
-  forkedFrom: DocumentId | undefined;
-
-  height: number;
-
-  // The Unix timestamp at which the thumbnail and preview
-  // images for this visualization were last updated.
-  // A value of undefined means there were never any images generated.
-  imagesUpdatedTimestamp: number | undefined;
-
   constructor(data) {
     super({
       documentType: VISUALIZATION_TYPE,
@@ -26,8 +14,14 @@ export class VisualizationInfo extends DocumentInfo {
       lastUpdatedTimestamp: data.lastUpdatedTimestamp
     });
 
+    // The visualization that this visualization was forked from.
     this.forkedFrom = data.forkedFrom;
+
     this.height = data.height;
+
+    // The Unix timestamp at which the thumbnail and preview
+    // images for this visualization were last updated.
+    // A value of undefined means there were never any images generated.
     this.imagesUpdatedTimestamp = data.imagesUpdatedTimestamp;
   }
 }

@@ -1,4 +1,4 @@
-export { User, UserId } from './user';
+export { User } from './user';
 export { ciUser } from './ciUser';
 
 export { DocumentPart } from './documentPart';
@@ -20,7 +20,5 @@ import * as testData from './testData';
 export { testData };
 
 export { timestamp } from './timestamp';
-
-export { Images } from './images';
 
 export { VizHubAPIError } from './VizHubAPIError';
