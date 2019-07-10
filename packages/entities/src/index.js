@@ -1,4 +1,4 @@
-export { User, UserId } from './user';
+export { User } from './user';
 export { ciUser } from './ciUser';
 
 export { DocumentPart } from './documentPart';

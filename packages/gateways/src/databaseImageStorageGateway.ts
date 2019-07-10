@@ -1,6 +1,6 @@
 import { ImageStorageGateway } from 'vizhub-use-cases';
 
-import { Images, DocumentId } from 'vizhub-entities';
+import { DocumentId } from 'vizhub-entities';
 
 export class DatabaseImageStorageGateway implements ImageStorageGateway {
   database: any;
