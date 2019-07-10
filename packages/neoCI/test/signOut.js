@@ -1,5 +1,3 @@
-import assert from 'assert';
-
 export const signOut = my => async () => {
   const { page } = my;
 

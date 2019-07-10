@@ -18,4 +18,4 @@ export const deleteVisualizationController = (expressApp, gateways) => {
       });
     }
   });
-}
+};

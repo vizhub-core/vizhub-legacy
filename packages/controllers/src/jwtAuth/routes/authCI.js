@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import { ciUser } from 'vizhub-entities';
-import { ErrorResponse, VizHubAPIError } from '../../Error';
+import { ErrorResponse } from '../../Error';
+import { VizHubAPIError } from 'vizhub-entities';
 import { jwtSign } from '../jwt';
 
 export const authCI = asyncHandler(async (req, res) => {

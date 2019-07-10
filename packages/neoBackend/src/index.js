@@ -4,10 +4,9 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { serverGateways } from 'vizhub-server-gateways';
-import { apiController } from 'vizhub-controllers';
+import { apiController, jwtAuth } from 'vizhub-controllers';
 import { serveFrontend } from './serveFrontend';
 //import { serveShareDB } from './serveShareDB';
-import { auth } from './auth';
 
 const expressApp = express();
 expressApp.use(compression());
@@ -21,7 +20,7 @@ const server = http.createServer(expressApp);
 //const connection = share.connect();
 
 const gateways = serverGateways();
-auth(expressApp, gateways.userGateway);
+jwtAuth(expressApp, gateways.userGateway);
 apiController(expressApp, gateways);
 
 serveFrontend(expressApp);

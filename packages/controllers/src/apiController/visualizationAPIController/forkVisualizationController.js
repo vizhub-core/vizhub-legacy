@@ -16,4 +16,4 @@ export const forkVisualizationController = (expressApp, gateways) => {
       res.json({ error: error.message });
     }
   });
-}
+};

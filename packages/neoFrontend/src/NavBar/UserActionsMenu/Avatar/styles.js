@@ -5,4 +5,6 @@ export const Wrapper = styled.img`
   height: 40px;
   box-shadow: ${props => props.theme.shadow};
   border-radius: 20px;
+  user-select: none;
+  cursor: pointer;
 `;

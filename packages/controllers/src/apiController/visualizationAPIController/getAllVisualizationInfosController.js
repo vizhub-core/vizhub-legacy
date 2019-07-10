@@ -8,7 +8,7 @@ export const getAllVisualizationInfosController = (expressApp, gateways) => {
       res.json(visualizationInfos);
     } catch (error) {
       console.log(error);
-      res.json({ error })
+      res.json({ error });
     }
   });
-}
+};

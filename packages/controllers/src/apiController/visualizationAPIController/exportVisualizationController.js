@@ -15,9 +15,8 @@ export const exportVisualizationController = (expressApp, gateways) => {
       });
 
       res.send(zipFileBuffer);
-
     } catch (error) {
-      res.json({ error })
+      res.json({ error });
     }
   });
-}
+};

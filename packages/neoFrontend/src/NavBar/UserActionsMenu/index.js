@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../../authentication';
-import { Avatar } from '../Avatar';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../authentication';
+import { CloseSVG } from '../../svg';
+import { Avatar } from './Avatar';
 import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
-import { CloseSVG } from '../../../svg';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
 export const UserActionsMenu = () => {
@@ -23,7 +24,9 @@ export const UserActionsMenu = () => {
             <CloseSVG />
           </AvatarOverlay>
           <Menu>
-            <Item>Create Visualization</Item>
+            <Link to="create-viz">
+              <Item className="test-create-viz">Create Visualization</Item>
+            </Link>
             <HorizontalRule />
             <Item className="test-sign-out" onClick={signOut}>
               Sign out
@@ -34,6 +37,3 @@ export const UserActionsMenu = () => {
     </Wrapper>
   );
 };
-
-// TODO sign out flow
-//  />;
