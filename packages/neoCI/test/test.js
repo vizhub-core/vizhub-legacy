@@ -208,7 +208,7 @@ describe('VizHub End to End Tests', () => {
   //  });
   //});
 
-  describe('tear down', () => {
+  describe('Tear Down', () => {
     it('should close', async () => {
       await my.browser.close();
     });
