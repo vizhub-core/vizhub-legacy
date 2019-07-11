@@ -10,8 +10,10 @@ const theme = {
   bannerPadding: 6,
   navbarLogoColor: 'currentcolor',
   navbarItemHeight: 40,
-  navbarAvatarBorderColor: 'transparent'
+  navbarAvatarBorderColor: 'transparent',
+  userMenuOverlayBackground: 'rgba(246, 238, 227, 0.83)'
 };
+theme.userMenuOverlayForeground = theme.dark;
 
 export const darkNavbarTheme = {
   ...theme,
@@ -20,7 +22,9 @@ export const darkNavbarTheme = {
   bannerPadding: 20,
   navbarLogoColor: '#ffffff',
   navbarItemHeight: 20,
-  navbarAvatarBorderColor: '#ffffff'
+  navbarAvatarBorderColor: '#ffffff',
+  userMenuOverlayBackground: 'rgba(0, 0, 0, 0.5)',
+  userMenuOverlayForeground: '#ffffff'
 };
 
 const Wrapper = styled.div`

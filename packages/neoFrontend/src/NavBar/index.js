@@ -7,17 +7,14 @@ import { SignIn } from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
 
 export const NavBar = withTheme(({ theme }) => {
-  const { navbarItemHeight, navbarLogoColor, navbarAvatarBorderColor } = theme;
+  const { navbarItemHeight, navbarLogoColor } = theme;
   const { me, signIn } = useContext(AuthContext);
 
   return (
     <Banner>
       <LogoSVG height={navbarItemHeight} fill={navbarLogoColor} />
       {me === AUTH_PENDING ? null : me ? (
-        <UserActionsMenu
-          height={navbarItemHeight}
-          avatarBorderColor={navbarAvatarBorderColor}
-        />
+        <UserActionsMenu />
       ) : (
         <SignIn className="test-sign-in" onClick={signIn}>
           Sign up / Sign in
