@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
-  height: ${props => props.height};
+  height: ${props => props.height}px;
 `;
 
 export const AvatarOverlay = styled.div`
   position: absolute;
   top: 0px;
-  width: ${props => props.size};
-  height: ${props => props.size};
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
   box-sizing: border-box;
   border: solid 1px ${props => props.theme.dark};
   border-radius: 20px;
