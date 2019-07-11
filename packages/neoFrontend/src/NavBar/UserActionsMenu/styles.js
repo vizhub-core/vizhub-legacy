@@ -8,8 +8,8 @@ export const Wrapper = styled.div`
 export const AvatarOverlay = styled.div`
   position: absolute;
   top: 0px;
-  width: 40px;
-  height: 40px;
+  width: ${props => props.size};
+  height: ${props => props.size};
   box-sizing: border-box;
   border: solid 1px ${props => props.theme.dark};
   border-radius: 20px;

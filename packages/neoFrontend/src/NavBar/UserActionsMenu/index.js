@@ -18,15 +18,15 @@ export const UserActionsMenu = ({ height, avatarBorderColor }) => {
   return (
     <Wrapper height={height}>
       <Avatar
-        height={height}
+        size={height}
         borderColor={avatarBorderColor}
         user={me}
         onClick={open}
       />
       {isOpen ? (
         <>
-          <AvatarOverlay height={height}>
-            <CloseSVG />
+          <AvatarOverlay size={height}>
+            <CloseSVG height={parseFloat(height) / 2} />
           </AvatarOverlay>
           <Menu>
             <Link to="create-viz">
