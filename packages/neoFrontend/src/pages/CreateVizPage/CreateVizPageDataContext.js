@@ -4,10 +4,10 @@ import { useCreateVizPageData } from './useCreateVizPageData';
 export const CreateVizPageDataContext = createContext();
 
 export const CreateVizPageDataProvider = ({ fallback, children }) => {
-  const homePageData = useCreateVizPageData();
+  const createVizPageData = useCreateVizPageData();
 
-  return homePageData ? (
-    <CreateVizPageDataContext.Provider value={homePageData}>
+  return createVizPageData ? (
+    <CreateVizPageDataContext.Provider value={createVizPageData}>
       {children}
     </CreateVizPageDataContext.Provider>
   ) : (
