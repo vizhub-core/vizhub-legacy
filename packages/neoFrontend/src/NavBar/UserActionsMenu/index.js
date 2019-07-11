@@ -6,7 +6,7 @@ import { Avatar } from './Avatar';
 import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
-export const UserActionsMenu = () => {
+export const UserActionsMenu = ({ height, avatarBorderColor }) => {
   const { me, signOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,11 +16,16 @@ export const UserActionsMenu = () => {
   useCloseOnGlobalClick(isOpen, close);
 
   return (
-    <Wrapper>
-      <Avatar user={me} onClick={open} />
+    <Wrapper height={height}>
+      <Avatar
+        height={height}
+        borderColor={avatarBorderColor}
+        user={me}
+        onClick={open}
+      />
       {isOpen ? (
         <>
-          <AvatarOverlay>
+          <AvatarOverlay height={height}>
             <CloseSVG />
           </AvatarOverlay>
           <Menu>
