@@ -6,11 +6,11 @@ import { URLStateContext } from './URLStateContext';
 export const VizPageBody = () => {
   const { vizId } = useContext(URLStateContext);
   return (
-    <Wrapper>
-      <Content>
-        <NavBar />
-        Hello viz {vizId}!
-      </Content>
-    </Wrapper>
+    <>
+      <NavBar />
+      <Wrapper>
+        <Content>Hello viz {vizId}!</Content>
+      </Wrapper>
+    </>
   );
 };
