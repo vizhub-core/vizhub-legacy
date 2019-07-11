@@ -9,7 +9,8 @@ const theme = {
   bannerHeight: '100px',
   bannerPadding: '6px',
   navbarLogoColor: 'currentcolor',
-  navbarLogoHeight: 40
+  navbarItemHeight: '40px',
+  navbarAvatarBorderColor: 'transparent'
 };
 
 export const darkNavbarTheme = {
@@ -18,7 +19,8 @@ export const darkNavbarTheme = {
   bannerHeight: '40px',
   bannerPadding: '20px',
   navbarLogoColor: '#ffffff',
-  navbarLogoHeight: 20
+  navbarItemHeight: '20px',
+  navbarAvatarBorderColor: '#ffffff'
 };
 
 const Wrapper = styled.div`
