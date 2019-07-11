@@ -6,13 +6,19 @@ const theme = {
   attentionGrabber: '#f0353d',
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   bannerBackground: 'transparent',
-  bannerHeight: '100px'
+  bannerHeight: '100px',
+  bannerPadding: '6px',
+  navbarLogoColor: 'currentcolor',
+  navbarLogoHeight: 40
 };
 
 export const darkNavbarTheme = {
   ...theme,
   bannerBackground: theme.dark,
-  bannerHeight: '40px'
+  bannerHeight: '40px',
+  bannerPadding: '20px',
+  navbarLogoColor: '#ffffff',
+  navbarLogoHeight: 20
 };
 
 const Wrapper = styled.div`
