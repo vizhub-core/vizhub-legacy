@@ -3,3 +3,4 @@ export { AuthPage } from './AuthPage';
 export { HomePage } from './HomePage';
 export { CreateVizPage } from './CreateVizPage';
 export { CreatingVizFromScratchPage } from './CreatingVizFromScratchPage';
+export { VizPage } from './VizPage';

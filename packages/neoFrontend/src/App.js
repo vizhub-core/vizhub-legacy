@@ -6,7 +6,8 @@ import {
   AuthPopupPage,
   HomePage,
   CreateVizPage,
-  CreatingVizFromScratchPage
+  CreatingVizFromScratchPage,
+  VizPage
 } from './pages';
 import { Themed } from './theme';
 
@@ -21,6 +22,7 @@ export const App = () => (
           path="/creating-viz-from-scratch"
           component={CreatingVizFromScratchPage}
         />
+        <Route path="/:userName/:vizId" component={VizPage} />
       </AuthContextProvider>
       <Route path="/authenticated" component={AuthPopupPage} />
     </Router>
