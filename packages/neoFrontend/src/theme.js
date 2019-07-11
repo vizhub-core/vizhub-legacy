@@ -6,21 +6,20 @@ const theme = {
   attentionGrabber: '#f0353d',
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   bannerBackground: 'transparent',
-  bannerHeight: '100px',
-  bannerPadding: '6px',
+  bannerHeight: 100,
+  bannerPadding: 6,
   navbarLogoColor: 'currentcolor',
-  navbarItemHeight: '40px',
+  navbarItemHeight: 40,
   navbarAvatarBorderColor: 'transparent'
 };
 
 export const darkNavbarTheme = {
   ...theme,
   bannerBackground: theme.dark,
-  // TODO remove px from these
-  bannerHeight: '40px',
-  bannerPadding: '20px',
+  bannerHeight: 40,
+  bannerPadding: 20,
   navbarLogoColor: '#ffffff',
-  navbarItemHeight: '20px',
+  navbarItemHeight: 20,
   navbarAvatarBorderColor: '#ffffff'
 };
 

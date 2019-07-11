@@ -2,9 +2,9 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
-  min-height: ${props => props.theme.bannerHeight};
-  padding-left: ${props => props.theme.bannerPadding};
-  padding-right: ${props => props.theme.bannerPadding};
+  min-height: ${props => props.theme.bannerHeight}px;
+  padding-left: ${props => props.theme.bannerPadding}px;
+  padding-right: ${props => props.theme.bannerPadding}px;
   flex: 1;
   display: flex;
   justify-content: space-between;
