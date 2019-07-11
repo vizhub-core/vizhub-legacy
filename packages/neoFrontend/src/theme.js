@@ -16,6 +16,7 @@ const theme = {
 export const darkNavbarTheme = {
   ...theme,
   bannerBackground: theme.dark,
+  // TODO remove px from these
   bannerHeight: '40px',
   bannerPadding: '20px',
   navbarLogoColor: '#ffffff',
