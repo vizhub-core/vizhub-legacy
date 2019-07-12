@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_ABOVE, Z_BELOW } from '../../../styles';
+import { Z_BELOW } from '../../../styles';
 import { Content } from '../../styles';
 
 export const Wrapper = styled.div`
@@ -30,24 +30,4 @@ export const TorsoWrapper = styled.div`
 export const Torso = styled(Content)`
   max-width: 980px;
   padding: 10px;
-`;
-
-export const VizFrame = styled.div`
-  max-width: 960px;
-  background-color: #ffffff;
-  border-radius: 0 0 3px 3px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const VizFrameContent = styled.div`
-  z-index: ${Z_BELOW};
-  box-shadow: ${props => props.theme.shadowLight};
-  height: 500px;
-`;
-
-export const VizFrameFooter = styled.div`
-  z-index: ${Z_ABOVE};
-  box-shadow: ${props => props.theme.shadow};
-  height: 40px;
 `;
