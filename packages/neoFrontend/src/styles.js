@@ -10,3 +10,7 @@ export const Banner = styled.div`
   align-items: center;
   background-color: ${props => props.theme.bannerBackground};
 `;
+
+// Values used for z-index.
+export const Z_ABOVE = 1;
+export const Z_BELOW = -1;

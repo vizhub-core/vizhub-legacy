@@ -1,6 +1,14 @@
 import React from 'react';
 import { NavBar } from '../../../NavBar';
-import { Wrapper, TorsoWrapper, Torso, VizFrame, Bottom } from './styles';
+import {
+  Wrapper,
+  Bottom,
+  TorsoWrapper,
+  Torso,
+  VizFrame,
+  VizFrameContent,
+  VizFrameFooter
+} from './styles';
 import { Head } from './Head';
 
 export const Body = () => {
@@ -11,7 +19,10 @@ export const Body = () => {
       <Bottom>
         <TorsoWrapper>
           <Torso>
-            <VizFrame />
+            <VizFrame>
+              <VizFrameContent />
+              <VizFrameFooter />
+            </VizFrame>
           </Torso>
         </TorsoWrapper>
       </Bottom>

@@ -5,6 +5,7 @@ const theme = {
   dark: '#161514',
   attentionGrabber: '#f0353d',
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
+  shadowLight: '0 1px 3px 0 rgba(0, 0, 0, 0.15)',
   bannerBackground: 'transparent',
   bannerHeight: 100,
   bannerPadding: 6,
