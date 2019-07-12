@@ -1,19 +1,23 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-// import { accessors } from './accessors';
+import { accessors } from './accessors';
 
 // Higher order component exposing URL state accessors.
 export const withURLState = Component =>
   withRouter(props => {
     //// Raw accessor functions for URL parameter state.
-    //const { edit, setEdit, file: activeFileId, setFile } = accessors(props);
+    const {
+      edit,
+      setEdit
+      //file: activeFileId, setFile
+    } = accessors(props);
 
-    //// Boolean value, whether or not the editor should be shown.
-    //const showConfigurator = edit !== undefined;
-    //const setShowConfigurator = value => setEdit(value ? null : undefined);
+    // Boolean value, whether or not the editor should be shown.
+    const showEditor = edit !== undefined;
+    const setShowEditor = value => setEdit(value ? null : undefined);
 
     //// Toggles the editor to show and hide.
-    //const toggleConfigurator = () => setShowConfigurator(!showConfigurator);
+    const toggleEditor = () => setShowEditor(!showEditor);
 
     //// The active editor section id string if a section is active.
     //// null if no editor section is active.
@@ -33,8 +37,8 @@ export const withURLState = Component =>
     const urlState = {
       // activeFileId,
       // selectFile,
-      // showConfigurator,
-      // toggleConfigurator,
+      showEditor,
+      toggleEditor,
       // activeSection,
       // setActiveSection,
       vizId
