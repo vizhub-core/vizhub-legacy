@@ -18,12 +18,12 @@ export const LoadingScreen = ({ message }) => {
     };
   }, []);
 
-  return show ? (
-    <LoadingScreenWrapper>
+  return (
+    <LoadingScreenWrapper style={{ opacity: show ? 1 : 0 }}>
       <SpinningLogo>
         <LogoSVG />
       </SpinningLogo>
       {message ? <Message>{message}</Message> : null}
     </LoadingScreenWrapper>
-  ) : null;
+  );
 };

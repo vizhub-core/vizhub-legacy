@@ -7,10 +7,12 @@ export const LoadingScreenWrapper = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
 `;
 
 const spin = keyframes`
-  from { transform: rotate(-10deg) scale(0.5); }
+  from { transform: rotate(-20deg) scale(0.5); }
   to { transform: rotate(360deg) scale(2); }
 `;
 
