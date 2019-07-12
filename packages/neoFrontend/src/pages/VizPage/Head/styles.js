@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Left = styled.div`
-  padding-left: 20px;
+  padding-left: 9px;
   display: flex;
   align-items: center;
 `;
@@ -21,15 +21,18 @@ export const Right = styled.div`
   justify-content: space-between;
 `;
 
-export const Icon = styled.div`
+export const Clickable = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
   height: 30px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
   margin-right: ${props => (props.rightmost ? '9px' : '0')};
   cursor: pointer;
+`;
+
+export const Icon = styled(Clickable)`
+  width: 35px;
 `;
