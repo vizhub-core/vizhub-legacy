@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Z_ABOVE, Z_BELOW } from '../../../styles';
 import { Content } from '../../styles';
 
 export const Wrapper = styled.div`
@@ -16,10 +17,11 @@ export const Wrapper = styled.div`
 // can cast on top of the bottom content
 // when it is scrolled.
 export const Bottom = styled.div`
-  z-index: -1;
+  z-index: ${Z_BELOW};
   overflow: auto;
 `;
 
+// This level handles horizontal centering & resize behavior.
 export const TorsoWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -32,8 +34,20 @@ export const Torso = styled(Content)`
 
 export const VizFrame = styled.div`
   max-width: 960px;
-  height: 500px;
-  box-shadow: ${props => props.theme.shadow};
   background-color: #ffffff;
   border-radius: 0 0 3px 3px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const VizFrameContent = styled.div`
+  z-index: ${Z_BELOW};
+  box-shadow: ${props => props.theme.shadowLight};
+  height: 500px;
+`;
+
+export const VizFrameFooter = styled.div`
+  z-index: ${Z_ABOVE};
+  box-shadow: ${props => props.theme.shadow};
+  height: 40px;
 `;
