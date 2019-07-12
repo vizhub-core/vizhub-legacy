@@ -27,7 +27,13 @@ export const TorsoWrapper = styled.div`
   justify-content: center;
 `;
 
+// Homage to bl.ocks.org with choice of 960px.
 export const Torso = styled(Content)`
-  max-width: 980px;
+  max-width: 960px;
   padding: 10px;
+`;
+
+export const HorizontalRule = styled.div`
+  height: 1px;
+  background-color: #bfc0bf;
 `;

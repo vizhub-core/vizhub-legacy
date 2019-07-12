@@ -4,6 +4,6 @@ import { Wrapper, Content, Footer } from './styles';
 export const VizFrame = () => (
   <Wrapper>
     <Content />
-    <Footer />
+    <Footer>icons</Footer>
   </Wrapper>
 );
