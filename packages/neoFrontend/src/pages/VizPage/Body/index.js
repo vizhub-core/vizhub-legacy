@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavBar } from '../../../NavBar';
-import { Wrapper, Bottom, TorsoWrapper, Torso } from './styles';
+import { Wrapper, Bottom, TorsoWrapper, Torso, HorizontalRule } from './styles';
 import { Head } from './Head';
 import { VizFrame } from './VizFrame';
+import { TitleBar } from './TitleBar';
 
 export const Body = () => {
   return (
@@ -13,6 +14,8 @@ export const Body = () => {
         <TorsoWrapper>
           <Torso>
             <VizFrame />
+            <TitleBar />
+            <HorizontalRule />
           </Torso>
         </TorsoWrapper>
       </Bottom>
