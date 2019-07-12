@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LogoSVG } from '../svg';
 import { LoadingScreenWrapper, SpinningLogo, Message } from './styles';
 import { blankScreenDelay } from './animationDelay';
-export { animationDelay } from './animationDelay';
-export { blankScreenDelay };
+export { waitForSpinner } from './waitForSpinner';
 
 export const LoadingScreen = ({ message }) => {
   const [show, setShow] = useState(false);

@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { animationDelay } from '../../LoadingScreen';
+import { waitForSpinner } from '../../LoadingScreen';
+import { fakeDataLoaded } from '../fakeDataLoaded';
 
 // TODO make an API request here, for the list of template and popular vizzes.
 export const useCreateVizPageData = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
+    waitForSpinner(fakeDataLoaded()).then(() => {
       setLoading(false);
-    }, animationDelay);
+    });
   }, []);
   return !loading;
 };
