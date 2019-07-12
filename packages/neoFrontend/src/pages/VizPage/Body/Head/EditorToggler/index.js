@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { ArrowLeftSVG, ArrowRightSVG } from '../../../../svg';
-import { URLStateContext } from '../../URLStateContext';
+import { ArrowLeftSVG, ArrowRightSVG } from '../../../../../svg';
+import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, Text } from './styles';
 
 export const EditorToggler = () => {

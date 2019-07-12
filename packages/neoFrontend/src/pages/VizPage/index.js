@@ -4,13 +4,13 @@ import { LoadingScreen } from '../../LoadingScreen';
 import { darkNavbarTheme } from '../../theme';
 import { VizPageDataProvider } from './VizPageDataContext';
 import { URLStateProvider } from './URLStateContext';
-import { VizPageBody } from './VizPageBody';
+import { Body } from './Body';
 
 export const VizPage = () => (
   <URLStateProvider>
     <VizPageDataProvider fallback={<LoadingScreen />}>
       <ThemeProvider theme={darkNavbarTheme}>
-        <VizPageBody />
+        <Body />
       </ThemeProvider>
     </VizPageDataProvider>
   </URLStateProvider>

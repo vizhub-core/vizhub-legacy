@@ -1,5 +1,5 @@
 import React from 'react';
-import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../svg';
+import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
 import { Wrapper, Right, Left, Icon } from './styles';
 import { EditorToggler } from './EditorToggler';
 
