@@ -1,15 +1,8 @@
 import React from 'react';
 import { NavBar } from '../../../NavBar';
-import {
-  Wrapper,
-  Bottom,
-  TorsoWrapper,
-  Torso,
-  VizFrame,
-  VizFrameContent,
-  VizFrameFooter
-} from './styles';
+import { Wrapper, Bottom, TorsoWrapper, Torso } from './styles';
 import { Head } from './Head';
+import { VizFrame } from './VizFrame';
 
 export const Body = () => {
   return (
@@ -19,10 +12,7 @@ export const Body = () => {
       <Bottom>
         <TorsoWrapper>
           <Torso>
-            <VizFrame>
-              <VizFrameContent />
-              <VizFrameFooter />
-            </VizFrame>
+            <VizFrame />
           </Torso>
         </TorsoWrapper>
       </Bottom>
