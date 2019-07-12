@@ -8,12 +8,12 @@ export const LoadingScreenWrapper = styled.div`
   justify-content: center;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity 2s;
 `;
 
 const spin = keyframes`
-  from { transform: rotate(-20deg) scale(0.5); }
-  to { transform: rotate(360deg) scale(2); }
+  from { transform: scale(0.25); }
+  to { transform: scale(1); }
 `;
 
 export const SpinningLogo = styled.div`
