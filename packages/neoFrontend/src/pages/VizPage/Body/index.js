@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavBar } from '../../../NavBar';
-import { Wrapper, Content } from '../../styles';
-import { URLStateContext } from '../URLStateContext';
+import { Wrapper, TorsoWrapper, Torso, VizFrame, Bottom } from './styles';
 import { Head } from './Head';
 
 export const Body = () => {
-  // TODO move this access logic into useVizPageData
-  const { vizId } = useContext(URLStateContext);
   return (
-    <>
+    <Wrapper>
       <NavBar />
       <Head />
-      <Wrapper>
-        <Content>Hello viz {vizId}!</Content>
-      </Wrapper>
-    </>
+      <Bottom>
+        <TorsoWrapper>
+          <Torso>
+            <VizFrame />
+          </Torso>
+        </TorsoWrapper>
+      </Bottom>
+    </Wrapper>
   );
 };

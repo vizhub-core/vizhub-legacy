@@ -5,7 +5,6 @@ export const Banner = styled.div`
   min-height: ${props => props.theme.bannerHeight}px;
   padding-left: ${props => props.theme.bannerPadding}px;
   padding-right: ${props => props.theme.bannerPadding}px;
-  flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
