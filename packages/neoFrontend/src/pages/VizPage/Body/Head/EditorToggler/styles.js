@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Clickable } from '../styles';
+import { Clickable } from '../../styles';
 
 export const Wrapper = styled(Clickable)`
   width: 125px;
