@@ -19,11 +19,8 @@ export const Voter = styled.div`
 `;
 
 export const VoteIcon = styled.div`
-  margin-left: 12px;
-  margin-right: 3px;
+  margin-left: 13px;
+  margin-right: 4px;
   line-height: 1;
   cursor: pointer;
-  &:hover {
-    background-color: blue;
-  }
 `;
