@@ -37,3 +37,19 @@ export const HorizontalRule = styled.div`
   height: 1px;
   background-color: #bfc0bf;
 `;
+
+export const Clickable = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  margin-right: ${props => (props.rightmost ? '9px' : '0')};
+  cursor: pointer;
+`;
+
+export const Icon = styled(Clickable)`
+  width: 35px;
+`;

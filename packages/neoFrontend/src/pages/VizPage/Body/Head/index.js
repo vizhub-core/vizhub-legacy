@@ -1,6 +1,7 @@
 import React from 'react';
 import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
-import { Wrapper, Right, Left, Icon } from './styles';
+import { Icon } from '../styles';
+import { Wrapper, Right, Left } from './styles';
 import { EditorToggler } from './EditorToggler';
 
 export const Head = () => (
