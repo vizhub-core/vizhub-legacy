@@ -7,6 +7,8 @@ import { SettingsSVG } from './SettingsSVG';
 import { ShareSVG } from './ShareSVG';
 import { ArrowLeftSVG } from './ArrowLeftSVG';
 import { ArrowRightSVG } from './ArrowRightSVG';
+import { VoteSVG } from './VoteSVG';
+import { SpinnerSVG } from './SpinnerSVG';
 
 export const SVGGallery = () => (
   <>
@@ -18,5 +20,13 @@ export const SVGGallery = () => (
     <PullSVG />
     <SettingsSVG />
     <ShareSVG />
+    <VoteSVG />
+    <VoteSVG down={true} />
+    <SpinnerSVG />
   </>
 );
+
+//full.svg
+//mini.svg
+//split.svg
+//up-vote.svg
