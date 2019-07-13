@@ -6,7 +6,7 @@ export const TitleBar = () => (
   <Wrapper>
     <Title>Let's make a bar chart</Title>
     <Voter>
-      <VoteIcon>
+      <VoteIcon leftmost={true}>
         <VoteSVG />
       </VoteIcon>
       36
