@@ -11,4 +11,19 @@ export const Title = styled.div`
   font-size: 20px;
 `;
 
-export const Voter = styled.div``;
+export const Voter = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  user-select: none;
+`;
+
+export const VoteIcon = styled.div`
+  margin-left: 12px;
+  margin-right: 3px;
+  line-height: 1;
+  cursor: pointer;
+  &:hover {
+    background-color: blue;
+  }
+`;
