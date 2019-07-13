@@ -9,7 +9,9 @@ import {
   VideoThumbnail,
   Description,
   AuthorName,
-  AuthorshipMeta
+  AuthorshipMeta,
+  SemiBold,
+  VizLink
 } from './styles';
 
 export const DescriptionSection = () => (
@@ -19,8 +21,13 @@ export const DescriptionSection = () => (
       <Authorship>
         <AuthorName>Author name</AuthorName>
         <AuthorshipMeta>
-          <div>last edited</div>
-          <div>forked from</div>
+          <div>
+            Lasted Edited <SemiBold>June 5, 2019</SemiBold>
+          </div>
+          <div>
+            Forked from <VizLink to="/">Name of forked viz</VizLink>{' '}
+            <SemiBold>January 6, 2018</SemiBold>
+          </div>
         </AuthorshipMeta>
       </Authorship>
       <Description>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ export const Authorship = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 40px;
+  padding-bottom: 20px;
 `;
 
 export const Video = styled.div`
@@ -51,4 +53,13 @@ export const AuthorName = styled.div`
 export const AuthorshipMeta = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+`;
+
+export const SemiBold = styled.span`
+  font-weight: 600;
+`;
+
+export const VizLink = styled(Link)`
+  font-style: italic;
 `;
