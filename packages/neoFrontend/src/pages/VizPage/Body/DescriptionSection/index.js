@@ -1,25 +1,28 @@
 import React from 'react';
 import {
   Wrapper,
-  Left,
   Middle,
   Right,
   Authorship,
+  AuthorAvatar,
+  AuthorName,
+  AuthorshipMeta,
   Video,
   VideoThumbnail,
   Description,
-  AuthorName,
-  AuthorshipMeta,
   SemiBold,
-  VizLink
+  VizLink,
+  Author
 } from './styles';
 
 export const DescriptionSection = () => (
   <Wrapper>
-    <Left>Avatar</Left>
     <Middle>
       <Authorship>
-        <AuthorName>Author name</AuthorName>
+        <Author>
+          <AuthorAvatar>Avatar</AuthorAvatar>
+          <AuthorName>Author name</AuthorName>
+        </Author>
         <AuthorshipMeta>
           <div>
             Lasted Edited <SemiBold>June 5, 2019</SemiBold>
