@@ -44,7 +44,10 @@ export const Clickable = styled.div`
   justify-content: center;
   height: 30px;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: ${props => props.theme.iconHoverBackground};
+  }
+  &:active {
+    background-color: ${props => props.theme.iconActiveBackground};
   }
   margin-right: ${props => (props.rightmost ? '9px' : '0')};
   cursor: pointer;

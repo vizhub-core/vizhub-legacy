@@ -25,7 +25,7 @@ export const Footer = styled.div`
 `;
 
 export const FooterIcon = styled(Icon)`
-  width: 27px;
+  width: auto;
   height: 40px;
   padding-right: ${props => (props.rightmost ? '10' : '7')}px;
   padding-left: ${props => (props.leftmost ? '10' : '7')}px;

@@ -12,7 +12,9 @@ const theme = {
   navbarLogoColor: 'currentcolor',
   navbarItemHeight: 40,
   navbarAvatarBorderColor: 'transparent',
-  userMenuOverlayBackground: 'rgba(246, 238, 227, 0.83)'
+  userMenuOverlayBackground: 'rgba(246, 238, 227, 0.83)',
+  iconHoverBackground: 'rgba(0, 0, 0, 0.05)',
+  iconActiveBackground: 'rgba(0, 0, 0, 0.15)'
 };
 theme.userMenuOverlayForeground = theme.dark;
 
