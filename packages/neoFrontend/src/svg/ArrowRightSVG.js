@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TODO unify as ArrowSVG - possible to add rotation animation.
 export const ArrowRightSVG = ({ height = 18, fill = 'currentcolor' }) => (
   <svg height={height} viewBox={`0 0 10 18`}>
     <g fill={fill}>
