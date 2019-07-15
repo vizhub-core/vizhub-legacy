@@ -1,12 +1,19 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { withTheme } from 'styled-components';
 import { AuthContext } from '../../authentication';
 import { CloseSVG } from '../../svg';
 import { Avatar } from './Avatar';
 import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
-export const UserActionsMenu = () => {
+export const UserActionsMenu = withTheme(({ theme }) => {
+  const {
+    userMenuOverlayForeground,
+    navbarAvatarBorderColor,
+    navbarItemHeight
+  } = theme;
+
   const { me, signOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,14 +23,22 @@ export const UserActionsMenu = () => {
   useCloseOnGlobalClick(isOpen, close);
 
   return (
-    <Wrapper>
-      <Avatar user={me} onClick={open} />
+    <Wrapper height={navbarItemHeight}>
+      <Avatar
+        size={navbarItemHeight}
+        borderColor={navbarAvatarBorderColor}
+        user={me}
+        onClick={open}
+      />
       {isOpen ? (
         <>
-          <AvatarOverlay>
-            <CloseSVG />
+          <AvatarOverlay size={navbarItemHeight}>
+            <CloseSVG
+              height={navbarItemHeight / 2}
+              fill={userMenuOverlayForeground}
+            />
           </AvatarOverlay>
-          <Menu>
+          <Menu height={navbarItemHeight}>
             <Link to="create-viz">
               <Item className="test-create-viz">Create Visualization</Item>
             </Link>
@@ -36,4 +51,4 @@ export const UserActionsMenu = () => {
       ) : null}
     </Wrapper>
   );
-};
+});

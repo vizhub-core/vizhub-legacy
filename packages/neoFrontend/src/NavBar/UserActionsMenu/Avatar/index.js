@@ -5,8 +5,10 @@ import { Wrapper } from './styles';
 // for small avatars, so they are more likely to be cached.
 const avatarUrl = user => user.avatarUrl + '&s=180';
 
-export const Avatar = ({ user, onClick }) => (
+export const Avatar = ({ user, onClick, size, borderColor }) => (
   <Wrapper
+    size={size}
+    borderColor={borderColor}
     className="test-avatar-me"
     src={avatarUrl(user)}
     alt={user.userName}
