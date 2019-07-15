@@ -14,3 +14,7 @@ export const Banner = styled.div`
 // Values used for z-index.
 export const Z_ABOVE = 1;
 export const Z_BELOW = -1;
+
+// This values is used only to create a new stacking context.
+// See https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+export const Z_NEW_STACKING_CONTEXT = 0;
