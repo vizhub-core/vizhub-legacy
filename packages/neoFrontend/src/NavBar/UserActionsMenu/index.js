@@ -10,7 +10,7 @@ import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 export const UserActionsMenu = withTheme(({ theme }) => {
   const {
     userMenuOverlayForeground,
-    navbarAvatarBorderColor,
+    navbarAvatarBorder,
     navbarItemHeight
   } = theme;
 
@@ -26,7 +26,7 @@ export const UserActionsMenu = withTheme(({ theme }) => {
     <Wrapper height={navbarItemHeight}>
       <Avatar
         size={navbarItemHeight}
-        borderColor={navbarAvatarBorderColor}
+        border={navbarAvatarBorder}
         user={me}
         onClick={open}
       />

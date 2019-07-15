@@ -11,7 +11,7 @@ const theme = {
   bannerPadding: 6,
   navbarLogoColor: 'currentcolor',
   navbarItemHeight: 40,
-  navbarAvatarBorderColor: 'transparent',
+  navbarAvatarBorder: 'none',
   userMenuOverlayBackground: 'rgba(246, 238, 227, 0.83)',
   iconHoverBackground: 'rgba(0, 0, 0, 0.05)',
   iconActiveBackground: 'rgba(0, 0, 0, 0.15)'
@@ -25,7 +25,7 @@ export const darkNavbarTheme = {
   bannerPadding: 20,
   navbarLogoColor: '#ffffff',
   navbarItemHeight: 20,
-  navbarAvatarBorderColor: '#ffffff',
+  navbarAvatarBorder: 'solid 1px #ffffff',
   userMenuOverlayBackground: 'rgba(0, 0, 0, 0.5)',
   userMenuOverlayForeground: '#ffffff'
 };
