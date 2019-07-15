@@ -9,7 +9,9 @@ export class GetOrCreateUser {
 
   async execute(requestModel) {
     const oAuthProfile = requestModel.oAuthProfile;
-    const { user } = await this.getUser.execute(oAuthProfile.id);
+    const { user } = await this.getUser.execute({
+      id: oAuthProfile.id
+    });
     if (user) {
       return { user };
     } else {
