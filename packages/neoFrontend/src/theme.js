@@ -12,6 +12,8 @@ const theme = {
   navbarLogoColor: 'currentcolor',
   navbarItemHeight: 40,
   userMenuOverlayBackground: 'rgba(246, 238, 227, 0.83)',
+  userMenuOverlayBackgroundHover: 'rgba(246, 238, 227, 0.7)',
+  userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
   iconHoverBackground: 'rgba(0, 0, 0, 0.05)',
   iconActiveBackground: 'rgba(0, 0, 0, 0.15)'
 };
@@ -26,6 +28,8 @@ export const darkNavbarTheme = {
   navbarItemHeight: 20,
   navbarAvatarBorderColor: '#ffffff',
   userMenuOverlayBackground: 'rgba(0, 0, 0, 0.5)',
+  userMenuOverlayBackgroundHover: 'rgba(0, 0, 0, 0.4)',
+  userMenuOverlayBackgroundActive: 'rgba(0, 0, 0, 0.3)',
   userMenuOverlayForeground: '#ffffff'
 };
 

@@ -15,10 +15,16 @@ export const AvatarOverlay = styled.div`
   border-radius: 20px;
   border: solid 1px ${props => props.theme.userMenuOverlayForeground};
   background-color: ${props => props.theme.userMenuOverlayBackground};
-
+  &:hover {
+    background-color: ${props => props.theme.userMenuOverlayBackgroundHover};
+  }
+  &:active {
+    background-color: ${props => props.theme.userMenuOverlayBackgroundActive};
+  }
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
 `;
 
