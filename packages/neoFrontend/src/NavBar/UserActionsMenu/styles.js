@@ -28,12 +28,14 @@ export const AvatarOverlay = styled.div`
   cursor: pointer;
 `;
 
+const borderRadius = '6px';
+
 export const Menu = styled.div`
   position: absolute;
   top: ${props => props.height + 6}px;
   right: 0;
 
-  border-radius: 6px;
+  border-radius: ${borderRadius};
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
   background-color: #ffffff;
 
@@ -52,6 +54,10 @@ export const Item = styled(Clickable)`
     10px
   `}
   color: ${props => props.theme.dark};
+  border-top-left-radius: ${props => (props.topmost ? borderRadius : 0)};
+  border-top-right-radius: ${props => (props.topmost ? borderRadius : 0)};
+  border-bottom-left-radius: ${props => (props.bottommost ? borderRadius : 0)};
+  border-bottom-right-radius: ${props => (props.bottommost ? borderRadius : 0)};
 `;
 
 export const HorizontalRule = styled.div`
