@@ -44,4 +44,5 @@ export const Icon = styled(Clickable)`
   justify-content: center;
   height: 30px;
   width: 35px;
+  margin-right: ${props => (props.rightmost ? '9px' : '0')};
 `;
