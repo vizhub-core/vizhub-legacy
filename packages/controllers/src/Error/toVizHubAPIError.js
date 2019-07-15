@@ -3,9 +3,17 @@ export const toVizHubAPIError = error => {
   if (error instanceof VizHubAPIError) {
     return error;
   }
+
   if (error.name === 'JsonWebTokenError') {
     return new VizHubAPIError({
       error: 'jwt_error',
+      errorDescription: error.message
+    });
+  }
+
+  if (error.name === 'ShareDBError') {
+    return new VizHubAPIError({
+      error: 'sharedb_error',
       errorDescription: error.message
     });
   }
