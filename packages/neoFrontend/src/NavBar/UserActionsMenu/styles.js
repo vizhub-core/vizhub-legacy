@@ -47,17 +47,21 @@ export const Item = styled(Clickable)`
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
+  color: ${props => props.theme.dark};
+
   padding: ${props => `
     ${props.topmost ? 8 : 4}px
     10px
     ${props.bottommost ? 7 : 4}px
     10px
   `}
-  color: ${props => props.theme.dark};
-  border-top-left-radius: ${props => (props.topmost ? borderRadius : 0)};
-  border-top-right-radius: ${props => (props.topmost ? borderRadius : 0)};
-  border-bottom-left-radius: ${props => (props.bottommost ? borderRadius : 0)};
-  border-bottom-right-radius: ${props => (props.bottommost ? borderRadius : 0)};
+
+  border-radius: ${props => `
+    ${props.topmost ? borderRadius : 0}
+    ${props.topmost ? borderRadius : 0}
+    ${props.bottommost ? borderRadius : 0}
+    ${props.bottommost ? borderRadius : 0}
+  `}
 `;
 
 export const HorizontalRule = styled.div`
