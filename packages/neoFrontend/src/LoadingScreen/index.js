@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { LogoSVG } from '../svg';
-import { LoadingScreenWrapper, SpinningLogo, Message } from './styles';
+import { SpinnerSVG } from '../svg';
+import { LoadingScreenWrapper, Spinning, Message } from './styles';
 import { blankScreenDelay } from './animationDelay';
 export { waitForSpinner } from './waitForSpinner';
 
@@ -19,9 +19,9 @@ export const LoadingScreen = ({ message }) => {
 
   return (
     <LoadingScreenWrapper style={{ opacity: show ? 1 : 0 }}>
-      <SpinningLogo>
-        <LogoSVG />
-      </SpinningLogo>
+      <Spinning>
+        <SpinnerSVG />
+      </Spinning>
       {message ? <Message>{message}</Message> : null}
     </LoadingScreenWrapper>
   );
