@@ -40,10 +40,12 @@ export const UserActionsMenu = withTheme(({ theme }) => {
           </AvatarOverlay>
           <Menu height={navbarItemHeight}>
             <Link to="create-viz">
-              <Item className="test-create-viz">Create Visualization</Item>
+              <Item className="test-create-viz" topmost={true}>
+                Create Visualization
+              </Item>
             </Link>
             <HorizontalRule />
-            <Item className="test-sign-out" onClick={signOut}>
+            <Item className="test-sign-out" onClick={signOut} bottommost={true}>
               Sign out
             </Item>
           </Menu>

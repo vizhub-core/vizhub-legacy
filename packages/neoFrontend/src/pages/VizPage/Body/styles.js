@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_BELOW } from '../../../styles';
+import { Clickable, Z_BELOW } from '../../../styles';
 import { Content } from '../../styles';
 
 export const Wrapper = styled.div`
@@ -38,21 +38,10 @@ export const HorizontalRule = styled.div`
   background-color: #bfc0bf;
 `;
 
-export const Clickable = styled.div`
+export const Icon = styled(Clickable)`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 30px;
-  &:hover {
-    background-color: ${props => props.theme.iconHoverBackground};
-  }
-  &:active {
-    background-color: ${props => props.theme.iconActiveBackground};
-  }
-  margin-right: ${props => (props.rightmost ? '9px' : '0')};
-  cursor: pointer;
-`;
-
-export const Icon = styled(Clickable)`
   width: 35px;
 `;
