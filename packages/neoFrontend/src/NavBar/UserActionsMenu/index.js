@@ -26,7 +26,7 @@ export const UserActionsMenu = withTheme(({ theme }) => {
     <Wrapper height={navbarItemHeight}>
       <Avatar
         size={navbarItemHeight}
-        borderColor={navbarAvatarBorderColor}
+        borderColor={isOpen ? undefined : navbarAvatarBorderColor}
         user={me}
         onClick={open}
       />
