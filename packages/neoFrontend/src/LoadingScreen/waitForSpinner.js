@@ -10,7 +10,7 @@ export const waitForSpinner = dataLoaded =>
     const blankScreenTimeoutId = setTimeout(() => {
       animationStarted = true;
       setTimeout(() => {
-        resolve();
+        dataLoaded.then(resolve);
       }, animationDelay);
     }, blankScreenDelay);
 
