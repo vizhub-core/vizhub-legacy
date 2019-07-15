@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Wrapper,
-  Middle,
+  Left,
   Right,
   Authorship,
   AuthorAvatar,
@@ -17,7 +17,7 @@ import {
 
 export const DescriptionSection = () => (
   <Wrapper>
-    <Middle>
+    <Left>
       <Authorship>
         <Author>
           <AuthorAvatar>Avatar</AuthorAvatar>
@@ -42,7 +42,7 @@ export const DescriptionSection = () => (
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </Description>
-    </Middle>
+    </Left>
     <Right>
       <Video>
         <VideoThumbnail />

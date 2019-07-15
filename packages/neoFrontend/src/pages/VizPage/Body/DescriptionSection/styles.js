@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+const mobileLarge = '700px';
+const mobileSmall = '500px';
+
 export const Wrapper = styled.div`
   display: flex;
   padding: 20px 0 20px 0;
   font-size: 10px;
-  flex-wrap: wrap;
+  @media (max-width: ${mobileLarge}) {
+    flex-direction: column;
+  }
 `;
 
-export const Middle = styled.div`
-  padding-left: 10px;
+export const Left = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -17,6 +21,12 @@ export const Middle = styled.div`
 
 export const Right = styled.div`
   padding-left: 50px;
+  @media (max-width: ${mobileLarge}) {
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
 `;
 
 export const Authorship = styled.div`
@@ -24,7 +34,10 @@ export const Authorship = styled.div`
   align-items: center;
   min-height: 40px;
   padding-bottom: 20px;
-  flex-wrap: wrap;
+  @media (max-width: ${mobileSmall}) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const Author = styled.div`
@@ -46,6 +59,10 @@ export const AuthorshipMeta = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  @media (max-width: ${mobileSmall}) {
+    align-items: flex-start;
+    padding-top: 10px;
+  }
 `;
 
 export const Video = styled.div`
@@ -64,6 +81,9 @@ export const VideoThumbnail = styled.div`
 export const Description = styled.div`
   font-size: 12px;
   margin-left: 50px;
+  @media (max-width: ${mobileLarge}) {
+    margin-left: 0;
+  }
 `;
 
 export const SemiBold = styled.span`
