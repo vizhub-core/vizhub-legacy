@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { Z_NEW_STACKING_CONTEXT, Z_ABOVE, Z_BELOW } from '../../../styles';
+import {
+  Clickable,
+  Z_NEW_STACKING_CONTEXT,
+  Z_ABOVE,
+  Z_BELOW
+} from '../../../styles';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -10,9 +15,7 @@ export const Wrapper = styled.div`
 // References:
 // https://designshack.net/articles/css/inner-shadows-in-css-images-text-and-beyond/
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
-export const InnerBorder = styled.div`
-  user-select: none;
-  cursor: pointer;
+export const InnerBorder = styled(Clickable)`
   display: flex;
   box-shadow: ${props =>
     props.borderColor ? `inset 0 0 0 1px ${props.borderColor};` : 'none'};

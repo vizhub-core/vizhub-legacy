@@ -18,8 +18,8 @@ export const Clickable = styled.div`
   &:active {
     background-color: ${props => props.theme.iconActiveBackground};
   }
-  margin-right: ${props => (props.rightmost ? '9px' : '0')};
   cursor: pointer;
+  user-select: none;
 `;
 
 // Values used for z-index.
