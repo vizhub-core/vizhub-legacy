@@ -12,13 +12,13 @@ export const LoadingScreenWrapper = styled.div`
 `;
 
 const spin = keyframes`
-  from { transform: scale(0.25); }
-  to { transform: scale(1); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 `;
 
-export const SpinningLogo = styled.div`
-  animation: ${spin} infinite 20s linear;
-  width: 100vmin;
+export const Spinning = styled.div`
+  display: flex;
+  animation: ${spin} infinite 3s linear;
 `;
 
 export const Message = styled.div`
