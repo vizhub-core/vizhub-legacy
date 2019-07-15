@@ -5,18 +5,28 @@ import { CloseSVG } from './CloseSVG';
 import { PullSVG } from './PullSVG';
 import { SettingsSVG } from './SettingsSVG';
 import { ShareSVG } from './ShareSVG';
-import { ArrowLeftSVG } from './ArrowLeftSVG';
-import { ArrowRightSVG } from './ArrowRightSVG';
+import { ArrowSVG } from './ArrowSVG';
+import { VoteSVG } from './VoteSVG';
+import { SpinnerSVG } from './SpinnerSVG';
+import { FullSVG } from './FullSVG';
+import { MiniSVG } from './MiniSVG';
+import { SplitSVG } from './SplitSVG';
 
 export const SVGGallery = () => (
   <>
     <LogoSVG height={40} />
     <ForkSVG />
-    <ArrowLeftSVG />
-    <ArrowRightSVG />
+    <ArrowSVG />
+    <ArrowSVG left={true} />
     <CloseSVG />
     <PullSVG />
     <SettingsSVG />
     <ShareSVG />
+    <VoteSVG />
+    <VoteSVG down={true} />
+    <FullSVG />
+    <MiniSVG />
+    <SplitSVG />
+    <SpinnerSVG />
   </>
 );

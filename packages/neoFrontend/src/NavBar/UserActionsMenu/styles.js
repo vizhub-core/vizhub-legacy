@@ -2,17 +2,18 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
+  height: ${props => props.height}px;
 `;
 
 export const AvatarOverlay = styled.div`
   position: absolute;
   top: 0px;
-  width: 40px;
-  height: 40px;
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
   box-sizing: border-box;
-  border: solid 1px ${props => props.theme.dark};
   border-radius: 20px;
-  background-color: rgba(246, 238, 227, 0.83);
+  border: solid 1px ${props => props.theme.userMenuOverlayForeground};
+  background-color: ${props => props.theme.userMenuOverlayBackground};
 
   display: flex;
   align-items: center;
@@ -22,7 +23,7 @@ export const AvatarOverlay = styled.div`
 
 export const Menu = styled.div`
   position: absolute;
-  top: 46px;
+  top: ${props => props.height + 6}px;
   right: 0;
 
   border-radius: 6px;

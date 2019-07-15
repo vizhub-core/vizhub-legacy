@@ -1,8 +1,17 @@
 import React from 'react';
 
-export const ArrowLeftSVG = ({ height = 18, fill = 'currentcolor' }) => (
+export const ArrowSVG = ({
+  height = 18,
+  fill = 'currentcolor',
+  left = false
+}) => (
   <svg height={height} viewBox={`0 0 11 20`}>
-    <g fill={fill}>
+    <g
+      fill={fill}
+      transform={`translate(5.5,10) rotate(${
+        left ? 0 : 180
+      }) translate(-5.5,-10)`}
+    >
       <rect
         width="13"
         height="2"

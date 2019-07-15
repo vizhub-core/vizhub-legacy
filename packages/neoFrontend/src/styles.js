@@ -2,11 +2,15 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
-  min-height: 100px;
-  margin-left: 6px;
-  margin-right: 6px;
-  flex: 1;
+  min-height: ${props => props.theme.bannerHeight}px;
+  padding-left: ${props => props.theme.bannerPadding}px;
+  padding-right: ${props => props.theme.bannerPadding}px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${props => props.theme.bannerBackground};
 `;
+
+// Values used for z-index.
+export const Z_ABOVE = 1;
+export const Z_BELOW = -1;

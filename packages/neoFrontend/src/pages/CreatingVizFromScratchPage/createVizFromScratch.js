@@ -1,7 +1,7 @@
 import { AUTH_PENDING } from '../../authentication';
 import { fetchCreateVizFromScratch } from './fetchCreateVizFromScratch';
 
-export const createVizFromScratch = async me => {
+export const createVizFromScratch = async (me, history) => {
   if (me === AUTH_PENDING) {
     return;
   }
@@ -10,6 +10,8 @@ export const createVizFromScratch = async me => {
     console.log(error);
   } else {
     console.log('route to ' + me.userName + '/' + id);
-    //Router.push(vizRoute({ id, userName }));
+    history.push({
+      pathname: `/${me.userName}/${id}`
+    });
   }
 };
