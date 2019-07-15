@@ -6,6 +6,7 @@ export const SignIn = styled.div`
   font-weight: bold;
   cursor: pointer;
   user-select: none;
+  margin-top: 2px;
 `;
 
 export const LogoLink = styled(Link)`
