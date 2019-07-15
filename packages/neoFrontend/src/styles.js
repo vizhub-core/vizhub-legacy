@@ -11,6 +11,17 @@ export const Banner = styled.div`
   background-color: ${props => props.theme.bannerBackground};
 `;
 
+export const Clickable = styled.div`
+  &:hover {
+    background-color: ${props => props.theme.iconHoverBackground};
+  }
+  &:active {
+    background-color: ${props => props.theme.iconActiveBackground};
+  }
+  margin-right: ${props => (props.rightmost ? '9px' : '0')};
+  cursor: pointer;
+`;
+
 // Values used for z-index.
 export const Z_ABOVE = 1;
 export const Z_BELOW = -1;

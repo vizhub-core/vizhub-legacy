@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Clickable } from '../../styles';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -32,18 +33,19 @@ export const Menu = styled.div`
 
   font-size: 12px;
   text-align: right;
-  padding: 4px 0 3px 0;
 `;
 
-export const Item = styled.div`
+export const Item = styled(Clickable)`
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
-  padding: 4px 10px 4px 10px;
+  padding: ${props => `
+    ${props.topmost ? 8 : 4}px
+    10px
+    ${props.bottommost ? 7 : 4}px
+    10px
+  `}
   color: ${props => props.theme.dark};
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 export const HorizontalRule = styled.div`
