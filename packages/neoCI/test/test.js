@@ -4,6 +4,7 @@ import { authAsCI } from './authAsCI';
 import { signOut } from './signOut';
 import { navigateToCreateVizPage } from './navigateToCreateVizPage';
 import { createVizFromScratch } from './createVizFromScratch';
+import { fork } from './fork';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'vizhub-entities';
 
@@ -32,6 +33,10 @@ describe('VizHub End to End Tests', () => {
   describe('Create Visualization', () => {
     it('should navigate to create viz page', navigateToCreateVizPage(my));
     it('should create viz from scratch', createVizFromScratch(my));
+  });
+
+  describe('Fork Visualization', () => {
+    it('should fork visualization', fork(my));
   });
 
   //describe('View Visualization', () => {
