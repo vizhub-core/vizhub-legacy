@@ -11,8 +11,10 @@ export const useVizPageData = () => {
 
   useEffect(() => {
     setLoading(true);
+    const dataLoaded = fakeDataLoaded();
     console.log('TODO fetch data for ' + vizId);
-    waitForSpinner(fakeDataLoaded()).then(() => {
+    waitForSpinner(dataLoaded).then(data => {
+      console.log(data);
       setLoading(false);
     });
   }, [vizId]);
