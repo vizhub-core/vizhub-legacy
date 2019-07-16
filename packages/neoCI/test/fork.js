@@ -1,14 +1,10 @@
 import assert from 'assert';
 
-export const createVizFromScratch = my => async () => {
+export const fork = my => async () => {
   const { page } = my;
   const navigation = page.waitForNavigation();
-  await (await page.waitFor('.test-create-viz-from-scratch')).click();
+  await (await page.waitFor('.test-fork')).click();
 
-  // Navigate to /creating-viz-from-scratch
-  await navigation;
-
-  // Navigate to actual new viz URL.
   await page.waitForNavigation();
   const url = page.url();
 
@@ -18,12 +14,12 @@ export const createVizFromScratch = my => async () => {
 
   assert.equal(userName, 'ci');
 
+  // Verify that a new id has been generated.
+  assert.notEqual(my.vizId, id);
+
   // Output the link for manual testing.
   console.log();
-  console.log('Viz created from scratch:');
+  console.log('Forked viz:');
   console.log(url);
   console.log();
-
-  // "Return" the id for future use.
-  my.vizId = id;
 };

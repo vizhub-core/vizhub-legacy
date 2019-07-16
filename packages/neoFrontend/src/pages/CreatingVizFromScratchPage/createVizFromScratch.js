@@ -9,7 +9,6 @@ export const createVizFromScratch = async (me, history) => {
   if (error) {
     console.log(error);
   } else {
-    console.log('route to ' + me.userName + '/' + id);
     history.push({
       pathname: `/${me.userName}/${id}`
     });
