@@ -13,6 +13,7 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "dependencies": {
+    "marked": "^0.7.0",
     "query-string": "^6.8.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
