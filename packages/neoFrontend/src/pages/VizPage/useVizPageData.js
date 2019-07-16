@@ -4,20 +4,16 @@ import { URLStateContext } from './URLStateContext';
 import { fetchVizPageData } from './fetchVizPageData';
 
 export const useVizPageData = () => {
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(undefined);
 
   const { vizId } = useContext(URLStateContext);
 
   useEffect(() => {
-    setLoading(true);
+    setData(undefined);
 
     const dataLoaded = fetchVizPageData(vizId);
 
-    console.log('TODO fetch data for ' + vizId);
-    waitForSpinner(dataLoaded).then(data => {
-      console.log(data);
-      setLoading(false);
-    });
+    waitForSpinner(dataLoaded).then(setData);
   }, [vizId]);
-  return !loading;
+  return data;
 };
