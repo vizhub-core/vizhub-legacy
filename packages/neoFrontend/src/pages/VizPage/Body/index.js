@@ -8,14 +8,12 @@ import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 
 export const Body = () => {
-  console.log(useContext(VizPageDataContext));
   const {
     visualization: {
-      info: { title },
+      info: { title }
     },
-    ownerUser: { fullName }
+    ownerUser
   } = useContext(VizPageDataContext);
-
 
   return (
     <Wrapper>
@@ -25,9 +23,9 @@ export const Body = () => {
         <TorsoWrapper>
           <Torso>
             <VizFrame />
-            <TitleBar title={title}/>
+            <TitleBar title={title} />
             <HorizontalRule />
-            <DescriptionSection fullName={fullName}/>
+            <DescriptionSection ownerUser={ownerUser} />
             <HorizontalRule />
           </Torso>
         </TorsoWrapper>
