@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavBar } from '../../../NavBar';
 import { VizPageDataContext } from '../VizPageDataContext';
+import { ForkingContext } from '../ForkingContext';
 import { Wrapper, Bottom, TorsoWrapper, Torso, HorizontalRule } from './styles';
 import { Head } from './Head';
 import { VizFrame } from './VizFrame';
@@ -9,13 +10,12 @@ import { DescriptionSection } from './DescriptionSection';
 
 export const Body = () => {
   const { visualization, ownerUser } = useContext(VizPageDataContext);
-
-  console.log(useContext(VizPageDataContext));
+  const onFork = useContext(ForkingContext);
 
   return (
     <Wrapper>
       <NavBar />
-      <Head />
+      <Head onFork={onFork} />
       <Bottom>
         <TorsoWrapper>
           <Torso>

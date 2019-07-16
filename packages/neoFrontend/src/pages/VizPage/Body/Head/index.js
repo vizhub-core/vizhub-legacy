@@ -4,22 +4,22 @@ import { Icon } from '../styles';
 import { Wrapper, Right, Left } from './styles';
 import { EditorToggler } from './EditorToggler';
 
-export const Head = () => (
+export const Head = ({ onFork }) => (
   <Wrapper>
     <Left>
       <EditorToggler />
     </Left>
     <Right>
-      <Icon>
+      <Icon title="Create a Pull Request">
         <PullSVG />
       </Icon>
-      <Icon>
+      <Icon title="Fork this Viz" onClick={onFork}>
         <ForkSVG />
       </Icon>
-      <Icon>
+      <Icon title="Share this Viz">
         <ShareSVG />
       </Icon>
-      <Icon rightmost={true}>
+      <Icon title="Settings" rightmost={true}>
         <SettingsSVG />
       </Icon>
     </Right>
