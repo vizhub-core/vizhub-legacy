@@ -7,8 +7,7 @@ export const LoadingScreenWrapper = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  opacity: 0;
-  transition: opacity 2s;
+  transition: opacity 1s;
 `;
 
 const spin = keyframes`
@@ -25,5 +24,5 @@ export const Message = styled.div`
   position: absolute;
   text-align: center;
   bottom: 0;
-  height: 20%;
+  height: 25%;
 `;

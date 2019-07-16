@@ -16,8 +16,9 @@ export const useForking = () => {
     const dataLoaded = fakeDataLoaded();
 
     // TODO force spinner to appear for min 2 seconds.
-    waitForSpinner(dataLoaded).then(data => {
+    waitForSpinner(dataLoaded, 2000).then(data => {
       console.log('forking finished');
+      setIsForking(false);
       console.log(data);
     });
   }, [vizId]);
