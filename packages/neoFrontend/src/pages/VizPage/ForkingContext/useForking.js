@@ -20,6 +20,6 @@ export const useForking = () => {
       console.log(data);
     });
   }, [visualization]);
-  //
+
   return { onFork, isForking };
 };

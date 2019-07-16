@@ -13,7 +13,7 @@ export const Head = ({ onFork }) => (
       <Icon title="Create a Pull Request">
         <PullSVG />
       </Icon>
-      <Icon title="Fork this Viz" onClick={onFork}>
+      <Icon title="Fork this Viz" onClick={onFork} className="test-fork">
         <ForkSVG />
       </Icon>
       <Icon title="Share this Viz">

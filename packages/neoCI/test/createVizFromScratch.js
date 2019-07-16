@@ -1,14 +1,29 @@
+import assert from 'assert';
+
 export const createVizFromScratch = my => async () => {
   const { page } = my;
-  //const navigation = page.waitForNavigation();
+  const navigation = page.waitForNavigation();
   await (await page.waitFor('.test-create-viz-from-scratch')).click();
-  // await navigation;
-  // const url = page.url();
-  // const split = url.split('/');
-  // assert.equal(split[3], 'ci');
 
-  // id = split[4]; // Grab the id of the vis we're editing.
+  // Navigate to /creating-viz-from-scratch
+  await navigation;
 
-  // // Output the link for manual testing.
-  // console.log(`\nhttp://localhost:3000/ci/${id}\n`);
+  // Navigate to actual new viz URL.
+  await page.waitForNavigation();
+  const url = page.url();
+
+  const split = url.split('/');
+  const userName = split[3];
+  const id = split[4];
+
+  assert.equal(userName, 'ci');
+
+  // Output the link for manual testing.
+  console.log();
+  console.log('Viz created from scratch:');
+  console.log(url);
+  console.log();
+
+  // "Return" the id for future use.
+  my.vizId = id;
 };
