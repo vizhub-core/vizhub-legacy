@@ -15,13 +15,13 @@ import {
   Author
 } from './styles';
 
-export const DescriptionSection = () => (
+export const DescriptionSection = ({fullName}) => (
   <Wrapper>
     <Left>
       <Authorship>
         <Author>
           <AuthorAvatar>Avatar</AuthorAvatar>
-          <AuthorName>Author name</AuthorName>
+          <AuthorName>{fullName}</AuthorName>
         </Author>
         <AuthorshipMeta>
           <div>
