@@ -1,3 +1,5 @@
+import assert from 'assert';
+
 export const fork = my => async () => {
   const { page } = my;
   const navigation = page.waitForNavigation();

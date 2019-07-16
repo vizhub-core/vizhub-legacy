@@ -1,5 +1,4 @@
 export const fetchFork = async visualization => {
-
   // TODO include pre-fork changes to files.
   // TODO add test for this case.
   // const visualization = Object.assign(
