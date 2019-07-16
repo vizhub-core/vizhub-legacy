@@ -1,4 +1,5 @@
 import React from 'react';
+import { Avatar } from '../../../../Avatar';
 import {
   Wrapper,
   Left,
@@ -15,13 +16,15 @@ import {
   Author
 } from './styles';
 
-export const DescriptionSection = ({fullName}) => (
+export const DescriptionSection = ({ ownerUser }) => (
   <Wrapper>
     <Left>
       <Authorship>
         <Author>
-          <AuthorAvatar>Avatar</AuthorAvatar>
-          <AuthorName>{fullName}</AuthorName>
+          <AuthorAvatar>
+            <Avatar size={40} user={ownerUser} />
+          </AuthorAvatar>
+          <AuthorName>{ownerUser.fullName}</AuthorName>
         </Author>
         <AuthorshipMeta>
           <div>

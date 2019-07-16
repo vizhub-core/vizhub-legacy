@@ -31,7 +31,6 @@ export const Right = styled.div`
 
 export const Authorship = styled.div`
   display: flex;
-  align-items: center;
   min-height: 40px;
   padding-bottom: 20px;
   @media (max-width: ${mobileSmall}) {
@@ -43,6 +42,7 @@ export const Authorship = styled.div`
 export const Author = styled.div`
   display: flex;
   flex: 1;
+  align-items: center;
 `;
 
 export const AuthorAvatar = styled.div`

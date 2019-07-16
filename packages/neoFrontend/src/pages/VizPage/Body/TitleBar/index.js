@@ -2,7 +2,7 @@ import React from 'react';
 import { VoteSVG } from '../../../../svg';
 import { Wrapper, Title, Voter, VoteIcon } from './styles';
 
-export const TitleBar = ({title}) => (
+export const TitleBar = ({ title }) => (
   <Wrapper>
     <Title>{title}</Title>
     <Voter>
