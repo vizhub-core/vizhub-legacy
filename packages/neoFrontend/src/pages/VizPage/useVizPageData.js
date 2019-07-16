@@ -1,20 +1,19 @@
 import { useState, useEffect, useContext } from 'react';
 import { waitForSpinner } from '../../LoadingScreen';
-import { fakeDataLoaded } from '../fakeDataLoaded';
 import { URLStateContext } from './URLStateContext';
+import { fetchVizPageData } from './fetchVizPageData';
 
-// TODO make an API request here, for the viz content required.
 export const useVizPageData = () => {
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(undefined);
 
   const { vizId } = useContext(URLStateContext);
 
   useEffect(() => {
-    setLoading(true);
-    console.log('TODO fetch data for ' + vizId);
-    waitForSpinner(fakeDataLoaded()).then(() => {
-      setLoading(false);
-    });
+    setData(undefined);
+
+    const dataLoaded = fetchVizPageData(vizId);
+
+    waitForSpinner(dataLoaded).then(setData);
   }, [vizId]);
-  return !loading;
+  return data;
 };

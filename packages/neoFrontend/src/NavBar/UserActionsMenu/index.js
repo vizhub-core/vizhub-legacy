@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 import { AuthContext } from '../../authentication';
 import { CloseSVG } from '../../svg';
-import { Avatar } from './Avatar';
+import { Avatar } from '../../Avatar';
 import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
