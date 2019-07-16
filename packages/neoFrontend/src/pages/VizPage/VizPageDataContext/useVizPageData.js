@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { waitForSpinner } from '../../LoadingScreen';
-import { URLStateContext } from './URLStateContext';
+import { waitForSpinner } from '../../../LoadingScreen';
+import { URLStateContext } from '../URLStateContext';
 import { fetchVizPageData } from './fetchVizPageData';
 
 export const useVizPageData = () => {
