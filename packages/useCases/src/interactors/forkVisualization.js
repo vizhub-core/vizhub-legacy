@@ -1,11 +1,12 @@
 import { timestamp } from 'vizhub-entities';
 import { i18n } from 'vizhub-i18n';
 import { generateId } from '../utils/generateId';
+import { GetUser } from './getUser';
 
 export class ForkVisualization {
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
-    this.userGateway = userGateway;
+    this.getUser = new GetUser({ userGateway });
   }
 
   async execute(requestModel) {
@@ -17,7 +18,12 @@ export class ForkVisualization {
 
     const nowTimestamp = timestamp();
 
-    const [{ id }, { userName }] = await Promise.all([
+    const [
+      { id },
+      {
+        user: { userName }
+      }
+    ] = await Promise.all([
       this.visualizationGateway.createVisualization({
         owner,
         id: generateId(),
@@ -30,7 +36,7 @@ export class ForkVisualization {
         createdTimestamp: nowTimestamp,
         lastUpdatedTimestamp: nowTimestamp
       }),
-      this.userGateway.getUser(owner)
+      this.getUser.execute({ id: owner })
     ]);
 
     return { id, userName };
