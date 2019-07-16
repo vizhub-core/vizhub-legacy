@@ -19,6 +19,6 @@ export { VISUALIZATION_TYPE, DATASET_TYPE } from './documentTypes';
 import * as testData from './testData';
 export { testData };
 
-export { timestamp } from './timestamp';
+export { timestamp, toDate } from './timestamp';
 
 export { VizHubAPIError } from './VizHubAPIError';

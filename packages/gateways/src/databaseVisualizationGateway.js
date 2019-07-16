@@ -18,7 +18,9 @@ export class DatabaseVisualizationGateway {
       description,
       files,
       forkedFrom,
-      height
+      height,
+      createdTimestamp,
+      lastUpdatedTimestamp
     } = options;
 
     const visualization = new Visualization({
@@ -34,7 +36,10 @@ export class DatabaseVisualizationGateway {
         forks: [],
         forkedFrom,
         thumbnail: undefined,
-        height
+        height,
+
+        createdTimestamp,
+        lastUpdatedTimestamp
       }),
       visualizationContent: new VisualizationContent({
         id,

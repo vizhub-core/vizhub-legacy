@@ -1,10 +1,10 @@
 import React from 'react';
-import { Wrapper, Title, Voter, VoteIcon } from './styles';
 import { VoteSVG } from '../../../../svg';
+import { Wrapper, Title, Voter, VoteIcon } from './styles';
 
-export const TitleBar = () => (
+export const TitleBar = ({ title }) => (
   <Wrapper>
-    <Title>Let's make a bar chart</Title>
+    <Title>{title}</Title>
     <Voter>
       <VoteIcon leftmost={true}>
         <VoteSVG />

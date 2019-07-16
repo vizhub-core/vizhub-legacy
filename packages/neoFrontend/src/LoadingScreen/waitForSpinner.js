@@ -14,10 +14,10 @@ export const waitForSpinner = dataLoaded =>
       }, animationDelay);
     }, blankScreenDelay);
 
-    dataLoaded.then(() => {
+    dataLoaded.then(data => {
       if (!animationStarted) {
         clearTimeout(blankScreenTimeoutId);
-        resolve();
+        resolve(data);
       }
     });
   });
