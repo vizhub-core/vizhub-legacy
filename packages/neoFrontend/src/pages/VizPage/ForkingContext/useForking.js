@@ -1,27 +1,25 @@
 import { useState, useContext, useCallback } from 'react';
 import { waitForSpinner } from '../../../LoadingScreen';
-import { URLStateContext } from '../URLStateContext';
-//import { fetchForking } from './fetchForking';
-import { fakeDataLoaded } from '../../fakeDataLoaded';
+import { VizPageDataContext } from '../VizPageDataContext';
+import { fetchFork } from './fetchFork';
 
 export const useForking = () => {
   const [isForking, setIsForking] = useState(false);
 
-  const { vizId } = useContext(URLStateContext);
+  const { visualization } = useContext(VizPageDataContext);
 
   const onFork = useCallback(() => {
     setIsForking(true);
-    console.log('Fork id ' + vizId);
-    //const dataLoaded = fetchForking(vizId);
-    const dataLoaded = fakeDataLoaded();
+    console.log('Fork that shit');
 
-    // TODO force spinner to appear for min 2 seconds.
+    const dataLoaded = fetchFork(visualization);
+
     waitForSpinner(dataLoaded, 2000).then(data => {
       console.log('forking finished');
       setIsForking(false);
       console.log(data);
     });
-  }, [vizId]);
+  }, [visualization]);
   //
   return { onFork, isForking };
 };

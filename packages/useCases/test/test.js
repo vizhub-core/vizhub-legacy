@@ -185,7 +185,11 @@ describe('Use Cases', () => {
   describe('Fork Visualization', () => {
     let invocations = 0;
     let arg;
-    const userGateway = { getUser: async (id) => fakeUser };
+
+    const userGateway = {
+      getUser: async id => fakeUser
+    };
+
     const visualizationGateway = {
       createVisualization: async (argument) => {
         arg = argument;
@@ -193,10 +197,12 @@ describe('Use Cases', () => {
         return { id: '1234' };
       }
     };
+
     const forkVisualization = new ForkVisualization({
       visualizationGateway,
       userGateway
     });
+
     it('should error if no owner specified.', done => {
       const requestModel = {
         visualization: {
