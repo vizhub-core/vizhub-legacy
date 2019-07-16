@@ -10,7 +10,7 @@ import { Body } from './Body';
 export const VizPage = () => (
   <URLStateProvider>
     <VizPageDataProvider fallback={<LoadingScreen />}>
-      <ForkingProvider fallback={<LoadingScreen />}>
+      <ForkingProvider fallback={<LoadingScreen message="Forking..." />}>
         <ThemeProvider theme={darkNavbarTheme}>
           <Body />
         </ThemeProvider>
