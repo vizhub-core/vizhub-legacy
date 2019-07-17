@@ -25,17 +25,24 @@ export class GetVisualization {
     });
 
     let forkedFromVisualizationInfo;
+    let forkedFromVisualizationOwnerUserName;
     if (visualization.info.forkedFrom) {
       const { visualizationInfo } = await this.getVisualizationInfo.execute({
         id: visualization.info.forkedFrom
       });
       forkedFromVisualizationInfo = visualizationInfo;
+
+      const { user } = await this.getUser.execute({
+        id: forkedFromVisualizationInfo.owner
+      });
+      forkedFromVisualizationOwnerUserName = user.userName;
     }
 
     return {
       visualization,
       ownerUser: user,
-      forkedFromVisualizationInfo
+      forkedFromVisualizationInfo,
+      forkedFromVisualizationOwnerUserName
     };
   }
 }
