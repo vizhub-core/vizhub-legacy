@@ -25,7 +25,11 @@ const formatTimestamp = timestamp =>
     day: 'numeric'
   });
 
-export const DescriptionSection = ({ visualization, ownerUser }) => {
+export const DescriptionSection = ({
+  visualization,
+  ownerUser,
+  forkedFromVisualizationInfo
+}) => {
   const created = useMemo(
     () => formatTimestamp(visualization.info.createdTimestamp),
     [visualization.info.createdTimestamp]
@@ -50,10 +54,13 @@ export const DescriptionSection = ({ visualization, ownerUser }) => {
             <div>
               Lasted Edited <SemiBold>{lastUpdated}</SemiBold>
             </div>
-            <div>
-              Forked from <VizLink to="/">Name of forked viz</VizLink>{' '}
-              <SemiBold>{created}</SemiBold>
-            </div>
+            {forkedFromVisualizationInfo ? (
+              <div>
+                Forked from{' '}
+                <VizLink to="/">{forkedFromVisualizationInfo.title}</VizLink>{' '}
+                <SemiBold>{created}</SemiBold>
+              </div>
+            ) : null}
           </AuthorshipMeta>
         </Authorship>
         <Description

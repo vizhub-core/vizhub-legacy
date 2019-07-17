@@ -9,9 +9,10 @@ export const updateImages = connection => options => {
   Promise.all([
     fetchShareDBDoc(THUMBNAIL_IMAGES, id, connection),
     fetchShareDBDoc(PREVIEW_IMAGES, id, connection)
-  ])
-  .then(([thumbnailDoc, previewDoc]) => Promise.all([
-    save(thumbnailDoc, images.thumbnail),
-    save(previewDoc, images.preview)
-  ]))
+  ]).then(([thumbnailDoc, previewDoc]) =>
+    Promise.all([
+      save(thumbnailDoc, images.thumbnail),
+      save(previewDoc, images.preview)
+    ])
+  );
 };

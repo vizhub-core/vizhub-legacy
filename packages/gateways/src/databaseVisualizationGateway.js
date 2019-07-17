@@ -54,6 +54,10 @@ export class DatabaseVisualizationGateway {
     return await this.database.getVisualization({ id });
   }
 
+  async getVisualizationInfo({ id }) {
+    return await this.database.getVisualizationInfo({ id });
+  }
+
   async saveVisualization({ visualization }) {
     return await this.database.saveVisualization({ visualization });
   }

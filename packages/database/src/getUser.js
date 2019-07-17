@@ -9,4 +9,4 @@ export const getUser = connection => async id => {
   } catch (error) {
     return null;
   }
-}
+};
