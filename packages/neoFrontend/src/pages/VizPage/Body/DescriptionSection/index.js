@@ -45,7 +45,7 @@ export const DescriptionSection = ({
     <Wrapper>
       <Left>
         <Authorship>
-          <Author>
+          <Author to={`/${ownerUser.userName}`}>
             <AuthorAvatar>
               <Avatar size={40} user={ownerUser} />
             </AuthorAvatar>
