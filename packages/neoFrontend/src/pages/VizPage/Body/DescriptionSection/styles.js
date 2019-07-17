@@ -39,10 +39,11 @@ export const Authorship = styled.div`
   }
 `;
 
-export const Author = styled.div`
+export const Author = styled(Link)`
   display: flex;
   flex: 1;
   align-items: center;
+  color: currentcolor;
 `;
 
 export const AuthorAvatar = styled.div`
