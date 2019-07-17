@@ -20,7 +20,7 @@ import {
 } from '../src/index';
 
 const visualizationGateway = {
-  createVisualization: async (options) => {
+  createVisualization: async options => {
     const { id } = options;
     options.info = options;
     options.content = options;
@@ -35,28 +35,29 @@ const visualizationGateway = {
 const datasetGateway = {};
 
 const fakeUser = {
-  "authenticated": undefined,
-  "id": "84752",
-  "userName": "joe",
-  "fullName": "Joe Schmoe",
-  "email": "joe@datavis.tech",
-  "avatarUrl": "https://avatars3.githubusercontent.com/u/84752?v=4",
-  "company": "Schmoe INC",
-  "website": "joeschmoe.com",
-  "location": "Earth",
-  "bio": "Great guy"
+  authenticated: undefined,
+  id: '84752',
+  userName: 'joe',
+  fullName: 'Joe Schmoe',
+  email: 'joe@datavis.tech',
+  avatarUrl: 'https://avatars3.githubusercontent.com/u/84752?v=4',
+  company: 'Schmoe INC',
+  website: 'joeschmoe.com',
+  location: 'Earth',
+  bio: 'Great guy'
 };
 
 describe('Use Cases', () => {
-
   let visualizationId;
 
   describe('Create Visualization', () => {
-    const createVisualization = new CreateVisualization({ visualizationGateway });
+    const createVisualization = new CreateVisualization({
+      visualizationGateway
+    });
     it('should error if no owner specified.', done => {
       const requestModel = { owner: null };
       createVisualization.execute(requestModel).catch(error => {
-        assert.equal(error.message, i18n('errorNoOwner'))
+        assert.equal(error.message, i18n('errorNoOwner'));
         done();
       });
     });
@@ -71,27 +72,37 @@ describe('Use Cases', () => {
   });
 
   describe('Get Visualization', () => {
-    const userGateway = { getUser: async (id) => fakeUser };
+    const userGateway = { getUser: async id => fakeUser };
     const getVisualization = new GetVisualization({
       visualizationGateway,
       userGateway
     });
     it('should error if no id specified.', done => {
-      const requestModel = { id: null };
-      getVisualization.execute(requestModel).catch(error => {
-        assert.equal(error.message, i18n('errorNoId'))
+      getVisualization.execute({ id: null }).catch(error => {
+        assert.equal(error.message, i18n('errorNoId'));
         done();
       });
     });
-    it('should return stored object if success.', async () => {
-      const requestModel = {
+    it('should return stored visualization if success.', async () => {
+      const { visualization } = await getVisualization.execute({
         id: visualizationId
-      };
-      const { visualization } = await getVisualization.execute(requestModel);
+      });
       const { createdTimestamp, lastUpdatedTimestamp } = visualization;
-      
+
       assert(timestamp() - createdTimestamp < 1);
       assert(timestamp() - lastUpdatedTimestamp < 1);
+    });
+    it('should return owner user.', async () => {
+      const { ownerUser } = await getVisualization.execute({
+        id: visualizationId
+      });
+      assert.deepEqual(ownerUser, fakeUser);
+    });
+    it('should return forked from visualizationInfo as undefined if none exist.', async () => {
+      const { forkedFromVisualizationInfo } = await getVisualization.execute({
+        id: visualizationId
+      });
+      assert.equal(forkedFromVisualizationInfo, undefined);
     });
   });
 
@@ -132,12 +143,11 @@ describe('Use Cases', () => {
         },
         userId: '234'
       };
-      saveVisualization.execute(requestModel)
-        .catch(error => {
-          assert.equal(invocations, 0);
-          assert.equal(error.message, i18n('errorNotOwnerCantSave'))
-          done();
-        });
+      saveVisualization.execute(requestModel).catch(error => {
+        assert.equal(invocations, 0);
+        assert.equal(error.message, i18n('errorNotOwnerCantSave'));
+        done();
+      });
     });
   });
   describe('Create Dataset', () => {
@@ -153,10 +163,10 @@ describe('Use Cases', () => {
           text: 'foo'
         },
         sourceName: 'Flaring Central',
-        sourceUrl: 'https://flaring.central',
+        sourceUrl: 'https://flaring.central'
       };
       createDataset.execute(requestModel).catch(error => {
-        assert.equal(error.message, i18n('errorNoOwner'))
+        assert.equal(error.message, i18n('errorNoOwner'));
         done();
       });
     });
@@ -164,7 +174,7 @@ describe('Use Cases', () => {
   });
 
   describe('Get Dataset', () => {
-    const userGateway = { getUser: async (id) => fakeUser };
+    const userGateway = { getUser: async id => fakeUser };
     const getDataset = new GetDataset({
       datasetGateway,
       userGateway
@@ -175,119 +185,126 @@ describe('Use Cases', () => {
         slug: ''
       };
       getDataset.execute(requestModel).catch(error => {
-        assert.equal(error.message, i18n('errorNoId'))
+        assert.equal(error.message, i18n('errorNoId'));
         done();
       });
     });
     // TODO test success case
   });
-  
+
+  let visualizationToFork;
+  let forkedViz;
   describe('Fork Visualization', () => {
     let invocations = 0;
-    let arg;
 
     const userGateway = {
       getUser: async id => fakeUser
     };
 
-    const visualizationGateway = {
-      createVisualization: async (argument) => {
-        arg = argument;
+    const visualizationGatewayProxy = {
+      createVisualization: async argument => {
+        forkedViz = argument;
         invocations++;
-        return { id: '1234' };
+        return await visualizationGateway.createVisualization(argument);
       }
     };
 
-    const forkVisualization = new ForkVisualization({
+    const getVisualization = new GetVisualization({
       visualizationGateway,
       userGateway
     });
 
+    const forkVisualization = new ForkVisualization({
+      visualizationGateway: visualizationGatewayProxy,
+      userGateway
+    });
+
+    it('should return stored visualization to fork.', async () => {
+      const { visualization } = await getVisualization.execute({
+        id: visualizationId
+      });
+      visualizationToFork = visualization;
+    });
+
     it('should error if no owner specified.', done => {
       const requestModel = {
-        visualization: {
-          info: {
-            id: '456',
-            owner: '123'
-          },
-          content: {
-            files: [{ name: 'index.html', text: 'HTML yes' }]
-          }
-        },
+        visualization: visualizationToFork,
         owner: null
       };
       forkVisualization.execute(requestModel).catch(error => {
-        assert.equal(error.message, i18n('errorNoOwner'))
+        assert.equal(error.message, i18n('errorNoOwner'));
         assert.equal(invocations, 0);
         done();
       });
     });
 
     it('should invoke gateway if owner specified.', async () => {
-      const requestModel= {
-        visualization: {
-          id: '456',
-          info: {
-            owner: '123',
-            title: 'foo',
-            description: 'Foo is cool',
-            height: 600
-          },
-          content: {
-            files: [{ name: 'index.html', text: 'HTML yes' }]
-          }
-        },
+      const requestModel = {
+        visualization: visualizationToFork,
         owner: '456'
       };
 
       const responseModel = await forkVisualization.execute(requestModel);
-      assert.deepEqual(responseModel, {
-        id: "1234",
-        userName: "joe"
-      });
+      assert.equal(responseModel.userName, 'joe');
 
       assert.equal(invocations, 1);
 
-      assert(timestamp() - arg.createdTimestamp < 1);
-      assert(timestamp() - arg.lastUpdatedTimestamp < 1);
+      assert(timestamp() - forkedViz.createdTimestamp < 1);
+      assert(timestamp() - forkedViz.lastUpdatedTimestamp < 1);
 
-      delete arg.createdTimestamp;
-      delete arg.lastUpdatedTimestamp;
-
-      const expected = {
-        id: arg.id,
-        owner: "456",
-        title: "foo",
-        description: "Foo is cool",
-        files: [ { "name": "index.html", "text": "HTML yes" } ],
-        forkedFrom: "456",
-        slug: undefined,
-        height: 600
-      };
-      assert.deepEqual(arg, expected);
+      assert.equal(forkedViz.owner, '456');
+      assert.equal(forkedViz.title, visualizationToFork.title);
+      assert.equal(forkedViz.description, visualizationToFork.description);
+      assert.equal(forkedViz.files, visualizationToFork.files);
+      assert.equal(forkedViz.forkedFrom, visualizationToFork.id);
+      assert.equal(forkedViz.height, visualizationToFork.height);
     });
-    // TODO test success case
   });
 
-  const createUserRequestModel= {
-    "oAuthProfile": {
-      "id": "84752",
-      "displayName": "Joe Schmoe",
-      "username": "joe",
-      "_json": {
-        "avatar_url": "https://avatars3.githubusercontent.com/u/84752?v=4",
-        "name": "Joe Schmoe",
-        "company": "Schmoe INC",
-        "blog": "joeschmoe.com",
-        "location": "Earth",
-        "email": "joe@datavis.tech",
-        "bio": "Great guy",
+  describe('Get Visualization after Forking', () => {
+    it('should include forkedFromVisualizationInfo.', async () => {
+      const getVisualization = new GetVisualization({
+        visualizationGateway,
+        userGateway: { getUser: () => {} }
+      });
+
+      const { forkedFromVisualizationInfo } = await getVisualization.execute({
+        id: forkedViz.id
+      });
+
+      assert.deepEqual(forkedFromVisualizationInfo, visualizationToFork.info);
+
+      //const { visualization } = await getVisualization.execute({ id: visualizationId });
+      // const { forkedFromVisualizationInfo } = await getVisualization.execute({ id: forkedViz.id });
+    });
+
+    // it('should return forked from visualizationInfo.', async () => {
+    //   const { visualization } = await getVisualization.execute({ id: visualizationId });
+    //   console.log(visualization);
+    //   const { forkedFromVisualizationInfo } = await getVisualization.execute({ id: forkedViz.id });
+    //   assert.deepEqual(forkedFromVisualizationInfo, visualization.info);
+    // });
+  });
+
+  const createUserRequestModel = {
+    oAuthProfile: {
+      id: '84752',
+      displayName: 'Joe Schmoe',
+      username: 'joe',
+      _json: {
+        avatar_url: 'https://avatars3.githubusercontent.com/u/84752?v=4',
+        name: 'Joe Schmoe',
+        company: 'Schmoe INC',
+        blog: 'joeschmoe.com',
+        location: 'Earth',
+        email: 'joe@datavis.tech',
+        bio: 'Great guy'
       }
     }
   };
 
   describe('Create User', () => {
-    const userGateway = { createUser: async (user) => user };
+    const userGateway = { createUser: async user => user };
     const createUser = new CreateUser({ userGateway });
 
     it('should invoke gateway with user instance', async () => {
@@ -297,11 +314,11 @@ describe('Use Cases', () => {
   });
 
   describe('Get User', () => {
-    const userGateway = { getUser: async (id) => fakeUser };
+    const userGateway = { getUser: async id => fakeUser };
     const getUser = new GetUser({ userGateway });
 
     it('should invoke gateway with user instance', async () => {
-      const requestModel = { id: "84752" };
+      const requestModel = { id: '84752' };
       const responseModel = await getUser.execute(requestModel);
       assert.deepEqual(responseModel, { user: fakeUser });
     });
@@ -320,14 +337,16 @@ describe('Use Cases', () => {
       let createCalled = false;
       const userGateway = {
         getUser: () => null,
-        createUser: async (user) => {
+        createUser: async user => {
           createCalled = true;
           return user;
         }
       };
 
       const getOrCreateUser = new GetOrCreateUser({ userGateway });
-      const responseModel = await getOrCreateUser.execute(createUserRequestModel);
+      const responseModel = await getOrCreateUser.execute(
+        createUserRequestModel
+      );
       user = responseModel.user;
       assert.equal(user.userName, createUserRequestModel.oAuthProfile.username);
       assert(createCalled);
@@ -337,14 +356,16 @@ describe('Use Cases', () => {
       let createCalled = false;
       const userGateway = {
         getUser: () => user,
-        createUser: async (user) => {
+        createUser: async user => {
           createCalled = true;
           return user;
         }
       };
 
       const getOrCreateUser = new GetOrCreateUser({ userGateway });
-      const responseModel = await getOrCreateUser.execute(createUserRequestModel);
+      const responseModel = await getOrCreateUser.execute(
+        createUserRequestModel
+      );
       assert.equal(responseModel.user, user);
       assert(!createCalled);
     });
@@ -361,13 +382,13 @@ describe('Use Cases', () => {
     ];
     const getUserProfileData = new GetUserProfileData({
       userGateway: {
-        getUserByUserName: async (userName) => fakeUser
+        getUserByUserName: async userName => fakeUser
       },
       visualizationGateway: {
-        getVisualizationInfosByUserId: async (userId) => fakeVisualizationInfos
+        getVisualizationInfosByUserId: async userId => fakeVisualizationInfos
       },
       datasetGateway: {
-        getDatasetInfosByUserId: async (userId) => fakeDatasetInfos
+        getDatasetInfosByUserId: async userId => fakeDatasetInfos
       }
     });
 
@@ -397,21 +418,20 @@ describe('Use Cases', () => {
       visualizationGateway
     });
     it('should error if no id specified.', done => {
-      const requestModel= { id: null };
+      const requestModel = { id: null };
       exportVisualization.execute(requestModel).catch(error => {
-        assert.equal(error.message, i18n('errorNoId'))
+        assert.equal(error.message, i18n('errorNoId'));
         done();
       });
     });
     it('should return zipped stored object if success.', async () => {
-      const requestModel= {
+      const requestModel = {
         id: visualizationId
       };
-      const {
-        zipFileBuffer,
-        zipFileName
-      } = await exportVisualization.execute(requestModel);
-      
+      const { zipFileBuffer, zipFileName } = await exportVisualization.execute(
+        requestModel
+      );
+
       assert.equal(zipFileName, 'Untitled.zip');
       //assert.equal(zipFileBuffer.toString('base64').length, 1540);
     });
@@ -442,7 +462,9 @@ describe('Use Cases', () => {
       deleteVisualization: async ({ visualization }) => ({ status: 'success' }),
       getVisualization: async ({ id }) => ({ info: { owner: '123' } })
     };
-    const deleteVisualization = new DeleteVisualization({ visualizationGateway });
+    const deleteVisualization = new DeleteVisualization({
+      visualizationGateway
+    });
 
     it('should invoke deleteVisualization in gateway.', async () => {
       const requestModel = {
@@ -458,11 +480,10 @@ describe('Use Cases', () => {
         id: '47389',
         userId: '234'
       };
-      deleteVisualization.execute(requestModel)
-        .catch(error => {
-          assert.equal(error.message, i18n('errorNotOwnerCantDelete'))
-          done();
-        });
+      deleteVisualization.execute(requestModel).catch(error => {
+        assert.equal(error.message, i18n('errorNotOwnerCantDelete'));
+        done();
+      });
     });
   });
 
@@ -475,21 +496,25 @@ describe('Use Cases', () => {
       preview: 'bar'
     };
     let updatedImages;
-    const updateImages = new UpdateImages({
-      visualizationGateway: {
-        getVisualization: async ({ id }) => visualization,
-        getAllVisualizationInfos: async () => [visualization],
-        setImagesUpdatedTimestamp: async ({ id, imagesUpdatedTimestamp }) => 'success'
-      },
-      imageGeneratorGateway: {
-        generateImages: async () => images
-      },
-      imageStorageGateway: {
-        updateImages: async ({ id, images }) => {
-          updatedImages = images;
+    const updateImages = new UpdateImages(
+      {
+        visualizationGateway: {
+          getVisualization: async ({ id }) => visualization,
+          getAllVisualizationInfos: async () => [visualization],
+          setImagesUpdatedTimestamp: async ({ id, imagesUpdatedTimestamp }) =>
+            'success'
+        },
+        imageGeneratorGateway: {
+          generateImages: async () => images
+        },
+        imageStorageGateway: {
+          updateImages: async ({ id, images }) => {
+            updatedImages = images;
+          }
         }
-      }
-    }, 1000);
+      },
+      1000
+    );
 
     it('should generate images for visualization with no image.', async () => {
       await updateImages.execute();
