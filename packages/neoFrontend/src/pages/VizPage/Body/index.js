@@ -9,9 +9,13 @@ import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 
 export const Body = () => {
-  const { visualization, ownerUser, forkedFromVisualizationInfo } = useContext(
-    VizPageDataContext
-  );
+  const {
+    visualization,
+    ownerUser,
+    forkedFromVisualizationInfo,
+    forkedFromVisualizationOwnerUserName
+  } = useContext(VizPageDataContext);
+
   const onFork = useContext(ForkingContext);
 
   return (
@@ -28,6 +32,9 @@ export const Body = () => {
               visualization={visualization}
               ownerUser={ownerUser}
               forkedFromVisualizationInfo={forkedFromVisualizationInfo}
+              forkedFromVisualizationOwnerUserName={
+                forkedFromVisualizationOwnerUserName
+              }
             />
             <HorizontalRule />
           </Torso>
