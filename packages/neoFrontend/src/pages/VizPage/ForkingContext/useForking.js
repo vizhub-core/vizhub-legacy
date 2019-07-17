@@ -1,6 +1,7 @@
 import { useState, useContext, useCallback } from 'react';
 import { waitForSpinner } from '../../../LoadingScreen';
 import { AuthContext } from '../../../authentication/AuthContext';
+import { ErrorContext } from '../../../ErrorContext';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { fetchFork } from './fetchFork';
 
@@ -9,6 +10,7 @@ export const useForking = history => {
 
   const { visualization } = useContext(VizPageDataContext);
   const { me } = useContext(AuthContext);
+  const { setError } = useContext(ErrorContext);
 
   const onFork = useCallback(() => {
     setIsForking(true);
@@ -19,17 +21,16 @@ export const useForking = history => {
     // Force the user to perceive the loading screen message in production.
     const minSpinnerTime = process.env.NODE_ENV === 'development' ? 0 : 2000;
 
+    if (!me) {
+      return setError(new Error('You must be signed in to fork.'));
+    }
     waitForSpinner(dataLoaded, minSpinnerTime).then(data => {
       if (data.error) {
-        // TODO handle error case here - if user is not authenticated
-        // How to display error? Generalize error message logic from auth page.
-        // TODO add test case for this.
-        console.log(data.error);
+        return setError(new Error(data.error));
       }
-
       history.push(`/${me.userName}/${data.id}`);
     });
-  }, [visualization, me.userName, history]);
+  }, [visualization, me, history, setError]);
 
   return { onFork, isForking };
 };
