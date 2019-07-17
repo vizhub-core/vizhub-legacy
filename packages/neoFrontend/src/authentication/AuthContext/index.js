@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 
 let fetchMeCount = 0;
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   // The value of `me` can be:
   //  - AUTH_PENDING - Not yet ascertained whether user is authenticated or not.
   //  - null - Not authenticated.
@@ -17,15 +17,25 @@ export const AuthContextProvider = ({ children }) => {
 
   // Fetch the currently authenticated user on page load.
   useEffect(() => {
-    // Enforce assumption of single AuthContextProvider.
+    // Enforce assumption of single AuthProvider.
     if (fetchMeCount > 0) {
       throw new Error(
-        'There should only ever be a single instance of AuthContextProvider.'
+        'There should only ever be a single instance of AuthProvider.'
       );
     }
     fetchMeCount++;
 
-    fetchMe().then(setMe);
+    // Avoid React errors in case of error race condition.
+    // See https://juliangaramendy.dev/use-promise-subscription/
+    let subscribed = true;
+
+    fetchMe().then(me => {
+      if (subscribed) {
+        setMe(me);
+      }
+    });
+
+    return () => (subscribed = false);
   }, []);
 
   const contextValue = {
