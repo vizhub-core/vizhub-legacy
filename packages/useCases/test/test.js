@@ -27,9 +27,8 @@ const visualizationGateway = {
     visualizationGateway[id] = options;
     return { id };
   },
-  getVisualization: async ({ id }) => {
-    return visualizationGateway[id];
-  }
+  getVisualization: async ({ id }) => visualizationGateway[id],
+  getVisualizationInfo: async ({ id }) => visualizationGateway[id].info
 };
 
 const datasetGateway = {};
