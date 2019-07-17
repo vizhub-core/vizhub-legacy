@@ -1,10 +1,14 @@
 import { i18n } from 'vizhub-i18n';
 import { GetUser } from './getUser';
+import { GetVisualizationInfo } from './getVisualizationInfo';
 
 export class GetVisualization {
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
     this.getUser = new GetUser({ userGateway });
+    this.getVisualizationInfo = new GetVisualizationInfo({
+      visualizationGateway
+    });
   }
 
   async execute(requestModel) {
@@ -20,9 +24,25 @@ export class GetVisualization {
       id: visualization.info.owner
     });
 
+    let forkedFromVisualizationInfo;
+    let forkedFromVisualizationOwnerUserName;
+    if (visualization.info.forkedFrom) {
+      const { visualizationInfo } = await this.getVisualizationInfo.execute({
+        id: visualization.info.forkedFrom
+      });
+      forkedFromVisualizationInfo = visualizationInfo;
+
+      const { user } = await this.getUser.execute({
+        id: forkedFromVisualizationInfo.owner
+      });
+      forkedFromVisualizationOwnerUserName = user.userName;
+    }
+
     return {
       visualization,
-      ownerUser: user
+      ownerUser: user,
+      forkedFromVisualizationInfo,
+      forkedFromVisualizationOwnerUserName
     };
   }
 }

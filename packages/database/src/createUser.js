@@ -5,4 +5,4 @@ export const createUser = connection => user => {
     connection.get(USER, user.id).create(user);
     resolve(user);
   });
-}
+};

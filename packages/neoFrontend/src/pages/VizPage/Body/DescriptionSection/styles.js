@@ -63,6 +63,7 @@ export const AuthorshipMeta = styled.div`
     align-items: flex-start;
     padding-top: 10px;
   }
+  justify-content: center;
 `;
 
 export const Video = styled.div`

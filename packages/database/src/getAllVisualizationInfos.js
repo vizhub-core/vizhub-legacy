@@ -7,6 +7,10 @@ export const getAllVisualizationInfos = connection => async () => {
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE
   };
-  const results = await fetchShareDBQuery(DOCUMENT_INFO, mongoQuery, connection);
+  const results = await fetchShareDBQuery(
+    DOCUMENT_INFO,
+    mongoQuery,
+    connection
+  );
   return results.map(shareDBDoc => new VisualizationInfo(shareDBDoc.data));
-}
+};
