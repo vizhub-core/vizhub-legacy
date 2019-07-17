@@ -1,4 +1,4 @@
-export { AuthContext, AuthContextProvider } from './authContext';
+export { AuthContext, AuthProvider } from './AuthContext';
 export {
   AUTH_PENDING,
   GITHUB_OAUTH_URL,

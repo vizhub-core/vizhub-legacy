@@ -4,3 +4,4 @@ export { HomePage } from './HomePage';
 export { CreateVizPage } from './CreateVizPage';
 export { CreatingVizFromScratchPage } from './CreatingVizFromScratchPage';
 export { VizPage } from './VizPage';
+export { ErrorPage } from './ErrorPage';

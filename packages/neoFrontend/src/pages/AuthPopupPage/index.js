@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import queryString from 'query-string';
+import { ErrorContext } from '../../ErrorContext';
 import { getJWT, postMessageToOpener } from '../../authentication';
 import { LoadingScreen } from '../../LoadingScreen';
-import { Message } from './styles';
 
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to
@@ -16,18 +16,18 @@ export const AuthPopupPage = () => {
   // Get the code passed from OAuth out of the URL.
   const { code } = queryString.parse(window.location.search);
 
-  const [errorResponse, setErrorResponse] = useState();
+  const { setError } = useContext(ErrorContext);
 
   // Get the JWT token from backend API.
   useEffect(() => {
     getJWT(code).then(data => {
-      data.error ? setErrorResponse(data) : postMessageToOpener(data);
+      if (data.error) {
+        setError(new Error(data.errorDescription));
+      } else {
+        postMessageToOpener(data);
+      }
     });
-  }, [code]);
+  }, [code, setError]);
 
-  return errorResponse ? (
-    <Message>{errorResponse.errorDescription}</Message>
-  ) : (
-    <LoadingScreen message="Signing in..." />
-  );
+  return <LoadingScreen message="Signing in..." />;
 };

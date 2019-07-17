@@ -1,6 +1,6 @@
 import { useState, useContext, useCallback } from 'react';
 import { waitForSpinner } from '../../../LoadingScreen';
-import { AuthContext } from '../../../authentication/authContext';
+import { AuthContext } from '../../../authentication/AuthContext';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { fetchFork } from './fetchFork';
 
