@@ -7,10 +7,8 @@ import { save } from './save';
 export const setImagesUpdatedTimestamp = connection => options => {
   const { id, imagesUpdatedTimestamp } = options;
 
-  return fetchShareDBDoc(DOCUMENT_INFO, id, connection)
-    .then(doc => {
-      const newData = Object.assign({}, doc.data, { imagesUpdatedTimestamp });
-      return save(doc, newData);
-    });
-
+  return fetchShareDBDoc(DOCUMENT_INFO, id, connection).then(doc => {
+    const newData = Object.assign({}, doc.data, { imagesUpdatedTimestamp });
+    return save(doc, newData);
+  });
 };

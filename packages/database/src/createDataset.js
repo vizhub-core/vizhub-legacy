@@ -5,7 +5,6 @@ export const createDataset = connection => dataset => {
   const slug = dataset.info.slug;
 
   return new Promise(resolve => {
-
     // TODO handle errors here.
     connection.get(DOCUMENT_INFO, id).create(dataset.info);
     connection.get(DOCUMENT_CONTENT, id).create(dataset.content);
@@ -14,4 +13,4 @@ export const createDataset = connection => dataset => {
     // to avoid race conditions.
     resolve({ slug });
   });
-}
+};
