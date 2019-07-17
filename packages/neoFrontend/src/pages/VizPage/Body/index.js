@@ -25,7 +25,7 @@ export const Body = () => {
       <Bottom>
         <TorsoWrapper>
           <Torso>
-            <VizFrame />
+            <VizFrame visualization={visualization} />
             <TitleBar title={visualization.title} />
             <HorizontalRule />
             <DescriptionSection
