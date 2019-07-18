@@ -1,15 +1,7 @@
-import React, { useRef, useContext, useEffect } from 'react';
-import { VizRunnerContext } from '../../VizRunnerContext';
+import React from 'react';
 import { Wrapper } from './styles';
 
+// TODO make this part of parent again, it's degenerate
 export const VizContent = ({ height }) => {
-  const contentRef = useRef();
-  const { vizRunnerIFrame } = useContext(VizRunnerContext);
-
-  useEffect(() => {
-    const content = contentRef.current;
-    content.appendChild(vizRunnerIFrame);
-  }, [vizRunnerIFrame]);
-
-  return <Wrapper ref={contentRef} style={{ height }} />;
+  return <Wrapper style={{ height }} />;
 };
