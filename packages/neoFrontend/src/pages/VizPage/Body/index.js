@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback, useRef } from 'react';
 import { NavBar } from '../../../NavBar';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { ForkingContext } from '../ForkingContext';
@@ -58,18 +58,21 @@ export const Body = () => {
     setIsFullScreen(false);
   }, [setIsFullScreen]);
 
+  const scrollerRef = useRef();
+
   return isFullScreen ? (
     <FullScreen onExitFullScreen={onExitFullScreen} />
   ) : (
     <Wrapper>
       <NavBar />
       <Head onFork={onFork} />
-      <Bottom>
+      <Bottom ref={scrollerRef}>
         <TorsoWrapper>
           <Torso>
             <VizFrame
               vizHeight={visualization.info.height}
               onFullScreen={onFullScreen}
+              scrollerRef={scrollerRef}
             />
             <TitleBar title={visualization.title} />
             <HorizontalRule />

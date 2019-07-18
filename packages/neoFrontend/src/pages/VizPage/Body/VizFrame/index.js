@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { MiniSVG, FullSVG } from '../../../../svg';
 import { vizWidth, defaultVizHeight } from '../../../../constants';
 import { VizRunnerContext } from '../../VizRunnerContext';
@@ -6,7 +6,11 @@ import { VizContent } from '../VizContent';
 import { Footer, FooterIcon } from '../styles';
 import { Wrapper } from './styles';
 
-export const VizFrame = ({ vizHeight = defaultVizHeight, onFullScreen }) => {
+export const VizFrame = ({
+  vizHeight = defaultVizHeight,
+  scrollerRef,
+  onFullScreen
+}) => {
   const wrapperRef = useRef();
 
   const { vizRunnerTransform, setVizRunnerTransform } = useContext(
@@ -14,7 +18,7 @@ export const VizFrame = ({ vizHeight = defaultVizHeight, onFullScreen }) => {
   );
 
   // Keep the content frame a fixed aspect ratio when resized.
-  useLayoutEffect(() => {
+  useEffect(() => {
     const measure = () => {
       const domRect = wrapperRef.current.getBoundingClientRect();
 
@@ -27,10 +31,15 @@ export const VizFrame = ({ vizHeight = defaultVizHeight, onFullScreen }) => {
     };
     measure();
     window.addEventListener('resize', measure);
+
+    const scroller = scrollerRef.current;
+    scroller.addEventListener('scroll', measure);
+
     return () => {
       window.removeEventListener('resize', measure);
+      scroller.removeEventListener('scroll', measure);
     };
-  }, [setVizRunnerTransform]);
+  }, [setVizRunnerTransform, scrollerRef]);
 
   return (
     <Wrapper ref={wrapperRef}>
