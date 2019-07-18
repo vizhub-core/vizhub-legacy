@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext } from 'react';
 import { NavBar } from '../../../NavBar';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { ForkingContext } from '../ForkingContext';
@@ -7,7 +7,35 @@ import { Head } from './Head';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
-import { VizRunner } from './VizRunner';
+
+/*
+
+How to handle runner iframe?
+
+Woule like to have low-level control over:
+
+ - positioning
+ - transitions in position
+ - when the srcDoc attribute is reset
+
+Do not want to tear down and re-create on each view change.
+
+Approaches:
+
+ - Have a persistent DOM node that is always in the same place in the DOM tree.
+ - Have a persistent DOM node that is attached and detached from DOM tree as needed.
+
+Cases to handle:
+
+ - Within viewer
+   - Need to scroll nicely
+   - Ideally could simply attach to DOM here
+     - Would get scrolling and Z ordering "for free"
+ - Full screen
+ - Mini view
+ - Transitions
+   - Would need to do transition "outside" DOM tree.
+*/
 
 export const Body = () => {
   const {
@@ -19,24 +47,15 @@ export const Body = () => {
 
   const onFork = useContext(ForkingContext);
 
-  const scrollerRef = useRef();
-
-  const [vizRunnerRect, setVizRunnerRect] = useState();
-
   return (
     <>
       <Wrapper>
         <NavBar />
         <Head onFork={onFork} />
-        <Bottom ref={scrollerRef}>
+        <Bottom>
           <TorsoWrapper>
             <Torso>
-              <VizFrame
-                vizHeight={visualization.info.height}
-                scrollerRef={scrollerRef}
-                vizRunnerRect={vizRunnerRect}
-                setVizRunnerRect={setVizRunnerRect}
-              />
+              <VizFrame vizHeight={visualization.info.height} />
               <TitleBar title={visualization.title} />
               <HorizontalRule />
               <DescriptionSection
@@ -52,7 +71,6 @@ export const Body = () => {
           </TorsoWrapper>
         </Bottom>
       </Wrapper>
-      <VizRunner rect={vizRunnerRect} />
     </>
   );
 };
