@@ -1,23 +1,21 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
-import { Wrapper, Content, Footer, FooterIcon } from './styles';
 import { MiniSVG, FullSVG } from '../../../../svg';
+import { Footer, FooterIcon } from '../styles';
+import { Wrapper, Content } from './styles';
 
 const vizWidth = 960;
 
-export const VizFrame = ({ vizHeight = 500 }) => {
+export const VizFrame = ({ vizHeight = 500, onFullScreen }) => {
   const wrapperRef = useRef();
   const [width, setWidth] = useState();
 
+  // Keep the content frame a fixed aspect ratio when resized.
   useLayoutEffect(() => {
     const measure = () => {
       const domRect = wrapperRef.current.getBoundingClientRect();
       setWidth(domRect.width);
     };
-
-    // Measure the initial width.
     measure();
-
-    // Measure again on each resize.
     window.addEventListener('resize', measure);
     return () => {
       window.removeEventListener('resize', measure);
@@ -31,7 +29,7 @@ export const VizFrame = ({ vizHeight = 500 }) => {
         <FooterIcon leftmost={true}>
           <MiniSVG />
         </FooterIcon>
-        <FooterIcon rightmost={true}>
+        <FooterIcon rightmost={true} onClick={onFullScreen}>
           <FullSVG />
         </FooterIcon>
       </Footer>

@@ -46,3 +46,20 @@ export const Icon = styled(Clickable)`
   width: 35px;
   margin-right: ${props => (props.rightmost ? '9px' : '0')};
 `;
+
+export const Footer = styled.div`
+  box-shadow: ${props => props.theme.shadow};
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #ffffff;
+`;
+
+export const FooterIcon = styled(Icon)`
+  width: auto;
+  height: 40px;
+  padding-right: ${props => (props.rightmost ? '10' : '7')}px;
+  padding-left: ${props => (props.leftmost ? '10' : '7')}px;
+  margin-right: 0;
+`;
