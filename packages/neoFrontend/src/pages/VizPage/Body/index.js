@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { NavBar } from '../../../NavBar';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { ForkingContext } from '../ForkingContext';
@@ -7,6 +7,7 @@ import { Head } from './Head';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
+import { VizRunner } from './VizRunner';
 
 export const Body = () => {
   const {
@@ -18,28 +19,40 @@ export const Body = () => {
 
   const onFork = useContext(ForkingContext);
 
+  const scrollerRef = useRef();
+
+  const [vizRunnerRect, setVizRunnerRect] = useState();
+
   return (
-    <Wrapper>
-      <NavBar />
-      <Head onFork={onFork} />
-      <Bottom>
-        <TorsoWrapper>
-          <Torso>
-            <VizFrame visualization={visualization} />
-            <TitleBar title={visualization.title} />
-            <HorizontalRule />
-            <DescriptionSection
-              visualization={visualization}
-              ownerUser={ownerUser}
-              forkedFromVisualizationInfo={forkedFromVisualizationInfo}
-              forkedFromVisualizationOwnerUserName={
-                forkedFromVisualizationOwnerUserName
-              }
-            />
-            <HorizontalRule />
-          </Torso>
-        </TorsoWrapper>
-      </Bottom>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <NavBar />
+        <Head onFork={onFork} />
+        <Bottom ref={scrollerRef}>
+          <TorsoWrapper>
+            <Torso>
+              <VizFrame
+                vizHeight={visualization.info.height}
+                scrollerRef={scrollerRef}
+                vizRunnerRect={vizRunnerRect}
+                setVizRunnerRect={setVizRunnerRect}
+              />
+              <TitleBar title={visualization.title} />
+              <HorizontalRule />
+              <DescriptionSection
+                visualization={visualization}
+                ownerUser={ownerUser}
+                forkedFromVisualizationInfo={forkedFromVisualizationInfo}
+                forkedFromVisualizationOwnerUserName={
+                  forkedFromVisualizationOwnerUserName
+                }
+              />
+              <HorizontalRule />
+            </Torso>
+          </TorsoWrapper>
+        </Bottom>
+      </Wrapper>
+      <VizRunner rect={vizRunnerRect} />
+    </>
   );
 };

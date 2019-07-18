@@ -3,8 +3,6 @@ import { Z_ABOVE, Z_BELOW } from '../../../../styles';
 import { Icon } from '../styles';
 
 export const Wrapper = styled.div`
-  background-color: #ffffff;
-  border-radius: 0 0 3px 3px;
   display: flex;
   flex-direction: column;
 `;
@@ -22,6 +20,8 @@ export const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: #ffffff;
+  border-radius: 0 0 3px 3px;
 `;
 
 export const FooterIcon = styled(Icon)`
