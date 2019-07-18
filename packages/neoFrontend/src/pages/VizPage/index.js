@@ -5,6 +5,7 @@ import { darkNavbarTheme } from '../../theme';
 import { VizPageDataProvider } from './VizPageDataContext';
 import { ForkingProvider } from './ForkingContext';
 import { URLStateProvider } from './URLStateContext';
+import { VizRunnerProvider } from './VizRunnerContext';
 import { Body } from './Body';
 
 export const VizPage = () => (
@@ -12,7 +13,9 @@ export const VizPage = () => (
     <VizPageDataProvider fallback={<LoadingScreen />}>
       <ForkingProvider fallback={<LoadingScreen message="Forking..." />}>
         <ThemeProvider theme={darkNavbarTheme}>
-          <Body />
+          <VizRunnerProvider>
+            <Body />
+          </VizRunnerProvider>
         </ThemeProvider>
       </ForkingProvider>
     </VizPageDataProvider>
