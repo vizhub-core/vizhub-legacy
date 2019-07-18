@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   z-index: ${Z_BELOW};
   box-shadow: ${props => props.theme.shadowLight};
-  height: ${props => props.height}px;
 `;
 
 export const VizFrameFooter = styled(Footer)`
