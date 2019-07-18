@@ -23,6 +23,9 @@ export const VizRunnerProvider = ({ children }) => {
     // }}
 
     setVizRunnerIFrame(iFrame);
+    //return () => {
+    //  iFrame.remove();
+    //};
   }, []);
 
   return vizRunnerIFrame ? (

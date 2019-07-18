@@ -2,7 +2,7 @@ import React, { useRef, useLayoutEffect, useState } from 'react';
 import { MiniSVG, FullSVG } from '../../../../svg';
 import { Footer, FooterIcon } from '../styles';
 import { Wrapper } from './styles';
-import { VizContent } from './VizContent';
+import { VizContent } from '../VizContent';
 
 const vizWidth = 960;
 

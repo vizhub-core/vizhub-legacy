@@ -11,6 +11,7 @@ import { FullScreen } from './FullScreen';
 
 /*
 
+TODO write blog post on this? maybe?
 How to handle runner iframe?
 
 Woule like to have low-level control over:
