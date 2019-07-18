@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { NavBar } from '../../../NavBar';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { ForkingContext } from '../ForkingContext';
@@ -7,6 +7,7 @@ import { Head } from './Head';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
+import { FullScreen } from './FullScreen';
 
 /*
 
@@ -46,31 +47,43 @@ export const Body = () => {
   } = useContext(VizPageDataContext);
 
   const onFork = useContext(ForkingContext);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  return (
-    <>
-      <Wrapper>
-        <NavBar />
-        <Head onFork={onFork} />
-        <Bottom>
-          <TorsoWrapper>
-            <Torso>
-              <VizFrame vizHeight={visualization.info.height} />
-              <TitleBar title={visualization.title} />
-              <HorizontalRule />
-              <DescriptionSection
-                visualization={visualization}
-                ownerUser={ownerUser}
-                forkedFromVisualizationInfo={forkedFromVisualizationInfo}
-                forkedFromVisualizationOwnerUserName={
-                  forkedFromVisualizationOwnerUserName
-                }
-              />
-              <HorizontalRule />
-            </Torso>
-          </TorsoWrapper>
-        </Bottom>
-      </Wrapper>
-    </>
+  const onFullScreen = useCallback(() => {
+    setIsFullScreen(true);
+  }, [setIsFullScreen]);
+
+  const onExitFullScreen = useCallback(() => {
+    setIsFullScreen(false);
+  }, [setIsFullScreen]);
+
+  return isFullScreen ? (
+    <FullScreen onExitFullScreen={onExitFullScreen} />
+  ) : (
+    <Wrapper>
+      <NavBar />
+      <Head onFork={onFork} />
+      <Bottom>
+        <TorsoWrapper>
+          <Torso>
+            <VizFrame
+              vizHeight={visualization.info.height}
+              onFullScreen={onFullScreen}
+            />
+            <TitleBar title={visualization.title} />
+            <HorizontalRule />
+            <DescriptionSection
+              visualization={visualization}
+              ownerUser={ownerUser}
+              forkedFromVisualizationInfo={forkedFromVisualizationInfo}
+              forkedFromVisualizationOwnerUserName={
+                forkedFromVisualizationOwnerUserName
+              }
+            />
+            <HorizontalRule />
+          </Torso>
+        </TorsoWrapper>
+      </Bottom>
+    </Wrapper>
   );
 };
