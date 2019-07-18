@@ -31,7 +31,7 @@ export const VizRunnerProvider = ({ children }) => {
         width={vizWidth}
         height={vizHeight}
         style={{
-          transform: `scale(${scale}) translate(${x}px, ${y}px)`
+          transform: `translate(${x}px, ${y}px) scale(${scale})`
         }}
       />
     </>
