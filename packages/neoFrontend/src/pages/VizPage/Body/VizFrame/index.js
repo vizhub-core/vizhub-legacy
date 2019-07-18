@@ -1,51 +1,32 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Wrapper, Content, Footer, FooterIcon } from './styles';
 import { MiniSVG, FullSVG } from '../../../../svg';
 
 const vizWidth = 960;
 
-export const VizFrame = ({
-  vizHeight = 500,
-  scrollerRef,
-  vizRunnerRect,
-  setVizRunnerRect
-}) => {
+export const VizFrame = ({ vizHeight = 500 }) => {
   const wrapperRef = useRef();
+  const [width, setWidth] = useState();
 
-  const measure = useCallback(() => {
-    const domRect = wrapperRef.current.getBoundingClientRect();
-
-    const x = domRect.left;
-    const y = domRect.top;
-    const width = domRect.width;
-    const height = (vizHeight * domRect.width) / vizWidth;
-
-    setVizRunnerRect({ x, y, width, height });
-  }, [setVizRunnerRect, vizHeight]);
-
-  useEffect(() => {
-    window.addEventListener('resize', measure);
-
-    const scroller = scrollerRef.current;
-    scroller.addEventListener('scroll', measure);
+  useLayoutEffect(() => {
+    const measure = () => {
+      const domRect = wrapperRef.current.getBoundingClientRect();
+      setWidth(domRect.width);
+    };
 
     // Measure the initial width.
     measure();
 
-    // Handle the case that the initial measure caused
-    // the vertical scrollbar on the right to appear.
-    requestAnimationFrame(measure);
-
+    // Measure again on each resize.
+    window.addEventListener('resize', measure);
     return () => {
       window.removeEventListener('resize', measure);
-      scroller.addEventListener('scroll', measure);
     };
-  }, [scrollerRef, setVizRunnerRect, vizHeight, measure]);
-
+  }, []);
 
   return (
     <Wrapper ref={wrapperRef}>
-      {vizRunnerRect ? <Content height={vizRunnerRect.height} /> : null}
+      {width ? <Content height={(vizHeight * width) / vizWidth} /> : null}
       <Footer>
         <FooterIcon leftmost={true}>
           <MiniSVG />
