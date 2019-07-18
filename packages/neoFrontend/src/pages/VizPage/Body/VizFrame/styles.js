@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_ABOVE, Z_BELOW, Z_NEW_STACKING_CONTEXT } from '../../../../styles';
+import { Z_ABOVE, Z_NEW_STACKING_CONTEXT } from '../../../../styles';
 import { Footer } from '../styles';
 
 // Use a new stacking context in order to
@@ -11,11 +11,6 @@ export const Wrapper = styled.div`
 
   position: relative;
   z-index: ${Z_NEW_STACKING_CONTEXT};
-`;
-
-export const Content = styled.div`
-  z-index: ${Z_BELOW};
-  box-shadow: ${props => props.theme.shadowLight};
 `;
 
 export const VizFrameFooter = styled(Footer)`
