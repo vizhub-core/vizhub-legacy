@@ -1,22 +1,14 @@
-import React, {
-  useRef,
-  useLayoutEffect,
-  useState,
-  useEffect,
-  useContext
-} from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { MiniSVG, FullSVG } from '../../../../svg';
-import { VizRunnerContext } from '../../VizRunnerContext';
 import { Footer, FooterIcon } from '../styles';
-import { Wrapper, Content } from './styles';
+import { Wrapper } from './styles';
+import { VizContent } from './VizContent';
 
 const vizWidth = 960;
 
 export const VizFrame = ({ vizHeight = 500, onFullScreen }) => {
   const wrapperRef = useRef();
-  const contentRef = useRef();
   const [width, setWidth] = useState();
-  const { vizRunnerIFrame } = useContext(VizRunnerContext);
 
   // Keep the content frame a fixed aspect ratio when resized.
   useLayoutEffect(() => {
@@ -31,29 +23,21 @@ export const VizFrame = ({ vizHeight = 500, onFullScreen }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (width) {
-      const content = contentRef.current;
-      content.appendChild(vizRunnerIFrame);
-      return () => {
-        content.removeChild(vizRunnerIFrame);
-      };
-    }
-  }, [vizRunnerIFrame, width]);
-
   return (
     <Wrapper ref={wrapperRef}>
       {width ? (
-        <Content ref={contentRef} height={(vizHeight * width) / vizWidth} />
+        <>
+          <VizContent height={(vizHeight * width) / vizWidth} />
+          <Footer>
+            <FooterIcon leftmost={true}>
+              <MiniSVG />
+            </FooterIcon>
+            <FooterIcon rightmost={true} onClick={onFullScreen}>
+              <FullSVG />
+            </FooterIcon>
+          </Footer>
+        </>
       ) : null}
-      <Footer>
-        <FooterIcon leftmost={true}>
-          <MiniSVG />
-        </FooterIcon>
-        <FooterIcon rightmost={true} onClick={onFullScreen}>
-          <FullSVG />
-        </FooterIcon>
-      </Footer>
     </Wrapper>
   );
 };
