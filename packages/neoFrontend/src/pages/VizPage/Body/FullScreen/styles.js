@@ -23,6 +23,6 @@ export const FullScreenFooter = styled(Footer)`
   &:hover {
     opacity: 1;
   }
-  animation: ${fadeOut} 3s linear;
+  animation: ${fadeOut} 0.5s linear;
   opacity: 0;
 `;
