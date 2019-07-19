@@ -6,7 +6,6 @@ import { useDimensions } from '../useDimensions';
 import { FooterIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
 
-// TODO make sizing and scaling correct.
 export const FullScreen = ({
   onExitFullScreen,
   vizHeight = defaultVizHeight
@@ -14,12 +13,28 @@ export const FullScreen = ({
   const wrapperRef = useRef();
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
 
+  // Shrink and grow to fill available width and height.
   const setDomRect = useCallback(
-    ({ x, y, width }) => {
-      const scale = width / vizWidth;
-      setVizRunnerTransform({ x, y, scale });
+    ({ width, height }) => {
+      const vizAspect = vizWidth / vizHeight;
+      const aspect = width / height;
+      if (vizAspect > aspect) {
+        const scale = width / vizWidth;
+        setVizRunnerTransform({
+          x: 0,
+          y: height / 2 - (scale * vizHeight) / 2,
+          scale
+        });
+      } else {
+        const scale = height / vizHeight;
+        setVizRunnerTransform({
+          x: width / 2 - (scale * vizWidth) / 2,
+          y: 0,
+          scale
+        });
+      }
     },
-    [setVizRunnerTransform]
+    [setVizRunnerTransform, vizHeight]
   );
 
   useDimensions({ wrapperRef, setDomRect });
