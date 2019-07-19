@@ -1,47 +1,11 @@
-import React, {
-  useRef,
-  useEffect,
-  useLayoutEffect,
-  useContext,
-  useCallback,
-  useState
-} from 'react';
+import React, { useRef, useContext, useCallback, useState } from 'react';
 import { MiniSVG, FullSVG } from '../../../../svg';
 import { vizWidth, defaultVizHeight } from '../../../../constants';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { VizContent } from '../VizContent';
+import { useDimensions } from '../useDimensions';
 import { Footer, FooterIcon } from '../styles';
 import { Wrapper } from './styles';
-
-const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
-  // Measures the current dimensions.
-  const measure = useCallback(() => {
-    setDomRect(wrapperRef.current.getBoundingClientRect());
-  }, [wrapperRef, setDomRect]);
-
-  // Measure the initial dimensions.
-  //
-  // The first measure should cause a synchronous re-render,
-  // so we don't get a flash of incorrect dimensions.
-  useLayoutEffect(() => {
-    measure();
-  }, [measure]);
-
-  // Measure the dimensions on resize and on scroll.
-  //
-  // This stuff can't go inside useLayoutEffect, because
-  // if it did, scrollerRef.current would not be defined yet.
-  useEffect(() => {
-    window.addEventListener('resize', measure);
-    const scroller = scrollerRef.current;
-    scroller.addEventListener('scroll', measure);
-
-    return () => {
-      window.removeEventListener('resize', measure);
-      scroller.removeEventListener('scroll', measure);
-    };
-  }, [measure, scrollerRef]);
-};
 
 export const VizFrame = ({
   vizHeight = defaultVizHeight,
