@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Clickable, Z_BELOW } from '../../../styles';
+import { Clickable, Z_ABOVE } from '../../../styles';
 import { Content } from '../../styles';
 
 export const Wrapper = styled.div`
@@ -11,14 +11,33 @@ export const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
+  z-index: ${Z_ABOVE};
 `;
 
 // Set z index, just so the shadow from the top
 // can cast on top of the bottom content
 // when it is scrolled.
+export const Top = styled.div`
+  z-index: ${Z_ABOVE};
+`;
+
+// Big WTF moment - here's why "min-height: 0" right here:
+// https://moduscreate.com/blog/how-to-fix-overflow-issues-in-css-flex-layouts/
 export const Bottom = styled.div`
-  z-index: ${Z_BELOW};
+  flex: 1;
+  display: flex;
+  min-height: 0;
+`;
+
+export const VizViewer = styled.div`
+  flex: 1;
   overflow: auto;
+`;
+
+export const VizEditor = styled.div`
+  width: 150px;
+  background-color: #3d4b65;
+  display: flex;
 `;
 
 // This level handles horizontal centering & resize behavior.
@@ -45,4 +64,21 @@ export const Icon = styled(Clickable)`
   height: 30px;
   width: 35px;
   margin-right: ${props => (props.rightmost ? '9px' : '0')};
+`;
+
+export const Footer = styled.div`
+  box-shadow: ${props => props.theme.shadow};
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #ffffff;
+`;
+
+export const FooterIcon = styled(Icon)`
+  width: auto;
+  height: 40px;
+  padding-right: ${props => (props.rightmost ? '10' : '7')}px;
+  padding-left: ${props => (props.leftmost ? '10' : '7')}px;
+  margin-right: 0;
 `;

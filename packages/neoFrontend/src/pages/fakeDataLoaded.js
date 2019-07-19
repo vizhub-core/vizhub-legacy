@@ -1,5 +1,6 @@
-//const delay = process.env.NODE_ENV === 'development' ? 0 : 1000;
-const delay = 0;
+import { showSpinner } from '../constants';
+
+const delay = showSpinner ? 1000 : 0;
 export const fakeDataLoaded = () =>
   new Promise(resolve => {
     setTimeout(() => {

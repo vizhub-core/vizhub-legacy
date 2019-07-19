@@ -2,6 +2,7 @@ import { useState, useContext, useCallback } from 'react';
 import { waitForSpinner } from '../../../LoadingScreen';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { ErrorContext } from '../../../ErrorContext';
+import { showSpinner } from '../../../constants';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { fetchFork } from './fetchFork';
 
@@ -19,7 +20,7 @@ export const useForking = history => {
 
     // Allow the tests to run fast in development.
     // Force the user to perceive the loading screen message in production.
-    const minSpinnerTime = process.env.NODE_ENV === 'development' ? 0 : 2000;
+    const minSpinnerTime = showSpinner ? 2000 : 0;
 
     if (!me) {
       return setError(new Error('You must be signed in to fork.'));
