@@ -2,7 +2,6 @@ import React, { useRef, useContext, useCallback, useState } from 'react';
 import { MiniSVG, FullSVG } from '../../../../svg';
 import { vizWidth, defaultVizHeight } from '../../../../constants';
 import { VizRunnerContext } from '../../VizRunnerContext';
-import { VizContent } from '../VizContent';
 import { useDimensions } from '../useDimensions';
 import { Footer, FooterIcon } from '../styles';
 import { Wrapper } from './styles';
@@ -33,7 +32,7 @@ export const VizFrame = ({
     <Wrapper ref={wrapperRef}>
       {scale ? (
         <>
-          <VizContent height={vizHeight * scale} />
+          <div style={{ height: vizHeight * scale }} />
           <Footer>
             <FooterIcon leftmost={true}>
               <MiniSVG />
