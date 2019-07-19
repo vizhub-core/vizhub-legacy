@@ -5,7 +5,6 @@ import { VizRunnerContext } from '../../VizRunnerContext';
 import { useDimensions } from '../useDimensions';
 import { FooterIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
-import { VizContent } from '../VizContent';
 
 // TODO make sizing and scaling correct.
 export const FullScreen = ({
@@ -27,7 +26,6 @@ export const FullScreen = ({
 
   return (
     <Wrapper ref={wrapperRef}>
-      <VizContent height={500} />
       <FullScreenFooter>
         <FooterIcon leftmost={true}>
           <MiniSVG />

@@ -9,7 +9,6 @@ export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
 
   // Measure the initial dimensions.
   useLayoutEffect(() => {
-
     // The first measure should cause a synchronous re-render,
     // so we don't get a flash of incorrect dimensions.
     measure();
