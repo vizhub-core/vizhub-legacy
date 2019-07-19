@@ -34,12 +34,6 @@ export const VizViewer = styled.div`
   overflow: auto;
 `;
 
-export const VizEditor = styled.div`
-  width: 150px;
-  background-color: #3d4b65;
-  display: flex;
-`;
-
 // This level handles horizontal centering & resize behavior.
 export const TorsoWrapper = styled.div`
   display: flex;

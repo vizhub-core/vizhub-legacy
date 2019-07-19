@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { Z_BELOW } from '../../../../styles';
 
 export const Wrapper = styled.div`
-  z-index: ${Z_BELOW};
+  width: 150px;
+  background-color: #3d4b65;
+  display: flex;
 `;

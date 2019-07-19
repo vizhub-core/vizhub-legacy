@@ -10,14 +10,14 @@ import {
   VizViewer,
   TorsoWrapper,
   Torso,
-  HorizontalRule,
-  VizEditor
+  HorizontalRule
 } from './styles';
 import { Head } from './Head';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 import { FullScreen } from './FullScreen';
+import { Editor } from './Editor';
 
 export const Body = () => {
   const {
@@ -53,7 +53,7 @@ export const Body = () => {
         <Head onFork={onFork} />
       </Top>
       <Bottom>
-        {showEditor ? <VizEditor /> : null}
+        {showEditor ? <Editor /> : null}
         <VizViewer ref={scrollerRef}>
           <TorsoWrapper>
             <Torso>
