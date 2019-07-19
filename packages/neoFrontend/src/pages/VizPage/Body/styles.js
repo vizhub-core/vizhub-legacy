@@ -21,8 +21,12 @@ export const Top = styled.div`
   z-index: ${Z_ABOVE};
 `;
 
-// This portion is scrollable.
 export const Bottom = styled.div`
+  display: flex;
+`;
+
+export const VizViewer = styled.div`
+  flex: 1;
   overflow: auto;
 `;
 
@@ -67,4 +71,9 @@ export const FooterIcon = styled(Icon)`
   padding-right: ${props => (props.rightmost ? '10' : '7')}px;
   padding-left: ${props => (props.leftmost ? '10' : '7')}px;
   margin-right: 0;
+`;
+
+export const VizEditor = styled.div`
+  width: 150px;
+  background-color: #3d4b65;
 `;
