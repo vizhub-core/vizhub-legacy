@@ -2,7 +2,14 @@ import React, { useContext, useState, useCallback, useRef } from 'react';
 import { NavBar } from '../../../NavBar';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { ForkingContext } from '../ForkingContext';
-import { Wrapper, Bottom, TorsoWrapper, Torso, HorizontalRule } from './styles';
+import {
+  Wrapper,
+  Top,
+  Bottom,
+  TorsoWrapper,
+  Torso,
+  HorizontalRule
+} from './styles';
 import { Head } from './Head';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
@@ -66,8 +73,10 @@ export const Body = () => {
     <FullScreen onExitFullScreen={onExitFullScreen} vizHeight={vizHeight} />
   ) : (
     <Wrapper>
-      <NavBar />
-      <Head onFork={onFork} />
+      <Top>
+        <NavBar />
+        <Head onFork={onFork} />
+      </Top>
       <Bottom ref={scrollerRef}>
         <TorsoWrapper>
           <Torso>

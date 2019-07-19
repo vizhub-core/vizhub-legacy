@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Clickable, Z_BELOW } from '../../../styles';
+import { Clickable, Z_ABOVE } from '../../../styles';
 import { Content } from '../../styles';
 
 export const Wrapper = styled.div`
@@ -11,13 +11,18 @@ export const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
+  z-index: ${Z_ABOVE};
 `;
 
 // Set z index, just so the shadow from the top
 // can cast on top of the bottom content
 // when it is scrolled.
+export const Top = styled.div`
+  z-index: ${Z_ABOVE};
+`;
+
+// This portion is scrollable.
 export const Bottom = styled.div`
-  z-index: ${Z_BELOW};
   overflow: auto;
 `;
 
