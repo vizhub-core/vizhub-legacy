@@ -9,7 +9,7 @@ import { VizPageDataContext } from '../VizPageDataContext';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
 
-const srcDoc = `<style>body { background-color: #ffffee; }</style>`;
+const srcDoc = `<style>body { background-color: pink; }</style>`;
 export const VizRunnerContext = createContext();
 
 // Yes, this will be lying around all the time, doing no harm.
@@ -18,8 +18,6 @@ const iFrame = document.createElement('iframe');
 iFrame.setAttribute('srcDoc', srcDoc);
 iFrame.setAttribute('width', vizWidth);
 iFrame.style.position = 'fixed';
-iFrame.style.top = 0;
-iFrame.style.left = 0;
 iFrame.style.border = 0;
 iFrame.style['transform-origin'] = '0 0';
 iFrame.style['z-index'] = 0;
@@ -32,7 +30,9 @@ export const VizRunnerProvider = ({ children }) => {
   const ref = useRef();
 
   const setVizRunnerTransform = useCallback(({ x, y, scale }) => {
-    iFrame.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    iFrame.style.transform = `scale(${scale})`;
+    iFrame.style.top = `${y}px`;
+    iFrame.style.left = `${x}px`;
   }, []);
 
   const contextValue = { setVizRunnerTransform };
