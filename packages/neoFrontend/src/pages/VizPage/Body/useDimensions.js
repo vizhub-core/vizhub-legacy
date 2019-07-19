@@ -7,34 +7,33 @@ export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
     setDomRect(wrapperRef.current.getBoundingClientRect());
   }, [wrapperRef, setDomRect]);
 
-  // Measure the initial dimensions.
-  useLayoutEffect(() => {
-    // The first measure should cause a synchronous re-render,
-    // so we don't get a flash of incorrect dimensions.
+  // Handles the case that the first measure causes a vertical
+  // scrollbar to be introduced, which throws off the transform.
+  // requestAnimationFrame effectively waits for the scrollbar to appear.
+  const measureTwice = useCallback(() => {
     measure();
-
-    // Handle the case that the first render causes a vertical
-    // scrollbar to be introduced, which throws off the transform.
     requestAnimationFrame(measure);
   }, [measure]);
 
-  // Measure the dimensions on resize and on scroll.
-  //
-  // This stuff can't go inside useLayoutEffect, because
-  // if it did, scrollerRef.current would not be defined yet.
-  useEffect(() => {
-    window.addEventListener('resize', measure);
-    let scroller;
-    if (scrollerRef) {
-      scroller = scrollerRef.current;
-      scroller.addEventListener('scroll', measure);
-    }
+  // Measure the initial dimensions.
+  useLayoutEffect(measureTwice, [measure]);
 
+  // Measure the dimensions on resize.
+  useEffect(() => {
+    window.addEventListener('resize', measureTwice);
     return () => {
-      window.removeEventListener('resize', measure);
-      if (scroller) {
-        scroller.removeEventListener('scroll', measure);
-      }
+      window.removeEventListener('resize', measureTwice);
     };
+  }, [measureTwice, scrollerRef]);
+
+  // Measure the dimensions on scroll.
+  useEffect(() => {
+    if (scrollerRef) {
+      const scroller = scrollerRef.current;
+      scroller.addEventListener('scroll', measure);
+      return () => {
+        scroller.removeEventListener('scroll', measure);
+      };
+    }
   }, [measure, scrollerRef]);
 };
