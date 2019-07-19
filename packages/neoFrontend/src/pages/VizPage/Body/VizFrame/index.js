@@ -22,7 +22,6 @@ export const VizFrame = ({
     domRect => {
       const newScale = domRect.width / vizWidth;
       setScale(newScale);
-      //setVizRunnerPosition(
       setVizRunnerTransform({
         x: domRect.x,
         y: domRect.y,

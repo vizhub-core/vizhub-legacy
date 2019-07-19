@@ -60,8 +60,10 @@ export const Body = () => {
 
   const scrollerRef = useRef();
 
+  const vizHeight = visualization.info.height;
+
   return isFullScreen ? (
-    <FullScreen onExitFullScreen={onExitFullScreen} />
+    <FullScreen onExitFullScreen={onExitFullScreen} vizHeight={vizHeight} />
   ) : (
     <Wrapper>
       <NavBar />
@@ -70,7 +72,7 @@ export const Body = () => {
         <TorsoWrapper>
           <Torso>
             <VizFrame
-              vizHeight={visualization.info.height}
+              vizHeight={vizHeight}
               onFullScreen={onFullScreen}
               scrollerRef={scrollerRef}
             />

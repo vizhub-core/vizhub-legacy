@@ -2,7 +2,6 @@ import { useEffect, useLayoutEffect, useCallback } from 'react';
 
 // Inspired by https://github.com/Swizec/useDimensions
 export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
-
   // Measures the current dimensions.
   const measure = useCallback(() => {
     setDomRect(wrapperRef.current.getBoundingClientRect());
@@ -22,12 +21,17 @@ export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
   // if it did, scrollerRef.current would not be defined yet.
   useEffect(() => {
     window.addEventListener('resize', measure);
-    const scroller = scrollerRef.current;
-    scroller.addEventListener('scroll', measure);
+    let scroller;
+    if (scrollerRef) {
+      scroller = scrollerRef.current;
+      scroller.addEventListener('scroll', measure);
+    }
 
     return () => {
       window.removeEventListener('resize', measure);
-      scroller.removeEventListener('scroll', measure);
+      if (scroller) {
+        scroller.removeEventListener('scroll', measure);
+      }
     };
   }, [measure, scrollerRef]);
 };
