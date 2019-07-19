@@ -21,8 +21,11 @@ export const Top = styled.div`
   z-index: ${Z_ABOVE};
 `;
 
+// Big WTF moment - here's why "min-height: 0" right here:
+// https://moduscreate.com/blog/how-to-fix-overflow-issues-in-css-flex-layouts/
 export const Bottom = styled.div`
   display: flex;
+  min-height: 0;
 `;
 
 export const VizViewer = styled.div`
