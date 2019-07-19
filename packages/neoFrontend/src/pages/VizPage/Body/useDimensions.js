@@ -36,4 +36,14 @@ export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
       };
     }
   }, [measure, scrollerRef]);
+
+  // Measure the dimensions on editor toggle,
+  // a custom event fired when the VizHub editor is toggled,
+  // which changes the width of the Viz viewer.
+  useEffect(() => {
+    window.addEventListener('editorToggled', measureTwice);
+    return () => {
+      window.removeEventListener('editorToggled', measureTwice);
+    };
+  }, [measureTwice]);
 };

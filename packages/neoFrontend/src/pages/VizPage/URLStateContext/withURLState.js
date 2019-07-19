@@ -5,7 +5,7 @@ import { accessors } from './accessors';
 // Higher order component exposing URL state accessors.
 export const withURLState = Component =>
   withRouter(props => {
-    //// Raw accessor functions for URL parameter state.
+    // Raw accessor functions for URL parameter state.
     const {
       edit,
       setEdit
@@ -16,8 +16,11 @@ export const withURLState = Component =>
     const showEditor = edit !== undefined;
     const setShowEditor = value => setEdit(value ? null : undefined);
 
-    //// Toggles the editor to show and hide.
-    const toggleEditor = () => setShowEditor(!showEditor);
+    // Toggles the editor to show and hide.
+    const toggleEditor = () => {
+      setShowEditor(!showEditor);
+      window.dispatchEvent(new Event('editorToggled'));
+    };
 
     //// The active editor section id string if a section is active.
     //// null if no editor section is active.
