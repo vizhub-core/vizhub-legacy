@@ -24,6 +24,7 @@ export const Top = styled.div`
 // Big WTF moment - here's why "min-height: 0" right here:
 // https://moduscreate.com/blog/how-to-fix-overflow-issues-in-css-flex-layouts/
 export const Bottom = styled.div`
+  flex: 1;
   display: flex;
   min-height: 0;
 `;
@@ -31,6 +32,12 @@ export const Bottom = styled.div`
 export const VizViewer = styled.div`
   flex: 1;
   overflow: auto;
+`;
+
+export const VizEditor = styled.div`
+  width: 150px;
+  background-color: #3d4b65;
+  display: flex;
 `;
 
 // This level handles horizontal centering & resize behavior.
@@ -74,9 +81,4 @@ export const FooterIcon = styled(Icon)`
   padding-right: ${props => (props.rightmost ? '10' : '7')}px;
   padding-left: ${props => (props.leftmost ? '10' : '7')}px;
   margin-right: 0;
-`;
-
-export const VizEditor = styled.div`
-  width: 150px;
-  background-color: #3d4b65;
 `;
