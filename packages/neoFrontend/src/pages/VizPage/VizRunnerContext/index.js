@@ -16,7 +16,7 @@ export const VizRunnerProvider = ({ children }) => {
     scale: 1
   });
 
-  const contextValue = { vizRunnerTransform, setVizRunnerTransform };
+  const contextValue = { setVizRunnerTransform };
 
   const { x, y, scale } = vizRunnerTransform;
 

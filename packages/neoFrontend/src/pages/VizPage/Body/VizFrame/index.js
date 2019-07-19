@@ -1,4 +1,11 @@
-import React, { useRef, useEffect, useLayoutEffect, useContext, useCallback } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  useContext,
+  useCallback,
+  useState
+} from 'react';
 import { MiniSVG, FullSVG } from '../../../../svg';
 import { vizWidth, defaultVizHeight } from '../../../../constants';
 import { VizRunnerContext } from '../../VizRunnerContext';
@@ -6,32 +13,24 @@ import { VizContent } from '../VizContent';
 import { Footer, FooterIcon } from '../styles';
 import { Wrapper } from './styles';
 
-export const VizFrame = ({
-  vizHeight = defaultVizHeight,
-  scrollerRef,
-  onFullScreen
-}) => {
-  const wrapperRef = useRef();
-
-  const { vizRunnerTransform, setVizRunnerTransform } = useContext(
-    VizRunnerContext
-  );
-
+const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
+  // Measures the current dimensions.
   const measure = useCallback(() => {
-    const domRect = wrapperRef.current.getBoundingClientRect();
+    setDomRect(wrapperRef.current.getBoundingClientRect());
+  }, [wrapperRef, setDomRect]);
 
-    //setVizRunnerPosition(
-    setVizRunnerTransform({
-      x: domRect.x,
-      y: domRect.y,
-      scale: domRect.width / vizWidth
-    });
-  }, [wrapperRef, setVizRunnerTransform]);
-
+  // Measure the initial dimensions.
+  //
+  // The first measure should cause a synchronous re-render,
+  // so we don't get a flash of incorrect dimensions.
   useLayoutEffect(() => {
     measure();
   }, [measure]);
 
+  // Measure the dimensions on resize and on scroll.
+  //
+  // This stuff can't go inside useLayoutEffect, because
+  // if it did, scrollerRef.current would not be defined yet.
   useEffect(() => {
     window.addEventListener('resize', measure);
     const scroller = scrollerRef.current;
@@ -42,18 +41,50 @@ export const VizFrame = ({
       scroller.removeEventListener('scroll', measure);
     };
   }, [measure, scrollerRef]);
+};
+
+export const VizFrame = ({
+  vizHeight = defaultVizHeight,
+  scrollerRef,
+  onFullScreen
+}) => {
+  const wrapperRef = useRef();
+
+  const { setVizRunnerTransform } = useContext(VizRunnerContext);
+
+  const [scale, setScale] = useState();
+
+  const setDomRect = useCallback(
+    domRect => {
+      const newScale = domRect.width / vizWidth;
+      setScale(newScale);
+      //setVizRunnerPosition(
+      setVizRunnerTransform({
+        x: domRect.x,
+        y: domRect.y,
+        scale: newScale
+      });
+    },
+    [setVizRunnerTransform, setScale]
+  );
+
+  useDimensions({ wrapperRef, scrollerRef, setDomRect });
 
   return (
     <Wrapper ref={wrapperRef}>
-      <VizContent height={vizHeight * vizRunnerTransform.scale} />
-      <Footer>
-        <FooterIcon leftmost={true}>
-          <MiniSVG />
-        </FooterIcon>
-        <FooterIcon rightmost={true} onClick={onFullScreen}>
-          <FullSVG />
-        </FooterIcon>
-      </Footer>
+      {scale ? (
+        <>
+          <VizContent height={vizHeight * scale} />
+          <Footer>
+            <FooterIcon leftmost={true}>
+              <MiniSVG />
+            </FooterIcon>
+            <FooterIcon rightmost={true} onClick={onFullScreen}>
+              <FullSVG />
+            </FooterIcon>
+          </Footer>
+        </>
+      ) : null}
     </Wrapper>
   );
 };
