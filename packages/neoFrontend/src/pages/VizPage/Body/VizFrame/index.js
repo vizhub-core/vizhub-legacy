@@ -19,14 +19,10 @@ export const VizFrame = ({
   const [scale, setScale] = useState();
 
   const setDomRect = useCallback(
-    domRect => {
-      const newScale = domRect.width / vizWidth;
-      setScale(newScale);
-      setVizRunnerTransform({
-        x: domRect.x,
-        y: domRect.y,
-        scale: newScale
-      });
+    ({ x, y, width }) => {
+      const scale = width / vizWidth;
+      setScale(scale);
+      setVizRunnerTransform({ x, y, scale });
     },
     [setVizRunnerTransform, setScale]
   );

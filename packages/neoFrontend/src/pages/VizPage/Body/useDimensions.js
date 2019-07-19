@@ -8,11 +8,15 @@ export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
   }, [wrapperRef, setDomRect]);
 
   // Measure the initial dimensions.
-  //
-  // The first measure should cause a synchronous re-render,
-  // so we don't get a flash of incorrect dimensions.
   useLayoutEffect(() => {
+
+    // The first measure should cause a synchronous re-render,
+    // so we don't get a flash of incorrect dimensions.
     measure();
+
+    // Handle the case that the first render causes a vertical
+    // scrollbar to be introduced, which throws off the transform.
+    requestAnimationFrame(measure);
   }, [measure]);
 
   // Measure the dimensions on resize and on scroll.

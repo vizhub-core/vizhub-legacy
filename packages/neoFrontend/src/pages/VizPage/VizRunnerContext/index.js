@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useState, useRef } from 'react';
+import React, { createContext, useContext, useRef, useCallback, useEffect } from 'react';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { defaultVizHeight, vizWidth } from '../../../constants';
-import { IFrame } from './styles';
 
 const srcDoc = `<!DOCTYPE html><script>(function(){
     window.onerror = function(msg, url, lineNumber) {
@@ -226,37 +225,46 @@ d3.json('https://vizhub.com/curran/datasets/mit-campus-map-data.csv', mapData =>
 
 export const VizRunnerContext = createContext();
 
+// Yes, this will be lying around all the time, doing no harm.
+const iFrame = document.createElement('iframe');
+
+iFrame.setAttribute('srcDoc', srcDoc);
+iFrame.setAttribute('width', vizWidth);
+iFrame.style.position = 'fixed';
+iFrame.style.top = 0;
+iFrame.style.left = 0;
+iFrame.style.border = 0;
+iFrame.style['transform-origin'] = '0 0';
+iFrame.style['z-index'] = 2;
+
 export const VizRunnerProvider = ({ children }) => {
-  const iFrameRef = useRef();
   const { visualization } = useContext(VizPageDataContext);
   const vizHeight = visualization.info.height || defaultVizHeight;
+  const ref = useRef();
 
-  const [vizRunnerTransform, setVizRunnerTransform] = useState({
-    x: 0,
-    y: 0,
-    scale: 1
-  });
+  const setVizRunnerTransform = useCallback(({ x, y, scale }) => {
+    iFrame.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+  }, []);
 
   const contextValue = { setVizRunnerTransform };
 
-  const { x, y, scale } = vizRunnerTransform;
+  useEffect(() => {
+    iFrame.setAttribute('height', vizHeight);
+  }, [vizHeight]);
+
+  useEffect(() => {
+    const div = ref.current;
+    div.appendChild(iFrame);
+    return () => {
+      div.removeChild(iFrame);
+    };
+  }, [ref]);
 
   return (
-    <>
+    <div ref={ref}>
       <VizRunnerContext.Provider value={contextValue}>
         {children}
       </VizRunnerContext.Provider>
-      <IFrame
-        srcDoc={srcDoc}
-        ref={iFrameRef}
-        width={vizWidth}
-        height={vizHeight}
-        style={{
-          transform: `scale(${scale})`,
-          top: `${y}px`,
-          left: `${x}px`
-        }}
-      />
-    </>
+    </div>
   );
 };

@@ -7,7 +7,7 @@ import { FooterIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
 import { VizContent } from '../VizContent';
 
-// TODO useDimensions and make sizing and scaling correct.
+// TODO make sizing and scaling correct.
 export const FullScreen = ({
   onExitFullScreen,
   vizHeight = defaultVizHeight
@@ -16,12 +16,9 @@ export const FullScreen = ({
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
 
   const setDomRect = useCallback(
-    domRect => {
-      setVizRunnerTransform({
-        x: domRect.x,
-        y: domRect.y,
-        scale: domRect.width / vizWidth
-      });
+    ({ x, y, width }) => {
+      const scale = width / vizWidth;
+      setVizRunnerTransform({ x, y, scale });
     },
     [setVizRunnerTransform]
   );
