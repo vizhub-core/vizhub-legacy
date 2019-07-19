@@ -21,7 +21,7 @@ export const VizFrame = ({
     ({ x, y, width }) => {
       const scale = width / vizWidth;
       setScale(scale);
-      setVizRunnerTransform({ x, y, scale });
+      setVizRunnerTransform({ x, y, scale, mode: 'viewer' });
     },
     [setVizRunnerTransform, setScale]
   );

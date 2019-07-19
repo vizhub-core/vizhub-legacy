@@ -23,7 +23,8 @@ export const FullScreen = ({
         setVizRunnerTransform({
           x: 0,
           y: height / 2 - (scale * vizHeight) / 2,
-          scale
+          scale,
+          mode: 'fullscreen'
         });
       } else {
         const scale = height / vizHeight;
