@@ -8,6 +8,7 @@ import React, {
 import { VizPageDataContext } from '../VizPageDataContext';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
+import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 
 const srcDoc = `<style>body { background-color: pink; }</style>`;
 export const VizRunnerContext = createContext();
@@ -21,7 +22,7 @@ iFrame.setAttribute('width', vizWidth);
 iFrame.style.position = 'fixed';
 iFrame.style.border = 0;
 iFrame.style['transform-origin'] = '0 0';
-iFrame.style['z-index'] = 0;
+iFrame.style['z-index'] = Z_BELOW;
 iFrame.style['background-color'] = '#ffffff';
 iFrame.style['box-shadow'] = theme.shadowLight;
 
@@ -46,6 +47,13 @@ export const VizRunnerProvider = ({ children }) => {
     iFrame.style.transform = `scale(${scale})`;
     iFrame.style.top = `${y}px`;
     iFrame.style.left = `${x}px`;
+
+    if(modeChanged){
+      iFrame.style['z-index'] = Z_WAY_ABOVE;
+      setTimeout(() => {
+        iFrame.style['z-index'] = Z_BELOW;
+      }, 500);
+    }
 
   }, []);
 
