@@ -23,6 +23,7 @@ export const Clickable = styled.div`
 `;
 
 // Values used for z-index.
+export const Z_WAY_ABOVE = 2;
 export const Z_ABOVE = 1;
 export const Z_BELOW = -1;
 
