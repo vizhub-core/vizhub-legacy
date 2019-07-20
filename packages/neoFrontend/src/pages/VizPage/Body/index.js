@@ -1,62 +1,16 @@
-import React, { useContext, useState, useCallback, useRef } from 'react';
-import { getVizHeight } from '../../../accessors';
+import React, { useContext, useState, useCallback } from 'react';
 import { NavBar } from '../../../NavBar';
-import { VizPageDataContext } from '../VizPageDataContext';
 import { URLStateContext } from '../URLStateContext';
 import { ForkingContext } from '../ForkingContext';
 import {
   Wrapper,
   Top,
   Bottom,
-  VizViewerScroller,
-  VizViewerCentering,
-  VizViewerContent,
-  HorizontalRule
 } from './styles';
 import { Head } from './Head';
-import { VizFrame } from './VizFrame';
-import { TitleBar } from './TitleBar';
-import { DescriptionSection } from './DescriptionSection';
 import { FullScreen } from './FullScreen';
 import { Editor } from './Editor';
-
-const VizViewer = ({ onFullScreen }) => {
-  const {
-    visualization,
-    ownerUser,
-    forkedFromVisualizationInfo,
-    forkedFromVisualizationOwnerUserName
-  } = useContext(VizPageDataContext);
-
-  const vizHeight = getVizHeight(visualization);
-
-  const scrollerRef = useRef();
-
-  return (
-    <VizViewerScroller ref={scrollerRef}>
-      <VizViewerCentering>
-        <VizViewerContent>
-          <VizFrame
-            vizHeight={vizHeight}
-            onFullScreen={onFullScreen}
-            scrollerRef={scrollerRef}
-          />
-          <TitleBar title={visualization.info.title} />
-          <HorizontalRule />
-          <DescriptionSection
-            visualization={visualization}
-            ownerUser={ownerUser}
-            forkedFromVisualizationInfo={forkedFromVisualizationInfo}
-            forkedFromVisualizationOwnerUserName={
-              forkedFromVisualizationOwnerUserName
-            }
-          />
-          <HorizontalRule />
-        </VizViewerContent>
-      </VizViewerCentering>
-    </VizViewerScroller>
-  );
-};
+import { Viewer } from './Viewer';
 
 export const Body = () => {
   const onFork = useContext(ForkingContext);
@@ -82,7 +36,7 @@ export const Body = () => {
       </Top>
       <Bottom>
         {showEditor ? <Editor /> : null}
-        <VizViewer onFullScreen={onFullScreen} />
+        <Viewer onFullScreen={onFullScreen} />
       </Bottom>
     </Wrapper>
   );
