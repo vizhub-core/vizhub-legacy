@@ -4,12 +4,15 @@ import { Clickable } from '../../../../../styles';
 const sectionActiveColor = 'rgba(255, 255, 255, 0.15)';
 
 export const Wrapper = styled.div`
-  border-left: 5px solid
-    ${props => (props.isActive ? 'transparent' : sectionActiveColor)};
   margin-bottom: 1px;
-  padding: 5px 15px 5px 15px;
   background-color: ${props =>
     props.isActive ? sectionActiveColor : 'transparent'};
+`;
+
+export const TitleEntry = styled.div`
+  padding: 5px 15px 5px 15px;
+  border-left: 5px solid
+    ${props => (props.isActive ? 'transparent' : sectionActiveColor)};
   position: relative;
 `;
 
