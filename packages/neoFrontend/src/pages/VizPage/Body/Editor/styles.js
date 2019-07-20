@@ -12,7 +12,13 @@ export const Wrapper = styled.div`
 `;
 
 export const FileEntry = styled(Clickable)`
-  padding: 5px 15px 5px 25px;
-  border-left: 5px solid
-    ${props => (props.isActive ? '#ffffff' : 'transparent')};
+  padding-top: ${props => props.theme.editorEntryVerticalPadding}px;
+  padding-bottom: ${props => props.theme.editorEntryVerticalPadding}px;
+  padding-left: ${props =>
+    props.theme.editorEntryHorizontalPadding +
+    props.theme.editorEntryIndentation}px;
+  padding-right: ${props => props.theme.editorEntryHorizontalPadding}px;
+  border-left: ${props => props.theme.editorEntryLeftBorderSize}px solid
+    ${props =>
+      props.isActive ? props.theme.editorFileActiveColor : 'transparent'};
 `;
