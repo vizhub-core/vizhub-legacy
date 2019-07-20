@@ -26,8 +26,12 @@ export const withURLState = Component =>
     const setActiveSection = setEdit;
 
     // Invoked when a file is selected (clicked on).
-    const setActiveFile = selectedFile =>
+    const setActiveFile = selectedFile => {
       setFile(selectedFile === activeFile ? undefined : selectedFile);
+
+      // Trigger viz runner to update its size.
+      window.dispatchEvent(new Event('editorToggled'));
+    };
 
     // The ID of the visualization we are viewing.
     const vizId = props.match.params.vizId;

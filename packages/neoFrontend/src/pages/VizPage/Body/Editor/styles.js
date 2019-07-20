@@ -13,8 +13,3 @@ export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-export const CodeEditor = styled.div`
-  width: 500px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-`;
