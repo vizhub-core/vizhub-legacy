@@ -53,7 +53,7 @@ export const Body = () => {
         <Head onFork={onFork} />
       </Top>
       <Bottom>
-        {showEditor ? <Editor /> : null}
+        {showEditor ? <Editor files={visualization.content.files} /> : null}
         <VizViewer ref={scrollerRef}>
           <TorsoWrapper>
             <Torso>
