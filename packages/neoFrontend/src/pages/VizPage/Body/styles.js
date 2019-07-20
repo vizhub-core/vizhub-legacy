@@ -32,9 +32,6 @@ export const Icon = styled(Clickable)`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
-  width: 35px;
-  margin-right: ${props => (props.rightmost ? '9px' : '0')};
 `;
 
 export const Footer = styled.div`

@@ -1,7 +1,6 @@
 import React from 'react';
 import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
-import { Icon } from '../styles';
-import { Wrapper, Right, Left } from './styles';
+import { Wrapper, Right, Left, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
 
 export const Head = ({ onFork }) => (
@@ -10,18 +9,18 @@ export const Head = ({ onFork }) => (
       <EditorToggler />
     </Left>
     <Right>
-      <Icon title="Create a Pull Request">
+      <HeadIcon title="Create a Pull Request">
         <PullSVG />
-      </Icon>
-      <Icon title="Fork this Viz" onClick={onFork} className="test-fork">
+      </HeadIcon>
+      <HeadIcon title="Fork this Viz" onClick={onFork} className="test-fork">
         <ForkSVG />
-      </Icon>
-      <Icon title="Share this Viz">
+      </HeadIcon>
+      <HeadIcon title="Share this Viz">
         <ShareSVG />
-      </Icon>
-      <Icon title="Settings" rightmost={true}>
+      </HeadIcon>
+      <HeadIcon title="Settings" rightmost={true}>
         <SettingsSVG />
-      </Icon>
+      </HeadIcon>
     </Right>
   </Wrapper>
 );
