@@ -25,16 +25,16 @@ iFrame.style['transform-origin'] = '0 0';
 iFrame.style['z-index'] = Z_BELOW;
 iFrame.style['background-color'] = '#ffffff';
 iFrame.style['box-shadow'] = theme.shadowLight;
-
 iFrame.style['transition-property'] = 'top, left, transform';
 
+// The number of milliseconds to transition when
+// moving the iframe whenever the mode changes.
 const transitionDuration = 500;
 const transitionDurationMS = transitionDuration + 'ms';
 const zeroMS = '0ms';
 
 let previousMode;
-let transitionTimeoutId;
-let modeChangedRecently;
+let timeoutId;
 
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
@@ -46,38 +46,32 @@ export const VizRunnerProvider = ({ children }) => {
   // it could be 'fullscreen' if it's shown in full screen mode,
   // or it could be 'mini' if it's shown in the mini view atop the code editor.
   const setVizRunnerTransform = useCallback(({ x, y, scale, mode }) => {
-    // Detect if the mode changed, so we can trigger a transition if it did.
+    // Transition smoothly when the mode changes.
+    // Check previousMode so we don't transition on first render.
     const modeChanged = previousMode && previousMode !== mode;
     previousMode = mode;
 
-    // Make sure the viz content is above everything else
-    // while it is being animated.
     if (modeChanged) {
+      // Make sure viz content is above everything else while transitioning.
       iFrame.style['z-index'] = Z_WAY_ABOVE;
-      clearTimeout(transitionTimeoutId);
-      transitionTimeoutId = setTimeout(() => {
+
+      // Set the transition duration before setting properties, so they animate.
+      iFrame.style['transition-duration'] = transitionDurationMS;
+
+      // Clear previous timeout, in case the mode changes multiple times
+      // within the transitionDuration time window.
+      clearTimeout(timeoutId);
+
+      // Wait for the transition to finish.
+      timeoutId = setTimeout(() => {
+        // Pop the content back under other things,
+        // where it should be normally.
         iFrame.style['z-index'] = Z_BELOW;
+
+        // Set this to zero so future updates happen instantly
+        iFrame.style['transition-duration'] = zeroMS;
       }, transitionDuration);
     }
-
-    // Handle the case of when the switch to viewer mode introduces a vertical scrollbar.
-    // Since the measuring happens twice, one synchronous and one after an animation frame,
-    // we need to make sure that the second measure (after an animation frame)
-    // doesn't interrupt the visual transition. So we need to wait 2 animation frames.
-    if (modeChanged) {
-      modeChangedRecently = true;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          modeChangedRecently = false;
-        });
-      });
-    }
-
-    // Animate smoothly when the mode changes.
-    // Do not animate if the mode did not change (e.g. on scroll or resize).
-    iFrame.style['transition-duration'] = modeChangedRecently
-      ? transitionDurationMS
-      : zeroMS;
 
     // Move the iframe to the new (x, y, scale).
     iFrame.style.transform = `scale(${scale})`;

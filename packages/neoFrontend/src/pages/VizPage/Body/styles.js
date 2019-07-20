@@ -29,19 +29,19 @@ export const Bottom = styled.div`
   min-height: 0;
 `;
 
-export const VizViewer = styled.div`
+export const VizViewerScroller = styled.div`
   flex: 1;
   overflow: auto;
 `;
 
 // This level handles horizontal centering & resize behavior.
-export const TorsoWrapper = styled.div`
+export const VizViewerCentering = styled.div`
   display: flex;
   justify-content: center;
 `;
 
 // Homage to bl.ocks.org with choice of 960px.
-export const Torso = styled(Content)`
+export const VizViewerContent = styled(Content)`
   max-width: 960px;
   padding: 10px;
 `;

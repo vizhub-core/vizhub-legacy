@@ -1,17 +1,20 @@
 import React, { useRef, useContext, useCallback } from 'react';
 import { MiniSVG, FullSVG } from '../../../../svg';
-import { vizWidth, defaultVizHeight } from '../../../../constants';
+import { vizWidth } from '../../../../constants';
+import { getVizHeight } from '../../../../accessors';
 import { VizRunnerContext } from '../../VizRunnerContext';
+import { VizPageDataContext } from '../../VizPageDataContext';
 import { useDimensions } from '../useDimensions';
 import { FooterIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
 
-export const FullScreen = ({
-  onExitFullScreen,
-  vizHeight = defaultVizHeight
-}) => {
+export const FullScreen = ({ onExitFullScreen }) => {
   const wrapperRef = useRef();
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
+
+  const { visualization } = useContext(VizPageDataContext);
+
+  const vizHeight = getVizHeight(visualization);
 
   // Shrink and grow to fill available width and height.
   const setDomRect = useCallback(
@@ -31,7 +34,8 @@ export const FullScreen = ({
         setVizRunnerTransform({
           x: width / 2 - (scale * vizWidth) / 2,
           y: 0,
-          scale
+          scale,
+          mode: 'fullscreen'
         });
       }
     },
