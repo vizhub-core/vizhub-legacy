@@ -28,7 +28,12 @@ iFrame.style['box-shadow'] = theme.shadowLight;
 
 iFrame.style['transition-property'] = 'top, left, transform';
 
+const transitionDuration = 500;
+const transitionDurationMS = transitionDuration + 'ms';
+const zeroMS = '0ms';
+
 let previousMode;
+let transitionTimeoutId;
 
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
@@ -43,16 +48,17 @@ export const VizRunnerProvider = ({ children }) => {
     const modeChanged = previousMode && previousMode !== mode;
     previousMode = mode;
 
-    iFrame.style['transition-duration'] = modeChanged ? '0.5s' : '0s';
+    iFrame.style['transition-duration'] = modeChanged ? transitionDurationMS : zeroMS;
     iFrame.style.transform = `scale(${scale})`;
     iFrame.style.top = `${y}px`;
     iFrame.style.left = `${x}px`;
 
     if(modeChanged){
       iFrame.style['z-index'] = Z_WAY_ABOVE;
-      setTimeout(() => {
+      clearTimeout(transitionTimeoutId);
+      transitionTimeoutId = setTimeout(() => {
         iFrame.style['z-index'] = Z_BELOW;
-      }, 500);
+      }, transitionDuration);
     }
 
   }, []);
