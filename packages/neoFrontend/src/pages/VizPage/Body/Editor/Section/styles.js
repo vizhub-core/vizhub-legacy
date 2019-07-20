@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Clickable } from '../../../../../styles';
 
-const sectionActiveColor = 'rgba(192, 192, 192, 0.22)';
+const sectionActiveColor = 'rgba(255, 255, 255, 0.15)';
 
 export const Wrapper = styled.div`
   border-left: 5px solid
