@@ -4,7 +4,7 @@ import { Section } from './Section';
 
 export const Editor = () => (
   <Wrapper>
-    <Section title="visual editor" />
-    <Section title="files" />
+    <Section title="visual editor" id="visual" />
+    <Section title="files" id="files" />
   </Wrapper>
 );
