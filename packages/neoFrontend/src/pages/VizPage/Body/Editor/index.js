@@ -1,9 +1,10 @@
 import React from 'react';
-import { Wrapper, Section } from './styles';
+import { Wrapper } from './styles';
+import { Section } from './Section';
 
 export const Editor = () => (
   <Wrapper>
-    <Section>visual editor</Section>
-    <Section>files</Section>
+    <Section title="visual editor" />
+    <Section title="files" />
   </Wrapper>
 );
