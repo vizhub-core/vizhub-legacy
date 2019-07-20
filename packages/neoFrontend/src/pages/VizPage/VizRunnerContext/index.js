@@ -19,6 +19,8 @@ const iFrame = document.createElement('iframe');
 
 iFrame.setAttribute('srcDoc', srcDoc);
 iFrame.setAttribute('width', vizWidth);
+
+// TODO consider putting these in a CSS class?
 iFrame.style.position = 'fixed';
 iFrame.style.border = 0;
 iFrame.style['transform-origin'] = '0 0';
