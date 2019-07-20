@@ -21,4 +21,5 @@ export const FileEntry = styled(Clickable)`
   border-left: ${props => props.theme.editorEntryLeftBorderSize}px solid
     ${props =>
       props.isActive ? props.theme.editorFileActiveColor : 'transparent'};
+  text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
 `;
