@@ -6,11 +6,7 @@ import { accessors } from './accessors';
 export const withURLState = Component =>
   withRouter(props => {
     // Raw accessor functions for URL parameter state.
-    const {
-      edit,
-      setEdit
-      //file: activeFileId, setFile
-    } = accessors(props);
+    const { edit, setEdit, file: activeFile, setFile } = accessors(props);
 
     // Boolean value, whether or not the editor should be shown.
     const showEditor = edit !== undefined;
@@ -29,17 +25,17 @@ export const withURLState = Component =>
     // Accepts a section id string.
     const setActiveSection = setEdit;
 
-    //// Invoked when a file is selected (clicked on).
-    //const selectFile = selectedFile => () =>
-    //  setFile(selectedFile === activeFileId ? undefined : selectedFile);
+    // Invoked when a file is selected (clicked on).
+    const setActiveFile = selectedFile =>
+      setFile(selectedFile === activeFile ? undefined : selectedFile);
 
     // The ID of the visualization we are viewing.
     const vizId = props.match.params.vizId;
 
     // Derived accessors for URL state, exposed to components.
     const urlState = {
-      // activeFileId,
-      // selectFile,
+      activeFile,
+      setActiveFile,
       showEditor,
       toggleEditor,
       activeSection,
