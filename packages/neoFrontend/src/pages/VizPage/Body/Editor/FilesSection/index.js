@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { URLStateContext } from '../../URLStateContext';
-import { VizPageDataContext } from '../../VizPageDataContext';
-import { Section } from './Section';
+import { URLStateContext } from '../../../URLStateContext';
+import { VizPageDataContext } from '../../../VizPageDataContext';
+import { Section } from '../Section';
 import { FileEntry } from './styles';
 
 export const FilesSection = () => {
