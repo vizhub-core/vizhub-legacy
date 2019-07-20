@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Clickable, Z_ABOVE } from '../../../styles';
-import { Content } from '../../styles';
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -27,28 +26,6 @@ export const Bottom = styled.div`
   flex: 1;
   display: flex;
   min-height: 0;
-`;
-
-export const VizViewerScroller = styled.div`
-  flex: 1;
-  overflow: auto;
-`;
-
-// This level handles horizontal centering & resize behavior.
-export const VizViewerCentering = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-// Homage to bl.ocks.org with choice of 960px.
-export const VizViewerContent = styled(Content)`
-  max-width: 960px;
-  padding: 10px;
-`;
-
-export const HorizontalRule = styled.div`
-  height: 1px;
-  background-color: #bfc0bf;
 `;
 
 export const Icon = styled(Clickable)`

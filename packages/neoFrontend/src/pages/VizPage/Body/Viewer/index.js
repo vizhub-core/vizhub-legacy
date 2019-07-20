@@ -1,15 +1,10 @@
 import React, { useContext, useRef } from 'react';
 import { getVizHeight } from '../../../../accessors';
 import { VizPageDataContext } from '../../VizPageDataContext';
-import {
-  VizViewerScroller,
-  VizViewerCentering,
-  VizViewerContent,
-  HorizontalRule
-} from '../styles';
-import { VizFrame } from '../VizFrame';
-import { TitleBar } from '../TitleBar';
-import { DescriptionSection } from '../DescriptionSection';
+import { Scroller, Centering, ViewerContent, HorizontalRule } from './styles';
+import { VizFrame } from './VizFrame';
+import { TitleBar } from './TitleBar';
+import { DescriptionSection } from './DescriptionSection';
 
 export const Viewer = ({ onFullScreen }) => {
   const {
@@ -24,9 +19,9 @@ export const Viewer = ({ onFullScreen }) => {
   const scrollerRef = useRef();
 
   return (
-    <VizViewerScroller ref={scrollerRef}>
-      <VizViewerCentering>
-        <VizViewerContent>
+    <Scroller ref={scrollerRef}>
+      <Centering>
+        <ViewerContent>
           <VizFrame
             vizHeight={vizHeight}
             onFullScreen={onFullScreen}
@@ -43,8 +38,8 @@ export const Viewer = ({ onFullScreen }) => {
             }
           />
           <HorizontalRule />
-        </VizViewerContent>
-      </VizViewerCentering>
-    </VizViewerScroller>
+        </ViewerContent>
+      </Centering>
+    </Scroller>
   );
 };

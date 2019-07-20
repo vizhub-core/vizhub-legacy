@@ -2,11 +2,7 @@ import React, { useContext, useState, useCallback } from 'react';
 import { NavBar } from '../../../NavBar';
 import { URLStateContext } from '../URLStateContext';
 import { ForkingContext } from '../ForkingContext';
-import {
-  Wrapper,
-  Top,
-  Bottom,
-} from './styles';
+import { Wrapper, Top, Bottom } from './styles';
 import { Head } from './Head';
 import { FullScreen } from './FullScreen';
 import { Editor } from './Editor';
