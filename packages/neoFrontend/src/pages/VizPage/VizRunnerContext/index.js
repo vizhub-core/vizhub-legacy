@@ -34,6 +34,7 @@ const zeroMS = '0ms';
 
 let previousMode;
 let transitionTimeoutId;
+let modeChangedRecently;
 
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
@@ -45,15 +46,13 @@ export const VizRunnerProvider = ({ children }) => {
   // it could be 'fullscreen' if it's shown in full screen mode,
   // or it could be 'mini' if it's shown in the mini view atop the code editor.
   const setVizRunnerTransform = useCallback(({ x, y, scale, mode }) => {
+    // Detect if the mode changed, so we can trigger a transition if it did.
     const modeChanged = previousMode && previousMode !== mode;
     previousMode = mode;
 
-    iFrame.style['transition-duration'] = modeChanged ? transitionDurationMS : zeroMS;
-    iFrame.style.transform = `scale(${scale})`;
-    iFrame.style.top = `${y}px`;
-    iFrame.style.left = `${x}px`;
-
-    if(modeChanged){
+    // Make sure the viz content is above everything else
+    // while it is being animated.
+    if (modeChanged) {
       iFrame.style['z-index'] = Z_WAY_ABOVE;
       clearTimeout(transitionTimeoutId);
       transitionTimeoutId = setTimeout(() => {
@@ -61,6 +60,29 @@ export const VizRunnerProvider = ({ children }) => {
       }, transitionDuration);
     }
 
+    // Handle the case of when the switch to viewer mode introduces a vertical scrollbar.
+    // Since the measuring happens twice, one synchronous and one after an animation frame,
+    // we need to make sure that the second measure (after an animation frame)
+    // doesn't interrupt the visual transition. So we need to wait 2 animation frames.
+    if (modeChanged) {
+      modeChangedRecently = true;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          modeChangedRecently = false;
+        });
+      });
+    }
+
+    // Animate smoothly when the mode changes.
+    // Do not animate if the mode did not change (e.g. on scroll or resize).
+    iFrame.style['transition-duration'] = modeChangedRecently
+      ? transitionDurationMS
+      : zeroMS;
+
+    // Move the iframe to the new (x, y, scale).
+    iFrame.style.transform = `scale(${scale})`;
+    iFrame.style.top = `${y}px`;
+    iFrame.style.left = `${x}px`;
   }, []);
 
   const contextValue = { setVizRunnerTransform };
