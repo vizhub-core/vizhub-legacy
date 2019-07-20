@@ -1,9 +1,9 @@
 import React, { useRef, useContext, useCallback, useState } from 'react';
-import { MiniSVG, FullSVG } from '../../../../svg';
-import { vizWidth, defaultVizHeight } from '../../../../constants';
-import { VizRunnerContext } from '../../VizRunnerContext';
-import { useDimensions } from '../useDimensions';
-import { Footer, FooterIcon } from '../styles';
+import { MiniSVG, FullSVG } from '../../../../../svg';
+import { vizWidth, defaultVizHeight } from '../../../../../constants';
+import { VizRunnerContext } from '../../../VizRunnerContext';
+import { useDimensions } from '../../useDimensions';
+import { Footer, FooterIcon } from '../../styles';
 import { Wrapper } from './styles';
 
 export const VizFrame = ({

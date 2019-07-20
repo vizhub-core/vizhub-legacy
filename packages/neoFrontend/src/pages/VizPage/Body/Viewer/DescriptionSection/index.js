@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import marked from 'marked';
 import { toDate } from 'vizhub-entities';
-import { Avatar } from '../../../../Avatar';
+import { Avatar } from '../../../../../Avatar';
 import {
   Wrapper,
   Left,
