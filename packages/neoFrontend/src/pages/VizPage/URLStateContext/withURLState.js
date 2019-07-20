@@ -22,12 +22,12 @@ export const withURLState = Component =>
       window.dispatchEvent(new Event('editorToggled'));
     };
 
-    //// The active editor section id string if a section is active.
-    //// null if no editor section is active.
-    //const activeSection = edit;
+    // The active editor section id string if a section is active.
+    // null if no editor section is active.
+    const activeSection = edit;
 
-    //// Accepts a section id string.
-    //const setActiveSection = setEdit;
+    // Accepts a section id string.
+    const setActiveSection = setEdit;
 
     //// Invoked when a file is selected (clicked on).
     //const selectFile = selectedFile => () =>
@@ -42,8 +42,8 @@ export const withURLState = Component =>
       // selectFile,
       showEditor,
       toggleEditor,
-      // activeSection,
-      // setActiveSection,
+      activeSection,
+      setActiveSection,
       vizId
     };
 
