@@ -19,7 +19,6 @@ export const useURLState = props => {
   // Toggles the editor to show and hide.
   const toggleEditor = () => {
     setShowEditor(!showEditor);
-    window.dispatchEvent(new Event('editorResized'));
   };
 
   // The active editor section id string if a section is active.
@@ -33,10 +32,6 @@ export const useURLState = props => {
   const setActiveFile = selectedFile => {
     const newFile = selectedFile === activeFile ? undefined : selectedFile;
     setFile(newFile);
-
-    if (activeFile === undefined || newFile === undefined) {
-      window.dispatchEvent(new Event('editorResized'));
-    }
   };
 
   // The ID of the visualization we are viewing.
