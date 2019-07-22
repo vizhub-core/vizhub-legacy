@@ -34,14 +34,11 @@ let previousMode;
 let timeoutId;
 
 const setVizRunnerMode = mode => {
-  console.log('setVizRunnerMode, mode = ' + mode);
-  if (mode === 'hide') {
-    iFrame.style.visibility = 'hidden';
-    return;
-  }
-  // Transition smoothly when the mode changes.
-  // Check previousMode so we don't transition on first render.
-  const modeChanged = previousMode && previousMode !== mode;
+  // if (mode === 'hide') {
+  //   iFrame.style.visibility = 'hidden';
+  //   return;
+  // }
+  const modeChanged = previousMode !== mode;
   previousMode = mode;
 
   if (modeChanged) {
@@ -78,6 +75,8 @@ const setVizRunnerTransform = ({ x, y, scale, mode }) => {
     //setVizRunnerMode(mode);
     //throw new Error();
   }
+
+  console.log('transform');
 
   // Move the iframe to the new (x, y, scale).
   iFrame.style.transform = `scale(${scale})`;
