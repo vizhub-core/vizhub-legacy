@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Icon} from '../styles';
+import { Icon } from '../styles';
 
 export const Wrapper = styled.div`
   height: 30px;

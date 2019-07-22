@@ -8,6 +8,8 @@ import { useDimensions } from '../useDimensions';
 import { FooterIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
 
+const mode = 'full';
+
 export const FullScreen = ({ onExitFullScreen }) => {
   const wrapperRef = useRef();
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
@@ -27,7 +29,7 @@ export const FullScreen = ({ onExitFullScreen }) => {
           x: 0,
           y: height / 2 - (scale * vizHeight) / 2,
           scale,
-          mode: 'fullscreen'
+          mode
         });
       } else {
         const scale = height / vizHeight;
@@ -35,7 +37,7 @@ export const FullScreen = ({ onExitFullScreen }) => {
           x: width / 2 - (scale * vizWidth) / 2,
           y: 0,
           scale,
-          mode: 'fullscreen'
+          mode
         });
       }
     },
