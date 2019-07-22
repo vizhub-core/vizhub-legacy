@@ -10,7 +10,9 @@ import { Viewer } from './Viewer';
 
 export const Body = () => {
   const onFork = useContext(ForkingContext);
-  const { isFullScreen, setIsFullScreen } = useContext(URLStateContext);
+  const { isFullScreen, setIsFullScreen, showViewer } = useContext(
+    URLStateContext
+  );
 
   const onFullScreen = useCallback(() => {
     setIsFullScreen(true);
@@ -30,7 +32,7 @@ export const Body = () => {
       </Top>
       <Bottom>
         <Editor />
-        <Viewer onFullScreen={onFullScreen} />
+        {showViewer ? <Viewer onFullScreen={onFullScreen} /> : null}
       </Bottom>
     </Wrapper>
   );

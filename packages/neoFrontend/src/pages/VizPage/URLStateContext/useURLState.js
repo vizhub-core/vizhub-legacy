@@ -58,9 +58,13 @@ export const useURLState = props => {
   };
 
   const hideViz = () => setMode('hide');
+
   const isFullScreen = mode === 'full';
+
   const setIsFullScreen = isFullScreen =>
     setMode(isFullScreen ? 'full' : 'viewer');
+
+  const showViewer = mode !== 'hide';
 
   // Derived accessors for URL state, exposed to components.
   return {
@@ -75,6 +79,7 @@ export const useURLState = props => {
     setMode,
     hideViz,
     isFullScreen,
-    setIsFullScreen
+    setIsFullScreen,
+    showViewer
   };
 };

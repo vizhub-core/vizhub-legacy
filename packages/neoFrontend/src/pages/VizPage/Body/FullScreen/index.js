@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useCallback } from 'react';
-import { MiniSVG, FullSVG } from '../../../../svg';
+import { MiniSVG, FullExitSVG } from '../../../../svg';
 import { vizWidth } from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
 import { VizRunnerContext } from '../../VizRunnerContext';
@@ -45,7 +45,7 @@ export const FullScreen = ({ onExitFullScreen }) => {
           <MiniSVG />
         </FooterIcon>
         <FooterIcon rightmost={true} onClick={onExitFullScreen}>
-          <FullSVG />
+          <FullExitSVG />
         </FooterIcon>
       </FullScreenFooter>
     </Wrapper>
