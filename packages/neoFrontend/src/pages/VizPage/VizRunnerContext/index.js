@@ -45,7 +45,7 @@ export const VizRunnerProvider = ({ children }) => {
 
   // 'mode' here means the context in which the viz content is being viewed.
   // For example, it could be 'viewer' if it's shown in the viz viewer section,
-  // it could be 'fullscreen' if it's shown in full screen mode,
+  // it could be 'full' if it's shown in full screen mode,
   // or it could be 'mini' if it's shown in the mini view atop the code editor.
   const setVizRunnerTransform = useCallback(({ x, y, scale, mode }) => {
     // Transition smoothly when the mode changes.
