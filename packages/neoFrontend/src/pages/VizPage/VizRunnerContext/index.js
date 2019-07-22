@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useRef,
-  useEffect
-} from 'react';
+import React, { createContext, useContext, useRef, useEffect } from 'react';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
