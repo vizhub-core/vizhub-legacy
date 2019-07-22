@@ -3,8 +3,8 @@ import { MiniSVG, FullSVG } from '../../../../../svg';
 import { vizWidth, defaultVizHeight } from '../../../../../constants';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { useDimensions } from '../../useDimensions';
-import { Footer, FooterIcon } from '../../styles';
-import { Wrapper } from './styles';
+import { FooterIcon } from '../../styles';
+import { Wrapper, VizFrameFooter } from './styles';
 
 export const VizFrame = ({
   vizHeight = defaultVizHeight,
@@ -33,14 +33,14 @@ export const VizFrame = ({
       {scale ? (
         <>
           <div style={{ height: vizHeight * scale }} />
-          <Footer>
+          <VizFrameFooter>
             <FooterIcon leftmost={true}>
               <MiniSVG />
             </FooterIcon>
             <FooterIcon rightmost={true} onClick={onFullScreen}>
               <FullSVG />
             </FooterIcon>
-          </Footer>
+          </VizFrameFooter>
         </>
       ) : null}
     </Wrapper>
