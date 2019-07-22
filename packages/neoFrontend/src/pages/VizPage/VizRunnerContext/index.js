@@ -5,6 +5,10 @@ import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 import { useListener } from '../useListener';
 
+// The number of milliseconds to transition when
+// moving the iframe whenever the mode changes.
+const transitionDuration = 500;
+
 const srcDoc = `<style>body { background-color: pink; }</style>`;
 export const VizRunnerContext = createContext();
 
@@ -25,11 +29,7 @@ iFrame.style['background-color'] = '#ffffff';
 iFrame.style['box-shadow'] = theme.shadowLight;
 iFrame.style['transition-property'] = 'transform';
 
-// The number of milliseconds to transition when
-// moving the iframe whenever the mode changes.
-const transitionDuration = 500;
-const transitionDurationMS = transitionDuration + 'ms';
-const zeroMS = '0ms';
+iFrame.style['transition-timing-function'] = 'cubic-bezier(.28,.66,.15,1)';
 
 let previousMode;
 let timeoutId;
@@ -51,7 +51,7 @@ const setVizRunnerMode = mode => {
     iFrame.style['z-index'] = Z_WAY_ABOVE;
 
     // Set the transition duration before setting properties, so they animate.
-    iFrame.style['transition-duration'] = transitionDurationMS;
+    iFrame.style['transition-duration'] = transitionDuration + 'ms';
 
     // Clear previous timeout, in case the mode changes multiple times
     // within the transitionDuration time window.
@@ -64,7 +64,7 @@ const setVizRunnerMode = mode => {
       iFrame.style['z-index'] = Z_BELOW;
 
       // Set this to zero so future updates happen instantly
-      iFrame.style['transition-duration'] = zeroMS;
+      iFrame.style['transition-duration'] = '0ms';
     }, transitionDuration);
   }
 };
