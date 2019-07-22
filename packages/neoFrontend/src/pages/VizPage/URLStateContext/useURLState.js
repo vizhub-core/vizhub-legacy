@@ -60,9 +60,8 @@ export const useURLState = props => {
   const hideViz = () => setMode('hide');
 
   const isFullScreen = mode === 'full';
-
-  const setIsFullScreen = isFullScreen =>
-    setMode(isFullScreen ? 'full' : 'viewer');
+  const enterFullScreen = () => setMode('full');
+  const exitFullScreen = () => setMode('viewer');
 
   const showViewer = mode !== 'hide';
 
@@ -79,7 +78,8 @@ export const useURLState = props => {
     setMode,
     hideViz,
     isFullScreen,
-    setIsFullScreen,
+    enterFullScreen,
+    exitFullScreen,
     showViewer
   };
 };

@@ -9,7 +9,7 @@ import { Wrapper, VizFrameFooter } from './styles';
 export const VizFrame = ({
   vizHeight = defaultVizHeight,
   scrollerRef,
-  onFullScreen
+  onEnterFullScreen
 }) => {
   const wrapperRef = useRef();
 
@@ -37,7 +37,7 @@ export const VizFrame = ({
             <FooterIcon leftmost={true}>
               <MiniSVG />
             </FooterIcon>
-            <FooterIcon rightmost={true} onClick={onFullScreen}>
+            <FooterIcon rightmost={true} onClick={onEnterFullScreen}>
               <FullSVG />
             </FooterIcon>
           </VizFrameFooter>
