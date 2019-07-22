@@ -33,11 +33,15 @@ const zeroMS = '0ms';
 let previousMode;
 let timeoutId;
 
+// 'mode' here means the context in which the viz content is being viewed.
+// For example, it could be 'viewer' if it's shown in the viz viewer section,
+// it could be 'full' if it's shown in full screen mode,
+// or it could be 'mini' if it's shown in the mini view atop the code editor.
 const setVizRunnerMode = mode => {
-  // if (mode === 'hide') {
-  //   iFrame.style.visibility = 'hidden';
-  //   return;
-  // }
+  if (mode === 'hide') {
+    iFrame.style.visibility = 'hidden';
+    return;
+  }
   const modeChanged = previousMode !== mode;
   previousMode = mode;
 
@@ -66,19 +70,8 @@ const setVizRunnerMode = mode => {
 
 const onVizModeChange = event => setVizRunnerMode(event.detail);
 
-// 'mode' here means the context in which the viz content is being viewed.
-// For example, it could be 'viewer' if it's shown in the viz viewer section,
-// it could be 'full' if it's shown in full screen mode,
-// or it could be 'mini' if it's shown in the mini view atop the code editor.
+// Move the iframe to the new (x, y, scale).
 const setVizRunnerTransform = ({ x, y, scale, mode }) => {
-  if (mode) {
-    //setVizRunnerMode(mode);
-    //throw new Error();
-  }
-
-  console.log('transform');
-
-  // Move the iframe to the new (x, y, scale).
   iFrame.style.transform = `scale(${scale})`;
   iFrame.style.top = `${y}px`;
   iFrame.style.left = `${x}px`;

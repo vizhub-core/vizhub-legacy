@@ -8,8 +8,6 @@ import { useDimensions } from '../useDimensions';
 import { FooterIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
 
-const mode = 'full';
-
 export const FullScreen = ({ onExitFullScreen }) => {
   const wrapperRef = useRef();
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
@@ -23,23 +21,17 @@ export const FullScreen = ({ onExitFullScreen }) => {
     ({ width, height }) => {
       const vizAspect = vizWidth / vizHeight;
       const aspect = width / height;
+      let x, y, scale;
       if (vizAspect > aspect) {
-        const scale = width / vizWidth;
-        setVizRunnerTransform({
-          x: 0,
-          y: height / 2 - (scale * vizHeight) / 2,
-          scale,
-          mode
-        });
+        scale = width / vizWidth;
+        x = 0;
+        y = height / 2 - (scale * vizHeight) / 2;
       } else {
-        const scale = height / vizHeight;
-        setVizRunnerTransform({
-          x: width / 2 - (scale * vizWidth) / 2,
-          y: 0,
-          scale,
-          mode
-        });
+        scale = height / vizHeight;
+        x = width / 2 - (scale * vizWidth) / 2;
+        y = 0;
       }
+      setVizRunnerTransform({ x, y, scale });
     },
     [setVizRunnerTransform, vizHeight]
   );

@@ -18,7 +18,7 @@ export const useDimensions = ({ wrapperRef, setDomRect, scrollerRef = {} }) => {
   }, [measure]);
 
   // Measure the initial dimensions.
-  useLayoutEffect(measureTwice, [measure]);
+  useLayoutEffect(measureTwice, []);
 
   // Measure the dimensions on page resize.
   useListener('resize', measureTwice);
