@@ -15,14 +15,15 @@ const iFrame = document.createElement('iframe');
 iFrame.setAttribute('srcDoc', srcDoc);
 iFrame.setAttribute('width', vizWidth);
 
-// TODO consider putting these in a CSS class?
 iFrame.style.position = 'fixed';
 iFrame.style.border = 0;
+iFrame.style.top = `0px`;
+iFrame.style.left = `0px`;
 iFrame.style['transform-origin'] = '0 0';
 iFrame.style['z-index'] = Z_BELOW;
 iFrame.style['background-color'] = '#ffffff';
 iFrame.style['box-shadow'] = theme.shadowLight;
-iFrame.style['transition-property'] = 'top, left, transform';
+iFrame.style['transition-property'] = 'transform';
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -72,9 +73,11 @@ const onVizModeChange = event => setVizRunnerMode(event.detail);
 
 // Move the iframe to the new (x, y, scale).
 const setVizRunnerTransform = ({ x, y, scale, mode }) => {
-  iFrame.style.transform = `scale(${scale})`;
-  iFrame.style.top = `${y}px`;
-  iFrame.style.left = `${x}px`;
+  iFrame.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+
+  // iFrame.style.transform = `scale(${scale})`;
+  // iFrame.style.top = `${y}px`;
+  // iFrame.style.left = `${x}px`;
 };
 
 export const VizRunnerProvider = ({ children }) => {
