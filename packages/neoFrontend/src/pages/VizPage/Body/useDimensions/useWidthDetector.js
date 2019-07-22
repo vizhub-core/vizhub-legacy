@@ -22,10 +22,7 @@ export const useWidthDetector = (containerRef, onWidthChanged) => {
       const container = containerRef.current;
       container.appendChild(detector);
 
-      // Invoke here to capture initial width.
       onWidthChanged();
-
-      // Detect when width changes hereafter.
       detector.contentWindow.addEventListener('resize', onWidthChanged);
 
       return () => {
