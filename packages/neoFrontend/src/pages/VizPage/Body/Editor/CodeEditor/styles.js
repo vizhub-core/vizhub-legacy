@@ -3,8 +3,9 @@ import { Icon } from '../../styles';
 
 export const Wrapper = styled.div`
   width: 500px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
   position: relative;
+  border-left: ${props =>
+    props.showLeftBorder ? '1px solid rgba(255, 255, 255, 0.5)' : 'none'};
 `;
 
 export const CodeEditorIcon = styled(Icon)`

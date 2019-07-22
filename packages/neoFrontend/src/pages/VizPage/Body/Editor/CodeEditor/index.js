@@ -5,13 +5,13 @@ import { FullSVG } from '../../../../../svg';
 import { Wrapper, CodeEditorIcon } from './styles';
 
 export const CodeEditor = () => {
-  const { activeFile } = useContext(URLStateContext);
+  const { activeFile, showEditor, hideViz } = useContext(URLStateContext);
   //const { visualization } = useContext(VizPageDataContext);
   //const { files } = visualization.content;
 
   return activeFile ? (
-    <Wrapper>
-      <CodeEditorIcon>
+    <Wrapper showLeftBorder={showEditor}>
+      <CodeEditorIcon onClick={hideViz}>
         <FullSVG />
       </CodeEditorIcon>
     </Wrapper>

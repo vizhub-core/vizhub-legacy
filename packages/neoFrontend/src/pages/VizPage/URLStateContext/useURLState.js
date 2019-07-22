@@ -19,7 +19,7 @@ export const useURLState = props => {
   // Toggles the editor to show and hide.
   const toggleEditor = () => {
     setShowEditor(!showEditor);
-    window.dispatchEvent(new Event('editorToggled'));
+    window.dispatchEvent(new Event('editorResized'));
   };
 
   // The active editor section id string if a section is active.
@@ -31,10 +31,12 @@ export const useURLState = props => {
 
   // Invoked when a file is selected (clicked on).
   const setActiveFile = selectedFile => {
-    setFile(selectedFile === activeFile ? undefined : selectedFile);
+    const newFile = selectedFile === activeFile ? undefined : selectedFile;
+    setFile(newFile);
 
-    // Trigger viz runner to update its size.
-    window.dispatchEvent(new Event('editorToggled'));
+    if (activeFile === undefined || newFile === undefined) {
+      window.dispatchEvent(new Event('editorResized'));
+    }
   };
 
   // The ID of the visualization we are viewing.
@@ -54,6 +56,8 @@ export const useURLState = props => {
   const setMode = newMode =>
     setModeRaw(newMode === 'viewer' ? undefined : newMode);
 
+  const hideViz = () => setMode('hide');
+
   // Derived accessors for URL state, exposed to components.
   return {
     activeFile,
@@ -64,6 +68,7 @@ export const useURLState = props => {
     setActiveSection,
     vizId,
     mode,
-    setMode
+    setMode,
+    hideViz
   };
 };

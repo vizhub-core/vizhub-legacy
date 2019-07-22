@@ -1,6 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react';
 import { NavBar } from '../../../NavBar';
-import { URLStateContext } from '../URLStateContext';
 import { ForkingContext } from '../ForkingContext';
 import { Wrapper, Top, Bottom } from './styles';
 import { Head } from './Head';
@@ -20,8 +19,6 @@ export const Body = () => {
     setIsFullScreen(false);
   }, [setIsFullScreen]);
 
-  const { showEditor } = useContext(URLStateContext);
-
   return isFullScreen ? (
     <FullScreen onExitFullScreen={onExitFullScreen} />
   ) : (
@@ -31,7 +28,7 @@ export const Body = () => {
         <Head onFork={onFork} />
       </Top>
       <Bottom>
-        {showEditor ? <Editor /> : null}
+        <Editor />
         <Viewer onFullScreen={onFullScreen} />
       </Bottom>
     </Wrapper>
