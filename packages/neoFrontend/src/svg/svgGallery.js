@@ -9,6 +9,7 @@ import { ArrowSVG } from './ArrowSVG';
 import { VoteSVG } from './VoteSVG';
 import { SpinnerSVG } from './SpinnerSVG';
 import { FullSVG } from './FullSVG';
+import { FullExitSVG } from './FullExitSVG';
 import { MiniSVG } from './MiniSVG';
 import { SplitSVG } from './SplitSVG';
 
@@ -25,6 +26,7 @@ export const SVGGallery = () => (
     <VoteSVG />
     <VoteSVG down={true} />
     <FullSVG />
+    <FullExitSVG />
     <MiniSVG />
     <SplitSVG />
     <SpinnerSVG />
