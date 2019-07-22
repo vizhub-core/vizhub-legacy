@@ -2,7 +2,6 @@ import React, {
   createContext,
   useContext,
   useRef,
-  useCallback,
   useEffect
 } from 'react';
 import { VizPageDataContext } from '../VizPageDataContext';
@@ -38,48 +37,56 @@ const zeroMS = '0ms';
 let previousMode;
 let timeoutId;
 
+const setVizRunnerMode = mode => {
+  if (mode === 'hide') {
+    iFrame.style.visibility = 'hidden';
+    return;
+  }
+  // Transition smoothly when the mode changes.
+  // Check previousMode so we don't transition on first render.
+  const modeChanged = previousMode && previousMode !== mode;
+  previousMode = mode;
+
+  if (modeChanged) {
+    // Make sure viz content is above everything else while transitioning.
+    iFrame.style['z-index'] = Z_WAY_ABOVE;
+
+    // Set the transition duration before setting properties, so they animate.
+    iFrame.style['transition-duration'] = transitionDurationMS;
+
+    // Clear previous timeout, in case the mode changes multiple times
+    // within the transitionDuration time window.
+    clearTimeout(timeoutId);
+
+    // Wait for the transition to finish.
+    timeoutId = setTimeout(() => {
+      // Pop the content back under other things,
+      // where it should be normally.
+      iFrame.style['z-index'] = Z_BELOW;
+
+      // Set this to zero so future updates happen instantly
+      iFrame.style['transition-duration'] = zeroMS;
+    }, transitionDuration);
+  }
+};
+
+// 'mode' here means the context in which the viz content is being viewed.
+// For example, it could be 'viewer' if it's shown in the viz viewer section,
+// it could be 'full' if it's shown in full screen mode,
+// or it could be 'mini' if it's shown in the mini view atop the code editor.
+const setVizRunnerTransform = ({ x, y, scale, mode }) => {
+  setVizRunnerMode(mode);
+
+  // Move the iframe to the new (x, y, scale).
+  iFrame.style.transform = `scale(${scale})`;
+  iFrame.style.top = `${y}px`;
+  iFrame.style.left = `${x}px`;
+};
+
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
   const vizHeight = visualization.info.height || defaultVizHeight;
   const ref = useRef();
-
-  // 'mode' here means the context in which the viz content is being viewed.
-  // For example, it could be 'viewer' if it's shown in the viz viewer section,
-  // it could be 'full' if it's shown in full screen mode,
-  // or it could be 'mini' if it's shown in the mini view atop the code editor.
-  const setVizRunnerTransform = useCallback(({ x, y, scale, mode }) => {
-    // Transition smoothly when the mode changes.
-    // Check previousMode so we don't transition on first render.
-    const modeChanged = previousMode && previousMode !== mode;
-    previousMode = mode;
-
-    if (modeChanged) {
-      // Make sure viz content is above everything else while transitioning.
-      iFrame.style['z-index'] = Z_WAY_ABOVE;
-
-      // Set the transition duration before setting properties, so they animate.
-      iFrame.style['transition-duration'] = transitionDurationMS;
-
-      // Clear previous timeout, in case the mode changes multiple times
-      // within the transitionDuration time window.
-      clearTimeout(timeoutId);
-
-      // Wait for the transition to finish.
-      timeoutId = setTimeout(() => {
-        // Pop the content back under other things,
-        // where it should be normally.
-        iFrame.style['z-index'] = Z_BELOW;
-
-        // Set this to zero so future updates happen instantly
-        iFrame.style['transition-duration'] = zeroMS;
-      }, transitionDuration);
-    }
-
-    // Move the iframe to the new (x, y, scale).
-    iFrame.style.transform = `scale(${scale})`;
-    iFrame.style.top = `${y}px`;
-    iFrame.style.left = `${x}px`;
-  }, []);
 
   const contextValue = { setVizRunnerTransform };
 

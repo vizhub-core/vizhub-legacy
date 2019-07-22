@@ -1,5 +1,12 @@
 import { useEffect, useLayoutEffect, useCallback } from 'react';
 
+const listen = (type, listener, element = window) => {
+  element.addEventListener(type, listener);
+  return () => {
+    element.removeEventListener(type, listener);
+  };
+};
+
 // Inspired by https://github.com/Swizec/useDimensions
 export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
   // Measures the current dimensions.
@@ -19,31 +26,17 @@ export const useDimensions = ({ wrapperRef, scrollerRef, setDomRect }) => {
   useLayoutEffect(measureTwice, [measure]);
 
   // Measure the dimensions on resize.
-  useEffect(() => {
-    window.addEventListener('resize', measureTwice);
-    return () => {
-      window.removeEventListener('resize', measureTwice);
-    };
-  }, [measureTwice, scrollerRef]);
+  useEffect(() => listen('resize', measureTwice), [measureTwice]);
 
-  // Measure the dimensions on scroll.
+  // Measure the dimensions on scroll (if scrollerRef provided).
   useEffect(() => {
     if (scrollerRef) {
-      const scroller = scrollerRef.current;
-      scroller.addEventListener('scroll', measure);
-      return () => {
-        scroller.removeEventListener('scroll', measure);
-      };
+      return listen('scroll', measure, scrollerRef.current);
     }
   }, [measure, scrollerRef]);
 
   // Measure the dimensions on editor toggle,
   // a custom event fired when the VizHub editor is toggled,
   // which changes the width of the Viz viewer.
-  useEffect(() => {
-    window.addEventListener('editorToggled', measureTwice);
-    return () => {
-      window.removeEventListener('editorToggled', measureTwice);
-    };
-  }, [measureTwice]);
+  useEffect(() => listen('editorResized', measureTwice), [measureTwice]);
 };
