@@ -3,6 +3,7 @@ import { VizPageDataContext } from '../VizPageDataContext';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
+import { useListener } from '../useListener';
 
 const srcDoc = `<style>body { background-color: pink; }</style>`;
 export const VizRunnerContext = createContext();
@@ -33,6 +34,7 @@ let previousMode;
 let timeoutId;
 
 const setVizRunnerMode = mode => {
+  console.log('setVizRunnerMode, mode = ' + mode);
   if (mode === 'hide') {
     iFrame.style.visibility = 'hidden';
     return;
@@ -65,12 +67,17 @@ const setVizRunnerMode = mode => {
   }
 };
 
+const onVizModeChange = event => setVizRunnerMode(event.detail);
+
 // 'mode' here means the context in which the viz content is being viewed.
 // For example, it could be 'viewer' if it's shown in the viz viewer section,
 // it could be 'full' if it's shown in full screen mode,
 // or it could be 'mini' if it's shown in the mini view atop the code editor.
 const setVizRunnerTransform = ({ x, y, scale, mode }) => {
-  setVizRunnerMode(mode);
+  if (mode) {
+    //setVizRunnerMode(mode);
+    //throw new Error();
+  }
 
   // Move the iframe to the new (x, y, scale).
   iFrame.style.transform = `scale(${scale})`;
@@ -93,10 +100,12 @@ export const VizRunnerProvider = ({ children }) => {
     const div = ref.current;
     div.appendChild(iFrame);
     return () => {
-      // TODO clean up srcDoc here?
+      iFrame.srcDoc = '';
       div.removeChild(iFrame);
     };
   }, [ref]);
+
+  useListener('vizModeChange', onVizModeChange);
 
   return (
     <div ref={ref}>
