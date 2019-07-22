@@ -1,15 +1,6 @@
-import { useEffect, useLayoutEffect, useCallback } from 'react';
+import { useLayoutEffect, useCallback } from 'react';
 
-const useListener = (type, listener, element = window) => {
-  useEffect(() => {
-    if (element) {
-      element.addEventListener(type, listener);
-      return () => {
-        element.removeEventListener(type, listener);
-      };
-    }
-  }, [type, listener, element]);
-};
+import { useListener } from '../useListener';
 
 // Inspired by https://github.com/Swizec/useDimensions
 export const useDimensions = ({ wrapperRef, setDomRect, scrollerRef = {} }) => {
