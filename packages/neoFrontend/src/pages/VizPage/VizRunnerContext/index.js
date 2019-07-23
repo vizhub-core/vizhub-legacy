@@ -28,7 +28,6 @@ iFrame.style['z-index'] = Z_BELOW;
 iFrame.style['background-color'] = '#ffffff';
 iFrame.style['box-shadow'] = theme.shadowLight;
 iFrame.style['transition-property'] = 'transform';
-
 iFrame.style['transition-timing-function'] = 'cubic-bezier(.28,.66,.15,1)';
 
 let mode;
@@ -52,6 +51,9 @@ const setVizRunnerMode = newMode => {
   // Are we transitioning out of 'hide' mode?
   const showing = mode === 'hide' && modeChanged;
 
+  // Did we just get our first mode of the day (page load)?
+  const initializing = mode === undefined;
+
   // Record the new mode as the old mode for future comparison.
   mode = newMode;
 
@@ -63,7 +65,7 @@ const setVizRunnerMode = newMode => {
 
   // Animate if mode changed,
   // but not if mode was just first initialized,
-  if (mode && modeChanged) {
+  if (!initializing && modeChanged) {
     // Make sure viz content is above everything else while transitioning.
     iFrame.style['z-index'] = Z_WAY_ABOVE;
 
