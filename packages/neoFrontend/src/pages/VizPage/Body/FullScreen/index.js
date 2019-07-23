@@ -6,7 +6,7 @@ import { VizRunnerContext } from '../../VizRunnerContext';
 import { URLStateContext } from '../../URLStateContext';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { useDimensions } from '../useDimensions';
-import { FooterIcon } from '../styles';
+import { LargeIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
 
 export const FullScreen = () => {
@@ -44,12 +44,12 @@ export const FullScreen = () => {
   return (
     <Wrapper ref={wrapperRef}>
       <FullScreenFooter>
-        <FooterIcon leftmost={true} onClick={enterMini}>
+        <LargeIcon leftmost={true} onClick={enterMini}>
           <MiniSVG />
-        </FooterIcon>
-        <FooterIcon rightmost={true} onClick={exitFullScreen}>
+        </LargeIcon>
+        <LargeIcon rightmost={true} onClick={exitFullScreen}>
           <FullExitSVG />
-        </FooterIcon>
+        </LargeIcon>
       </FullScreenFooter>
     </Wrapper>
   );

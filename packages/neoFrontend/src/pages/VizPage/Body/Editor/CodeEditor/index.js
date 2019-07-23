@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { URLStateContext } from '../../../URLStateContext';
 import { FullSVG, CloseSVG } from '../../../../../svg';
 //import { VizPageDataContext } from '../../../VizPageDataContext';
-import { Wrapper, CodeEditorIcons, CodeEditorIcon } from './styles';
+import { LargeIcon } from '../../styles';
+import { Wrapper, Icons } from './styles';
 
 export const CodeEditor = () => {
   const {
@@ -18,22 +19,22 @@ export const CodeEditor = () => {
 
   return activeFile ? (
     <Wrapper showLeftBorder={showEditor}>
-      <CodeEditorIcons>
+      <Icons>
         {showViewer ? (
           <>
-            <CodeEditorIcon onClick={onHideViz}>
+            <LargeIcon onClick={onHideViz} leftmost={true}>
               <FullSVG />
-            </CodeEditorIcon>
-            <CodeEditorIcon onClick={closeActiveFile}>
+            </LargeIcon>
+            <LargeIcon onClick={closeActiveFile} rightmost={true}>
               <CloseSVG />
-            </CodeEditorIcon>
+            </LargeIcon>
           </>
         ) : (
-          <CodeEditorIcon onClick={onShowViz}>
+          <LargeIcon onClick={onShowViz} leftmost={true} rightmost={true}>
             <CloseSVG />
-          </CodeEditorIcon>
+          </LargeIcon>
         )}
-      </CodeEditorIcons>
+      </Icons>
     </Wrapper>
   ) : null;
 };

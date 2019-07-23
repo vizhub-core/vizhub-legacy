@@ -4,7 +4,7 @@ import { vizWidth } from '../../../../../constants';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
-import { FooterIcon, FrameFooter } from '../../styles';
+import { LargeIcon, FrameFooter } from '../../styles';
 import { Wrapper } from './styles';
 
 export const VizFrame = ({ vizHeight, scrollerRef }) => {
@@ -32,12 +32,12 @@ export const VizFrame = ({ vizHeight, scrollerRef }) => {
         <>
           <div style={{ height: vizHeight * scale }} />
           <FrameFooter>
-            <FooterIcon leftmost={true} onClick={enterMini}>
+            <LargeIcon leftmost={true} onClick={enterMini}>
               <MiniSVG />
-            </FooterIcon>
-            <FooterIcon rightmost={true} onClick={enterFullScreen}>
+            </LargeIcon>
+            <LargeIcon rightmost={true} onClick={enterFullScreen}>
               <FullSVG />
-            </FooterIcon>
+            </LargeIcon>
           </FrameFooter>
         </>
       ) : null}
