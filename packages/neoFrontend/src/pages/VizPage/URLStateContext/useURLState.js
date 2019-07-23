@@ -80,6 +80,8 @@ export const useURLState = props => {
 
   const showViewer = mode !== 'hide' && mode !== 'mini';
 
+  const showResizer = activeFile !== undefined;
+
   // Derived accessors for URL state, exposed to components.
   return {
     activeFile,
@@ -100,6 +102,7 @@ export const useURLState = props => {
     showViewer,
     isMini,
     enterMini,
-    exitMini
+    exitMini,
+    showResizer
   };
 };

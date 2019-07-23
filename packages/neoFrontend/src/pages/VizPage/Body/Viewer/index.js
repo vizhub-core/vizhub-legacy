@@ -6,12 +6,12 @@ import {
   Scroller,
   Centering,
   ViewerContent,
-  HorizontalRule,
-  Resizer
+  HorizontalRule
 } from './styles';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
+import { Resizer } from './Resizer';
 
 export const Viewer = () => {
   const {
