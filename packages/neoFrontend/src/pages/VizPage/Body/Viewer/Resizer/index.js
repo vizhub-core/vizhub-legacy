@@ -13,10 +13,13 @@ export const Resizer = () => {
     document.body.style.cursor = 'col-resize';
   }, []);
 
-  const onMouseMove = useCallback(event => {
-    event.preventDefault();
-    moveSplitPane(event.movementX);
-  }, [moveSplitPane]);
+  const onMouseMove = useCallback(
+    event => {
+      event.preventDefault();
+      moveSplitPane(event.movementX);
+    },
+    [moveSplitPane]
+  );
 
   const onMouseUp = useCallback(() => {
     setIsDragging(false);
