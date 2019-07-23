@@ -13,10 +13,10 @@ export const Banner = styled.div`
 
 export const Clickable = styled.div`
   &:hover {
-    background-color: ${props => props.theme.iconHoverBackground};
+    background-color: ${props => props.theme.hoverBackground};
   }
   &:active {
-    background-color: ${props => props.theme.iconActiveBackground};
+    background-color: ${props => props.theme.activeBackground};
   }
   cursor: pointer;
   user-select: none;
