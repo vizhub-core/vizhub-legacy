@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Icon } from '../styles';
 
 export const Wrapper = styled.div`
   height: 30px;
@@ -18,4 +19,10 @@ export const Left = styled.div`
 export const Right = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const HeadIcon = styled(Icon)`
+  height: 30px;
+  width: 35px;
+  margin-right: ${props => (props.rightmost ? '9px' : '0')};
 `;

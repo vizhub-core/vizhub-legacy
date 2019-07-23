@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import marked from 'marked';
 import { toDate } from 'vizhub-entities';
-import { Avatar } from '../../../../Avatar';
+import { Avatar } from '../../../../../Avatar';
 import {
   Wrapper,
   Left,
@@ -29,7 +29,8 @@ export const DescriptionSection = ({
   visualization,
   ownerUser,
   forkedFromVisualizationInfo,
-  forkedFromVisualizationOwnerUserName
+  forkedFromVisualizationOwnerUserName,
+  size
 }) => {
   const created = useMemo(
     () => formatTimestamp(visualization.info.createdTimestamp),
@@ -42,16 +43,16 @@ export const DescriptionSection = ({
   );
 
   return (
-    <Wrapper>
+    <Wrapper size={size}>
       <Left>
-        <Authorship>
+        <Authorship size={size}>
           <Author to={`/${ownerUser.userName}`}>
             <AuthorAvatar>
               <Avatar size={40} user={ownerUser} />
             </AuthorAvatar>
             <AuthorName>{ownerUser.fullName}</AuthorName>
           </Author>
-          <AuthorshipMeta>
+          <AuthorshipMeta size={size}>
             <div>
               Lasted Edited <SemiBold>{lastUpdated}</SemiBold>
             </div>
@@ -69,12 +70,13 @@ export const DescriptionSection = ({
           </AuthorshipMeta>
         </Authorship>
         <Description
+          size={size}
           dangerouslySetInnerHTML={{
             __html: marked(visualization.info.description)
           }}
         />
       </Left>
-      <Right>
+      <Right size={size}>
         <Video>
           <VideoThumbnail />
           Video title

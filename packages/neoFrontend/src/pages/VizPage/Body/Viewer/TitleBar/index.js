@@ -1,5 +1,5 @@
 import React from 'react';
-import { VoteSVG } from '../../../../svg';
+import { VoteSVG } from '../../../../../svg';
 import { Wrapper, Title, Voter, VoteIcon } from './styles';
 
 export const TitleBar = ({ title }) => (

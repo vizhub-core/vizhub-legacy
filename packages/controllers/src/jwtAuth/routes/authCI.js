@@ -15,7 +15,7 @@ export const authCI = asyncHandler(async (req, res) => {
         new VizHubAPIError({
           error: 'attempted_ci_access_in_production',
           errorDescription:
-            "CI user access is not allowed in production. Check that NODE_ENV === 'development'"
+            "CI user access is not allowed in production. Check that NODE_ENV === 'development'.\n Try 'npm run dev' instead of 'npm start'."
         })
       )
     );

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import queryString from 'query-string';
 
 // Gets the value of a property in the location search query string.
@@ -30,9 +31,25 @@ const setEdit = set('edit');
 const getFile = get('file');
 const setFile = set('file');
 
-export const accessors = ({ history, match, location }) => ({
-  edit: getEdit({ location }),
-  setEdit: setEdit({ history, match, location }),
-  file: getFile({ location }),
-  setFile: setFile({ history, match, location })
-});
+// A string file name value means to show the editor with that file open.
+// e.g. '?file=index.js' in location search string.
+//
+//  * "full" = Full screen mode
+//  * "mini" = Mini mode
+//  * "hide" = Don't show viz at all
+//  * undefined = Normal view mode
+const getMode = get('mode');
+const setMode = set('mode');
+
+export const useAccessors = props =>
+  useMemo(
+    () => ({
+      edit: getEdit(props),
+      setEdit: setEdit(props),
+      file: getFile(props),
+      setFile: setFile(props),
+      mode: getMode(props),
+      setMode: setMode(props)
+    }),
+    [props]
+  );

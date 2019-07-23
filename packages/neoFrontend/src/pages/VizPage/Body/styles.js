@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Clickable, Z_ABOVE } from '../../../styles';
-import { Content } from '../../styles';
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -29,41 +28,16 @@ export const Bottom = styled.div`
   min-height: 0;
 `;
 
-export const VizViewer = styled.div`
-  flex: 1;
-  overflow: auto;
-`;
-
-export const VizEditor = styled.div`
-  width: 150px;
-  background-color: #3d4b65;
-  display: flex;
-`;
-
-// This level handles horizontal centering & resize behavior.
-export const TorsoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-// Homage to bl.ocks.org with choice of 960px.
-export const Torso = styled(Content)`
-  max-width: 960px;
-  padding: 10px;
-`;
-
-export const HorizontalRule = styled.div`
-  height: 1px;
-  background-color: #bfc0bf;
-`;
-
 export const Icon = styled(Clickable)`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
-  width: 35px;
-  margin-right: ${props => (props.rightmost ? '9px' : '0')};
+`;
+
+export const LargeIcon = styled(Icon)`
+  height: 40px;
+  padding-right: ${props => (props.rightmost ? '10' : '7')}px;
+  padding-left: ${props => (props.leftmost ? '10' : '7')}px;
 `;
 
 export const Footer = styled.div`
@@ -75,10 +49,6 @@ export const Footer = styled.div`
   background-color: #ffffff;
 `;
 
-export const FooterIcon = styled(Icon)`
-  width: auto;
-  height: 40px;
-  padding-right: ${props => (props.rightmost ? '10' : '7')}px;
-  padding-left: ${props => (props.leftmost ? '10' : '7')}px;
-  margin-right: 0;
+export const FrameFooter = styled(Footer)`
+  border-radius: 0 0 3px 3px;
 `;

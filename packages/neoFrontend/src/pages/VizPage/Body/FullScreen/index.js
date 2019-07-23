@@ -1,38 +1,40 @@
 import React, { useRef, useContext, useCallback } from 'react';
-import { MiniSVG, FullSVG } from '../../../../svg';
-import { vizWidth, defaultVizHeight } from '../../../../constants';
+import { MiniSVG, FullExitSVG } from '../../../../svg';
+import { vizWidth } from '../../../../constants';
+import { getVizHeight } from '../../../../accessors';
 import { VizRunnerContext } from '../../VizRunnerContext';
+import { URLStateContext } from '../../URLStateContext';
+import { VizPageDataContext } from '../../VizPageDataContext';
 import { useDimensions } from '../useDimensions';
-import { FooterIcon } from '../styles';
+import { LargeIcon } from '../styles';
 import { Wrapper, FullScreenFooter } from './styles';
 
-export const FullScreen = ({
-  onExitFullScreen,
-  vizHeight = defaultVizHeight
-}) => {
+export const FullScreen = () => {
   const wrapperRef = useRef();
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
+
+  const { visualization } = useContext(VizPageDataContext);
+
+  const { exitFullScreen, enterMini } = useContext(URLStateContext);
+
+  const vizHeight = getVizHeight(visualization);
 
   // Shrink and grow to fill available width and height.
   const setDomRect = useCallback(
     ({ width, height }) => {
       const vizAspect = vizWidth / vizHeight;
       const aspect = width / height;
+      let x, y, scale;
       if (vizAspect > aspect) {
-        const scale = width / vizWidth;
-        setVizRunnerTransform({
-          x: 0,
-          y: height / 2 - (scale * vizHeight) / 2,
-          scale
-        });
+        scale = width / vizWidth;
+        x = 0;
+        y = height / 2 - (scale * vizHeight) / 2;
       } else {
-        const scale = height / vizHeight;
-        setVizRunnerTransform({
-          x: width / 2 - (scale * vizWidth) / 2,
-          y: 0,
-          scale
-        });
+        scale = height / vizHeight;
+        x = width / 2 - (scale * vizWidth) / 2;
+        y = 0;
       }
+      setVizRunnerTransform({ x, y, scale });
     },
     [setVizRunnerTransform, vizHeight]
   );
@@ -42,12 +44,12 @@ export const FullScreen = ({
   return (
     <Wrapper ref={wrapperRef}>
       <FullScreenFooter>
-        <FooterIcon leftmost={true}>
+        <LargeIcon leftmost={true} onClick={enterMini}>
           <MiniSVG />
-        </FooterIcon>
-        <FooterIcon rightmost={true} onClick={onExitFullScreen}>
-          <FullSVG />
-        </FooterIcon>
+        </LargeIcon>
+        <LargeIcon rightmost={true} onClick={exitFullScreen}>
+          <FullExitSVG />
+        </LargeIcon>
       </FullScreenFooter>
     </Wrapper>
   );
