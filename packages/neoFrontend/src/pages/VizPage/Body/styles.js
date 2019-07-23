@@ -34,6 +34,12 @@ export const Icon = styled(Clickable)`
   justify-content: center;
 `;
 
+export const LargeIcon = styled(Icon)`
+  height: 40px;
+  padding-right: ${props => (props.rightmost ? '10' : '7')}px;
+  padding-left: ${props => (props.leftmost ? '10' : '7')}px;
+`;
+
 export const Footer = styled.div`
   box-shadow: ${props => props.theme.shadow};
   height: 40px;
@@ -45,12 +51,4 @@ export const Footer = styled.div`
 
 export const FrameFooter = styled(Footer)`
   border-radius: 0 0 3px 3px;
-`;
-
-export const FooterIcon = styled(Icon)`
-  width: auto;
-  height: 40px;
-  padding-right: ${props => (props.rightmost ? '10' : '7')}px;
-  padding-left: ${props => (props.leftmost ? '10' : '7')}px;
-  margin-right: 0;
 `;
