@@ -7,7 +7,8 @@ export const useDimensions = ({
   wrapperRef,
   setDomRect,
   scrollerRef,
-  onWidthChanged
+  onWidthChanged,
+  globalResize = false
 }) => {
   // Measures the current dimensions.
   const measure = useCallback(() => {
@@ -36,4 +37,8 @@ export const useDimensions = ({
       onWidthChanged();
     }
   });
+
+  // Measure the dimensions on window resize
+  // if globalResize flag enabled (defaults to false).
+  useListener('resize', measure, globalResize && window);
 };
