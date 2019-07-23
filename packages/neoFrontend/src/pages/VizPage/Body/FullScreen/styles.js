@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Footer } from '../styles';
 
 export const Wrapper = styled.div`
@@ -9,10 +9,13 @@ export const Wrapper = styled.div`
   left: 0;
 `;
 
-const fadeOut = keyframes`
-  from { opacity: 1; }
-  to { opacity: 0; }
-`;
+// We may want to bring this back at some point.
+// This animation fades out the overlay buttons.
+// const fadeOut = keyframes`
+//   from { opacity: 1; }
+//   to { opacity: 0; }
+// `;
+//   animation: ${fadeOut} 0.5s linear;
 
 export const FullScreenFooter = styled(Footer)`
   position: fixed;
@@ -23,6 +26,5 @@ export const FullScreenFooter = styled(Footer)`
   &:hover {
     opacity: 1;
   }
-  animation: ${fadeOut} 0.5s linear;
   opacity: 0;
 `;
