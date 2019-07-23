@@ -12,7 +12,10 @@ export const useDimensions = ({
 }) => {
   // Measures the current dimensions.
   const measure = useCallback(() => {
-    setDomRect(wrapperRef.current.getBoundingClientRect());
+    console.log('measuring');
+    if (wrapperRef.current) {
+      setDomRect(wrapperRef.current.getBoundingClientRect());
+    }
   }, [wrapperRef, setDomRect]);
 
   // Necessary to catch up to scrollbar appearances and disappearances.
