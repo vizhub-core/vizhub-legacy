@@ -18,7 +18,14 @@ export const useURLState = props => {
 
   // Toggles the editor to show and hide.
   const toggleEditor = () => {
-    setShowEditor(!showEditor);
+    if (showEditor) {
+      setShowEditor(false);
+    } else if (activeFile) {
+      // If a file is active, open the files section.
+      setEdit('files');
+    } else {
+      setShowEditor(true);
+    }
   };
 
   // The active editor section id string if a section is active.
