@@ -14,8 +14,8 @@ export const theme = {
   userMenuOverlayBackground: 'rgba(246, 238, 227, 0.83)',
   userMenuOverlayBackgroundHover: 'rgba(246, 238, 227, 0.7)',
   userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
-  iconHoverBackground: 'rgba(0, 0, 0, 0.05)',
-  iconActiveBackground: 'rgba(0, 0, 0, 0.10)',
+  hoverBackground: 'rgba(0, 0, 0, 0.05)',
+  activeBackground: 'rgba(0, 0, 0, 0.10)',
   defaultCodingFontFamily: 'Ubuntu Mono Arrowized',
   miniWidth: 268
 };

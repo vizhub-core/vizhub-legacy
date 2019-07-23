@@ -5,10 +5,10 @@ const SVG = styled.svg``;
 
 const Circle = styled.circle`
   ${SVG}:hover & {
-    fill: ${props => props.theme.iconHoverBackground};
+    fill: ${props => props.theme.hoverBackground};
   }
   ${SVG}:active & {
-    fill: ${props => props.theme.iconActiveBackground};
+    fill: ${props => props.theme.activeBackground};
   }
 `;
 

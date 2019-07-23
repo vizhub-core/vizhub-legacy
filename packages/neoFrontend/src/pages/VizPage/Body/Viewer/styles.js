@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { Content } from '../../../styles';
 
+export const Wrapper = styled.div`
+  flex: 1;
+  display: flex;
+  position: relative;
+`;
+
 export const Scroller = styled.div`
   flex: 1;
   overflow: auto;
