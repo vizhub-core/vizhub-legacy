@@ -43,6 +43,10 @@ export const Footer = styled.div`
   background-color: #ffffff;
 `;
 
+export const FrameFooter = styled(Footer)`
+  border-radius: 0 0 3px 3px;
+`;
+
 export const FooterIcon = styled(Icon)`
   width: auto;
   height: 40px;
