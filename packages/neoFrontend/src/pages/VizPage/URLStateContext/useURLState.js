@@ -75,7 +75,15 @@ export const useURLState = props => {
   const exitFullScreen = onShowViz;
 
   const isMini = mode === 'mini';
-  const enterMini = () => setMode('mini');
+  const enterMini = () => {
+    setMode('mini');
+    if(!showEditor){
+      setEdit('files');
+    }
+    if(!activeFile){
+      setFile('index.html');
+    }
+  };
   const exitMini = onShowViz;
 
   const showViewer = mode !== 'hide' && mode !== 'mini';

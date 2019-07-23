@@ -6,8 +6,13 @@ const get = property => ({ location }) =>
   queryString.parse(location.search)[property];
 
 // Sets the value of a property in the location search query string.
-const set = property => ({ history, match, location }) => value => {
-  const query = queryString.parse(location.search);
+const set = property => ({ history, match }) => value => {
+
+  // Use the mutable history.location here so that we can
+  // call "set" multiple times synchronously for different properties.
+  // For example, when entering mini mode, simultaneously setting the
+  // values for the "edit" and "file" params if required.
+  const query = queryString.parse(history.location.search);
   query[property] = value;
   history.push({
     pathname: match.url,
