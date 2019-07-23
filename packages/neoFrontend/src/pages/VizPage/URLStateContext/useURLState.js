@@ -77,11 +77,9 @@ export const useURLState = props => {
   const isMini = mode === 'mini';
   const enterMini = () => {
     setMode('mini');
-    if(!showEditor){
-      setEdit('files');
-    }
-    if(!activeFile){
+    if (!activeFile) {
       setFile('index.html');
+      setEdit('files');
     }
   };
   const exitMini = onShowViz;

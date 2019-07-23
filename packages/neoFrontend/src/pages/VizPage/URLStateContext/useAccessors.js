@@ -7,7 +7,6 @@ const get = property => ({ location }) =>
 
 // Sets the value of a property in the location search query string.
 const set = property => ({ history, match }) => value => {
-
   // Use the mutable history.location here so that we can
   // call "set" multiple times synchronously for different properties.
   // For example, when entering mini mode, simultaneously setting the

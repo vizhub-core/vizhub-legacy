@@ -28,7 +28,7 @@ export const Mini = () => {
     [setVizRunnerTransform]
   );
 
-  useDimensions({ wrapperRef, setDomRect });
+  useDimensions({ wrapperRef, setDomRect, globalResize: true });
 
   return (
     <Wrapper ref={wrapperRef}>
