@@ -23,7 +23,7 @@ export const CodeEditor = () => {
   return activeFile ? (
     <Wrapper
       showLeftBorder={showEditor}
-      style={{ width: codeEditorWidth + 'px' }}
+      style={showViewer ? { width: codeEditorWidth + 'px' } : { flex: 1 }}
     >
       <Icons>
         {showViewer ? (
