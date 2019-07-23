@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../../../URLStateContext';
+import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { FullSVG, CloseSVG } from '../../../../../svg';
 //import { VizPageDataContext } from '../../../VizPageDataContext';
 import { LargeIcon } from '../../styles';
@@ -17,8 +18,13 @@ export const CodeEditor = () => {
   //const { visualization } = useContext(VizPageDataContext);
   //const { files } = visualization.content;
 
+  const { codeEditorWidth } = useContext(SplitPaneResizeContext);
+
   return activeFile ? (
-    <Wrapper showLeftBorder={showEditor}>
+    <Wrapper
+      showLeftBorder={showEditor}
+      style={{ width: codeEditorWidth + 'px' }}
+    >
       <Icons>
         {showViewer ? (
           <>
