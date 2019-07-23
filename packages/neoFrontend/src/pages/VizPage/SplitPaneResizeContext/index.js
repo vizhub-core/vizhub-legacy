@@ -2,22 +2,17 @@ import React, { createContext, useReducer } from 'react';
 
 export const SplitPaneResizeContext = createContext();
 
-// TODO local storage or fallback to percentage of display
-const initialWidth = 500;
+// TODO local storage
+const initialWidth = window.innerWidth * 1 / 3;
 
 const reducer = (codeEditorWidth, movementClientX) =>
   codeEditorWidth + movementClientX;
 
 export const SplitPaneResizeProvider = ({ children }) => {
-  const [codeEditorWidth, dispatch] = useReducer(reducer, initialWidth);
-
-  const contextValue = {
-    codeEditorWidth,
-    moveSplitPane: dispatch
-  };
+  const [codeEditorWidth, moveSplitPane] = useReducer(reducer, initialWidth);
 
   return (
-    <SplitPaneResizeContext.Provider value={contextValue}>
+    <SplitPaneResizeContext.Provider value={{ codeEditorWidth, moveSplitPane }}>
       {children}
     </SplitPaneResizeContext.Provider>
   );
