@@ -77,10 +77,13 @@ const setVizRunnerMode = newMode => {
     // Wait for the transition to finish.
     timeoutId = setTimeout(() => {
       // Pop the content back under other things,
-      // where it should be normally.
-      iFrame.style['z-index'] = Z_BELOW;
+      // where it should be normally,
+      // unless it's in 'mini' mode.
+      if (mode !== 'mini') {
+        iFrame.style['z-index'] = Z_BELOW;
+      }
 
-      // Set this to zero so future updates happen instantly
+      // Make future updates happen instantly.
       iFrame.style['transition-duration'] = '0ms';
     }, transitionDuration);
   }

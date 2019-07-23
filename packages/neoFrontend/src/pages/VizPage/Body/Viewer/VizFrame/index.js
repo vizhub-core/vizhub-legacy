@@ -1,19 +1,17 @@
 import React, { useRef, useContext, useCallback, useState } from 'react';
 import { MiniSVG, FullSVG } from '../../../../../svg';
-import { vizWidth, defaultVizHeight } from '../../../../../constants';
+import { vizWidth } from '../../../../../constants';
 import { VizRunnerContext } from '../../../VizRunnerContext';
+import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
-import { FooterIcon } from '../../styles';
-import { Wrapper, VizFrameFooter } from './styles';
+import { FooterIcon, FrameFooter } from '../../styles';
+import { Wrapper } from './styles';
 
-export const VizFrame = ({
-  vizHeight = defaultVizHeight,
-  scrollerRef,
-  onEnterFullScreen
-}) => {
+export const VizFrame = ({ vizHeight, scrollerRef }) => {
   const wrapperRef = useRef();
 
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
+  const { enterFullScreen, enterMini } = useContext(URLStateContext);
 
   const [scale, setScale] = useState();
 
@@ -33,14 +31,14 @@ export const VizFrame = ({
       {scale ? (
         <>
           <div style={{ height: vizHeight * scale }} />
-          <VizFrameFooter>
-            <FooterIcon leftmost={true}>
+          <FrameFooter>
+            <FooterIcon leftmost={true} onClick={enterMini}>
               <MiniSVG />
             </FooterIcon>
-            <FooterIcon rightmost={true} onClick={onEnterFullScreen}>
+            <FooterIcon rightmost={true} onClick={enterFullScreen}>
               <FullSVG />
             </FooterIcon>
-          </VizFrameFooter>
+          </FrameFooter>
         </>
       ) : null}
     </Wrapper>

@@ -7,18 +7,14 @@ import { Head } from './Head';
 import { FullScreen } from './FullScreen';
 import { Editor } from './Editor';
 import { Viewer } from './Viewer';
+import { Mini } from './Mini';
 
 export const Body = () => {
   const onFork = useContext(ForkingContext);
-  const {
-    isFullScreen,
-    enterFullScreen,
-    exitFullScreen,
-    showViewer
-  } = useContext(URLStateContext);
+  const { isFullScreen, showViewer, isMini } = useContext(URLStateContext);
 
   return isFullScreen ? (
-    <FullScreen onExitFullScreen={exitFullScreen} />
+    <FullScreen />
   ) : (
     <Wrapper>
       <Top>
@@ -27,7 +23,8 @@ export const Body = () => {
       </Top>
       <Bottom>
         <Editor />
-        {showViewer ? <Viewer onEnterFullScreen={enterFullScreen} /> : null}
+        {showViewer ? <Viewer /> : null}
+        {isMini ? <Mini /> : null}
       </Bottom>
     </Wrapper>
   );

@@ -62,7 +62,11 @@ export const useURLState = props => {
   const enterFullScreen = () => setMode('full');
   const exitFullScreen = onShowViz;
 
-  const showViewer = mode !== 'hide';
+  const isMini = mode === 'mini';
+  const enterMini = () => setMode('mini');
+  const exitMini = onShowViz;
+
+  const showViewer = mode !== 'hide' && mode !== 'mini';
 
   // Derived accessors for URL state, exposed to components.
   return {
@@ -80,6 +84,9 @@ export const useURLState = props => {
     isFullScreen,
     enterFullScreen,
     exitFullScreen,
-    showViewer
+    showViewer,
+    isMini,
+    enterMini,
+    exitMini
   };
 };

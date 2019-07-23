@@ -6,7 +6,7 @@ import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 
-export const Viewer = ({ onEnterFullScreen }) => {
+export const Viewer = () => {
   const {
     visualization,
     ownerUser,
@@ -22,11 +22,7 @@ export const Viewer = ({ onEnterFullScreen }) => {
     <Scroller ref={scrollerRef}>
       <Centering>
         <ViewerContent>
-          <VizFrame
-            vizHeight={vizHeight}
-            onEnterFullScreen={onEnterFullScreen}
-            scrollerRef={scrollerRef}
-          />
+          <VizFrame vizHeight={vizHeight} scrollerRef={scrollerRef} />
           <TitleBar title={visualization.info.title} />
           <HorizontalRule />
           <DescriptionSection
