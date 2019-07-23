@@ -63,6 +63,11 @@ const setVizRunnerMode = newMode => {
     return;
   }
 
+  // If initializing in "mini" mode, set Z index high.
+  if (initializing && mode === 'mini') {
+    iFrame.style['z-index'] = Z_WAY_ABOVE;
+  }
+
   // Animate if mode changed,
   // but not if mode was just first initialized,
   if (!initializing && modeChanged) {
