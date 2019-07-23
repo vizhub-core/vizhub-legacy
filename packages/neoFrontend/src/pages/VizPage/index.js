@@ -6,6 +6,7 @@ import { VizPageDataProvider } from './VizPageDataContext';
 import { ForkingProvider } from './ForkingContext';
 import { URLStateProvider } from './URLStateContext';
 import { VizRunnerProvider } from './VizRunnerContext';
+import { SplitPaneResizeProvider } from './SplitPaneResizeContext';
 import { Body } from './Body';
 
 export const VizPage = () => (
@@ -14,7 +15,9 @@ export const VizPage = () => (
       <ForkingProvider fallback={<LoadingScreen message="Forking..." />}>
         <ThemeProvider theme={darkNavbarTheme}>
           <VizRunnerProvider>
-            <Body />
+            <SplitPaneResizeProvider>
+              <Body />
+            </SplitPaneResizeProvider>
           </VizRunnerProvider>
         </ThemeProvider>
       </ForkingProvider>
