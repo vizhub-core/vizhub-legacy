@@ -12,18 +12,6 @@ export const Scroller = styled.div`
   overflow: auto;
 `;
 
-export const Resizer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 15px;
-  &:hover {
-  }
-  background-color: ${props => props.theme.hoverBackground};
-  cursor: col-resize;
-`;
-
 // This level handles horizontal centering & resize behavior.
 export const Centering = styled.div`
   display: flex;
