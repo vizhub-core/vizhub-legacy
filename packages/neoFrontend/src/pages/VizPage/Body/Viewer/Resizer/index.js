@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { Wrapper } from './styles';
 import { URLStateContext } from '../../../URLStateContext';
+import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 
 export const Resizer = () => {
   const { showResizer } = useContext(URLStateContext);
+  const { moveSplitPane } = useContext(SplitPaneResizeContext);
   const [isDragging, setIsDragging] = useState(false);
 
   const onMouseDown = useCallback(() => {
@@ -13,8 +15,8 @@ export const Resizer = () => {
 
   const onMouseMove = useCallback(event => {
     event.preventDefault();
-    console.log('here');
-  }, []);
+    moveSplitPane(event.movementX);
+  }, [moveSplitPane]);
 
   const onMouseUp = useCallback(() => {
     setIsDragging(false);
