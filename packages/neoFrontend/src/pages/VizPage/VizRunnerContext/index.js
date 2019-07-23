@@ -66,11 +66,10 @@ const setVizRunnerMode = newMode => {
   // Animate if mode changed,
   // but not if mode was just first initialized,
   if (!initializing && modeChanged) {
-
     // Make sure viz content is above everything else while transitioning.
     // Unless we're transitioning to full screen, because in that case
     // the footer should be above the viz content, even in transition.
-    if(mode !== 'full'){
+    if (mode !== 'full') {
       iFrame.style['z-index'] = Z_WAY_ABOVE;
     }
 
