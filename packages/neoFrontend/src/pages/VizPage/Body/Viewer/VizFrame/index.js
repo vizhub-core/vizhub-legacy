@@ -7,7 +7,7 @@ import { useDimensions } from '../../useDimensions';
 import { LargeIcon, FrameFooter } from '../../styles';
 import { Wrapper } from './styles';
 
-export const VizFrame = ({ vizHeight, scrollerRef }) => {
+export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
 
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
@@ -24,7 +24,11 @@ export const VizFrame = ({ vizHeight, scrollerRef }) => {
     [setVizRunnerTransform, setScale]
   );
 
-  useDimensions({ wrapperRef, scrollerRef, setDomRect });
+  const onWidthChanged = useCallback(() => {
+    setWidth(wrapperRef.current.clientWidth);
+  }, [setWidth]);
+
+  useDimensions({ wrapperRef, scrollerRef, setDomRect, onWidthChanged });
 
   return (
     <Wrapper ref={wrapperRef}>
