@@ -11,9 +11,13 @@ export const Wrapper = styled(EditorComponent)`
     props.showLeftBorder ? '1px solid rgba(255, 255, 255, 0.5)' : 'none'};
 `;
 
-export const CodeEditorIcon = styled(Icon)`
+export const CodeEditorIcons = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
+`;
+
+export const CodeEditorIcon = styled(Icon)`
   padding: 10px 10px 10px 10px;
 `;

@@ -41,6 +41,11 @@ export const useURLState = props => {
     setFile(newFile);
   };
 
+  // Closes whatever file is open.
+  const closeActiveFile = () => {
+    setFile(undefined);
+  };
+
   // The ID of the visualization we are viewing.
   const vizId = props.match.params.vizId;
 
@@ -79,6 +84,7 @@ export const useURLState = props => {
   return {
     activeFile,
     setActiveFile,
+    closeActiveFile,
     showEditor,
     toggleEditor,
     activeSection,
