@@ -1,5 +1,18 @@
 import { useAccessors } from './useAccessors';
 
+const dispatchModeChange = newMode => {
+  console.log('dispatching');
+  window.dispatchEvent(new CustomEvent('vizModeChange', { detail: newMode }));
+};
+
+// let modeInitialized = false;
+// const initializeModeIfNeeded = mode => {
+//   if (!modeInitialized) {
+//     dispatchModeChange(mode);
+//     modeInitialized = true;
+//   }
+// };
+
 // Higher order component exposing URL state accessors.
 export const useURLState = props => {
   // Raw accessor functions for URL parameter state.
@@ -48,20 +61,20 @@ export const useURLState = props => {
   // The difference exists so that we can omit the "mode" parameter from the
   // URL entirely when the user is viewing the "normal", default page state.
   const mode = modeRaw || 'viewer';
+
   const setMode = newMode => {
     if (newMode !== mode) {
-      window.dispatchEvent(
-        new CustomEvent('vizModeChange', { detail: newMode })
-      );
+      dispatchModeChange(newMode);
       setModeRaw(newMode === 'viewer' ? undefined : newMode);
     }
   };
 
-  const hideViz = () => setMode('hide');
+  const onHideViz = () => setMode('hide');
+  const onShowViz = () => setMode('viewer');
 
   const isFullScreen = mode === 'full';
   const enterFullScreen = () => setMode('full');
-  const exitFullScreen = () => setMode('viewer');
+  const exitFullScreen = onShowViz;
 
   const showViewer = mode !== 'hide';
 
@@ -76,7 +89,8 @@ export const useURLState = props => {
     vizId,
     mode,
     setMode,
-    hideViz,
+    onHideViz,
+    onShowViz,
     isFullScreen,
     enterFullScreen,
     exitFullScreen,
