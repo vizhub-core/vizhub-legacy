@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { Icon } from '../../styles';
+import { EditorComponent } from '../styles';
 
-export const Wrapper = styled.div`
-  width: 500px;
+// TODO split pane resize logic
+// width: 500px;
+export const Wrapper = styled(EditorComponent)`
+  flex: 1;
   position: relative;
   border-left: ${props =>
     props.showLeftBorder ? '1px solid rgba(255, 255, 255, 0.5)' : 'none'};

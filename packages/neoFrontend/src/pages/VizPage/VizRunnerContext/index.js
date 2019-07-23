@@ -31,20 +31,32 @@ iFrame.style['transition-property'] = 'transform';
 
 iFrame.style['transition-timing-function'] = 'cubic-bezier(.28,.66,.15,1)';
 
-let previousMode;
+let mode;
 let timeoutId;
 
 // 'mode' here means the context in which the viz content is being viewed.
 // For example, it could be 'viewer' if it's shown in the viz viewer section,
 // it could be 'full' if it's shown in full screen mode,
 // or it could be 'mini' if it's shown in the mini view atop the code editor.
-const setVizRunnerMode = mode => {
-  if (mode === 'hide') {
+const setVizRunnerMode = newMode => {
+  const modeChanged = mode !== newMode;
+  mode = newMode;
+
+  // console.log('\nVizRunnerContext');
+  // console.log('newMode = ' + newMode);
+  // console.log('mode = ' + mode);
+
+  // If mode transitions to hide, don't animate.
+  if (newMode === 'hide') {
     iFrame.style.visibility = 'hidden';
     return;
   }
-  const modeChanged = previousMode !== mode;
-  previousMode = mode;
+
+  // If mode transitions from hide, don't animate.
+  if (mode === 'hide') {
+    iFrame.style.visibility = 'visible';
+    return;
+  }
 
   if (modeChanged) {
     // Make sure viz content is above everything else while transitioning.
