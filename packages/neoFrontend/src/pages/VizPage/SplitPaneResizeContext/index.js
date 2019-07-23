@@ -2,8 +2,11 @@ import React, { createContext, useReducer, useEffect } from 'react';
 
 export const SplitPaneResizeContext = createContext();
 
-const initialWidth =
-  +localStorage.getItem('codeEditorWidth') || (window.innerWidth * 1) / 3;
+const localStorageWriteDebounceMS = 800;
+
+const initialWidthLocalStorage = +localStorage.getItem('codeEditorWidth');
+const initialWidthPercentage = window.innerWidth / 3;
+const initialWidth = initialWidthLocalStorage || initialWidthPercentage;
 
 const reducer = (codeEditorWidth, movementClientX) =>
   codeEditorWidth + movementClientX;
@@ -14,9 +17,9 @@ export const SplitPaneResizeProvider = ({ children }) => {
   useEffect(() => {
     if (codeEditorWidth !== initialWidth) {
       const timeout = setTimeout(() => {
-        console.log('writing ' + codeEditorWidth);
         localStorage.setItem('codeEditorWidth', codeEditorWidth);
-      }, 800);
+      }, localStorageWriteDebounceMS);
+
       return () => {
         clearTimeout(timeout);
       };
