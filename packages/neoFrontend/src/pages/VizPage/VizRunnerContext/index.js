@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useRef, useEffect } from 'react';
 import { VizPageDataContext } from '../VizPageDataContext';
+import { URLStateContext } from '../URLStateContext';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
-import { useListener } from '../useListener';
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -40,25 +40,30 @@ let timeoutId;
 // or it could be 'mini' if it's shown in the mini view atop the code editor.
 const setVizRunnerMode = newMode => {
   const modeChanged = mode !== newMode;
+
+  // Short circuit in degenerate case.
+  if (!modeChanged) {
+    return;
+  }
+
+  // Are we transitioning into 'hide' mode?
+  const hiding = newMode === 'hide';
+
+  // Are we transitioning out of 'hide' mode?
+  const showing = mode === 'hide' && modeChanged;
+
+  // Record the new mode as the old mode for future comparison.
   mode = newMode;
 
-  // console.log('\nVizRunnerContext');
-  // console.log('newMode = ' + newMode);
-  // console.log('mode = ' + mode);
-
-  // If mode transitions to hide, don't animate.
-  if (newMode === 'hide') {
-    iFrame.style.visibility = 'hidden';
+  // Do not animate if showing or hiding.
+  if (showing || hiding) {
+    iFrame.style.visibility = showing ? 'visible' : 'hidden';
     return;
   }
 
-  // If mode transitions from hide, don't animate.
-  if (mode === 'hide') {
-    iFrame.style.visibility = 'visible';
-    return;
-  }
-
-  if (modeChanged) {
+  // Animate if mode changed,
+  // but not if mode was just first initialized,
+  if (mode && modeChanged) {
     // Make sure viz content is above everything else while transitioning.
     iFrame.style['z-index'] = Z_WAY_ABOVE;
 
@@ -81,10 +86,8 @@ const setVizRunnerMode = newMode => {
   }
 };
 
-const onVizModeChange = event => setVizRunnerMode(event.detail);
-
 // Move the iframe to the new (x, y, scale).
-const setVizRunnerTransform = ({ x, y, scale, mode }) => {
+const setVizRunnerTransform = ({ x, y, scale }) => {
   iFrame.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
 
   // iFrame.style.transform = `scale(${scale})`;
@@ -94,8 +97,11 @@ const setVizRunnerTransform = ({ x, y, scale, mode }) => {
 
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
+  const { mode } = useContext(URLStateContext);
   const vizHeight = visualization.info.height || defaultVizHeight;
   const ref = useRef();
+
+  setVizRunnerMode(mode);
 
   const contextValue = { setVizRunnerTransform };
 
@@ -111,8 +117,6 @@ export const VizRunnerProvider = ({ children }) => {
       div.removeChild(iFrame);
     };
   }, [ref]);
-
-  useListener('vizModeChange', onVizModeChange);
 
   return (
     <div ref={ref}>

@@ -1,18 +1,5 @@
 import { useAccessors } from './useAccessors';
 
-const dispatchModeChange = newMode => {
-  console.log('dispatching');
-  window.dispatchEvent(new CustomEvent('vizModeChange', { detail: newMode }));
-};
-
-// let modeInitialized = false;
-// const initializeModeIfNeeded = mode => {
-//   if (!modeInitialized) {
-//     dispatchModeChange(mode);
-//     modeInitialized = true;
-//   }
-// };
-
 // Higher order component exposing URL state accessors.
 export const useURLState = props => {
   // Raw accessor functions for URL parameter state.
@@ -64,7 +51,6 @@ export const useURLState = props => {
 
   const setMode = newMode => {
     if (newMode !== mode) {
-      dispatchModeChange(newMode);
       setModeRaw(newMode === 'viewer' ? undefined : newMode);
     }
   };
