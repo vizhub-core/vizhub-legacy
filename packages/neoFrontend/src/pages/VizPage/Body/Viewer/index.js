@@ -22,6 +22,7 @@ import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 import { Resizer } from './Resizer';
+import { GlobalScrollbarStyle } from './GlobalScrollbarStyle';
 
 export const Viewer = () => {
   const {
@@ -65,6 +66,7 @@ export const Viewer = () => {
   return (
     <Wrapper>
       <Resizer />
+      <GlobalScrollbarStyle />
       <Scroller ref={scrollerRef}>
         <Centering>
           <ViewerContent>
