@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect } from 'react';
-import { useListener } from './useListener';
+import { useListener } from '../useListener';
 import { useWidthDetector } from './useWidthDetector';
 
 // Inspired by https://github.com/Swizec/useDimensions
