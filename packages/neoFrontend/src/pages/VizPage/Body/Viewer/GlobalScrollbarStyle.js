@@ -2,30 +2,19 @@ import { createGlobalStyle } from 'styled-components';
 
 // Derived from node_modules/perfect-scrollbar/css/perfect-scrollbar.css
 export const GlobalScrollbarStyle = createGlobalStyle`
-  /*
-   * Scrollbar rail styles
-   */
-  .ps__rail-x {
-    display: none;
-    opacity: 0;
-    transition: background-color .2s linear, opacity .2s linear;
-    -webkit-transition: background-color .2s linear, opacity .2s linear;
-    height: 15px;
-    /* there must be 'bottom' or 'top' for ps__rail-x */
-    bottom: 0px;
-    /* please don't change 'position' */
-    position: absolute;
+  .ps {
+    overflow: hidden !important;
+    overflow-anchor: none;
+    -ms-overflow-style: none;
+    touch-action: auto;
+    -ms-touch-action: auto;
   }
 
   .ps__rail-y {
     display: none;
     opacity: 0;
-    transition: background-color .2s linear, opacity .2s linear;
-    -webkit-transition: background-color .2s linear, opacity .2s linear;
-    width: 15px;
-    /* there must be 'right' or 'left' for ps__rail-y */
+    width: 20px;
     right: 0;
-    /* please don't change 'position' */
     position: absolute;
   }
 
@@ -41,7 +30,7 @@ export const GlobalScrollbarStyle = createGlobalStyle`
   .ps--focus > .ps__rail-y,
   .ps--scrolling-x > .ps__rail-x,
   .ps--scrolling-y > .ps__rail-y {
-    opacity: 0.6;
+    opacity: 1;
   }
 
   .ps .ps__rail-x:hover,
@@ -50,49 +39,23 @@ export const GlobalScrollbarStyle = createGlobalStyle`
   .ps .ps__rail-y:focus,
   .ps .ps__rail-x.ps--clicking,
   .ps .ps__rail-y.ps--clicking {
-    background-color: #eee;
-    opacity: 0.9;
-  }
-
-  /*
-   * Scrollbar thumb styles
-   */
-  .ps__thumb-x {
-    background-color: #aaa;
-    border-radius: 6px;
-    transition: background-color .2s linear, height .2s ease-in-out;
-    -webkit-transition: background-color .2s linear, height .2s ease-in-out;
-    height: 6px;
-    /* there must be 'bottom' for ps__thumb-x */
-    bottom: 2px;
-    /* please don't change 'position' */
-    position: absolute;
+    background-color: transparent;
+    opacity: 1;
   }
 
   .ps__thumb-y {
-    background-color: #aaa;
-    border-radius: 6px;
-    transition: background-color .2s linear, width .2s ease-in-out;
+    background-color: ${props => props.theme.activeBackground};
+    transition: width ${props => props.theme.fastTransition};
     -webkit-transition: background-color .2s linear, width .2s ease-in-out;
-    width: 6px;
-    /* there must be 'right' for ps__thumb-y */
-    right: 2px;
-    /* please don't change 'position' */
+    width: 0px;
+    right: 0px;
     position: absolute;
-  }
-
-  .ps__rail-x:hover > .ps__thumb-x,
-  .ps__rail-x:focus > .ps__thumb-x,
-  .ps__rail-x.ps--clicking .ps__thumb-x {
-    background-color: #999;
-    height: 11px;
   }
 
   .ps__rail-y:hover > .ps__thumb-y,
   .ps__rail-y:focus > .ps__thumb-y,
   .ps__rail-y.ps--clicking .ps__thumb-y {
-    background-color: #999;
-    width: 11px;
+    width: 20px;
   }
 
   /* MS supports */
