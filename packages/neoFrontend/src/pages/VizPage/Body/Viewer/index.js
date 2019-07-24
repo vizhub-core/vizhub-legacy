@@ -1,6 +1,15 @@
-import React, { useContext, useRef, useState, useCallback } from 'react';
+import React, {
+  useContext,
+  useRef,
+  useState,
+  useCallback,
+  useEffect
+} from 'react';
+import PerfectScrollbar from 'perfect-scrollbar';
+
 import { getVizHeight } from '../../../../accessors';
 import { VizPageDataContext } from '../../VizPageDataContext';
+import { useListener } from '../useListener';
 import {
   Wrapper,
   Scroller,
@@ -12,6 +21,7 @@ import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 import { Resizer } from './Resizer';
+import { GlobalScrollbarStyle } from './GlobalScrollbarStyle';
 
 export const Viewer = () => {
   const {
@@ -24,19 +34,38 @@ export const Viewer = () => {
   const vizHeight = getVizHeight(visualization);
 
   const scrollerRef = useRef();
+  const perfectScrollbarRef = useRef();
+
+  useEffect(() => {
+    perfectScrollbarRef.current = new PerfectScrollbar(scrollerRef.current);
+    return () => {
+      perfectScrollbarRef.current.destroy();
+      perfectScrollbarRef.current = undefined;
+    };
+  }, []);
+
+  const updateScrollbar = useCallback(() => {
+    if (perfectScrollbarRef.current) {
+      perfectScrollbarRef.current.update();
+    }
+  }, []);
+
+  useListener('resize', updateScrollbar, window);
 
   // Breakpoints for responsive layout.
   const [size, setSize] = useState();
   const setWidth = useCallback(
     width => {
       setSize(width < 500 ? 'small' : width < 700 ? 'medium' : 'large');
+      updateScrollbar();
     },
-    [setSize]
+    [setSize, updateScrollbar]
   );
 
   return (
     <Wrapper>
       <Resizer />
+      <GlobalScrollbarStyle />
       <Scroller ref={scrollerRef}>
         <Centering>
           <ViewerContent>
