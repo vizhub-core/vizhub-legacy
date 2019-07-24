@@ -46,7 +46,6 @@ export const GlobalScrollbarStyle = createGlobalStyle`
   .ps__thumb-y {
     background-color: ${props => props.theme.activeBackground};
     transition: width ${props => props.theme.fastTransition};
-    -webkit-transition: background-color .2s linear, width .2s ease-in-out;
     width: 0px;
     right: 0px;
     position: absolute;
