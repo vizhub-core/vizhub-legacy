@@ -15,9 +15,10 @@ export const theme = {
   userMenuOverlayBackgroundHover: 'rgba(246, 238, 227, 0.7)',
   userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
   hoverBackground: 'rgba(0, 0, 0, 0.05)',
-  activeBackground: 'rgba(0, 0, 0, 0.10)',
+  activeBackground: 'rgba(0, 0, 0, 0.1)',
   defaultCodingFontFamily: 'Ubuntu Mono Arrowized',
-  miniWidth: 268
+  miniWidth: 268,
+  fastTransition: '.2s ease-in-out'
 };
 theme.userMenuOverlayForeground = theme.dark;
 

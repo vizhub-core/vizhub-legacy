@@ -6,7 +6,6 @@ import React, {
   useEffect
 } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
-import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
 import { getVizHeight } from '../../../../accessors';
 import { VizPageDataContext } from '../../VizPageDataContext';
