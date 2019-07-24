@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Content } from '../../../styles';
 
+// position: relative here is to support the Resizer.
 export const Wrapper = styled.div`
   flex: 1;
   display: flex;
@@ -9,7 +10,7 @@ export const Wrapper = styled.div`
 
 export const Scroller = styled.div`
   flex: 1;
-  overflow: auto;
+  position: relative;
 `;
 
 // This level handles horizontal centering & resize behavior.

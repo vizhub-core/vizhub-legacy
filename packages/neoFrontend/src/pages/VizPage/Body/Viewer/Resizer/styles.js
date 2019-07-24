@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Z_ABOVE } from '../../../../../styles';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -10,4 +11,5 @@ export const Wrapper = styled.div`
     background-color: ${props => props.theme.hoverBackground};
     cursor: col-resize;
   }
+  z-index: ${Z_ABOVE};
 `;
