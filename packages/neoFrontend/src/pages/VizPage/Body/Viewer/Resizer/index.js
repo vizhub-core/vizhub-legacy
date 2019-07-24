@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useRef
 } from 'react';
-import { Wrapper } from './styles';
+import { Wrapper, Thumb } from './styles';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 
@@ -48,5 +48,9 @@ export const Resizer = () => {
     }
   }, [isDragging, onMouseMove, onMouseUp]);
 
-  return showResizer ? <Wrapper onMouseDown={onMouseDown} /> : null;
+  return showResizer ? (
+    <Wrapper onMouseDown={onMouseDown}>
+      <Thumb />
+    </Wrapper>
+  ) : null;
 };
