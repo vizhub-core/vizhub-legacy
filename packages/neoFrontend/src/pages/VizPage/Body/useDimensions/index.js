@@ -15,12 +15,6 @@ export const useDimensions = ({
     setDomRect(wrapperRef.current.getBoundingClientRect());
   }, [wrapperRef, setDomRect]);
 
-  // Necessary to catch up to scrollbar appearances and disappearances.
-  const measureTwice = useCallback(() => {
-    measure();
-    requestAnimationFrame(measure);
-  }, [measure]);
-
   // Measure the dimensions on scroll (if scrollerRef provided).
   useListener('scroll', measure, scrollerRef && scrollerRef.current);
 
@@ -32,7 +26,7 @@ export const useDimensions = ({
   // Detect when width of the scroller element changes.
   // This also fires when the scrollbar is added or removed.
   useWidthDetector(scrollerRef, () => {
-    measureTwice();
+    measure();
     if (onWidthChanged) {
       onWidthChanged();
     }
