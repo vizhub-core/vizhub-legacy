@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavBar } from '../../../NavBar';
 import { ForkingContext } from '../ForkingContext';
 import { URLStateContext } from '../URLStateContext';
+import { isSmallScreen } from '../isSmallScreen'
 import { Wrapper, Top, Bottom } from './styles';
 import { Head } from './Head';
 import { FullScreen } from './FullScreen';
@@ -11,7 +12,12 @@ import { Mini } from './Mini';
 
 export const Body = () => {
   const onFork = useContext(ForkingContext);
-  const { isFullScreen, showViewer, isMini } = useContext(URLStateContext);
+  const { isFullScreen, showViewer, isMini, showEditor } = useContext(URLStateContext);
+
+  let viewerVisible = showViewer;
+  if(showViewer && isSmallScreen && showEditor){
+    viewerVisible = false;
+  }
 
   return isFullScreen ? (
     <FullScreen />
@@ -23,7 +29,7 @@ export const Body = () => {
       </Top>
       <Bottom>
         <Editor />
-        {showViewer ? <Viewer /> : null}
+        {viewerVisible ? <Viewer /> : null}
         {isMini ? <Mini /> : null}
       </Bottom>
     </Wrapper>

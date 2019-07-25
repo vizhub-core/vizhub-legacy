@@ -7,14 +7,7 @@ export const EditorComponent = styled.div`
 `;
 
 export const Sidebar = styled(EditorComponent)`
-  ${props =>
-    props.showViewer
-      ? `
-        width: 150px;
-      `
-      : `
-        flex: 1;
-      `}
+  ${props => (props.expand ? 'flex: 1' : 'width: 150px')};
   font-family: ${props => props.theme.defaultCodingFontFamily};
   line-height: 1.36;
   display: flex;

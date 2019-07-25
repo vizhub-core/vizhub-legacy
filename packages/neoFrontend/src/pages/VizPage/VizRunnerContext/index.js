@@ -4,6 +4,7 @@ import { URLStateContext } from '../URLStateContext';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
+import { isSmallScreen } from '../isSmallScreen'
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -118,11 +119,15 @@ const setVizRunnerTransform = ({ x, y, scale }) => {
 
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
-  const { mode } = useContext(URLStateContext);
+  const { mode, showEditor } = useContext(URLStateContext);
   const vizHeight = visualization.info.height || defaultVizHeight;
   const ref = useRef();
 
-  setVizRunnerMode(mode);
+  let derivedMode = mode;
+  if(isSmallScreen && showEditor){
+    derivedMode = 'hide';
+  }
+  setVizRunnerMode(derivedMode);
 
   const contextValue = { setVizRunnerTransform };
 
