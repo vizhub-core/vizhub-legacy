@@ -1,5 +1,16 @@
 import { useAccessors } from './useAccessors';
 
+// Modifications to support mobile experience.
+const mobileMods = state => {
+  if (window.innerWidth < 500) {
+    if (state.showEditor) {
+      state.mode = 'hide';
+      state.showViewer = false;
+    }
+  }
+  return state;
+};
+
 // Higher order component exposing URL state accessors.
 export const useURLState = props => {
   // Raw accessor functions for URL parameter state.
@@ -89,7 +100,7 @@ export const useURLState = props => {
   const showResizer = activeFile !== undefined;
 
   // Derived accessors for URL state, exposed to components.
-  return {
+  return mobileMods({
     activeFile,
     setActiveFile,
     closeActiveFile,
@@ -110,5 +121,5 @@ export const useURLState = props => {
     enterMini,
     exitMini,
     showResizer
-  };
+  });
 };
