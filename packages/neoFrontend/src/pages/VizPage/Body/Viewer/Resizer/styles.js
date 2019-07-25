@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   top: 0;
   left: 0;
   bottom: 0;
-  width: 15px;
+  width: 20px;
   &:hover {
     cursor: col-resize;
   }
@@ -18,11 +18,11 @@ export const Thumb = styled.div`
   top: 0;
   left: 0;
   bottom: 0;
-
-  width: 0px;
+  width: 10px;
   ${Wrapper}:hover & {
-    width: 20px;
+    background-color: ${props => props.theme.hoverBackground};
   }
-  transition: width ${props => props.theme.fastTransition};
-  background-color: ${props => props.theme.activeBackground};
+  ${Wrapper}:active & {
+    background-color: ${props => props.theme.activeBackground};
+  }
 `;
