@@ -43,7 +43,9 @@ export const useURLState = props => {
 
   // Closes whatever file is open.
   const closeActiveFile = () => {
-    setFile(undefined);
+    if (activeFile) {
+      setFile(undefined);
+    }
   };
 
   // The ID of the visualization we are viewing.
