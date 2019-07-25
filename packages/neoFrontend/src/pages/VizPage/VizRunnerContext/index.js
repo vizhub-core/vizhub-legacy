@@ -1,17 +1,16 @@
 import React, { createContext, useContext, useRef, useEffect } from 'react';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { URLStateContext } from '../URLStateContext';
+import { modMode } from '../mobileMods';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
-import { isSmallScreen } from '../isSmallScreen'
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
 const transitionDuration = 500;
 
-//const srcDoc = `<style>body { background-color: pink; }</style>`;
-const srcDoc = '';
+const srcDoc = `<style>body { background-color: pink; }</style>`;
 export const VizRunnerContext = createContext();
 
 // Yes, this will be lying around all the time, doing no harm.
@@ -123,11 +122,7 @@ export const VizRunnerProvider = ({ children }) => {
   const vizHeight = visualization.info.height || defaultVizHeight;
   const ref = useRef();
 
-  let derivedMode = mode;
-  if(isSmallScreen && showEditor){
-    derivedMode = 'hide';
-  }
-  setVizRunnerMode(derivedMode);
+  setVizRunnerMode(modMode(mode, showEditor));
 
   const contextValue = { setVizRunnerTransform };
 
