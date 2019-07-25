@@ -11,16 +11,17 @@ export const GlobalScrollbarStyle = createGlobalStyle`
   }
 
   .ps__rail-y {
-    display: none;
+    display: block;
     opacity: 0;
-    width: 20px;
+    transition: opacity .2s linear;
+    transition-delay: .2s;
+    width: 10px;
     right: 0;
     position: absolute;
   }
 
   .ps--active-x > .ps__rail-x,
   .ps--active-y > .ps__rail-y {
-    display: block;
     background-color: transparent;
   }
 
@@ -44,17 +45,22 @@ export const GlobalScrollbarStyle = createGlobalStyle`
   }
 
   .ps__thumb-y {
-    background-color: ${props => props.theme.activeBackground};
-    transition: width ${props => props.theme.fastTransition};
-    width: 5px;
-    right: 0px;
+    background-color: #ffffff;
+    box-shadow: ${props => props.theme.shadow};
+    border-radius: 10px;
+    width: 4px;
+    right: 3px;
+    transition: ${({theme: {fastTransition}}) => `
+      width ${fastTransition}, right ${fastTransition}
+    `};
     position: absolute;
   }
 
   .ps__rail-y:hover > .ps__thumb-y,
   .ps__rail-y:focus > .ps__thumb-y,
   .ps__rail-y.ps--clicking .ps__thumb-y {
-    width: 20px;
+    width: 10px;
+    right: 0px;
   }
 
   /* MS supports */
