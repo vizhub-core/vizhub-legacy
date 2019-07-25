@@ -7,7 +7,7 @@ import { URLStateContext } from '../../URLStateContext';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { useDimensions } from '../useDimensions';
 import { LargeIcon } from '../styles';
-import { Wrapper, FullScreenFooter } from './styles';
+import { Wrapper, FullScreenFooter, Backdrop } from './styles';
 
 export const FullScreen = () => {
   const wrapperRef = useRef();
@@ -39,18 +39,21 @@ export const FullScreen = () => {
     [setVizRunnerTransform, vizHeight]
   );
 
-  useDimensions({ wrapperRef, setDomRect });
+  useDimensions({ wrapperRef, setDomRect, globalResize: true });
 
   return (
-    <Wrapper ref={wrapperRef}>
-      <FullScreenFooter>
-        <LargeIcon leftmost={true} onClick={enterMini}>
-          <MiniSVG />
-        </LargeIcon>
-        <LargeIcon rightmost={true} onClick={exitFullScreen}>
-          <FullExitSVG />
-        </LargeIcon>
-      </FullScreenFooter>
-    </Wrapper>
+    <>
+      <Backdrop />
+      <Wrapper ref={wrapperRef}>
+        <FullScreenFooter>
+          <LargeIcon leftmost={true} onClick={enterMini}>
+            <MiniSVG />
+          </LargeIcon>
+          <LargeIcon rightmost={true} onClick={exitFullScreen}>
+            <FullExitSVG />
+          </LargeIcon>
+        </FullScreenFooter>
+      </Wrapper>
+    </>
   );
 };
