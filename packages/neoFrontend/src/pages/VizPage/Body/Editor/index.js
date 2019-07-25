@@ -6,11 +6,11 @@ import { FilesSection } from './FilesSection';
 import { CodeEditor } from './CodeEditor';
 
 export const Editor = () => {
-  const { showEditor } = useContext(URLStateContext);
+  const { showEditor, showViewer } = useContext(URLStateContext);
   return (
     <>
       {showEditor ? (
-        <Sidebar>
+        <Sidebar showViewer={showViewer}>
           <Section title="visual editor" id="visual" />
           <FilesSection />
         </Sidebar>
