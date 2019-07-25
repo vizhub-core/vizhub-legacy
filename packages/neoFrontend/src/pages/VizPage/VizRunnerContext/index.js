@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useRef, useEffect } from 'react';
-import { VizPageDataContext } from '../VizPageDataContext';
-import { URLStateContext } from '../URLStateContext';
-import { modMode } from '../mobileMods';
+import { getVizHeight } from '../../../accessors';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
+import { VizPageDataContext } from '../VizPageDataContext';
+import { URLStateContext } from '../URLStateContext';
+import { modMode } from '../mobileMods';
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -35,7 +36,8 @@ let timeoutId;
 
 const setStyles = () => {
   // If in "mini" mode, set Z index high.
-  iFrame.style['z-index'] = mode === 'mini' ? Z_WAY_ABOVE : Z_BELOW;
+  iFrame.style['z-index'] =
+    mode === 'mini' || mode === 'micro' ? Z_WAY_ABOVE : Z_BELOW;
 
   // If not in "fullscreen" mode, set shadow.
   iFrame.style['box-shadow'] = mode === 'full' ? 'none' : theme.shadowLight;
@@ -122,7 +124,20 @@ export const VizRunnerProvider = ({ children }) => {
   const vizHeight = visualization.info.height || defaultVizHeight;
   const ref = useRef();
 
-  setVizRunnerMode(modMode(mode, showEditor));
+  const mod = modMode(mode, showEditor);
+  setVizRunnerMode(mod);
+
+  if (mod === 'micro') {
+    console.log('enter micro now');
+    // TODO derive from theme (banner height + head height);
+    const microHeight = 40 + 30;
+    const vizHeight = getVizHeight(visualization);
+    const scale = microHeight / vizHeight;
+    const width = scale * vizWidth;
+    const x = window.innerWidth - width;
+    const y = 0;
+    setVizRunnerTransform({ x, y, scale });
+  }
 
   const contextValue = { setVizRunnerTransform };
 

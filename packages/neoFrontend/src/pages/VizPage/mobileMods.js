@@ -13,7 +13,7 @@ export const modShowViewer = mobile
 
 // On mobile, don't show viz runner if editor is open.
 export const modMode = mobile
-  ? (mode, showEditor) => (showEditor ? 'hide' : mode)
+  ? (mode, showEditor) => (showEditor ? 'micro' : mode)
   : identity;
 
 // On mobile, if editor is open, allow it to expand to full width.
