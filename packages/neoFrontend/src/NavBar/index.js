@@ -8,21 +8,21 @@ import { SignIn, LogoLink } from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
 
 export const NavBar = withRouter(
-  withTheme(({ theme, location }) => {
-    const { navbarItemHeight, navbarLogoColor } = theme;
+  withTheme(({ theme, location, showRight = true }) => {
+    const { navbarHeight, navbarLogoColor } = theme;
     const { me, signIn } = useContext(AuthContext);
 
     return (
       <Banner>
         {location.pathname === '/' ? (
-          <LogoSVG height={navbarItemHeight} fill={navbarLogoColor} />
+          <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
         ) : (
           <LogoLink to="/">
-            <LogoSVG height={navbarItemHeight} fill={navbarLogoColor} />
+            <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
           </LogoLink>
         )}
 
-        {me === AUTH_PENDING ? null : me ? (
+        {me === AUTH_PENDING || !showRight ? null : me ? (
           <UserActionsMenu />
         ) : (
           <SignIn className="test-sign-in" onClick={signIn}>

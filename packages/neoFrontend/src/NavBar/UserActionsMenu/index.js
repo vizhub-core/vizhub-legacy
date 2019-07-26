@@ -11,7 +11,7 @@ export const UserActionsMenu = withTheme(({ theme }) => {
   const {
     userMenuOverlayForeground,
     navbarAvatarBorderColor,
-    navbarItemHeight
+    navbarHeight
   } = theme;
 
   const { me, signOut } = useContext(AuthContext);
@@ -23,22 +23,22 @@ export const UserActionsMenu = withTheme(({ theme }) => {
   useCloseOnGlobalClick(isOpen, close);
 
   return (
-    <Wrapper height={navbarItemHeight}>
+    <Wrapper height={navbarHeight}>
       <Avatar
-        size={navbarItemHeight}
+        size={navbarHeight}
         borderColor={isOpen ? undefined : navbarAvatarBorderColor}
         user={me}
         onClick={open}
       />
       {isOpen ? (
         <>
-          <AvatarOverlay size={navbarItemHeight}>
+          <AvatarOverlay size={navbarHeight}>
             <CloseSVG
-              height={navbarItemHeight / 2}
+              height={navbarHeight / 2}
               fill={userMenuOverlayForeground}
             />
           </AvatarOverlay>
-          <Menu height={navbarItemHeight}>
+          <Menu height={navbarHeight}>
             <Link to="create-viz">
               <Item className="test-create-viz" topmost={true}>
                 Create Visualization

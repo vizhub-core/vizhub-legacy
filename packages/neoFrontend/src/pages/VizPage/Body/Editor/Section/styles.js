@@ -8,7 +8,10 @@ export const Wrapper = styled.div`
 `;
 
 export const TitleEntry = styled.div`
-  padding: 5px 15px 5px 15px;
+  display: flex;
+  align-items: center;
+  padding-left: ${props => props.theme.editorEntryHorizontalPadding}px;
+  height: ${props => props.theme.editorEntryHeight}px;
   border-left: 5px solid
     ${props =>
       props.isActive ? 'transparent' : props.theme.editorSectionActiveColor};

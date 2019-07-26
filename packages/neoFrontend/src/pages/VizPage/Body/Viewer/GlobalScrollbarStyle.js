@@ -50,7 +50,7 @@ export const GlobalScrollbarStyle = createGlobalStyle`
     border-radius: 10px;
     width: 4px;
     right: 3px;
-    transition: ${({theme: {fastTransition}}) => `
+    transition: ${({ theme: { fastTransition } }) => `
       width ${fastTransition}, right ${fastTransition}
     `};
     position: absolute;

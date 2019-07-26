@@ -13,6 +13,7 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "dependencies": {
+    "is-mobile": "^2.0.1",
     "marked": "^0.7.0",
     "perfect-scrollbar": "^1.4.0",
     "query-string": "^6.8.1",
