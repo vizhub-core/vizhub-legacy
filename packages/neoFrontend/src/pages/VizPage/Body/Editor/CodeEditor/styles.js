@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Icon } from '../../styles';
 import { EditorComponent } from '../styles';
 
 export const Wrapper = styled(EditorComponent)`
@@ -29,4 +30,9 @@ export const Content = styled.div`
   flex: 1;
   padding: 10px;
   font-family: ${props => props.theme.defaultCodingFontFamily};
+`;
+
+export const MobileCloseIcon = styled(Icon)`
+  height: 30px;
+  width: 30px;
 `;
