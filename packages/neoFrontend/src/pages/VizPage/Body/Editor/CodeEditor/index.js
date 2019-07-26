@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../../../URLStateContext';
+import { isMobile, modShowViewer } from '../../../mobileMods';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { FullSVG, CloseSVG } from '../../../../../svg';
 //import { VizPageDataContext } from '../../../VizPageDataContext';
@@ -20,13 +21,15 @@ export const CodeEditor = () => {
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
 
+  const viewer = modShowViewer(showViewer, showEditor, activeFile);
+
   return activeFile ? (
     <Wrapper
       showLeftBorder={showEditor}
-      style={showViewer ? { width: codeEditorWidth + 'px' } : { flex: 1 }}
+      style={viewer ? { width: codeEditorWidth + 'px' } : { flex: 1 }}
     >
       <Icons>
-        {showViewer ? (
+        {viewer ? (
           <>
             <LargeIcon onClick={onHideViz} leftmost={true}>
               <FullSVG />
@@ -36,7 +39,11 @@ export const CodeEditor = () => {
             </LargeIcon>
           </>
         ) : (
-          <LargeIcon onClick={onShowViz} leftmost={true} rightmost={true}>
+          <LargeIcon
+            onClick={isMobile ? closeActiveFile : onShowViz}
+            leftmost={true}
+            rightmost={true}
+          >
             <CloseSVG />
           </LargeIcon>
         )}

@@ -16,7 +16,7 @@ export const Body = () => {
     URLStateContext
   );
 
-  const mod = modMode(mode, showEditor);
+  const mod = modMode(mode, showEditor, activeFile);
   const isMini = mod === 'mini';
   const showTopRight = mod !== 'micro';
 
