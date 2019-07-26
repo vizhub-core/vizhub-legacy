@@ -9,16 +9,16 @@ import { UserActionsMenu } from './UserActionsMenu';
 
 export const NavBar = withRouter(
   withTheme(({ theme, location }) => {
-    const { navbarItemHeight, navbarLogoColor } = theme;
+    const { navbarHeight, navbarLogoColor } = theme;
     const { me, signIn } = useContext(AuthContext);
 
     return (
       <Banner>
         {location.pathname === '/' ? (
-          <LogoSVG height={navbarItemHeight} fill={navbarLogoColor} />
+          <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
         ) : (
           <LogoLink to="/">
-            <LogoSVG height={navbarItemHeight} fill={navbarLogoColor} />
+            <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
           </LogoLink>
         )}
 
