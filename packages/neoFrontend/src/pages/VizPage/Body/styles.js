@@ -52,13 +52,3 @@ export const Footer = styled.div`
 export const FrameFooter = styled(Footer)`
   border-radius: 0 0 3px 3px;
 `;
-
-export const MicroConsole = styled.pre`
-  height: ${props => props.theme.bannerHeight + props.theme.headHeight}px;
-  background-color: #ffffff;
-  font-size: 8px;
-  font-family: ${props => props.theme.defaultCodingFontFamily};
-  margin: 0;
-  padding: 2px;
-  box-sizing: border-box;
-`;
