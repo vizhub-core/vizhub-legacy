@@ -36,8 +36,8 @@ export const Icon = styled(Clickable)`
 
 export const LargeIcon = styled(Icon)`
   height: 40px;
-  padding-right: ${props => (props.rightmost ? '10' : '7')}px;
-  padding-left: ${props => (props.leftmost ? '10' : '7')}px;
+  padding-right: ${props => (props.rightmost ? 10 : 7)}px;
+  padding-left: ${props => (props.leftmost ? 10 : 7)}px;
 `;
 
 export const Footer = styled.div`

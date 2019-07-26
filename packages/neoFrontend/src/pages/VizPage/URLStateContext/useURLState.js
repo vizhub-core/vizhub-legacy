@@ -43,7 +43,14 @@ export const useURLState = props => {
 
   // Closes whatever file is open.
   const closeActiveFile = () => {
-    setFile(undefined);
+    if (activeFile) {
+      setFile(undefined);
+
+      // Handle mobile UX.
+      if (mode === 'mini') {
+        setMode('viewer');
+      }
+    }
   };
 
   // The ID of the visualization we are viewing.
@@ -74,7 +81,6 @@ export const useURLState = props => {
   const enterFullScreen = () => setMode('full');
   const exitFullScreen = onShowViz;
 
-  const isMini = mode === 'mini';
   const enterMini = () => {
     setMode('mini');
     if (!activeFile) {
@@ -82,6 +88,7 @@ export const useURLState = props => {
       setEdit('files');
     }
   };
+
   const exitMini = onShowViz;
 
   const showViewer = mode !== 'hide' && mode !== 'mini';
@@ -106,7 +113,6 @@ export const useURLState = props => {
     enterFullScreen,
     exitFullScreen,
     showViewer,
-    isMini,
     enterMini,
     exitMini,
     showResizer

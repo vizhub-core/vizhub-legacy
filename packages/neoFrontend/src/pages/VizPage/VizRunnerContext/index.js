@@ -1,9 +1,11 @@
 import React, { createContext, useContext, useRef, useEffect } from 'react';
-import { VizPageDataContext } from '../VizPageDataContext';
-import { URLStateContext } from '../URLStateContext';
+import { getMicroScale, getMicroWidth } from '../../../accessors';
 import { defaultVizHeight, vizWidth } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
+import { VizPageDataContext } from '../VizPageDataContext';
+import { URLStateContext } from '../URLStateContext';
+import { modMode } from '../mobileMods';
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -26,12 +28,20 @@ iFrame.style.left = `0px`;
 iFrame.style['transform-origin'] = '0 0';
 iFrame.style['z-index'] = Z_BELOW;
 iFrame.style['background-color'] = '#ffffff';
-iFrame.style['box-shadow'] = theme.shadowLight;
 iFrame.style['transition-property'] = 'transform';
 iFrame.style['transition-timing-function'] = 'cubic-bezier(.28,.66,.15,1)';
 
 let mode;
 let timeoutId;
+
+const setStyles = () => {
+  // If in "mini" mode, set Z index high.
+  iFrame.style['z-index'] =
+    mode === 'mini' || mode === 'micro' ? Z_WAY_ABOVE : Z_BELOW;
+
+  // If not in "fullscreen" mode, set shadow.
+  iFrame.style['box-shadow'] = mode === 'full' ? 'none' : theme.shadowLight;
+};
 
 // 'mode' here means the context in which the viz content is being viewed.
 // For example, it could be 'viewer' if it's shown in the viz viewer section,
@@ -60,23 +70,27 @@ const setVizRunnerMode = newMode => {
   // Do not animate if showing or hiding.
   if (showing || hiding) {
     iFrame.style.visibility = showing ? 'visible' : 'hidden';
+    setStyles();
     return;
   }
 
-  // If initializing in "mini" mode, set Z index high.
-  if (initializing && mode === 'mini') {
-    iFrame.style['z-index'] = Z_WAY_ABOVE;
+  if (initializing) {
+    setStyles();
+    return;
   }
 
   // Animate if mode changed,
   // but not if mode was just first initialized,
-  if (!initializing && modeChanged) {
+  if (modeChanged) {
     // Make sure viz content is above everything else while transitioning.
     // Unless we're transitioning to full screen, because in that case
     // the footer should be above the viz content, even in transition.
     if (mode !== 'full') {
       iFrame.style['z-index'] = Z_WAY_ABOVE;
     }
+
+    // Lose the shadow for transition, for performance.
+    iFrame.style['box-shadow'] = 'none';
 
     // Set the transition duration before setting properties, so they animate.
     iFrame.style['transition-duration'] = transitionDuration + 'ms';
@@ -87,12 +101,7 @@ const setVizRunnerMode = newMode => {
 
     // Wait for the transition to finish.
     timeoutId = setTimeout(() => {
-      // Pop the content back under other things,
-      // where it should be normally,
-      // unless it's in 'mini' mode.
-      if (mode !== 'mini') {
-        iFrame.style['z-index'] = Z_BELOW;
-      }
+      setStyles();
 
       // Make future updates happen instantly.
       iFrame.style['transition-duration'] = '0ms';
@@ -111,11 +120,19 @@ const setVizRunnerTransform = ({ x, y, scale }) => {
 
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
-  const { mode } = useContext(URLStateContext);
+  const { mode, showEditor, activeFile } = useContext(URLStateContext);
   const vizHeight = visualization.info.height || defaultVizHeight;
   const ref = useRef();
 
-  setVizRunnerMode(mode);
+  const mod = modMode(mode, showEditor, activeFile);
+  setVizRunnerMode(mod);
+
+  if (mod === 'micro') {
+    const scale = getMicroScale(visualization);
+    const x = window.innerWidth - getMicroWidth(scale);
+    const y = 0;
+    setVizRunnerTransform({ x, y, scale });
+  }
 
   const contextValue = { setVizRunnerTransform };
 

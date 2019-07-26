@@ -10,13 +10,14 @@ export const theme = {
   bannerHeight: 100,
   bannerPadding: 6,
   navbarLogoColor: 'currentcolor',
-  navbarItemHeight: 40,
+  navbarHeight: 40,
+  headHeight: 30,
   userMenuOverlayBackground: 'rgba(246, 238, 227, 0.83)',
   userMenuOverlayBackgroundHover: 'rgba(246, 238, 227, 0.7)',
   userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
   hoverBackground: 'rgba(0, 0, 0, 0.05)',
   activeBackground: 'rgba(0, 0, 0, 0.1)',
-  defaultCodingFontFamily: 'Ubuntu Mono Arrowized',
+  defaultCodingFontFamily: 'Deja Vu Sans Mono Arrowized',
   miniWidth: 268,
   fastTransition: '.2s ease-in-out'
 };
@@ -27,19 +28,20 @@ export const darkNavbarTheme = {
   bannerBackground: theme.dark,
   bannerHeight: 40,
   bannerPadding: 20,
-  navbarLogoColor: '#ffffff',
-  navbarItemHeight: 20,
   navbarAvatarBorderColor: '#ffffff',
+  navbarLogoColor: '#ffffff',
+  navbarHeight: 20,
   userMenuOverlayBackground: 'rgba(0, 0, 0, 0.5)',
   userMenuOverlayBackgroundHover: 'rgba(0, 0, 0, 0.4)',
   userMenuOverlayBackgroundActive: 'rgba(0, 0, 0, 0.3)',
   userMenuOverlayForeground: '#ffffff',
   editorSectionActiveColor: 'rgba(255, 255, 255, 0.15)',
+  editorEntryHeight: 30,
   editorFileActiveColor: '#ffffff',
-  editorEntryVerticalPadding: 5,
   editorEntryHorizontalPadding: 15,
   editorEntryIndentation: 10,
-  editorEntryLeftBorderSize: 5
+  editorEntryLeftBorderSize: 5,
+  editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
 };
 
 const Wrapper = styled.div`
