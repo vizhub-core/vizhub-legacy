@@ -40,7 +40,8 @@ export const darkNavbarTheme = {
   editorEntryVerticalPadding: 5,
   editorEntryHorizontalPadding: 15,
   editorEntryIndentation: 10,
-  editorEntryLeftBorderSize: 5
+  editorEntryLeftBorderSize: 5,
+  editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
 };
 
 const Wrapper = styled.div`
