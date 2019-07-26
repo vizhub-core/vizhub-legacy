@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../../URLStateContext';
-import { expandEditor, modShowEditor } from '../../mobileMods';
+import { modExpandEditor, modShowEditor } from '../../mobileMods';
 import { Sidebar } from './styles';
 import { Section } from './Section';
 import { FilesSection } from './FilesSection';
@@ -12,7 +12,7 @@ export const Editor = () => {
   return (
     <>
       {modShowEditor(showEditor, activeFile) ? (
-        <Sidebar expand={expandEditor(showEditor)}>
+        <Sidebar expand={modExpandEditor(showEditor)}>
           <Section title="visual editor" id="visual" />
           <FilesSection />
         </Sidebar>

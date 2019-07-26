@@ -19,18 +19,11 @@ export const modMode = isMobile
   : identity;
 
 // On mobile, if editor is open, allow it to expand to full width.
-export const expandEditor = showEditor => isMobile && showEditor;
+export const modExpandEditor = isMobile
+  ? showEditor => showEditor
+  : () => false;
 
 // On mobile, don't show editor sidebar if a file is open.
 export const modShowEditor = isMobile
   ? (showEditor, activeFile) => (activeFile ? false : showEditor)
   : identity;
-
-// On mobile, if a file is open and you click "Close Editor",
-// it will close the active file AND the editor (sidebar).
-//export const modToggleEditor = isMobile
-//  ? (toggleEditor, closeActiveFile) => () => {
-//      toggleEditor();
-//      closeActiveFile();
-//    }
-//  : identity;
