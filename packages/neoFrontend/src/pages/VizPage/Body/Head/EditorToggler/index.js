@@ -4,9 +4,7 @@ import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, Text } from './styles';
 
 export const EditorToggler = () => {
-  const { showEditor, toggleEditor } = useContext(
-    URLStateContext
-  );
+  const { showEditor, toggleEditor } = useContext(URLStateContext);
   return (
     <Wrapper onClick={toggleEditor}>
       <ArrowSVG left={showEditor} />

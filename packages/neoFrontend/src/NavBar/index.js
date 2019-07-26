@@ -8,7 +8,7 @@ import { SignIn, LogoLink } from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
 
 export const NavBar = withRouter(
-  withTheme(({ theme, location }) => {
+  withTheme(({ theme, location, showRight }) => {
     const { navbarHeight, navbarLogoColor } = theme;
     const { me, signIn } = useContext(AuthContext);
 
@@ -22,7 +22,7 @@ export const NavBar = withRouter(
           </LogoLink>
         )}
 
-        {me === AUTH_PENDING ? null : me ? (
+        {me === AUTH_PENDING || !showRight ? null : me ? (
           <UserActionsMenu />
         ) : (
           <SignIn className="test-sign-in" onClick={signIn}>
