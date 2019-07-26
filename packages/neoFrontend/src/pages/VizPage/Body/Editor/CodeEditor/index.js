@@ -5,7 +5,7 @@ import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { FullSVG, CloseSVG } from '../../../../../svg';
 //import { VizPageDataContext } from '../../../VizPageDataContext';
 import { LargeIcon } from '../../styles';
-import { Wrapper, Header, Icons, Content } from './styles';
+import { Wrapper, Header, Icons, Content, MobileCloseIcon } from './styles';
 
 export const CodeEditor = () => {
   const {
@@ -40,12 +40,12 @@ export const CodeEditor = () => {
                 <CloseSVG />
               </LargeIcon>
             </>
+          ) : isMobile ? (
+            <MobileCloseIcon onClick={closeActiveFile}>
+              <CloseSVG height={15} />
+            </MobileCloseIcon>
           ) : (
-            <LargeIcon
-              onClick={isMobile ? closeActiveFile : onShowViz}
-              leftmost={true}
-              rightmost={true}
-            >
+            <LargeIcon onClick={onShowViz} leftmost={true} rightmost={true}>
               <CloseSVG />
             </LargeIcon>
           )}
