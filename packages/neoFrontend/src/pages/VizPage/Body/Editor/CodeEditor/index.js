@@ -4,8 +4,9 @@ import { isMobile, modShowViewer } from '../../../mobileMods';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { FullSVG, CloseSVG } from '../../../../../svg';
 //import { VizPageDataContext } from '../../../VizPageDataContext';
-import { LargeIcon } from '../../styles';
-import { Wrapper, Header, Icons, Content, MobileCloseIcon } from './styles';
+import { Wrapper, Header, Icons, Content, CodeEditorIcon } from './styles';
+
+const svgHeight = 15;
 
 export const CodeEditor = () => {
   const {
@@ -33,21 +34,25 @@ export const CodeEditor = () => {
         <Icons>
           {viewer ? (
             <>
-              <LargeIcon onClick={onHideViz} leftmost={true}>
-                <FullSVG />
-              </LargeIcon>
-              <LargeIcon onClick={closeActiveFile} rightmost={true}>
-                <CloseSVG />
-              </LargeIcon>
+              <CodeEditorIcon onClick={onHideViz} leftmost={true}>
+                <FullSVG height={svgHeight} />
+              </CodeEditorIcon>
+              <CodeEditorIcon onClick={closeActiveFile} rightmost={true}>
+                <CloseSVG height={svgHeight} />
+              </CodeEditorIcon>
             </>
           ) : isMobile ? (
-            <MobileCloseIcon onClick={closeActiveFile}>
-              <CloseSVG height={15} />
-            </MobileCloseIcon>
+            <CodeEditorIcon onClick={closeActiveFile}>
+              <CloseSVG height={svgHeight} />
+            </CodeEditorIcon>
           ) : (
-            <LargeIcon onClick={onShowViz} leftmost={true} rightmost={true}>
-              <CloseSVG />
-            </LargeIcon>
+            <CodeEditorIcon
+              onClick={onShowViz}
+              leftmost={true}
+              rightmost={true}
+            >
+              <CloseSVG height={svgHeight} />
+            </CodeEditorIcon>
           )}
         </Icons>
       </Header>

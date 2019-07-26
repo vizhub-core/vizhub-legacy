@@ -45,6 +45,7 @@ export const useURLState = props => {
   const closeActiveFile = () => {
     if (activeFile) {
       setFile(undefined);
+      // TODO also clear mode if mini?
     }
   };
 

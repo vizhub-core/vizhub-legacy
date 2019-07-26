@@ -24,5 +24,5 @@ export const Right = styled.div`
 export const HeadIcon = styled(Icon)`
   height: ${props => props.theme.headHeight}px;
   width: 35px;
-  margin-right: ${props => (props.rightmost ? '9px' : '0')};
+  margin-right: ${props => (props.rightmost ? 9 : 0)}px;
 `;
