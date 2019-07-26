@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useRef, useEffect } from 'react';
 import { getVizHeight } from '../../../accessors';
 import { defaultVizHeight, vizWidth } from '../../../constants';
-import { theme } from '../../../theme';
+import { theme, darkNavbarTheme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { URLStateContext } from '../URLStateContext';
@@ -10,6 +10,8 @@ import { modMode } from '../mobileMods';
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
 const transitionDuration = 500;
+
+const microHeight = darkNavbarTheme.bannerHeight + darkNavbarTheme.headHeight;
 
 const srcDoc = `<style>body { background-color: pink; }</style>`;
 export const VizRunnerContext = createContext();
@@ -128,9 +130,6 @@ export const VizRunnerProvider = ({ children }) => {
   setVizRunnerMode(mod);
 
   if (mod === 'micro') {
-    console.log('enter micro now');
-    // TODO derive from theme (banner height + head height);
-    const microHeight = 40 + 30;
     const vizHeight = getVizHeight(visualization);
     const scale = microHeight / vizHeight;
     const width = scale * vizWidth;

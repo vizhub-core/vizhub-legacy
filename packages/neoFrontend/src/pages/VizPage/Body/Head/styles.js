@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Icon } from '../styles';
 
 export const Wrapper = styled.div`
-  height: 30px;
+  height: ${props => props.theme.headHeight}px;
   background-color: #ffffff;
   box-shadow: ${props => props.theme.shadow};
 
@@ -22,7 +22,7 @@ export const Right = styled.div`
 `;
 
 export const HeadIcon = styled(Icon)`
-  height: 30px;
+  height: ${props => props.theme.headHeight}px;
   width: 35px;
   margin-right: ${props => (props.rightmost ? '9px' : '0')};
 `;
