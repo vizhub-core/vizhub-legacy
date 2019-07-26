@@ -12,7 +12,7 @@ import { Mini } from './Mini';
 
 export const Body = () => {
   const onFork = useContext(ForkingContext);
-  const { isFullScreen, showViewer, mode, showEditor } = useContext(
+  const { isFullScreen, showViewer, mode, showEditor, activeFile } = useContext(
     URLStateContext
   );
 
@@ -30,7 +30,7 @@ export const Body = () => {
       </Top>
       <Bottom>
         <Editor />
-        {modShowViewer(showViewer, showEditor) ? <Viewer /> : null}
+        {modShowViewer(showViewer, showEditor, activeFile) ? <Viewer /> : null}
         {isMini ? <Mini /> : null}
       </Bottom>
     </Wrapper>
