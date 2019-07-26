@@ -14,11 +14,12 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
-  font-weight: 600;
   font-family: ${props => props.theme.defaultCodingFontFamily};
   box-shadow: ${props => props.theme.shadow};
 `;
 //border-bottom: ${props => props.theme.editorBorder};
+//background-color: ${props => props.theme.editorSectionActiveColor};
+//text-decoration: underline;
 
 // Z index here is so that the icons appear
 // above the split pane resizer.
@@ -32,7 +33,8 @@ export const Content = styled.div`
   font-family: ${props => props.theme.defaultCodingFontFamily};
 `;
 
-export const MobileCloseIcon = styled(Icon)`
-  height: 30px;
-  width: 30px;
+export const CodeEditorIcon = styled(Icon)`
+  height: ${props => props.theme.editorEntryHeight}px;
+  padding-right: ${props => (props.rightmost ? 8 : 5)}px;
+  padding-left: ${props => (props.leftmost ? 8 : 5)}px;
 `;
