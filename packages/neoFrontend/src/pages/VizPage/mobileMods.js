@@ -1,8 +1,9 @@
 import mobile from 'is-mobile';
+
 // Modifications and tweaks to support mobile experience.
 
 // Are we on mobile?
-const isMobile = mobile();
+export const isMobile = mobile();
 
 // The identity function.
 const identity = x => x;
@@ -27,9 +28,9 @@ export const modShowEditor = isMobile
 
 // On mobile, if a file is open and you click "Close Editor",
 // it will close the active file AND the editor (sidebar).
-export const modToggleEditor = isMobile
-  ? (toggleEditor, closeActiveFile) => () => {
-      toggleEditor();
-      closeActiveFile();
-    }
-  : identity;
+//export const modToggleEditor = isMobile
+//  ? (toggleEditor, closeActiveFile) => () => {
+//      toggleEditor();
+//      closeActiveFile();
+//    }
+//  : identity;
