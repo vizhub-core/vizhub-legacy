@@ -122,11 +122,11 @@ const setVizRunnerTransform = ({ x, y, scale }) => {
 
 export const VizRunnerProvider = ({ children }) => {
   const { visualization } = useContext(VizPageDataContext);
-  const { mode, showEditor } = useContext(URLStateContext);
+  const { mode, showEditor, activeFile } = useContext(URLStateContext);
   const vizHeight = visualization.info.height || defaultVizHeight;
   const ref = useRef();
 
-  const mod = modMode(mode, showEditor);
+  const mod = modMode(mode, showEditor, activeFile);
   setVizRunnerMode(mod);
 
   if (mod === 'micro') {
