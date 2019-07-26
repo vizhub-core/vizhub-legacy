@@ -45,7 +45,11 @@ export const useURLState = props => {
   const closeActiveFile = () => {
     if (activeFile) {
       setFile(undefined);
-      // TODO also clear mode if mini?
+
+      // Handle mobile UX.
+      if (mode === 'mini') {
+        setMode('viewer');
+      }
     }
   };
 
