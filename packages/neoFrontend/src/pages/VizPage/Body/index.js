@@ -11,7 +11,7 @@ import { Editor } from './Editor';
 import { Viewer } from './Viewer';
 import { Mini } from './Mini';
 
-const consoleOutput = `\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2`;
+const consoleOutput = `hello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2`;
 
 export const Body = () => {
   const onFork = useContext(ForkingContext);
