@@ -53,10 +53,7 @@ describe('VizHub End to End Tests', () => {
     it('should toggle mini', toggleMini(my));
     it('should toggle code editor', toggleCodeEditor(my));
     it('should toggle full code editor mode', toggleFullEditor(my));
-    it(
-      'should toggle code editor and editor independently',
-      codeEditorIndependence(my)
-    );
+    it('should toggle code editor independently', codeEditorIndependence(my));
   });
 
   describe('Tear Down', () => {
