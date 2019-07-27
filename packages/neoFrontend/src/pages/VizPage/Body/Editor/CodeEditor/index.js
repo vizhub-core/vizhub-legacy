@@ -28,9 +28,10 @@ export const CodeEditor = () => {
     <Wrapper
       showLeftBorder={showEditor}
       style={viewer ? { width: codeEditorWidth + 'px' } : { flex: 1 }}
+      className="test-code-editor"
     >
       <Header>
-        {activeFile}
+        <div className="test-code-editor-file-name">{activeFile}</div>
         <Icons>
           {viewer ? (
             <>

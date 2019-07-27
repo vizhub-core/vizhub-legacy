@@ -36,7 +36,11 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
         <>
           <div style={{ height: vizHeight * scale }} />
           <FrameFooter>
-            <LargeIcon leftmost={true} onClick={enterMini}>
+            <LargeIcon
+              leftmost={true}
+              onClick={enterMini}
+              className="test-enter-mini-from-viewer"
+            >
               <MiniSVG />
             </LargeIcon>
             <LargeIcon
