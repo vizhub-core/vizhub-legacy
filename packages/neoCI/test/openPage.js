@@ -6,7 +6,7 @@ const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
 // Object.assign(puppeteerOptions, {
-//   //slowMo: 500,
+//   slowMo: 50,
 //   headless: false
 // });
 
