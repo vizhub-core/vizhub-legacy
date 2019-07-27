@@ -3,7 +3,6 @@ import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
 import { Wrapper, Right, Left, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
 
-
 export const Head = ({ onFork, showRight }) => (
   <Wrapper>
     <Left>
