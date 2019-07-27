@@ -44,12 +44,16 @@ export const FullScreen = () => {
   return (
     <>
       <Backdrop />
-      <Wrapper ref={wrapperRef}>
+      <Wrapper ref={wrapperRef} className="test-fullscreen">
         <FullScreenFooter>
           <LargeIcon leftmost={true} onClick={enterMini}>
             <MiniSVG />
           </LargeIcon>
-          <LargeIcon rightmost={true} onClick={exitFullScreen}>
+          <LargeIcon
+            rightmost={true}
+            onClick={exitFullScreen}
+            className="exit-fullscreen-from-fullscreen"
+          >
             <FullExitSVG />
           </LargeIcon>
         </FullScreenFooter>
