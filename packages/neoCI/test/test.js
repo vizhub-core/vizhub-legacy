@@ -11,6 +11,7 @@ import { toggleMini } from './toggleMini';
 import { toggleFullEditor } from './toggleFullEditor';
 import { toggleCodeEditor } from './toggleCodeEditor';
 import { verifyHomeState } from './verifyHomeState';
+import { codeEditorIndependence } from './codeEditorIndependence';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'vizhub-entities';
 
@@ -52,6 +53,10 @@ describe('VizHub End to End Tests', () => {
     it('should toggle mini', toggleMini(my));
     it('should toggle code editor', toggleCodeEditor(my));
     it('should toggle full code editor mode', toggleFullEditor(my));
+    it(
+      'should toggle code editor and editor independently',
+      codeEditorIndependence(my)
+    );
   });
 
   describe('Tear Down', () => {
