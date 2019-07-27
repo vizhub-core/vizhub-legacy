@@ -63,7 +63,7 @@ export const Viewer = () => {
   );
 
   return (
-    <Wrapper>
+    <Wrapper className="test-viewer">
       <Resizer />
       <GlobalScrollbarStyle />
       <Scroller ref={scrollerRef}>

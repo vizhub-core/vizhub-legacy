@@ -8,6 +8,7 @@ import { fork } from './fork';
 import { toggleEditor } from './toggleEditor';
 import { toggleFullScreen } from './toggleFullScreen';
 import { toggleMini } from './toggleMini';
+import { toggleFullEditor } from './toggleFullEditor';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'vizhub-entities';
 
@@ -46,6 +47,7 @@ describe('VizHub End to End Tests', () => {
     it('should toggle editor', toggleEditor(my));
     it('should toggle fullscreen', toggleFullScreen(my));
     it('should toggle mini', toggleMini(my));
+    it('should toggle full editor', toggleFullEditor(my));
   });
 
   describe('Tear Down', () => {
