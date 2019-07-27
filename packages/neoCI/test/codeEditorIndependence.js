@@ -28,6 +28,18 @@ export const codeEditorIndependence = my => async () => {
   // the editor (sidebar) should remain closed.
   assert.equal(await page.$('.test-editor'), null);
 
-  // Return to home state.
+  // Even in mini mode,
+  await (await page.waitFor('.test-enter-mini-from-viewer')).click();
+
+  // the editor (sidebar) should remain closed
+  assert.equal(await page.$('.test-editor'), null);
+
+  // while the code editor remains open.
+  await page.waitFor('.test-code-editor');
+
+  // Return to home state (wait for navigation to avoid race condition).
+  await (await page.waitFor('.test-exit-full-editor')).click();
+  const navigation = page.waitForNavigation();
   await (await page.waitFor('.test-close-code-editor')).click();
+  await navigation;
 };

@@ -2,7 +2,7 @@ import assert from 'assert';
 
 export const toggleMini = my => async () => {
   const { page } = my;
-  (await page.waitFor('.test-enter-mini-from-viewer')).click();
+  await (await page.waitFor('.test-enter-mini-from-viewer')).click();
   await page.waitFor('.test-mini');
 
   // If we're here then we're in mini mode.

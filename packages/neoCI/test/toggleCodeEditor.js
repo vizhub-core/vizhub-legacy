@@ -3,7 +3,6 @@ import assert from 'assert';
 export const toggleCodeEditor = my => async () => {
   const { page } = my;
 
-  // TODO begin -- unify
   // Open editor.
   await (await page.waitFor('.test-toggle-editor')).click();
   await page.waitFor('.test-editor');
@@ -31,6 +30,8 @@ export const toggleCodeEditor = my => async () => {
   // Editor (sidebar) should still be open at this point.
   await page.waitFor('.test-editor');
 
-  // Return to home state.
+  // Return to home state (wait for navigation to avoid race condition).
+  const navigation = page.waitForNavigation();
   await (await page.waitFor('.test-toggle-editor')).click();
+  await navigation;
 };
