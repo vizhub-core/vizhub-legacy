@@ -1,7 +1,7 @@
 import assert from 'assert';
 
-export const toggleFullScreen = my => async () => {
-  const { page } = my;
+export const toggleFullScreen = (my, isMobile) => async () => {
+  const page = isMobile ? my.mobilePage : my.page;
   (await page.waitFor('.test-enter-fullscreen-from-viewer')).click();
   await page.waitFor('.test-fullscreen');
 

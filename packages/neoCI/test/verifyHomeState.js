@@ -6,8 +6,9 @@ import assert from 'assert';
 //  - Code editor closed
 //  - Not in mini mode
 //  - Not in fullscreen mode
-export const verifyHomeState = my => async () => {
-  const { page } = my;
+export const verifyHomeState = (my, isMobile) => async () => {
+  const page = isMobile ? my.mobilePage : my.page;
+
   await page.waitFor('.test-viewer');
   assert.equal(await page.$('.test-editor'), null);
   assert.equal(await page.$('.test-code-editor'), null);
