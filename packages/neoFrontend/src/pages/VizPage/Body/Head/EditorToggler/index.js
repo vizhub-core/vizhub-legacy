@@ -6,7 +6,7 @@ import { Wrapper, Text } from './styles';
 export const EditorToggler = () => {
   const { showEditor, toggleEditor } = useContext(URLStateContext);
   return (
-    <Wrapper onClick={toggleEditor}>
+    <Wrapper onClick={toggleEditor} className="test-toggle-editor">
       <ArrowSVG left={showEditor} />
       <Text>{showEditor ? 'Close Editor' : 'Open Editor'}</Text>
     </Wrapper>
