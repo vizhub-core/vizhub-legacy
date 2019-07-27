@@ -22,7 +22,9 @@ export const toggleCodeEditor = my => async () => {
   await page.waitFor('.test-editor');
 
   // Close code editor.
-  await (await page.waitFor('.test-close-code-editor')).click();
+  const closeNavigation = page.waitForNavigation();
+  (await page.waitFor('.test-close-code-editor')).click();
+  await closeNavigation;
 
   // Code editor should not be visible anymore.
   assert.equal(await page.$('.test-code-editor'), null);
@@ -32,6 +34,6 @@ export const toggleCodeEditor = my => async () => {
 
   // Return to home state (wait for navigation to avoid race condition).
   const navigation = page.waitForNavigation();
-  await (await page.waitFor('.test-toggle-editor')).click();
+  (await page.waitFor('.test-toggle-editor')).click();
   await navigation;
 };

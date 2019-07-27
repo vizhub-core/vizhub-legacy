@@ -1,4 +1,5 @@
 import { openPage } from './openPage';
+import { openMobilePage } from './openMobilePage';
 import { navigateToAuthPage } from './navigateToAuthPage';
 import { authAsCI } from './authAsCI';
 import { signOut } from './signOut';
@@ -55,6 +56,17 @@ describe('VizHub End to End Tests', () => {
     it('should toggle full code editor mode', toggleFullEditor(my));
     it('should toggle code editor independently', codeEditorIndependence(my));
   });
+
+  //describe('Mobile UX', () => {
+  //  it('should open mobile page', openMobilePage(my));
+  //  //it('should toggle editor', toggleEditor(my));
+  //  //it('should toggle editor', toggleEditorMobile(my));
+  //  //it('should toggle fullscreen', toggleFullScreen(my));
+  //  //it('should toggle mini', toggleMini(my));
+  //  //it('should toggle code editor', toggleCodeEditor(my));
+  //  //it('should toggle full code editor mode', toggleFullEditor(my));
+  //  //it('should toggle code editor independently', codeEditorIndependence(my));
+  //});
 
   describe('Tear Down', () => {
     it('should close', async () => {
