@@ -73,6 +73,7 @@
       }
 
       body {
+        margin: 0;
         background-color: #f6eee3;
         font-family: 'Poppins', sans-serif;
         font-size: 14px;
@@ -83,9 +84,15 @@
         text-decoration: none;
       }
     </style>
+    <link rel="preload" href="/fonts/poppins/Poppins-Regular.ttf" as="font">
+    <link rel="preload" href="/fonts/poppins/Poppins-SemiBold.ttf" as="font">
+    <link rel="preload" href="/fonts/poppins/Poppins-Bold.ttf" as="font">
+
+    <!-- should match theme.defaultCodingFontFamily -->
+    <link rel="preload" href="/fonts/coding/DejaVuSansMonoArrowized.woff" as="font">
+
   </head>
-  <body style="margin: 0">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+  <body>
     <div id="root"></div>
   </body>
 </html>
