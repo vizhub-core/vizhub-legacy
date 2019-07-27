@@ -3,6 +3,11 @@ import assert from 'assert';
 export const toggleFullEditor = my => async () => {
   const { page } = my;
 
+  // Open editor and file.
+  await (await page.waitFor('.test-toggle-editor')).click();
+  await (await page.waitFor('.test-editor-files-section')).click();
+  await (await page.waitFor('.test-editor-file-entry-index-html')).click();
+
   // Make sure viewer is visible before entering full editor.
   await page.waitFor('.test-viewer');
 
@@ -17,4 +22,8 @@ export const toggleFullEditor = my => async () => {
 
   // Viewer should again be visible.
   await page.waitFor('.test-viewer');
+
+  // Return to home state.
+  await (await page.waitFor('.test-close-code-editor')).click();
+  await (await page.waitFor('.test-toggle-editor')).click();
 };

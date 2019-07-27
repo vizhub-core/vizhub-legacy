@@ -2,7 +2,7 @@ import React, { useContext, useCallback } from 'react';
 import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, TitleEntry, ClickableOverlay } from './styles';
 
-export const Section = ({ title, id, children }) => {
+export const Section = ({ title, id, children, className }) => {
   const { activeSection, setActiveSection } = useContext(URLStateContext);
 
   const isActive = id === activeSection;
@@ -12,7 +12,7 @@ export const Section = ({ title, id, children }) => {
   }, [setActiveSection, id, isActive]);
 
   return (
-    <Wrapper isActive={isActive}>
+    <Wrapper isActive={isActive} className={className}>
       <TitleEntry isActive={isActive}>
         {title}
         <ClickableOverlay onClick={toggle} />
