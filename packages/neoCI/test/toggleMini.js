@@ -30,5 +30,4 @@ export const toggleMini = my => async () => {
   // Return to home state.
   await (await page.waitFor('.test-close-code-editor')).click();
   await (await page.waitFor('.test-toggle-editor')).click();
-
 };
