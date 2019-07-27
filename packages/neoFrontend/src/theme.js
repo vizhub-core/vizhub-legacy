@@ -17,6 +17,8 @@ export const theme = {
   userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
   hoverBackground: 'rgba(0, 0, 0, 0.05)',
   activeBackground: 'rgba(0, 0, 0, 0.1)',
+
+  // If this changes, be sure to also update the preload link in index.html.
   defaultCodingFontFamily: 'Deja Vu Sans Mono Arrowized',
   miniWidth: 268,
   fastTransition: '.2s ease-in-out'
