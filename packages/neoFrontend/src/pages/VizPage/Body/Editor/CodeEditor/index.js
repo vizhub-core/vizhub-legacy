@@ -35,7 +35,11 @@ export const CodeEditor = () => {
         <Icons>
           {viewer ? (
             <>
-              <CodeEditorIcon onClick={onHideViz} leftmost={true}>
+              <CodeEditorIcon
+                onClick={onHideViz}
+                leftmost={true}
+                className="test-enter-full-editor"
+              >
                 <FullSVG height={svgHeight} />
               </CodeEditorIcon>
               <CodeEditorIcon onClick={closeActiveFile} rightmost={true}>
@@ -51,6 +55,7 @@ export const CodeEditor = () => {
               onClick={onShowViz}
               leftmost={true}
               rightmost={true}
+              className="test-exit-full-editor"
             >
               <CloseSVG height={svgHeight} />
             </CodeEditorIcon>
