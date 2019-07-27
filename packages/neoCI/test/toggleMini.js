@@ -26,4 +26,9 @@ export const toggleMini = my => async () => {
   assert.equal(await page.$('.test-mini'), null);
   await page.waitFor('.test-code-editor');
   await page.waitFor('.test-editor');
+
+  // Return to home state.
+  await (await page.waitFor('.test-close-code-editor')).click();
+  await (await page.waitFor('.test-toggle-editor')).click();
+
 };

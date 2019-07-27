@@ -2,7 +2,7 @@ import assert from 'assert';
 
 export const toggleEditor = my => async () => {
   const { page } = my;
-  (await page.waitFor('.test-toggle-editor')).click();
+  await (await page.waitFor('.test-toggle-editor')).click();
   await page.waitFor('.test-editor');
 
   // If we're here then the editor opened.

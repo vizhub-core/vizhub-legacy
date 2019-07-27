@@ -42,7 +42,11 @@ export const CodeEditor = () => {
               >
                 <FullSVG height={svgHeight} />
               </CodeEditorIcon>
-              <CodeEditorIcon onClick={closeActiveFile} rightmost={true}>
+              <CodeEditorIcon
+                onClick={closeActiveFile}
+                rightmost={true}
+                className="test-close-code-editor"
+              >
                 <CloseSVG height={svgHeight} />
               </CodeEditorIcon>
             </>
