@@ -1,7 +1,7 @@
 import assert from 'assert';
 
-export const toggleCodeEditor = my => async () => {
-  const { page } = my;
+export const toggleCodeEditor = (my, isMobile) => async () => {
+  const page = isMobile ? my.mobilePage : my.page;
 
   // Open editor.
   await (await page.waitFor('.test-toggle-editor')).click();
@@ -23,7 +23,16 @@ export const toggleCodeEditor = my => async () => {
 
   // Close code editor.
   const closeNavigation = page.waitForNavigation();
-  (await page.waitFor('.test-close-code-editor')).click();
+
+  // There's a strange bug that happens around 5% of the time
+  // where clicking on test-close-code-editor doesn't navigate.
+  console.log('url before click: ' + page.url());
+  await (await page.waitFor('.test-close-code-editor')).click();
+
+  // URL after click should be different than before click.
+  // If it's not, the 5% bug has been encountered,
+  // and navigation will never happen. The test suite will fail.
+  console.log('url after click:  ' + page.url());
   await closeNavigation;
 
   // Code editor should not be visible anymore.
@@ -35,5 +44,6 @@ export const toggleCodeEditor = my => async () => {
   // Return to home state (wait for navigation to avoid race condition).
   const navigation = page.waitForNavigation();
   (await page.waitFor('.test-toggle-editor')).click();
+
   await navigation;
 };

@@ -43,13 +43,11 @@ export const useURLState = props => {
 
   // Closes whatever file is open.
   const closeActiveFile = () => {
-    if (activeFile) {
-      setFile(undefined);
+    setFile(undefined);
 
-      // Handle mobile UX.
-      if (mode === 'mini') {
-        setMode('viewer');
-      }
+    // Handle mobile UX.
+    if (mode === 'mini') {
+      setMode('viewer');
     }
   };
 
