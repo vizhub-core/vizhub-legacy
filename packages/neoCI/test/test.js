@@ -5,7 +5,7 @@ import { signOut } from './signOut';
 import { navigateToCreateVizPage } from './navigateToCreateVizPage';
 import { createVizFromScratch } from './createVizFromScratch';
 import { fork } from './fork';
-import { openEditor } from './openEditor';
+import { toggleEditor } from './toggleEditor';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'vizhub-entities';
 
@@ -41,7 +41,7 @@ describe('VizHub End to End Tests', () => {
   });
 
   describe('Desktop UX', () => {
-    it('should open editor', openEditor(my));
+    it('should toggle editor', toggleEditor(my));
   });
 
   describe('Tear Down', () => {

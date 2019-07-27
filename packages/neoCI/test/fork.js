@@ -5,7 +5,7 @@ export const fork = my => async () => {
   const navigation = page.waitForNavigation();
   await (await page.waitFor('.test-fork')).click();
 
-  await page.waitForNavigation();
+  await navigation;
   const url = page.url();
 
   const split = url.split('/');
