@@ -39,7 +39,11 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
             <LargeIcon leftmost={true} onClick={enterMini}>
               <MiniSVG />
             </LargeIcon>
-            <LargeIcon rightmost={true} onClick={enterFullScreen}>
+            <LargeIcon
+              rightmost={true}
+              onClick={enterFullScreen}
+              className="test-enter-fullscreen-from-viewer"
+            >
               <FullSVG />
             </LargeIcon>
           </FrameFooter>

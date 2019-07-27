@@ -6,6 +6,7 @@ import { navigateToCreateVizPage } from './navigateToCreateVizPage';
 import { createVizFromScratch } from './createVizFromScratch';
 import { fork } from './fork';
 import { toggleEditor } from './toggleEditor';
+import { toggleFullScreen } from './toggleFullScreen';
 // import { autoSaveDebounceTime } from 'vizhub-ui';
 // import { ciUser } from 'vizhub-entities';
 
@@ -42,6 +43,7 @@ describe('VizHub End to End Tests', () => {
 
   describe('Desktop UX', () => {
     it('should toggle editor', toggleEditor(my));
+    it('should toggle fullscreen', toggleFullScreen(my));
   });
 
   describe('Tear Down', () => {
