@@ -51,7 +51,10 @@ export const CodeEditor = () => {
               </CodeEditorIcon>
             </>
           ) : isMobile ? (
-            <CodeEditorIcon onClick={closeActiveFile}>
+            <CodeEditorIcon
+              onClick={closeActiveFile}
+              className="test-close-code-editor-mobile"
+            >
               <CloseSVG height={svgHeight} />
             </CodeEditorIcon>
           ) : (
