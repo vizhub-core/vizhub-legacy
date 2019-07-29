@@ -1,4 +1,5 @@
 import mobile from 'is-mobile';
+import { MiniSVG, MicroSVG } from '../../svg';
 
 // Modifications and tweaks to support mobile experience.
 
@@ -29,3 +30,5 @@ export const modExpandEditor = isMobile
 export const modShowEditor = isMobile
   ? (showEditor, activeFile) => (activeFile ? false : showEditor)
   : identity;
+
+export const MiniOrMicroSVG = isMobile ? MicroSVG : MiniSVG;

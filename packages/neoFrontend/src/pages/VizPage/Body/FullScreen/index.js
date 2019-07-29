@@ -1,5 +1,6 @@
 import React, { useRef, useContext, useCallback } from 'react';
-import { MiniSVG, FullExitSVG } from '../../../../svg';
+import { FullExitSVG } from '../../../../svg';
+import { MiniOrMicroSVG } from '../../mobileMods';
 import { vizWidth } from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
 import { VizRunnerContext } from '../../VizRunnerContext';
@@ -47,7 +48,7 @@ export const FullScreen = () => {
       <Wrapper ref={wrapperRef} className="test-fullscreen">
         <FullScreenFooter>
           <LargeIcon leftmost={true} onClick={enterMini}>
-            <MiniSVG />
+            <MiniOrMicroSVG />
           </LargeIcon>
           <LargeIcon
             rightmost={true}
