@@ -4,7 +4,7 @@ export const toggleMini = (my, isMobile) => async () => {
   const page = isMobile ? my.mobilePage : my.page;
   await (await page.waitFor('.test-enter-mini-from-viewer')).click();
 
-  if(!isMobile){
+  if (!isMobile) {
     await page.waitFor('.test-mini');
 
     // If we're here then we're in mini mode.
@@ -14,9 +14,9 @@ export const toggleMini = (my, isMobile) => async () => {
   }
 
   // Check that entering mini mode opens the editor on desktop.
-  if(isMobile){
+  if (isMobile) {
     assert.equal(await page.$('.test-editor'), null);
-  } else{
+  } else {
     await page.waitFor('.test-editor');
   }
 
@@ -27,8 +27,7 @@ export const toggleMini = (my, isMobile) => async () => {
   );
   assert.equal(fileName, 'index.html');
 
-  if(!isMobile){
-
+  if (!isMobile) {
     // Test exiting mini, which closes the mini viewer,
     // but keeps the editor and code editor open.
     await (await page.waitFor('.exit-mini-from-mini')).click();
@@ -40,5 +39,4 @@ export const toggleMini = (my, isMobile) => async () => {
     await (await page.waitFor('.test-close-code-editor')).click();
     await (await page.waitFor('.test-toggle-editor')).click();
   }
-
 };

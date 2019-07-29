@@ -47,15 +47,17 @@ describe('VizHub End to End Tests', () => {
     it('should fork visualization', fork(my));
   });
 
-  describe('Desktop UX', () => {
-    afterEach(verifyHomeState(my));
-    it('should toggle editor', toggleEditor(my));
-    it('should toggle fullscreen', toggleFullScreen(my));
-    it('should toggle mini', toggleMini(my));
-    it('should toggle code editor', toggleCodeEditor(my));
-    it('should toggle full code editor mode', toggleFullEditor(my));
-    it('should toggle code editor independently', codeEditorIndependence(my));
-  });
+  for (let i = 0; i < 1000; i++) {
+    describe('Desktop UX ' + i, () => {
+      afterEach(verifyHomeState(my));
+      it('should toggle editor', toggleEditor(my));
+      it('should toggle fullscreen', toggleFullScreen(my));
+      it('should toggle mini', toggleMini(my));
+      it('should toggle code editor', toggleCodeEditor(my));
+      it('should toggle full code editor mode', toggleFullEditor(my));
+      it('should toggle code editor independently', codeEditorIndependence(my));
+    });
+  }
 
   describe('Mobile UX', () => {
     afterEach(verifyHomeState(my, true));

@@ -13,7 +13,9 @@ export const codeEditorIndependence = my => async () => {
   await page.waitFor('.test-editor');
 
   // If we close the editor (sidebar),
+  const navigationToggleEditor = page.waitForNavigation();
   await (await page.waitFor('.test-toggle-editor')).click();
+  await navigationToggleEditor;
   assert.equal(await page.$('.test-editor'), null);
 
   // the code editor should remain open,
@@ -29,7 +31,9 @@ export const codeEditorIndependence = my => async () => {
   assert.equal(await page.$('.test-editor'), null);
 
   // Even in mini mode,
+  const navigationEnterMini = page.waitForNavigation();
   await (await page.waitFor('.test-enter-mini-from-viewer')).click();
+  await navigationEnterMini;
 
   // the editor (sidebar) should remain closed
   assert.equal(await page.$('.test-editor'), null);
