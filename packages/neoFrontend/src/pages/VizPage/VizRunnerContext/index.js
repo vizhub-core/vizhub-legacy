@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useRef, useEffect } from 'react';
 import { getMicroScale, getMicroWidth } from '../../../accessors';
-import { defaultVizHeight, vizWidth } from '../../../constants';
+import { defaultVizHeight, vizWidth, useTransitions } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 import { VizPageDataContext } from '../VizPageDataContext';
@@ -93,7 +93,9 @@ const setVizRunnerMode = newMode => {
     iFrame.style['box-shadow'] = 'none';
 
     // Set the transition duration before setting properties, so they animate.
-    iFrame.style['transition-duration'] = transitionDuration + 'ms';
+    if (useTransitions) {
+      iFrame.style['transition-duration'] = transitionDuration + 'ms';
+    }
 
     // Clear previous timeout, in case the mode changes multiple times
     // within the transitionDuration time window.

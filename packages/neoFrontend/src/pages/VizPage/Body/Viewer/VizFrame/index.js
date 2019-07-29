@@ -1,6 +1,7 @@
 import React, { useRef, useContext, useCallback, useState } from 'react';
-import { MiniSVG, FullSVG } from '../../../../../svg';
+import { FullSVG } from '../../../../../svg';
 import { vizWidth } from '../../../../../constants';
+import { MiniOrMicroSVG } from '../../../mobileMods';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
@@ -36,10 +37,18 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
         <>
           <div style={{ height: vizHeight * scale }} />
           <FrameFooter>
-            <LargeIcon leftmost={true} onClick={enterMini}>
-              <MiniSVG />
+            <LargeIcon
+              leftmost={true}
+              onClick={enterMini}
+              className="test-enter-mini-from-viewer"
+            >
+              <MiniOrMicroSVG />
             </LargeIcon>
-            <LargeIcon rightmost={true} onClick={enterFullScreen}>
+            <LargeIcon
+              rightmost={true}
+              onClick={enterFullScreen}
+              className="test-enter-fullscreen-from-viewer"
+            >
               <FullSVG />
             </LargeIcon>
           </FrameFooter>

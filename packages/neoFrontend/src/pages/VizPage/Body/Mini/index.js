@@ -31,10 +31,14 @@ export const Mini = () => {
   useDimensions({ wrapperRef, setDomRect, globalResize: true });
 
   return (
-    <Wrapper ref={wrapperRef}>
+    <Wrapper ref={wrapperRef} className="test-mini">
       <div style={{ height: vizHeight * scale }} />
       <FrameFooter>
-        <LargeIcon leftmost={true} onClick={exitMini}>
+        <LargeIcon
+          leftmost={true}
+          onClick={exitMini}
+          className="exit-mini-from-mini"
+        >
           <SplitSVG />
         </LargeIcon>
         <LargeIcon rightmost={true} onClick={enterFullScreen}>
