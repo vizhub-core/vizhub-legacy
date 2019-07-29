@@ -1,17 +1,30 @@
 import assert from 'assert';
 
+const awaitNavigation = async (page, callback) => {
+  const navigation = page.waitForNavigation();
+  await callback();
+  await navigation;
+};
+
 export const toggleCodeEditor = (my, isMobile) => async () => {
   const page = isMobile ? my.mobilePage : my.page;
 
   // Open editor.
-  await (await page.waitFor('.test-toggle-editor')).click();
+  awaitNavigation(page, async () => {
+    await (await page.waitFor('.test-toggle-editor')).click();
+  });
   await page.waitFor('.test-editor');
 
   // Open files section.
-  await (await page.waitFor('.test-editor-files-section')).click();
+  awaitNavigation(page, async () => {
+    await (await page.waitFor('.test-editor-files-section')).click();
+  });
 
   // Open a file.
+  const openNavigation = page.waitForNavigation();
   await (await page.waitFor('.test-editor-file-entry-index-html')).click();
+  await openNavigation;
+
   await page.waitFor('.test-code-editor');
   const fileName = await page.evaluate(
     () => document.querySelector('.test-code-editor-file-name').textContent
