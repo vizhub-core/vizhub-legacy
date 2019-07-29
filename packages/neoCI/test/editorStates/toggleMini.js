@@ -3,18 +3,13 @@ import { convenience } from './convenience';
 
 export const toggleMini = (my, isMobile) => async () => {
   const { page, navClick } = convenience(my, isMobile);
-  await (await page.waitFor('.test-enter-mini-from-viewer')).click();
+  await navClick('.test-enter-mini-from-viewer');
 
   if (!isMobile) {
     await page.waitFor('.test-mini');
-
-    // If we're here then we're in mini mode.
-    // Now test that mini mode persists across reload.
-    await page.reload();
-    await page.waitFor('.test-mini');
   }
 
-  // Check that entering mini mode opens the editor on desktop.
+  // Check that entering mini mode opens the editor on desktop, not mobile.
   if (isMobile) {
     assert.equal(await page.$('.test-editor'), null);
   } else {
@@ -28,7 +23,21 @@ export const toggleMini = (my, isMobile) => async () => {
   );
   assert.equal(fileName, 'index.html');
 
-  if (!isMobile) {
+  if (isMobile) {
+
+    // Wait for the runner iFrame to transition over the X icon.
+    // Interestingly, it blocks Puppeteer from clicking the button.
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Close the active file.
+    await navClick('.test-close-code-editor-mobile');
+
+    // Closing the active file should reveal the editor.
+    await page.waitFor('.test-editor');
+
+    // Return to home state.
+    await navClick('.test-toggle-editor');
+  } else {
     // Test exiting mini, which closes the mini viewer,
     // but keeps the editor and code editor open.
     await navClick('.exit-mini-from-mini');
