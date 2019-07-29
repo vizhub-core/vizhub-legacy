@@ -29,20 +29,6 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
   }
 
   // Close code editor.
-  // There's a strange bug that happens around 5% of the time
-  // where clicking on test-close-code-editor doesn't navigate.
-  // URL after click should be different than before click.
-  // If it's not, the 5% bug has been encountered,
-  // and navigation will never happen. The test suite will fail.
-  //console.log('before closing code editor');
-
-  // This timeout here seems to make the problem go away.
-  // No idea why. Must be a race condition somewhere.
-  // Possibilities:
-  //  - react-router might be providing something stale.
-  //  - viz runner iframe animation is disturbing clicking.
-  await new Promise(resolve => setTimeout(resolve, 700));
-
   if (isMobile) {
     await navClick('.test-close-code-editor-mobile');
   } else {
