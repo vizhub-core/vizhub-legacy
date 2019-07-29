@@ -20,6 +20,54 @@ import { codeEditorIndependence } from './codeEditorIndependence';
 //
 // Convention: All class names that are only used in tests are prefixed with "test-".
 
+const authentication = my => {
+  describe('Authentication', () => {
+    it('should navigate to auth page', navigateToAuthPage(my));
+    it('should authenticate as CI', authAsCI(my));
+    it('should sign out', signOut(my));
+    it('should navigate to auth page a second time', navigateToAuthPage(my));
+    it('should authenticate as CI a second time', authAsCI(my));
+  });
+};
+
+const vizCreation = my => {
+  describe('Viz Creation', () => {
+    describe('Create Visualization', () => {
+      it('should navigate to create viz page', navigateToCreateVizPage(my));
+      it('should create viz from scratch', createVizFromScratch(my));
+    });
+
+    describe('Fork Visualization', () => {
+      it('should fork visualization', fork(my));
+    });
+  });
+}
+
+const editorStates = my => {
+  describe('Editor States', () => {
+    describe('Desktop Editor States', () => {
+      afterEach(verifyHomeState(my));
+      it('should toggle editor', toggleEditor(my));
+      it('should toggle fullscreen', toggleFullScreen(my));
+      it('should toggle mini', toggleMini(my));
+      it('should toggle code editor', toggleCodeEditor(my));
+      it('should toggle full code editor mode', toggleFullEditor(my));
+      it('should toggle code editor independently', codeEditorIndependence(my));
+    });
+
+    describe('Mobile Editor States', () => {
+      afterEach(verifyHomeState(my, true));
+      it('should open mobile page', openMobilePage(my));
+      it('should toggle editor', toggleEditor(my, true));
+      it('should toggle fullscreen', toggleFullScreen(my, true));
+      //it('should toggle mini', toggleMini(my, true));
+      // it('should toggle code editor', toggleCodeEditor(my, true));
+      //it('should toggle full code editor mode', toggleFullEditor(my));
+      //it('should toggle code editor independently', codeEditorIndependence(my));
+    });
+  });
+};
+
 describe('VizHub End to End Tests', () => {
   // This object allows tests to be split into multiple files.
   // It contains properties that mutate as the tests flow.
@@ -30,45 +78,11 @@ describe('VizHub End to End Tests', () => {
     it('should open page', openPage(my));
   });
 
-  describe('Authentication', () => {
-    it('should navigate to auth page', navigateToAuthPage(my));
-    it('should authenticate as CI', authAsCI(my));
-    it('should sign out', signOut(my));
-    it('should navigate to auth page a second time', navigateToAuthPage(my));
-    it('should authenticate as CI a second time', authAsCI(my));
-  });
+  authentication(my);
 
-  describe('Create Visualization', () => {
-    it('should navigate to create viz page', navigateToCreateVizPage(my));
-    it('should create viz from scratch', createVizFromScratch(my));
-  });
+  vizCreation(my);
 
-  describe('Fork Visualization', () => {
-    it('should fork visualization', fork(my));
-  });
-
-  for (let i = 0; i < 1000; i++) {
-    describe('Desktop UX ' + i, () => {
-      afterEach(verifyHomeState(my));
-      it('should toggle editor', toggleEditor(my));
-      it('should toggle fullscreen', toggleFullScreen(my));
-      it('should toggle mini', toggleMini(my));
-      it('should toggle code editor', toggleCodeEditor(my));
-      it('should toggle full code editor mode', toggleFullEditor(my));
-      it('should toggle code editor independently', codeEditorIndependence(my));
-    });
-  }
-
-  describe('Mobile UX', () => {
-    afterEach(verifyHomeState(my, true));
-    it('should open mobile page', openMobilePage(my));
-    it('should toggle editor', toggleEditor(my, true));
-    it('should toggle fullscreen', toggleFullScreen(my, true));
-    //it('should toggle mini', toggleMini(my, true));
-    // it('should toggle code editor', toggleCodeEditor(my, true));
-    //it('should toggle full code editor mode', toggleFullEditor(my));
-    //it('should toggle code editor independently', codeEditorIndependence(my));
-  });
+  editorStates(my);
 
   describe('Tear Down', () => {
     it('should close', async () => {

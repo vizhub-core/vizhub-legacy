@@ -1,7 +1,8 @@
 import assert from 'assert';
+import { convenience } from './convenience';
 
 export const toggleMini = (my, isMobile) => async () => {
-  const page = isMobile ? my.mobilePage : my.page;
+  const { page, navClick } = convenience(my, isMobile);
   await (await page.waitFor('.test-enter-mini-from-viewer')).click();
 
   if (!isMobile) {
@@ -30,13 +31,13 @@ export const toggleMini = (my, isMobile) => async () => {
   if (!isMobile) {
     // Test exiting mini, which closes the mini viewer,
     // but keeps the editor and code editor open.
-    await (await page.waitFor('.exit-mini-from-mini')).click();
+    await navClick('.exit-mini-from-mini');
     assert.equal(await page.$('.test-mini'), null);
     await page.waitFor('.test-code-editor');
     await page.waitFor('.test-editor');
 
     // Return to home state.
-    await (await page.waitFor('.test-close-code-editor')).click();
-    await (await page.waitFor('.test-toggle-editor')).click();
+    await navClick('.test-close-code-editor');
+    await navClick('.test-toggle-editor');
   }
 };

@@ -1,15 +1,10 @@
 import assert from 'assert';
+import { convenience } from './convenience';
 
 export const toggleFullScreen = (my, isMobile) => async () => {
-  const page = isMobile ? my.mobilePage : my.page;
-  (await page.waitFor('.test-enter-fullscreen-from-viewer')).click();
+  const { page, navClick } = convenience(my, isMobile);
+  await navClick('.test-enter-fullscreen-from-viewer');
   await page.waitFor('.test-fullscreen');
-
-  // If we're here then we're full screen.
-  // Now test that the full screen persists across reload.
-  await page.reload();
-  await page.waitFor('.test-fullscreen');
-
-  await (await page.waitFor('.exit-fullscreen-from-fullscreen')).click();
+  await navClick('.exit-fullscreen-from-fullscreen');
   assert.equal(await page.$('.test-fullscreen'), null);
 };

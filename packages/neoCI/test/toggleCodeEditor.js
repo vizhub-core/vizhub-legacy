@@ -1,20 +1,5 @@
 import assert from 'assert';
-
-//export const awaitNavigation = async (page, callback) => {
-//  const navigation = page.waitForNavigation();
-//  await callback();
-//  await navigation;
-//};
-
-const convenience = (my, isMobile) => {
-  const page = isMobile ? my.mobilePage : my.page;
-  const navClick = async selector =>
-    await Promise.all([
-      page.waitForNavigation(),
-      await (await page.waitFor(selector)).click()
-    ]);
-  return { page, navClick };
-};
+import { convenience } from './convenience';
 
 export const toggleCodeEditor = (my, isMobile) => async () => {
   const { page, navClick } = convenience(my, isMobile);
