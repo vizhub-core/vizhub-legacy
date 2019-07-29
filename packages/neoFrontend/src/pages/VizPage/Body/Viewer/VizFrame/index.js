@@ -1,6 +1,7 @@
 import React, { useRef, useContext, useCallback, useState } from 'react';
-import { MiniSVG, FullSVG } from '../../../../../svg';
+import { FullSVG } from '../../../../../svg';
 import { vizWidth } from '../../../../../constants';
+import { MiniOrMicroSVG } from '../../../mobileMods';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
@@ -41,7 +42,7 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
               onClick={enterMini}
               className="test-enter-mini-from-viewer"
             >
-              <MiniSVG />
+              <MiniOrMicroSVG />
             </LargeIcon>
             <LargeIcon
               rightmost={true}
