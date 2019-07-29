@@ -5,9 +5,13 @@ import queryString from 'query-string';
 // but is not stored inside of it.
 // For example, remembering which editor section was open.
 // Expose to Puppeteer tests via global.
-window.hiddenURLState = {
-  edit: null
+window.clearHiddenURLState = () => {
+  window.hiddenURLState = {
+    edit: null
+  };
 };
+
+window.clearHiddenURLState();
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
   const state = useMemo(() => queryString.parse(location.search), [
