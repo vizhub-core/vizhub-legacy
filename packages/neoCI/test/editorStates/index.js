@@ -24,7 +24,7 @@ export const editorStates = my => () => {
     it('should toggle editor', toggleEditor(my, true));
     it('should toggle fullscreen', toggleFullScreen(my, true));
     it('should toggle mini', toggleMini(my, true));
-    // it('should toggle code editor', toggleCodeEditor(my, true));
+    it('should toggle code editor', toggleCodeEditor(my, true));
     //it('should toggle full code editor mode', toggleFullEditor(my));
     //it('should toggle code editor independently', codeEditorIndependence(my));
   });
