@@ -28,21 +28,33 @@ export const CodeEditor = () => {
     <Wrapper
       showLeftBorder={showEditor}
       style={viewer ? { width: codeEditorWidth + 'px' } : { flex: 1 }}
+      className="test-code-editor"
     >
       <Header>
-        {activeFile}
+        <div className="test-code-editor-file-name">{activeFile}</div>
         <Icons>
           {viewer ? (
             <>
-              <CodeEditorIcon onClick={onHideViz} leftmost={true}>
+              <CodeEditorIcon
+                onClick={onHideViz}
+                leftmost={true}
+                className="test-enter-full-editor"
+              >
                 <FullSVG height={svgHeight} />
               </CodeEditorIcon>
-              <CodeEditorIcon onClick={closeActiveFile} rightmost={true}>
+              <CodeEditorIcon
+                onClick={closeActiveFile}
+                rightmost={true}
+                className="test-close-code-editor"
+              >
                 <CloseSVG height={svgHeight} />
               </CodeEditorIcon>
             </>
           ) : isMobile ? (
-            <CodeEditorIcon onClick={closeActiveFile}>
+            <CodeEditorIcon
+              onClick={closeActiveFile}
+              className="test-close-code-editor-mobile"
+            >
               <CloseSVG height={svgHeight} />
             </CodeEditorIcon>
           ) : (
@@ -50,6 +62,7 @@ export const CodeEditor = () => {
               onClick={onShowViz}
               leftmost={true}
               rightmost={true}
+              className="test-exit-full-editor"
             >
               <CloseSVG height={svgHeight} />
             </CodeEditorIcon>

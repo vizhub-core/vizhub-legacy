@@ -10,6 +10,7 @@ export { SpinnerSVG } from './SpinnerSVG';
 export { FullSVG } from './FullSVG';
 export { FullExitSVG } from './FullExitSVG';
 export { MiniSVG } from './MiniSVG';
+export { MicroSVG } from './MicroSVG';
 export { SplitSVG } from './SplitSVG';
 
 export { SVGGallery } from './svgGallery';

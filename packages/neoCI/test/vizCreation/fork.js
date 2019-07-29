@@ -5,7 +5,7 @@ export const fork = my => async () => {
   const navigation = page.waitForNavigation();
   await (await page.waitFor('.test-fork')).click();
 
-  await page.waitForNavigation();
+  await navigation;
   const url = page.url();
 
   const split = url.split('/');
@@ -22,4 +22,7 @@ export const fork = my => async () => {
   console.log('Forked viz:');
   console.log(url);
   console.log();
+
+  // Stash the URL for later mobile testing.
+  my.forkedVizURL = url;
 };

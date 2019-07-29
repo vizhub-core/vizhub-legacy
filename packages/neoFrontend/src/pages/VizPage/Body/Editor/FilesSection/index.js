@@ -11,7 +11,7 @@ export const FilesSection = () => {
   const { files } = visualization.content;
 
   return (
-    <Section title="files" id="files">
+    <Section title="files" id="files" className="test-editor-files-section">
       {files.map(file => (
         <FileEntry
           key={file.name}
@@ -19,6 +19,11 @@ export const FilesSection = () => {
           onClick={() => {
             setActiveFile(file.name);
           }}
+          className={
+            file.name === 'index.html'
+              ? 'test-editor-file-entry-index-html'
+              : ''
+          }
         >
           {file.name}
         </FileEntry>

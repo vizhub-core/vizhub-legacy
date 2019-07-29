@@ -12,7 +12,7 @@ export const Editor = () => {
   return (
     <>
       {modShowEditor(showEditor, activeFile) ? (
-        <Sidebar expand={modExpandEditor(showEditor)}>
+        <Sidebar expand={modExpandEditor(showEditor)} className="test-editor">
           <Section title="visual editor" id="visual" />
           <FilesSection />
         </Sidebar>
