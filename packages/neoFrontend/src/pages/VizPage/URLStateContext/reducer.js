@@ -15,7 +15,10 @@ export const reducer = (state, action) => {
             ? undefined
             : state.file
             ? 'files'
-            : null
+            : state.hidden.edit,
+        hidden: Object.assign({}, state.hidden, {
+          edit: state.edit
+        })
       });
 
     case 'enterMini':

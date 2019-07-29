@@ -6,6 +6,7 @@ import { toggleCodeEditor } from './toggleCodeEditor';
 import { verifyHomeState } from './verifyHomeState';
 import { codeEditorIndependence } from './codeEditorIndependence';
 import { openMobilePage } from './openMobilePage';
+import { restoreEditorSection } from './restoreEditorSection';
 
 export const editorStates = my => () => {
   describe('Desktop Editor States', () => {
@@ -16,6 +17,7 @@ export const editorStates = my => () => {
     it('should toggle code editor', toggleCodeEditor(my));
     it('should toggle full code editor mode', toggleFullEditor(my));
     it('should toggle code editor independently', codeEditorIndependence(my));
+    //it('should restore previous editor section', restoreEditorSection(my));
   });
 
   describe('Mobile Editor States', () => {
