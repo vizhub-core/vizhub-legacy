@@ -44,14 +44,15 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
   // URL after click should be different than before click.
   // If it's not, the 5% bug has been encountered,
   // and navigation will never happen. The test suite will fail.
-  console.log('before closing code editor');
+  //console.log('before closing code editor');
 
-  // This timeout here appears to make this bug go away.
-  // No idea why.
-  await new Promise(resolve => setTimeout(resolve, 100));
+  // This timeout here seems to make the problem go away.
+  // No idea why. Must be a race condition somewhere.
+  // Hunch: react-router might be providing something stale.
+  await new Promise(resolve => setTimeout(resolve, 500));
 
   await navClick('.test-close-code-editor');
-  console.log('after closing code editor');
+  //console.log('after closing code editor');
 
   // Code editor should not be visible anymore.
   assert.equal(await page.$('.test-code-editor'), null);
