@@ -24,11 +24,6 @@ export const toggleMini = (my, isMobile) => async () => {
   assert.equal(fileName, 'index.html');
 
   if (isMobile) {
-    // Wait for the runner iFrame to transition over the X icon.
-    // Interestingly, it blocks Puppeteer from clicking the button.
-    // TODO perhaps better to disable the animations during testing?
-    await new Promise(resolve => setTimeout(resolve, 700));
-
     // Close the active file.
     await navClick('.test-close-code-editor-mobile');
 
