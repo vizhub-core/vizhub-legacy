@@ -9,7 +9,7 @@ export const toggleFullEditor = (my, isMobile) => async () => {
   await navClick('.test-editor-files-section');
   await navClick('.test-editor-file-entry-index-html');
 
-  if (isMobile){
+  if (isMobile) {
     // Full editor button should not be visible on mobile.
     assert.equal(await page.$('.test-enter-full-editor'), null);
 

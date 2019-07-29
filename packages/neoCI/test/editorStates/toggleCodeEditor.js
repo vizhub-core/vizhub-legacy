@@ -5,14 +5,21 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
   const { page, navClick } = convenience(my, isMobile);
 
   // Open editor.
+  console.log(await page.evaluate(() => window.hiddenURLState));
+  console.log(page.url());
   await navClick('.test-toggle-editor');
+  console.log(await page.evaluate(() => window.hiddenURLState));
+  console.log(page.url());
   await page.waitFor('.test-editor');
 
   // Open files section.
   await navClick('.test-editor-files-section');
 
+  console.log(1);
+
   // Open a file.
   await navClick('.test-editor-file-entry-index-html');
+  console.log(2);
 
   // Verify the name of the open file.
   await page.waitFor('.test-code-editor');
@@ -27,6 +34,8 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
   } else {
     await page.waitFor('.test-editor');
   }
+
+  console.log(3);
 
   // Close code editor.
   if (isMobile) {
