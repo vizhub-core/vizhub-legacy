@@ -1,8 +1,9 @@
 import assert from 'assert';
+import { convenience } from './convenience';
 
 export const toggleEditor = (my, isMobile) => async () => {
-  const page = isMobile ? my.mobilePage : my.page;
-  await (await page.waitFor('.test-toggle-editor')).click();
+  const { page, navClick } = convenience(my, isMobile);
+  await navClick('.test-toggle-editor');
   await page.waitFor('.test-editor');
 
   // The viewer should still be visible on desktop only.
@@ -12,12 +13,7 @@ export const toggleEditor = (my, isMobile) => async () => {
     await page.waitFor('.test-viewer');
   }
 
-  // If we're here then the editor opened.
-  // Now test that the editor remains open on page load.
-  await page.reload();
-  await page.waitFor('.test-editor');
-
   // Test closing the editor.
-  await (await page.waitFor('.test-toggle-editor')).click();
+  await navClick('.test-toggle-editor');
   assert.equal(await page.$('.test-editor'), null);
 };

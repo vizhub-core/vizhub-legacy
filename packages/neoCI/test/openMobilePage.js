@@ -1,4 +1,3 @@
-import assert from 'assert';
 import devices from 'puppeteer/DeviceDescriptors';
 
 export const openMobilePage = my => async () => {
