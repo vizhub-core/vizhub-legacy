@@ -6,6 +6,9 @@ import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 import { modMode } from '../../../mobileMods';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { URLStateContext } from '../URLStateContext';
+import { computeSrcDoc } from './computeSrcDoc';
+
+// TODO split up this file
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -137,6 +140,10 @@ export const VizRunnerProvider = ({ children }) => {
   }
 
   const contextValue = { setVizRunnerTransform };
+
+  useEffect(() => {
+    iFrame.setAttribute('srcDoc', computeSrcDoc(visualization.content.files));
+  }, [visualization]);
 
   useEffect(() => {
     iFrame.setAttribute('height', vizHeight);
