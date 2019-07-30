@@ -10,3 +10,9 @@ export const getMicroScale = visualization =>
   microHeight / getVizHeight(visualization);
 
 export const getMicroWidth = microScale => microScale * vizWidth;
+
+const getFile = (files, name) => files.filter(file => file.name === name)[0];
+export const getText = (files, activeFile) => {
+  const file = getFile(files, activeFile);
+  return file ? file.text : '';
+};
