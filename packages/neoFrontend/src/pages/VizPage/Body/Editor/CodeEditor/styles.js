@@ -27,10 +27,11 @@ export const Icons = styled.div`
   display: flex;
 `;
 
-export const Content = styled.div`
+export const Content = styled.pre`
   flex: 1;
-  padding: 10px;
+  margin: 10px;
   font-family: ${props => props.theme.defaultCodingFontFamily};
+  line-height: 1.93;
 `;
 
 export const CodeEditorIcon = styled(Icon)`
