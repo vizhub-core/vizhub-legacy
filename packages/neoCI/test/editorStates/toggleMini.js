@@ -29,9 +29,6 @@ export const toggleMini = (my, isMobile) => async () => {
 
     // Closing the active file should reveal the editor.
     await page.waitFor('.test-editor');
-
-    // Return to home state.
-    await navClick('.test-toggle-editor');
   } else {
     // Test exiting mini, which closes the mini viewer,
     // but keeps the editor and code editor open.
@@ -42,6 +39,9 @@ export const toggleMini = (my, isMobile) => async () => {
 
     // Return to home state.
     await navClick('.test-close-code-editor');
-    await navClick('.test-toggle-editor');
   }
+
+  // Return to home state.
+  await navClick('.test-editor-files-section');
+  await navClick('.test-toggle-editor');
 };

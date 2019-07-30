@@ -3,27 +3,25 @@ import queryString from 'query-string';
 
 // State that's related to the URL,
 // but is not stored inside of it.
-// For example, remembering which editor section was open.
-// Expose to Puppeteer tests via global.
-window.clearHiddenURLState = () => {
-  window.hiddenURLState = {
-    edit: null
-  };
-};
-
-window.clearHiddenURLState();
+// For example, remembering which editor section was open
+// after the editor is closed, so that it can be restored.
+let hiddenURLState = { edit: null };
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
+  // TODO refactor state to {url, hidden}.
   const state = useMemo(() => queryString.parse(location.search), [
     location.search
   ]);
 
-  state.hidden = window.hiddenURLState;
+  state.hidden = hiddenURLState;
 
   const dispatch = useCallback(
     action => {
       const nextState = reducer(state, action);
-      window.hiddenURLState = nextState.hidden;
+      hiddenURLState = nextState.hidden;
+
+      // Expose to Puppeteer tests via global.
+      window.testVizHubHiddenURLState = hiddenURLState;
 
       delete nextState.hidden;
       history.push({
