@@ -8,12 +8,12 @@ import React, {
 import PerfectScrollbar from 'perfect-scrollbar';
 
 import { getVizHeight } from '../../../../accessors';
+import { Centering } from '../../../styles';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { useListener } from '../useListener';
 import {
   Wrapper,
   Scroller,
-  Centering,
   ViewerContent,
   HorizontalRule
 } from './styles';
