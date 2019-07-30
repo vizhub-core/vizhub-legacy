@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { URLStateContext } from '../../../URLStateContext';
-import { isMobile, modShowViewer } from '../../../mobileMods';
-import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
+import { isMobile, modShowViewer } from '../../../../../mobileMods';
 import { FullSVG, CloseSVG } from '../../../../../svg';
+import { URLStateContext } from '../../../URLStateContext';
+import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 //import { VizPageDataContext } from '../../../VizPageDataContext';
 import { Wrapper, Header, Icons, Content, CodeEditorIcon } from './styles';
 

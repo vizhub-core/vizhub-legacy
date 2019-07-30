@@ -39,7 +39,7 @@ export const UserActionsMenu = withTheme(({ theme }) => {
             />
           </AvatarOverlay>
           <Menu height={navbarHeight}>
-            <Link to="create-viz">
+            <Link to="/create-viz">
               <Item className="test-create-viz" topmost={true}>
                 Create Visualization
               </Item>
