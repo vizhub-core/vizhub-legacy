@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { URLStateContext } from '../../URLStateContext';
-import { modExpandEditor, modShowEditor } from '../../mobileMods';
+import { modExpandEditor, modShowEditor } from '../../../../mobileMods';
 import { Sidebar } from './styles';
 import { Section } from './Section';
 import { FilesSection } from './FilesSection';

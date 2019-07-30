@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useCallback, useState } from 'react';
 import { FullSVG } from '../../../../../svg';
+import { MiniOrMicroSVG } from '../../../../../mobileMods';
 import { vizWidth } from '../../../../../constants';
-import { MiniOrMicroSVG } from '../../../mobileMods';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';

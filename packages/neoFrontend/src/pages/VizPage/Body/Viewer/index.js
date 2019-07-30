@@ -11,12 +11,7 @@ import { getVizHeight } from '../../../../accessors';
 import { Centering } from '../../../styles';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { useListener } from '../useListener';
-import {
-  Wrapper,
-  Scroller,
-  ViewerContent,
-  HorizontalRule
-} from './styles';
+import { Wrapper, Scroller, ViewerContent, HorizontalRule } from './styles';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';

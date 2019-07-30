@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Banner } from '../../styles';
-import { Wrapper, Content, Title, Button, DevsOnly, Centering } from '../styles';
+import {
+  Wrapper,
+  Content,
+  Title,
+  Button,
+  DevsOnly,
+  Centering
+} from '../styles';
 import { Box, Octocat, Terms } from './styles';
 import { LogoSVG } from '../../svg';
 import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';
