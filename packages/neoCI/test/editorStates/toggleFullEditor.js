@@ -15,7 +15,6 @@ export const toggleFullEditor = (my, isMobile) => async () => {
 
     // Return to home state.
     await navClick('.test-close-code-editor-mobile');
-    await navClick('.test-toggle-editor');
   } else {
     // Make sure viewer is visible before entering full editor.
     await page.waitFor('.test-viewer');
@@ -34,6 +33,8 @@ export const toggleFullEditor = (my, isMobile) => async () => {
 
     // Return to home state.
     await navClick('.test-close-code-editor');
-    await navClick('.test-toggle-editor');
   }
+  // Return to home state.
+  await navClick('.test-editor-files-section');
+  await navClick('.test-toggle-editor');
 };

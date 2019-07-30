@@ -16,5 +16,6 @@ export const restoreEditorSection = (my, isMobile) => async () => {
   await page.waitFor('.test-editor-file-entry-index-html');
 
   // Return to home state.
+  await navClick('.test-editor-files-section');
   await navClick('.test-toggle-editor');
 };

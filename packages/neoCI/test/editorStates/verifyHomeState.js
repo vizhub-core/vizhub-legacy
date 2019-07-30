@@ -16,7 +16,8 @@ export const verifyHomeState = (my, isMobile) => async () => {
   assert.equal(await page.$('.test-mini'), null);
   assert.equal(await page.$('.test-fullscreen'), null);
 
-  await page.evaluate(() => {
-    window.clearHiddenURLState();
-  });
+  assert.equal(
+    await page.evaluate(() => window.testVizHubHiddenURLState.edit),
+    null
+  );
 };
