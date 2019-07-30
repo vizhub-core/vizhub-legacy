@@ -3,10 +3,16 @@ import { isMobile, modShowViewer } from '../../../../../mobileMods';
 import { FullSVG, CloseSVG } from '../../../../../svg';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
-//import { VizPageDataContext } from '../../../VizPageDataContext';
+import { VizPageDataContext } from '../../../VizPageDataContext';
 import { Wrapper, Header, Icons, Content, CodeEditorIcon } from './styles';
 
 const svgHeight = 15;
+
+const getFile = (files, activeFile) => {
+  const filtered = files.filter(file => file.name === activeFile);
+  return filtered.length === 0 ? {text: ''} : filtered[0];
+};
+const getText = (files, activeFile) => getFile(files, activeFile).text;
 
 export const CodeEditor = () => {
   const {
@@ -17,8 +23,10 @@ export const CodeEditor = () => {
     showViewer,
     closeActiveFile
   } = useContext(URLStateContext);
-  //const { visualization } = useContext(VizPageDataContext);
-  //const { files } = visualization.content;
+  const { visualization } = useContext(VizPageDataContext);
+  const { files } = visualization.content;
+
+  const text = getText(files, activeFile);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
 
@@ -69,7 +77,7 @@ export const CodeEditor = () => {
           )}
         </Icons>
       </Header>
-      <Content>code goes here</Content>
+      <Content>{text}</Content>
     </Wrapper>
   ) : null;
 };
