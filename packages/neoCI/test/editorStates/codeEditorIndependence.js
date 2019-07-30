@@ -38,7 +38,10 @@ export const codeEditorIndependence = (my, isMobile) => async () => {
   // while the code editor remains open.
   await page.waitFor('.test-code-editor');
 
-  // Return to home state (wait for navigation to avoid race condition).
+  // Return to home state.
   await navClick('.test-exit-full-editor');
   await navClick('.test-close-code-editor');
+  await navClick('.test-toggle-editor');
+  await navClick('.test-editor-files-section');
+  await navClick('.test-toggle-editor');
 };

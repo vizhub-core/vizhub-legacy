@@ -12,10 +12,10 @@ export const Section = ({ title, id, children, className }) => {
   }, [setActiveSection, id, isActive]);
 
   return (
-    <Wrapper isActive={isActive} className={className}>
+    <Wrapper isActive={isActive}>
       <TitleEntry isActive={isActive}>
         {title}
-        <ClickableOverlay onClick={toggle} />
+        <ClickableOverlay onClick={toggle} className={className} />
       </TitleEntry>
       {isActive ? children : null}
     </Wrapper>
