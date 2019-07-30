@@ -1,24 +1,20 @@
 import styled from 'styled-components';
 
-export const BoxWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
 export const Box = styled.div`
   flex: 1;
   flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   max-width: 713px;
 
   border-radius: 6px;
   box-shadow: ${props => props.theme.shadow};
   background-color: #ffffff;
 
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding: 60px 15px 60px 15px;
+  margin: 0 10px 0 10px;
 `;
 
 export const Octocat = styled.img`

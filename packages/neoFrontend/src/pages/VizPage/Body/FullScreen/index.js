@@ -1,6 +1,6 @@
 import React, { useRef, useContext, useCallback } from 'react';
 import { FullExitSVG } from '../../../../svg';
-import { MiniOrMicroSVG } from '../../mobileMods';
+import { MiniOrMicroSVG } from '../../../../mobileMods';
 import { vizWidth } from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
 import { VizRunnerContext } from '../../VizRunnerContext';

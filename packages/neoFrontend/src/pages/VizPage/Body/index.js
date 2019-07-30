@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { NavBar } from '../../../NavBar';
 import { ForkingContext } from '../ForkingContext';
 import { URLStateContext } from '../URLStateContext';
-import { modShowViewer, modMode } from '../mobileMods';
+import { modShowViewer, modMode } from '../../../mobileMods';
 import { Wrapper, Top, Bottom } from './styles';
 import { MicroConsole } from './MicroConsole';
 import { Head } from './Head';

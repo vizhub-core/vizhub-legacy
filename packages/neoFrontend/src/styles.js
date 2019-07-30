@@ -1,8 +1,10 @@
 // Common styles used in multiple components and pages.
 import styled from 'styled-components';
+import { isMobile } from './mobileMods';
 
 export const Banner = styled.div`
-  min-height: ${props => props.theme.bannerHeight}px;
+  min-height: ${props =>
+    isMobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
   padding-left: ${props => props.theme.bannerPadding}px;
   padding-right: ${props => props.theme.bannerPadding}px;
   display: flex;

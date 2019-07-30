@@ -1,5 +1,5 @@
 import mobile from 'is-mobile';
-import { MiniSVG, MicroSVG } from '../../svg';
+import { MiniSVG, MicroSVG } from './svg';
 
 // Modifications and tweaks to support mobile experience.
 
