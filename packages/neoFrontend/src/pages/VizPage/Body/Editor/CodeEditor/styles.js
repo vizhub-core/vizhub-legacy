@@ -27,29 +27,6 @@ export const Icons = styled.div`
   display: flex;
 `;
 
-export const CodeAreaPre = styled.pre`
-  flex: 1;
-  padding: 10px;
-  margin: 0;
-  font-family: ${props => props.theme.defaultCodingFontFamily};
-  line-height: 1.93;
-`;
-
-export const CodeAreaTextarea = styled.textarea`
-  flex: 1;
-  padding: 10px;
-  margin: 0;
-  font-family: ${props => props.theme.defaultCodingFontFamily};
-  line-height: 1.93;
-  background-color: transparent;
-  color: #ffffff;
-  border: none;
-  resize: none;
-  outline: none;
-`;
-
-export const Content = CodeAreaPre;
-
 export const CodeEditorIcon = styled(Icon)`
   height: ${props => props.theme.editorEntryHeight}px;
   padding-right: ${props => (props.rightmost ? 8 : 5)}px;

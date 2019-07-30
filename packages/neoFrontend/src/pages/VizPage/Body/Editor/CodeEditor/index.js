@@ -4,13 +4,14 @@ import { FullSVG, CloseSVG } from '../../../../../svg';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizPageDataContext } from '../../../VizPageDataContext';
-import { Wrapper, Header, Icons, Content, CodeEditorIcon } from './styles';
+import { Wrapper, Header, Icons, CodeEditorIcon } from './styles';
+import { CodeArea } from './CodeArea';
 
 const svgHeight = 15;
 
 const getFile = (files, activeFile) => {
   const filtered = files.filter(file => file.name === activeFile);
-  return filtered.length === 0 ? {text: ''} : filtered[0];
+  return filtered.length === 0 ? { text: '' } : filtered[0];
 };
 const getText = (files, activeFile) => getFile(files, activeFile).text;
 
@@ -77,7 +78,7 @@ export const CodeEditor = () => {
           )}
         </Icons>
       </Header>
-      <Content>{text}</Content>
+      <CodeArea text={text} />
     </Wrapper>
   ) : null;
 };
