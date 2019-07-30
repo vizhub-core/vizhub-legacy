@@ -3,9 +3,9 @@ import { getMicroScale, getMicroWidth } from '../../../accessors';
 import { defaultVizHeight, vizWidth, useTransitions } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
+import { modMode } from '../../../mobileMods';
 import { VizPageDataContext } from '../VizPageDataContext';
 import { URLStateContext } from '../URLStateContext';
-import { modMode } from '../mobileMods';
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.

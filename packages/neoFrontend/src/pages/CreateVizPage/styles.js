@@ -5,6 +5,8 @@ export const Centered = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 15px 0 15px;
+  text-align: center;
 `;
 
 export const AttentionGrabbingTitle = styled(Title)`

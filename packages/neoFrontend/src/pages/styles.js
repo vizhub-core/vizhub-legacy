@@ -43,3 +43,8 @@ export const Button = styled.div`
     color: white;
   }
 `;
+
+export const Centering = styled.div`
+  display: flex;
+  justify-content: center;
+`;

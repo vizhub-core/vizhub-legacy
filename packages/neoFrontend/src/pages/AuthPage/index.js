@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Banner } from '../../styles';
-import { Wrapper, Content, Title, Button, DevsOnly } from '../styles';
-import { BoxWrapper, Box, Octocat, Terms } from './styles';
+import {
+  Wrapper,
+  Content,
+  Title,
+  Button,
+  DevsOnly,
+  Centering
+} from '../styles';
+import { Box, Octocat, Terms } from './styles';
 import { LogoSVG } from '../../svg';
 import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';
 
@@ -13,7 +20,7 @@ export const AuthPage = () => {
         <Banner>
           <LogoSVG height={40} fill="currentcolor" />
         </Banner>
-        <BoxWrapper>
+        <Centering>
           <Box>
             <Title>Sign up or Sign in</Title>
             If you don't have an account, one will be created when you sign in.
@@ -42,7 +49,7 @@ export const AuthPage = () => {
               </>
             ) : null}
           </Box>
-        </BoxWrapper>
+        </Centering>
       </Content>
     </Wrapper>
   );
