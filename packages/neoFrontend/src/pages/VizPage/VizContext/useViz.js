@@ -7,11 +7,20 @@ export const useViz = initialViz => {
   // Lazy load realtime-related modules.
   const realtimeModules = useRealtimeModules();
 
-  const vizContentDoc = useVizContentDoc(realtimeModules);
+  const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
 
-  const submitContentOp = useCallback(op => {
-    console.log('submit content op: ' + JSON.stringify(op));
-  }, []);
+  const submitContentOp = useCallback(
+    op => {
+      if (!vizContentDoc) {
+        throw new Error(
+          'Attempting submit before subscribe. Should never happen.'
+        );
+      }
+      vizContentDoc.submitOp(op);
+      console.log('submit content op: ' + JSON.stringify(op));
+    },
+    [vizContentDoc]
+  );
 
   //reducerOptionsRef.current.submitInfoOp = op => {
   //  console.log('submit info op: ' + JSON.stringify(op));
@@ -32,7 +41,7 @@ export const useViz = initialViz => {
   );
 
   const viz = state.viz;
-  const allowEditing = realtimeModules ? true : false;
+  const allowEditing = vizContentDoc ? true : false;
 
   return { viz, onFileChange, allowEditing };
 };
