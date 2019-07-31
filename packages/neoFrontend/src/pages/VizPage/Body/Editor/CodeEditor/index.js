@@ -4,7 +4,7 @@ import { FullSVG, CloseSVG } from '../../../../../svg';
 import { getText } from '../../../../../accessors';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
-import { VizPageDataContext } from '../../../VizPageDataContext';
+import { VizContext } from '../../../VizContext';
 import { Wrapper, Header, Icons, CodeEditorIcon } from './styles';
 import { CodeArea } from './CodeArea';
 
@@ -19,8 +19,8 @@ export const CodeEditor = () => {
     showViewer,
     closeActiveFile
   } = useContext(URLStateContext);
-  const { visualization } = useContext(VizPageDataContext);
-  const { files } = visualization.content;
+  const { viz, onFileChange } = useContext(VizContext);
+  const { files } = viz.content;
 
   const text = getText(files, activeFile);
 
@@ -73,7 +73,7 @@ export const CodeEditor = () => {
           )}
         </Icons>
       </Header>
-      <CodeArea text={text} />
+      <CodeArea text={text} onTextChange={onFileChange(activeFile)} />
     </Wrapper>
   ) : null;
 };

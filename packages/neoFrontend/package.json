@@ -6,13 +6,15 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp -r build ../backend/build",
+    "build": "react-scripts build && cp -r build ../neoBackend/build",
     "prettier": "prettier --single-quote --write 'src/**/*.js'"
   },
   "proxy": "http://localhost:4000/",
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "dependencies": {
+    "@datavis-tech/ot-json0": "^1.2.0",
+    "@teamwork/sharedb": "^3.1.0",
     "is-mobile": "^2.1.0",
     "magic-sandbox": "^1.5.0",
     "marked": "^0.7.0",

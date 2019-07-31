@@ -1,11 +1,11 @@
 import React from 'react';
 import { Wrapper } from './styles';
 
-export const CodeAreaTextarea = ({ text }) => (
+export const CodeAreaTextarea = ({ text, onTextChange }) => (
   <Wrapper
     value={text}
-    onChange={() => {
-      console.log('record the change');
+    onChange={event => {
+      onTextChange(event.target.value);
     }}
   />
 );
