@@ -1,6 +1,11 @@
 import ShareDB from '@teamwork/sharedb';
 import ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
 import ShareDBMongo from '@teamwork/sharedb-mongo';
+import json0 from '@datavis-tech/ot-json0';
+
+// Use our custom json0 fork that implements presence.
+ShareDB.types.register(json0.type);
+ShareDB.types.defaultType = json0.type;
 
 // Singletons.
 let shareDB;

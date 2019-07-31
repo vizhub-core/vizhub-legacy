@@ -18,17 +18,16 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
-    "vizhub-entities": "1",
-    "vizhub-controllers": "1",
-    "vizhub-use-cases": "1",
-    "vizhub-server-gateways": "1",
-    "@datavis-tech/ot-json0": "^1.2.0",
     "@teamwork/sharedb": "^3.1.0",
     "@teamwork/websocket-json-stream": "^2.0.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "vizhub-controllers": "1",
+    "vizhub-entities": "1",
+    "vizhub-server-gateways": "1",
+    "vizhub-use-cases": "1",
     "ws": "^7.0.1"
   }
 }
