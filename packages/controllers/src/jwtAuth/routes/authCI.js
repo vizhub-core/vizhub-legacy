@@ -10,7 +10,9 @@ export const authCI = asyncHandler(async (req, res) => {
     res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true });
     res.send(ciUser);
   } else {
-    console.log('If you want to log in as CI, you need to start the server using "npm run dev", not "npm start".');
+    console.log(
+      'If you want to log in as CI, you need to start the server using "npm run dev", not "npm start".'
+    );
     res.send(
       ErrorResponse(
         new VizHubAPIError({
