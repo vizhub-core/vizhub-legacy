@@ -1,10 +1,13 @@
 import { useReducer, useCallback, useMemo } from 'react';
 import { useRealtimeModules } from './useRealtimeModules';
+import { useVizContentDoc } from './useVizContentDoc';
 import { createReducer } from './createReducer';
 
 export const useViz = initialViz => {
   // Lazy load realtime-related modules.
   const realtimeModules = useRealtimeModules();
+
+  const vizContentDoc = useVizContentDoc(realtimeModules);
 
   const submitContentOp = useCallback(op => {
     console.log('submit content op: ' + JSON.stringify(op));
