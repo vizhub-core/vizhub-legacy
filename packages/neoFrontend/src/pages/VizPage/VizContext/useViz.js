@@ -1,29 +1,30 @@
-import { useReducer } from 'react';
-
-function reducer(viz, action) {
-  switch (action.type) {
-    case 'fileChange':
-      return {
-        ...viz,
-        content: {
-          ...viz.content,
-          files: viz.content.files.map(file =>
-            file.name === action.name ? { ...file, text: action.text } : file
-          )
-        }
-      };
-    default:
-      throw new Error();
-  }
-}
+import { useReducer, useCallback, useRef } from 'react';
+import { useRealtimeModules } from './useRealtimeModules';
+import { reducer } from './reducer';
 
 export const useViz = initialViz => {
-  const [viz, dispatch] = useReducer(reducer, initialViz);
+  // Lazy load realtime-related modules.
+  const realtimeModulesRef = useRef();
+  const realtimeModules = useRealtimeModules();
+  realtimeModulesRef.current = realtimeModules;
 
-  // TODO useCallback
-  const onFileChange = name => text => {
-    dispatch({ type: 'fileChange', name, text });
-  };
+  const initialState = { viz: initialViz };
+  const [state, dispatch] = useReducer(
+    reducer(realtimeModulesRef),
+    initialState
+  );
 
-  return { viz, onFileChange };
+  //console.log(JSON.stringify(state.contentOp, null, 2));
+
+  const onFileChange = useCallback(
+    name => text => {
+      dispatch({ type: 'fileChange', name, text });
+    },
+    [dispatch]
+  );
+
+  const viz = state.viz;
+  const allowEditing = realtimeModules ? true : false;
+
+  return { viz, onFileChange, allowEditing };
 };
