@@ -1,4 +1,11 @@
-import React, { useContext, useEffect, useLayoutEffect, useState, useRef } from 'react';
+import React, {
+  useContext,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useReducer
+} from 'react';
 import { getFileIndex } from '../../../../../../../accessors';
 import { Wrapper } from './styles';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
@@ -10,11 +17,30 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const onTextChange = onFileChange(name, vizContentDoc, realtimeModules);
 
+  const reducer = useCallback(
+    (selection, action) => {
+      switch (action.type) {
+        case 'remoteOp':
+          return selection.map(position =>
+            realtimeModules.json0.transformCursor(position, action.c, 'left')
+          );
+        case 'localChange':
+          return action.selection;
+        default:
+          throw new Error();
+      }
+    },
+    [realtimeModules]
+  );
+
   const ref = useRef();
-  const [selection, setSelection] = useState([0, 0]);
+  const [selection, dispatch] = useReducer(reducer, [0, 0]);
 
   const updateSelection = () => {
-    setSelection([ref.current.selectionStart, ref.current.selectionEnd]);
+    dispatch({
+      type: 'localChange',
+      selection: [ref.current.selectionStart, ref.current.selectionEnd]
+    });
   };
 
   useLayoutEffect(() => {
@@ -42,19 +68,17 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
     }
 
     const transformCursor = (op, originatedLocally) => {
-      const files = vizContentDoc.data.files;
-      const fileIndex = getFileIndex(files, name);
-      const path = ['files', fileIndex, 'text'];
-      const { json0 } = realtimeModules;
-      op.forEach(c => {
-        if (json0.canOpAffectPath(c, path)) {
-          setSelection(
-            selection.map(position =>
-              json0.transformCursor(position, c, originatedLocally ? 'left' :'right')
-            )
-          );
-        }
-      });
+      if (!originatedLocally) {
+        const files = vizContentDoc.data.files;
+        const fileIndex = getFileIndex(files, name);
+        const path = ['files', fileIndex, 'text'];
+        const { json0 } = realtimeModules;
+        op.forEach(c => {
+          if (json0.canOpAffectPath(c, path)) {
+            dispatch({ type: 'remoteOp', c });
+          }
+        });
+      }
     };
 
     // Update on each change.
@@ -64,7 +88,7 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
       console.log('unsubscribing from ops in CodeAreaTextarea');
       vizContentDoc.off('op', transformCursor);
     };
-  }, [vizContentDoc, name, realtimeModules, selection]);
+  }, [vizContentDoc, name, realtimeModules]);
 
   return (
     <Wrapper
