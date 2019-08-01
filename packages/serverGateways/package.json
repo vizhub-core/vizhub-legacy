@@ -8,7 +8,7 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "@datavis-tech/ot-json0": "^1.2.0",
+    "@datavis-tech/ot-json0": "^2.1.0",
     "@teamwork/sharedb": "^3.1.0",
     "@teamwork/sharedb-mingo-memory": "^3.0.1",
     "@teamwork/sharedb-mongo": "^3.0.0",

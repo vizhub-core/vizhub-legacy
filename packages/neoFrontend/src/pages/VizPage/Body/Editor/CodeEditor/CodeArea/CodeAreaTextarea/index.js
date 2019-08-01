@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { getFileIndex } from '../../../../../../../accessors';
 import { Wrapper } from './styles';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
@@ -17,19 +17,20 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
     setSelection([ref.current.selectionStart, ref.current.selectionEnd]);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     ref.current.value = text;
     ref.current.setSelectionRange(selection[0], selection[1]);
   }, [selection, ref, text]);
 
   // Test for cursor transform.
   useEffect(() => {
+    if (!vizContentDoc) {
+      return;
+    }
     document.addEventListener('keydown', e => {
       if (e.altKey && e.code === 'KeyD') {
         setInterval(() => {
-          if (vizContentDoc) {
-            vizContentDoc.submitOp({ si: 'd', p: ['files', 1, 'text', 0] });
-          }
+          vizContentDoc.submitOp({ si: 'd', p: ['files', 1, 'text', 0] });
         }, 1000);
       }
     });
@@ -41,17 +42,19 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
     }
 
     const transformCursor = (op, originatedLocally) => {
-      if (!originatedLocally) {
-        const files = vizContentDoc.data.files;
-        const fileIndex = getFileIndex(files, name);
-        const path = ['files', fileIndex, 'text'];
-        const { json0 } = realtimeModules;
-        console.log(json0);
-        if (json0.canOpAffectPath(op[0], path)) {
-          console.log(JSON.stringify(op[0]));
-          console.log('TODO transform cursor here.');
+      const files = vizContentDoc.data.files;
+      const fileIndex = getFileIndex(files, name);
+      const path = ['files', fileIndex, 'text'];
+      const { json0 } = realtimeModules;
+      op.forEach(c => {
+        if (json0.canOpAffectPath(c, path)) {
+          setSelection(
+            selection.map(position =>
+              json0.transformCursor(position, c, originatedLocally ? 'left' :'right')
+            )
+          );
         }
-      }
+      });
     };
 
     // Update on each change.
@@ -61,7 +64,7 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
       console.log('unsubscribing from ops in CodeAreaTextarea');
       vizContentDoc.off('op', transformCursor);
     };
-  }, [vizContentDoc, name, realtimeModules]);
+  }, [vizContentDoc, name, realtimeModules, selection]);
 
   return (
     <Wrapper

@@ -13,7 +13,7 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "dependencies": {
-    "@datavis-tech/ot-json0": "^1.2.0",
+    "@datavis-tech/ot-json0": "^2.1.0",
     "@teamwork/sharedb": "^3.1.0",
     "diff-match-patch": "^1.0.4",
     "immer": "^3.1.3",
