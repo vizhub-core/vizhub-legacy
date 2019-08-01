@@ -1,7 +1,17 @@
-import { useReducer, useCallback, useMemo } from 'react';
+import { useReducer, useEffect, useCallback } from 'react';
 import { useRealtimeModules } from './useRealtimeModules';
 import { useVizContentDoc } from './useVizContentDoc';
-import { createReducer } from './createReducer';
+
+const reducer = (viz, action) => {
+  switch (action.type) {
+    case 'contentChange':
+      return action.content !== viz.content
+        ? { info: viz.info, content: action.content }
+        : viz;
+    default:
+      throw new Error();
+  }
+};
 
 export const useViz = initialViz => {
   // Lazy load realtime-related modules.
@@ -9,38 +19,64 @@ export const useViz = initialViz => {
 
   const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
 
-  const submitContentOp = useCallback(
-    op => {
-      if (!vizContentDoc) {
-        throw new Error(
-          'Attempting submit before subscribe. Should never happen.'
-        );
+  // TODO move this into CodeAreaTextarea.
+  const onFileChange = name => newText => {
+    if (!realtimeModules || !vizContentDoc) {
+      throw new Error(
+        'Attempting change file before subscribe. Should never happen.'
+      );
+    }
+
+    // Derive old text and file index.
+    let oldText, fileIndex;
+    const files = vizContentDoc.data.files;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (file.name === name) {
+        oldText = file.text;
+        fileIndex = i;
+        break;
       }
-      vizContentDoc.submitOp(op);
-      console.log('submit content op: ' + JSON.stringify(op));
-    },
-    [vizContentDoc]
-  );
+    }
 
-  //reducerOptionsRef.current.submitInfoOp = op => {
-  //  console.log('submit info op: ' + JSON.stringify(op));
-  //};
+    // Derive the op for this change by diffing the text.
+    const { diffMatchPatch, jsondiff } = realtimeModules;
+    const op = jsondiff(oldText, newText, diffMatchPatch).map(opComponent => ({
+      ...opComponent,
+      p: ['files', fileIndex, 'text'].concat(opComponent.p)
+    }));
 
-  // Set up our reducer, the source of truth for our Viz state.
-  const reducer = useMemo(
-    () => createReducer({ realtimeModules, submitContentOp }),
-    [realtimeModules, submitContentOp]
-  );
-  const [state, dispatch] = useReducer(reducer, { viz: initialViz });
+    vizContentDoc.submitOp(op);
+  };
 
-  const onFileChange = useMemo(
-    () => name => text => {
-      dispatch({ type: 'fileChange', name, text });
-    },
-    [dispatch]
-  );
+  // Display initial viz until realtime connection has been established.
+  const [viz, dispatch] = useReducer(reducer, initialViz);
 
-  const viz = state.viz;
+  const dispatchContentChange = useCallback(() => {
+    dispatch({
+      type: 'contentChange',
+      content: vizContentDoc.data
+    });
+  }, [dispatch, vizContentDoc]);
+
+  useEffect(() => {
+    if (!vizContentDoc) {
+      return;
+    }
+
+    // Handle the case that the initial viz and the
+    // vizContentDoc content are different.
+    dispatchContentChange();
+
+    // Update on each change.
+    vizContentDoc.on('op', dispatchContentChange);
+
+    return () => {
+      console.log('unsubscribing from ops');
+      vizContentDoc.off('op', dispatchContentChange);
+    };
+  }, [vizContentDoc, dispatchContentChange]);
+
   const allowEditing = vizContentDoc ? true : false;
 
   return { viz, onFileChange, allowEditing };
