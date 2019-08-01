@@ -1,61 +1,37 @@
 import { useReducer, useEffect, useCallback, useContext } from 'react';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { useVizContentDoc } from './useVizContentDoc';
-
-const reducer = (viz, action) => {
-  switch (action.type) {
-    case 'contentChange':
-      return action.content !== viz.content
-        ? { info: viz.info, content: action.content }
-        : viz;
-    default:
-      throw new Error();
-  }
-};
+import { generateFileChangeOp } from './generateFileChangeOp';
+import { reducer } from './reducer';
 
 export const useViz = initialViz => {
   const realtimeModules = useContext(RealtimeModulesContext);
 
   const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
+  const submitVizContentOp = useCallback(
+    op => {
+      if (!vizContentDoc) {
+        throw new Error(
+          'Attempting to submit op before subscribe. Should never happen.'
+        );
+      }
+      vizContentDoc.submitOp(op);
+    },
+    [vizContentDoc]
+  );
 
   // TODO move this into CodeAreaTextarea.
   const onFileChange = name => newText => {
-    if (!realtimeModules || !vizContentDoc) {
-      throw new Error(
-        'Attempting change file before subscribe. Should never happen.'
-      );
-    }
-
-    // Derive old text and file index.
-    let oldText, fileIndex;
     const files = vizContentDoc.data.files;
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (file.name === name) {
-        oldText = file.text;
-        fileIndex = i;
-        break;
-      }
-    }
-
-    // Derive the op for this change by diffing the text.
-    const { diffMatchPatch, jsondiff } = realtimeModules;
-    const op = jsondiff(oldText, newText, diffMatchPatch).map(opComponent => ({
-      ...opComponent,
-      p: ['files', fileIndex, 'text'].concat(opComponent.p)
-    }));
-
-    vizContentDoc.submitOp(op);
+    const op = generateFileChangeOp(files, name, newText, realtimeModules);
+    submitVizContentOp(op);
   };
 
   // Display initial viz until realtime connection has been established.
   const [viz, dispatch] = useReducer(reducer, initialViz);
 
   const dispatchContentChange = useCallback(() => {
-    dispatch({
-      type: 'contentChange',
-      content: vizContentDoc.data
-    });
+    dispatch({ type: 'contentChange', content: vizContentDoc.data });
   }, [dispatch, vizContentDoc]);
 
   useEffect(() => {
