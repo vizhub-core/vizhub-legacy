@@ -28,7 +28,7 @@ export const Icons = styled.div`
 `;
 
 export const CodeEditorIcon = styled(Icon)`
-  height: ${props => props.theme.editorEntryHeight}px;
+  height: ${props => props.theme.editorEntryHeight + 1}px;
   padding-right: ${props => (props.rightmost ? 8 : 5)}px;
   padding-left: ${props => (props.leftmost ? 8 : 5)}px;
 `;
