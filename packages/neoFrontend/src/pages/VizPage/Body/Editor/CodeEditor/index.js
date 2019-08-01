@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { modShowViewer } from '../../../../../mobileMods';
-import { getText } from '../../../../../accessors';
+import { getFile } from '../../../../../accessors';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizContext } from '../../../VizContext';
@@ -20,7 +20,7 @@ export const CodeEditor = () => {
   const { viz, onFileChange, allowEditing } = useContext(VizContext);
   const { files } = viz.content;
 
-  const text = getText(files, activeFile);
+  const file = getFile(files, activeFile);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
 
@@ -40,7 +40,7 @@ export const CodeEditor = () => {
         closeActiveFile={closeActiveFile}
       />
       <CodeArea
-        text={text}
+        file={file}
         onTextChange={onFileChange(activeFile)}
         allowEditing={allowEditing}
       />
