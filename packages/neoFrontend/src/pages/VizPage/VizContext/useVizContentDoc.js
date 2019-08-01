@@ -26,7 +26,6 @@ export const useVizContentDoc = (realtimeModules, vizId) => {
     });
 
     return () => {
-      console.log('unsubscribing');
       doc.unsubscribe();
     };
   }, [realtimeModules, vizId]);
