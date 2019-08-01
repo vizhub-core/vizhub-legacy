@@ -6,4 +6,11 @@ import diffMatchPatch from 'diff-match-patch';
 import produce from 'immer';
 import { connection } from './connection';
 
+// Make json0 apply immutable.
+const originalApply = json0.type.apply;
+json0.type.apply = (snapshot, op) =>
+  produce(snapshot, draftSnapshot => {
+    originalApply(draftSnapshot, op);
+  });
+
 export { json0, jsondiff, diffMatchPatch, produce, connection };
