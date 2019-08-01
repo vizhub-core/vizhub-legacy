@@ -44,9 +44,17 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
   };
 
   useLayoutEffect(() => {
-    ref.current.value = text;
     ref.current.setSelectionRange(selection[0], selection[1]);
-  }, [selection, ref, text]);
+  }, [selection, ref]);
+
+  useLayoutEffect(() => {
+    const currentSelection = [
+      ref.current.selectionStart,
+      ref.current.selectionEnd
+    ];
+    ref.current.value = text;
+    ref.current.setSelectionRange(currentSelection[0], currentSelection[1]);
+  }, [text, ref]);
 
   // Test for cursor transform.
   useEffect(() => {
