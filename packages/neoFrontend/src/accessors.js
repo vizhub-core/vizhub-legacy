@@ -11,7 +11,8 @@ export const getMicroScale = visualization =>
 
 export const getMicroWidth = microScale => microScale * vizWidth;
 
-export const getFile = (files, name) => files.filter(file => file.name === name)[0];
+export const getFile = (files, name) =>
+  files.filter(file => file.name === name)[0];
 
 export const getText = (files, activeFile) => {
   const file = getFile(files, activeFile);
