@@ -37,23 +37,22 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
   const [selection, dispatch] = useReducer(reducer, [0, 0]);
 
   const updateSelection = () => {
-    dispatch({
-      type: 'localChange',
-      selection: [ref.current.selectionStart, ref.current.selectionEnd]
-    });
+    const { selectionStart, selectionEnd } = ref.current;
+    const selection = [selectionStart, selectionEnd];
+    selection.isLocal = true;
+    dispatch({ type: 'localChange', selection });
   };
 
   useLayoutEffect(() => {
-    ref.current.setSelectionRange(selection[0], selection[1]);
+    if(!selection.isLocal){
+      ref.current.setSelectionRange(selection[0], selection[1]);
+    }
   }, [selection, ref]);
 
   useLayoutEffect(() => {
-    const currentSelection = [
-      ref.current.selectionStart,
-      ref.current.selectionEnd
-    ];
+    const { selectionStart, selectionEnd } = ref.current;
     ref.current.value = text;
-    ref.current.setSelectionRange(currentSelection[0], currentSelection[1]);
+    ref.current.setSelectionRange(selectionStart, selectionEnd);
   }, [text, ref]);
 
   // Test for cursor transform.
@@ -64,7 +63,7 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
     document.addEventListener('keydown', e => {
       if (e.altKey && e.code === 'KeyD') {
         setInterval(() => {
-          vizContentDoc.submitOp({ si: 'd', p: ['files', 1, 'text', 0] });
+          vizContentDoc.submitOp({ si: 'e', p: ['files', 1, 'text', 5] });
         }, 1000);
       }
     });
