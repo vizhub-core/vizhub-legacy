@@ -17,7 +17,10 @@ export const CodeEditor = () => {
     showViewer,
     closeActiveFile
   } = useContext(URLStateContext);
-  const { viz, onFileChange, allowEditing } = useContext(VizContext);
+  const { viz, onFileChange, vizContentDoc } = useContext(VizContext);
+
+  const allowEditing = vizContentDoc ? true : false;
+
   const { files } = viz.content;
 
   const file = getFile(files, activeFile);

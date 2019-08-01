@@ -40,7 +40,6 @@ export const useViz = initialViz => {
     };
   }, [vizContentDoc, dispatchContentChange]);
 
-  const allowEditing = vizContentDoc ? true : false;
 
-  return { viz, onFileChange, allowEditing };
+  return { viz, onFileChange, vizContentDoc };
 };
