@@ -8,23 +8,11 @@ export const useViz = initialViz => {
   const realtimeModules = useContext(RealtimeModulesContext);
 
   const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
-  const submitVizContentOp = useCallback(
-    op => {
-      if (!vizContentDoc) {
-        throw new Error(
-          'Attempting to submit op before subscribe. Should never happen.'
-        );
-      }
-      vizContentDoc.submitOp(op);
-    },
-    [vizContentDoc]
-  );
 
-  // TODO move this into CodeAreaTextarea.
   const onFileChange = name => newText => {
     const files = vizContentDoc.data.files;
     const op = generateFileChangeOp(files, name, newText, realtimeModules);
-    submitVizContentOp(op);
+    vizContentDoc.submitOp(op);
   };
 
   // Display initial viz until realtime connection has been established.
