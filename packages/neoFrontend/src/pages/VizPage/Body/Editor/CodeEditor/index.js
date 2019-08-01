@@ -17,9 +17,7 @@ export const CodeEditor = () => {
     showViewer,
     closeActiveFile
   } = useContext(URLStateContext);
-  const { viz, onFileChange, vizContentDoc } = useContext(VizContext);
-
-  const allowEditing = vizContentDoc ? true : false;
+  const { viz, vizContentDoc } = useContext(VizContext);
 
   const { files } = viz.content;
 
@@ -42,11 +40,7 @@ export const CodeEditor = () => {
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
       />
-      <CodeArea
-        file={file}
-        onTextChange={onFileChange(activeFile)}
-        allowEditing={allowEditing}
-      />
+      <CodeArea file={file} vizContentDoc={vizContentDoc} />
     </Wrapper>
   ) : null;
 };
