@@ -1,20 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Wrapper } from './styles';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
-import { generateFileChangeOp } from './generateFileChangeOp';
+import { onFileChange } from '../onFileChange';
 
 export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
   const { name, text } = file;
-
   const allowEditing = vizContentDoc ? true : false;
-
   const realtimeModules = useContext(RealtimeModulesContext);
+  const onTextChange = onFileChange(name, vizContentDoc, realtimeModules);
 
-  const onTextChange = newText => {
-    const files = vizContentDoc.data.files;
-    const op = generateFileChangeOp(files, name, newText, realtimeModules);
-    vizContentDoc.submitOp(op);
-  };
+  useEffect(() => {
+    if (!vizContentDoc) {
+      return;
+    }
+
+    const transformCursor = op => {
+      console.log('here');
+    };
+
+    // Update on each change.
+    vizContentDoc.on('op', transformCursor);
+
+    return () => {
+      console.log('unsubscribing from ops in CodeAreaTextarea');
+      vizContentDoc.off('op', transformCursor);
+    };
+  }, [vizContentDoc]);
 
   return (
     <Wrapper
