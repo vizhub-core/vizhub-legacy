@@ -7,6 +7,7 @@ import produce from 'immer';
 import { connection } from './connection';
 
 // Make json0 apply immutable.
+// Related: https://github.com/ottypes/json0/issues/26
 const originalApply = json0.type.apply;
 json0.type.apply = (snapshot, op) =>
   produce(snapshot, draftSnapshot => {

@@ -1,5 +1,5 @@
-import { useReducer, useEffect, useCallback } from 'react';
-import { useRealtimeModules } from './useRealtimeModules';
+import { useReducer, useEffect, useCallback, useContext } from 'react';
+import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { useVizContentDoc } from './useVizContentDoc';
 
 const reducer = (viz, action) => {
@@ -14,8 +14,7 @@ const reducer = (viz, action) => {
 };
 
 export const useViz = initialViz => {
-  // Lazy load realtime-related modules.
-  const realtimeModules = useRealtimeModules();
+  const realtimeModules = useContext(RealtimeModulesContext);
 
   const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
 
