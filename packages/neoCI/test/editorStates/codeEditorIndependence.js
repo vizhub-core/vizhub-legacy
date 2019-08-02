@@ -1,20 +1,21 @@
 import assert from 'assert';
-import { convenience } from './convenience';
+import { getPage } from './getPage';
+import { navClick } from '../navClick';
 
 export const codeEditorIndependence = (my, isMobile) => async () => {
-  const { page, navClick } = convenience(my, isMobile);
+  const page = getPage(my, isMobile);
 
   // Enter full editor mode.
-  await navClick('.test-toggle-editor');
-  await navClick('.test-editor-files-section');
-  await navClick('.test-editor-file-entry-index-html');
-  await navClick('.test-enter-full-editor');
+  await navClick(page, '.test-toggle-editor');
+  await navClick(page, '.test-editor-files-section');
+  await navClick(page, '.test-editor-file-entry-index-html');
+  await navClick(page, '.test-enter-full-editor');
 
   // Editor (sidebar) should still be open at this point.
   await page.waitFor('.test-editor');
 
   // If we close the editor (sidebar),
-  await navClick('.test-toggle-editor');
+  await navClick(page, '.test-toggle-editor');
   assert.equal(await page.$('.test-editor'), null);
 
   // the code editor should remain open,
@@ -30,7 +31,7 @@ export const codeEditorIndependence = (my, isMobile) => async () => {
   assert.equal(await page.$('.test-editor'), null);
 
   // Even in mini mode,
-  await navClick('.test-enter-mini-from-viewer');
+  await navClick(page, '.test-enter-mini-from-viewer');
 
   // the editor (sidebar) should remain closed
   assert.equal(await page.$('.test-editor'), null);
@@ -39,9 +40,9 @@ export const codeEditorIndependence = (my, isMobile) => async () => {
   await page.waitFor('.test-code-editor');
 
   // Return to home state.
-  await navClick('.test-exit-full-editor');
-  await navClick('.test-close-code-editor');
-  await navClick('.test-toggle-editor');
-  await navClick('.test-editor-files-section');
-  await navClick('.test-toggle-editor');
+  await navClick(page, '.test-exit-full-editor');
+  await navClick(page, '.test-close-code-editor');
+  await navClick(page, '.test-toggle-editor');
+  await navClick(page, '.test-editor-files-section');
+  await navClick(page, '.test-toggle-editor');
 };
