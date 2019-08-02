@@ -4,8 +4,11 @@ import { defaultVizHeight, vizWidth, useTransitions } from '../../../constants';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 import { modMode } from '../../../mobileMods';
-import { VizPageDataContext } from '../VizPageDataContext';
+import { VizContext } from '../VizContext';
 import { URLStateContext } from '../URLStateContext';
+import { computeSrcDoc } from './computeSrcDoc';
+
+// TODO split up this file
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -33,6 +36,15 @@ iFrame.style['transition-timing-function'] = 'cubic-bezier(.28,.66,.15,1)';
 
 let mode;
 let timeoutId;
+
+let firstRun = true;
+const setSrcDocTimeout = () => {
+  if (firstRun) {
+    firstRun = false;
+    return 0;
+  }
+  return 1000;
+};
 
 const setStyles = () => {
   // If in "mini" mode, set Z index high.
@@ -121,22 +133,31 @@ const setVizRunnerTransform = ({ x, y, scale }) => {
 };
 
 export const VizRunnerProvider = ({ children }) => {
-  const { visualization } = useContext(VizPageDataContext);
+  const { viz } = useContext(VizContext);
   const { mode, showEditor, activeFile } = useContext(URLStateContext);
-  const vizHeight = visualization.info.height || defaultVizHeight;
+  const vizHeight = viz.info.height || defaultVizHeight;
   const ref = useRef();
 
   const mod = modMode(mode, showEditor, activeFile);
   setVizRunnerMode(mod);
 
   if (mod === 'micro') {
-    const scale = getMicroScale(visualization);
+    const scale = getMicroScale(viz);
     const x = window.innerWidth - getMicroWidth(scale);
     const y = 0;
     setVizRunnerTransform({ x, y, scale });
   }
 
   const contextValue = { setVizRunnerTransform };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      iFrame.setAttribute('srcDoc', computeSrcDoc(viz.content.files));
+    }, setSrcDocTimeout());
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [viz]);
 
   useEffect(() => {
     iFrame.setAttribute('height', vizHeight);

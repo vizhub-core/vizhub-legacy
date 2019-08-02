@@ -1,18 +1,19 @@
 import assert from 'assert';
-import { convenience } from './convenience';
+import { getPage } from './getPage';
+import { navClick } from '../navClick';
 
 export const toggleCodeEditor = (my, isMobile) => async () => {
-  const { page, navClick } = convenience(my, isMobile);
+  const page = getPage(my, isMobile);
 
   // Open editor.
-  await navClick('.test-toggle-editor');
+  await navClick(page, '.test-toggle-editor');
   await page.waitFor('.test-editor');
 
   // Open files section.
-  await navClick('.test-editor-files-section');
+  await navClick(page, '.test-editor-files-section');
 
   // Open a file.
-  await navClick('.test-editor-file-entry-index-html');
+  await navClick(page, '.test-editor-file-entry-index-html');
 
   // Verify the name of the open file.
   await page.waitFor('.test-code-editor');
@@ -30,9 +31,9 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
 
   // Close code editor.
   if (isMobile) {
-    await navClick('.test-close-code-editor-mobile');
+    await navClick(page, '.test-close-code-editor-mobile');
   } else {
-    await navClick('.test-close-code-editor');
+    await navClick(page, '.test-close-code-editor');
   }
 
   // Code editor should not be visible anymore.
@@ -42,6 +43,6 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
   await page.waitFor('.test-editor');
 
   // Return to home state.
-  await navClick('.test-editor-files-section');
-  await navClick('.test-toggle-editor');
+  await navClick(page, '.test-editor-files-section');
+  await navClick(page, '.test-toggle-editor');
 };

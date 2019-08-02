@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { isMobile, modShowViewer } from '../../../../../mobileMods';
-import { FullSVG, CloseSVG } from '../../../../../svg';
+import { modShowViewer } from '../../../../../mobileMods';
+import { getFile } from '../../../../../accessors';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
-//import { VizPageDataContext } from '../../../VizPageDataContext';
-import { Wrapper, Header, Icons, Content, CodeEditorIcon } from './styles';
-
-const svgHeight = 15;
+import { VizContext } from '../../../VizContext';
+import { Wrapper } from './styles';
+import { CodeArea } from './CodeArea';
+import { CodeEditorHeader } from './CodeEditorHeader';
 
 export const CodeEditor = () => {
   const {
@@ -17,8 +17,11 @@ export const CodeEditor = () => {
     showViewer,
     closeActiveFile
   } = useContext(URLStateContext);
-  //const { visualization } = useContext(VizPageDataContext);
-  //const { files } = visualization.content;
+  const { viz, vizContentDoc } = useContext(VizContext);
+
+  const { files } = viz.content;
+
+  const file = getFile(files, activeFile);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
 
@@ -30,46 +33,14 @@ export const CodeEditor = () => {
       style={viewer ? { width: codeEditorWidth + 'px' } : { flex: 1 }}
       className="test-code-editor"
     >
-      <Header>
-        <div className="test-code-editor-file-name">{activeFile}</div>
-        <Icons>
-          {viewer ? (
-            <>
-              <CodeEditorIcon
-                onClick={onHideViz}
-                leftmost={true}
-                className="test-enter-full-editor"
-              >
-                <FullSVG height={svgHeight} />
-              </CodeEditorIcon>
-              <CodeEditorIcon
-                onClick={closeActiveFile}
-                rightmost={true}
-                className="test-close-code-editor"
-              >
-                <CloseSVG height={svgHeight} />
-              </CodeEditorIcon>
-            </>
-          ) : isMobile ? (
-            <CodeEditorIcon
-              onClick={closeActiveFile}
-              className="test-close-code-editor-mobile"
-            >
-              <CloseSVG height={svgHeight} />
-            </CodeEditorIcon>
-          ) : (
-            <CodeEditorIcon
-              onClick={onShowViz}
-              leftmost={true}
-              rightmost={true}
-              className="test-exit-full-editor"
-            >
-              <CloseSVG height={svgHeight} />
-            </CodeEditorIcon>
-          )}
-        </Icons>
-      </Header>
-      <Content>code goes here</Content>
+      <CodeEditorHeader
+        activeFile={activeFile}
+        viewer={viewer}
+        onShowViz={onShowViz}
+        onHideViz={onHideViz}
+        closeActiveFile={closeActiveFile}
+      />
+      <CodeArea file={file} vizContentDoc={vizContentDoc} />
     </Wrapper>
   ) : null;
 };

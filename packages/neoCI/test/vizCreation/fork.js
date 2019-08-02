@@ -2,10 +2,12 @@ import assert from 'assert';
 
 export const fork = my => async () => {
   const { page } = my;
+
+  // TODO navClick refactor
   const navigation = page.waitForNavigation();
   await (await page.waitFor('.test-fork')).click();
-
   await navigation;
+
   const url = page.url();
 
   const split = url.split('/');

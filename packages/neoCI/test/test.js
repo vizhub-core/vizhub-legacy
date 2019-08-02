@@ -2,6 +2,7 @@ import { openPage } from './openPage';
 import { authentication } from './authentication';
 import { vizCreation } from './vizCreation';
 import { editorStates } from './editorStates';
+import { realtime } from './realtime';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 //
@@ -22,6 +23,8 @@ describe('VizHub End to End Tests', () => {
   describe('Viz Creation', vizCreation(my));
 
   describe('Editor States', editorStates(my));
+
+  describe('Real Time', realtime(my));
 
   describe('Tear Down', () => {
     it('should close', async () => {
