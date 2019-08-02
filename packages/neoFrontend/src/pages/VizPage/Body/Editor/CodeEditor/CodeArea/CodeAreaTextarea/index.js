@@ -104,6 +104,7 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
 
   return (
     <Wrapper
+      className="test-codearea-textarea"
       ref={ref}
       onChange={event => {
         onTextChange(event.target.value);

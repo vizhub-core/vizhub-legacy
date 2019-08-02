@@ -1,9 +1,10 @@
 import assert from 'assert';
-import { convenience } from './convenience';
+import { getPage } from './getPage';
+import { navClick } from '../navClick';
 
 export const toggleMini = (my, isMobile) => async () => {
-  const { page, navClick } = convenience(my, isMobile);
-  await navClick('.test-enter-mini-from-viewer');
+  const page = getPage(my, isMobile);
+  await navClick(page, '.test-enter-mini-from-viewer');
 
   if (!isMobile) {
     await page.waitFor('.test-mini');
@@ -25,23 +26,23 @@ export const toggleMini = (my, isMobile) => async () => {
 
   if (isMobile) {
     // Close the active file.
-    await navClick('.test-close-code-editor-mobile');
+    await navClick(page, '.test-close-code-editor-mobile');
 
     // Closing the active file should reveal the editor.
     await page.waitFor('.test-editor');
   } else {
     // Test exiting mini, which closes the mini viewer,
     // but keeps the editor and code editor open.
-    await navClick('.exit-mini-from-mini');
+    await navClick(page, '.exit-mini-from-mini');
     assert.equal(await page.$('.test-mini'), null);
     await page.waitFor('.test-code-editor');
     await page.waitFor('.test-editor');
 
     // Return to home state.
-    await navClick('.test-close-code-editor');
+    await navClick(page, '.test-close-code-editor');
   }
 
   // Return to home state.
-  await navClick('.test-editor-files-section');
-  await navClick('.test-toggle-editor');
+  await navClick(page, '.test-editor-files-section');
+  await navClick(page, '.test-toggle-editor');
 };
