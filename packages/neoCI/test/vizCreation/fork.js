@@ -1,12 +1,10 @@
 import assert from 'assert';
+import { navClick } from '../navClick';
 
 export const fork = my => async () => {
   const { page } = my;
 
-  // TODO navClick refactor
-  const navigation = page.waitForNavigation();
-  await (await page.waitFor('.test-fork')).click();
-  await navigation;
+  await navClick(page, '.test-fork');
 
   const url = page.url();
 
