@@ -2,7 +2,6 @@ import React, {
   useContext,
   useCallback,
   useEffect,
-  useLayoutEffect,
   useRef,
   useReducer
 } from 'react';
@@ -43,17 +42,17 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
     dispatch({ type: 'localChange', selection });
   };
 
-  useLayoutEffect(() => {
-    if(!selection.isLocal){
-      ref.current.setSelectionRange(selection[0], selection[1]);
-    }
-  }, [selection, ref]);
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     const { selectionStart, selectionEnd } = ref.current;
     ref.current.value = text;
     ref.current.setSelectionRange(selectionStart, selectionEnd);
   }, [text, ref]);
+
+  useEffect(() => {
+    if (!selection.isLocal) {
+      ref.current.setSelectionRange(selection[0], selection[1]);
+    }
+  }, [selection, ref]);
 
   // Test for cursor transform.
   useEffect(() => {
@@ -80,11 +79,18 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
         const fileIndex = getFileIndex(files, name);
         const path = ['files', fileIndex, 'text'];
         const { json0 } = realtimeModules;
-        op.forEach(c => {
-          if (json0.canOpAffectPath(c, path)) {
-            dispatch({ type: 'remoteOp', c });
-          }
-        });
+
+        // Delay execution of this so that the text gets set FIRST,
+        // then the selection gets set SECOND.
+        // This avoids a bug where if the cursor is in the last position,
+        // it doesn't get transformed on screen.
+        setTimeout(() => {
+          op.forEach(c => {
+            if (json0.canOpAffectPath(c, path)) {
+              dispatch({ type: 'remoteOp', c });
+            }
+          });
+        }, 0);
       }
     };
 
@@ -92,7 +98,6 @@ export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
     vizContentDoc.on('op', transformCursor);
 
     return () => {
-      console.log('unsubscribing from ops in CodeAreaTextarea');
       vizContentDoc.off('op', transformCursor);
     };
   }, [vizContentDoc, name, realtimeModules]);
