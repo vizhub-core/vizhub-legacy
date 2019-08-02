@@ -1,10 +1,11 @@
 import assert from 'assert';
-import { convenience } from './convenience';
+import { getPage } from './getPage';
+import { navClick } from '../navClick';
 
 export const toggleFullScreen = (my, isMobile) => async () => {
-  const { page, navClick } = convenience(my, isMobile);
-  await navClick('.test-enter-fullscreen-from-viewer');
+  const page = getPage(my, isMobile);
+  await navClick(page, '.test-enter-fullscreen-from-viewer');
   await page.waitFor('.test-fullscreen');
-  await navClick('.exit-fullscreen-from-fullscreen');
+  await navClick(page, '.exit-fullscreen-from-fullscreen');
   assert.equal(await page.$('.test-fullscreen'), null);
 };

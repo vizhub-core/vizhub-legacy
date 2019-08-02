@@ -6,7 +6,7 @@ import compression from 'compression';
 import { serverGateways } from 'vizhub-server-gateways';
 import { apiController, jwtAuth } from 'vizhub-controllers';
 import { serveFrontend } from './serveFrontend';
-//import { serveShareDB } from './serveShareDB';
+import { serveShareDB } from './serveShareDB';
 
 const expressApp = express();
 expressApp.use(compression());
@@ -15,9 +15,7 @@ expressApp.use(cookieParser());
 
 const server = http.createServer(expressApp);
 
-//serveShareDB(server);
-//const share = serveShareDB(server);
-//const connection = share.connect();
+serveShareDB(server);
 
 const gateways = serverGateways();
 jwtAuth(expressApp, gateways.userGateway);

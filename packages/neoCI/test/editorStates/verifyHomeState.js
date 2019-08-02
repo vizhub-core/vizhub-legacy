@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { convenience } from './convenience';
+import { getPage } from './getPage';
 
 // Verify that the viz view page is in its "home state",
 // namely the same state it's in when you load a viz:
@@ -8,7 +8,7 @@ import { convenience } from './convenience';
 //  - Not in mini mode
 //  - Not in fullscreen mode
 export const verifyHomeState = (my, isMobile) => async () => {
-  const { page } = convenience(my, isMobile);
+  const page = getPage(my, isMobile);
 
   await page.waitFor('.test-viewer');
   assert.equal(await page.$('.test-editor'), null);
