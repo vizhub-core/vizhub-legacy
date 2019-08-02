@@ -26,7 +26,12 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   );
 
   const onWidthChanged = useCallback(() => {
-    setWidth(wrapperRef.current.clientWidth);
+    // This guard prevents a crash when navigating between viz pages.
+    // The root cause is that a resize event is fired on navigation,
+    // before the useEffect cleanup hook runs.
+    if(wrapperRef.current){
+      setWidth(wrapperRef.current.clientWidth);
+    }
   }, [setWidth]);
 
   useDimensions({ wrapperRef, scrollerRef, setDomRect, onWidthChanged });
