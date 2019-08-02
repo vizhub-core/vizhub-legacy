@@ -1,7 +1,7 @@
 import ShareDB, { Connection } from '@teamwork/sharedb/lib/client';
 import { type as json0 } from '@datavis-tech/ot-json0';
 export const webSocketURL =
-  process.env.REACT_APP_WEBSOCKET_URL || 'ws://localhost:4000';
+  process.env.REACT_APP_VIZHUB_WEBSOCKET_URL || 'ws://localhost:4000';
 
 // Register our custom OT type (that implements presence) as the default.
 ShareDB.types.register(json0);
