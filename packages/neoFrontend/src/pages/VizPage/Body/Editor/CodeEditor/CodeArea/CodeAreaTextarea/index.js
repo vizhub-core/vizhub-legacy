@@ -23,7 +23,8 @@ export const CodeAreaTextarea = ({ activeFile }) => {
   const getActiveFile = useCallback(getVizFile(activeFile), [activeFile]);
 
   const { file, fileIndex } = useValue(viz$, getActiveFile);
-  const path = useMemo(() => ['files', fileIndex, 'text'], fileIndex);
+
+  const path = useMemo(() => ['files', fileIndex, 'text'], [fileIndex]);
 
   const { text } = file;
   const allowEditing = submitVizContentOp ? true : false;
@@ -64,18 +65,12 @@ export const CodeAreaTextarea = ({ activeFile }) => {
     const subscription = vizContentOp$.subscribe(
       ({ previousContent, nextContent, op, originatedLocally }) => {
         if(!originatedLocally){
-          //let content = previousContent;
           op.forEach(c => {
             if (json0.canOpAffectPath(c, path)) {
-              console.log('execute this');
-              console.log(c);
-              //content = json0.apply(content, [c]);
-              //console.log({ previousContent, nextContent, op });
               const i = c.p[c.p.length - 1];
               if(c.si){
                 textarea.setRangeText(c.si, i, i);
-              }
-              if(c.sd){
+              } else if(c.sd){
                 textarea.setRangeText('', i, i + c.sd.length);
               }
             }
@@ -84,8 +79,11 @@ export const CodeAreaTextarea = ({ activeFile }) => {
       }
     );
     subscribed.current = true;
-    return () => subscription.unsubscribe();
-  }, [ref, vizContentOp$, realtimeModules]);
+    return () => {
+      subscription.unsubscribe();
+      subscribed.current = false;
+    }
+  }, [ref, vizContentOp$, realtimeModules, path]);
 
   // Test for cursor transform.
   useEffect(() => {

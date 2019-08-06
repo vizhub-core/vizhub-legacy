@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 import { modShowViewer } from '../../../../../mobileMods';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
