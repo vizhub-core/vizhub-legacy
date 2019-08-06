@@ -7,7 +7,9 @@ export const useValue = (behaviorSubject$, accessor) => {
     const subscription = behaviorSubject$.subscribe(behaviorSubject => {
       setValue(accessor(behaviorSubject));
     });
-    return () => subscription.unsubscribe();
+    return () => {
+      subscription.unsubscribe();
+    };
   }, [behaviorSubject$, accessor]);
   return value;
 };
