@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useRef,
-  useEffect,
-  useState
-} from 'react';
+import React, { createContext, useContext, useRef, useEffect } from 'react';
 import {
   getMicroScale,
   getMicroWidth,
@@ -12,6 +6,7 @@ import {
   getVizFiles
 } from '../../../accessors';
 import { vizWidth, useTransitions } from '../../../constants';
+import { useValue } from '../../../useValue';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 import { modMode } from '../../../mobileMods';
@@ -147,25 +142,8 @@ export const VizRunnerProvider = ({ children }) => {
   const { viz$ } = useContext(VizContext);
   const { mode, showEditor, activeFile } = useContext(URLStateContext);
 
-  const [vizHeight, setVizHeight] = useState(getVizHeight(viz$.getValue()));
-  useEffect(
-    () => {
-      const subscription = viz$.subscribe(viz => {
-        setVizHeight(getVizHeight(viz));
-      });
-      return () => subscription.unsubscribe();
-    }
-  );
-
-  const [vizFiles, setVizFiles] = useState(getVizFiles(viz$.getValue()));
-  useEffect(
-    () => {
-      const subscription = viz$.subscribe(viz => {
-        setVizFiles(getVizFiles(viz));
-      });
-      return () => subscription.unsubscribe();
-    }
-  );
+  const vizHeight = useValue(viz$, getVizHeight);
+  const vizFiles = useValue(viz$, getVizFiles);
 
   const ref = useRef();
 
