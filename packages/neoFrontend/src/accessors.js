@@ -28,9 +28,8 @@ export const getVizHeight = visualization =>
 
 export const getVizFiles = visualization => visualization.content.files;
 
-export const getVizFile = name => visualization => {
-  const files = getVizFiles(visualization);
-  const fileIndex = getFileIndex(files, name);
-  const file = files[fileIndex];
-  return { file, fileIndex };
-};
+export const getVizFileIndex = name => visualization =>
+  getFileIndex(getVizFiles(visualization), name);
+
+export const getVizFile = fileIndex => visualization =>
+  getVizFiles(visualization)[fileIndex];
