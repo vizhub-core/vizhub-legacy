@@ -1,4 +1,4 @@
-import { useEffect, useContext, useMemo } from 'react';
+import { useEffect, useContext, useMemo, useCallback } from 'react';
 import { BehaviorSubject } from 'rxjs';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { useVizContentDoc } from './useVizContentDoc';
@@ -41,5 +41,9 @@ export const useViz = initialViz => {
     };
   }, [vizContentDoc, viz$]);
 
-  return { viz$ };
+  const submitVizContentOp = useCallback(op => vizContentDoc.submitOp(op), [
+    vizContentDoc
+  ]);
+
+  return { viz$, submitVizContentOp };
 };

@@ -1,11 +1,12 @@
 import { generateFileChangeOp } from './generateFileChangeOp';
 
 export const onFileChange = (
-  name,
-  vizContentDoc,
+  oldText,
+  fileIndex,
+  submitVizOp,
   realtimeModules
 ) => newText => {
-  const files = vizContentDoc.data.files;
-  const op = generateFileChangeOp(files, name, newText, realtimeModules);
-  vizContentDoc.submitOp(op);
+  submitVizOp(
+    generateFileChangeOp(fileIndex, oldText, newText, realtimeModules)
+  );
 };
