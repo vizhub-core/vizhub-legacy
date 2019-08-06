@@ -17,7 +17,7 @@ export const Editor = () => {
           <FilesSection />
         </Sidebar>
       ) : null}
-      <CodeEditor />
+      {activeFile ? <CodeEditor /> : null}
     </>
   );
 };
