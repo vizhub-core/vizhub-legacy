@@ -1,4 +1,5 @@
-import { useReducer, useEffect, useContext } from 'react';
+import { useEffect, useContext, useMemo } from 'react';
+import { BehaviorSubject } from 'rxjs';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { useVizContentDoc } from './useVizContentDoc';
 import { reducer } from './reducer';
@@ -9,15 +10,21 @@ export const useViz = initialViz => {
   const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
 
   // Display initial viz until realtime connection has been established.
-  const [viz, dispatch] = useReducer(reducer, initialViz);
+  const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
 
+  // Connect to ShareDB doc for realtime connection.
   useEffect(() => {
     if (!vizContentDoc) {
       return;
     }
 
     const dispatchContentChange = () => {
-      dispatch({ type: 'contentChange', content: vizContentDoc.data });
+      viz$.next(
+        reducer(viz$.getValue(), {
+          type: 'contentChange',
+          content: vizContentDoc.data
+        })
+      );
     };
 
     // Handle the case that the initial viz and the
@@ -32,7 +39,7 @@ export const useViz = initialViz => {
       console.log('unsubscribing from ops');
       vizContentDoc.off('op', dispatchContentChange);
     };
-  }, [vizContentDoc, dispatch]);
+  }, [vizContentDoc, viz$]);
 
-  return { viz, vizContentDoc };
+  return { viz$, viz: viz$.getValue() };
 };
