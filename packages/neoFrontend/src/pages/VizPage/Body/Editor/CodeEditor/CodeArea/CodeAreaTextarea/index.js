@@ -69,20 +69,6 @@ export const CodeAreaTextarea = ({ activeFile }) => {
     };
   }, [viz$, ref, vizContentOp$, realtimeModules, path, fileIndex]);
 
-  // Manual test for cursor transform.
-  useEffect(() => {
-    if (!submitVizContentOp) {
-      return;
-    }
-    document.addEventListener('keydown', e => {
-      if (e.altKey && e.code === 'KeyD') {
-        setInterval(() => {
-          submitVizContentOp({ si: 'e', p: ['files', fileIndex, 'text', 5] });
-        }, 1000);
-      }
-    });
-  }, [submitVizContentOp, fileIndex]);
-
   return (
     <Wrapper
       className="test-codearea-textarea"
