@@ -19,27 +19,17 @@ export const CodeAreaTextarea = ({ activeFile }) => {
     activeFile
   ]);
 
-  // TODO bad smell - conflating index and file
-  // solution - separate into distinct things
   const fileIndex = useValue(viz$, getActiveFileIndex);
-
-  const getActiveFile = useCallback(getVizFile(fileIndex), [fileIndex]);
-
-  const file = useValue(viz$, getActiveFile);
 
   const path = useMemo(() => ['files', fileIndex, 'text'], [fileIndex]);
 
-  const { text } = file;
   const allowEditing = submitVizContentOp ? true : false;
   const realtimeModules = useContext(RealtimeModulesContext);
 
-  // TODO bad smell - depends on text state, produces many closures on each keystroke
-  // solution - extract value from stream current value.
   const onTextChange = useCallback(
-    newText => {
-      const viz = viz$.getValue();
-      // TODO refactor to getVizFile(viz, fileIndex).text;
-      const oldText = viz.content.files[fileIndex].text;
+    event => {
+      const newText = event.target.value;
+      const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
       submitVizContentOp(
         generateFileChangeOp(fileIndex, oldText, newText, realtimeModules)
       );
@@ -55,22 +45,18 @@ export const CodeAreaTextarea = ({ activeFile }) => {
   //  const { selectionStart, selectionEnd } = ref.current;
   //  console.log({selectionStart, selectionEnd});
   //};
-  const subscribed = useRef(false);
 
-  // Initialize text.
-  useEffect(() => {
-    if (!subscribed.current) {
-      ref.current.value = text;
-    }
-  }, [ref, text, subscribed]);
-
-  // Subscribe to changes.
   useEffect(() => {
     if (!realtimeModules) {
       return;
     }
     const { json0 } = realtimeModules;
     const textarea = ref.current;
+
+    // Initialize text.
+    textarea.value = getVizFile(fileIndex)(viz$.getValue()).text;
+
+    // Subscribe to changes.
     const subscription = vizContentOp$.subscribe(
       ({ previousContent, nextContent, op, originatedLocally }) => {
         if (!originatedLocally) {
@@ -87,12 +73,10 @@ export const CodeAreaTextarea = ({ activeFile }) => {
         }
       }
     );
-    subscribed.current = true;
     return () => {
       subscription.unsubscribe();
-      subscribed.current = false;
     };
-  }, [ref, vizContentOp$, realtimeModules, path]);
+  }, [viz$, ref, vizContentOp$, realtimeModules, path, fileIndex]);
 
   // Manual test for cursor transform.
   useEffect(() => {
@@ -112,9 +96,7 @@ export const CodeAreaTextarea = ({ activeFile }) => {
     <Wrapper
       className="test-codearea-textarea"
       ref={ref}
-      onChange={event => {
-        onTextChange(event.target.value);
-      }}
+      onChange={onTextChange}
       readOnly={!allowEditing}
     />
   );
