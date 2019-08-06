@@ -30,10 +30,9 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
   const onTextChange = useCallback(
     (instance, changeObj) => {
-      if (changeObj.origin === 'setValue') {
+      if (changeObj.origin === 'setValue' || changeObj.origin === 'remoteOp') {
         return;
       }
-      console.log(changeObj);
       submitVizContentOp(changeObjToOp(changeObj, path, codeMirror.getDoc()));
     },
     [submitVizContentOp, path, codeMirror]
@@ -51,7 +50,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     // Subscribe to changes.
     const subscription = vizContentOp$.subscribe(
       ({ previousContent, nextContent, op, originatedLocally }) => {
-        console.log(originatedLocally);
         if (!originatedLocally) {
           const doc = codeMirror.getDoc();
           op.forEach(c => {
@@ -59,13 +57,13 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
               const i = c.p[c.p.length - 1];
               if (c.si) {
                 const pos = doc.posFromIndex(i);
-                codeMirror.replaceRange(c.si, pos, pos, 'op');
+                codeMirror.replaceRange(c.si, pos, pos, 'remoteOp');
               } else if (c.sd) {
                 codeMirror.replaceRange(
                   '',
                   doc.posFromIndex(i),
                   doc.posFromIndex(i + c.sd.length),
-                  'op'
+                  'remoteOp'
                 );
               }
             }
