@@ -1,12 +1,35 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useMemo, useContext, useEffect, useRef, useCallback } from 'react';
+import { VizContext } from '../../../../../VizContext';
+import { getVizFile } from '../../../../../../../accessors';
+import { useValue } from '../../../../../../../useValue';
 import { Wrapper } from './styles';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
-import { onFileChange } from '../onFileChange';
+import { generateFileChangeOp } from '../generateFileChangeOp';
 
-export const CodeAreaTextarea = ({ file, fileIndex, submitVizContentOp }) => {
+const onFileChange = (
+  oldText,
+  fileIndex,
+  submitVizOp,
+  realtimeModules
+) => newText => {
+  submitVizOp(
+    generateFileChangeOp(fileIndex, oldText, newText, realtimeModules)
+  );
+};
+
+export const CodeAreaTextarea = ({ activeFile }) => {
+  const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
+
+  const getActiveFile = useCallback(getVizFile(activeFile), [activeFile]);
+
+  const { file, fileIndex } = useValue(viz$, getActiveFile);
+  const path = useMemo(() => ['files', fileIndex, 'text'], fileIndex);
+
   const { text } = file;
   const allowEditing = submitVizContentOp ? true : false;
   const realtimeModules = useContext(RealtimeModulesContext);
+
+  // TODO useCallback
   const onTextChange = onFileChange(
     text,
     fileIndex,
@@ -22,12 +45,61 @@ export const CodeAreaTextarea = ({ file, fileIndex, submitVizContentOp }) => {
   //  const { selectionStart, selectionEnd } = ref.current;
   //  console.log({selectionStart, selectionEnd});
   //};
+  const subscribed = useRef(false);
 
+  // Initialize text.
   useEffect(() => {
-    const { selectionStart, selectionEnd } = ref.current;
-    ref.current.value = text;
-    ref.current.setSelectionRange(selectionStart, selectionEnd);
-  }, [text, ref]);
+    if(!subscribed.current){
+      ref.current.value = text;
+    }
+  }, [ref, text, subscribed]);
+
+  // Subscribe to changes.
+  useEffect(() => {
+    if(!realtimeModules){
+      return;
+    }
+    const { json0 } = realtimeModules;
+    const textarea = ref.current;
+    const subscription = vizContentOp$.subscribe(
+      ({ previousContent, nextContent, op, originatedLocally }) => {
+        if(!originatedLocally){
+          //let content = previousContent;
+          op.forEach(c => {
+            if (json0.canOpAffectPath(c, path)) {
+              console.log('execute this');
+              console.log(c);
+              //content = json0.apply(content, [c]);
+              //console.log({ previousContent, nextContent, op });
+              const i = c.p[c.p.length - 1];
+              if(c.si){
+                textarea.setRangeText(c.si, i, i);
+              }
+              if(c.sd){
+                textarea.setRangeText('', i, i + c.sd.length);
+              }
+            }
+          });
+        }
+      }
+    );
+    subscribed.current = true;
+    return () => subscription.unsubscribe();
+  }, [ref, vizContentOp$, realtimeModules]);
+
+  // Test for cursor transform.
+  useEffect(() => {
+    if (!submitVizContentOp) {
+      return;
+    }
+    document.addEventListener('keydown', e => {
+      if (e.altKey && e.code === 'KeyD') {
+        setInterval(() => {
+          submitVizContentOp({ si: 'e', p: ['files', 1, 'text', 5] });
+        }, 1000);
+      }
+    });
+  }, [submitVizContentOp]);
 
   return (
     <Wrapper

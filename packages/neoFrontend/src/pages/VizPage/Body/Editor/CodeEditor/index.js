@@ -1,10 +1,7 @@
 import React, { useContext, useCallback } from 'react';
 import { modShowViewer } from '../../../../../mobileMods';
-import { getVizFile } from '../../../../../accessors';
-import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
-import { VizContext } from '../../../VizContext';
 import { Wrapper } from './styles';
 import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
@@ -18,11 +15,6 @@ export const CodeEditor = () => {
     showViewer,
     closeActiveFile
   } = useContext(URLStateContext);
-  const { viz$, submitVizContentOp } = useContext(VizContext);
-
-  const getActiveFile = useCallback(getVizFile(activeFile), [activeFile]);
-
-  const { file, fileIndex } = useValue(viz$, getActiveFile);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
 
@@ -41,11 +33,7 @@ export const CodeEditor = () => {
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
       />
-      <CodeArea
-        file={file}
-        fileIndex={fileIndex}
-        submitVizContentOp={submitVizContentOp}
-      />
+      <CodeArea activeFile={activeFile} />
     </Wrapper>
   );
 };
