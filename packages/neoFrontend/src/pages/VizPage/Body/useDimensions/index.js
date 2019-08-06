@@ -26,12 +26,15 @@ export const useDimensions = ({
   // Detect when width of the scroller element changes.
   // This also fires when the scrollbar is added or removed.
   // Does nothing if scrollerRef is undefined.
-  useWidthDetector(scrollerRef, useCallback(() => {
-    measure();
-    if (onWidthChanged) {
-      onWidthChanged();
-    }
-  }, [measure, onWidthChanged]));
+  useWidthDetector(
+    scrollerRef,
+    useCallback(() => {
+      measure();
+      if (onWidthChanged) {
+        onWidthChanged();
+      }
+    }, [measure, onWidthChanged])
+  );
 
   // Measure the dimensions on window resize
   // if globalResize flag enabled (defaults to false).

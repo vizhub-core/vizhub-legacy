@@ -6,8 +6,9 @@ const microHeight = darkNavbarTheme.bannerHeight + darkNavbarTheme.headHeight;
 export const getVizHeight = visualization =>
   visualization.info.height || defaultVizHeight;
 
-export const getMicroScale = visualization =>
-  microHeight / getVizHeight(visualization);
+export const getVizFiles = visualization => visualization.content.files;
+
+export const getMicroScale = vizHeight => microHeight / vizHeight;
 
 export const getMicroWidth = microScale => microScale * vizWidth;
 
