@@ -41,8 +41,5 @@ export const useViz = initialViz => {
     };
   }, [vizContentDoc, viz$]);
 
-  return {
-    viz$,
-    viz: viz$.getValue()
-  };
+  return { viz$ };
 };
