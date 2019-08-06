@@ -25,14 +25,19 @@ export const useViz = initialViz => {
       const previousContent = viz.content;
       const nextContent = vizContentDoc.data;
 
-      if(previousContent !== nextContent){
+      if (previousContent !== nextContent) {
         viz$.next({
           info: viz.info,
           content: nextContent
         });
       }
 
-      vizContentOp$.next({ previousContent, nextContent, op, originatedLocally });
+      vizContentOp$.next({
+        previousContent,
+        nextContent,
+        op,
+        originatedLocally
+      });
     };
 
     vizContentDoc.on('op', handleOp);

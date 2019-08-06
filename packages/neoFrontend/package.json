@@ -15,6 +15,7 @@
   "dependencies": {
     "@datavis-tech/ot-json0": "^2.1.0",
     "@teamwork/sharedb": "^3.1.0",
+    "codemirror": "^5.48.2",
     "diff-match-patch": "^1.0.4",
     "immer": "^3.1.3",
     "is-mobile": "^2.1.0",
