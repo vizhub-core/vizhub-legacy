@@ -15,11 +15,10 @@ import { generateFileChangeOp } from '../generateFileChangeOp';
 export const CodeAreaTextarea = ({ activeFile }) => {
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
 
-  const getActiveFileIndex = useCallback(getVizFileIndex(activeFile), [
-    activeFile
-  ]);
-
-  const fileIndex = useValue(viz$, getActiveFileIndex);
+  const fileIndex = useValue(
+    viz$,
+    useCallback(getVizFileIndex(activeFile), [activeFile])
+  );
 
   const path = useMemo(() => ['files', fileIndex, 'text'], [fileIndex]);
 

@@ -1,4 +1,5 @@
-//import { CodeAreaPre } from './CodeAreaPre';
-import { CodeAreaTextarea } from './CodeAreaTextarea';
+import { CodeAreaPre } from './CodeAreaPre';
+//import { CodeAreaTextarea } from './CodeAreaTextarea';
 
-export const CodeArea = CodeAreaTextarea;
+export const CodeArea = CodeAreaPre;
+//export const CodeArea = CodeAreaTextarea;
