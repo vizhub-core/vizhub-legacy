@@ -1,26 +1,18 @@
-import React, {
-  useMemo,
-  useContext,
-  useEffect,
-  useRef,
-  useCallback
-} from 'react';
+import React, { useContext, useEffect, useRef, useCallback } from 'react';
 import { VizContext } from '../../../../../VizContext';
-import { getVizFile, getVizFileIndex } from '../../../../../../../accessors';
-import { useValue } from '../../../../../../../useValue';
-import { Wrapper } from './styles';
+import { getVizFile } from '../../../../../../../accessors';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
+import { usePath } from '../usePath';
+import { Wrapper } from './styles';
 import { generateFileChangeOp } from '../generateFileChangeOp';
+import { useFileIndex } from '../useFileIndex';
 
 export const CodeAreaTextarea = ({ activeFile }) => {
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
 
-  const fileIndex = useValue(
-    viz$,
-    useCallback(getVizFileIndex(activeFile), [activeFile])
-  );
+  const fileIndex = useFileIndex(viz$, activeFile);
 
-  const path = useMemo(() => ['files', fileIndex, 'text'], [fileIndex]);
+  const path = usePath(fileIndex);
 
   const allowEditing = submitVizContentOp ? true : false;
   const realtimeModules = useContext(RealtimeModulesContext);
