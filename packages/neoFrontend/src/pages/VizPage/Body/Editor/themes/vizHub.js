@@ -6,7 +6,8 @@ const entries = [
   ['definition', 'variable', 'variable2', 'variable3'],
   'atom',
   'qualifier',
-  ['link', 'attribute', 'property']
+  ['link', 'attribute', 'property'],
+  'meta'
 ];
 const theme = {
   container: {
@@ -22,7 +23,7 @@ const theme = {
   //property: { color: '#61afef' },
   //number: { color: '#d19a66' },
   comment: { color: '#ddd' },
-  meta: { color: '#ddd' },
+  //meta: { color: '#ddd' },
   //variable: { color: '#5bafef' },
   operator: { color: '#ffffff' },
   number: { color: '#eee' },
