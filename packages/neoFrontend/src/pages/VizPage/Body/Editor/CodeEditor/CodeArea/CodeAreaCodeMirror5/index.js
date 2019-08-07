@@ -44,11 +44,11 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   }, [ref]);
 
   useEffect(() => {
-    if(!codeMirror){
+    if (!codeMirror) {
       return;
     }
     console.log(getMode(getExtension(activeFile)));
-    codeMirror.setOption("mode",getMode(getExtension(activeFile)));
+    codeMirror.setOption('mode', getMode(getExtension(activeFile)));
   }, [codeMirror, activeFile]);
 
   const onTextChange = useCallback(
