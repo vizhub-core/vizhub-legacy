@@ -1,6 +1,10 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
+// If this changes, be sure to also update the preload link in index.html.
+export const defaultCodingFontFamily = 'Deja Vu Sans Mono';
+export const defaultCodingFontSize = '14px';
+
 export const theme = {
   dark: '#161514',
   attentionGrabber: '#f0353d',
@@ -19,8 +23,7 @@ export const theme = {
   hoverBackground: 'rgba(0, 0, 0, 0.05)',
   activeBackground: 'rgba(0, 0, 0, 0.1)',
 
-  // If this changes, be sure to also update the preload link in index.html.
-  defaultCodingFontFamily: 'Deja Vu Sans Mono Arrowized',
+  defaultCodingFontFamily,
   miniWidth: 268,
   fastTransition: '.2s ease-in-out'
 };

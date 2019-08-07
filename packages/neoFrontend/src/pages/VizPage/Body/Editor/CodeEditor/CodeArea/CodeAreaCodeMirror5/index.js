@@ -6,7 +6,6 @@ import React, {
   useEffect
 } from 'react';
 import CodeMirror from 'codemirror';
-import 'codemirror/lib/codemirror.css';
 import { getVizFile } from '../../../../../../../accessors';
 import { VizContext } from '../../../../../VizContext';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
@@ -14,6 +13,7 @@ import { useFileIndex } from '../useFileIndex';
 import { usePath } from '../usePath';
 import { Wrapper } from './styles';
 import { changeObjToOp } from './changeObjToOp';
+import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
@@ -87,5 +87,10 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     };
   }, [codeMirror, onTextChange]);
 
-  return <Wrapper ref={ref} />;
+  return (
+    <>
+      <CodeMirrorGlobalStyle />
+      <Wrapper ref={ref} />
+    </>
+  );
 };
