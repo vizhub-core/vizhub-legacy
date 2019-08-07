@@ -11,15 +11,19 @@ const objectToCSS = object =>
         .join('')
     : '';
 
+const keys = {};
 //const css = key => props => objectToCSS(props.theme.editor[key]);
 const css = key => props => {
+  keys[key] = true;
   let styleObject = props.theme.editor[key];
-  if(!styleObject){
+  if (!styleObject) {
     console.log(`Editor theme does not define key: "${key}"`);
-  styleObject = props.theme.editor.default;
+    styleObject = props.theme.editor.default;
   }
   return objectToCSS(styleObject);
 };
+
+window.showKeys = () => console.log(JSON.stringify(Object.keys(keys)));
 
 const fontVariantLigatures = props =>
   props.theme.editor.font.ligatures ? 'normal' : 'none';
@@ -31,15 +35,20 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     font-family: '${props => props.theme.editor.font.family}';
     font-size: ${props => props.theme.editor.font.size};
     font-variant-ligatures: ${fontVariantLigatures};
-    line-height: 1.2;
+    line-height: 1.4;
   }
+  .CodeMirror-lines { padding: 10px 0; }
+  .CodeMirror pre { padding: 0 10px; }
   .CodeMirror { ${css('container')} }
   .CodeMirror ::selection { ${css('selection')} }
   .CodeMirror-gutter { ${css('gutter')} }
   .CodeMirror-gutter-element { ${css('lineNumbers')} }
   .CodeMirror-content { ${css('content')} }
   .CodeMirror-matching-bracket { ${css('matchingBracket')} } 
-  .CodeMirror-cursor{border-left:1px solid ${props => props.theme.editor.caretColor};border-right:none;width:0}
+  .CodeMirror-cursor{border-left:1px solid ${props =>
+    props.theme.editor.caretColor};border-right:none;width:0}
+  .CodeMirror-selected  { background-color: ${props =>
+    props.theme.editor.selectionBackground} !important; }
   .cm-s-default .cm-tag { ${css('tag')} }
   .cm-s-default .cm-link { ${css('link')} }
   .cm-s-default .cm-string { ${css('string')} }

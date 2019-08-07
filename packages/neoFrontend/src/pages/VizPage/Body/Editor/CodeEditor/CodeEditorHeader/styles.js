@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
   align-items: center;
   padding-left: 10px;
   font-family: ${props => props.theme.defaultCodingFontFamily};
-  box-shadow: ${props => props.theme.shadow};
 `;
+//box-shadow: ${props => props.theme.shadow};
 
 export const Icons = styled.div`
   display: flex;
