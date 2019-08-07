@@ -6,6 +6,12 @@ import React, {
   useEffect
 } from 'react';
 import CodeMirror from 'codemirror';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/xml/xml';
+import 'codemirror/mode/jsx/jsx';
+import 'codemirror/mode/css/css';
+import 'codemirror/mode/htmlmixed/htmlmixed';
+import 'codemirror/mode/markdown/markdown';
 import { getVizFile } from '../../../../../../../accessors';
 import { VizContext } from '../../../../../VizContext';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
@@ -14,6 +20,15 @@ import { usePath } from '../usePath';
 import { Wrapper } from './styles';
 import { changeObjToOp } from './changeObjToOp';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
+
+const modes = {
+  '.html': 'htmlmixed',
+  '.css': 'css',
+  '.js': 'jsx',
+  '.md': 'markdown'
+};
+const getExtension = fileName => fileName.substr(fileName.lastIndexOf('.'));
+const getMode = extension => modes[extension];
 
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
@@ -27,6 +42,14 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   useEffect(() => {
     setCodeMirror(new CodeMirror(ref.current));
   }, [ref]);
+
+  useEffect(() => {
+    if(!codeMirror){
+      return;
+    }
+    console.log(getMode(getExtension(activeFile)));
+    codeMirror.setOption("mode",getMode(getExtension(activeFile)));
+  }, [codeMirror, activeFile]);
 
   const onTextChange = useCallback(
     (instance, changeObj) => {
