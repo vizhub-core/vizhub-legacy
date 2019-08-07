@@ -40,10 +40,8 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .CodeMirror-lines { padding: 10px 0; }
   .CodeMirror pre { padding: 0 10px; }
   .CodeMirror { ${css('container')} }
-  .CodeMirror ::selection { ${css('selection')} }
   .CodeMirror-gutter { ${css('gutter')} }
   .CodeMirror-gutter-element { ${css('lineNumbers')} }
-  .CodeMirror-content { ${css('content')} }
   .CodeMirror-matching-bracket { ${css('matchingBracket')} } 
   .CodeMirror-cursor{border-left:1px solid ${props =>
     props.theme.editor.caretColor};border-right:none;width:0}
