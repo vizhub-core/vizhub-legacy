@@ -48,7 +48,7 @@ export const darkNavbarTheme = {
   editorEntryHorizontalPadding: 15,
   editorEntryIndentation: 10,
   editorEntryLeftBorderSize: 5,
-  editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
+  //editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
 };
 
 const Wrapper = styled.div`

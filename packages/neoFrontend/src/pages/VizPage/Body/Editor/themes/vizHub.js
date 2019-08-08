@@ -9,20 +9,30 @@ const entries = [
   ['link', 'attribute', 'property']
 ];
 
-const bkg = { h: 269.346, c: 17.195, l: 31.512 };
+const sidebarBackground = { h: 269.346, c: 17.195, l: 31.512 };
+const backgroundLuminance = 9;
 
-const luminance = 88;
+const luminance = 90;
 const saturation = 75;
 const light = hcl(0, 0, luminance).formatHex();
-const dark = hcl(bkg.h, bkg.c, 78).formatHex();
+const dark = hcl(sidebarBackground.h, sidebarBackground.c, 78).formatHex();
 
 export const vizHub = rotation => {
   const theme = {
     container: {
       color: light,
       selectionBackground: 'rgba(0,0,0,0.5)',
-      backgroundColor: hcl(bkg.h, bkg.c * 0.8, 10).formatHex()
+      backgroundColor: hcl(
+        sidebarBackground.h,
+        sidebarBackground.c * 0.8,
+        backgroundLuminance
+      ).formatHex()
     },
+    headerBackgroundColor: hcl(
+      sidebarBackground.h,
+      sidebarBackground.c * 0.8,
+      (backgroundLuminance + sidebarBackground.l) / 2
+    ).formatHex(),
     //selection: { background: '#b6b6b6' },
     selectionBackground: 'rgba(0,0,0,0.5)',
     lineNumbers: { color: '#5c6370' },

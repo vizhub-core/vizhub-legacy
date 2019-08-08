@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
   padding-left: 10px;
   font-family: ${props => props.theme.defaultCodingFontFamily};
+  background-color: ${props => props.theme.editor.headerBackgroundColor};
 `;
 //box-shadow: ${props => props.theme.shadow};
 
