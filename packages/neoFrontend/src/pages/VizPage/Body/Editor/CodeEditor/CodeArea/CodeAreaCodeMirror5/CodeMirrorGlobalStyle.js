@@ -44,7 +44,7 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     font-variant-ligatures: ${fontVariantLigatures};
     line-height: 1.4;
   }
-  .CodeMirror-lines { padding: ${codePadding}px 0 ${codePadding}px 0; }
+  .CodeMirror-lines { padding: ${codePadding - 3}px 0 ${codePadding - 3}px 0; }
   .CodeMirror pre { padding: 0 ${codePadding}px 0 ${codePadding}px; }
   .CodeMirror { ${css('container')} }
   .CodeMirror-gutter { ${css('gutter')} }
