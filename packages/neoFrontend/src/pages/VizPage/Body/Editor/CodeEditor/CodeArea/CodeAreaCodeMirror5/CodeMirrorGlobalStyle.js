@@ -34,6 +34,10 @@ const codePadding = isMobile ? 4 : 10;
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   ${CodeMirrorCSS}
   .CodeMirror {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     font-family: '${props => props.theme.editor.font.family}';
     font-size: ${props => props.theme.editor.font.size};
