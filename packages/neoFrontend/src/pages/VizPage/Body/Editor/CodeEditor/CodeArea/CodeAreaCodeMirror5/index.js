@@ -21,6 +21,7 @@ import { usePath } from '../usePath';
 import { Wrapper } from './styles';
 import { changeObjToOp } from './changeObjToOp';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
+import { useStateLocalStorage } from './useStateLocalStorage';
 
 const modes = {
   '.html': 'htmlmixed',
@@ -34,10 +35,11 @@ const getMode = extension => modes[extension];
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
-  const [keyMap, setKeyMap] = useState('default');
+  const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', 'default');
 
   // Easter egg
-  window.enableVimMode = () => setKeyMap('vim');
+  window.vizhub.enableVimMode = () => setKeyMap('vim');
+  window.vizhub.disableVimMode = () => setKeyMap('default');
 
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
   const fileIndex = useFileIndex(viz$, activeFile);

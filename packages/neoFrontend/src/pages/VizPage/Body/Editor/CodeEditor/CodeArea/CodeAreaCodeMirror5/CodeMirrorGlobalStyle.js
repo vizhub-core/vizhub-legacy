@@ -50,10 +50,18 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .CodeMirror-gutter { ${css('gutter')} }
   .CodeMirror-gutter-element { ${css('lineNumbers')} }
   .CodeMirror-matching-bracket { ${css('matchingBracket')} } 
-  .CodeMirror-cursor{border-left:1px solid ${props =>
-    props.theme.editor.caretColor};border-right:none;width:0}
-  .CodeMirror-selected  { background-color: ${props =>
-    props.theme.editor.selectionBackground} !important; }
+  .CodeMirror-cursor {
+    border-left: 1px solid ${props => props.theme.editor.caretColor};
+    border-right: none;
+    width: 0;
+  }
+  .cm-fat-cursor .CodeMirror-cursor, .cm-animate-fat-cursor{ ${css(
+    'fatCursor'
+  )} }
+  .CodeMirror-selected  {
+    background-color: ${props =>
+      props.theme.editor.selectionBackground} !important;
+  }
   .cm-s-default .cm-tag { ${css('tag')} }
   .cm-s-default .cm-link { ${css('link')} }
   .cm-s-default .cm-string { ${css('string')} }
