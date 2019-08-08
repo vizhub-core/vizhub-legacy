@@ -12,6 +12,7 @@ import 'codemirror/mode/jsx/jsx';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/markdown/markdown';
+import 'codemirror/keymap/vim';
 import { getVizFile } from '../../../../../../../accessors';
 import { VizContext } from '../../../../../VizContext';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
@@ -33,6 +34,10 @@ const getMode = extension => modes[extension];
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
+  const [keyMap, setKeyMap] = useState('default');
+
+  // Easter egg
+  window.enableVimMode = () => setKeyMap('vim');
 
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
   const fileIndex = useFileIndex(viz$, activeFile);
@@ -49,6 +54,13 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     }
     codeMirror.setOption('mode', getMode(getExtension(activeFile)));
   }, [codeMirror, activeFile]);
+
+  useEffect(() => {
+    if (!codeMirror) {
+      return;
+    }
+    codeMirror.setOption('keyMap', keyMap);
+  }, [codeMirror, keyMap]);
 
   const onTextChange = useCallback(
     (instance, changeObj) => {
