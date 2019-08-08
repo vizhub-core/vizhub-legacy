@@ -21,6 +21,7 @@ export const CodeEditor = () => {
 
   const viewer = modShowViewer(showViewer, showEditor, activeFile);
 
+  // Easter egg.
   // Manual test for cursor transform.
   const { submitVizContentOp } = useContext(VizContext);
   useEffect(() => {
