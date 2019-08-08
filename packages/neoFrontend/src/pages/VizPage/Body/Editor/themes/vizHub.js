@@ -43,6 +43,7 @@ export const vizHub = rotation => {
     //variable: { color: '#5bafef' },
     operator: { color: light },
     //number: { color: light },
+    fatCursor: { backgroundColor: light },
     default: { color: light }
   };
 

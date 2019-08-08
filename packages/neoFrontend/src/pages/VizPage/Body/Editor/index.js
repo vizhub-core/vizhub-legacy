@@ -16,7 +16,7 @@ export const Editor = () => {
   const editorTheme = useEditorTheme(rotation);
 
   // Easter egg.
-  window.enableRotation = () => {
+  window.vizhub.enableColorRotation = () => {
     window.addEventListener('mousemove', event => {
       setRotation(event.clientX / 1000);
     });
