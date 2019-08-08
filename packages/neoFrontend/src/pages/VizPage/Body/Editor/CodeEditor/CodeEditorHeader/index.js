@@ -36,6 +36,8 @@ export const CodeEditorHeader = ({
         <CodeEditorIcon
           onClick={closeActiveFile}
           className="test-close-code-editor-mobile"
+          rightmost={true}
+          leftmost={true}
         >
           <CloseSVG height={svgHeight} />
         </CodeEditorIcon>

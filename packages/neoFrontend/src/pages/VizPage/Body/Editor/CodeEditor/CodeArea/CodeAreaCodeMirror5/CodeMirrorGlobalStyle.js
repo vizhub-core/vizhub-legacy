@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { CodeMirrorCSS } from './CodeMirrorCSS';
+import { isMobile } from '../../../../../../../mobileMods';
 
 // https://stackoverflow.com/questions/47836390/how-to-convert-a-camel-case-string-to-dashes-in-javascript
 const dashed = camel => camel.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
@@ -28,6 +29,8 @@ window.showKeys = () => console.log(JSON.stringify(Object.keys(keys)));
 const fontVariantLigatures = props =>
   props.theme.editor.font.ligatures ? 'normal' : 'none';
 
+const codePadding = isMobile ? 4 : 10;
+
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   ${CodeMirrorCSS}
   .CodeMirror {
@@ -37,8 +40,8 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     font-variant-ligatures: ${fontVariantLigatures};
     line-height: 1.4;
   }
-  .CodeMirror-lines { padding: 10px 0; }
-  .CodeMirror pre { padding: 0 10px; }
+  .CodeMirror-lines { padding: ${codePadding}px 0 ${codePadding}px 0; }
+  .CodeMirror pre { padding: 0 ${codePadding}px 0 ${codePadding}px; }
   .CodeMirror { ${css('container')} }
   .CodeMirror-gutter { ${css('gutter')} }
   .CodeMirror-gutter-element { ${css('lineNumbers')} }
