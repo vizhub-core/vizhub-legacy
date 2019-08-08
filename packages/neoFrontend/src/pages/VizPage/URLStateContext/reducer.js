@@ -37,12 +37,15 @@ export const reducer = (state, action) => {
       });
 
     // Closes whatever file is open.
-    // On mobile, if the mode is 'mini' and we close the active file,
-    // the mode needs to be set to 'viewer' to avoid getting stuck in 'mini'.
+    // On mobile, if the mode is 'mini' or 'hidden' and we close the active file,
+    // the mode needs to be set to 'viewer' (undefined) to avoid getting stuck.
     case 'closeActiveFile':
       return Object.assign({}, state, {
         file: undefined,
-        mode: state.mode === 'mini' ? 'viewer' : state.mode
+        mode:
+          state.mode === 'mini' || state.mode === 'hide'
+            ? undefined
+            : state.mode
       });
 
     case 'setMode':

@@ -8,7 +8,10 @@ export const Wrapper = styled.div`
   align-items: center;
   padding-left: 10px;
   font-family: ${props => props.theme.defaultCodingFontFamily};
-  background-color: ${props => isMobile ? 'transparent':props.theme.editor.headerBackgroundColor};
+  background-color: ${props =>
+    isMobile || !props.showEditor
+      ? 'transparent'
+      : props.theme.editor.headerBackgroundColor};
 `;
 //box-shadow: ${props => props.theme.shadow};
 

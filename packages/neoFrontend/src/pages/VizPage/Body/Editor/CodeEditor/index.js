@@ -43,10 +43,11 @@ export const CodeEditor = () => {
   return (
     <Wrapper
       showLeftBorder={showEditor}
-      style={viewer ? { width: codeEditorWidth + 'px' } : { width: '100%' }}
+      style={viewer ? { width: codeEditorWidth + 'px' } : { flex: '1' }}
       className="test-code-editor"
     >
       <CodeEditorHeader
+        showEditor={showEditor}
         activeFile={activeFile}
         viewer={viewer}
         onShowViz={onShowViz}
