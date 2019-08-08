@@ -1,38 +1,51 @@
 import { hcl } from 'd3-color';
 const entries = [
   'keyword',
-  'tag',
-  ['definition', 'variable', 'variable2', 'variable3'],
+  ['tag', 'variable', 'variable2', 'variable3', 'definition'],
   'qualifier',
   ['string', 'string2'],
   ['atom', 'number'],
   ['link', 'attribute', 'property']
 ];
 
-const sidebarBackground = { h: 269.346, c: 17.195, l: 31.512 };
-const backgroundLuminance = 8;
+const lightEntries = ['operator'];
 
-const luminance = 93;
-const saturation = 75;
+const sidebarDark = hcl('#3d4b65');
+const sidebarLight = hcl('#5b677d');
+
+const luminaceDifference = sidebarLight.l - sidebarDark.l;
+
+const backgroundLuminance = sidebarDark.l - luminaceDifference * 1.5;
+
+const luminance = 90;
+
+// The luminance difference between background and foreground
+// measured in the OneDark Pro VSCode theme.
+// const oneDarkContrast = 62;
+
+// Use this to check luminance difference (contrast).
+//console.log(luminance - backgroundLuminance);
+
+const saturation = 70;
 const light = hcl(0, 0, luminance).formatHex();
-const dark = hcl(sidebarBackground.h, sidebarBackground.c, 78).formatHex();
+const dark = hcl(sidebarDark.h, sidebarDark.c, 80).formatHex();
 
 export const vizHub = rotation => {
   const theme = {
     container: {
       color: light,
       backgroundColor: hcl(
-        sidebarBackground.h,
-        sidebarBackground.c * 0.8,
+        sidebarDark.h,
+        sidebarDark.c,
         backgroundLuminance
       ).formatHex()
     },
     headerBackgroundColor: hcl(
-      sidebarBackground.h,
-      sidebarBackground.c * 0.8,
-      (backgroundLuminance + sidebarBackground.l) / 2
+      sidebarDark.h,
+      sidebarDark.c,
+      (backgroundLuminance + sidebarDark.l) / 2
     ).formatHex(),
-    selectionBackground: 'rgba(0,0,0,0.5)',
+    selectionBackground: '#000',
     lineNumbers: { color: '#5c6370' },
     //keyword: { color: '#c679de' },
     //atom: { color: '#98c379' },
@@ -41,7 +54,6 @@ export const vizHub = rotation => {
     comment: { color: dark },
     meta: { color: dark },
     //variable: { color: '#5bafef' },
-    operator: { color: light },
     //number: { color: light },
     fatCursor: { backgroundColor: light },
     default: { color: light }
@@ -59,7 +71,13 @@ export const vizHub = rotation => {
     });
     return color;
   });
-  theme.colors = theme.colors.concat(theme.colors[0]);
+
+  lightEntries.forEach(key => {
+    theme[key] = { color: light };
+  });
+
+  theme.colors.push(theme.colors[0]);
+  theme.colors.push(light);
 
   theme.caretColor = 'white';
 
