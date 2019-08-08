@@ -12,6 +12,7 @@ import { FullSVG } from './FullSVG';
 import { FullExitSVG } from './FullExitSVG';
 import { MiniSVG } from './MiniSVG';
 import { SplitSVG } from './SplitSVG';
+import { VimSVG } from './VimSVG';
 
 export const SVGGallery = () => (
   <>
@@ -30,5 +31,6 @@ export const SVGGallery = () => (
     <MiniSVG />
     <SplitSVG />
     <SpinnerSVG />
+    <VimSVG />
   </>
 );
