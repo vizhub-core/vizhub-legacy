@@ -7,6 +7,7 @@ import { ForkingProvider } from './ForkingContext';
 import { URLStateProvider } from './URLStateContext';
 import { VizRunnerProvider } from './VizRunnerContext';
 import { VizProvider } from './VizContext';
+import { RunProvider } from './RunContext';
 import { RealtimeModulesProvider } from './RealtimeModulesContext';
 import { SplitPaneResizeProvider } from './SplitPaneResizeContext';
 import { Body } from './Body';
@@ -16,15 +17,17 @@ export const VizPage = () => (
     <VizPageDataProvider fallback={<LoadingScreen />}>
       <RealtimeModulesProvider>
         <VizProvider>
-          <ForkingProvider fallback={<LoadingScreen message="Forking..." />}>
-            <ThemeProvider theme={darkNavbarTheme}>
-              <VizRunnerProvider>
-                <SplitPaneResizeProvider>
-                  <Body />
-                </SplitPaneResizeProvider>
-              </VizRunnerProvider>
-            </ThemeProvider>
-          </ForkingProvider>
+          <RunProvider>
+            <ForkingProvider fallback={<LoadingScreen message="Forking..." />}>
+              <ThemeProvider theme={darkNavbarTheme}>
+                <VizRunnerProvider>
+                  <SplitPaneResizeProvider>
+                    <Body />
+                  </SplitPaneResizeProvider>
+                </VizRunnerProvider>
+              </ThemeProvider>
+            </ForkingProvider>
+          </RunProvider>
         </VizProvider>
       </RealtimeModulesProvider>
     </VizPageDataProvider>
