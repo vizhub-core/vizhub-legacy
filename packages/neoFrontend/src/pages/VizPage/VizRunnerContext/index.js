@@ -10,6 +10,7 @@ import { vizWidth } from '../../../constants';
 import { useValue } from '../../../useValue';
 import { modMode } from '../../../mobileMods';
 import { VizContext } from '../VizContext';
+import { RunContext } from '../RunContext';
 import { URLStateContext } from '../URLStateContext';
 import { computeSrcDoc } from './computeSrcDoc';
 import { setVizRunnerMode } from './setVizRunnerMode';
@@ -32,15 +33,6 @@ iFrame.style['background-color'] = '#ffffff';
 iFrame.style['transition-property'] = 'transform';
 iFrame.style['transition-timing-function'] = 'cubic-bezier(.28,.66,.15,1)';
 
-let firstRun = true;
-const setSrcDocTimeout = () => {
-  if (firstRun) {
-    firstRun = false;
-    return 0;
-  }
-  return 1000;
-};
-
 // Move the iframe to the new (x, y, scale).
 const setVizRunnerTransform = ({ x, y, scale }) => {
   iFrame.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
@@ -55,7 +47,7 @@ export const VizRunnerProvider = ({ children }) => {
   const { mode, showEditor, activeFile } = useContext(URLStateContext);
 
   const vizHeight = useValue(viz$, getVizHeight);
-  const vizFiles = useValue(viz$, getVizFiles);
+  const {runId} = useContext(RunContext);
 
   const ref = useRef();
 
@@ -72,13 +64,8 @@ export const VizRunnerProvider = ({ children }) => {
   const contextValue = { setVizRunnerTransform };
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      iFrame.setAttribute('srcDoc', computeSrcDoc(vizFiles));
-    }, setSrcDocTimeout());
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [vizFiles]);
+    iFrame.setAttribute('srcDoc', computeSrcDoc(getVizFiles(viz$.getValue())));
+  }, [viz$, runId]);
 
   useEffect(() => {
     iFrame.setAttribute('height', vizHeight);

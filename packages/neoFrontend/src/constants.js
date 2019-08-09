@@ -7,5 +7,5 @@ export const showSpinner = process.env.NODE_ENV !== 'development';
 // Disable transitions in developme
 // so that they don't interfere with tests.
 // And yes do they interfere. Badly. Watch out!
-//export const useTransitions = process.env.NODE_ENV !== 'development';
-export const useTransitions = true;
+export const useTransitions = process.env.NODE_ENV !== 'development';
+//export const useTransitions = true;
