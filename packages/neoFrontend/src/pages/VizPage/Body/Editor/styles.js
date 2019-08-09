@@ -13,6 +13,3 @@ export const Sidebar = styled(EditorComponent)`
   display: flex;
   flex-direction: column;
 `;
-
-export const VerticallyCenteredMonoText = styled.div`
-`;

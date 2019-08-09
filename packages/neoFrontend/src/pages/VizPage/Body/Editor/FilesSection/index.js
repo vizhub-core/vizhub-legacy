@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { URLStateContext } from '../../../URLStateContext';
 import { VizPageDataContext } from '../../../VizPageDataContext';
 import { Section } from '../Section';
-import { VerticallyCenteredMonoText } from '../styles';
 import { FileEntry } from './styles';
 
 export const FilesSection = () => {
@@ -26,7 +25,7 @@ export const FilesSection = () => {
               : ''
           }
         >
-          <VerticallyCenteredMonoText>{file.name}</VerticallyCenteredMonoText>
+          {file.name}
         </FileEntry>
       ))}
     </Section>
