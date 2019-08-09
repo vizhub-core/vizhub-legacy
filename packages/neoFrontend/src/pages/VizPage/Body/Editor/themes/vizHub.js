@@ -15,7 +15,7 @@ const sidebarLight = hcl('#5b677d');
 
 const luminaceDifference = sidebarLight.l - sidebarDark.l;
 
-const backgroundLuminance = sidebarDark.l - luminaceDifference * 1.3;
+const backgroundLuminance = sidebarDark.l - luminaceDifference * 1.1;
 
 const luminance = 90;
 
@@ -24,7 +24,7 @@ const luminance = 90;
 // const oneDarkContrast = 62;
 
 // Use this to check luminance difference (contrast).
-//console.log(luminance - backgroundLuminance);
+// console.log(luminance - backgroundLuminance);
 
 const saturation = 70;
 const light = hcl(0, 0, luminance).formatHex();
