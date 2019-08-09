@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { modShowViewer } from '../../../../../mobileMods';
-import { getFile } from '../../../../../accessors';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizContext } from '../../../VizContext';
@@ -17,30 +16,45 @@ export const CodeEditor = () => {
     showViewer,
     closeActiveFile
   } = useContext(URLStateContext);
-  const { viz, vizContentDoc } = useContext(VizContext);
-
-  const { files } = viz.content;
-
-  const file = getFile(files, activeFile);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
 
   const viewer = modShowViewer(showViewer, showEditor, activeFile);
 
-  return activeFile ? (
+  // Easter egg.
+  // Manual test for cursor transform.
+  const { submitVizContentOp } = useContext(VizContext);
+  useEffect(() => {
+    if (!submitVizContentOp) {
+      return;
+    }
+    document.addEventListener('keydown', e => {
+      if (e.altKey && e.code === 'KeyD') {
+        console.log(
+          "You've triggered the manual test for cursor transforms with ALT+D!"
+        );
+        setInterval(() => {
+          submitVizContentOp({ si: 'e', p: ['files', 0, 'text', 5] });
+        }, 1000);
+      }
+    });
+  }, [submitVizContentOp]);
+
+  return (
     <Wrapper
       showLeftBorder={showEditor}
-      style={viewer ? { width: codeEditorWidth + 'px' } : { flex: 1 }}
+      style={viewer ? { width: codeEditorWidth + 'px' } : { flex: '1' }}
       className="test-code-editor"
     >
       <CodeEditorHeader
+        showEditor={showEditor}
         activeFile={activeFile}
         viewer={viewer}
         onShowViz={onShowViz}
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
       />
-      <CodeArea file={file} vizContentDoc={vizContentDoc} />
+      <CodeArea activeFile={activeFile} />
     </Wrapper>
-  ) : null;
+  );
 };

@@ -6,13 +6,14 @@ import { isMobile } from '../../../../../../mobileMods';
 const svgHeight = 15;
 
 export const CodeEditorHeader = ({
+  showEditor,
   activeFile,
   viewer,
   onShowViz,
   onHideViz,
   closeActiveFile
 }) => (
-  <Wrapper>
+  <Wrapper showEditor={showEditor}>
     <div className="test-code-editor-file-name">{activeFile}</div>
     <Icons>
       {viewer ? (
@@ -36,6 +37,8 @@ export const CodeEditorHeader = ({
         <CodeEditorIcon
           onClick={closeActiveFile}
           className="test-close-code-editor-mobile"
+          rightmost={true}
+          leftmost={true}
         >
           <CloseSVG height={svgHeight} />
         </CodeEditorIcon>
