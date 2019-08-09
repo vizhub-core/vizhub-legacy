@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
 // If this changes, be sure to also update the preload link in index.html.
-export const defaultCodingFontFamily = 'Deja Vu Sans Mono';
-export const defaultCodingFontSize = '14px';
+export const defaultCodingFontFamily = 'Ubuntu Mono';
+export const defaultCodingFontSize = '16px';
 
 export const theme = {
   dark: '#161514',
@@ -24,6 +24,7 @@ export const theme = {
   activeBackground: 'rgba(0, 0, 0, 0.1)',
 
   defaultCodingFontFamily,
+  defaultCodingFontSize,
   miniWidth: 268,
   fastTransition: '.2s ease-in-out'
 };
