@@ -2,6 +2,7 @@ import React from 'react';
 import { Wrapper, Icons, CodeEditorIcon } from './styles';
 import { FullSVG, CloseSVG } from '../../../../../../svg';
 import { isMobile } from '../../../../../../mobileMods';
+import { VerticallyCenteredMonoText } from '../../styles';
 
 const svgHeight = 15;
 
@@ -14,7 +15,9 @@ export const CodeEditorHeader = ({
   closeActiveFile
 }) => (
   <Wrapper showEditor={showEditor}>
-    <div className="test-code-editor-file-name">{activeFile}</div>
+    <VerticallyCenteredMonoText className="test-code-editor-file-name">
+      {activeFile}
+    </VerticallyCenteredMonoText>
     <Icons>
       {viewer ? (
         <>
