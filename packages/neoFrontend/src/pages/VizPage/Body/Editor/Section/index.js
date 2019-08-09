@@ -1,6 +1,5 @@
 import React, { useContext, useCallback } from 'react';
 import { URLStateContext } from '../../../URLStateContext';
-import { VerticallyCenteredMonoText } from '../styles';
 import { Wrapper, TitleEntry, ClickableOverlay } from './styles';
 
 export const Section = ({ title, id, children, className }) => {
@@ -15,7 +14,7 @@ export const Section = ({ title, id, children, className }) => {
   return (
     <Wrapper isActive={isActive}>
       <TitleEntry isActive={isActive}>
-        <VerticallyCenteredMonoText>{title}</VerticallyCenteredMonoText>
+        {title}
         <ClickableOverlay onClick={toggle} className={className} />
       </TitleEntry>
       {isActive ? children : null}

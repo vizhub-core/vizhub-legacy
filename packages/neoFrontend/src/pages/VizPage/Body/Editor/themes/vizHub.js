@@ -15,7 +15,7 @@ const sidebarLight = hcl('#5b677d');
 
 const luminaceDifference = sidebarLight.l - sidebarDark.l;
 
-const backgroundLuminance = sidebarDark.l - luminaceDifference * 1.5;
+const backgroundLuminance = sidebarDark.l - luminaceDifference * 1.3;
 
 const luminance = 90;
 
