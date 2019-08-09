@@ -1,6 +1,12 @@
 import React, { createContext, useContext, useRef, useEffect } from 'react';
-import { getMicroScale, getMicroWidth } from '../../../accessors';
-import { defaultVizHeight, vizWidth, useTransitions } from '../../../constants';
+import {
+  getMicroScale,
+  getMicroWidth,
+  getVizHeight,
+  getVizFiles
+} from '../../../accessors';
+import { vizWidth, useTransitions } from '../../../constants';
+import { useValue } from '../../../useValue';
 import { theme } from '../../../theme';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
 import { modMode } from '../../../mobileMods';
@@ -133,16 +139,19 @@ const setVizRunnerTransform = ({ x, y, scale }) => {
 };
 
 export const VizRunnerProvider = ({ children }) => {
-  const { viz } = useContext(VizContext);
+  const { viz$ } = useContext(VizContext);
   const { mode, showEditor, activeFile } = useContext(URLStateContext);
-  const vizHeight = viz.info.height || defaultVizHeight;
+
+  const vizHeight = useValue(viz$, getVizHeight);
+  const vizFiles = useValue(viz$, getVizFiles);
+
   const ref = useRef();
 
   const mod = modMode(mode, showEditor, activeFile);
   setVizRunnerMode(mod);
 
   if (mod === 'micro') {
-    const scale = getMicroScale(viz);
+    const scale = getMicroScale(vizHeight);
     const x = window.innerWidth - getMicroWidth(scale);
     const y = 0;
     setVizRunnerTransform({ x, y, scale });
@@ -152,12 +161,12 @@ export const VizRunnerProvider = ({ children }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      iFrame.setAttribute('srcDoc', computeSrcDoc(viz.content.files));
+      iFrame.setAttribute('srcDoc', computeSrcDoc(vizFiles));
     }, setSrcDocTimeout());
     return () => {
       clearTimeout(timeout);
     };
-  }, [viz]);
+  }, [vizFiles]);
 
   useEffect(() => {
     iFrame.setAttribute('height', vizHeight);

@@ -1,7 +1,7 @@
-import { useReducer, useEffect, useContext } from 'react';
+import { useEffect, useContext, useMemo } from 'react';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { useVizContentDoc } from './useVizContentDoc';
-import { reducer } from './reducer';
 
 export const useViz = initialViz => {
   const realtimeModules = useContext(RealtimeModulesContext);
@@ -9,30 +9,50 @@ export const useViz = initialViz => {
   const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
 
   // Display initial viz until realtime connection has been established.
-  const [viz, dispatch] = useReducer(reducer, initialViz);
+  const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
 
+  const vizContentOp$ = useMemo(() => new Subject(), []);
+
+  // Connect to ShareDB doc for realtime connection.
   useEffect(() => {
     if (!vizContentDoc) {
       return;
     }
 
-    const dispatchContentChange = () => {
-      dispatch({ type: 'contentChange', content: vizContentDoc.data });
+    // Update on each change.
+    const handleOp = (op, originatedLocally) => {
+      const viz = viz$.getValue();
+      const previousContent = viz.content;
+      const nextContent = vizContentDoc.data;
+
+      if (previousContent !== nextContent) {
+        viz$.next({
+          info: viz.info,
+          content: nextContent
+        });
+      }
+
+      vizContentOp$.next({
+        previousContent,
+        nextContent,
+        op,
+        originatedLocally
+      });
     };
 
-    // Handle the case that the initial viz and the
-    // vizContentDoc content are different.
-    dispatchContentChange();
-
-    // Update on each change.
-    console.log('subscribing dispatchContentChange');
-    vizContentDoc.on('op', dispatchContentChange);
+    vizContentDoc.on('op', handleOp);
 
     return () => {
-      console.log('unsubscribing from ops');
-      vizContentDoc.off('op', dispatchContentChange);
+      vizContentDoc.off('op', handleOp);
     };
-  }, [vizContentDoc, dispatch]);
+  }, [vizContentDoc, viz$, vizContentOp$]);
 
-  return { viz, vizContentDoc };
+  const submitVizContentOp = useMemo(() => {
+    if (vizContentDoc) {
+      return op => vizContentDoc.submitOp(op);
+    }
+    return undefined;
+  }, [vizContentDoc]);
+
+  return { viz$, submitVizContentOp, vizContentOp$ };
 };

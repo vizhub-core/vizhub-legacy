@@ -1,115 +1,79 @@
-import React, {
-  useContext,
-  useCallback,
-  useEffect,
-  useRef,
-  useReducer
-} from 'react';
-import { getFileIndex } from '../../../../../../../accessors';
-import { Wrapper } from './styles';
+import React, { useContext, useEffect, useRef, useCallback } from 'react';
+import { VizContext } from '../../../../../VizContext';
+import { getVizFile } from '../../../../../../../accessors';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
-import { onFileChange } from '../onFileChange';
+import { usePath } from '../usePath';
+import { Wrapper } from './styles';
+import { generateFileChangeOp } from '../generateFileChangeOp';
+import { useFileIndex } from '../useFileIndex';
 
-export const CodeAreaTextarea = ({ file, vizContentDoc }) => {
-  const { name, text } = file;
-  const allowEditing = vizContentDoc ? true : false;
+export const CodeAreaTextarea = ({ activeFile }) => {
+  const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
+
+  const fileIndex = useFileIndex(viz$, activeFile);
+
+  const path = usePath(fileIndex);
+
+  const allowEditing = submitVizContentOp ? true : false;
   const realtimeModules = useContext(RealtimeModulesContext);
-  const onTextChange = onFileChange(name, vizContentDoc, realtimeModules);
 
-  const reducer = useCallback(
-    (selection, action) => {
-      switch (action.type) {
-        case 'remoteOp':
-          return selection.map(position =>
-            realtimeModules.json0.transformCursor(position, action.c, 'left')
-          );
-        case 'localChange':
-          return action.selection;
-        default:
-          throw new Error();
-      }
+  const onTextChange = useCallback(
+    event => {
+      const newText = event.target.value;
+      const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
+      submitVizContentOp(
+        generateFileChangeOp(fileIndex, oldText, newText, realtimeModules)
+      );
     },
-    [realtimeModules]
+    [viz$, fileIndex, submitVizContentOp, realtimeModules]
   );
 
   const ref = useRef();
-  const [selection, dispatch] = useReducer(reducer, [0, 0]);
 
-  const updateSelection = () => {
-    const { selectionStart, selectionEnd } = ref.current;
-    const selection = [selectionStart, selectionEnd];
-    selection.isLocal = true;
-    dispatch({ type: 'localChange', selection });
-  };
-
-  useEffect(() => {
-    const { selectionStart, selectionEnd } = ref.current;
-    ref.current.value = text;
-    ref.current.setSelectionRange(selectionStart, selectionEnd);
-  }, [text, ref]);
+  // TODO submit presence
+  // onSelect={updateSelection}
+  //const updateSelection = () => {
+  //  const { selectionStart, selectionEnd } = ref.current;
+  //  console.log({selectionStart, selectionEnd});
+  //};
 
   useEffect(() => {
-    if (!selection.isLocal) {
-      ref.current.setSelectionRange(selection[0], selection[1]);
-    }
-  }, [selection, ref]);
-
-  // Test for cursor transform.
-  useEffect(() => {
-    if (!vizContentDoc) {
+    if (!realtimeModules) {
       return;
     }
-    document.addEventListener('keydown', e => {
-      if (e.altKey && e.code === 'KeyD') {
-        setInterval(() => {
-          vizContentDoc.submitOp({ si: 'e', p: ['files', 1, 'text', 5] });
-        }, 1000);
-      }
-    });
-  }, [vizContentDoc]);
+    const { json0 } = realtimeModules;
+    const textarea = ref.current;
 
-  useEffect(() => {
-    if (!vizContentDoc) {
-      return;
-    }
+    // Initialize text.
+    textarea.value = getVizFile(fileIndex)(viz$.getValue()).text;
 
-    const transformCursor = (op, originatedLocally) => {
-      if (!originatedLocally) {
-        const files = vizContentDoc.data.files;
-        const fileIndex = getFileIndex(files, name);
-        const path = ['files', fileIndex, 'text'];
-        const { json0 } = realtimeModules;
-
-        // Delay execution of this so that the text gets set FIRST,
-        // then the selection gets set SECOND.
-        // This avoids a bug where if the cursor is in the last position,
-        // it doesn't get transformed on screen.
-        setTimeout(() => {
+    // Subscribe to changes.
+    const subscription = vizContentOp$.subscribe(
+      ({ previousContent, nextContent, op, originatedLocally }) => {
+        if (!originatedLocally) {
           op.forEach(c => {
             if (json0.canOpAffectPath(c, path)) {
-              dispatch({ type: 'remoteOp', c });
+              const i = c.p[c.p.length - 1];
+              if (c.si) {
+                textarea.setRangeText(c.si, i, i);
+              } else if (c.sd) {
+                textarea.setRangeText('', i, i + c.sd.length);
+              }
             }
           });
-        }, 0);
+        }
       }
-    };
-
-    // Update on each change.
-    vizContentDoc.on('op', transformCursor);
-
+    );
     return () => {
-      vizContentDoc.off('op', transformCursor);
+      subscription.unsubscribe();
     };
-  }, [vizContentDoc, name, realtimeModules]);
+  }, [viz$, ref, vizContentOp$, realtimeModules, path, fileIndex]);
 
   return (
     <Wrapper
       className="test-codearea-textarea"
       ref={ref}
-      onChange={event => {
-        onTextChange(event.target.value);
-      }}
-      onSelect={updateSelection}
+      onChange={onTextChange}
       readOnly={!allowEditing}
     />
   );

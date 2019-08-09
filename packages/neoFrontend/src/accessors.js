@@ -3,11 +3,7 @@ import { darkNavbarTheme } from './theme';
 
 const microHeight = darkNavbarTheme.bannerHeight + darkNavbarTheme.headHeight;
 
-export const getVizHeight = visualization =>
-  visualization.info.height || defaultVizHeight;
-
-export const getMicroScale = visualization =>
-  microHeight / getVizHeight(visualization);
+export const getMicroScale = vizHeight => microHeight / vizHeight;
 
 export const getMicroWidth = microScale => microScale * vizWidth;
 
@@ -26,3 +22,14 @@ export const getText = (files, activeFile) => {
   const file = getFile(files, activeFile);
   return file ? file.text : '';
 };
+
+export const getVizHeight = visualization =>
+  visualization.info.height || defaultVizHeight;
+
+export const getVizFiles = visualization => visualization.content.files;
+
+export const getVizFileIndex = name => visualization =>
+  getFileIndex(getVizFiles(visualization), name);
+
+export const getVizFile = fileIndex => visualization =>
+  getVizFiles(visualization)[fileIndex];

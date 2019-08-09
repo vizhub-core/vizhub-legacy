@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Icon } from '../../../styles';
+import { isMobile } from '../../../../../../mobileMods';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,8 +8,12 @@ export const Wrapper = styled.div`
   align-items: center;
   padding-left: 10px;
   font-family: ${props => props.theme.defaultCodingFontFamily};
-  box-shadow: ${props => props.theme.shadow};
+  background-color: ${props =>
+    isMobile || !props.showEditor
+      ? 'transparent'
+      : props.theme.editor.headerBackgroundColor};
 `;
+//box-shadow: ${props => props.theme.shadow};
 
 export const Icons = styled.div`
   display: flex;
