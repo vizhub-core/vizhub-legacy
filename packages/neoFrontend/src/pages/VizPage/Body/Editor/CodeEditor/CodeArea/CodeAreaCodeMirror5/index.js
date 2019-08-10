@@ -5,18 +5,13 @@ import React, {
   useRef,
   useEffect
 } from 'react';
-import CodeMirror from 'codemirror';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/xml/xml';
-import 'codemirror/mode/jsx/jsx';
-import 'codemirror/mode/css/css';
-import 'codemirror/mode/htmlmixed/htmlmixed';
-import 'codemirror/mode/markdown/markdown';
-import 'codemirror/keymap/vim';
 import { getVizFile } from '../../../../../../../accessors';
+import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
+import { EditorModulesContext } from '../../../../../EditorModulesContext';
 import { useFileIndex } from '../useFileIndex';
+import { light } from '../../../themes/vizHub';
 import { usePath } from '../usePath';
 import { Wrapper } from './styles';
 import { changeObjToOp } from './changeObjToOp';
@@ -45,10 +40,21 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const fileIndex = useFileIndex(viz$, activeFile);
   const path = usePath(fileIndex);
   const realtimeModules = useContext(RealtimeModulesContext);
+  const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
+
+  // Request to load editor modules.
+  // This line is only strictly required in the case that the user opens a link
+  // where the editor sidebar is closed, but the code editor is open.
+  // This is a no-op if the modules are already loaded.
+  loadEditorModules();
 
   useEffect(() => {
-    setCodeMirror(new CodeMirror(ref.current));
-  }, [ref]);
+    console.log(editorModules);
+    if (!editorModules) {
+      return;
+    }
+    setCodeMirror(new editorModules.CodeMirror(ref.current));
+  }, [ref, editorModules]);
 
   useEffect(() => {
     if (!codeMirror) {
@@ -127,6 +133,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     <>
       <CodeMirrorGlobalStyle />
       <Wrapper ref={ref} />
+      {!editorModules ? <LoadingScreen color={light} isChild={true} /> : null}
     </>
   );
 };

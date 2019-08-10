@@ -2,12 +2,12 @@ import styled, { keyframes } from 'styled-components';
 
 export const LoadingScreenWrapper = styled.div`
   display: flex;
-  height: 100vh;
+  ${props => (props.isChild ? `height: 100%;` : `height: 100vh;`)}
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: opacity 1s;
+  background-color: ${props => props.background};
 `;
 
 const spin = keyframes`
@@ -16,11 +16,13 @@ const spin = keyframes`
 `;
 
 export const Spinning = styled.div`
+  transition: opacity 1s;
   display: flex;
   animation: ${spin} infinite 3s linear;
 `;
 
 export const Message = styled.div`
+  transition: opacity 1s;
   position: absolute;
   text-align: center;
   bottom: 0;
