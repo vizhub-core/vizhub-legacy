@@ -5,7 +5,7 @@ import React, {
   useRef,
   useEffect
 } from 'react';
-import { getVizFile } from '../../../../../../../accessors';
+import { getVizFile, getExtension } from '../../../../../../../accessors';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
@@ -24,7 +24,6 @@ const modes = {
   '.js': 'jsx',
   '.md': 'markdown'
 };
-const getExtension = fileName => fileName.substr(fileName.lastIndexOf('.'));
 const getMode = extension => modes[extension];
 
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
@@ -49,23 +48,18 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   loadEditorModules();
 
   useEffect(() => {
-    if (!editorModules) {
-      return;
-    }
+    if (!editorModules) return;
     setCodeMirror(new editorModules.CodeMirror(ref.current));
   }, [ref, editorModules]);
 
   useEffect(() => {
-    if (!codeMirror) {
-      return;
-    }
+    if (!codeMirror) return;
     codeMirror.setOption('mode', getMode(getExtension(activeFile)));
+    codeMirror.setOption('readOnly', activeFile === 'bundle.js');
   }, [codeMirror, activeFile]);
 
   useEffect(() => {
-    if (!codeMirror) {
-      return;
-    }
+    if (!codeMirror) return;
     codeMirror.setOption('keyMap', keyMap);
   }, [codeMirror, keyMap]);
 

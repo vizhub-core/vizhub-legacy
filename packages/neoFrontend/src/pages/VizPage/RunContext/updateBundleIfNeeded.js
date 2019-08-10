@@ -30,8 +30,9 @@ export const updateBundleIfNeeded = async (
             text,
             realtimeModules
           );
-          // TODO guard against degenerate case.
-          submitVizContentOp(op);
+          if (op.length !== 0) {
+            submitVizContentOp(op);
+          }
         } else {
           submitVizContentOp(
             generateFileCreateOp(files, { name: 'bundle.js', text })
