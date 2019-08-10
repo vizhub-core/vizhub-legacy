@@ -49,7 +49,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   loadEditorModules();
 
   useEffect(() => {
-    console.log(editorModules);
     if (!editorModules) {
       return;
     }
