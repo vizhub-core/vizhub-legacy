@@ -7,4 +7,6 @@ import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/keymap/vim';
 
-export { CodeMirror };
+import { bundle } from 'vizhub-presenters';
+
+export { CodeMirror, bundle };

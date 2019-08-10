@@ -31,7 +31,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "styled-components": "^4.3.2",
-    "vizhub-entities": "1"
+    "vizhub-entities": "1",
+    "vizhub-presenters": "1"
   },
   "browserslist": [
     ">0.2%",
