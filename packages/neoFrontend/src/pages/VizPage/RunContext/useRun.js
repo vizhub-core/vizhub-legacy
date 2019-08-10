@@ -31,9 +31,8 @@ export const useRun = () => {
   //  console.log('reset run timer');
   //};
   useEffect(() => {
-
     // Don't set timeout on first run.
-    if(firstRun){
+    if (firstRun) {
       firstRun = false;
       return;
     }

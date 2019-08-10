@@ -47,7 +47,7 @@ export const VizRunnerProvider = ({ children }) => {
   const { mode, showEditor, activeFile } = useContext(URLStateContext);
 
   const vizHeight = useValue(viz$, getVizHeight);
-  const {runId} = useContext(RunContext);
+  const { runId } = useContext(RunContext);
 
   const ref = useRef();
 

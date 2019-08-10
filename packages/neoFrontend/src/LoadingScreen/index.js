@@ -4,7 +4,12 @@ import { LoadingScreenWrapper, Spinning, Message } from './styles';
 import { blankScreenDelay } from './animationDelay';
 export { waitForSpinner } from './waitForSpinner';
 
-export const LoadingScreen = ({ message }) => {
+export const LoadingScreen = ({
+  message,
+  color,
+  background = 'transparent',
+  isChild = false
+}) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -17,12 +22,14 @@ export const LoadingScreen = ({ message }) => {
     };
   }, []);
 
+  const opacity = show ? 1 : 0;
+
   return (
-    <LoadingScreenWrapper style={{ opacity: show ? 1 : 0 }}>
-      <Spinning>
-        <SpinnerSVG />
+    <LoadingScreenWrapper background={background} isChild={isChild}>
+      <Spinning style={{ opacity }}>
+        <SpinnerSVG fill={color} />
       </Spinning>
-      {message ? <Message>{message}</Message> : null}
+      {message ? <Message style={{ opacity }}>{message}</Message> : null}
     </LoadingScreenWrapper>
   );
 };

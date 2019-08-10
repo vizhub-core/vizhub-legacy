@@ -7,7 +7,7 @@ export const SpinnerSVG = ({
   fill = 'currentcolor'
 }) => (
   <svg height={height} viewBox={`0 0 100 100`}>
-    <g transform="translate(50, 50)">
+    <g transform="translate(50, 50)" fill={fill}>
       <g transform="rotate(3843.520000000717)">
         <circle cx="0" cy="40" r="10"></circle>
         <circle cx="24" cy="32" r="9"></circle>
