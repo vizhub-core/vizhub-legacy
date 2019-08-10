@@ -1,5 +1,5 @@
 import { rollup } from 'rollup/dist/rollup.browser';
-import buble from 'rollup-plugin-buble';
+import bubleJSXOnly from './bubleJSXOnly';
 import hypothetical from './hypothetical';
 import { d3Packages } from './d3Packages';
 
@@ -30,9 +30,7 @@ export const bundle = async (files) => {
       hypothetical({
         files: transformFilesToObject(files)
       }),
-      buble({
-        // Disable most ES6 transforms,
-        // use Buble mainly for its JSX transform.
+      bubleJSXOnly({
         target: {
           chrome: 71
         }

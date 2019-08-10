@@ -10,12 +10,13 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "vizhub-entities": "1",
-    "vizhub-use-cases": "1",
+    "buble-jsx-only": "^0.19.8",
     "mocha": "^6.2.0",
     "path-posix": "^1.0.0",
     "rollup": "^1.17.0",
-    "rollup-plugin-buble": "^0.19.8"
+    "rollup-pluginutils": "^2.8.1",
+    "vizhub-entities": "1",
+    "vizhub-use-cases": "1"
   },
   "devDependencies": {
     "esm": "^3.2.25",
