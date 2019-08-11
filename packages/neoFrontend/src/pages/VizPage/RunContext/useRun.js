@@ -16,33 +16,50 @@ export const useRun = () => {
   const [runId, setRunId] = useState(generateRunId());
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
-  const jsChangedLocally = useRef(false);
+  const jsChanged = useRef(false);
   const timeoutId = useRef();
+
+  const setRunIdSoon = useCallback(
+    (() => {
+      let timeout;
+      return newRunId => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          setRunId(newRunId);
+        }, 0);
+      };
+    })(),
+    [setRunId]
+  );
 
   const resetRunTimer = useCallback(() => {
     clearTimeout(timeoutId.current);
     timeoutId.current = setTimeout(async () => {
-      if (jsChangedLocally.current) {
+      if (!jsChanged) {
+        setRunId(generateRunId());
+      } else if (jsChanged.current === 'local') {
         await updateBundleIfNeeded(
           viz$,
           editorModules,
           realtimeModules,
           submitVizContentOp
         );
-        jsChangedLocally.current = false;
+        jsChanged.current = false;
+        setRunId(generateRunId());
+      } else if (jsChanged.current === 'remote') {
+        // If JS changed remotely, do nothing here,
+        // but wait for remote to update bundle.js,
+        // and let that trigger a run id update.
       }
-      setRunId(generateRunId());
     }, runDelay);
   }, [setRunId, editorModules, realtimeModules, viz$, submitVizContentOp]);
 
   // Keep track of when JS files were changed locally.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, op, originatedLocally }) => {
-        if (originatedLocally) {
-          if (changesJS(op, previousContent.files)) {
-            jsChangedLocally.current = true;
-          }
+      ({ nextContent, op, originatedLocally }) => {
+        if (changesJS(op, nextContent.files)) {
+          jsChanged.current = originatedLocally ? 'local' : 'remote';
         }
       }
     );
@@ -68,16 +85,21 @@ export const useRun = () => {
   // that causes the bundle to update.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op }) => {
-        if (previousContent.files !== nextContent.files) {
-          if (onlyBundleJSChanged(previousContent.files, nextContent.files)) {
-            setRunId(generateRunId());
+      ({ previousContent, nextContent, op, originatedLocally }) => {
+        if (!originatedLocally) {
+          if (previousContent.files !== nextContent.files) {
+            if (onlyBundleJSChanged(previousContent.files, nextContent.files)) {
+              // This needs to be debounced because each component of
+              // remote multi-component ops are emitted as separate ops.
+              // See https://github.com/share/sharedb/blob/master/lib/client/doc.js#L544
+              setRunIdSoon(generateRunId());
+            }
           }
         }
       }
     );
     return () => subscription.unsubscribe();
-  }, [setRunId, vizContentOp$, editorModules]);
+  }, [setRunIdSoon, vizContentOp$, editorModules]);
 
   return {
     // TODO reset run timer on keystroke in editor
