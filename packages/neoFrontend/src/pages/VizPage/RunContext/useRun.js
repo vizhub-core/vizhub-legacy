@@ -49,6 +49,9 @@ export const useRun = () => {
       // but wait for remote to update bundle.js,
       // and let that trigger a run id update.
     }
+
+    // Flag that the timer is no longer running.
+    timeoutId.current = undefined;
   }, [setRunId, editorModules, realtimeModules, viz$, submitVizContentOp]);
 
   // If the timer has been started, reset it.
