@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useContext, useState, useRef } from 'react';
+import {
+  useMemo,
+  useCallback,
+  useEffect,
+  useContext,
+  useState,
+  useRef
+} from 'react';
+import { Subject } from 'rxjs';
 import { VizContext } from '../VizContext';
 import { EditorModulesContext } from '../EditorModulesContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
@@ -16,8 +24,28 @@ export const useRun = () => {
   const [runId, setRunId] = useState(generateRunId());
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
+  const runTimerProgress$ = useMemo(() => new Subject(), []);
   const jsChanged = useRef(false);
   const timeoutId = useRef();
+  const runTimerStart = useRef();
+
+  const startRunTimerProgress = useCallback(() => {
+    runTimerStart.current = Date.now();
+    const updateProgress = () => {
+      const progress = (Date.now() - runTimerStart.current) / runDelay;
+      if (progress < 1) {
+        runTimerProgress$.next(progress);
+        requestAnimationFrame(updateProgress);
+      } else {
+        runTimerProgress$.next(null);
+      }
+    };
+    updateProgress();
+  }, [runTimerProgress$]);
+
+  const resetRunTimerProgress = useCallback(() => {
+    runTimerStart.current = Date.now();
+  }, []);
 
   const setRunIdSoon = useCallback(
     (() => {
@@ -60,8 +88,9 @@ export const useRun = () => {
     if (timeoutId.current) {
       clearTimeout(timeoutId.current);
       timeoutId.current = setTimeout(run, runDelay);
+      resetRunTimerProgress();
     }
-  }, [run]);
+  }, [run, resetRunTimerProgress]);
 
   // If the timer has been started, reset it.
   // If the timer has not been started, this function starts it.
@@ -70,8 +99,9 @@ export const useRun = () => {
       resetRunTimer();
     } else {
       timeoutId.current = setTimeout(run, runDelay);
+      startRunTimerProgress();
     }
-  }, [resetRunTimer, run]);
+  }, [resetRunTimer, run, startRunTimerProgress]);
 
   // Keep track of when JS files were changed locally.
   useEffect(() => {
@@ -122,6 +152,7 @@ export const useRun = () => {
 
   return {
     resetRunTimer,
-    runId
+    runId,
+    runTimerProgress$
   };
 };
