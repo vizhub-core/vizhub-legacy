@@ -32,27 +32,43 @@ export const useRun = () => {
     [setRunId]
   );
 
-  const resetRunTimer = useCallback(() => {
-    clearTimeout(timeoutId.current);
-    timeoutId.current = setTimeout(async () => {
-      if (!jsChanged) {
-        setRunId(generateRunId());
-      } else if (jsChanged.current === 'local') {
-        await updateBundleIfNeeded(
-          viz$,
-          editorModules,
-          realtimeModules,
-          submitVizContentOp
-        );
-        jsChanged.current = false;
-        setRunId(generateRunId());
-      } else if (jsChanged.current === 'remote') {
-        // If JS changed remotely, do nothing here,
-        // but wait for remote to update bundle.js,
-        // and let that trigger a run id update.
-      }
-    }, runDelay);
+  const run = useCallback(async () => {
+    if (!jsChanged.current) {
+      setRunId(generateRunId());
+    } else if (jsChanged.current === 'local') {
+      await updateBundleIfNeeded(
+        viz$,
+        editorModules,
+        realtimeModules,
+        submitVizContentOp
+      );
+      jsChanged.current = false;
+      setRunId(generateRunId());
+    } else if (jsChanged.current === 'remote') {
+      // If JS changed remotely, do nothing here,
+      // but wait for remote to update bundle.js,
+      // and let that trigger a run id update.
+    }
   }, [setRunId, editorModules, realtimeModules, viz$, submitVizContentOp]);
+
+  // If the timer has been started, reset it.
+  // If the timer has not been started, this function is a no op.
+  const resetRunTimer = useCallback(() => {
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
+      timeoutId.current = setTimeout(run, runDelay);
+    }
+  }, [run]);
+
+  // If the timer has been started, reset it.
+  // If the timer has not been started, this function starts it.
+  const startRunTimer = useCallback(() => {
+    if (timeoutId.current) {
+      resetRunTimer();
+    } else {
+      timeoutId.current = setTimeout(run, runDelay);
+    }
+  }, [resetRunTimer, run]);
 
   // Keep track of when JS files were changed locally.
   useEffect(() => {
@@ -64,7 +80,7 @@ export const useRun = () => {
       }
     );
     return () => subscription.unsubscribe();
-  }, [vizContentOp$, resetRunTimer]);
+  }, [vizContentOp$]);
 
   // Reset run timer whenever files are changed by the user.
   // Do not reset run timer when bundle.js gets generated.
@@ -73,13 +89,13 @@ export const useRun = () => {
       ({ previousContent, nextContent, op }) => {
         if (previousContent.files !== nextContent.files) {
           if (!onlyBundleJSChanged(previousContent.files, nextContent.files)) {
-            resetRunTimer();
+            startRunTimer();
           }
         }
       }
     );
     return () => subscription.unsubscribe();
-  }, [vizContentOp$, resetRunTimer]);
+  }, [vizContentOp$, startRunTimer]);
 
   // Handle the case that a remote user changes some JS
   // that causes the bundle to update.
@@ -102,8 +118,7 @@ export const useRun = () => {
   }, [setRunIdSoon, vizContentOp$, editorModules]);
 
   return {
-    // TODO reset run timer on keystroke in editor
-    //resetRunTimer,
+    resetRunTimer,
     runId
   };
 };
