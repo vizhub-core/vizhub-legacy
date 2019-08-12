@@ -16,6 +16,11 @@ const sidebarLight = hcl('#5b677d');
 const luminaceDifference = sidebarLight.l - sidebarDark.l;
 
 const backgroundLuminance = sidebarDark.l - luminaceDifference * 1.1;
+export const backgroundColor = hcl(
+  sidebarDark.h,
+  sidebarDark.c,
+  backgroundLuminance
+).formatHex();
 
 const luminance = 90;
 
@@ -27,18 +32,14 @@ const luminance = 90;
 // console.log(luminance - backgroundLuminance);
 
 const saturation = 70;
-const light = hcl(0, 0, luminance).formatHex();
+export const light = hcl(0, 0, luminance).formatHex();
 const dark = hcl(sidebarDark.h, sidebarDark.c, 80).formatHex();
 
 export const vizHub = rotation => {
   const theme = {
     container: {
       color: light,
-      backgroundColor: hcl(
-        sidebarDark.h,
-        sidebarDark.c,
-        backgroundLuminance
-      ).formatHex()
+      backgroundColor
     },
     headerBackgroundColor: hcl(
       sidebarDark.h,

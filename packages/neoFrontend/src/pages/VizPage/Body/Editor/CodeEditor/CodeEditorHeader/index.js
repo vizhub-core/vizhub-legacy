@@ -5,6 +5,9 @@ import { Wrapper, Icons, CodeEditorIcon, Text } from './styles';
 
 const svgHeight = 15;
 
+const bundleJSInfo =
+  'This file is generated automatically from "index.js".\n\nIt combines all modules imported by "index.js" into a single file. Each time any JavaScript changes, this file is regenerated. Editing this file manually does not make sense, so is not allowed by the editor.';
+
 export const CodeEditorHeader = ({
   showEditor,
   activeFile,
@@ -14,7 +17,12 @@ export const CodeEditorHeader = ({
   closeActiveFile
 }) => (
   <Wrapper showEditor={showEditor}>
-    <Text className="test-code-editor-file-name">{activeFile}</Text>
+    <Text
+      className="test-code-editor-file-name"
+      title={activeFile === 'bundle.js' ? bundleJSInfo : undefined}
+    >
+      {activeFile}
+    </Text>
     <Icons>
       {viewer ? (
         <>

@@ -1,20 +1,33 @@
-import React, { useRef, useContext, useCallback, useState } from 'react';
+import React, {
+  useRef,
+  useContext,
+  useCallback,
+  useState,
+  useEffect
+} from 'react';
 import { FullSVG } from '../../../../../svg';
 import { MiniOrMicroSVG } from '../../../../../mobileMods';
 import { vizWidth } from '../../../../../constants';
 import { VizRunnerContext } from '../../../VizRunnerContext';
+import { RunContext } from '../../../RunContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
 import { LargeIcon, FrameFooter } from '../../styles';
-import { Wrapper } from './styles';
+import { Wrapper, RunTimerProgressIndicator } from './styles';
 
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
 
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
   const { enterFullScreen, enterMini } = useContext(URLStateContext);
-
   const [scale, setScale] = useState();
+  const { runTimerProgress$ } = useContext(RunContext);
+  const [runTimerProgress, setRunTimerProgress] = useState();
+
+  useEffect(() => {
+    const subscription = runTimerProgress$.subscribe(setRunTimerProgress);
+    return () => subscription.unsubscribe();
+  }, [runTimerProgress$]);
 
   const setDomRect = useCallback(
     ({ x, y, width }) => {
@@ -42,6 +55,7 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
         <>
           <div style={{ height: vizHeight * scale }} />
           <FrameFooter>
+            <RunTimerProgressIndicator runTimerProgress={runTimerProgress} />
             <LargeIcon
               leftmost={true}
               onClick={enterMini}
