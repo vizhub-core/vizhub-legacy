@@ -18,8 +18,8 @@ export const getFileIndex = (files, name) => {
 
 export const getFile = (files, name) => files[getFileIndex(files, name)];
 
-export const getText = (files, activeFile) => {
-  const file = getFile(files, activeFile);
+export const getText = (files, name) => {
+  const file = getFile(files, name);
   return file ? file.text : '';
 };
 
@@ -33,3 +33,6 @@ export const getVizFileIndex = name => visualization =>
 
 export const getVizFile = fileIndex => visualization =>
   getVizFiles(visualization)[fileIndex];
+
+export const getExtension = fileName =>
+  fileName.substr(fileName.lastIndexOf('.'));
