@@ -51,4 +51,5 @@ export const Footer = styled.div`
 
 export const FrameFooter = styled(Footer)`
   border-radius: 0 0 3px 3px;
+  position: relative;
 `;
