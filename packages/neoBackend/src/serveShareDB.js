@@ -1,6 +1,7 @@
 import JSONStream from '@teamwork/websocket-json-stream';
 import WebSocket from 'ws';
 import { getShareDB } from 'vizhub-server-gateways';
+import { accessControl } from './accessControl';
 
 // Set up the ShareDB instance and WebSocket server.
 export const serveShareDB = server => {
@@ -16,6 +17,8 @@ export const serveShareDB = server => {
       console.log('WebSocket stream error: ' + error.message);
     });
 
-    getShareDB().listen(stream, req);
+    const shareDB = getShareDB();
+    accessControl(shareDB);
+    shareDB.listen(stream, req);
   });
 };
