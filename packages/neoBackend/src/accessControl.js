@@ -1,6 +1,7 @@
 //const get = require('lodash/get')
 //const { isIncrementViewCount } = require('../db/accessors')
 import { parse } from 'cookie';
+import { getUserIDFromJWT } from 'vizhub-controllers';
 
 // This module implements access control rules at the ShareDB layer.
 // This prevents, for example, editing documents you don't own.
@@ -39,10 +40,13 @@ export const accessControl = shareDB => {
       const cookie = request.req.headers.cookie;
 
       if(cookie){
-        console.log(parse(cookie));
+        const { vizHubJWT } = parse(cookie);
 
-        // expose the user id to downstram middleware as agent.session.
-        request.agent.userId = 'f00';
+        if(vizHubJWT){
+          // expose the user id to downstram middleware as agent.session.
+          request.agent.userId = getUserIDFromJWT(vizHubJWT);
+          console.log(request.agent.userId);
+        }
       }
     } else {
 
