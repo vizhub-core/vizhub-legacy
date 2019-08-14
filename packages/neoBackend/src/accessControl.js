@@ -1,11 +1,31 @@
 //const get = require('lodash/get')
 //const { isIncrementViewCount } = require('../db/accessors')
+import { parse } from 'cookie';
 
 // This module implements access control rules at the ShareDB layer.
 // This prevents, for example, editing documents you don't own.
 
 // Middleware usage inspired by
 // https://github.com/dmapper/sharedb-access/blob/master/lib/index.js
+
+
+// Gets the current session from a WebSocket connection.
+// Draws from http://stackoverflow.com/questions/36842159/node-js-ws-and-express-session-how-to-get-session-object-from-ws-upgradereq
+//const getSession = (req, callback) => {
+//  const headers = req.headers
+//    
+//  // If there's no cookie, there's no session, so do nothing.                                                                                            
+//  if (!headers.cookie) {
+//    return callback()
+//  } 
+//    
+//  // If there's a cookie, get the session id from it.                                                                                                    
+//  const cookies = cookie.parse(headers.cookie)
+//  const sessionId = cookieParser.signedCookie(cookies['connect.sid'], sessionSecret)                                                                     
+//
+//  // Get the session from the store and pass it to the callback.                                                                                         
+//  store.get(sessionId, callback)  
+//}
 
 export const accessControl = shareDB => {
 
@@ -16,10 +36,14 @@ export const accessControl = shareDB => {
     // If the connection is coming from the browser,
     if (request.req) {
 
-      console.log(Object.keys(request.req));
+      const cookie = request.req.headers.cookie;
 
-      // expose the session to downstram middleware as agent.session.
-      request.agent.session = request.req.session
+      if(cookie){
+        console.log(parse(cookie));
+
+        // expose the user id to downstram middleware as agent.session.
+        request.agent.userId = 'f00';
+      }
     } else {
 
       // Otherwise set a flag that clarifies that
