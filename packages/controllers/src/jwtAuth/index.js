@@ -7,4 +7,4 @@ export const jwtAuth = (app, userGateway) => {
   app.get('/api/auth/signOut', authSignOut);
 };
 
-export { jwtVerify } from './jwt';
+export { getUserIDFromJWT } from './jwt';
