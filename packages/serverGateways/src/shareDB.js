@@ -2,6 +2,7 @@ import ShareDB from '@teamwork/sharedb';
 import ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
 import ShareDBMongo from '@teamwork/sharedb-mongo';
 import json0 from '@datavis-tech/ot-json0';
+import { accessControl } from './accessControl';
 
 // Use our custom json0 fork that implements presence.
 ShareDB.types.register(json0.type);
@@ -28,7 +29,7 @@ export const getShareDB = () => {
         db: new ShareDBMingoMemory()
       }));
     }
-    //accessControl(shareDB);
+    accessControl(shareDB);
   }
   return shareDB;
 };
