@@ -28,6 +28,7 @@ export const getShareDB = () => {
         db: new ShareDBMingoMemory()
       }));
     }
+    //accessControl(shareDB);
   }
   return shareDB;
 };

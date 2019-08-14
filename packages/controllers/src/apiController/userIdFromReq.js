@@ -1,4 +1,4 @@
-import { jwtVerify } from '../jwtAuth';
+import { getUserIDFromJWT } from '../jwtAuth';
 export const userIdFromReq = req => {
   // Handle VizHub 1.0 sessions.
   if (req.user) {
@@ -8,6 +8,6 @@ export const userIdFromReq = req => {
   // Handle VizHub 2.0 sessions.
   const { vizHubJWT } = req.cookies;
   if (vizHubJWT) {
-    return jwtVerify(vizHubJWT);
+    return getUserIDFromJWT(vizHubJWT);
   }
 };

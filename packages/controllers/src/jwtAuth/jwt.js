@@ -14,7 +14,7 @@ export const jwtSign = async userId => {
   }
 };
 
-export const jwtVerify = vizHubJWT => {
+export const getUserIDFromJWT = vizHubJWT => {
   try {
     const { userId } = jwt.verify(vizHubJWT, secret);
     return userId;
