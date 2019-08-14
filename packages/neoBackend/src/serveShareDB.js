@@ -8,7 +8,7 @@ export const serveShareDB = server => {
   const webSocketServer = new WebSocket.Server({ server });
 
   // Set up new connections to interact with ShareDB.
-  webSocketServer.on('connection', ws => {
+  webSocketServer.on('connection', (ws, req) => {
     const stream = new JSONStream(ws);
 
     // Prevent server crashes on errors.
@@ -16,6 +16,6 @@ export const serveShareDB = server => {
       console.log('WebSocket stream error: ' + error.message);
     });
 
-    getShareDB().listen(stream);
+    getShareDB().listen(stream, req);
   });
 };
