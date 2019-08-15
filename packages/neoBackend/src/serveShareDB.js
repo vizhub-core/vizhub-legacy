@@ -1,8 +1,11 @@
 import JSONStream from '@teamwork/websocket-json-stream';
 import WebSocket from 'ws';
 import { getShareDB, getConnection } from 'vizhub-server-gateways';
-import { identifyAgent, identifyOwner } from './shareDBMiddleware';
-import { accessControl } from './accessControl';
+import {
+  identifyAgent,
+  identifyOwner,
+  accessControl
+} from './shareDBMiddleware';
 
 // Set up the ShareDB instance and WebSocket server.
 export const serveShareDB = server => {
@@ -21,7 +24,8 @@ export const serveShareDB = server => {
   // to which the op is being applied.
   shareDB.use('apply', identifyOwner(getConnection()));
 
-  accessControl(shareDB );
+  // This middleware applies access control rules to all ops (changes).
+  shareDB.use('apply', accessControl);
 
   // Set up new connections to interact with ShareDB.
   webSocketServer.on('connection', (ws, req) => {
