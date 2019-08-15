@@ -1,12 +1,9 @@
-import { useEffect, useContext, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { useVizContentDoc } from './useVizContentDoc';
 
 export const useViz = initialViz => {
-  const realtimeModules = useContext(RealtimeModulesContext);
-
-  const vizContentDoc = useVizContentDoc(realtimeModules, initialViz.id);
+  const vizContentDoc = useVizContentDoc(initialViz.id);
 
   // Display initial viz until realtime connection has been established.
   const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
