@@ -1,7 +1,7 @@
 import JSONStream from '@teamwork/websocket-json-stream';
 import WebSocket from 'ws';
 import { getShareDB, getConnection } from 'vizhub-server-gateways';
-import { identifyAgent } from './shareDBMiddleware';
+import { identifyAgent, identifyOwner } from './shareDBMiddleware';
 import { accessControl } from './accessControl';
 
 // Set up the ShareDB instance and WebSocket server.
@@ -17,7 +17,11 @@ export const serveShareDB = server => {
   // whether from the browser or from the server.
   shareDB.use('connect', identifyAgent);
 
-  accessControl(shareDB, getConnection());
+  // Populates request.owner with the user id of the owner of the document
+  // to which the op is being applied.
+  shareDB.use('apply', identifyOwner(getConnection()));
+
+  accessControl(shareDB );
 
   // Set up new connections to interact with ShareDB.
   webSocketServer.on('connection', (ws, req) => {
