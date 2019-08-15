@@ -1,38 +1,8 @@
 //const get = require('lodash/get')
 //const { isIncrementViewCount } = require('../db/accessors')
-import { parse } from 'cookie';
-import { getUserIDFromJWT } from 'vizhub-controllers';
 import { DOCUMENT_CONTENT, DOCUMENT_INFO, fetchShareDBDoc } from 'vizhub-database';
 
 export const accessControl = (shareDB, connection) => {
-
-  console.log('setting up accessControl');
-
-  // Populates request.agent.userId or request.agent.isServer.
-  //
-  // This ShareDB middleware triggers when new connections are made,
-  // whether from the browser or from the server.
-  shareDB.use('connect', (request, done) => {
-    // If the connection is coming from the browser,
-    if (request.req) {
-      const cookie = request.req.headers.cookie;
-      if (cookie) {
-        const { vizHubJWT } = parse(cookie);
-
-        // and the user is authenticated,
-        // expose the user id to downstram middleware via agent.session.
-        if (vizHubJWT) {
-          request.agent.userId = getUserIDFromJWT(vizHubJWT);
-        }
-      }
-    } else {
-      // Otherwise set a flag that clarifies that
-      // the connection is coming from the server (e.g. for creating User entries).
-      request.agent.isServer = true;
-    }
-
-    done();
-  });
 
   // Populates request.owner with the user id of the owner of the document
   // to which the op is being applied.
@@ -48,39 +18,59 @@ export const accessControl = (shareDB, connection) => {
     // expose the owner ID as request.owner .
     if (snapshot.data.owner) {
       request.owner = snapshot.data.owner;
-      //console.log('owner exists! ' + request.owner);
+      console.log('owner exists! ' + request.owner);
       return done();
     }
 
     // Handle migration case, where owner ID is not present on content documents.
     if (collection === DOCUMENT_CONTENT && !snapshot.data.owner) {
 
-      // query for corresponding info document
+      // Guard against middleware triggered from setting the owner.
+      if(op.op.length === 1){
+        if(op.op[0].p.length === 1 ){
+          if(op.op[0].p[0] === 'owner'){
+            return done();
+          }
+        }
+      }
+
+      // Query for corresponding info document
       fetchShareDBDoc(DOCUMENT_INFO, id, connection)
-        .then(shareDBDoc => {
-          request.owner = shareDBDoc.data.owner;
+        .then(infoDoc => {
+          const { owner } = infoDoc.data ;
+          request.owner = owner;
           done();
 
-          // TODO populate original doc with this owner
-        })
+          // Populate original doc with this owner.
+          // Note that this is outside the middleware control flow.
+          fetchShareDBDoc(DOCUMENT_CONTENT, id, connection)
+            .then(contentDoc => {
+              contentDoc.submitOp([{
+                p: ['owner'],
+                oi: owner
+              }]);
+            });
+        });
     }
   });
 
   // This middleware applies access control rules to all ops (changes).
   shareDB.use('apply', (request, done) => {
 
-    console.log('inside second middleware, owner ID is ' + request.owner);
-
     // Unpack the ShareDB request object.
     const {
       collection,
       op,
-      //agent: {
-      //  isServer,
-      //  userId
-      //},
+      agent: {
+        isServer,
+        userId
+      },
       snapshot
     } = request;
+
+    console.log('inside second middleware, owner ID is ' + request.owner);
+    console.log({isServer, userId});
+
 
     //if(op.create){
     //  console.log(JSON.stringify(op, null, 2));
