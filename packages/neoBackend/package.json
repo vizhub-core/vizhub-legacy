@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "vizhub-controllers": "1",
     "vizhub-entities": "1",
+    "vizhub-database": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
     "ws": "^7.1.1"

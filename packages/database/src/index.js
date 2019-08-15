@@ -16,6 +16,12 @@ import { getThumbnail } from './getThumbnail';
 import { getPreview } from './getPreview';
 import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
 
+// This is imported by access control logic.
+// The exposure of this outside the database package doesn't quite feel right,
+// but not sure what a better solution would be.
+// TODO think about architectural choices around this.
+export { DOCUMENT_CONTENT } from './collectionName';
+
 export const Database = connection => ({
   createVisualization: createVisualization(connection),
   getVisualization: getVisualization(connection),
