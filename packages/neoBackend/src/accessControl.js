@@ -2,9 +2,14 @@
 //const { isIncrementViewCount } = require('../db/accessors')
 import { parse } from 'cookie';
 import { getUserIDFromJWT } from 'vizhub-controllers';
-import { DOCUMENT_CONTENT } from 'vizhub-database';
+import { DOCUMENT_CONTENT, DOCUMENT_INFO, fetchShareDBDoc } from 'vizhub-database';
 
-export const accessControl = shareDB => {
+export const accessControl = (shareDB, connection) => {
+
+  console.log('setting up accessControl');
+
+  // Populates request.agent.userId or request.agent.isServer.
+  //
   // This ShareDB middleware triggers when new connections are made,
   // whether from the browser or from the server.
   shareDB.use('connect', (request, done) => {
@@ -29,31 +34,43 @@ export const accessControl = shareDB => {
     done();
   });
 
-  // This middleware guarantees that the owner id is present on the request.
+  // Populates request.owner with the user id of the owner of the document
+  // to which the op is being applied.
   shareDB.use('apply', (request, done) => {
-    const { collection, snapshot, op } = request;
+    const { collection, snapshot, op, id } = request;
 
-    // Do nothing in the case of non-existent documents (e.g. create ops).
-    if (!snapshot.data) {
+    // Do nothing in the case of create ops.
+    if (op.create){
+      return done();
+    }
+
+    // For info documents and migrated content documents,
+    // expose the owner ID as request.owner .
+    if (snapshot.data.owner) {
+      request.owner = snapshot.data.owner;
+      //console.log('owner exists! ' + request.owner);
       return done();
     }
 
     // Handle migration case, where owner ID is not present on content documents.
     if (collection === DOCUMENT_CONTENT && !snapshot.data.owner) {
-      const docId = op.src;
 
-      // TODO
       // query for corresponding info document
-      // extract owner from there
-      // add owner to here from there
-      console.log('here');
-      console.log(docId);
+      fetchShareDBDoc(DOCUMENT_INFO, id, connection)
+        .then(shareDBDoc => {
+          request.owner = shareDBDoc.data.owner;
+          done();
+
+          // TODO populate original doc with this owner
+        })
     }
-    done();
   });
 
   // This middleware applies access control rules to all ops (changes).
   shareDB.use('apply', (request, done) => {
+
+    console.log('inside second middleware, owner ID is ' + request.owner);
+
     // Unpack the ShareDB request object.
     const {
       collection,

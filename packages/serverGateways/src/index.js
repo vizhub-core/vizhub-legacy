@@ -8,6 +8,8 @@ import { Database } from 'vizhub-database';
 import { getConnection } from './shareDB';
 export { getShareDB } from './shareDB';
 
+export { getConnection };
+
 export const serverGateways = () => {
   const database = Database(getConnection());
   return {

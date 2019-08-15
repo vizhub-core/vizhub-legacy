@@ -20,7 +20,7 @@ export const fork = my => async () => {
   // Output the link for manual testing.
   console.log();
   console.log('Forked viz:');
-  console.log(url);
+  console.log(url + '?edit=files&file=index.html');
   console.log();
 
   // Stash the URL for later mobile testing.

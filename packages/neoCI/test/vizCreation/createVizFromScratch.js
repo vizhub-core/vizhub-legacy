@@ -21,7 +21,7 @@ export const createVizFromScratch = my => async () => {
   // Output the link for manual testing.
   console.log();
   console.log('Viz created from scratch:');
-  console.log(url);
+  console.log(url + '?edit=files&file=index.html');
   console.log();
 
   // "Return" the id for future use.
