@@ -16,7 +16,6 @@ export const identifyOwner = connection => (request, done) => {
   // expose the owner ID as request.owner .
   if (snapshot.data.owner) {
     request.owner = snapshot.data.owner;
-    console.log('owner exists! ' + request.owner);
     return done();
   }
 
@@ -40,12 +39,7 @@ export const identifyOwner = connection => (request, done) => {
       // Populate original doc with this owner.
       // Note that this is outside the middleware control flow.
       fetchShareDBDoc(DOCUMENT_CONTENT, id, connection).then(contentDoc => {
-        contentDoc.submitOp([
-          {
-            p: ['owner'],
-            oi: owner
-          }
-        ]);
+        contentDoc.submitOp([{ p: ['owner'], oi: owner }]);
       });
     });
   }
