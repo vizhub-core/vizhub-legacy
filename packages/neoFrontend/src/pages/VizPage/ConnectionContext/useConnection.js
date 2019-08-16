@@ -1,11 +1,13 @@
 import { useEffect, useState, useContext, useRef } from 'react';
 import { AuthContext, AUTH_PENDING } from '../../../authentication';
+import { WarningContext } from '../WarningContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { createWebSocket } from './createWebSocket';
 
 export const useConnection = () => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const { me } = useContext(AuthContext);
+  const { setWarning } = useContext(WarningContext);
   const [connection, setConnection] = useState();
   const connectedUser = useRef();
 
@@ -20,13 +22,17 @@ export const useConnection = () => {
       const newConnection = new realtimeModules.Connection(createWebSocket());
 
       // TODO user flow for editing unforked vizzes
-      // newConnection.on('error', error => {
-      //   console.log('on error');
-      //   console.log(error.message);
-      // });
+      // This is a temporary measure, with suboptimal UX.
+      // Currently, the user cannot edit without forking.
+      // Ideally, the user could edit without forking,
+      // then fork to save those edits.
+      newConnection.on('error', error => {
+        setWarning(error.message);
+      });
+
       setConnection(newConnection);
     }
-  }, [realtimeModules, connection, me]);
+  }, [realtimeModules, connection, me, setWarning]);
 
   // Re-establish WebSocket when authenticated user changes.
   // Since backend access control is based on user at connection time,
@@ -35,8 +41,10 @@ export const useConnection = () => {
   useEffect(() => {
     if (!connection) return;
     if (me !== connectedUser.current && me !== AUTH_PENDING) {
-      console.log('auth user changed');
       connectedUser.current = me;
+
+      // Clear out existing warning, if any.
+      setWarning(null);
 
       connection.close();
       // TODO clean this shit up.
@@ -48,7 +56,7 @@ export const useConnection = () => {
         connection.bindToSocket(createWebSocket());
       }, 100);
     }
-  }, [connection, me, connectedUser]);
+  }, [connection, me, connectedUser, setWarning]);
 
   return connection;
 };

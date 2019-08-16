@@ -8,6 +8,7 @@ import { URLStateProvider } from './URLStateContext';
 import { VizRunnerProvider } from './VizRunnerContext';
 import { VizProvider } from './VizContext';
 import { RunProvider } from './RunContext';
+import { WarningProvider } from './WarningContext';
 import { RealtimeModulesProvider } from './RealtimeModulesContext';
 import { ConnectionProvider } from './ConnectionContext';
 import { EditorModulesProvider } from './EditorModulesContext';
@@ -18,25 +19,27 @@ export const VizPage = () => (
   <URLStateProvider>
     <VizPageDataProvider fallback={<LoadingScreen />}>
       <RealtimeModulesProvider>
-        <ConnectionProvider>
-          <EditorModulesProvider>
-            <VizProvider>
-              <RunProvider>
-                <ForkingProvider
-                  fallback={<LoadingScreen message="Forking..." />}
-                >
-                  <ThemeProvider theme={darkNavbarTheme}>
-                    <VizRunnerProvider>
-                      <SplitPaneResizeProvider>
-                        <Body />
-                      </SplitPaneResizeProvider>
-                    </VizRunnerProvider>
-                  </ThemeProvider>
-                </ForkingProvider>
-              </RunProvider>
-            </VizProvider>
-          </EditorModulesProvider>
-        </ConnectionProvider>
+        <WarningProvider>
+          <ConnectionProvider>
+            <EditorModulesProvider>
+              <VizProvider>
+                <RunProvider>
+                  <ForkingProvider
+                    fallback={<LoadingScreen message="Forking..." />}
+                  >
+                    <ThemeProvider theme={darkNavbarTheme}>
+                      <VizRunnerProvider>
+                        <SplitPaneResizeProvider>
+                          <Body />
+                        </SplitPaneResizeProvider>
+                      </VizRunnerProvider>
+                    </ThemeProvider>
+                  </ForkingProvider>
+                </RunProvider>
+              </VizProvider>
+            </EditorModulesProvider>
+          </ConnectionProvider>
+        </WarningProvider>
       </RealtimeModulesProvider>
     </VizPageDataProvider>
   </URLStateProvider>

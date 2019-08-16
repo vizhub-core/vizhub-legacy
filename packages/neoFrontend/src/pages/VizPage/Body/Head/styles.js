@@ -3,7 +3,9 @@ import { Icon } from '../styles';
 
 export const Wrapper = styled.div`
   height: ${props => props.theme.headHeight}px;
-  background-color: #ffffff;
+  transition: background-color 1s, color 1s;
+  background-color: ${props => (props.warning ? '#f0353d' : '#ffffff')};
+  color: ${props => (props.warning ? '#ffffff' : props.theme.dark)};
   box-shadow: ${props => props.theme.shadow};
 
   display: flex;
@@ -14,6 +16,13 @@ export const Left = styled.div`
   padding-left: 9px;
   display: flex;
   align-items: center;
+`;
+
+export const Center = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Right = styled.div`
