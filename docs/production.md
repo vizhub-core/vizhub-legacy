@@ -74,7 +74,7 @@ sudo /etc/init.d/nginx restart
 tail /var/log/nginx/error.log
 ```
 
-Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntuartful-nginx
+Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
 
 Install MongoDB (see also [Install MongoDB Community Edition on Ubuntu](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)):
 
