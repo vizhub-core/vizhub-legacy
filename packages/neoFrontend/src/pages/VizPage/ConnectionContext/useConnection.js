@@ -15,9 +15,16 @@ export const useConnection = () => {
   // recorded as authenticated when the connection was established.
   useEffect(() => {
     if (realtimeModules && !connection && me !== AUTH_PENDING) {
-      console.log('initializing connection');
+      //console.log('initializing connection');
       connectedUser.current = me;
-      setConnection(new realtimeModules.Connection(createWebSocket()));
+      const newConnection = new realtimeModules.Connection(createWebSocket());
+
+      // TODO user flow for editing unforked vizzes
+      // newConnection.on('error', error => {
+      //   console.log('on error');
+      //   console.log(error.message);
+      // });
+      setConnection(newConnection);
     }
   }, [realtimeModules, connection, me]);
 
@@ -33,6 +40,10 @@ export const useConnection = () => {
 
       connection.close();
       // TODO clean this shit up.
+      // Figure out how to listen for the right event
+      // to open the connection immediately after closing.
+      // This 100ms timout was added to avoid an error
+      // about transitioning directly from connected to connecting.
       setTimeout(() => {
         connection.bindToSocket(createWebSocket());
       }, 100);

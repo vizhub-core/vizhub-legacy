@@ -14,8 +14,6 @@ export const createWebSocket = () => {
   };
 
   webSocket.onerror = event => {
-    // TODO surface these in UI?
-    // TODO check if this is where the access control errors go
     console.log('error');
     console.log(event);
   };
