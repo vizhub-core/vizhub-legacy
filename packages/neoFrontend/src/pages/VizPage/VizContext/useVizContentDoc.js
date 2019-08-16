@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ConnectionContext } from '../ConnectionContext';
 
 // TODO reduce duplication between here and packages/database/src/collectionName.js
 export const DOCUMENT_CONTENT = 'documentContent';
 
-export const useVizContentDoc = (realtimeModules, vizId) => {
+export const useVizContentDoc = vizId => {
+  const connection = useContext(ConnectionContext);
+
   const [vizContentDoc, setVizContentDoc] = useState(null);
 
   useEffect(() => {
-    if (!realtimeModules) {
-      return;
-    }
+    if (!connection) return;
 
     // Clear out old doc in case vizId changed.
     // (don't want the user to see stale stuff).
     setVizContentDoc(null);
 
-    const { connection } = realtimeModules;
     const doc = connection.get(DOCUMENT_CONTENT, vizId);
 
     // Wait until subscribe finishes before passing this out,
@@ -28,7 +28,7 @@ export const useVizContentDoc = (realtimeModules, vizId) => {
     return () => {
       doc.unsubscribe();
     };
-  }, [realtimeModules, vizId]);
+  }, [connection, vizId]);
 
   return vizContentDoc;
 };

@@ -1,3 +1,3 @@
 export { apiController } from './apiController';
 export { userController } from './userController';
-export { jwtAuth } from './jwtAuth';
+export { jwtAuth, getUserIDFromJWT } from './jwtAuth';

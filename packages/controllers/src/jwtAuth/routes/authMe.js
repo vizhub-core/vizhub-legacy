@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import { GetUser } from 'vizhub-use-cases';
-import { jwtVerify } from '../jwt';
+import { getUserIDFromJWT } from '../jwt';
 import { toErrorResponse } from '../../Error';
 
 export const authMe = userGateway => {
@@ -8,7 +8,7 @@ export const authMe = userGateway => {
   return asyncHandler(async (req, res) => {
     try {
       const { vizHubJWT } = req.cookies;
-      const id = jwtVerify(vizHubJWT);
+      const id = getUserIDFromJWT(vizHubJWT);
       if (!id) {
         return res.send({ me: null });
       }
