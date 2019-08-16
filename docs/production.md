@@ -22,7 +22,7 @@ sudo apt install gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 l
 Install Node.js using [NVM](https://github.com/creationix/nvm)
 
 ```
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 source .bashrc
 nvm install node
 ```
