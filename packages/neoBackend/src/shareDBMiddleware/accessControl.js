@@ -20,7 +20,7 @@ export const accessControl = (request, done) => {
 
   // Don't let people edit other people's stuff.
   if (owner !== userId) {
-    return done("You can't edit this because it's not yours");
+    return done("This visualization is unforked. Fork to save edits.");
   }
 
   done();
