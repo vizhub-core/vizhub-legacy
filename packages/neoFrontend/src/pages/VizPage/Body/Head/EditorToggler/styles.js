@@ -12,6 +12,6 @@ export const Wrapper = styled(Clickable)`
 export const Text = styled.div`
   font-weight: 600;
   margin-left: 10px;
-  margin-top: 2px;
+  margin-top: 1px;
   user-select: none;
 `;
