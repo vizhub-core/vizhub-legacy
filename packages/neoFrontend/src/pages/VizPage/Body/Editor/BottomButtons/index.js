@@ -26,11 +26,8 @@ export const BottomButtons = () => {
           <SettingsSVG />
         </ClickableOverlay>
       </BottomButton>
-      <BottomButton
-        onClick={onDeleteClick}
-        isActive={activeButton === DELETE_BUTTON}
-      >
-        <ClickableOverlay>D</ClickableOverlay>
+      <BottomButton isActive={activeButton === DELETE_BUTTON}>
+        <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
       </BottomButton>
     </Wrapper>
   );
