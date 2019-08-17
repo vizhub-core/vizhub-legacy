@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
+import { SettingsSVG } from '../../../../../svg';
+import { deleteFileOp } from '../../../../../accessors';
+import { VizContext } from '../../../VizContext';
+import { URLStateContext } from '../../../URLStateContext';
 import {
   Wrapper,
   BottomButton,
@@ -10,20 +14,24 @@ import {
   TopOptions,
   TopOption
 } from './styles';
-import { SettingsSVG } from '../../../../../svg';
 
 const DELETE_BUTTON = 'delete';
 
-export const BottomButtons = withTheme(({ theme }) => {
+export const BottomButtons = withTheme(({ theme, activeFile }) => {
   const [activeButton, setActiveButton] = useState(null);
 
-  const onDeleteConfirm = () => {
-    console.log('TODO actually delete');
-  };
+  const { viz$, submitVizContentOp } = useContext(VizContext);
+  const { closeActiveFile } = useContext(URLStateContext);
 
-  const onDeleteClick = () => {
+  const onDeleteConfirm = useCallback(() => {
+    const op = deleteFileOp(viz$.getValue(), activeFile);
+    closeActiveFile();
+    submitVizContentOp(op);
+  }, [activeFile, viz$, submitVizContentOp, closeActiveFile]);
+
+  const onDeleteClick = useCallback(() => {
     setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
-  };
+  }, [setActiveButton, activeButton]);
 
   return (
     <Wrapper>
@@ -32,14 +40,14 @@ export const BottomButtons = withTheme(({ theme }) => {
           <TopMessage>Are you sure you want to delete this file?</TopMessage>
           <TopOptions>
             <TopOption>
-              <ClickableOverlay>No</ClickableOverlay>
+              <ClickableOverlay>no</ClickableOverlay>
             </TopOption>
             <TopOption rightmost={true}>
               <ClickableOverlay
                 color={theme.attentionGrabber}
                 onClick={onDeleteConfirm}
               >
-                Yes
+                yes
               </ClickableOverlay>
             </TopOption>
           </TopOptions>
