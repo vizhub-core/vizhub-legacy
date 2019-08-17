@@ -7,12 +7,30 @@ export const Wrapper = styled.div`
 `;
 
 export const Top = styled.div`
-  display: flex;
-  padding: 10px;
   font-family: Poppins;
   font-size: 12px;
-  background-color: ${props => props.theme.bottomButtonBackgroundActive};
   color: ${props => props.theme.dark};
+`;
+
+export const TopMessage = styled.div`
+  display: flex;
+  padding: 10px;
+  background-color: ${props => props.theme.bottomButtonBackgroundActive};
+`;
+
+export const TopOptions = styled.div`
+  display: flex;
+`;
+
+export const TopOption = styled.div`
+  flex: 1;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.bottomButtonBackgroundActive};
+  margin: 1px ${props => (props.rightmost ? 0 : 1)}px 1px 0px;
+  position: relative;
 `;
 
 export const Bottom = styled.div`
@@ -37,4 +55,5 @@ export const ClickableOverlay = styled(Icon)`
   right: 0;
   bottom: 0;
   left: 0;
+  color: ${props => props.color || 'currentColor'};
 `;
