@@ -3,10 +3,13 @@ import { Icon } from '../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
-  background-color: ${props => props.theme.editorSectionActiveColor};
 `;
 
 export const BottomButton = styled(Icon)`
   flex: 1;
   height: 40px;
+  background-color: ${props =>
+    props.isActive
+      ? props.theme.bottomButtonBackgroundActive
+      : props.theme.bottomButtonBackground};
 `;
