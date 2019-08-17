@@ -1,4 +1,9 @@
 import React from 'react';
-import { Wrapper } from './styles';
+import { Wrapper, BottomButton } from './styles';
 
-export const BottomButtons = () => <Wrapper />;
+export const BottomButtons = () => (
+  <Wrapper>
+    <BottomButton/>
+    <BottomButton/>
+  </Wrapper>
+)
