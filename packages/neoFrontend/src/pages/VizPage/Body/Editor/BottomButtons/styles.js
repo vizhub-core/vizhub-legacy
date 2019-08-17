@@ -3,6 +3,20 @@ import { Icon } from '../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+export const Top = styled.div`
+  display: flex;
+  padding: 10px;
+  font-family: Poppins;
+  font-size: 12px;
+  background-color: ${props => props.theme.bottomButtonBackgroundActive};
+  color: ${props => props.theme.dark};
+`;
+
+export const Bottom = styled.div`
+  display: flex;
 `;
 
 export const BottomButton = styled.div`
@@ -12,6 +26,8 @@ export const BottomButton = styled.div`
     props.isActive
       ? props.theme.bottomButtonBackgroundActive
       : props.theme.bottomButtonBackground};
+  color: ${props =>
+    props.isActive ? props.activeColor || props.theme.dark : '#ffffff'};
   position: relative;
 `;
 
