@@ -12,10 +12,13 @@ import {
   Bottom,
   TopMessage,
   TopOptions,
-  TopOption
+  TopOption,
+  TopList,
+  TopListItem
 } from './styles';
 
 const DELETE_BUTTON = 'delete';
+const SETTINGS_BUTTON = 'settings';
 
 export const BottomButtons = withTheme(({ theme, activeFile }) => {
   const [activeButton, setActiveButton] = useState(null);
@@ -33,6 +36,10 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
     setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
   }, [setActiveButton, activeButton]);
 
+  const clearActiveButton = useCallback(() => {
+    setActiveButton(null);
+  }, [setActiveButton]);
+
   return (
     <Wrapper>
       {activeButton === DELETE_BUTTON ? (
@@ -40,7 +47,9 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
           <TopMessage>Are you sure you want to delete this file?</TopMessage>
           <TopOptions>
             <TopOption>
-              <ClickableOverlay>no</ClickableOverlay>
+              <ClickableOverlay onClick={clearActiveButton}>
+                no
+              </ClickableOverlay>
             </TopOption>
             <TopOption rightmost={true}>
               <ClickableOverlay
@@ -52,9 +61,16 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
             </TopOption>
           </TopOptions>
         </Top>
+      ) : activeButton === SETTINGS_BUTTON ? (
+        <Top>
+          <TopList>
+            <TopListItem>height</TopListItem>
+            <TopListItem>anyone can edit</TopListItem>
+          </TopList>
+        </Top>
       ) : null}
       <Bottom>
-        <BottomButton>
+        <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
           <ClickableOverlay>
             <SettingsSVG />
           </ClickableOverlay>
@@ -69,12 +85,14 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
             <SettingsSVG />
           </ClickableOverlay>
         </BottomButton>
-        <BottomButton
-          isActive={activeButton === DELETE_BUTTON}
-          activeColor={theme.attentionGrabber}
-        >
-          <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
-        </BottomButton>
+        {activeFile ? (
+          <BottomButton
+            isActive={activeButton === DELETE_BUTTON}
+            activeColor={theme.attentionGrabber}
+          >
+            <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
+          </BottomButton>
+        ) : null}
       </Bottom>
     </Wrapper>
   );
