@@ -20,8 +20,3 @@ export const Bottom = styled.div`
   justify-content: flex-end;
   flex-direction: column;
 `;
-
-export const BottomButtons = styled.div`
-  background-color: ${props => props.theme.editorSectionActiveColor};
-  height: 40px;
-`;
