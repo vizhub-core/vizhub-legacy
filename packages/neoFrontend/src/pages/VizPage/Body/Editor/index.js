@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { URLStateContext } from '../../URLStateContext';
 import { EditorModulesContext } from '../../EditorModulesContext';
 import { modExpandEditor, modShowEditor } from '../../../../mobileMods';
-import { Sidebar } from './styles';
+import { Sidebar, Bottom, BottomButtons } from './styles';
 import { Section } from './Section';
 import { FilesSection } from './FilesSection';
 import { CodeEditor } from './CodeEditor';
@@ -49,6 +49,9 @@ export const Editor = () => {
                   <div style={{ background: color, height: '20px' }} />
                 ))
               : null}
+            <Bottom>
+              <BottomButtons />
+            </Bottom>
           </Sidebar>
         ) : null}
         {activeFile ? <CodeEditor /> : null}
