@@ -5,6 +5,8 @@ import { useVizContentDoc } from './useVizContentDoc';
 export const useViz = initialViz => {
   const vizContentDoc = useVizContentDoc(initialViz.id);
 
+  console.log({ initialViz });
+
   // Display initial viz until realtime connection has been established.
   const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
 

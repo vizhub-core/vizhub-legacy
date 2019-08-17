@@ -34,6 +34,13 @@ export const TopOption = styled.div`
   font-weight: 600;
 `;
 
+export const TopList = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TopListItem = styled.div``;
+
 export const Bottom = styled.div`
   display: flex;
 `;
