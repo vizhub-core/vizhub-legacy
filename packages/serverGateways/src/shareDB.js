@@ -1,11 +1,17 @@
 import ShareDB from '@teamwork/sharedb';
 import ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
 import ShareDBMongo from '@teamwork/sharedb-mongo';
-import json0 from '@datavis-tech/ot-json0';
+import { type as json0 } from '@datavis-tech/ot-json0';
+
+// Spoof json0 name and URI to match existing documents from VizHub 1.0.
+Object.assign(json0, {
+  name: 'json0',
+  uri: 'http://sharejs.org/types/JSONv0'
+});
 
 // Use our custom json0 fork that implements presence.
-ShareDB.types.register(json0.type);
-ShareDB.types.defaultType = json0.type;
+ShareDB.types.register(json0);
+ShareDB.types.defaultType = json0;
 
 // Singletons.
 let shareDB;
