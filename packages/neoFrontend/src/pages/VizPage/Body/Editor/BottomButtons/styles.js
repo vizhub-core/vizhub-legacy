@@ -31,6 +31,7 @@ export const TopOption = styled.div`
   background-color: ${props => props.theme.bottomButtonBackgroundActive};
   margin: 1px ${props => (props.rightmost ? 0 : 1)}px 1px 0px;
   position: relative;
+  font-weight: 600;
 `;
 
 export const Bottom = styled.div`

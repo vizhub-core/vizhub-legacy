@@ -51,7 +51,7 @@ export const Editor = () => {
                 ))
               : null}
             <Bottom>
-              <BottomButtons />
+              <BottomButtons activeFile={activeFile} />
             </Bottom>
           </Sidebar>
         ) : null}
