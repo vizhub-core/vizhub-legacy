@@ -7,7 +7,7 @@ const DELETE_BUTTON = 'delete';
 export const BottomButtons = () => {
   const [activeButton, setActiveButton] = useState(null);
   const onDeleteClick = () => {
-    setActiveButton(DELETE_BUTTON);
+    setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
   };
   return (
     <Wrapper>
