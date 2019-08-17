@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wrapper, BottomButton } from './styles';
+import { Wrapper, BottomButton, ClickableOverlay } from './styles';
 import { SettingsSVG } from '../../../../../svg';
 
 const DELETE_BUTTON = 'delete';
@@ -12,19 +12,25 @@ export const BottomButtons = () => {
   return (
     <Wrapper>
       <BottomButton>
-        <SettingsSVG />
+        <ClickableOverlay>
+          <SettingsSVG />
+        </ClickableOverlay>
       </BottomButton>
       <BottomButton>
-        <SettingsSVG />
+        <ClickableOverlay>
+          <SettingsSVG />
+        </ClickableOverlay>
       </BottomButton>
       <BottomButton>
-        <SettingsSVG />
+        <ClickableOverlay>
+          <SettingsSVG />
+        </ClickableOverlay>
       </BottomButton>
       <BottomButton
         onClick={onDeleteClick}
         isActive={activeButton === DELETE_BUTTON}
       >
-        D
+        <ClickableOverlay>D</ClickableOverlay>
       </BottomButton>
     </Wrapper>
   );
