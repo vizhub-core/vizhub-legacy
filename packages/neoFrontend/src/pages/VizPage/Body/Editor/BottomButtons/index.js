@@ -26,12 +26,6 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
   const { viz$, submitVizContentOp } = useContext(VizContext);
   const { closeActiveFile } = useContext(URLStateContext);
 
-  const onDeleteConfirm = useCallback(() => {
-    const op = deleteFileOp(viz$.getValue(), activeFile);
-    closeActiveFile();
-    submitVizContentOp(op);
-  }, [activeFile, viz$, submitVizContentOp, closeActiveFile]);
-
   const onDeleteClick = useCallback(() => {
     setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
   }, [setActiveButton, activeButton]);
@@ -39,6 +33,13 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
   const clearActiveButton = useCallback(() => {
     setActiveButton(null);
   }, [setActiveButton]);
+
+  const onDeleteConfirm = useCallback(() => {
+    const op = deleteFileOp(viz$.getValue(), activeFile);
+    closeActiveFile();
+    clearActiveButton();
+    submitVizContentOp(op);
+  }, [activeFile, viz$, submitVizContentOp, closeActiveFile, clearActiveButton]);
 
   return (
     <Wrapper>
