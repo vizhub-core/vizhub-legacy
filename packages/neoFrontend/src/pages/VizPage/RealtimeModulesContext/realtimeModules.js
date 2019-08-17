@@ -6,6 +6,12 @@ import jsondiff from 'json0-ot-diff';
 import diffMatchPatch from 'diff-match-patch';
 import produce from 'immer';
 
+// Spoof json0 name and URI to match existing documents from VizHub 1.0.
+Object.assign(json0, {
+  name: 'json0',
+  uri: 'http://sharejs.org/types/JSONv0'
+});
+
 // Register our custom OT type (that implements presence) as the default.
 ShareDB.types.register(json0);
 ShareDB.types.defaultType = json0;
