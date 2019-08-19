@@ -10,12 +10,10 @@ import {
   ClickableOverlay,
   Top,
   Bottom,
-  TopMessage,
-  TopOptions,
-  TopOption,
   TopList,
   TopListItem
 } from './styles';
+import { DeleteTop } from './DeleteTop';
 
 const DELETE_BUTTON = 'delete';
 const SETTINGS_BUTTON = 'settings';
@@ -55,24 +53,11 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
     <Wrapper>
       <Top>
         {activeButton === DELETE_BUTTON ? (
-          <>
-            <TopMessage>Are you sure you want to delete this file?</TopMessage>
-            <TopOptions>
-              <TopOption>
-                <ClickableOverlay onClick={clearActiveButton}>
-                  no
-                </ClickableOverlay>
-              </TopOption>
-              <TopOption rightmost={true}>
-                <ClickableOverlay
-                  color={theme.attentionGrabber}
-                  onClick={onDeleteConfirm}
-                >
-                  yes
-                </ClickableOverlay>
-              </TopOption>
-            </TopOptions>
-          </>
+          <DeleteTop
+            onNoClick={clearActiveButton}
+            onDeleteConfirm={onDeleteConfirm}
+            theme={theme}
+          />
         ) : activeButton === SETTINGS_BUTTON ? (
           <TopList>
             <TopListItem>height</TopListItem>
