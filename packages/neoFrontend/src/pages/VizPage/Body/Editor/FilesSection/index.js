@@ -1,7 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { getVizFiles } from '../../../../../accessors';
+import React, { useContext, useState, useCallback } from 'react';
+import { getVizFiles, getFileIndex } from '../../../../../accessors';
+import { generateFileChangeOp } from '../../../generateFileChangeOp';
 import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
+import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../../../VizContext';
 import { Section } from '../Section';
 import { FileEntry, EditableFileEntry } from './styles';
@@ -15,12 +17,34 @@ export const FilesSection = () => {
   // editableFileNewName stores the new name, as it's being typed.
   const [editableFileNewName, setEditableFileNewName] = useState(null);
 
-  const { viz$ } = useContext(VizContext);
+  const { viz$, submitVizContentOp } = useContext(VizContext);
   const files = useValue(viz$, getVizFiles);
 
-  const onEditableFileChange = event => {
-    setEditableFileNewName(event.target.value);
-  };
+  const realtimeModules = useContext(RealtimeModulesContext);
+
+  const onEditableFileChange = useCallback(
+    event => {
+      setEditableFileNewName(event.target.value);
+    },
+    [setEditableFileNewName]
+  );
+
+  const changeFileName = useCallback(newName => {
+    setEditableFile(null);
+    const fileIndex = getFileIndex(files, editableFile);
+    const op = generateFileChangeOp(fileIndex, editableFile, newName, realtimeModules, 'name');
+    submitVizContentOp(op);
+  }, [ editableFile, setEditableFile, files, submitVizContentOp, realtimeModules]);
+
+  const onEditableFileBlur = useCallback(event => {
+    changeFileName(event.target.value);
+  }, [changeFileName]);
+
+  const onEditableFileKeyDown = useCallback(event => {
+    if (event.key === 'Enter') {
+      changeFileName(event.target.value);
+    }
+  }, [changeFileName]);
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">
@@ -32,6 +56,8 @@ export const FilesSection = () => {
                 type="text"
                 value={editableFileNewName}
                 onChange={onEditableFileChange}
+                onBlur={onEditableFileBlur}
+                onKeyDown={onEditableFileKeyDown}
               />
             ) : (
               <FileEntry
