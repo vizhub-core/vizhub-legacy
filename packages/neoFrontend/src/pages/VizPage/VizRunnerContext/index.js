@@ -15,6 +15,8 @@ import { RunContext } from '../RunContext';
 import { URLStateContext } from '../URLStateContext';
 import { computeSrcDoc } from './computeSrcDoc';
 import { setVizRunnerMode } from './setVizRunnerMode';
+import { generateErrorMessageSrcDoc } from './generateErrorMessageSrcDoc';
+import { generateRunErrorMessage } from './generateRunErrorMessage';
 
 export const VizRunnerContext = createContext();
 
@@ -48,7 +50,7 @@ export const VizRunnerProvider = ({ children }) => {
   const { mode, showEditor, activeFile } = useContext(URLStateContext);
 
   const vizHeight = useValue(viz$, getVizHeight);
-  const { runId } = useContext(RunContext);
+  const { runId, runError } = useContext(RunContext);
 
   const ref = useRef();
 
@@ -65,8 +67,18 @@ export const VizRunnerProvider = ({ children }) => {
   const contextValue = { setVizRunnerTransform };
 
   useEffect(() => {
-    iFrame.setAttribute('srcDoc', computeSrcDoc(getVizFiles(viz$.getValue())));
-  }, [viz$, runId]);
+    console.log('setting srcDoc');
+    if (runError) {
+      const errorMessage = generateRunErrorMessage(runError);
+      console.error(errorMessage);
+      iFrame.setAttribute('srcDoc', generateErrorMessageSrcDoc(errorMessage));
+    } else {
+      iFrame.setAttribute(
+        'srcDoc',
+        computeSrcDoc(getVizFiles(viz$.getValue()))
+      );
+    }
+  }, [viz$, runId, runError]);
 
   useEffect(() => {
     iFrame.setAttribute('height', vizHeight);
