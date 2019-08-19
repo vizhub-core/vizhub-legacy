@@ -1,24 +1,28 @@
+import { defaultCodingFontFamily } from '../../../theme';
+
 export const generateErrorMessageSrcDoc = errorMessage => `
   <html>
-    <body style="margin: 0px; max-width: 100vw;">
-      <div
-        style="width: 100%; height: 100%; box-sizing: border-box; text-align: center; background-color: rgb(255, 255, 255);"
-      >
-        <div
-          style="position: relative; display: inline-flex; flex-direction: column; height: 100%; width: 1024px; max-width: 100%; overflow: hidden auto; padding: 0.5rem; box-sizing: border-box; text-align: left; font-family: Consolas, Menlo, monospace; font-size: 11px; white-space: pre-wrap; word-break: break-word; line-height: 1.5; color: rgb(41, 50, 56);"
-        >
-          <div
-            style="font-size: 2em; font-family: sans-serif; color: rgb(206, 17, 38); white-space: pre-wrap; margin: 0px 2rem 0.75rem 0px; flex: 0 0 auto; max-height: 50%; overflow: auto;"
-          >
-            Failed to compile
-          </div>
-          <div style="cursor: pointer;">
-            <pre
-              style="position: relative; display: block; padding: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em; overflow-x: auto; white-space: pre-wrap; border-radius: 0.25rem; background-color: rgba(206, 17, 38, 0.05);"
-            ><code style="font-family: Consolas, Menlo, monospace;">${errorMessage}</code></pre>
-          </div>
-        </div>
-      </div>
+    <style>
+      body {
+        padding: 10px;
+      }
+      pre {
+        font-family: ${defaultCodingFontFamily};
+        font-size: 1.5em;
+        border-radius: 0.25rem;
+        background-color: rgba(206, 17, 38, 0.05);
+        padding: 10px;
+        color: rgb(41, 50, 56);
+      }
+      .title {
+        color: rgb(206, 17, 38);
+        font-size: 2em;
+        font-family: sans-serif;
+      }
+    </style>
+    <body>
+      <div class="title">Failed to compile</div>
+      <pre>${errorMessage}</pre>
     </body>
   </html>
 `;
