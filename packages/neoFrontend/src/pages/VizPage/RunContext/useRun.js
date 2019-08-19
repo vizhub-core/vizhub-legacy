@@ -22,6 +22,7 @@ const runDelay = 1000;
 export const useRun = () => {
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
   const [runId, setRunId] = useState(generateRunId());
+  const [runError, setRunError] = useState(null);
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
@@ -59,19 +60,23 @@ export const useRun = () => {
     })(),
     [setRunId]
   );
-
   const run = useCallback(async () => {
     if (!jsChanged.current) {
       setRunId(generateRunId());
     } else if (jsChanged.current === 'local') {
-      await updateBundleIfNeeded(
-        viz$,
-        editorModules,
-        realtimeModules,
-        submitVizContentOp
-      );
-      jsChanged.current = false;
-      setRunId(generateRunId());
+      try {
+        await updateBundleIfNeeded(
+          viz$,
+          editorModules,
+          realtimeModules,
+          submitVizContentOp
+        );
+        jsChanged.current = false;
+        setRunError(null);
+        setRunId(generateRunId());
+      } catch (error) {
+        setRunError(error);
+      }
     } else if (jsChanged.current === 'remote') {
       // If JS changed remotely, do nothing here,
       // but wait for remote to update bundle.js,
@@ -153,6 +158,7 @@ export const useRun = () => {
   return {
     resetRunTimer,
     runId,
-    runTimerProgress$
+    runTimerProgress$,
+    runError
   };
 };
