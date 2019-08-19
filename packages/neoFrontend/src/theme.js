@@ -22,6 +22,8 @@ export const theme = {
   userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
   hoverBackground: 'rgba(0, 0, 0, 0.05)',
   activeBackground: 'rgba(0, 0, 0, 0.1)',
+  bottomButtonBackgroundActive: 'rgba(216, 216, 216, 0.75)',
+  bottomButtonBackground: 'rgba(216, 216, 216, 0.22)',
 
   defaultCodingFontFamily,
   defaultCodingFontSize,
