@@ -52,7 +52,7 @@ export const darkNavbarTheme = {
   userMenuOverlayBackground: 'rgba(0, 0, 0, 0.5)',
   userMenuOverlayBackgroundHover: 'rgba(0, 0, 0, 0.4)',
   userMenuOverlayBackgroundActive: 'rgba(0, 0, 0, 0.3)',
-  userMenuOverlayForeground: '#ffffff',
+  userMenuOverlayForeground: '#ffffff'
   //editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
 };
 

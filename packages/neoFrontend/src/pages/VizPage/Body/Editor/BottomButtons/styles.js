@@ -2,16 +2,20 @@ import styled from 'styled-components';
 import { Icon } from '../../styles';
 import { Clickable } from '../../../../../styles';
 
+const bottomButtonHeight = '40px';
+
 export const Wrapper = styled.div`
-  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const Top = styled.div`
+  position: absolute;
+  bottom: ${bottomButtonHeight};
   font-family: Poppins;
   font-size: 12px;
   color: ${props => props.theme.dark};
@@ -56,7 +60,7 @@ export const Bottom = styled.div`
 
 export const BottomButton = styled.div`
   flex: 1;
-  height: 40px;
+  height: ${bottomButtonHeight};
   background-color: ${props =>
     props.isActive
       ? props.theme.bottomButtonBackgroundActive
