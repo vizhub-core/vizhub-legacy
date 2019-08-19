@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { useState, createContext, useReducer, useEffect } from 'react';
 
 export const SplitPaneResizeContext = createContext();
 
@@ -13,6 +13,7 @@ const reducer = (codeEditorWidth, movementClientX) =>
 
 export const SplitPaneResizeProvider = ({ children }) => {
   const [codeEditorWidth, moveSplitPane] = useReducer(reducer, initialWidth);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     if (codeEditorWidth !== initialWidth) {
@@ -27,7 +28,9 @@ export const SplitPaneResizeProvider = ({ children }) => {
   }, [codeEditorWidth]);
 
   return (
-    <SplitPaneResizeContext.Provider value={{ codeEditorWidth, moveSplitPane }}>
+    <SplitPaneResizeContext.Provider
+      value={{ codeEditorWidth, moveSplitPane, isDragging, setIsDragging }}
+    >
       {children}
     </SplitPaneResizeContext.Provider>
   );

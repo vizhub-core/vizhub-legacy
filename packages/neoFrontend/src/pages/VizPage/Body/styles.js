@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Clickable, Z_ABOVE } from '../../../styles';
+import { Clickable, Z_WAY_ABOVE } from '../../../styles';
 
 export const Wrapper = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -10,14 +10,13 @@ export const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  z-index: ${Z_ABOVE};
 `;
 
 // Set z index, just so the shadow from the top
 // can cast on top of the bottom content
 // when it is scrolled.
 export const Top = styled.div`
-  z-index: ${Z_ABOVE};
+  z-index: ${Z_WAY_ABOVE};
 `;
 
 // Big WTF moment - here's why "min-height: 0" right here:
@@ -52,4 +51,5 @@ export const Footer = styled.div`
 export const FrameFooter = styled(Footer)`
   border-radius: 0 0 3px 3px;
   position: relative;
+  z-index: ${Z_WAY_ABOVE};
 `;

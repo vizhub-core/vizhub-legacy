@@ -28,11 +28,11 @@ export const VizPage = () => (
                     fallback={<LoadingScreen message="Forking..." />}
                   >
                     <ThemeProvider theme={darkNavbarTheme}>
-                      <VizRunnerProvider>
-                        <SplitPaneResizeProvider>
+                      <SplitPaneResizeProvider>
+                        <VizRunnerProvider>
                           <Body />
-                        </SplitPaneResizeProvider>
-                      </VizRunnerProvider>
+                        </VizRunnerProvider>
+                      </SplitPaneResizeProvider>
                     </ThemeProvider>
                   </ForkingProvider>
                 </RunProvider>
