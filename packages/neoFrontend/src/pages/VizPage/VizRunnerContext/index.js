@@ -67,7 +67,6 @@ export const VizRunnerProvider = ({ children }) => {
   const contextValue = { setVizRunnerTransform };
 
   useEffect(() => {
-    console.log('setting srcDoc');
     if (runError) {
       const errorMessage = generateRunErrorMessage(runError);
       console.error(errorMessage);

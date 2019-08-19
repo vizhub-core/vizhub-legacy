@@ -30,6 +30,10 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
     setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
   }, [setActiveButton, activeButton]);
 
+  const onSettingsClick = useCallback(() => {
+    setActiveButton(activeButton === SETTINGS_BUTTON ? null : SETTINGS_BUTTON);
+  }, [setActiveButton, activeButton]);
+
   const clearActiveButton = useCallback(() => {
     setActiveButton(null);
   }, [setActiveButton]);
@@ -49,48 +53,44 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
 
   return (
     <Wrapper>
-      {activeButton === DELETE_BUTTON ? (
-        <Top>
-          <TopMessage>Are you sure you want to delete this file?</TopMessage>
-          <TopOptions>
-            <TopOption>
-              <ClickableOverlay onClick={clearActiveButton}>
-                no
-              </ClickableOverlay>
-            </TopOption>
-            <TopOption rightmost={true}>
-              <ClickableOverlay
-                color={theme.attentionGrabber}
-                onClick={onDeleteConfirm}
-              >
-                yes
-              </ClickableOverlay>
-            </TopOption>
-          </TopOptions>
-        </Top>
-      ) : activeButton === SETTINGS_BUTTON ? (
-        <Top>
+      <Top>
+        {activeButton === DELETE_BUTTON ? (
+          <>
+            <TopMessage>Are you sure you want to delete this file?</TopMessage>
+            <TopOptions>
+              <TopOption>
+                <ClickableOverlay onClick={clearActiveButton}>
+                  no
+                </ClickableOverlay>
+              </TopOption>
+              <TopOption rightmost={true}>
+                <ClickableOverlay
+                  color={theme.attentionGrabber}
+                  onClick={onDeleteConfirm}
+                >
+                  yes
+                </ClickableOverlay>
+              </TopOption>
+            </TopOptions>
+          </>
+        ) : activeButton === SETTINGS_BUTTON ? (
           <TopList>
             <TopListItem>height</TopListItem>
             <TopListItem>anyone can edit</TopListItem>
           </TopList>
-        </Top>
-      ) : null}
+        ) : null}
+      </Top>
       <Bottom>
         <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
-          <ClickableOverlay>
+          <ClickableOverlay onClick={onSettingsClick}>
             <SettingsSVG />
           </ClickableOverlay>
         </BottomButton>
         <BottomButton>
-          <ClickableOverlay>
-            <SettingsSVG />
-          </ClickableOverlay>
+          <ClickableOverlay>N</ClickableOverlay>
         </BottomButton>
         <BottomButton>
-          <ClickableOverlay>
-            <SettingsSVG />
-          </ClickableOverlay>
+          <ClickableOverlay>E</ClickableOverlay>
         </BottomButton>
         {activeFile ? (
           <BottomButton
