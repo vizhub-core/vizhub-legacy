@@ -19,4 +19,5 @@ export const Bottom = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  position: relative;
 `;
