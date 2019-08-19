@@ -54,7 +54,7 @@ export const CodeEditor = () => {
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
       />
-      <CodeArea activeFile={activeFile} />
+      <CodeArea activeFile={activeFile} closeActiveFile={closeActiveFile} />
     </Wrapper>
   );
 };

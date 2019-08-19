@@ -29,22 +29,37 @@ export const FilesSection = () => {
     [setEditableFileNewName]
   );
 
-  const changeFileName = useCallback(newName => {
-    setEditableFile(null);
-    const fileIndex = getFileIndex(files, editableFile);
-    const op = generateFileChangeOp(fileIndex, editableFile, newName, realtimeModules, 'name');
-    submitVizContentOp(op);
-  }, [ editableFile, setEditableFile, files, submitVizContentOp, realtimeModules]);
+  const changeFileName = useCallback(
+    newName => {
+      setEditableFile(null);
+      const fileIndex = getFileIndex(files, editableFile);
+      const op = generateFileChangeOp(
+        fileIndex,
+        editableFile,
+        newName,
+        realtimeModules,
+        'name'
+      );
+      submitVizContentOp(op);
+    },
+    [editableFile, setEditableFile, files, submitVizContentOp, realtimeModules]
+  );
 
-  const onEditableFileBlur = useCallback(event => {
-    changeFileName(event.target.value);
-  }, [changeFileName]);
-
-  const onEditableFileKeyDown = useCallback(event => {
-    if (event.key === 'Enter') {
+  const onEditableFileBlur = useCallback(
+    event => {
       changeFileName(event.target.value);
-    }
-  }, [changeFileName]);
+    },
+    [changeFileName]
+  );
+
+  const onEditableFileKeyDown = useCallback(
+    event => {
+      if (event.key === 'Enter') {
+        changeFileName(event.target.value);
+      }
+    },
+    [changeFileName]
+  );
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">
