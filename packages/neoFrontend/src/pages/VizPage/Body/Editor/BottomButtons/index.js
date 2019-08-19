@@ -4,16 +4,9 @@ import { SettingsSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';
-import {
-  Wrapper,
-  BottomButton,
-  ClickableOverlay,
-  Top,
-  Bottom,
-  TopList,
-  TopListItem
-} from './styles';
+import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
 import { DeleteTop } from './DeleteTop';
+import { SettingsTop } from './SettingsTop';
 
 const DELETE_BUTTON = 'delete';
 const SETTINGS_BUTTON = 'settings';
@@ -59,10 +52,7 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
             theme={theme}
           />
         ) : activeButton === SETTINGS_BUTTON ? (
-          <TopList>
-            <TopListItem>height</TopListItem>
-            <TopListItem>anyone can edit</TopListItem>
-          </TopList>
+          <SettingsTop />
         ) : null}
       </Top>
       <Bottom>
