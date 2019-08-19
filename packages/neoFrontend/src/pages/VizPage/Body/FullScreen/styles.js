@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Z_BELOW, Z_WAY_ABOVE } from '../../../../styles';
 import { Footer } from '../styles';
 
 export const Backdrop = styled.div`
@@ -8,12 +9,12 @@ export const Backdrop = styled.div`
   bottom: 0;
   left: 0;
   background-color: #ffffff;
-  z-index: -2;
+  z-index: ${Z_BELOW};
   opacity: 0;
 `;
 
 export const Wrapper = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -38,4 +39,5 @@ export const FullScreenFooter = styled(Footer)`
     opacity: 1;
   }
   opacity: 0;
+  z-index: ${Z_WAY_ABOVE};
 `;

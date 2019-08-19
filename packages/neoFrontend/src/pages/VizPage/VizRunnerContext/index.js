@@ -10,6 +10,7 @@ import { vizWidth } from '../../../constants';
 import { useValue } from '../../../useValue';
 import { modMode } from '../../../mobileMods';
 import { VizContext } from '../VizContext';
+import { SplitPaneResizeContext } from '../SplitPaneResizeContext';
 import { RunContext } from '../RunContext';
 import { URLStateContext } from '../URLStateContext';
 import { computeSrcDoc } from './computeSrcDoc';
@@ -70,6 +71,13 @@ export const VizRunnerProvider = ({ children }) => {
   useEffect(() => {
     iFrame.setAttribute('height', vizHeight);
   }, [vizHeight]);
+
+  // Disable pointer events when split pane is being dragged.
+  // Otherwise, they do interfere with dragging the split pane.
+  const { isDragging } = useContext(SplitPaneResizeContext);
+  useEffect(() => {
+    iFrame.style['pointer-events'] = isDragging ? 'none' : 'all';
+  }, [isDragging]);
 
   useEffect(() => {
     const div = ref.current;

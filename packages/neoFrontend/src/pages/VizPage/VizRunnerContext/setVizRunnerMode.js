@@ -1,4 +1,4 @@
-import { Z_BELOW, Z_WAY_ABOVE } from '../../../styles';
+import { Z_ABOVE, Z_WAY_ABOVE } from '../../../styles';
 import { theme } from '../../../theme';
 import { useTransitions } from '../../../constants';
 
@@ -13,9 +13,9 @@ let mode;
 let timeoutId;
 
 const setStyles = (iFrame, newMode) => {
-  // If in "mini" mode, set Z index high.
+  // If in "mini" or "micro" mode, set Z index high.
   iFrame.style['z-index'] =
-    newMode === 'mini' || newMode === 'micro' ? Z_WAY_ABOVE : Z_BELOW;
+    newMode === 'mini' || newMode === 'micro' ? Z_WAY_ABOVE : Z_ABOVE;
 
   // If not in "fullscreen" newMode, set shadow.
   iFrame.style['box-shadow'] = newMode === 'full' ? 'none' : theme.shadowLight;

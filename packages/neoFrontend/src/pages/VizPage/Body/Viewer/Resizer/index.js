@@ -1,18 +1,13 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  useRef
-} from 'react';
+import React, { useContext, useEffect, useCallback, useRef } from 'react';
 import { Wrapper, Thumb } from './styles';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 
 export const Resizer = () => {
   const { showResizer } = useContext(URLStateContext);
-  const { moveSplitPane } = useContext(SplitPaneResizeContext);
-  const [isDragging, setIsDragging] = useState(false);
+  const { moveSplitPane, isDragging, setIsDragging } = useContext(
+    SplitPaneResizeContext
+  );
   const previousClientX = useRef();
 
   const onMouseDown = useCallback(event => {
@@ -20,7 +15,7 @@ export const Resizer = () => {
     previousClientX.current = event.clientX;
     setIsDragging(true);
     document.body.style.cursor = 'col-resize';
-  }, []);
+  }, [setIsDragging]);
 
   const onMouseMove = useCallback(
     event => {
@@ -35,7 +30,7 @@ export const Resizer = () => {
   const onMouseUp = useCallback(() => {
     setIsDragging(false);
     document.body.style.cursor = 'default';
-  }, []);
+  }, [setIsDragging]);
 
   useEffect(() => {
     if (isDragging) {
