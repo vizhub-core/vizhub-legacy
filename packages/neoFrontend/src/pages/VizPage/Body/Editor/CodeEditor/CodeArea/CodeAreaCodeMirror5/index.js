@@ -5,9 +5,9 @@ import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
 import { EditorModulesContext } from '../../../../../EditorModulesContext';
-import { useFileIndex } from '../useFileIndex';
 import { light } from '../../../themes/vizHub';
-import { usePath } from '../usePath';
+import { useFileIndex } from '../../useFileIndex';
+import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { changeObjToOp } from './changeObjToOp';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
@@ -21,7 +21,7 @@ const modes = {
 };
 const getMode = extension => modes[extension];
 
-export const CodeAreaCodeMirror5 = ({ activeFile, closeActiveFile }) => {
+export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
   const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', 'default');
@@ -97,7 +97,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile, closeActiveFile }) => {
     // either because it's been renamed or deleted.
     // In this case, we close the active file and bail out to avoid a crash.
     if (!file) {
-      closeActiveFile();
+      //closeActiveFile();
       return;
     }
 
@@ -129,16 +129,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile, closeActiveFile }) => {
     return () => {
       subscription.unsubscribe();
     };
-  }, [
-    viz$,
-    ref,
-    vizContentOp$,
-    realtimeModules,
-    path,
-    fileIndex,
-    codeMirror,
-    closeActiveFile
-  ]);
+  }, [viz$, ref, vizContentOp$, realtimeModules, path, fileIndex, codeMirror]);
 
   // Reset run timer on cursor movement.
   //
