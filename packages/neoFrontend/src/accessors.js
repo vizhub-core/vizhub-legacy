@@ -36,3 +36,11 @@ export const getVizFile = fileIndex => visualization =>
 
 export const getExtension = fileName =>
   fileName.substr(fileName.lastIndexOf('.'));
+
+export const deleteFileOp = (viz, fileName) => {
+  const fileIndex = getVizFileIndex(fileName)(viz);
+  return {
+    p: ['files', fileIndex],
+    ld: viz.content.files[fileIndex]
+  };
+};

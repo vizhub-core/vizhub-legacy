@@ -106,8 +106,8 @@ export const useRun = () => {
   // Keep track of when JS files were changed locally.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ nextContent, op, originatedLocally }) => {
-        if (changesJS(op, nextContent.files)) {
+      ({ previousContent, op, originatedLocally }) => {
+        if (changesJS(op, previousContent.files)) {
           jsChanged.current = originatedLocally ? 'local' : 'remote';
         }
       }

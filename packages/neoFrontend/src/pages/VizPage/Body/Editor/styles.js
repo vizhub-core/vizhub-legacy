@@ -13,3 +13,10 @@ export const Sidebar = styled(EditorComponent)`
   display: flex;
   flex-direction: column;
 `;
+
+export const Bottom = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+`;
