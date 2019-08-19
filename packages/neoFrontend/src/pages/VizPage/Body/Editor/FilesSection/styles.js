@@ -16,7 +16,12 @@ export const FileEntry = styled(Clickable)`
   text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
 `;
 
-export const EditableFileEntry = styled.input`
+export const EditableFileEntry = styled.div`
+  position: relative;
+  height: ${props => props.theme.editorEntryHeight}px;
+`;
+
+export const EditableFileInput = styled.input`
   ${FileStyle}
   font-family: ${props => props.theme.defaultCodingFontFamily};
   font-size: ${props => props.theme.defaultCodingFontSize};
@@ -28,5 +33,7 @@ export const EditableFileEntry = styled.input`
   padding-bottom: 0;
   padding-right: 0;
   color: ${props => props.theme.dark};
+  position: absolute;
   width: 100%;
+  box-sizing: border-box;
 `;

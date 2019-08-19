@@ -6,7 +6,7 @@ import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../../../VizContext';
 import { Section } from '../Section';
-import { FileEntry, EditableFileEntry } from './styles';
+import { FileEntry, EditableFileEntry, EditableFileInput } from './styles';
 
 export const FilesSection = () => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
@@ -40,7 +40,9 @@ export const FilesSection = () => {
         realtimeModules,
         'name'
       );
-      submitVizContentOp(op);
+      if (op.length > 0) {
+        submitVizContentOp(op);
+      }
     },
     [editableFile, setEditableFile, files, submitVizContentOp, realtimeModules]
   );
@@ -66,14 +68,16 @@ export const FilesSection = () => {
       {files
         ? files.map(file =>
             file.name === editableFile ? (
-              <EditableFileEntry
-                key={file.name}
-                type="text"
-                value={editableFileNewName}
-                onChange={onEditableFileChange}
-                onBlur={onEditableFileBlur}
-                onKeyDown={onEditableFileKeyDown}
-              />
+              <EditableFileEntry>
+                <EditableFileInput
+                  key={file.name}
+                  type="text"
+                  value={editableFileNewName}
+                  onChange={onEditableFileChange}
+                  onBlur={onEditableFileBlur}
+                  onKeyDown={onEditableFileKeyDown}
+                />
+              </EditableFileEntry>
             ) : (
               <FileEntry
                 key={file.name}

@@ -7,11 +7,17 @@ export const EditorComponent = styled.div`
 `;
 
 export const Sidebar = styled(EditorComponent)`
-  ${props => (props.expand ? 'flex: 1' : 'width: 150px')};
+  ${props => (props.expand ? 'flex: 1' : 'min-width: 150px')};
   font-family: ${props => props.theme.defaultCodingFontFamily};
   font-size: ${props => props.theme.defaultCodingFontSize};
   display: flex;
   flex-direction: column;
+`;
+
+export const Top = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 `;
 
 export const Bottom = styled.div`
@@ -19,5 +25,4 @@ export const Bottom = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  position: relative;
 `;
