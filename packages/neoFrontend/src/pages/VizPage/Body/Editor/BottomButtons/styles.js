@@ -3,6 +3,10 @@ import { Icon } from '../../styles';
 import { Clickable } from '../../../../../styles';
 
 export const Wrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
 `;
