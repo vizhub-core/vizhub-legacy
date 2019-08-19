@@ -14,7 +14,6 @@ import { updateBundleIfNeeded } from './updateBundleIfNeeded';
 import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
 import { changesJS } from './changesJS';
-import { logRollupError } from './logRollupError';
 
 // The delay in ms between the time a change is made and the time
 // the program is run.
@@ -23,6 +22,7 @@ const runDelay = 1000;
 export const useRun = () => {
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
   const [runId, setRunId] = useState(generateRunId());
+  const [runError, setRunError] = useState(null);
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
@@ -60,7 +60,6 @@ export const useRun = () => {
     })(),
     [setRunId]
   );
-
   const run = useCallback(async () => {
     if (!jsChanged.current) {
       setRunId(generateRunId());
@@ -73,13 +72,10 @@ export const useRun = () => {
           submitVizContentOp
         );
         jsChanged.current = false;
+        setRunError(null);
         setRunId(generateRunId());
       } catch (error) {
-        // TODO proper handling of errors.
-        // Display them where viz should be.
-        // Also output to console.
-        console.log('cauthr');
-        logRollupError(error);
+        setRunError(error);
       }
     } else if (jsChanged.current === 'remote') {
       // If JS changed remotely, do nothing here,
@@ -162,6 +158,7 @@ export const useRun = () => {
   return {
     resetRunTimer,
     runId,
-    runTimerProgress$
+    runTimerProgress$,
+    runError
   };
 };
