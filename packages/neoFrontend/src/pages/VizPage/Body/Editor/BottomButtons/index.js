@@ -7,9 +7,11 @@ import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
 import { DeleteTop } from './DeleteTop';
 import { SettingsTop } from './SettingsTop';
+import { NewTop } from './NewTop';
 
-const DELETE_BUTTON = 'delete';
 const SETTINGS_BUTTON = 'settings';
+const NEW_BUTTON = 'new';
+const DELETE_BUTTON = 'delete';
 
 export const BottomButtons = withTheme(({ theme, activeFile }) => {
   const [activeButton, setActiveButton] = useState(null);
@@ -23,6 +25,10 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
 
   const onSettingsClick = useCallback(() => {
     setActiveButton(activeButton === SETTINGS_BUTTON ? null : SETTINGS_BUTTON);
+  }, [setActiveButton, activeButton]);
+
+  const onNewClick = useCallback(() => {
+    setActiveButton(activeButton === NEW_BUTTON ? null : NEW_BUTTON);
   }, [setActiveButton, activeButton]);
 
   const clearActiveButton = useCallback(() => {
@@ -50,9 +56,12 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
             onNoClick={clearActiveButton}
             onDeleteConfirm={onDeleteConfirm}
             theme={theme}
+            activeFile={activeFile}
           />
         ) : activeButton === SETTINGS_BUTTON ? (
           <SettingsTop />
+        ) : activeButton === NEW_BUTTON ? (
+          <NewTop />
         ) : null}
       </Top>
       <Bottom>
@@ -61,8 +70,11 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
             <SettingsSVG />
           </ClickableOverlay>
         </BottomButton>
-        <BottomButton>
-          <ClickableOverlay>N</ClickableOverlay>
+        <BottomButton
+          isActive={activeButton === NEW_BUTTON}
+          activeColor={'#3866e9'}
+        >
+          <ClickableOverlay onClick={onNewClick}>N</ClickableOverlay>
         </BottomButton>
         <BottomButton>
           <ClickableOverlay>E</ClickableOverlay>
