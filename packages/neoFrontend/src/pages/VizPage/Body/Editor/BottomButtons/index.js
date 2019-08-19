@@ -39,7 +39,13 @@ export const BottomButtons = withTheme(({ theme, activeFile }) => {
     closeActiveFile();
     clearActiveButton();
     submitVizContentOp(op);
-  }, [activeFile, viz$, submitVizContentOp, closeActiveFile, clearActiveButton]);
+  }, [
+    activeFile,
+    viz$,
+    submitVizContentOp,
+    closeActiveFile,
+    clearActiveButton
+  ]);
 
   return (
     <Wrapper>
