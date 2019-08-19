@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Icon } from '../../styles';
+import { Clickable } from '../../../../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -36,10 +37,14 @@ export const TopOption = styled.div`
 
 export const TopList = styled.div`
   display: flex;
+  background-color: ${props => props.theme.bottomButtonBackgroundActive};
   flex-direction: column;
+  padding: 7px 0 7px 0;
 `;
 
-export const TopListItem = styled.div``;
+export const TopListItem = styled(Clickable)`
+  padding: 3px 10px 3px 10px;
+`;
 
 export const Bottom = styled.div`
   display: flex;
