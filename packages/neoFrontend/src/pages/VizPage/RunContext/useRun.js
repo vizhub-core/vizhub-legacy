@@ -14,6 +14,7 @@ import { updateBundleIfNeeded } from './updateBundleIfNeeded';
 import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
 import { changesJS } from './changesJS';
+import { logRollupError } from './logRollupError';
 
 // The delay in ms between the time a change is made and the time
 // the program is run.
@@ -64,14 +65,22 @@ export const useRun = () => {
     if (!jsChanged.current) {
       setRunId(generateRunId());
     } else if (jsChanged.current === 'local') {
-      await updateBundleIfNeeded(
-        viz$,
-        editorModules,
-        realtimeModules,
-        submitVizContentOp
-      );
-      jsChanged.current = false;
-      setRunId(generateRunId());
+      try {
+        await updateBundleIfNeeded(
+          viz$,
+          editorModules,
+          realtimeModules,
+          submitVizContentOp
+        );
+        jsChanged.current = false;
+        setRunId(generateRunId());
+      } catch (error) {
+        // TODO proper handling of errors.
+        // Display them where viz should be.
+        // Also output to console.
+        console.log('cauthr');
+        logRollupError(error);
+      }
     } else if (jsChanged.current === 'remote') {
       // If JS changed remotely, do nothing here,
       // but wait for remote to update bundle.js,

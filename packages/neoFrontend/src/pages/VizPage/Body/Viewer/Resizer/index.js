@@ -10,12 +10,15 @@ export const Resizer = () => {
   );
   const previousClientX = useRef();
 
-  const onMouseDown = useCallback(event => {
-    event.preventDefault();
-    previousClientX.current = event.clientX;
-    setIsDragging(true);
-    document.body.style.cursor = 'col-resize';
-  }, [setIsDragging]);
+  const onMouseDown = useCallback(
+    event => {
+      event.preventDefault();
+      previousClientX.current = event.clientX;
+      setIsDragging(true);
+      document.body.style.cursor = 'col-resize';
+    },
+    [setIsDragging]
+  );
 
   const onMouseMove = useCallback(
     event => {
