@@ -9,7 +9,7 @@ import { Section } from '../Section';
 import { FileEntry } from './styles';
 import { EditableFileEntry } from './EditableFileEntry';
 
-export const FilesSection = () => {
+export const FilesSection = ({ isRenamingNewFile }) => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
   const [isRenamingActiveFile, setIsRenamingActiveFile] = useState(false);
 
@@ -41,6 +41,10 @@ export const FilesSection = () => {
       realtimeModules
     ]
   );
+
+  const createNewFile = useCallback(newName => {
+    console.log('Create file ' + newName);
+  }, []);
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">
@@ -74,6 +78,9 @@ export const FilesSection = () => {
             )
           )
         : null}
+      {isRenamingNewFile ? (
+        <EditableFileEntry changeFileName={createNewFile} initialFileName="" />
+      ) : null}
     </Section>
   );
 };

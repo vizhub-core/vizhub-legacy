@@ -13,81 +13,85 @@ const SETTINGS_BUTTON = 'settings';
 const NEW_BUTTON = 'new';
 const DELETE_BUTTON = 'delete';
 
-export const BottomButtons = withTheme(({ theme, activeFile }) => {
-  const [activeButton, setActiveButton] = useState(null);
+export const BottomButtons = withTheme(
+  ({ theme, activeFile, onNewFileClick }) => {
+    const [activeButton, setActiveButton] = useState(null);
 
-  const { viz$, submitVizContentOp } = useContext(VizContext);
-  const { closeActiveFile } = useContext(URLStateContext);
+    const { viz$, submitVizContentOp } = useContext(VizContext);
+    const { closeActiveFile } = useContext(URLStateContext);
 
-  const onDeleteClick = useCallback(() => {
-    setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
-  }, [setActiveButton, activeButton]);
+    const onDeleteClick = useCallback(() => {
+      setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
+    }, [setActiveButton, activeButton]);
 
-  const onSettingsClick = useCallback(() => {
-    setActiveButton(activeButton === SETTINGS_BUTTON ? null : SETTINGS_BUTTON);
-  }, [setActiveButton, activeButton]);
+    const onSettingsClick = useCallback(() => {
+      setActiveButton(
+        activeButton === SETTINGS_BUTTON ? null : SETTINGS_BUTTON
+      );
+    }, [setActiveButton, activeButton]);
 
-  const onNewClick = useCallback(() => {
-    setActiveButton(activeButton === NEW_BUTTON ? null : NEW_BUTTON);
-  }, [setActiveButton, activeButton]);
+    const onNewClick = useCallback(() => {
+      setActiveButton(activeButton === NEW_BUTTON ? null : NEW_BUTTON);
+    }, [setActiveButton, activeButton]);
 
-  const clearActiveButton = useCallback(() => {
-    setActiveButton(null);
-  }, [setActiveButton]);
+    const clearActiveButton = useCallback(() => {
+      setActiveButton(null);
+    }, [setActiveButton]);
 
-  const onDeleteConfirm = useCallback(() => {
-    const op = deleteFileOp(viz$.getValue(), activeFile);
-    closeActiveFile();
-    clearActiveButton();
-    submitVizContentOp(op);
-  }, [
-    activeFile,
-    viz$,
-    submitVizContentOp,
-    closeActiveFile,
-    clearActiveButton
-  ]);
+    const onDeleteConfirm = useCallback(() => {
+      const op = deleteFileOp(viz$.getValue(), activeFile);
+      closeActiveFile();
+      clearActiveButton();
+      submitVizContentOp(op);
+    }, [
+      activeFile,
+      viz$,
+      submitVizContentOp,
+      closeActiveFile,
+      clearActiveButton
+    ]);
 
-  return (
-    <Wrapper>
-      <Top>
-        {activeButton === DELETE_BUTTON ? (
-          <DeleteTop
-            onNoClick={clearActiveButton}
-            onDeleteConfirm={onDeleteConfirm}
-            theme={theme}
-            activeFile={activeFile}
-          />
-        ) : activeButton === SETTINGS_BUTTON ? (
-          <SettingsTop />
-        ) : activeButton === NEW_BUTTON ? (
-          <NewTop />
-        ) : null}
-      </Top>
-      <Bottom>
-        <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
-          <ClickableOverlay onClick={onSettingsClick}>
-            <SettingsSVG />
-          </ClickableOverlay>
-        </BottomButton>
-        <BottomButton
-          isActive={activeButton === NEW_BUTTON}
-          activeColor={'#3866e9'}
-        >
-          <ClickableOverlay onClick={onNewClick}>N</ClickableOverlay>
-        </BottomButton>
-        <BottomButton>
-          <ClickableOverlay>E</ClickableOverlay>
-        </BottomButton>
-        {activeFile ? (
-          <BottomButton
-            isActive={activeButton === DELETE_BUTTON}
-            activeColor={theme.attentionGrabber}
-          >
-            <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
+    return (
+      <Wrapper>
+        <Top>
+          {activeButton === DELETE_BUTTON ? (
+            <DeleteTop
+              onNoClick={clearActiveButton}
+              onDeleteConfirm={onDeleteConfirm}
+              theme={theme}
+              activeFile={activeFile}
+            />
+          ) : activeButton === SETTINGS_BUTTON ? (
+            <SettingsTop />
+          ) : activeButton === NEW_BUTTON ? (
+            <NewTop onNewFileClick={onNewFileClick} />
+          ) : null}
+        </Top>
+        <Bottom>
+          <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
+            <ClickableOverlay onClick={onSettingsClick}>
+              <SettingsSVG />
+            </ClickableOverlay>
           </BottomButton>
-        ) : null}
-      </Bottom>
-    </Wrapper>
-  );
-});
+          <BottomButton
+            isActive={activeButton === NEW_BUTTON}
+            activeColor={'#3866e9'}
+          >
+            <ClickableOverlay onClick={onNewClick}>N</ClickableOverlay>
+          </BottomButton>
+          <BottomButton>
+            <ClickableOverlay>E</ClickableOverlay>
+          </BottomButton>
+          {activeFile ? (
+            <BottomButton
+              isActive={activeButton === DELETE_BUTTON}
+              activeColor={theme.attentionGrabber}
+            >
+              <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
+            </BottomButton>
+          ) : null}
+        </Bottom>
+      </Wrapper>
+    );
+  }
+);
