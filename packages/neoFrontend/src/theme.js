@@ -30,6 +30,7 @@ export const theme = {
   defaultCodingFontSize,
   miniWidth: 268,
   fastTransition: '.2s ease-in-out',
+  editorBackground: '#3d4b65',
   editorSectionActiveColor: '#5b677d',
   editorEntryHeight: 30,
   editorFileActiveColor: '#ffffff',

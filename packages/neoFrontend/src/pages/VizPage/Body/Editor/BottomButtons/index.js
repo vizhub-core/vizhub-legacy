@@ -1,6 +1,6 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
-import { SettingsSVG } from '../../../../../svg';
+import { SettingsSVG, TrashSVG, NewSVG, ExportSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';
@@ -82,17 +82,23 @@ export const BottomButtons = withTheme(
             isActive={activeButton === NEW_BUTTON}
             activeColor={'#3866e9'}
           >
-            <ClickableOverlay onClick={onNewClick}>N</ClickableOverlay>
+            <ClickableOverlay onClick={onNewClick}>
+              <NewSVG />
+            </ClickableOverlay>
           </BottomButton>
           <BottomButton>
-            <ClickableOverlay>E</ClickableOverlay>
+            <ClickableOverlay>
+              <ExportSVG />
+            </ClickableOverlay>
           </BottomButton>
           {activeFile && activeFile !== 'bundle.js' ? (
             <BottomButton
               isActive={activeButton === DELETE_BUTTON}
               activeColor={theme.attentionGrabber}
             >
-              <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
+              <ClickableOverlay onClick={onDeleteClick}>
+                <TrashSVG />
+              </ClickableOverlay>
             </BottomButton>
           ) : null}
         </Bottom>
