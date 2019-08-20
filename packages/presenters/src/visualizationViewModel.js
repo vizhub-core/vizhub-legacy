@@ -1,5 +1,3 @@
-import { Visualization, Files, DocumentId } from 'vizhub-entities';
-
 export class VisualizationViewModel {
   constructor(visualization) {
     this.id = visualization.id;
