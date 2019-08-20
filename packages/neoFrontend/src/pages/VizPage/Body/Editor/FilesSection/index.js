@@ -57,10 +57,11 @@ export const FilesSection = () => {
                 key={file.name}
                 isActive={file.name === activeFile}
                 onClick={() => {
+                  setActiveFile(file.name);
+
                   // Don't allow users to rename bundle.js
                   if (activeFile === 'bundle.js') return;
                   setIsRenamingActiveFile(activeFile === file.name);
-                  setActiveFile(file.name);
                 }}
                 className={
                   file.name === 'index.html'
