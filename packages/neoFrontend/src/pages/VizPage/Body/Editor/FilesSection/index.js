@@ -6,36 +6,24 @@ import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../../../VizContext';
 import { Section } from '../Section';
-import { FileEntry, EditableFileEntry, EditableFileInput } from './styles';
+import { FileEntry } from './styles';
+import { EditableFileEntry } from './EditableFileEntry';
 
 export const FilesSection = () => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
-
-  // editableFile stores the original name, not the changed name.
-  const [editableFile, setEditableFile] = useState(null);
-
-  // editableFileNewName stores the new name, as it's being typed.
-  const [editableFileNewName, setEditableFileNewName] = useState(null);
+  const [isRenamingActiveFile, setIsRenamingActiveFile] = useState(false);
 
   const { viz$, submitVizContentOp } = useContext(VizContext);
   const files = useValue(viz$, getVizFiles);
 
   const realtimeModules = useContext(RealtimeModulesContext);
 
-  const onEditableFileChange = useCallback(
-    event => {
-      setEditableFileNewName(event.target.value);
-    },
-    [setEditableFileNewName]
-  );
-
-  const changeFileName = useCallback(
+  const renameActiveFile = useCallback(
     newName => {
-      setEditableFile(null);
-      const fileIndex = getFileIndex(files, editableFile);
+      const fileIndex = getFileIndex(files, activeFile);
       const op = generateFileChangeOp(
         fileIndex,
-        editableFile,
+        activeFile,
         newName,
         realtimeModules,
         'name'
@@ -43,53 +31,34 @@ export const FilesSection = () => {
       if (op.length > 0) {
         submitVizContentOp(op);
       }
+      setIsRenamingActiveFile(false);
     },
-    [editableFile, setEditableFile, files, submitVizContentOp, realtimeModules]
-  );
-
-  const onEditableFileBlur = useCallback(
-    event => {
-      changeFileName(event.target.value);
-    },
-    [changeFileName]
-  );
-
-  const onEditableFileKeyDown = useCallback(
-    event => {
-      if (event.key === 'Enter') {
-        changeFileName(event.target.value);
-      }
-    },
-    [changeFileName]
+    [
+      activeFile,
+      setIsRenamingActiveFile,
+      files,
+      submitVizContentOp,
+      realtimeModules
+    ]
   );
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">
       {files
         ? files.map(file =>
-            file.name === editableFile ? (
-              <EditableFileEntry>
-                <EditableFileInput
-                  key={file.name}
-                  type="text"
-                  value={editableFileNewName}
-                  onChange={onEditableFileChange}
-                  onBlur={onEditableFileBlur}
-                  onKeyDown={onEditableFileKeyDown}
-                />
-              </EditableFileEntry>
+            isRenamingActiveFile && file.name === activeFile ? (
+              <EditableFileEntry
+                key={file.name}
+                changeFileName={renameActiveFile}
+                initialFileName={activeFile}
+              />
             ) : (
               <FileEntry
                 key={file.name}
                 isActive={file.name === activeFile}
                 onClick={() => {
-                  if (activeFile === file.name) {
-                    setEditableFileNewName(file.name);
-                    setEditableFile(file.name);
-                  } else {
-                    setEditableFile(null);
-                    setActiveFile(file.name);
-                  }
+                  setIsRenamingActiveFile(activeFile === file.name);
+                  setActiveFile(file.name);
                 }}
                 className={
                   file.name === 'index.html'

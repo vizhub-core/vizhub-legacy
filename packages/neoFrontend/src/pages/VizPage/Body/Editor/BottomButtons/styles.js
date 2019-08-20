@@ -15,6 +15,8 @@ export const Wrapper = styled.div`
 
 export const Top = styled.div`
   position: absolute;
+  left: 0;
+  right: 0;
   bottom: ${bottomButtonHeight};
   font-family: Poppins;
   font-size: 12px;
