@@ -9,6 +9,7 @@ import {
   CreateVizPage,
   CreatingVizFromScratchPage,
   VizPage,
+  ProfilePage,
   ErrorPage
 } from './pages';
 import { Themed } from './theme';
@@ -26,6 +27,7 @@ export const App = () => (
             component={CreatingVizFromScratchPage}
           />
           <Route path="/:userName/:vizId" component={VizPage} />
+          <Route path="/:userName" component={ProfilePage} />
         </AuthProvider>
         <Route path="/authenticated" component={AuthPopupPage} />
       </ErrorProvider>
