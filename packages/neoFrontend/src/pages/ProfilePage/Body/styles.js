@@ -9,22 +9,17 @@ export const VizPreviews = styled.div`
 
 // Inspired by https://vega.github.io/vega/
 export const VizPreview = styled(Link)`
-  margin: 20px;
-`;
-
-export const VizPreviewImage = styled.div`
-  border: 0px;
+  margin: 12px;
   width: 230px;
   height: 120px;
-  padding: 0px;
   background-position: left top;
   background-size: cover;
   overflow: hidden;
   position: relative;
   transition: background-position 3s;
-  ${VizPreview}:hover & {
+  box-shadow: ${props => props.theme.shadow};
+  border-radius: 5px;
+  &:hover {
     background-position: right bottom;
   }
-  box-shadow: ${props => props.theme.shadow};
-  border-radius: 6px;
 `;

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { NavBar } from '../../../NavBar';
 import { Wrapper, Content } from '../../styles';
-import { VizPreviews, VizPreview, VizPreviewImage } from './styles';
+import { VizPreviews, VizPreview } from './styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
@@ -15,14 +15,15 @@ export const Body = () => {
       <Content>
         <NavBar />
         <VizPreviews>
-          {visualizationInfos.map(({ id }) => (
-            <VizPreview key={id} to={`/${userName}/${id}`}>
-              <VizPreviewImage
-                style={{
-                  backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
-                }}
-              />
-            </VizPreview>
+          {visualizationInfos.map(({ id, title }) => (
+            <VizPreview
+              key={id}
+              to={`/${userName}/${id}`}
+              title={title}
+              style={{
+                backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
+              }}
+            />
           ))}
         </VizPreviews>
       </Content>
