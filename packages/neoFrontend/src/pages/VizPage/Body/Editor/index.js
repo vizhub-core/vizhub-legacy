@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { URLStateContext } from '../../URLStateContext';
 import { EditorModulesContext } from '../../EditorModulesContext';
@@ -16,6 +16,7 @@ export const Editor = () => {
   const { showEditor, activeFile } = useContext(URLStateContext);
   const [rotation, setRotation] = useState(defaultRotation);
   const [rotationEnabled, setRotationEnabled] = useState(false);
+  const [isRenamingNewFile, setIsRenamingNewFile] = useState(false);
   const editorTheme = useEditorTheme(rotation);
 
   const { loadEditorModules } = useContext(EditorModulesContext);
@@ -38,6 +39,10 @@ export const Editor = () => {
     loadEditorModules();
   }
 
+  const onNewFileClick = useCallback(() => {
+    setIsRenamingNewFile(true);
+  }, [setIsRenamingNewFile]);
+
   return (
     <ThemeProvider theme={{ editor: editorTheme }}>
       <>
@@ -45,7 +50,7 @@ export const Editor = () => {
           <Sidebar expand={modExpandEditor(showEditor)} className="test-editor">
             <Top>
               <Section title="visual editor" id="visual" />
-              <FilesSection />
+              <FilesSection isRenamingNewFile={isRenamingNewFile} />
               {rotationEnabled
                 ? editorTheme.colors.map((color, i) => (
                     <div style={{ background: color, height: '20px' }} />
@@ -53,7 +58,10 @@ export const Editor = () => {
                 : null}
             </Top>
             <Bottom>
-              <BottomButtons activeFile={activeFile} />
+              <BottomButtons
+                activeFile={activeFile}
+                onNewFileClick={onNewFileClick}
+              />
             </Bottom>
           </Sidebar>
         ) : null}

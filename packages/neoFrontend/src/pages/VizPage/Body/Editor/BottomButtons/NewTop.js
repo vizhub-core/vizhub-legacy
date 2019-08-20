@@ -1,9 +1,9 @@
 import React from 'react';
 import { TopList, TopListItem } from './styles';
 
-export const NewTop = () => (
+export const NewTop = ({ onNewFileClick }) => (
   <TopList>
-    <TopListItem>new file</TopListItem>
-    <TopListItem>new directory</TopListItem>
+    <TopListItem onClick={onNewFileClick}>new file</TopListItem>
   </TopList>
 );
+// <TopListItem>new directory</TopListItem>
