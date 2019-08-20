@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { URLStateContext } from '../../URLStateContext';
 import { EditorModulesContext } from '../../EditorModulesContext';
 import { modExpandEditor, modShowEditor } from '../../../../mobileMods';
-import { Sidebar, Bottom } from './styles';
+import { Sidebar, Top, Bottom } from './styles';
 import { BottomButtons } from './BottomButtons';
 import { Section } from './Section';
 import { FilesSection } from './FilesSection';
@@ -16,6 +16,7 @@ export const Editor = () => {
   const { showEditor, activeFile } = useContext(URLStateContext);
   const [rotation, setRotation] = useState(defaultRotation);
   const [rotationEnabled, setRotationEnabled] = useState(false);
+  const [isRenamingNewFile, setIsRenamingNewFile] = useState(false);
   const editorTheme = useEditorTheme(rotation);
 
   const { loadEditorModules } = useContext(EditorModulesContext);
@@ -38,20 +39,32 @@ export const Editor = () => {
     loadEditorModules();
   }
 
+  const onNewFileClick = useCallback(() => {
+    setIsRenamingNewFile(true);
+  }, [setIsRenamingNewFile]);
+
   return (
     <ThemeProvider theme={{ editor: editorTheme }}>
       <>
         {moddedShowEditor ? (
           <Sidebar expand={modExpandEditor(showEditor)} className="test-editor">
-            <Section title="visual editor" id="visual" />
-            <FilesSection />
-            {rotationEnabled
-              ? editorTheme.colors.map((color, i) => (
-                  <div style={{ background: color, height: '20px' }} />
-                ))
-              : null}
+            <Top>
+              <Section title="visual editor" id="visual" />
+              <FilesSection
+                isRenamingNewFile={isRenamingNewFile}
+                setIsRenamingNewFile={setIsRenamingNewFile}
+              />
+              {rotationEnabled
+                ? editorTheme.colors.map((color, i) => (
+                    <div style={{ background: color, height: '20px' }} />
+                  ))
+                : null}
+            </Top>
             <Bottom>
-              <BottomButtons activeFile={activeFile} />
+              <BottomButtons
+                activeFile={activeFile}
+                onNewFileClick={onNewFileClick}
+              />
             </Bottom>
           </Sidebar>
         ) : null}

@@ -1,4 +1,4 @@
-import { getVizFiles, getFileIndex } from '../../../accessors';
+import { getVizFiles, getFileIndex, deleteFileOp } from '../../../accessors';
 import { generateFileChangeOp } from '../generateFileChangeOp';
 import { generateFileCreateOp } from '../generateFileCreateOp';
 
@@ -9,7 +9,8 @@ export const updateBundleIfNeeded = async (
   submitVizContentOp
 ) => {
   if (editorModules) {
-    const files = getVizFiles(viz$.getValue());
+    const viz = viz$.getValue();
+    const files = getVizFiles(viz);
     const indexJSExists = getFileIndex(files, 'index.js') !== -1;
     if (indexJSExists) {
       const output = await editorModules.bundle(files);
@@ -36,7 +37,7 @@ export const updateBundleIfNeeded = async (
         );
       }
     } else {
-      // TODO delete bundle.js
+      submitVizContentOp(deleteFileOp(viz, 'bundle.js'));
     }
   }
 };

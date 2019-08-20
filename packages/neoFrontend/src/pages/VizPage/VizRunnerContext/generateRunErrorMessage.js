@@ -27,7 +27,5 @@ export const generateRunErrorMessage = error => {
   //   lines.push(error.stack);
   // }
 
-  lines.push('(bundle.js not updated)');
-
   return lines.join('\n');
 };

@@ -8,25 +8,34 @@ export const generateErrorMessageSrcDoc = errorMessage => `
       }
       pre {
         font-family: ${defaultCodingFontFamily};
-        font-size: 1.5em;
+        font-size: 1.3em;
         border-radius: 0.25rem;
         background-color: rgba(206, 17, 38, 0.05);
         padding: 10px;
         color: rgb(41, 50, 56);
+        line-height: 1.4;
       }
       .title {
         color: rgb(206, 17, 38);
         font-size: 2em;
         font-family: sans-serif;
       }
+      .subtle {
+        font-family: sans-serif;
+        color: rgb(135, 142, 145);
+        margin-top: 0.5rem;
+      }
     </style>
     <body>
       <div class="title">Failed to compile</div>
       <pre>${errorMessage}</pre>
+      <div class="subtle">bundle.js not updated.</div>
     </body>
   </html>
 `;
+
 //  >
+//
 //    style="font-size: 2em; font-family: sans-serif; color: rgb(206, 17, 38); white-space: pre-wrap; margin: 0px 2rem 0.75rem 0px; flex: 0 0 auto; max-height: 50%; overflow: auto;"
 //    Failed to compile
 //  </div>

@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 import { Icon } from '../../styles';
+import { Clickable } from '../../../../../styles';
+
+const bottomButtonHeight = '40px';
 
 export const Wrapper = styled.div`
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const Top = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: ${bottomButtonHeight};
   font-family: Poppins;
   font-size: 12px;
   color: ${props => props.theme.dark};
@@ -36,10 +47,14 @@ export const TopOption = styled.div`
 
 export const TopList = styled.div`
   display: flex;
+  background-color: ${props => props.theme.bottomButtonBackgroundActive};
   flex-direction: column;
+  padding: 7px 0 7px 0;
 `;
 
-export const TopListItem = styled.div``;
+export const TopListItem = styled(Clickable)`
+  padding: 3px 10px 3px 10px;
+`;
 
 export const Bottom = styled.div`
   display: flex;
@@ -47,7 +62,7 @@ export const Bottom = styled.div`
 
 export const BottomButton = styled.div`
   flex: 1;
-  height: 40px;
+  height: ${bottomButtonHeight};
   background-color: ${props =>
     props.isActive
       ? props.theme.bottomButtonBackgroundActive

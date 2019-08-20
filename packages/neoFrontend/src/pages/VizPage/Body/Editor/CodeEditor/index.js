@@ -6,6 +6,7 @@ import { VizContext } from '../../../VizContext';
 import { Wrapper } from './styles';
 import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
+import { useUpdateURLOnRename } from './useUpdateURLOnRename';
 
 export const CodeEditor = () => {
   const {
@@ -18,6 +19,8 @@ export const CodeEditor = () => {
   } = useContext(URLStateContext);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
+
+  useUpdateURLOnRename();
 
   const viewer = modShowViewer(showViewer, showEditor, activeFile);
 
@@ -54,7 +57,7 @@ export const CodeEditor = () => {
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
       />
-      <CodeArea activeFile={activeFile} />
+      <CodeArea activeFile={activeFile} closeActiveFile={closeActiveFile} />
     </Wrapper>
   );
 };

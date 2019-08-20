@@ -5,9 +5,9 @@ import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
 import { EditorModulesContext } from '../../../../../EditorModulesContext';
-import { useFileIndex } from '../useFileIndex';
 import { light } from '../../../themes/vizHub';
-import { usePath } from '../usePath';
+import { useFileIndex } from '../../useFileIndex';
+import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { changeObjToOp } from './changeObjToOp';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
@@ -90,7 +90,18 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     }
     const { json0 } = realtimeModules;
 
-    codeMirror.setValue(getVizFile(fileIndex)(viz$.getValue()).text);
+    const file = getVizFile(fileIndex)(viz$.getValue());
+
+    // If the file does not exist at this point, it means that
+    // we are accessing a URL that has a file "open" that doesn't exist,
+    // either because it's been renamed or deleted.
+    // In this case, we close the active file and bail out to avoid a crash.
+    if (!file) {
+      //closeActiveFile();
+      return;
+    }
+
+    codeMirror.setValue(file.text);
 
     const subscription = vizContentOp$.subscribe(
       ({ previousContent, nextContent, op, originatedLocally }) => {
