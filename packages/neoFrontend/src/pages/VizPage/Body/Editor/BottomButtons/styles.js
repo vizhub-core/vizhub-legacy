@@ -55,6 +55,7 @@ export const TopList = styled.div`
 
 export const TopListItem = styled(Clickable)`
   padding: 3px 10px 3px 10px;
+  color: ${props => props.theme.dark};
 `;
 
 export const Bottom = styled.div`
