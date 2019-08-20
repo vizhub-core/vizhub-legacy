@@ -12,5 +12,8 @@ export { FullExitSVG } from './FullExitSVG';
 export { MiniSVG } from './MiniSVG';
 export { MicroSVG } from './MicroSVG';
 export { SplitSVG } from './SplitSVG';
+export { TrashSVG } from './TrashSVG';
+export { NewSVG } from './NewSVG';
+export { ExportSVG } from './ExportSVG';
 
 export { SVGGallery } from './svgGallery';
