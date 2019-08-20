@@ -39,9 +39,9 @@ export const BottomButtons = withTheme(
     }, [setActiveButton]);
 
     const onNewFileListItemClick = useCallback(() => {
-      clearActiveButton()
+      clearActiveButton();
       onNewFileClick();
-    }, [clearActiveButton, onNewFileClick]);;
+    }, [clearActiveButton, onNewFileClick]);
 
     const onDeleteConfirm = useCallback(() => {
       const op = deleteFileOp(viz$.getValue(), activeFile);

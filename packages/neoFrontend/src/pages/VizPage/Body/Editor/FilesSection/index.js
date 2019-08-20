@@ -9,7 +9,7 @@ import { Section } from '../Section';
 import { FileEntry } from './styles';
 import { EditableFileEntry } from './EditableFileEntry';
 
-export const FilesSection = ({ isRenamingNewFile }) => {
+export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
   const [isRenamingActiveFile, setIsRenamingActiveFile] = useState(false);
 
@@ -20,6 +20,7 @@ export const FilesSection = ({ isRenamingNewFile }) => {
 
   const renameActiveFile = useCallback(
     newName => {
+      setIsRenamingActiveFile(false);
       const fileIndex = getFileIndex(files, activeFile);
       const op = generateFileChangeOp(
         fileIndex,
@@ -31,7 +32,6 @@ export const FilesSection = ({ isRenamingNewFile }) => {
       if (op.length > 0) {
         submitVizContentOp(op);
       }
-      setIsRenamingActiveFile(false);
     },
     [
       activeFile,
@@ -42,9 +42,15 @@ export const FilesSection = ({ isRenamingNewFile }) => {
     ]
   );
 
-  const createNewFile = useCallback(newName => {
-    console.log('Create file ' + newName);
-  }, []);
+  const createNewFile = useCallback(
+    newName => {
+      setIsRenamingNewFile(false);
+      if (newName !== '') {
+        console.log('Create file ' + newName);
+      }
+    },
+    [setIsRenamingNewFile]
+  );
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">

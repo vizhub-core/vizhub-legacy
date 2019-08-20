@@ -50,7 +50,10 @@ export const Editor = () => {
           <Sidebar expand={modExpandEditor(showEditor)} className="test-editor">
             <Top>
               <Section title="visual editor" id="visual" />
-              <FilesSection isRenamingNewFile={isRenamingNewFile} />
+              <FilesSection
+                isRenamingNewFile={isRenamingNewFile}
+                setIsRenamingNewFile={setIsRenamingNewFile}
+              />
               {rotationEnabled
                 ? editorTheme.colors.map((color, i) => (
                     <div style={{ background: color, height: '20px' }} />
