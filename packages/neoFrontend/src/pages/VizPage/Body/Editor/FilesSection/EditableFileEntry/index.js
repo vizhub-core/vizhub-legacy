@@ -35,6 +35,7 @@ export const EditableFileEntry = ({ changeFileName, initialFileName }) => {
         onChange={onEditableFileChange}
         onBlur={onEditableFileBlur}
         onKeyDown={onEditableFileKeyDown}
+        autoFocus
       />
     </Wrapper>
   );
