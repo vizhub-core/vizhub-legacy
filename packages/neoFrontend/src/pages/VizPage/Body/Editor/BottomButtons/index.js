@@ -38,6 +38,11 @@ export const BottomButtons = withTheme(
       setActiveButton(null);
     }, [setActiveButton]);
 
+    const onNewFileListItemClick = useCallback(() => {
+      clearActiveButton()
+      onNewFileClick();
+    }, [clearActiveButton, onNewFileClick]);;
+
     const onDeleteConfirm = useCallback(() => {
       const op = deleteFileOp(viz$.getValue(), activeFile);
       closeActiveFile();
@@ -64,7 +69,7 @@ export const BottomButtons = withTheme(
           ) : activeButton === SETTINGS_BUTTON ? (
             <SettingsTop />
           ) : activeButton === NEW_BUTTON ? (
-            <NewTop onNewFileClick={onNewFileClick} />
+            <NewTop onNewFileListItemClick={onNewFileListItemClick} />
           ) : null}
         </Top>
         <Bottom>
