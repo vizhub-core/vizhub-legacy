@@ -30,11 +30,11 @@ export const reducer = (state, action) => {
       });
 
     // Invoked when a file is selected (clicked on).
-    // If the currently active file is clicked on, it's closed.
+    // If the currently active file is clicked on, nothing happens here.
     case 'setActiveFile':
-      return Object.assign({}, state, {
-        file: action.file === state.file ? undefined : action.file
-      });
+      return action.file === state.file
+        ? state
+        : Object.assign({}, state, { file: action.file });
 
     // Closes whatever file is open.
     // On mobile, if the mode is 'mini' or 'hidden' and we close the active file,
