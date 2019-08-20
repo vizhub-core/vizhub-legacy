@@ -5,12 +5,14 @@ import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
-import { DeleteTop } from './DeleteTop';
 import { SettingsTop } from './SettingsTop';
 import { NewTop } from './NewTop';
+import { ExportTop } from './ExportTop';
+import { DeleteTop } from './DeleteTop';
 
 const SETTINGS_BUTTON = 'settings';
 const NEW_BUTTON = 'new';
+const EXPORT_BUTTON = 'export';
 const DELETE_BUTTON = 'delete';
 
 export const BottomButtons = withTheme(
@@ -20,19 +22,12 @@ export const BottomButtons = withTheme(
     const { viz$, submitVizContentOp } = useContext(VizContext);
     const { closeActiveFile } = useContext(URLStateContext);
 
-    const onDeleteClick = useCallback(() => {
-      setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
-    }, [setActiveButton, activeButton]);
-
-    const onSettingsClick = useCallback(() => {
-      setActiveButton(
-        activeButton === SETTINGS_BUTTON ? null : SETTINGS_BUTTON
-      );
-    }, [setActiveButton, activeButton]);
-
-    const onNewClick = useCallback(() => {
-      setActiveButton(activeButton === NEW_BUTTON ? null : NEW_BUTTON);
-    }, [setActiveButton, activeButton]);
+    const onButtonClick = useCallback(
+      buttonId => () => {
+        setActiveButton(activeButton === buttonId ? null : buttonId);
+      },
+      [setActiveButton, activeButton]
+    );
 
     const clearActiveButton = useCallback(() => {
       setActiveButton(null);
@@ -59,22 +54,24 @@ export const BottomButtons = withTheme(
     return (
       <Wrapper>
         <Top>
-          {activeButton === DELETE_BUTTON ? (
+          {activeButton === SETTINGS_BUTTON ? (
+            <SettingsTop />
+          ) : activeButton === NEW_BUTTON ? (
+            <NewTop onNewFileListItemClick={onNewFileListItemClick} />
+          ) : activeButton === EXPORT_BUTTON ? (
+            <ExportTop />
+          ) : activeButton === DELETE_BUTTON ? (
             <DeleteTop
               onNoClick={clearActiveButton}
               onDeleteConfirm={onDeleteConfirm}
               theme={theme}
               activeFile={activeFile}
             />
-          ) : activeButton === SETTINGS_BUTTON ? (
-            <SettingsTop />
-          ) : activeButton === NEW_BUTTON ? (
-            <NewTop onNewFileListItemClick={onNewFileListItemClick} />
           ) : null}
         </Top>
         <Bottom>
           <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
-            <ClickableOverlay onClick={onSettingsClick}>
+            <ClickableOverlay onClick={onButtonClick(SETTINGS_BUTTON)}>
               <SettingsSVG />
             </ClickableOverlay>
           </BottomButton>
@@ -82,12 +79,12 @@ export const BottomButtons = withTheme(
             isActive={activeButton === NEW_BUTTON}
             activeColor={'#3866e9'}
           >
-            <ClickableOverlay onClick={onNewClick}>
+            <ClickableOverlay onClick={onButtonClick(NEW_BUTTON)}>
               <NewSVG />
             </ClickableOverlay>
           </BottomButton>
-          <BottomButton>
-            <ClickableOverlay>
+          <BottomButton isActive={activeButton === EXPORT_BUTTON}>
+            <ClickableOverlay onClick={onButtonClick(EXPORT_BUTTON)}>
               <ExportSVG />
             </ClickableOverlay>
           </BottomButton>
@@ -96,7 +93,7 @@ export const BottomButtons = withTheme(
               isActive={activeButton === DELETE_BUTTON}
               activeColor={theme.attentionGrabber}
             >
-              <ClickableOverlay onClick={onDeleteClick}>
+              <ClickableOverlay onClick={onButtonClick(DELETE_BUTTON)}>
                 <TrashSVG />
               </ClickableOverlay>
             </BottomButton>
