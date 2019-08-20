@@ -4,103 +4,99 @@ import { SettingsSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';
-import {
-  Wrapper,
-  BottomButton,
-  ClickableOverlay,
-  Top,
-  Bottom,
-  TopMessage,
-  TopOptions,
-  TopOption,
-  TopList,
-  TopListItem
-} from './styles';
+import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
+import { DeleteTop } from './DeleteTop';
+import { SettingsTop } from './SettingsTop';
+import { NewTop } from './NewTop';
 
-const DELETE_BUTTON = 'delete';
 const SETTINGS_BUTTON = 'settings';
+const NEW_BUTTON = 'new';
+const DELETE_BUTTON = 'delete';
 
-export const BottomButtons = withTheme(({ theme, activeFile }) => {
-  const [activeButton, setActiveButton] = useState(null);
+export const BottomButtons = withTheme(
+  ({ theme, activeFile, onNewFileClick }) => {
+    const [activeButton, setActiveButton] = useState(null);
 
-  const { viz$, submitVizContentOp } = useContext(VizContext);
-  const { closeActiveFile } = useContext(URLStateContext);
+    const { viz$, submitVizContentOp } = useContext(VizContext);
+    const { closeActiveFile } = useContext(URLStateContext);
 
-  const onDeleteClick = useCallback(() => {
-    setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
-  }, [setActiveButton, activeButton]);
+    const onDeleteClick = useCallback(() => {
+      setActiveButton(activeButton === DELETE_BUTTON ? null : DELETE_BUTTON);
+    }, [setActiveButton, activeButton]);
 
-  const clearActiveButton = useCallback(() => {
-    setActiveButton(null);
-  }, [setActiveButton]);
+    const onSettingsClick = useCallback(() => {
+      setActiveButton(
+        activeButton === SETTINGS_BUTTON ? null : SETTINGS_BUTTON
+      );
+    }, [setActiveButton, activeButton]);
 
-  const onDeleteConfirm = useCallback(() => {
-    const op = deleteFileOp(viz$.getValue(), activeFile);
-    closeActiveFile();
-    clearActiveButton();
-    submitVizContentOp(op);
-  }, [
-    activeFile,
-    viz$,
-    submitVizContentOp,
-    closeActiveFile,
-    clearActiveButton
-  ]);
+    const onNewClick = useCallback(() => {
+      setActiveButton(activeButton === NEW_BUTTON ? null : NEW_BUTTON);
+    }, [setActiveButton, activeButton]);
 
-  return (
-    <Wrapper>
-      {activeButton === DELETE_BUTTON ? (
+    const clearActiveButton = useCallback(() => {
+      setActiveButton(null);
+    }, [setActiveButton]);
+
+    const onNewFileListItemClick = useCallback(() => {
+      clearActiveButton();
+      onNewFileClick();
+    }, [clearActiveButton, onNewFileClick]);
+
+    const onDeleteConfirm = useCallback(() => {
+      const op = deleteFileOp(viz$.getValue(), activeFile);
+      closeActiveFile();
+      clearActiveButton();
+      submitVizContentOp(op);
+    }, [
+      activeFile,
+      viz$,
+      submitVizContentOp,
+      closeActiveFile,
+      clearActiveButton
+    ]);
+
+    return (
+      <Wrapper>
         <Top>
-          <TopMessage>Are you sure you want to delete this file?</TopMessage>
-          <TopOptions>
-            <TopOption>
-              <ClickableOverlay onClick={clearActiveButton}>
-                no
-              </ClickableOverlay>
-            </TopOption>
-            <TopOption rightmost={true}>
-              <ClickableOverlay
-                color={theme.attentionGrabber}
-                onClick={onDeleteConfirm}
-              >
-                yes
-              </ClickableOverlay>
-            </TopOption>
-          </TopOptions>
+          {activeButton === DELETE_BUTTON ? (
+            <DeleteTop
+              onNoClick={clearActiveButton}
+              onDeleteConfirm={onDeleteConfirm}
+              theme={theme}
+              activeFile={activeFile}
+            />
+          ) : activeButton === SETTINGS_BUTTON ? (
+            <SettingsTop />
+          ) : activeButton === NEW_BUTTON ? (
+            <NewTop onNewFileListItemClick={onNewFileListItemClick} />
+          ) : null}
         </Top>
-      ) : activeButton === SETTINGS_BUTTON ? (
-        <Top>
-          <TopList>
-            <TopListItem>height</TopListItem>
-            <TopListItem>anyone can edit</TopListItem>
-          </TopList>
-        </Top>
-      ) : null}
-      <Bottom>
-        <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
-          <ClickableOverlay>
-            <SettingsSVG />
-          </ClickableOverlay>
-        </BottomButton>
-        <BottomButton>
-          <ClickableOverlay>
-            <SettingsSVG />
-          </ClickableOverlay>
-        </BottomButton>
-        <BottomButton>
-          <ClickableOverlay>
-            <SettingsSVG />
-          </ClickableOverlay>
-        </BottomButton>
-        {activeFile ? (
-          <BottomButton
-            isActive={activeButton === DELETE_BUTTON}
-            activeColor={theme.attentionGrabber}
-          >
-            <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
+        <Bottom>
+          <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
+            <ClickableOverlay onClick={onSettingsClick}>
+              <SettingsSVG />
+            </ClickableOverlay>
           </BottomButton>
-        ) : null}
-      </Bottom>
-    </Wrapper>
-  );
-});
+          <BottomButton
+            isActive={activeButton === NEW_BUTTON}
+            activeColor={'#3866e9'}
+          >
+            <ClickableOverlay onClick={onNewClick}>N</ClickableOverlay>
+          </BottomButton>
+          <BottomButton>
+            <ClickableOverlay>E</ClickableOverlay>
+          </BottomButton>
+          {activeFile && activeFile !== 'bundle.js' ? (
+            <BottomButton
+              isActive={activeButton === DELETE_BUTTON}
+              activeColor={theme.attentionGrabber}
+            >
+              <ClickableOverlay onClick={onDeleteClick}>D</ClickableOverlay>
+            </BottomButton>
+          ) : null}
+        </Bottom>
+      </Wrapper>
+    );
+  }
+);

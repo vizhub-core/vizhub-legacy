@@ -67,10 +67,9 @@ export const VizRunnerProvider = ({ children }) => {
   const contextValue = { setVizRunnerTransform };
 
   useEffect(() => {
-    console.log('setting srcDoc');
     if (runError) {
       const errorMessage = generateRunErrorMessage(runError);
-      console.error(errorMessage);
+      console.error(errorMessage + '\n(bundle.js not updated)');
       iFrame.setAttribute('srcDoc', generateErrorMessageSrcDoc(errorMessage));
     } else {
       iFrame.setAttribute(

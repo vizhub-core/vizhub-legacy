@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 import { Clickable } from '../../../../../styles';
 
-export const FileEntry = styled(Clickable)`
+export const FileStyle = props => `
   display: flex;
   align-items: center;
-  height: ${props => props.theme.editorEntryHeight}px;
-  padding-left: ${props =>
-    props.theme.editorEntryHorizontalPadding +
+  height: ${props.theme.editorEntryHeight}px;
+  padding-left: ${props.theme.editorEntryHorizontalPadding +
     props.theme.editorEntryIndentation}px;
-  border-left: ${props => props.theme.editorEntryLeftBorderSize}px solid
-    ${props =>
-      props.isActive ? props.theme.editorFileActiveColor : 'transparent'};
+  border-left: ${props.theme.editorEntryLeftBorderSize}px solid
+    ${props.isActive ? props.theme.editorFileActiveColor : 'transparent'};
+`;
+
+export const FileEntry = styled(Clickable)`
+  ${FileStyle}
   text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
 `;

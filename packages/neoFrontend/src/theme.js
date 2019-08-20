@@ -22,15 +22,23 @@ export const theme = {
   userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
   hoverBackground: 'rgba(0, 0, 0, 0.05)',
   activeBackground: 'rgba(0, 0, 0, 0.1)',
-  bottomButtonBackgroundActive: 'rgba(216, 216, 216, 0.75)',
-  bottomButtonBackground: 'rgba(216, 216, 216, 0.22)',
+  //bottomButtonBackgroundActive: 'rgba(216, 216, 216, 0.75)',
+  bottomButtonBackgroundActive: '#b3b6bc',
+  //bottomButtonBackground: 'rgba(216, 216, 216, 0.22)',
 
   defaultCodingFontFamily,
   defaultCodingFontSize,
   miniWidth: 268,
-  fastTransition: '.2s ease-in-out'
+  fastTransition: '.2s ease-in-out',
+  editorSectionActiveColor: '#5b677d',
+  editorEntryHeight: 30,
+  editorFileActiveColor: '#ffffff',
+  editorEntryHorizontalPadding: 15,
+  editorEntryIndentation: 10,
+  editorEntryLeftBorderSize: 5
 };
 theme.userMenuOverlayForeground = theme.dark;
+theme.bottomButtonBackground = theme.editorSectionActiveColor;
 
 export const darkNavbarTheme = {
   ...theme,
@@ -44,13 +52,7 @@ export const darkNavbarTheme = {
   userMenuOverlayBackground: 'rgba(0, 0, 0, 0.5)',
   userMenuOverlayBackgroundHover: 'rgba(0, 0, 0, 0.4)',
   userMenuOverlayBackgroundActive: 'rgba(0, 0, 0, 0.3)',
-  userMenuOverlayForeground: '#ffffff',
-  editorSectionActiveColor: 'rgba(255, 255, 255, 0.15)',
-  editorEntryHeight: 30,
-  editorFileActiveColor: '#ffffff',
-  editorEntryHorizontalPadding: 15,
-  editorEntryIndentation: 10,
-  editorEntryLeftBorderSize: 5
+  userMenuOverlayForeground: '#ffffff'
   //editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
 };
 
