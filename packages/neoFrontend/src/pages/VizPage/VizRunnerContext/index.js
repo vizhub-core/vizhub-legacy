@@ -69,7 +69,7 @@ export const VizRunnerProvider = ({ children }) => {
   useEffect(() => {
     if (runError) {
       const errorMessage = generateRunErrorMessage(runError);
-      console.error(errorMessage);
+      console.error(errorMessage + '\n(bundle.js not updated)');
       iFrame.setAttribute('srcDoc', generateErrorMessageSrcDoc(errorMessage));
     } else {
       iFrame.setAttribute(

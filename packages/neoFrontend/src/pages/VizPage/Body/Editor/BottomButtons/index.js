@@ -87,7 +87,7 @@ export const BottomButtons = withTheme(
           <BottomButton>
             <ClickableOverlay>E</ClickableOverlay>
           </BottomButton>
-          {activeFile ? (
+          {activeFile && activeFile !== 'bundle.js' ? (
             <BottomButton
               isActive={activeButton === DELETE_BUTTON}
               activeColor={theme.attentionGrabber}
