@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const EditorComponent = styled.div`
   display: flex;
   color: #ffffff;
-  background-color: #3d4b65;
+  background-color: ${props => props.theme.editorBackground};
 `;
 
 export const Sidebar = styled(EditorComponent)`

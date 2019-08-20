@@ -21,6 +21,7 @@ export const Top = styled.div`
   font-family: Poppins;
   font-size: 12px;
   color: ${props => props.theme.dark};
+  background-color: ${props => props.theme.editorBackground};
 `;
 
 export const TopMessage = styled.div`
