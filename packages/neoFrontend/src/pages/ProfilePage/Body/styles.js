@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 
 export const VizPreviews = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 // Inspired by https://vega.github.io/vega/
 export const VizPreview = styled(Link)`
-  margin: 30px;
+  margin: 20px;
 `;
 
 export const VizPreviewImage = styled.div`
