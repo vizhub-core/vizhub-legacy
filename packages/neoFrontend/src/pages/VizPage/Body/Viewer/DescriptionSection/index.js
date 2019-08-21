@@ -1,6 +1,10 @@
 import React, { useMemo } from 'react';
 import marked from 'marked';
 import { toDate } from 'vizhub-entities';
+import {
+  showCreatedDate,
+  showVideoThumbnail
+} from '../../../../../featureFlags';
 import { Avatar } from '../../../../../Avatar';
 import {
   Wrapper,
@@ -63,8 +67,13 @@ export const DescriptionSection = ({
                   to={`/${forkedFromVisualizationOwnerUserName}/${forkedFromVisualizationInfo.id}`}
                 >
                   {forkedFromVisualizationInfo.title}
-                </VizLink>{' '}
-                <SemiBold>{created}</SemiBold>
+                </VizLink>
+                {showCreatedDate ? (
+                  <>
+                    {' '}
+                    <SemiBold>{created}</SemiBold>
+                  </>
+                ) : null}
               </div>
             ) : null}
           </AuthorshipMeta>
@@ -76,12 +85,14 @@ export const DescriptionSection = ({
           }}
         />
       </Left>
-      <Right size={size}>
-        <Video>
-          <VideoThumbnail />
-          Video title
-        </Video>
-      </Right>
+      {showVideoThumbnail ? (
+        <Right size={size}>
+          <Video>
+            <VideoThumbnail />
+            Video title
+          </Video>
+        </Right>
+      ) : null}
     </Wrapper>
   );
 };

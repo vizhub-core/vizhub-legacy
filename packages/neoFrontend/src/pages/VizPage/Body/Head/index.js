@@ -1,5 +1,10 @@
 import React, { useContext } from 'react';
 import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
+import {
+  showHeadPullRequest,
+  showHeadShare,
+  showHeadSettings
+} from '../../../../featureFlags';
 import { WarningContext } from '../../WarningContext';
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
@@ -14,9 +19,11 @@ export const Head = ({ onFork, showRight }) => {
       {warning ? <Center>{warning}</Center> : null}
       {showRight ? (
         <Right>
-          <HeadIcon title="Create a Pull Request">
-            <PullSVG />
-          </HeadIcon>
+          {showHeadPullRequest ? (
+            <HeadIcon title="Create a Pull Request">
+              <PullSVG />
+            </HeadIcon>
+          ) : null}
           <HeadIcon
             title="Fork this Viz"
             onClick={onFork}
@@ -24,12 +31,16 @@ export const Head = ({ onFork, showRight }) => {
           >
             <ForkSVG />
           </HeadIcon>
-          <HeadIcon title="Share this Viz">
-            <ShareSVG />
-          </HeadIcon>
-          <HeadIcon title="Settings" rightmost={true}>
-            <SettingsSVG />
-          </HeadIcon>
+          {showHeadShare ? (
+            <HeadIcon title="Share this Viz">
+              <ShareSVG />
+            </HeadIcon>
+          ) : null}
+          {showHeadSettings ? (
+            <HeadIcon title="Settings" rightmost={true}>
+              <SettingsSVG />
+            </HeadIcon>
+          ) : null}
         </Right>
       ) : null}
     </Wrapper>
