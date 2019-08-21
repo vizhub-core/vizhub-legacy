@@ -1,5 +1,6 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
+import { showEditorSettings } from '../../../../../featureFlags';
 import { SettingsSVG, TrashSVG, NewSVG, ExportSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
@@ -70,11 +71,13 @@ export const BottomButtons = withTheme(
           ) : null}
         </Top>
         <Bottom>
-          <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
-            <ClickableOverlay onClick={onButtonClick(SETTINGS_BUTTON)}>
-              <SettingsSVG />
-            </ClickableOverlay>
-          </BottomButton>
+          {showEditorSettings ? (
+            <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
+              <ClickableOverlay onClick={onButtonClick(SETTINGS_BUTTON)}>
+                <SettingsSVG />
+              </ClickableOverlay>
+            </BottomButton>
+          ) : null}
           <BottomButton
             isActive={activeButton === NEW_BUTTON}
             activeColor={'#3866e9'}
