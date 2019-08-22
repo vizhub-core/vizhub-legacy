@@ -1,22 +1,20 @@
 const webSocketURL =
   process.env.REACT_APP_VIZHUB_WEBSOCKET_URL || 'ws://localhost:4000';
 
-export const createWebSocket = () => {
+export const createWebSocket = ({ onOpen, onClose, onError }) => {
   const webSocket = new WebSocket(webSocketURL);
 
-  webSocket.onopen = () => {
-    console.log('onopen');
-  };
+  if (onOpen) {
+    webSocket.addEventListener('open', onOpen);
+  }
 
-  webSocket.onclose = event => {
-    console.log('close');
-    console.log(event);
-  };
+  if (onClose) {
+    webSocket.addEventListener('close', onClose);
+  }
 
-  webSocket.onerror = event => {
-    console.log('error');
-    console.log(event);
-  };
+  if (onError) {
+    webSocket.addEventListener('error', onError);
+  }
 
   return webSocket;
 };
