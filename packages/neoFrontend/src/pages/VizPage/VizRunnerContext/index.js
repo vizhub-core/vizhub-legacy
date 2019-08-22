@@ -72,6 +72,7 @@ export const VizRunnerProvider = ({ children }) => {
       console.error(errorMessage + '\n(bundle.js not updated)');
       iFrame.setAttribute('srcDoc', generateErrorMessageSrcDoc(errorMessage));
     } else {
+      console.clear();
       iFrame.setAttribute(
         'srcDoc',
         computeSrcDoc(getVizFiles(viz$.getValue()))
