@@ -46,7 +46,25 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   // Initialize codeMirror instance.
   useEffect(() => {
     if (!editorModules) return;
-    setCodeMirror(new editorModules.CodeMirror(ref.current));
+    const { CodeMirror } = editorModules;
+    console.log('here');
+    setCodeMirror(
+      new CodeMirror(ref.current, {
+        lineNumbers: true,
+        tabSize: 2,
+        matchBrackets: true,
+        // TODO figure out why the FUCK this is not working.
+        keyMap: 'sublime'
+        // Make Tab key insert spaces.
+        // From https://codemirror.net/doc/manual.html#keymaps
+        //extraKeys: {
+        //  Tab: cm => {
+        //    const spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+        //    cm.replaceSelection(spaces);
+        //  }
+        //}
+      })
+    );
   }, [ref, editorModules]);
 
   // Update language mode and readOnly when active file changes.
