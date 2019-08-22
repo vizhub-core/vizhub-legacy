@@ -21,14 +21,16 @@ const modes = {
 };
 const getMode = extension => modes[extension];
 
+const defaultKeyMap = 'sublime';
+
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
-  const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', 'default');
+  const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', defaultKeyMap);
 
   // Easter egg
   window.vizhub.enableVimMode = () => setKeyMap('vim');
-  window.vizhub.disableVimMode = () => setKeyMap('default');
+  window.vizhub.disableVimMode = () => setKeyMap(defaultKeyMap);
 
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
   const { resetRunTimer } = useContext(RunContext);
@@ -52,9 +54,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       new CodeMirror(ref.current, {
         lineNumbers: true,
         tabSize: 2,
-        matchBrackets: true,
-        // TODO figure out why the FUCK this is not working.
-        keyMap: 'sublime'
+        matchBrackets: true
         // Make Tab key insert spaces.
         // From https://codemirror.net/doc/manual.html#keymaps
         //extraKeys: {
@@ -77,7 +77,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   // Update keyMap.
   useEffect(() => {
     if (!codeMirror) return;
-    codeMirror.setOption('keyMap', keyMap);
+    // Only support vim mode, or default keymap.
+    codeMirror.setOption('keyMap', keyMap === 'vim' ? 'vim' : defaultKeyMap);
   }, [codeMirror, keyMap]);
 
   // Respond to changes in text.
