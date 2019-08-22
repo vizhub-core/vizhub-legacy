@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useRef } from 'react';
+import { useEffect, useState, useContext, useRef, useCallback } from 'react';
 import { AuthContext, AUTH_PENDING } from '../../../authentication';
 import { WarningContext } from '../WarningContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
@@ -10,6 +10,33 @@ export const useConnection = () => {
   const { setWarning } = useContext(WarningContext);
   const [connection, setConnection] = useState();
   const connectedUser = useRef();
+  const reconnect = useRef();
+
+  const onClose = useCallback(
+    event => {
+      if (!event.wasClean) {
+        let countdown = 5;
+        const updateWarning = () => {
+          setWarning('Connection lost. Reconnecting in ' + countdown);
+        };
+        updateWarning();
+        const interval = setInterval(() => {
+          countdown--;
+          updateWarning();
+          if (countdown === 0) {
+            clearInterval(interval);
+            setWarning(null);
+            reconnect.current();
+          }
+        }, 1000);
+      }
+    },
+    [setWarning]
+  );
+
+  reconnect.current = useCallback(() => {
+    connection.bindToSocket(createWebSocket({ onClose }));
+  }, [connection, onClose]);
 
   // Establish connection for the first time.
   // Wait for auth to resolve so that we can keep track of when
@@ -19,7 +46,9 @@ export const useConnection = () => {
     if (realtimeModules && !connection && me !== AUTH_PENDING) {
       //console.log('initializing connection');
       connectedUser.current = me;
-      const newConnection = new realtimeModules.Connection(createWebSocket());
+      const newConnection = new realtimeModules.Connection(
+        createWebSocket({ onClose })
+      );
 
       // TODO user flow for editing unforked vizzes
       // This is a temporary measure, with suboptimal UX.
@@ -32,7 +61,7 @@ export const useConnection = () => {
 
       setConnection(newConnection);
     }
-  }, [realtimeModules, connection, me, setWarning]);
+  }, [realtimeModules, connection, me, setWarning, onClose]);
 
   // Re-establish WebSocket when authenticated user changes.
   // Since backend access control is based on user at connection time,
@@ -43,20 +72,19 @@ export const useConnection = () => {
     if (me !== connectedUser.current && me !== AUTH_PENDING) {
       connectedUser.current = me;
 
+      connection.close();
+
       // Clear out existing warning, if any.
       setWarning(null);
 
-      connection.close();
       // TODO clean this shit up.
       // Figure out how to listen for the right event
       // to open the connection immediately after closing.
-      // This 100ms timout was added to avoid an error
+      // This 100ms timout was added as a hack to avoid an error
       // about transitioning directly from connected to connecting.
-      setTimeout(() => {
-        connection.bindToSocket(createWebSocket());
-      }, 100);
+      setTimeout(() => reconnect.current(), 100);
     }
-  }, [connection, me, connectedUser, setWarning]);
+  }, [connection, me, connectedUser, setWarning, onClose]);
 
   return connection;
 };
