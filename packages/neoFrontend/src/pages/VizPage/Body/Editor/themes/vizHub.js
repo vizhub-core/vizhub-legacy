@@ -47,7 +47,7 @@ export const vizHub = rotation => {
       (backgroundLuminance + sidebarDark.l) / 2
     ).formatHex(),
     selectionBackground: '#000',
-    lineNumbers: { color: '#5c6370' },
+    lineNumbers: { color: 'rgba(255,255,255,0.2)' },
     //keyword: { color: '#c679de' },
     //atom: { color: '#98c379' },
     //property: { color: '#61afef' },
@@ -82,13 +82,13 @@ export const vizHub = rotation => {
 
   theme.caretColor = 'white';
 
-  theme.gutter = Object.assign({}, theme.container, {
-    borderRight: '1px solid rgba(255,255,255,0.1)'
+  theme.gutters = theme.gutter = Object.assign({}, theme.container, {
+    border: 'none'
   });
 
   theme.matchingBracket = {
     color: theme.container.color,
-    borderBottom: `1px solid ${theme.property.color}`
+    borderBottom: `1px solid rgba(255,255,255,0.4)`
   };
 
   return theme;

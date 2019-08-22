@@ -1,4 +1,4 @@
-import magicSandbox from 'magic-sandbox';
+import magicSandbox from './magicSandbox';
 import { getText } from '../../../accessors';
 
 const template = files => getText(files, 'index.html');

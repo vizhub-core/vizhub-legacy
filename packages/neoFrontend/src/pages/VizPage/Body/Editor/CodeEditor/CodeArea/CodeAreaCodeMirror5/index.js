@@ -21,14 +21,16 @@ const modes = {
 };
 const getMode = extension => modes[extension];
 
+const defaultKeyMap = 'sublime';
+
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
-  const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', 'default');
+  const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', defaultKeyMap);
 
   // Easter egg
   window.vizhub.enableVimMode = () => setKeyMap('vim');
-  window.vizhub.disableVimMode = () => setKeyMap('default');
+  window.vizhub.disableVimMode = () => setKeyMap(defaultKeyMap);
 
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
   const { resetRunTimer } = useContext(RunContext);
@@ -46,7 +48,23 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   // Initialize codeMirror instance.
   useEffect(() => {
     if (!editorModules) return;
-    setCodeMirror(new editorModules.CodeMirror(ref.current));
+    const { CodeMirror } = editorModules;
+    console.log('here');
+    setCodeMirror(
+      new CodeMirror(ref.current, {
+        lineNumbers: true,
+        tabSize: 2,
+        matchBrackets: true
+        // Make Tab key insert spaces.
+        // From https://codemirror.net/doc/manual.html#keymaps
+        //extraKeys: {
+        //  Tab: cm => {
+        //    const spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+        //    cm.replaceSelection(spaces);
+        //  }
+        //}
+      })
+    );
   }, [ref, editorModules]);
 
   // Update language mode and readOnly when active file changes.
@@ -59,7 +77,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   // Update keyMap.
   useEffect(() => {
     if (!codeMirror) return;
-    codeMirror.setOption('keyMap', keyMap);
+    // Only support vim mode, or default keymap.
+    codeMirror.setOption('keyMap', keyMap === 'vim' ? 'vim' : defaultKeyMap);
   }, [codeMirror, keyMap]);
 
   // Respond to changes in text.
