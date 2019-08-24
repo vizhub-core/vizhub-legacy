@@ -1,4 +1,5 @@
 import { rollup } from 'rollup/dist/rollup.browser';
+import vizhubLibraries from 'vizhub-libraries';
 import bubleJSXOnly from './bubleJSXOnly';
 import hypothetical from './hypothetical';
 import { d3Packages } from './d3Packages';
@@ -15,12 +16,7 @@ const outputOptions = {
   format: 'iife',
   name: 'bundle',
   sourcemap: 'inline',
-  globals: d3Packages.reduce((accumulator, packageName) => {
-    accumulator[packageName] = 'd3';
-    return accumulator;
-  }, {
-    react: 'React'
-  })
+  globals: vizhubLibraries
 };
 
 export const bundle = async (files) => {
