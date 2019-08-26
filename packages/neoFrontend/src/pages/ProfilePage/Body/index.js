@@ -8,7 +8,6 @@ export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
   const { user, visualizationInfos } = profilePageData;
   const { userName } = user;
-  console.log(JSON.stringify(profilePageData, null, 2));
 
   return (
     <Wrapper>
