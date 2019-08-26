@@ -52,7 +52,7 @@ export const extractTitle = html => {
 
 // Pushes a new file entry onto the files array.
 // newFile is expected to be an object with "name" and "text" properties.
-export const generateFileCreateOp = (files, newFile) => ({
+export const fileCreateOp = (files, newFile) => ({
   p: ['files', files.length],
   li: newFile
 });
@@ -66,7 +66,7 @@ const textDiffOp = (oldText, newText, path, realtimeModules) => {
   return op;
 };
 
-export const generateFileChangeOp = (
+export const fileChangeOp = (
   fileIndex,
   oldText,
   newText,
