@@ -25,7 +25,7 @@ export const useShareDBDoc = (collection, id) => {
     return () => {
       doc.unsubscribe();
     };
-  }, [connection, id]);
+  }, [connection, collection, id]);
 
   return vizContentDoc;
 };

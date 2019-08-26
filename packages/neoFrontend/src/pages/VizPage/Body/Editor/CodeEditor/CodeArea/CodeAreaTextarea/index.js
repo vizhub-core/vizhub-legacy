@@ -49,7 +49,7 @@ export const CodeAreaTextarea = ({ activeFile }) => {
 
     // Subscribe to changes.
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op, originatedLocally }) => {
+      ({ previous, next, op, originatedLocally }) => {
         if (!originatedLocally) {
           op.forEach(c => {
             if (json0.canOpAffectPath(c, path)) {
