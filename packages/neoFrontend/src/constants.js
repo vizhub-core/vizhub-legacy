@@ -13,3 +13,6 @@ export const useTransitions = isProd;
 //export const useTransitions = true;
 
 export const clearConsole = isProd;
+
+// TODO reduce duplication between here and packages/database/src/collectionName.js
+export const DOCUMENT_CONTENT = 'documentContent';

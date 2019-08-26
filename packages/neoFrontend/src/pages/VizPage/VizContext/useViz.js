@@ -1,14 +1,17 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { useVizContentDoc } from './useVizContentDoc';
+import { DOCUMENT_CONTENT } from '../../../constants';
+import { useShareDBDoc } from './useShareDBDoc';
 
 export const useViz = initialViz => {
-  const vizContentDoc = useVizContentDoc(initialViz.id);
+  const vizContentDoc = useShareDBDoc(DOCUMENT_CONTENT, initialViz.id);
 
   // Display initial viz until realtime connection has been established.
   const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
 
   const vizContentOp$ = useMemo(() => new Subject(), []);
+
+  const getPreviousContent = useCallback(() => viz$.getValue().content, [viz$]);
 
   // Connect to ShareDB doc for realtime connection.
   useEffect(() => {
@@ -18,16 +21,8 @@ export const useViz = initialViz => {
 
     // Update on each change.
     const handleOp = (op, originatedLocally) => {
-      const viz = viz$.getValue();
-      const previousContent = viz.content;
+      const previousContent = getPreviousContent();
       const nextContent = vizContentDoc.data;
-
-      if (previousContent !== nextContent) {
-        viz$.next({
-          info: viz.info,
-          content: nextContent
-        });
-      }
 
       vizContentOp$.next({
         previousContent,
@@ -43,6 +38,20 @@ export const useViz = initialViz => {
       vizContentDoc.off('op', handleOp);
     };
   }, [vizContentDoc, viz$, vizContentOp$]);
+
+  useEffect(() => {
+    const subscription = vizContentOp$.subscribe(
+      ({ previousContent, nextContent }) => {
+        if (previousContent !== nextContent) {
+          viz$.next({
+            info: viz$.getValue().info,
+            content: nextContent
+          });
+        }
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, [viz$, vizContentOp$]);
 
   const submitVizContentOp = useMemo(() => {
     if (vizContentDoc) {
