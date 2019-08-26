@@ -28,9 +28,8 @@ export const Viewer = () => {
   } = useContext(VizPageDataContext);
 
   const { viz$ } = useContext(VizContext);
-  const viz = useValue(viz$);
-
-  const vizHeight = getVizHeight(viz);
+  const vizInfo = useValue(viz$, viz => viz.info);
+  const vizHeight = useValue(viz$, getVizHeight);
 
   const scrollerRef = useRef();
   const perfectScrollbarRef = useRef();
@@ -63,8 +62,8 @@ export const Viewer = () => {
 
   // Set title in browser tab.
   useEffect(() => {
-    document.title = viz.info.title;
-  }, [viz.info.title]);
+    document.title = vizInfo.title;
+  }, [vizInfo.title]);
 
   return (
     <Wrapper className="test-viewer">
@@ -78,10 +77,10 @@ export const Viewer = () => {
               scrollerRef={scrollerRef}
               setWidth={setWidth}
             />
-            <TitleBar title={viz.info.title} />
+            <TitleBar title={vizInfo.title} />
             <HorizontalRule />
             <DescriptionSection
-              viz={viz}
+              vizInfo={vizInfo}
               ownerUser={ownerUser}
               forkedFromVisualizationInfo={forkedFromVisualizationInfo}
               forkedFromVisualizationOwnerUserName={
