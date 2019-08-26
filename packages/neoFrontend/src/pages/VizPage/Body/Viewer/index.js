@@ -8,8 +8,10 @@ import React, {
 import PerfectScrollbar from 'perfect-scrollbar';
 
 import { getVizHeight } from '../../../../accessors';
+import { useValue } from '../../../../useValue';
 import { Centering } from '../../../styles';
 import { VizPageDataContext } from '../../VizPageDataContext';
+import { VizContext } from '../../VizContext';
 import { useListener } from '../useListener';
 import { Wrapper, Scroller, ViewerContent, HorizontalRule } from './styles';
 import { VizFrame } from './VizFrame';
@@ -20,13 +22,15 @@ import { GlobalScrollbarStyle } from './GlobalScrollbarStyle';
 
 export const Viewer = () => {
   const {
-    visualization,
     ownerUser,
     forkedFromVisualizationInfo,
     forkedFromVisualizationOwnerUserName
   } = useContext(VizPageDataContext);
 
-  const vizHeight = getVizHeight(visualization);
+  const { viz$ } = useContext(VizContext);
+  const viz = useValue(viz$);
+
+  const vizHeight = getVizHeight(viz);
 
   const scrollerRef = useRef();
   const perfectScrollbarRef = useRef();
@@ -69,10 +73,10 @@ export const Viewer = () => {
               scrollerRef={scrollerRef}
               setWidth={setWidth}
             />
-            <TitleBar title={visualization.info.title} />
+            <TitleBar title={viz.info.title} />
             <HorizontalRule />
             <DescriptionSection
-              visualization={visualization}
+              viz={viz}
               ownerUser={ownerUser}
               forkedFromVisualizationInfo={forkedFromVisualizationInfo}
               forkedFromVisualizationOwnerUserName={

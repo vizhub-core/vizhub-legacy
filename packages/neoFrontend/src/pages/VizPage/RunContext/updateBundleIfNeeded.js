@@ -1,6 +1,10 @@
-import { getVizFiles, getFileIndex, deleteFileOp } from '../../../accessors';
-import { generateFileChangeOp } from '../generateFileChangeOp';
-import { generateFileCreateOp } from '../generateFileCreateOp';
+import {
+  getVizFiles,
+  getFileIndex,
+  deleteFileOp,
+  generateFileChangeOp,
+  generateFileCreateOp
+} from '../../../accessors';
 
 export const updateBundleIfNeeded = async (
   viz$,

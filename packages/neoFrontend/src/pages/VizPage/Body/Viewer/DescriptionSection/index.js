@@ -30,20 +30,19 @@ const formatTimestamp = timestamp =>
   });
 
 export const DescriptionSection = ({
-  visualization,
+  viz,
   ownerUser,
   forkedFromVisualizationInfo,
   forkedFromVisualizationOwnerUserName,
   size
 }) => {
-  const created = useMemo(
-    () => formatTimestamp(visualization.info.createdTimestamp),
-    [visualization.info.createdTimestamp]
-  );
+  const created = useMemo(() => formatTimestamp(viz.info.createdTimestamp), [
+    viz.info.createdTimestamp
+  ]);
 
   const lastUpdated = useMemo(
-    () => formatTimestamp(visualization.info.lastUpdatedTimestamp),
-    [visualization.info.lastUpdatedTimestamp]
+    () => formatTimestamp(viz.info.lastUpdatedTimestamp),
+    [viz.info.lastUpdatedTimestamp]
   );
 
   return (
@@ -81,7 +80,7 @@ export const DescriptionSection = ({
         <Description
           size={size}
           dangerouslySetInnerHTML={{
-            __html: marked(visualization.info.description)
+            __html: marked(viz.info.description)
           }}
         />
       </Left>

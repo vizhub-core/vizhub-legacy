@@ -1,7 +1,10 @@
 import React, { useContext, useState, useCallback } from 'react';
-import { getVizFiles, getFileIndex } from '../../../../../accessors';
-import { generateFileChangeOp } from '../../../generateFileChangeOp';
-import { generateFileCreateOp } from '../../../generateFileCreateOp';
+import {
+  getVizFiles,
+  getFileIndex,
+  generateFileChangeOp,
+  generateFileCreateOp
+} from '../../../../../accessors';
 import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
