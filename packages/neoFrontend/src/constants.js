@@ -16,3 +16,4 @@ export const clearConsole = isProd;
 
 // TODO reduce duplication between here and packages/database/src/collectionName.js
 export const DOCUMENT_CONTENT = 'documentContent';
+export const DOCUMENT_INFO = 'documentInfo';

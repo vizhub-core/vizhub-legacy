@@ -111,8 +111,8 @@ export const useRun = () => {
   // Keep track of when JS files were changed locally.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, op, originatedLocally }) => {
-        if (changesJS(op, previousContent.files)) {
+      ({ previous, op, originatedLocally }) => {
+        if (changesJS(op, previous.files)) {
           jsChanged.current = originatedLocally ? 'local' : 'remote';
         }
       }
@@ -124,9 +124,9 @@ export const useRun = () => {
   // Do not reset run timer when bundle.js gets generated.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op }) => {
-        if (previousContent.files !== nextContent.files) {
-          if (!onlyBundleJSChanged(previousContent.files, nextContent.files)) {
+      ({ previous, next, op }) => {
+        if (previous.files !== next.files) {
+          if (!onlyBundleJSChanged(previous.files, next.files)) {
             startRunTimer();
           }
         }
@@ -139,10 +139,10 @@ export const useRun = () => {
   // that causes the bundle to update.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op, originatedLocally }) => {
+      ({ previous, next, op, originatedLocally }) => {
         if (!originatedLocally) {
-          if (previousContent.files !== nextContent.files) {
-            if (onlyBundleJSChanged(previousContent.files, nextContent.files)) {
+          if (previous.files !== next.files) {
+            if (onlyBundleJSChanged(previous.files, next.files)) {
               // This needs to be debounced because each component of
               // remote multi-component ops are emitted as separate ops.
               // See https://github.com/share/sharedb/blob/master/lib/client/doc.js#L544
