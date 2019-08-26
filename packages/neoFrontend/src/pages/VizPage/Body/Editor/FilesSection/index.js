@@ -1,7 +1,10 @@
 import React, { useContext, useState, useCallback } from 'react';
-import { getVizFiles, getFileIndex } from '../../../../../accessors';
-import { generateFileChangeOp } from '../../../generateFileChangeOp';
-import { generateFileCreateOp } from '../../../generateFileCreateOp';
+import {
+  getVizFiles,
+  getFileIndex,
+  fileChangeOp,
+  fileCreateOp
+} from '../../../../../accessors';
 import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
@@ -23,7 +26,7 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
     newName => {
       setIsRenamingActiveFile(false);
       const fileIndex = getFileIndex(files, activeFile);
-      const op = generateFileChangeOp(
+      const op = fileChangeOp(
         fileIndex,
         activeFile,
         newName,
@@ -49,7 +52,7 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
       if (newName !== '') {
         console.log('Create file ' + newName);
         submitVizContentOp(
-          generateFileCreateOp(files, {
+          fileCreateOp(files, {
             name: newName,
             text: ''
           })

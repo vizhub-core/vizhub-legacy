@@ -123,7 +123,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     codeMirror.setValue(file.text);
 
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op, originatedLocally }) => {
+      ({ previous, next, op, originatedLocally }) => {
         if (!originatedLocally) {
           const doc = codeMirror.getDoc();
           op.forEach(c => {

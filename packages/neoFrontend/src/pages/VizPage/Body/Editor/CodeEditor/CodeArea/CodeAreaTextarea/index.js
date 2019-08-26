@@ -4,7 +4,7 @@ import { getVizFile } from '../../../../../../../accessors';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
 import { usePath } from '../usePath';
 import { Wrapper } from './styles';
-import { generateFileChangeOp } from '../generateFileChangeOp';
+import { fileChangeOp } from '../fileChangeOp';
 import { useFileIndex } from '../useFileIndex';
 
 export const CodeAreaTextarea = ({ activeFile }) => {
@@ -22,7 +22,7 @@ export const CodeAreaTextarea = ({ activeFile }) => {
       const newText = event.target.value;
       const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
       submitVizContentOp(
-        generateFileChangeOp(fileIndex, oldText, newText, realtimeModules)
+        fileChangeOp(fileIndex, oldText, newText, realtimeModules)
       );
     },
     [viz$, fileIndex, submitVizContentOp, realtimeModules]
@@ -49,7 +49,7 @@ export const CodeAreaTextarea = ({ activeFile }) => {
 
     // Subscribe to changes.
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op, originatedLocally }) => {
+      ({ previous, next, op, originatedLocally }) => {
         if (!originatedLocally) {
           op.forEach(c => {
             if (json0.canOpAffectPath(c, path)) {
