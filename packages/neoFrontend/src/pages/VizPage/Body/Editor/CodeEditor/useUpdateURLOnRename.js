@@ -20,18 +20,16 @@ export const useUpdateURLOnRename = () => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
 
   useEffect(() => {
-    const subscription = vizContentOp$.subscribe(
-      ({ previous, next, op }) => {
-        const fileIndex = getFileIndex(previous.files, activeFile);
-        const path = getPath(fileIndex, 'name');
-        op.forEach(c => {
-          if (affectsPath(path, c.p)) {
-            const newName = next.files[fileIndex].name;
-            setActiveFile(newName);
-          }
-        });
-      }
-    );
+    const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
+      const fileIndex = getFileIndex(previous.files, activeFile);
+      const path = getPath(fileIndex, 'name');
+      op.forEach(c => {
+        if (affectsPath(path, c.p)) {
+          const newName = next.files[fileIndex].name;
+          setActiveFile(newName);
+        }
+      });
+    });
     return () => {
       subscription.unsubscribe();
     };

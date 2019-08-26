@@ -123,15 +123,13 @@ export const useRun = () => {
   // Reset run timer whenever files are changed by the user.
   // Do not reset run timer when bundle.js gets generated.
   useEffect(() => {
-    const subscription = vizContentOp$.subscribe(
-      ({ previous, next, op }) => {
-        if (previous.files !== next.files) {
-          if (!onlyBundleJSChanged(previous.files, next.files)) {
-            startRunTimer();
-          }
+    const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
+      if (previous.files !== next.files) {
+        if (!onlyBundleJSChanged(previous.files, next.files)) {
+          startRunTimer();
         }
       }
-    );
+    });
     return () => subscription.unsubscribe();
   }, [vizContentOp$, startRunTimer]);
 
