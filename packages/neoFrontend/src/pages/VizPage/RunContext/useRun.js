@@ -90,11 +90,18 @@ export const useRun = () => {
       // and let that trigger a run id update.
     }
 
-    updateTitleIfNeeded(viz$, submitVizInfoOp);
+    updateTitleIfNeeded(viz$, submitVizInfoOp, realtimeModules);
 
     // Flag that the timer is no longer running.
     timeoutId.current = undefined;
-  }, [setRunId, editorModules, realtimeModules, viz$, submitVizContentOp, submitVizInfoOp]);
+  }, [
+    setRunId,
+    editorModules,
+    realtimeModules,
+    viz$,
+    submitVizContentOp,
+    submitVizInfoOp
+  ]);
 
   // If the timer has been started, reset it.
   // If the timer has not been started, this function is a no op.

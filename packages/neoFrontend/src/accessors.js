@@ -49,3 +49,39 @@ export const extractTitle = html => {
   const titleMatch = html.match(/<title>(.*?)<\/title>/i);
   return titleMatch ? titleMatch[1] : 'Untitled';
 };
+
+// Pushes a new file entry onto the files array.
+// newFile is expected to be an object with "name" and "text" properties.
+export const generateFileCreateOp = (files, newFile) => ({
+  p: ['files', files.length],
+  li: newFile
+});
+
+export const generateFileChangeOp = (
+  fileIndex,
+  oldText,
+  newText,
+  realtimeModules,
+  field = 'text' // Can be 'text' or 'name'
+) => {
+  // Derive the op for this change by diffing the text.
+  const { diffMatchPatch, jsondiff } = realtimeModules;
+  const op = jsondiff(oldText, newText, diffMatchPatch);
+
+  // Make the op path correct with respect to the document root.
+  op.forEach(opComponent => {
+    opComponent.p = ['files', fileIndex, field].concat(opComponent.p);
+  });
+
+  return op;
+};
+
+// TODO unify with logic of generateFileChangeOp
+export const titleChangeOp = (oldTitle, newTitle, realtimeModules) => {
+  const { diffMatchPatch, jsondiff } = realtimeModules;
+  const op = jsondiff(oldTitle, newTitle, diffMatchPatch);
+  op.forEach(opComponent => {
+    opComponent.p = ['title'].concat(opComponent.p);
+  });
+  return op;
+};
