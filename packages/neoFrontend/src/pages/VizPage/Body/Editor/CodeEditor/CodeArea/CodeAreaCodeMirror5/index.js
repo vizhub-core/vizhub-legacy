@@ -49,7 +49,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   useEffect(() => {
     if (!editorModules) return;
     const { CodeMirror } = editorModules;
-    console.log('here');
     setCodeMirror(
       new CodeMirror(ref.current, {
         lineNumbers: true,
