@@ -11,10 +11,13 @@ export const useViz = initialViz => {
   // Display initial viz until realtime connection has been established.
   const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
 
-  const getPrevious = useCallback(() => viz$.getValue().content, [viz$]);
+  const getPreviousContent = useCallback(() => viz$.getValue().content, [viz$]);
+  const vizContentOp$ = useOpStream(vizContentDoc, getPreviousContent);
 
-  const vizContentOp$ = useOpStream(vizContentDoc, getPrevious);
+  const getPreviousInfo = useCallback(() => viz$.getValue().info, [viz$]);
+  const vizInfoOp$ = useOpStream(vizInfoDoc, getPreviousInfo);
 
+  // Update viz$ content.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(({ previous, next }) => {
       if (previous !== next) {
@@ -26,6 +29,19 @@ export const useViz = initialViz => {
     });
     return () => subscription.unsubscribe();
   }, [viz$, vizContentOp$]);
+
+  // Update viz$ info.
+  useEffect(() => {
+    const subscription = vizInfoOp$.subscribe(({ previous, next }) => {
+      if (previous !== next) {
+        viz$.next({
+          content: viz$.getValue().content,
+          info: next
+        });
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [viz$, vizInfoOp$]);
 
   const submitVizContentOp = useMemo(() => {
     if (vizContentDoc) {
