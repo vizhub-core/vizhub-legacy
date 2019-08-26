@@ -1,4 +1,5 @@
 import { extractTitle, getFile, titleChangeOp } from '../../../accessors';
+
 export const updateTitleIfNeeded = (viz$, submitVizInfoOp, realtimeModules) => {
   const { info, content } = viz$.getValue();
   const { files } = content;
