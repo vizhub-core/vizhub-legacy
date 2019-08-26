@@ -1,10 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { ConnectionContext } from '../ConnectionContext';
 
-// TODO reduce duplication between here and packages/database/src/collectionName.js
-export const DOCUMENT_CONTENT = 'documentContent';
-
-export const useVizContentDoc = vizId => {
+export const useShareDBDoc = (collection, id) => {
   const connection = useContext(ConnectionContext);
 
   const [vizContentDoc, setVizContentDoc] = useState(null);
@@ -12,11 +9,11 @@ export const useVizContentDoc = vizId => {
   useEffect(() => {
     if (!connection) return;
 
-    // Clear out old doc in case vizId changed.
+    // Clear out old doc in case id changed.
     // (don't want the user to see stale stuff).
     setVizContentDoc(null);
 
-    const doc = connection.get(DOCUMENT_CONTENT, vizId);
+    const doc = connection.get(collection, id);
 
     // Wait until subscribe finishes before passing this out,
     // so that downstream code can assume data is present
@@ -28,7 +25,7 @@ export const useVizContentDoc = vizId => {
     return () => {
       doc.unsubscribe();
     };
-  }, [connection, vizId]);
+  }, [connection, collection, id]);
 
   return vizContentDoc;
 };

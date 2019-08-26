@@ -44,3 +44,42 @@ export const deleteFileOp = (viz, fileName) => {
     ld: viz.content.files[fileIndex]
   };
 };
+
+export const extractTitle = html => {
+  const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+  return titleMatch ? titleMatch[1] : 'Untitled';
+};
+
+// Pushes a new file entry onto the files array.
+// newFile is expected to be an object with "name" and "text" properties.
+export const fileCreateOp = (files, newFile) => ({
+  p: ['files', files.length],
+  li: newFile
+});
+
+const textDiffOp = (oldText, newText, path, realtimeModules) => {
+  const { diffMatchPatch, jsondiff } = realtimeModules;
+  const op = jsondiff(oldText, newText, diffMatchPatch);
+  op.forEach(opComponent => {
+    opComponent.p = path.concat(opComponent.p);
+  });
+  return op;
+};
+
+export const fileChangeOp = (
+  fileIndex,
+  oldText,
+  newText,
+  realtimeModules,
+  field = 'text' // Can be 'text' or 'name'
+) => textDiffOp(oldText, newText, ['files', fileIndex, field], realtimeModules);
+
+export const titleChangeOp = (oldTitle, newTitle, realtimeModules) =>
+  textDiffOp(oldTitle, newTitle, ['title'], realtimeModules);
+
+export const descriptionChangeOp = (
+  oldDescription,
+  newDescription,
+  realtimeModules
+) =>
+  textDiffOp(oldDescription, newDescription, ['description'], realtimeModules);

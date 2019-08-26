@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+// TODO use useShareDBDoc
+
 // TODO reduce duplication between here and packages/database/src/collectionName.js
 export const DOCUMENT_CONTENT = 'documentContent';
 

@@ -1,55 +1,51 @@
-import { useEffect, useMemo } from 'react';
-import { Subject, BehaviorSubject } from 'rxjs';
-import { useVizContentDoc } from './useVizContentDoc';
+import { useEffect, useMemo, useCallback } from 'react';
+import { BehaviorSubject } from 'rxjs';
+import { DOCUMENT_CONTENT, DOCUMENT_INFO } from '../../../constants';
+import { useShareDBDoc } from './useShareDBDoc';
+import { useOpStream } from './useOpStream';
+import { useSubmitOp } from './useSubmitOp';
 
 export const useViz = initialViz => {
-  const vizContentDoc = useVizContentDoc(initialViz.id);
+  const vizContentDoc = useShareDBDoc(DOCUMENT_CONTENT, initialViz.id);
+  const vizInfoDoc = useShareDBDoc(DOCUMENT_INFO, initialViz.id);
 
   // Display initial viz until realtime connection has been established.
   const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
 
-  const vizContentOp$ = useMemo(() => new Subject(), []);
+  const getPreviousContent = useCallback(() => viz$.getValue().content, [viz$]);
+  const vizContentOp$ = useOpStream(vizContentDoc, getPreviousContent);
 
-  // Connect to ShareDB doc for realtime connection.
+  const getPreviousInfo = useCallback(() => viz$.getValue().info, [viz$]);
+  const vizInfoOp$ = useOpStream(vizInfoDoc, getPreviousInfo);
+
+  // Update viz$ content.
   useEffect(() => {
-    if (!vizContentDoc) {
-      return;
-    }
-
-    // Update on each change.
-    const handleOp = (op, originatedLocally) => {
-      const viz = viz$.getValue();
-      const previousContent = viz.content;
-      const nextContent = vizContentDoc.data;
-
-      if (previousContent !== nextContent) {
+    const subscription = vizContentOp$.subscribe(({ previous, next }) => {
+      if (previous !== next) {
         viz$.next({
-          info: viz.info,
-          content: nextContent
+          info: viz$.getValue().info,
+          content: next
         });
       }
+    });
+    return () => subscription.unsubscribe();
+  }, [viz$, vizContentOp$]);
 
-      vizContentOp$.next({
-        previousContent,
-        nextContent,
-        op,
-        originatedLocally
-      });
-    };
+  // Update viz$ info.
+  useEffect(() => {
+    const subscription = vizInfoOp$.subscribe(({ previous, next }) => {
+      if (previous !== next) {
+        viz$.next({
+          content: viz$.getValue().content,
+          info: next
+        });
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [viz$, vizInfoOp$]);
 
-    vizContentDoc.on('op', handleOp);
+  const submitVizContentOp = useSubmitOp(vizContentDoc);
+  const submitVizInfoOp = useSubmitOp(vizInfoDoc);
 
-    return () => {
-      vizContentDoc.off('op', handleOp);
-    };
-  }, [vizContentDoc, viz$, vizContentOp$]);
-
-  const submitVizContentOp = useMemo(() => {
-    if (vizContentDoc) {
-      return op => vizContentDoc.submitOp(op);
-    }
-    return undefined;
-  }, [vizContentDoc]);
-
-  return { viz$, submitVizContentOp, vizContentOp$ };
+  return { viz$, submitVizContentOp, submitVizInfoOp, vizContentOp$ };
 };

@@ -11,6 +11,8 @@ import { VizContext } from '../VizContext';
 import { EditorModulesContext } from '../EditorModulesContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { updateBundleIfNeeded } from './updateBundleIfNeeded';
+import { updateTitleIfNeeded } from './updateTitleIfNeeded';
+import { updateDescriptionIfNeeded } from './updateDescriptionIfNeeded';
 import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
 import { changesJS } from './changesJS';
@@ -20,13 +22,19 @@ import { changesJS } from './changesJS';
 const runDelay = 1000;
 
 export const useRun = () => {
-  const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
+  const {
+    viz$,
+    submitVizContentOp,
+    submitVizInfoOp,
+    vizContentOp$
+  } = useContext(VizContext);
   const [runId, setRunId] = useState(generateRunId());
   const [runError, setRunError] = useState(null);
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
   const jsChanged = useRef(false);
+  const titleOrDescriptionMayHaveChanged = useRef(false);
   const timeoutId = useRef();
   const runTimerStart = useRef();
 
@@ -60,6 +68,7 @@ export const useRun = () => {
     })(),
     [setRunId]
   );
+
   const run = useCallback(async () => {
     if (!jsChanged.current) {
       setRunId(generateRunId());
@@ -83,9 +92,21 @@ export const useRun = () => {
       // and let that trigger a run id update.
     }
 
+    if (titleOrDescriptionMayHaveChanged.current) {
+      updateTitleIfNeeded(viz$, submitVizInfoOp, realtimeModules);
+      updateDescriptionIfNeeded(viz$, submitVizInfoOp, realtimeModules);
+    }
+
     // Flag that the timer is no longer running.
     timeoutId.current = undefined;
-  }, [setRunId, editorModules, realtimeModules, viz$, submitVizContentOp]);
+  }, [
+    setRunId,
+    editorModules,
+    realtimeModules,
+    viz$,
+    submitVizContentOp,
+    submitVizInfoOp
+  ]);
 
   // If the timer has been started, reset it.
   // If the timer has not been started, this function is a no op.
@@ -111,9 +132,12 @@ export const useRun = () => {
   // Keep track of when JS files were changed locally.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, op, originatedLocally }) => {
-        if (changesJS(op, previousContent.files)) {
+      ({ previous, op, originatedLocally }) => {
+        if (changesJS(op, previous.files)) {
           jsChanged.current = originatedLocally ? 'local' : 'remote';
+        }
+        if (originatedLocally) {
+          titleOrDescriptionMayHaveChanged.current = true;
         }
       }
     );
@@ -123,15 +147,13 @@ export const useRun = () => {
   // Reset run timer whenever files are changed by the user.
   // Do not reset run timer when bundle.js gets generated.
   useEffect(() => {
-    const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op }) => {
-        if (previousContent.files !== nextContent.files) {
-          if (!onlyBundleJSChanged(previousContent.files, nextContent.files)) {
-            startRunTimer();
-          }
+    const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
+      if (previous.files !== next.files) {
+        if (!onlyBundleJSChanged(previous.files, next.files)) {
+          startRunTimer();
         }
       }
-    );
+    });
     return () => subscription.unsubscribe();
   }, [vizContentOp$, startRunTimer]);
 
@@ -139,10 +161,10 @@ export const useRun = () => {
   // that causes the bundle to update.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previousContent, nextContent, op, originatedLocally }) => {
+      ({ previous, next, op, originatedLocally }) => {
         if (!originatedLocally) {
-          if (previousContent.files !== nextContent.files) {
-            if (onlyBundleJSChanged(previousContent.files, nextContent.files)) {
+          if (previous.files !== next.files) {
+            if (onlyBundleJSChanged(previous.files, next.files)) {
               // This needs to be debounced because each component of
               // remote multi-component ops are emitted as separate ops.
               // See https://github.com/share/sharedb/blob/master/lib/client/doc.js#L544
