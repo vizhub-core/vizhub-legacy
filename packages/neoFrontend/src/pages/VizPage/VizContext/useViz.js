@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from '../../../constants';
 import { useShareDBDoc } from './useShareDBDoc';
 import { useOpStream } from './useOpStream';
+import { useSubmitOp } from './useSubmitOp';
 
 export const useViz = initialViz => {
   const vizContentDoc = useShareDBDoc(DOCUMENT_CONTENT, initialViz.id);
@@ -43,19 +44,8 @@ export const useViz = initialViz => {
     return () => subscription.unsubscribe();
   }, [viz$, vizInfoOp$]);
 
-  const submitVizContentOp = useMemo(() => {
-    if (vizContentDoc) {
-      return op => vizContentDoc.submitOp(op);
-    }
-    return undefined;
-  }, [vizContentDoc]);
-
-  const submitVizInfoOp = useMemo(() => {
-    if (vizInfoDoc) {
-      return op => vizInfoDoc.submitOp(op);
-    }
-    return undefined;
-  }, [vizInfoDoc]);
+  const submitVizContentOp = useSubmitOp(vizContentDoc);
+  const submitVizInfoOp = useSubmitOp(vizInfoDoc);
 
   return { viz$, submitVizContentOp, submitVizInfoOp, vizContentOp$ };
 };
