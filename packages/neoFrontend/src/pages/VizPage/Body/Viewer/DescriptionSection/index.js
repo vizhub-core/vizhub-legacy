@@ -30,19 +30,19 @@ const formatTimestamp = timestamp =>
   });
 
 export const DescriptionSection = ({
-  viz,
+  vizInfo,
   ownerUser,
   forkedFromVisualizationInfo,
   forkedFromVisualizationOwnerUserName,
   size
 }) => {
-  const created = useMemo(() => formatTimestamp(viz.info.createdTimestamp), [
-    viz.info.createdTimestamp
+  const created = useMemo(() => formatTimestamp(vizInfo.createdTimestamp), [
+    vizInfo.createdTimestamp
   ]);
 
   const lastUpdated = useMemo(
-    () => formatTimestamp(viz.info.lastUpdatedTimestamp),
-    [viz.info.lastUpdatedTimestamp]
+    () => formatTimestamp(vizInfo.lastUpdatedTimestamp),
+    [vizInfo.lastUpdatedTimestamp]
   );
 
   return (
@@ -79,9 +79,7 @@ export const DescriptionSection = ({
         </Authorship>
         <Description
           size={size}
-          dangerouslySetInnerHTML={{
-            __html: marked(viz.info.description)
-          }}
+          dangerouslySetInnerHTML={{ __html: marked(vizInfo.description) }}
         />
       </Left>
       {showVideoThumbnail ? (
