@@ -61,6 +61,11 @@ export const Viewer = () => {
     [setSize, updateScrollbar]
   );
 
+  // Set title in browser tab.
+  useEffect(() => {
+    document.title = viz.info.title;
+  }, [viz.info.title]);
+
   return (
     <Wrapper className="test-viewer">
       <Resizer />
