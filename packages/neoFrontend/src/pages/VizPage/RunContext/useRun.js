@@ -92,7 +92,7 @@ export const useRun = () => {
       // and let that trigger a run id update.
     }
 
-    if(titleOrDescriptionMayHaveChanged.current){
+    if (titleOrDescriptionMayHaveChanged.current) {
       updateTitleIfNeeded(viz$, submitVizInfoOp, realtimeModules);
       updateDescriptionIfNeeded(viz$, submitVizInfoOp, realtimeModules);
     }
@@ -136,7 +136,7 @@ export const useRun = () => {
         if (changesJS(op, previous.files)) {
           jsChanged.current = originatedLocally ? 'local' : 'remote';
         }
-        if(originatedLocally){
+        if (originatedLocally) {
           titleOrDescriptionMayHaveChanged.current = true;
         }
       }

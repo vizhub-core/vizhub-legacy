@@ -1,6 +1,10 @@
 import { getFile, descriptionChangeOp } from '../../../accessors';
 
-export const updateDescriptionIfNeeded = (viz$, submitVizInfoOp, realtimeModules) => {
+export const updateDescriptionIfNeeded = (
+  viz$,
+  submitVizInfoOp,
+  realtimeModules
+) => {
   const { info, content } = viz$.getValue();
   const { files } = content;
   const oldDescription = info.description;
@@ -8,6 +12,8 @@ export const updateDescriptionIfNeeded = (viz$, submitVizInfoOp, realtimeModules
   const newDescription = readme ? readme.text : '';
 
   if (oldDescription !== newDescription) {
-    submitVizInfoOp(descriptionChangeOp(oldDescription, newDescription, realtimeModules));
+    submitVizInfoOp(
+      descriptionChangeOp(oldDescription, newDescription, realtimeModules)
+    );
   }
 };
