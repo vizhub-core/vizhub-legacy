@@ -85,3 +85,13 @@ export const titleChangeOp = (oldTitle, newTitle, realtimeModules) => {
   });
   return op;
 };
+
+// TODO unify with logic of generateFileChangeOp
+export const descriptionChangeOp = (oldDescription, newDescription, realtimeModules) => {
+  const { diffMatchPatch, jsondiff } = realtimeModules;
+  const op = jsondiff(oldDescription, newDescription, diffMatchPatch);
+  op.forEach(opComponent => {
+    opComponent.p = ['description'].concat(opComponent.p);
+  });
+  return op;
+};
