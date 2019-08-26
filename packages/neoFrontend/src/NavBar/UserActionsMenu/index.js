@@ -45,6 +45,10 @@ export const UserActionsMenu = withTheme(({ theme }) => {
               </Item>
             </Link>
             <HorizontalRule />
+            <Link to={`/${me.userName}`}>
+              <Item>Profile</Item>
+            </Link>
+            <HorizontalRule />
             <Item className="test-sign-out" onClick={signOut} bottommost={true}>
               Sign out
             </Item>

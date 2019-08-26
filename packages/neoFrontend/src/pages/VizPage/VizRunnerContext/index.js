@@ -6,7 +6,7 @@ import {
   getVizHeight,
   getVizFiles
 } from '../../../accessors';
-import { vizWidth } from '../../../constants';
+import { vizWidth, clearConsole } from '../../../constants';
 import { useValue } from '../../../useValue';
 import { modMode } from '../../../mobileMods';
 import { VizContext } from '../VizContext';
@@ -72,7 +72,9 @@ export const VizRunnerProvider = ({ children }) => {
       console.error(errorMessage + '\n(bundle.js not updated)');
       iFrame.setAttribute('srcDoc', generateErrorMessageSrcDoc(errorMessage));
     } else {
-      console.clear();
+      if (clearConsole) {
+        console.clear();
+      }
       iFrame.setAttribute(
         'srcDoc',
         computeSrcDoc(getVizFiles(viz$.getValue()))
