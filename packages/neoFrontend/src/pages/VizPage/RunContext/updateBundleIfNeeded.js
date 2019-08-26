@@ -2,8 +2,8 @@ import {
   getVizFiles,
   getFileIndex,
   deleteFileOp,
-  generateFileChangeOp,
-  generateFileCreateOp
+  fileChangeOp,
+  fileCreateOp
 } from '../../../accessors';
 
 export const updateBundleIfNeeded = async (
@@ -26,19 +26,12 @@ export const updateBundleIfNeeded = async (
       const bundleJSExists = fileIndex !== -1;
       if (bundleJSExists) {
         const oldText = files[fileIndex].text;
-        const op = generateFileChangeOp(
-          fileIndex,
-          oldText,
-          text,
-          realtimeModules
-        );
+        const op = fileChangeOp(fileIndex, oldText, text, realtimeModules);
         if (op.length !== 0) {
           submitVizContentOp(op);
         }
       } else {
-        submitVizContentOp(
-          generateFileCreateOp(files, { name: 'bundle.js', text })
-        );
+        submitVizContentOp(fileCreateOp(files, { name: 'bundle.js', text }));
       }
     } else {
       submitVizContentOp(deleteFileOp(viz, 'bundle.js'));
