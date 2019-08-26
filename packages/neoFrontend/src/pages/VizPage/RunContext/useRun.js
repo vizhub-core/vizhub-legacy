@@ -13,6 +13,7 @@ import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { updateBundleIfNeeded } from './updateBundleIfNeeded';
 import { updateTitleIfNeeded } from './updateTitleIfNeeded';
 import { updateDescriptionIfNeeded } from './updateDescriptionIfNeeded';
+import { updateLastUpdatedTimestamp } from './updateLastUpdatedTimestamp';
 import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
 import { changesJS } from './changesJS';
@@ -34,7 +35,7 @@ export const useRun = () => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
   const jsChanged = useRef(false);
-  const titleOrDescriptionMayHaveChanged = useRef(false);
+  const localChanges = useRef(false);
   const timeoutId = useRef();
   const runTimerStart = useRef();
 
@@ -92,9 +93,11 @@ export const useRun = () => {
       // and let that trigger a run id update.
     }
 
-    if (titleOrDescriptionMayHaveChanged.current) {
+    if (localChanges.current) {
       updateTitleIfNeeded(viz$, submitVizInfoOp, realtimeModules);
       updateDescriptionIfNeeded(viz$, submitVizInfoOp, realtimeModules);
+      updateLastUpdatedTimestamp(viz$, submitVizInfoOp);
+      localChanges.current = false;
     }
 
     // Flag that the timer is no longer running.
@@ -137,7 +140,7 @@ export const useRun = () => {
           jsChanged.current = originatedLocally ? 'local' : 'remote';
         }
         if (originatedLocally) {
-          titleOrDescriptionMayHaveChanged.current = true;
+          localChanges.current = true;
         }
       }
     );
