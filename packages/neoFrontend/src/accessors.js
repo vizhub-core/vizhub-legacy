@@ -57,41 +57,29 @@ export const generateFileCreateOp = (files, newFile) => ({
   li: newFile
 });
 
+const textDiffOp = (oldText, newText, path, realtimeModules) => {
+  const { diffMatchPatch, jsondiff } = realtimeModules;
+  const op = jsondiff(oldText, newText, diffMatchPatch);
+  op.forEach(opComponent => {
+    opComponent.p = path.concat(opComponent.p);
+  });
+  return op;
+};
+
 export const generateFileChangeOp = (
   fileIndex,
   oldText,
   newText,
   realtimeModules,
   field = 'text' // Can be 'text' or 'name'
-) => {
-  // Derive the op for this change by diffing the text.
-  const { diffMatchPatch, jsondiff } = realtimeModules;
-  const op = jsondiff(oldText, newText, diffMatchPatch);
+) => textDiffOp(oldText, newText, ['files', fileIndex, field], realtimeModules);
 
-  // Make the op path correct with respect to the document root.
-  op.forEach(opComponent => {
-    opComponent.p = ['files', fileIndex, field].concat(opComponent.p);
-  });
+export const titleChangeOp = (oldTitle, newTitle, realtimeModules) =>
+  textDiffOp(oldTitle, newTitle, ['title'], realtimeModules);
 
-  return op;
-};
-
-// TODO unify with logic of generateFileChangeOp
-export const titleChangeOp = (oldTitle, newTitle, realtimeModules) => {
-  const { diffMatchPatch, jsondiff } = realtimeModules;
-  const op = jsondiff(oldTitle, newTitle, diffMatchPatch);
-  op.forEach(opComponent => {
-    opComponent.p = ['title'].concat(opComponent.p);
-  });
-  return op;
-};
-
-// TODO unify with logic of generateFileChangeOp
-export const descriptionChangeOp = (oldDescription, newDescription, realtimeModules) => {
-  const { diffMatchPatch, jsondiff } = realtimeModules;
-  const op = jsondiff(oldDescription, newDescription, diffMatchPatch);
-  op.forEach(opComponent => {
-    opComponent.p = ['description'].concat(opComponent.p);
-  });
-  return op;
-};
+export const descriptionChangeOp = (
+  oldDescription,
+  newDescription,
+  realtimeModules
+) =>
+  textDiffOp(oldDescription, newDescription, ['description'], realtimeModules);
