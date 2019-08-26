@@ -44,3 +44,8 @@ export const deleteFileOp = (viz, fileName) => {
     ld: viz.content.files[fileIndex]
   };
 };
+
+export const extractTitle = html => {
+  const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+  return titleMatch ? titleMatch[1] : 'Untitled';
+};

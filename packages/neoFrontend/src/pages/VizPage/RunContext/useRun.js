@@ -11,6 +11,7 @@ import { VizContext } from '../VizContext';
 import { EditorModulesContext } from '../EditorModulesContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { updateBundleIfNeeded } from './updateBundleIfNeeded';
+import { updateTitleIfNeeded } from './updateTitleIfNeeded';
 import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
 import { changesJS } from './changesJS';
@@ -20,7 +21,12 @@ import { changesJS } from './changesJS';
 const runDelay = 1000;
 
 export const useRun = () => {
-  const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
+  const {
+    viz$,
+    submitVizContentOp,
+    submitVizInfoOp,
+    vizContentOp$
+  } = useContext(VizContext);
   const [runId, setRunId] = useState(generateRunId());
   const [runError, setRunError] = useState(null);
   const { editorModules } = useContext(EditorModulesContext);
@@ -60,6 +66,7 @@ export const useRun = () => {
     })(),
     [setRunId]
   );
+
   const run = useCallback(async () => {
     if (!jsChanged.current) {
       setRunId(generateRunId());
@@ -83,9 +90,11 @@ export const useRun = () => {
       // and let that trigger a run id update.
     }
 
+    updateTitleIfNeeded(viz$, submitVizInfoOp);
+
     // Flag that the timer is no longer running.
     timeoutId.current = undefined;
-  }, [setRunId, editorModules, realtimeModules, viz$, submitVizContentOp]);
+  }, [setRunId, editorModules, realtimeModules, viz$, submitVizContentOp, submitVizInfoOp]);
 
   // If the timer has been started, reset it.
   // If the timer has not been started, this function is a no op.
