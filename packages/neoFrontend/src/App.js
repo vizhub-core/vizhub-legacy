@@ -18,6 +18,7 @@ export const App = () => (
   <Themed>
     <Router>
       <ErrorProvider fallback={error => <ErrorPage error={error} />}>
+        <Route path="/authenticated" component={AuthPopupPage} />
         <AuthProvider>
           <Switch>
             <Route exact path="/" component={HomePage} />
@@ -31,7 +32,6 @@ export const App = () => (
             <Route path="/:userName" component={ProfilePage} />
           </Switch>
         </AuthProvider>
-        <Route path="/authenticated" component={AuthPopupPage} />
       </ErrorProvider>
     </Router>
   </Themed>
