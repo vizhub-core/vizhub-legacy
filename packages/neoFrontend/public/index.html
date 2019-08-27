@@ -19,42 +19,52 @@
       /* font-face does not work well in CSS-in-js (causes multiple fetches). */
       @font-face {
         font-family: 'Ubuntu Mono Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/UbuntuMonoArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Ubuntu Mono';
+        font-display: swap;
         src: url('/fonts/coding/UbuntuMonoLigaturized.woff') format('woff');
       }
       @font-face {
         font-family: 'Fira Code Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/FiraCodeArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Fira Code';
+        font-display: swap;
         src: url('/fonts/coding/FiraCode.woff') format('woff');
       }
       @font-face {
         font-family: 'Deja Vu Sans Mono Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/DejaVuSansMonoArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Deja Vu Sans Mono';
+        font-display: swap;
         src: url('/fonts/coding/DejaVuSansMonoLigaturized.woff') format('woff');
       }
       @font-face {
         font-family: 'Source Code Pro Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/SourceCodeProArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Source Code Pro';
+        font-display: swap;
         src: url('/fonts/coding/SourceCodeProLigaturized.woff') format('woff');
       }
       @font-face {
         font-family: 'Inconsolata-g Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/Inconsolata-gArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Inconsolata-g';
+        font-display: swap;
         src: url('/fonts/coding/Inconsolata-gLigaturized.woff') format('woff');
       }
 
@@ -70,9 +80,6 @@
         text-decoration: none;
       }
     </style>
-    <link rel="preload" crossorigin="anonymous" href="/fonts/coding/UbuntuMonoArrowized.woff" as="font">
-    <!-- should match theme.defaultCodingFontFamily -->
-
   </head>
   <body>
     <div id="root"></div>
