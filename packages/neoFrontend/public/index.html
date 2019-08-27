@@ -14,62 +14,58 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>VizHub</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
     <style>
       /* font-face does not work well in CSS-in-js (causes multiple fetches). */
       @font-face {
         font-family: 'Ubuntu Mono Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/UbuntuMonoArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Ubuntu Mono';
+        font-display: swap;
         src: url('/fonts/coding/UbuntuMonoLigaturized.woff') format('woff');
       }
       @font-face {
         font-family: 'Fira Code Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/FiraCodeArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Fira Code';
+        font-display: swap;
         src: url('/fonts/coding/FiraCode.woff') format('woff');
       }
       @font-face {
         font-family: 'Deja Vu Sans Mono Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/DejaVuSansMonoArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Deja Vu Sans Mono';
+        font-display: swap;
         src: url('/fonts/coding/DejaVuSansMonoLigaturized.woff') format('woff');
       }
       @font-face {
         font-family: 'Source Code Pro Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/SourceCodeProArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Source Code Pro';
+        font-display: swap;
         src: url('/fonts/coding/SourceCodeProLigaturized.woff') format('woff');
       }
       @font-face {
         font-family: 'Inconsolata-g Arrowized';
+        font-display: swap;
         src: url('/fonts/coding/Inconsolata-gArrowized.woff') format('woff');
       }
       @font-face {
         font-family: 'Inconsolata-g';
+        font-display: swap;
         src: url('/fonts/coding/Inconsolata-gLigaturized.woff') format('woff');
-      }
-
-      @font-face {
-        font-family: 'Poppins';
-        src: url('/fonts/poppins/Poppins-Regular.ttf') format('truetype');
-      }
-      @font-face {
-        font-family: 'Poppins';
-        src: url('/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
-        font-weight: 600;
-      }
-      @font-face {
-        font-family: 'Poppins';
-        src: url('/fonts/poppins/Poppins-Bold.ttf') format('truetype');
-        font-weight: bold;
       }
 
       body {
@@ -84,12 +80,6 @@
         text-decoration: none;
       }
     </style>
-    <link rel="preload" crossorigin="anonymous" href="/fonts/poppins/Poppins-Regular.ttf" as="font">
-    <link rel="preload" crossorigin="anonymous" href="/fonts/poppins/Poppins-SemiBold.ttf" as="font">
-    <link rel="preload" crossorigin="anonymous" href="/fonts/poppins/Poppins-Bold.ttf" as="font">
-    <link rel="preload" crossorigin="anonymous" href="/fonts/coding/UbuntuMonoArrowized.woff" as="font">
-    <!-- should match theme.defaultCodingFontFamily -->
-
   </head>
   <body>
     <div id="root"></div>
