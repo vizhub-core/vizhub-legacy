@@ -38,7 +38,7 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     left: 0;
     width: 100%;
     height: 100%;
-    font-family: '${props => props.theme.editor.font.family}';
+    font-family: ${props => props.theme.editor.font.family};
     font-size: ${props => props.theme.editor.font.size};
     font-variant-ligatures: ${fontVariantLigatures};
     line-height: 1.4;

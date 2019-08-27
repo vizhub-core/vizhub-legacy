@@ -1,9 +1,17 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-// If this changes, be sure to also update the preload link in index.html.
-export const defaultCodingFontFamily = 'Ubuntu Mono';
+// Monospace system font stack used by GitHub, August 2019.
+const systemMonospaceStack = 'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace';
+
+export const fontFamily = (font, ligatures) =>
+  font + (ligatures !== 'all' ? ' Arrowized' : '') + ',' + systemMonospaceStack;
+
+export const defaultCodingFont = 'Ubuntu Mono';
+export const defaultCodingLigatures = 'arrows';
+export const defaultCodingFontFamily = fontFamily(defaultCodingFont, defaultCodingLigatures);
 export const defaultCodingFontSize = '16px';
+
 
 export const theme = {
   dark: '#161514',
