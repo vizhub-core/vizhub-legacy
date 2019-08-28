@@ -11,13 +11,31 @@ export const useConnection = () => {
   const [connection, setConnection] = useState();
   const connectedUser = useRef();
   const reconnect = useRef();
+  const reconnectAttemptCount = useRef(0);
+
+  const onOpen = useCallback(() => {
+    reconnectAttemptCount.current = 0;
+  }, []);
 
   const onClose = useCallback(
     event => {
       if (!event.wasClean) {
+        reconnectAttemptCount.current++;
         let countdown = 5;
         const updateWarning = () => {
-          setWarning('Connection lost. Reconnecting in ' + countdown);
+          // Don't display warning on first reconnection attempt
+          // because it turns out WebSocket disconnections happen
+          // all the time (routinely, regularly) and showing a warning
+          // every time is super annoying. Usually the routine disconnections
+          // can be re-connected on the first attempt - so do this
+          // "in the background" without telling the user.
+          //
+          // This way, we only show a warning after the first reconnection
+          // attempt fails - this indicates that the network is actually down,
+          // and the user should know about it at this point.
+          if (reconnectAttemptCount.current > 1) {
+            setWarning('Connection lost. Reconnecting in ' + countdown);
+          }
         };
         updateWarning();
         const interval = setInterval(() => {
@@ -35,8 +53,8 @@ export const useConnection = () => {
   );
 
   reconnect.current = useCallback(() => {
-    connection.bindToSocket(createWebSocket({ onClose }));
-  }, [connection, onClose]);
+    connection.bindToSocket(createWebSocket({ onClose, onOpen }));
+  }, [connection, onClose, onOpen]);
 
   // Establish connection for the first time.
   // Wait for auth to resolve so that we can keep track of when
@@ -47,7 +65,7 @@ export const useConnection = () => {
       //console.log('initializing connection');
       connectedUser.current = me;
       const newConnection = new realtimeModules.Connection(
-        createWebSocket({ onClose })
+        createWebSocket({ onClose, onOpen })
       );
 
       // TODO user flow for editing unforked vizzes
@@ -61,7 +79,7 @@ export const useConnection = () => {
 
       setConnection(newConnection);
     }
-  }, [realtimeModules, connection, me, setWarning, onClose]);
+  }, [realtimeModules, connection, me, setWarning, onClose, onOpen]);
 
   // Re-establish WebSocket when authenticated user changes.
   // Since backend access control is based on user at connection time,
