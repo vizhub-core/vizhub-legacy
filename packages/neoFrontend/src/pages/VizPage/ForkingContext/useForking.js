@@ -3,20 +3,21 @@ import { waitForSpinner } from '../../../LoadingScreen';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { ErrorContext } from '../../../ErrorContext';
 import { showSpinner } from '../../../constants';
-import { VizPageDataContext } from '../VizPageDataContext';
+import { VizContext } from '../VizContext';
 import { fetchFork } from './fetchFork';
 
 export const useForking = history => {
   const [isForking, setIsForking] = useState(false);
 
-  const { visualization } = useContext(VizPageDataContext);
+  const { viz$ } = useContext(VizContext);
   const { me } = useContext(AuthContext);
   const { setError } = useContext(ErrorContext);
 
   const onFork = useCallback(() => {
     setIsForking(true);
 
-    const dataLoaded = fetchFork(visualization);
+    const viz = viz$.getValue();
+    const dataLoaded = fetchFork(viz);
 
     // Allow the tests to run fast in development.
     // Force the user to perceive the loading screen message in production.
@@ -31,7 +32,7 @@ export const useForking = history => {
       }
       history.push(`/${me.userName}/${data.id}`);
     });
-  }, [visualization, me, history, setError]);
+  }, [viz$, me, history, setError]);
 
   return { onFork, isForking };
 };
