@@ -1,5 +1,9 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { getVizFile, getExtension } from '../../../../../../../accessors';
+import {
+  getVizFile,
+  getExtension,
+  fileChangeOp
+} from '../../../../../../../accessors';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';
@@ -9,7 +13,7 @@ import { light } from '../../../themes/vizHub';
 import { useFileIndex } from '../../useFileIndex';
 import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
-import { changeObjToOp } from './changeObjToOp';
+//import { changeObjToOp } from './changeObjToOp';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 import { useStateLocalStorage } from './useStateLocalStorage';
 
@@ -86,20 +90,26 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   useEffect(() => {
     if (!codeMirror) return;
 
-    const onTextChange = (instance, changeObj) => {
+    const onTextChange = (instance, changes) => {
+      // Assumption: if the first change object is user generated,
+      // then all other change objects in the same operation are as well.
+      const changeObj = changes[0];
       const isRemote = changeObj.origin === 'remoteOp';
       const isInitialization = changeObj.origin === 'setValue';
       const isUserGenerated = !isRemote && !isInitialization;
       if (isUserGenerated) {
-        submitVizContentOp(changeObjToOp(changeObj, path, codeMirror.getDoc()));
+        const newText = codeMirror.getValue();
+        const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
+        const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
+        submitVizContentOp(op);
       }
     };
 
-    codeMirror.on('change', onTextChange);
+    codeMirror.on('changes', onTextChange);
     return () => {
-      codeMirror.off('change', onTextChange);
+      codeMirror.off('changes', onTextChange);
     };
-  }, [codeMirror, submitVizContentOp, path]);
+  }, [codeMirror, submitVizContentOp, path, fileIndex, realtimeModules, viz$]);
 
   // Initialize text and subscribe to changes.
   useEffect(() => {
