@@ -2,7 +2,7 @@ import { hcl } from 'd3-color';
 const entries = [
   'keyword',
   ['tag', 'variable', 'variable2', 'variable3', 'definition'],
-  'qualifier',
+  ['qualifier', 'builtin'],
   ['string', 'string2'],
   ['atom', 'number'],
   ['link', 'attribute', 'property']
