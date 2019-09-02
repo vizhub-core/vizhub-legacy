@@ -1,8 +1,9 @@
 import React, { useContext, useState, useCallback } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { showVisualEditor } from '../../../../featureFlags';
+import { modExpandEditor, modShowEditor } from '../../../../mobileMods';
 import { URLStateContext } from '../../URLStateContext';
 import { EditorModulesContext } from '../../EditorModulesContext';
-import { modExpandEditor, modShowEditor } from '../../../../mobileMods';
 import { Sidebar, Top, Bottom } from './styles';
 import { BottomButtons } from './BottomButtons';
 import { Section } from './Section';
@@ -49,7 +50,9 @@ export const Editor = () => {
         {moddedShowEditor ? (
           <Sidebar expand={modExpandEditor(showEditor)} className="test-editor">
             <Top>
-              <Section title="visual editor" id="visual" />
+              {showVisualEditor ? (
+                <Section title="visual editor" id="visual" />
+              ) : null}
               <FilesSection
                 isRenamingNewFile={isRenamingNewFile}
                 setIsRenamingNewFile={setIsRenamingNewFile}
