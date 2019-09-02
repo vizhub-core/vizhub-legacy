@@ -6,3 +6,4 @@ export const showHeadShare = false;
 export const showHeadSettings = false;
 export const showEditorSettings = false;
 export const showVideoThumbnail = false;
+export const showVisualEditor = false;
