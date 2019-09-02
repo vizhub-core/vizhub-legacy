@@ -2,7 +2,7 @@ import { hcl } from 'd3-color';
 const entries = [
   'keyword',
   ['tag', 'variable', 'variable2', 'variable3', 'definition'],
-  'qualifier',
+  ['qualifier', 'builtin', 'header'],
   ['string', 'string2'],
   ['atom', 'number'],
   ['link', 'attribute', 'property']
@@ -66,12 +66,12 @@ export const vizHub = rotation => {
     const keys = typeof entry === 'string' ? [entry] : entry;
     keys.forEach(key => {
       theme[key] = { color };
-      if (key === 'link') {
-        theme[key].textDecoration = 'none';
-      }
     });
     return color;
   });
+
+  theme.link.textDecoration = 'none';
+  theme.header.fontWeight = 'normal';
 
   lightEntries.forEach(key => {
     theme[key] = { color: light };
