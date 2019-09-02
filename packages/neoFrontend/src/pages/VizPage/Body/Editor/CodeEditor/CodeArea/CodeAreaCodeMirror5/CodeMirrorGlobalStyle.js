@@ -79,4 +79,6 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .cm-s-default .cm-variable-3 { ${css('variable3')} }
   .cm-s-default .cm-def { ${css('definition')} }
   .cm-s-default .cm-qualifier { ${css('qualifier')} }
+  .cm-s-default .cm-builtin { ${css('builtin')} }
+  .cm-s-default .cm-header { ${css('header')} }
 `;
