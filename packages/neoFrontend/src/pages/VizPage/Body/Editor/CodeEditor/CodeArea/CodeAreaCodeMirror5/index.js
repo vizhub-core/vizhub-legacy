@@ -24,6 +24,7 @@ const modes = {
   '.md': 'markdown'
 };
 const getMode = extension => modes[extension];
+const getLineWrapping = extension => extension === '.md';
 
 const defaultKeyMap = 'sublime';
 
@@ -75,6 +76,15 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     if (!codeMirror) return;
     codeMirror.setOption('mode', getMode(getExtension(activeFile)));
     codeMirror.setOption('readOnly', activeFile === 'bundle.js');
+  }, [codeMirror, activeFile]);
+
+  // Wrap lines on .md files.
+  useEffect(() => {
+    if (!codeMirror) return;
+    codeMirror.setOption(
+      'lineWrapping',
+      getLineWrapping(getExtension(activeFile))
+    );
   }, [codeMirror, activeFile]);
 
   // Update keyMap.
