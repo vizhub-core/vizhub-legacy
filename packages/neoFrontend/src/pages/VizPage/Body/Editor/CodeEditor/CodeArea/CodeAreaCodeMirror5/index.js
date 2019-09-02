@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
 import {
   getVizFile,
   getExtension,
@@ -13,7 +13,6 @@ import { light } from '../../../themes/vizHub';
 import { useFileIndex } from '../../useFileIndex';
 import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
-//import { changeObjToOp } from './changeObjToOp';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 import { useStateLocalStorage } from './useStateLocalStorage';
 
@@ -24,6 +23,8 @@ const modes = {
   '.md': 'markdown'
 };
 const getMode = extension => modes[extension];
+
+// Wrap lines on .md files.
 const getLineWrapping = extension => extension === '.md';
 
 const defaultKeyMap = 'sublime';
@@ -71,20 +72,20 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     );
   }, [ref, editorModules]);
 
-  // Update language mode and readOnly when active file changes.
-  useEffect(() => {
-    if (!codeMirror) return;
-    codeMirror.setOption('mode', getMode(getExtension(activeFile)));
-    codeMirror.setOption('readOnly', activeFile === 'bundle.js');
-  }, [codeMirror, activeFile]);
+  // Compute extension of active file (e.g. '.js', '.md').
+  const extension = useMemo(() => getExtension(activeFile), [activeFile]);
 
-  // Wrap lines on .md files.
+  // Update language mode and wrapping when extension changes.
   useEffect(() => {
     if (!codeMirror) return;
-    codeMirror.setOption(
-      'lineWrapping',
-      getLineWrapping(getExtension(activeFile))
-    );
+    codeMirror.setOption('mode', getMode(extension));
+    codeMirror.setOption('lineWrapping', getLineWrapping(extension));
+  }, [codeMirror, extension]);
+
+  // Don't allow editing of bundle.js.
+  useEffect(() => {
+    if (!codeMirror) return;
+    codeMirror.setOption('readOnly', activeFile === 'bundle.js');
   }, [codeMirror, activeFile]);
 
   // Update keyMap.
@@ -133,9 +134,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     // If the file does not exist at this point, it means that
     // we are accessing a URL that has a file "open" that doesn't exist,
     // either because it's been renamed or deleted.
-    // In this case, we close the active file and bail out to avoid a crash.
+    // In this case, we bail out to avoid a crash.
     if (!file) {
-      //closeActiveFile();
       return;
     }
 
