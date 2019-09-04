@@ -50,7 +50,6 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
     newName => {
       setIsRenamingNewFile(false);
       if (newName !== '') {
-        console.log('Create file ' + newName);
         submitVizContentOp(
           fileCreateOp(files, {
             name: newName,
