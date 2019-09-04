@@ -39,10 +39,12 @@ export const getExtension = fileName =>
 
 export const deleteFileOp = (viz, fileName) => {
   const fileIndex = getVizFileIndex(fileName)(viz);
-  return {
-    p: ['files', fileIndex],
-    ld: viz.content.files[fileIndex]
-  };
+  return [
+    {
+      p: ['files', fileIndex],
+      ld: viz.content.files[fileIndex]
+    }
+  ];
 };
 
 export const extractTitle = html => {
@@ -52,10 +54,12 @@ export const extractTitle = html => {
 
 // Pushes a new file entry onto the files array.
 // newFile is expected to be an object with "name" and "text" properties.
-export const fileCreateOp = (files, newFile) => ({
-  p: ['files', files.length],
-  li: newFile
-});
+export const fileCreateOp = (files, newFile) => [
+  {
+    p: ['files', files.length],
+    li: newFile
+  }
+];
 
 const textDiffOp = (oldText, newText, path, realtimeModules) => {
   const { diffMatchPatch, jsondiff } = realtimeModules;
