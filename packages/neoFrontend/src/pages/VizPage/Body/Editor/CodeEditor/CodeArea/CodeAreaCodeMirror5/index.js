@@ -54,9 +54,22 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   // Initialize codeMirror instance.
   useEffect(() => {
     if (!editorModules) return;
+
+    const file = getVizFile(fileIndex)(viz$.getValue());
+
+    // If the file does not exist at this point, it means that
+    // we are accessing a URL that has a file "open" that doesn't exist,
+    // either because it's been renamed or deleted.
+    // In this case, we bail out to avoid a crash.
+    if (!file) {
+      return;
+    }
+
     const { CodeMirror } = editorModules;
+
     setCodeMirror(
       new CodeMirror(ref.current, {
+        value: file.text,
         lineNumbers: true,
         tabSize: 2,
         matchBrackets: true
@@ -70,7 +83,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         //}
       })
     );
-  }, [ref, editorModules]);
+  }, [ref, editorModules, fileIndex, realtimeModules, viz$]);
 
   // Compute extension of active file (e.g. '.js', '.md').
   const extension = useMemo(() => getExtension(activeFile), [activeFile]);
@@ -104,11 +117,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const onTextChange = (instance, changes) => {
       // Assumption: if the first change object is user generated,
       // then all other change objects in the same operation are as well.
-      const changeObj = changes[0];
-      const isRemote = changeObj.origin === 'remoteOp';
-      const isInitialization = changeObj.origin === 'setValue';
-      const isUserGenerated = !isRemote && !isInitialization;
-      if (isUserGenerated) {
+      if (changes[0].origin !== 'remoteOp') {
         const newText = codeMirror.getValue();
         const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
         const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
@@ -128,18 +137,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       return;
     }
     const { json0 } = realtimeModules;
-
-    const file = getVizFile(fileIndex)(viz$.getValue());
-
-    // If the file does not exist at this point, it means that
-    // we are accessing a URL that has a file "open" that doesn't exist,
-    // either because it's been renamed or deleted.
-    // In this case, we bail out to avoid a crash.
-    if (!file) {
-      return;
-    }
-
-    codeMirror.setValue(file.text);
 
     const subscription = vizContentOp$.subscribe(
       ({ previous, next, op, originatedLocally }) => {
