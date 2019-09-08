@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { VizHubAPIError } from 'vizhub-entities';
 
-const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET;
+const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET || 'hfdsjkalhfjklda';
 
 export const jwtSign = async userId => {
   try {
