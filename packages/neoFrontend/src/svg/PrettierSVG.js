@@ -1,7 +1,12 @@
 import React from 'react';
 
+const margin = 95;
+
 export const PrettierSVG = ({ height = 16, fill = 'currentcolor' }) => (
-  <svg height={height} viewBox={`0 0 400 400`}>
+  <svg
+    height={height}
+    viewBox={`${margin} ${margin} ${400 - margin * 2} ${400 - margin * 2}`}
+  >
     <g fill="none">
       <g transform="translate(95 295)">
         <rect
