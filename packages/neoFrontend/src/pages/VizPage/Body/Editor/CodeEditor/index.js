@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react';
+import { PrettierSVG } from '../../../../../svg';
 import { modShowViewer } from '../../../../../mobileMods';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizContext } from '../../../VizContext';
-import { Wrapper } from './styles';
+import { Wrapper, CodeAreaWrapper, CodeAreaIcons, CodeEditorIcon } from './styles';
 import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
 import { useUpdateURLOnRename } from './useUpdateURLOnRename';
@@ -57,11 +58,18 @@ export const CodeEditor = () => {
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
       />
-      <CodeArea
-        key={activeFile}
-        activeFile={activeFile}
-        closeActiveFile={closeActiveFile}
-      />
+      <CodeAreaWrapper>
+        <CodeArea
+          key={activeFile}
+          activeFile={activeFile}
+          closeActiveFile={closeActiveFile}
+        />
+        <CodeAreaIcons>
+          <CodeEditorIcon>
+            <PrettierSVG />
+          </CodeEditorIcon>
+        </CodeAreaIcons>
+      </CodeAreaWrapper>
     </Wrapper>
   );
 };
