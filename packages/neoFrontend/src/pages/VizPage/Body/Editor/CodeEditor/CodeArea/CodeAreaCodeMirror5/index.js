@@ -45,6 +45,9 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
 
+  // A flag indicating we are in the process of submitting an op.
+  const submittingOp = useRef(false);
+
   // Request to load editor modules.
   // This line is only strictly required in the case that the user opens a link
   // where the editor sidebar is closed, but the code editor is open.
@@ -109,11 +112,14 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const onTextChange = (instance, changes) => {
       // Assumption: if the first change object is user generated,
       // then all other change objects in the same operation are as well.
-      if (changes[0].origin !== 'remoteOp') {
+      if (changes[0].origin !== 'op') {
         const newText = codeMirror.getValue();
         const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
         const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
+
+        submittingOp.current = true;
         submitVizContentOp(op);
+        submittingOp.current = false;
       }
     };
 
@@ -130,29 +136,27 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     }
     const { json0 } = realtimeModules;
 
-    const subscription = vizContentOp$.subscribe(
-      ({ previous, next, op, originatedLocally }) => {
-        if (!originatedLocally) {
-          const doc = codeMirror.getDoc();
-          op.forEach(c => {
-            if (json0.canOpAffectPath(c, path)) {
-              const i = c.p[c.p.length - 1];
-              if (c.si) {
-                const pos = doc.posFromIndex(i);
-                codeMirror.replaceRange(c.si, pos, pos, 'remoteOp');
-              } else if (c.sd) {
-                codeMirror.replaceRange(
-                  '',
-                  doc.posFromIndex(i),
-                  doc.posFromIndex(i + c.sd.length),
-                  'remoteOp'
-                );
-              }
+    const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
+      if (!submittingOp.current) {
+        const doc = codeMirror.getDoc();
+        op.forEach(c => {
+          if (json0.canOpAffectPath(c, path)) {
+            const i = c.p[c.p.length - 1];
+            if (c.si) {
+              const pos = doc.posFromIndex(i);
+              codeMirror.replaceRange(c.si, pos, pos, 'op');
+            } else if (c.sd) {
+              codeMirror.replaceRange(
+                '',
+                doc.posFromIndex(i),
+                doc.posFromIndex(i + c.sd.length),
+                'op'
+              );
             }
-          });
-        }
+          }
+        });
       }
-    );
+    });
     return () => {
       subscription.unsubscribe();
     };
