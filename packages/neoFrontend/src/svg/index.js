@@ -15,5 +15,6 @@ export { SplitSVG } from './SplitSVG';
 export { TrashSVG } from './TrashSVG';
 export { NewSVG } from './NewSVG';
 export { ExportSVG } from './ExportSVG';
+export { PrettierSVG } from './PrettierSVG';
 
 export { SVGGallery } from './svgGallery';
