@@ -73,14 +73,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         lineNumbers: true,
         tabSize: 2,
         matchBrackets: true
-        // Make Tab key insert spaces.
-        // From https://codemirror.net/doc/manual.html#keymaps
-        //extraKeys: {
-        //  Tab: cm => {
-        //    const spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
-        //    cm.replaceSelection(spaces);
-        //  }
-        //}
       })
     );
   }, [ref, editorModules, fileIndex, realtimeModules, viz$]);
