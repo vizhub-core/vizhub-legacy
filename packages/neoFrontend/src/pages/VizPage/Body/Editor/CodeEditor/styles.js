@@ -10,11 +10,6 @@ export const Wrapper = styled(EditorComponent)`
   font-size: ${props => props.theme.defaultCodingFontSize};
   background-color: ${backgroundColor};
 `;
-export const CodeAreaWrapper = styled.div`
-  display: flex;
-  flex: 1;
-  position: relative;
-`;
 
 export const CodeEditorIcon = styled(Icon)`
   height: ${props => props.theme.editorEntryHeight + 1}px;
