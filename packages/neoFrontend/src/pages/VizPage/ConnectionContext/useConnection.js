@@ -52,9 +52,19 @@ export const useConnection = () => {
     [setWarning]
   );
 
+  const onError = useCallback(error => {
+    console.log('WebSocket error:');
+    console.error(error);
+  }, []);
+
+  const openWebSocket = useCallback(
+    () => createWebSocket({ onClose, onOpen, onError }),
+    [onClose, onOpen, onError]
+  );
+
   reconnect.current = useCallback(() => {
-    connection.bindToSocket(createWebSocket({ onClose, onOpen }));
-  }, [connection, onClose, onOpen]);
+    connection.bindToSocket(openWebSocket());
+  }, [connection, openWebSocket]);
 
   // Establish connection for the first time.
   // Wait for auth to resolve so that we can keep track of when
@@ -64,9 +74,7 @@ export const useConnection = () => {
     if (realtimeModules && !connection && me !== AUTH_PENDING) {
       //console.log('initializing connection');
       connectedUser.current = me;
-      const newConnection = new realtimeModules.Connection(
-        createWebSocket({ onClose, onOpen })
-      );
+      const newConnection = new realtimeModules.Connection(openWebSocket());
 
       // TODO user flow for editing unforked vizzes
       // This is a temporary measure, with suboptimal UX.
@@ -79,7 +87,7 @@ export const useConnection = () => {
 
       setConnection(newConnection);
     }
-  }, [realtimeModules, connection, me, setWarning, onClose, onOpen]);
+  }, [realtimeModules, connection, me, setWarning, openWebSocket]);
 
   // Re-establish WebSocket when authenticated user changes.
   // Since backend access control is based on user at connection time,
