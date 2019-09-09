@@ -58,6 +58,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   useEffect(() => {
     if (!editorModules) return;
 
+    if (codeMirror) return;
+
     const file = getVizFile(fileIndex)(viz$.getValue());
 
     // If the file does not exist at this point, it means that
@@ -78,7 +80,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         matchBrackets: true
       })
     );
-  }, [ref, editorModules, fileIndex, realtimeModules, viz$]);
+  }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
 
   // Compute extension of active file (e.g. '.js', '.md').
   const extension = useMemo(() => getExtension(activeFile), [activeFile]);
