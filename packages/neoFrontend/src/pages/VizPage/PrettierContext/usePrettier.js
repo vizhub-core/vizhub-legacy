@@ -10,7 +10,11 @@ import { URLStateContext } from '../URLStateContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 
 const parsers = {
-  '.js': 'babel'
+  '.js': 'babel',
+  '.css': 'css',
+  '.html': 'html',
+  '.md': 'markdown',
+  '.json': 'json'
 };
 
 export const usePrettier = () => {
@@ -25,7 +29,7 @@ export const usePrettier = () => {
     }
     if (activeFile) {
       import('./prettierModules').then(prettierModules => {
-        const { prettier, parserBabylon } = prettierModules;
+        const { prettier, plugins } = prettierModules;
 
         const viz = viz$.getValue();
         const fileIndex = getVizFileIndex(activeFile)(viz);
@@ -40,13 +44,18 @@ export const usePrettier = () => {
 
         const oldText = file.text;
 
-        const newText = prettier.format(oldText, {
-          parser,
-          plugins: [parserBabylon]
-        });
+        try {
+          const newText = prettier.format(oldText, {
+            parser,
+            plugins,
+            singleQuote: true
+          });
 
-        const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
-        submitVizContentOp(op);
+          const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
+          submitVizContentOp(op);
+        } catch (error) {
+          console.log(error);
+        }
       });
     }
   }, [activeFile, viz$, realtimeModules, submitVizContentOp]);
