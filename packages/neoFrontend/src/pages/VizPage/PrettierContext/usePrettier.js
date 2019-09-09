@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useContext } from 'react';
+import { useCallback, useEffect, useContext, useState } from 'react';
 import {
   getVizFileIndex,
   getVizFile,
@@ -21,6 +21,7 @@ export const usePrettier = () => {
   const { viz$, submitVizContentOp } = useContext(VizContext);
   const realtimeModules = useContext(RealtimeModulesContext);
   const { activeFile } = useContext(URLStateContext);
+  const [prettierError, setPrettierError] = useState(null);
 
   const prettify = useCallback(() => {
     if (!realtimeModules) {
@@ -45,6 +46,7 @@ export const usePrettier = () => {
         const oldText = file.text;
 
         try {
+          setPrettierError(null);
           const newText = prettier.format(oldText, {
             parser,
             plugins,
@@ -54,7 +56,7 @@ export const usePrettier = () => {
           const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
           submitVizContentOp(op);
         } catch (error) {
-          console.log(error);
+          setPrettierError(error);
         }
       });
     }
@@ -73,6 +75,7 @@ export const usePrettier = () => {
   }, [prettify]);
 
   return {
-    prettify
+    prettify,
+    prettierError
   };
 };
