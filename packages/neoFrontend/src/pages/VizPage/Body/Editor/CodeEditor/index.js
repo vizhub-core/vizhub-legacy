@@ -3,7 +3,8 @@ import { modShowViewer } from '../../../../../mobileMods';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizContext } from '../../../VizContext';
-import { Wrapper } from './styles';
+import { PrettierContext } from '../../../PrettierContext';
+import { Wrapper, CodeAreaWrapper } from './styles';
 import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
 import { useUpdateURLOnRename } from './useUpdateURLOnRename';
@@ -27,6 +28,9 @@ export const CodeEditor = () => {
   // Easter egg.
   // Manual test for cursor transform.
   const { submitVizContentOp } = useContext(VizContext);
+
+  const { prettify } = useContext(PrettierContext);
+
   useEffect(() => {
     if (!submitVizContentOp) {
       return;
@@ -56,12 +60,15 @@ export const CodeEditor = () => {
         onShowViz={onShowViz}
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
+        prettify={prettify}
       />
-      <CodeArea
-        key={activeFile}
-        activeFile={activeFile}
-        closeActiveFile={closeActiveFile}
-      />
+      <CodeAreaWrapper>
+        <CodeArea
+          key={activeFile}
+          activeFile={activeFile}
+          closeActiveFile={closeActiveFile}
+        />
+      </CodeAreaWrapper>
     </Wrapper>
   );
 };

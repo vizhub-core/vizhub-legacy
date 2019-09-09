@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Icon } from '../../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -11,12 +10,6 @@ export const Wrapper = styled.div`
 
 export const Icons = styled.div`
   display: flex;
-`;
-
-export const CodeEditorIcon = styled(Icon)`
-  height: ${props => props.theme.editorEntryHeight + 1}px;
-  padding-right: ${props => (props.rightmost ? 8 : 5)}px;
-  padding-left: ${props => (props.leftmost ? 8 : 5)}px;
 `;
 
 //border-bottom: solid 1px ${backgroundColor};

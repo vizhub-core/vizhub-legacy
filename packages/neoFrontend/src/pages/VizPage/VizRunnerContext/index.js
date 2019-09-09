@@ -12,6 +12,7 @@ import { modMode } from '../../../mobileMods';
 import { VizContext } from '../VizContext';
 import { SplitPaneResizeContext } from '../SplitPaneResizeContext';
 import { RunContext } from '../RunContext';
+import { PrettierContext } from '../PrettierContext';
 import { URLStateContext } from '../URLStateContext';
 import { computeSrcDoc } from './computeSrcDoc';
 import { setVizRunnerMode } from './setVizRunnerMode';
@@ -51,6 +52,7 @@ export const VizRunnerProvider = ({ children }) => {
 
   const vizHeight = useValue(viz$, getVizHeight);
   const { runId, runError } = useContext(RunContext);
+  const { prettierError } = useContext(PrettierContext);
 
   const ref = useRef();
 
@@ -71,6 +73,12 @@ export const VizRunnerProvider = ({ children }) => {
       const errorMessage = generateRunErrorMessage(runError);
       console.error(errorMessage + '\n(bundle.js not updated)');
       iFrame.setAttribute('srcDoc', generateErrorMessageSrcDoc(errorMessage));
+    } else if (prettierError) {
+      console.error(prettierError.message);
+      iFrame.setAttribute(
+        'srcDoc',
+        generateErrorMessageSrcDoc(prettierError.message, false)
+      );
     } else {
       if (clearConsole) {
         console.clear();
@@ -80,7 +88,7 @@ export const VizRunnerProvider = ({ children }) => {
         computeSrcDoc(getVizFiles(viz$.getValue()))
       );
     }
-  }, [viz$, runId, runError]);
+  }, [viz$, runId, runError, prettierError]);
 
   useEffect(() => {
     iFrame.setAttribute('height', vizHeight);
