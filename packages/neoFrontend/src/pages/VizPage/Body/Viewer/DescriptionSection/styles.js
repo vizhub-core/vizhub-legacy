@@ -82,6 +82,7 @@ export const VideoThumbnail = styled.div`
 export const Description = styled.div`
   font-size: 12px;
   margin-left: ${props => (props.size === 'large' ? 50 : 0)}px;
+  word-break: break-word;
 `;
 
 export const SemiBold = styled.span`
