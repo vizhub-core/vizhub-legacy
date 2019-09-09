@@ -7,3 +7,4 @@ export const showHeadSettings = false;
 export const showEditorSettings = false;
 export const showVideoThumbnail = false;
 export const showVisualEditor = false;
+export const showMobileConsole = false;

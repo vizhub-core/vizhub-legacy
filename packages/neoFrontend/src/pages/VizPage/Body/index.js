@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { showMobileConsole } from '../../../featureFlags';
 import { NavBar } from '../../../NavBar';
 import { ForkingContext } from '../ForkingContext';
 import { URLStateContext } from '../URLStateContext';
@@ -23,7 +24,7 @@ export const Body = () => {
   const isMini = mod === 'mini';
   const isMicro = mod === 'micro';
   const showTopRight = !isMicro;
-  const showMicroConsole = isMicro && activeFile;
+  const showMicroConsole = showMobileConsole && isMicro && activeFile;
 
   return isFullScreen ? (
     <FullScreen />
