@@ -27,9 +27,7 @@ export const updateBundleIfNeeded = async (
       if (bundleJSExists) {
         const oldText = files[fileIndex].text;
         const op = fileChangeOp(fileIndex, oldText, text, realtimeModules);
-        if (op.length !== 0) {
-          submitVizContentOp(op);
-        }
+        submitVizContentOp(op);
       } else {
         submitVizContentOp(fileCreateOp(files, { name: 'bundle.js', text }));
       }
