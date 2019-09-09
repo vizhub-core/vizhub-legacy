@@ -16,12 +16,6 @@ export const CodeAreaWrapper = styled.div`
   position: relative;
 `;
 
-export const CodeAreaIcons = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-`;
-
 export const CodeEditorIcon = styled(Icon)`
   height: ${props => props.theme.editorEntryHeight + 1}px;
   padding-right: ${props => (props.rightmost ? 8 : 5)}px;

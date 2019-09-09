@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { PrettierSVG } from '../../../../../svg';
 import { modShowViewer } from '../../../../../mobileMods';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizContext } from '../../../VizContext';
-import { Wrapper, CodeAreaWrapper, CodeAreaIcons, CodeEditorIcon } from './styles';
+import { PrettierContext } from '../../../PrettierContext';
+import { Wrapper, CodeAreaWrapper } from './styles';
 import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
 import { useUpdateURLOnRename } from './useUpdateURLOnRename';
@@ -28,6 +28,9 @@ export const CodeEditor = () => {
   // Easter egg.
   // Manual test for cursor transform.
   const { submitVizContentOp } = useContext(VizContext);
+
+  const { prettify } = useContext(PrettierContext);
+
   useEffect(() => {
     if (!submitVizContentOp) {
       return;
@@ -57,6 +60,7 @@ export const CodeEditor = () => {
         onShowViz={onShowViz}
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
+        prettify={prettify}
       />
       <CodeAreaWrapper>
         <CodeArea
@@ -64,11 +68,6 @@ export const CodeEditor = () => {
           activeFile={activeFile}
           closeActiveFile={closeActiveFile}
         />
-        <CodeAreaIcons>
-          <CodeEditorIcon>
-            <PrettierSVG />
-          </CodeEditorIcon>
-        </CodeAreaIcons>
       </CodeAreaWrapper>
     </Wrapper>
   );
