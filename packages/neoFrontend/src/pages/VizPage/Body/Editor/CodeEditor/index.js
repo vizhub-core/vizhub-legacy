@@ -4,7 +4,7 @@ import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizContext } from '../../../VizContext';
 import { PrettierContext } from '../../../PrettierContext';
-import { Wrapper, CodeAreaWrapper } from './styles';
+import { Wrapper } from './styles';
 import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
 import { useUpdateURLOnRename } from './useUpdateURLOnRename';
@@ -62,13 +62,11 @@ export const CodeEditor = () => {
         closeActiveFile={closeActiveFile}
         prettify={prettify}
       />
-      <CodeAreaWrapper>
-        <CodeArea
-          key={activeFile}
-          activeFile={activeFile}
-          closeActiveFile={closeActiveFile}
-        />
-      </CodeAreaWrapper>
+      <CodeArea
+        key={activeFile}
+        activeFile={activeFile}
+        closeActiveFile={closeActiveFile}
+      />
     </Wrapper>
   );
 };
