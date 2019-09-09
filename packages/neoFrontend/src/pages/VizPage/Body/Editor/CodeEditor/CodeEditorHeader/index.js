@@ -1,7 +1,8 @@
 import React from 'react';
 import { FullSVG, CloseSVG } from '../../../../../../svg';
 import { isMobile } from '../../../../../../mobileMods';
-import { Wrapper, Icons, CodeEditorIcon, Text } from './styles';
+import { CodeEditorIcon } from '../styles';
+import { Wrapper, Icons, Text } from './styles';
 
 const svgHeight = 15;
 
