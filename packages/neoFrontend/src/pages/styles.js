@@ -48,3 +48,8 @@ export const Centering = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const Text = styled.div`
+  max-width: 960px;
+  padding: 10px;
+`;
