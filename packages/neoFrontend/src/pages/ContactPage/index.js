@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, Centering } from '../styles';
-import { Text } from './styles';
+import { Wrapper, Content, Centering, Text } from '../styles';
 
 export const ContactPage = () => (
   <Wrapper>
