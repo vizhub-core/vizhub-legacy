@@ -10,6 +10,7 @@ import {
   CreatingVizFromScratchPage,
   VizPage,
   ProfilePage,
+  ContactPage,
   ErrorPage
 } from './pages';
 import { Themed } from './theme';
@@ -23,6 +24,7 @@ export const App = () => (
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/auth" component={AuthPage} />
+            <Route path="/contact" component={ContactPage} />
             <Route path="/create-viz" component={CreateVizPage} />
             <Route
               path="/creating-viz-from-scratch"
