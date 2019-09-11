@@ -125,7 +125,7 @@ sudo vim /etc/mongod.conf
 # change it to:
 #   dbPath: /data/mongodb
 sudo service mongod start
-tail -f /var/log/mongodb/mongod.log
+sudo tail -f /var/log/mongodb/mongod.log
 
 # If you get permissions-related errors:
 sudo chown mongodb /data/mongodb -R
