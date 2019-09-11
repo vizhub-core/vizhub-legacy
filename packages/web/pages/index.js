@@ -49,11 +49,11 @@ export default class extends Page {
                 <div className='column'>
                   <div>
                     <h2 className='subtitle'>
-                      Check out this <a href='https://curran.github.io/dataviz-course-2018/'>online data visualization course</a>!
+                      Check out this <a href='https://curran.github.io/dataviz-course-2018/'>online data visualization course</a>.
                     </h2>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/jeKO0tsB7XI?rel=0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/e6oX58b7klc?rel=0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     <h2 className='subtitle'>
-                      <a href='https://medium.com/@currankelleher/vizhub-1-0-9fc56a70a464'>What's new in VizHub 1.0</a>
+                      <a href='https://beta.vizhub.com/curran'>Try VizHub 2.0 Beta!</a>
                     </h2>
                   </div>
                 </div>
