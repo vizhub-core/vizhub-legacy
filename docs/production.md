@@ -191,3 +191,20 @@ export REACT_APP_VIZHUB_JWT_SECRET=fdsahjuyufidysyu4i3243sald89saf78
 export REACT_APP_VIZHUB_WEBSOCKET_URL=wss://beta.vizhub.com
 export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
 ```
+
+# Database Server
+
+If the MongoDB database lives in a separate machine, you'll need to do the following:
+
+Add a rule to the security group to allow the Web app or API server to connect to the database machine. You need to use the _internal_ ip.
+
+`sudo vim /etc/mongod.conf`
+
+```
+# network interfaces
+net:
+  port: 27017
+#  bindIp: 127.0.0.1  <- comment out this line
+```
+
+In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
