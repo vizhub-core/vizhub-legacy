@@ -31,7 +31,6 @@
     "react-scripts": "^3.1.1",
     "styled-components": "^4.3.2",
     "vizhub-entities": "1",
-    "vizhub-libraries": "^1.4.0",
     "vizhub-presenters": "1"
   },
   "browserslist": [
