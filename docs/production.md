@@ -213,6 +213,15 @@ In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217
 
 VizHub 1.0:
 
+Env vars in `.bashrc`:
+
+```
+export GITHUB_ID=197238095748390275843
+export GITHUB_SECRET=3c89ee6797589043728590432890542389c3c393
+export MONGO_URI=mongodb://172.47.91.462:27017/vizhub
+export SERVER_URL=https://vizhub.com
+```
+
 `https://vizhub.com/auth/oauth/github/callback`
 
 VizHub 2.0:
