@@ -208,3 +208,13 @@ net:
 ```
 
 In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
+
+# GitHub Authorization callback URL
+
+VizHub 1.0:
+
+`https://vizhub.com/auth/oauth/github/callback`
+
+VizHub 2.0:
+
+`https://beta.vizhub.com/authenticated`
