@@ -2,10 +2,12 @@
 export const CodeMirrorDialogCSS = `
 .CodeMirror-dialog {
   position: absolute;
+  display: flex;
+  align-items: center;
   left: 0; right: 0;
   background: inherit;
   z-index: 15;
-  padding: .1em .8em;
+  padding-left: 10px;
   overflow: hidden;
   color: inherit;
 }
@@ -21,18 +23,18 @@ export const CodeMirrorDialogCSS = `
 }
 
 .CodeMirror-dialog input {
+  flex: 1;
   border: none;
   outline: none;
-  background: transparent;
-  width: 20em;
-  color: inherit;
-  font-family: ${props => props.theme.editor.font.family};
+  background-color: inherit;
+  color: white;
+  font: inherit;
+  padding-left: 5px;
 }
 
 .CodeMirror-dialog button {
   font-size: 70%;
 }
-
 .CodeMirror-search-label {
   color: white;
 }
