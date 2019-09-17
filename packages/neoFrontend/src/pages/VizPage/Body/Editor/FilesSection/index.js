@@ -83,6 +83,7 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
 
                   // Don't allow users to rename bundle.js
                   if (activeFile === 'bundle.js') return;
+
                   setIsRenamingActiveFile(activeFile === file.name);
                 }}
                 className={
@@ -91,7 +92,9 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
                     : ''
                 }
               >
-                {file.name}
+                <div style={{ opacity: file.name === 'bundle.js' ? 0.6 : 1 }}>
+                  {file.name}
+                </div>
               </FileEntry>
             )
           )
