@@ -14,7 +14,8 @@ export const HomePage = () => (
             <h1>Welcome to VizHub 2.0 beta!</h1>
             <p>
               To report bugs or feature requests, or to ask for help, please
-              check out our <a href="https://discourse.vizhub.com">user forum</a>.
+              check out our{' '}
+              <a href="https://discourse.vizhub.com">user forum</a>.
             </p>
           </Text>
         </Centering>
