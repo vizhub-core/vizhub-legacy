@@ -103,12 +103,30 @@ export const useConnection = () => {
       // Clear out existing warning, if any.
       setWarning(null);
 
-      // TODO clean this shit up.
-      // Figure out how to listen for the right event
-      // to open the connection immediately after closing.
-      // This 100ms timout was added as a hack to avoid an error
+      // This 100ms polling for disconnected state was added to avoid an error
       // about transitioning directly from connected to connecting.
-      setTimeout(() => reconnect.current(), 100);
+      // Not able to reproduce in development, but in production, sometimes
+      // the connection state is 'connected', even after we invoked connection.close().
+      // It seems to happen when authenticating, when the tab that runs this code is in the background.
+      let pollCount = 0;
+      const poll = () => {
+        setTimeout(() => {
+          if (connection.state !== 'connected') {
+            reconnect.current();
+          } else {
+            pollCount++;
+            if (pollCount > 100) {
+              // Bail after 10 seconds, something went horribly wrong.
+              console.error(
+                'WebSocket connection did not close as it should have.'
+              );
+            } else {
+              poll();
+            }
+          }
+        }, 100);
+      };
+      poll();
     }
   }, [connection, me, connectedUser, setWarning, onClose]);
 
