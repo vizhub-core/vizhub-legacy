@@ -19,9 +19,9 @@ export const App = () => (
   <Themed>
     <Router>
       <ErrorProvider fallback={error => <ErrorPage error={error} />}>
-        <Route path="/authenticated" component={AuthPopupPage} />
         <AuthProvider>
           <Switch>
+            <Route path="/authenticated" component={AuthPopupPage} />
             <Route exact path="/" component={HomePage} />
             <Route path="/auth" component={AuthPage} />
             <Route path="/contact" component={ContactPage} />
