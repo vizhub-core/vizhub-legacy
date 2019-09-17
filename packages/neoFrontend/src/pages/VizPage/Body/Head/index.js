@@ -28,6 +28,7 @@ export const Head = ({ onFork, showRight }) => {
             title="Fork this Viz"
             onClick={onFork}
             className="test-fork"
+            rightmost={true}
           >
             <ForkSVG />
           </HeadIcon>
