@@ -76,13 +76,17 @@ export const useConnection = () => {
       connectedUser.current = me;
       const newConnection = new realtimeModules.Connection(openWebSocket());
 
-      // TODO user flow for editing unforked vizzes
-      // This is a temporary measure, with suboptimal UX.
-      // Currently, the user cannot edit without forking.
-      // Ideally, the user could edit without forking,
-      // then fork to save those edits.
+      // If the user is not authenticated,
+      // or is trying to edit a viz that belongs to someone else,
       newConnection.on('error', error => {
+
+        // show them the error,
         setWarning(error.message);
+
+        // but also allow them to make edits without forking.
+        // Their edits are not synched to the server, but are kept in memory.
+        // The edited version will be saved if the user does fork.
+        newConnection.close();
       });
 
       setConnection(newConnection);
