@@ -22,6 +22,7 @@ export const CodeEditorHeader = ({
     <Text
       className="test-code-editor-file-name"
       title={activeFile === 'bundle.js' ? bundleJSInfo : undefined}
+      style={{ opacity: activeFile === 'bundle.js' ? 0.5 : 1 }}
     >
       {activeFile}
     </Text>
