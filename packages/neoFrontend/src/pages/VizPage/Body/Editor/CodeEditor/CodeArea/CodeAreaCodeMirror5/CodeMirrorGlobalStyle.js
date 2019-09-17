@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { CodeMirrorCSS } from './CodeMirrorCSS';
+import { CodeMirrorDialogCSS } from './CodeMirrorDialogCSS';
 
 // https://stackoverflow.com/questions/47836390/how-to-convert-a-camel-case-string-to-dashes-in-javascript
 const dashed = camel => camel.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
@@ -32,6 +33,7 @@ const codePadding = 4;
 
 export const CodeMirrorGlobalStyle = createGlobalStyle`
   ${CodeMirrorCSS}
+  ${CodeMirrorDialogCSS}
   .CodeMirror {
     position: absolute;
     top: 0;

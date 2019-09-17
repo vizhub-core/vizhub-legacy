@@ -86,7 +86,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         value: file.text,
         lineNumbers: true,
         tabSize: 2,
-        matchBrackets: true
+        matchBrackets: true,
+        closeOnBlur: false
       })
     );
   }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
