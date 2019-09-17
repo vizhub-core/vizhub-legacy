@@ -60,6 +60,8 @@ export const vizHub = rotation => {
     default: { color: light }
   };
 
+  theme.searching = theme.fatCursor;
+
   theme.colors = entries.map((entry, i) => {
     const t = ((i + 0) / entries.length + rotation) % 1;
     const color = hcl(t * 360, saturation, luminance).formatHex();
