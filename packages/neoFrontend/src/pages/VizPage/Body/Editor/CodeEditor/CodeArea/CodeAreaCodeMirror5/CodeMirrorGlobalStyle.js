@@ -83,4 +83,5 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .cm-s-default .cm-qualifier { ${css('qualifier')} }
   .cm-s-default .cm-builtin { ${css('builtin')} }
   .cm-s-default .cm-header { ${css('header')} }
+  .cm-s-default .cm-searching { ${css('searching')} }
 `;
