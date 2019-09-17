@@ -48,8 +48,13 @@ export const deleteFileOp = (viz, fileName) => {
 };
 
 export const extractTitle = html => {
-  const titleMatch = html.match(/<title>(.*?)<\/title>/i);
-  return titleMatch ? titleMatch[1] : 'Untitled';
+  if (html) {
+    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+    if (titleMatch) {
+      return titleMatch[1];
+    }
+  }
+  return 'Untitled';
 };
 
 // Pushes a new file entry onto the files array.
