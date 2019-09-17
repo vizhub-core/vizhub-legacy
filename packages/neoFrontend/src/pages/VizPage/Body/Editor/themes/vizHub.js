@@ -56,10 +56,7 @@ export const vizHub = rotation => {
     meta: { color: dark },
     //variable: { color: '#5bafef' },
     //number: { color: light },
-    fatCursor: {
-      backgroundColor: 'rgba(228, 232, 255, 0.3)',
-      borderRadius: '1px'
-    },
+    fatCursor: { backgroundColor: 'rgba(228, 232, 255, 0.3)' },
     default: { color: light }
   };
 
