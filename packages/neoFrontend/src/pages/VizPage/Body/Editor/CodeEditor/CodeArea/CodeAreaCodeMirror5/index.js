@@ -34,9 +34,18 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const [codeMirror, setCodeMirror] = useState();
   const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', defaultKeyMap);
 
-  // Easter egg
-  window.vizhub.enableVimMode = () => setKeyMap('vim');
-  window.vizhub.disableVimMode = () => setKeyMap(defaultKeyMap);
+  // Alt+V to toggle Vim mode.
+  useEffect(() => {
+    const onKeyDown = e => {
+      if (e.altKey && e.code === 'KeyV') {
+        setKeyMap(keyMap === 'vim' ? defaultKeyMap : 'vim');
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [keyMap, setKeyMap]);
 
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
   const { resetRunTimer } = useContext(RunContext);
@@ -77,7 +86,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         value: file.text,
         lineNumbers: true,
         tabSize: 2,
-        matchBrackets: true
+        matchBrackets: true,
+        closeOnBlur: false
       })
     );
   }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);

@@ -179,3 +179,51 @@ cd ../imageGenerationService/
 npm run build
 pm2 start --name image-generation-service npm -- start
 ```
+
+# VizHub 2.0
+
+`~.bashrc`
+
+```
+export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=1a25f9b4693754964a7f
+export REACT_APP_VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954327ff
+export REACT_APP_VIZHUB_JWT_SECRET=fdsahjuyufidysyu4i3243sald89saf78
+export REACT_APP_VIZHUB_WEBSOCKET_URL=wss://beta.vizhub.com
+export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
+```
+
+# Database Server
+
+If the MongoDB database lives in a separate machine, you'll need to do the following:
+
+Add a rule to the security group to allow the Web app or API server to connect to the database machine. You need to use the _internal_ ip.
+
+`sudo vim /etc/mongod.conf`
+
+```
+# network interfaces
+net:
+  port: 27017
+#  bindIp: 127.0.0.1  <- comment out this line
+```
+
+In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
+
+# GitHub Authorization callback URL
+
+VizHub 1.0:
+
+Env vars in `.bashrc`:
+
+```
+export GITHUB_ID=197238095748390275843
+export GITHUB_SECRET=3c89ee6797589043728590432890542389c3c393
+export MONGO_URI=mongodb://172.47.91.462:27017/vizhub
+export SERVER_URL=https://vizhub.com
+```
+
+`https://vizhub.com/auth/oauth/github/callback`
+
+VizHub 2.0:
+
+`https://beta.vizhub.com/authenticated`
