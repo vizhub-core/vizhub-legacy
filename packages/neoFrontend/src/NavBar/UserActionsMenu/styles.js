@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Clickable } from '../../styles';
+import { Clickable, Z_ABOVE } from '../../styles';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -41,6 +41,7 @@ export const Menu = styled.div`
 
   font-size: 12px;
   text-align: right;
+  z-index: ${Z_ABOVE};
 `;
 
 export const Item = styled(Clickable)`
