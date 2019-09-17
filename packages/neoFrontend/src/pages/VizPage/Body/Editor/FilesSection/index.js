@@ -61,10 +61,13 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
     [setIsRenamingNewFile, submitVizContentOp, files]
   );
 
+  const sortedFiles =
+    files && files.slice().sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <Section title="files" id="files" className="test-editor-files-section">
-      {files
-        ? files.map(file =>
+      {sortedFiles
+        ? sortedFiles.map(file =>
             isRenamingActiveFile && file.name === activeFile ? (
               <EditableFileEntry
                 key={file.name}
