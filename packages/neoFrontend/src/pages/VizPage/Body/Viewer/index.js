@@ -35,7 +35,6 @@ export const Viewer = () => {
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);
   const { me } = useContext(AuthContext);
-  const canVote = !!me;
 
   const vizInfo = useValue(viz$, viz => viz.info);
   const vizHeight = useValue(viz$, getVizHeight);
@@ -45,7 +44,7 @@ export const Viewer = () => {
   // TODO use this pattern with title
 
   const handleUpvote = useCallback(() => {
-    if(canVote){
+    if (me) {
       submitVizInfoOp(upvoteOp(me.id, upvotes));
     }
   }, [submitVizInfoOp, me, upvotes]);
@@ -98,7 +97,7 @@ export const Viewer = () => {
             />
             <TitleBar
               title={vizInfo.title}
-              canVote={canVote}
+              canVote={!!me}
               upvoteCount={upvoteCount}
               onUpvoteClick={handleUpvote}
             />
