@@ -1,3 +1,4 @@
+import { timestamp } from 'vizhub-entities';
 import { defaultVizHeight, vizWidth } from './constants';
 import { darkNavbarTheme } from './theme';
 
@@ -23,16 +24,14 @@ export const getText = (files, name) => {
   return file ? file.text : '';
 };
 
-export const getVizHeight = visualization =>
-  visualization.info.height || defaultVizHeight;
+export const getVizHeight = viz => viz.info.height || defaultVizHeight;
 
-export const getVizFiles = visualization => visualization.content.files;
+export const getVizFiles = viz => viz.content.files;
 
-export const getVizFileIndex = name => visualization =>
-  getFileIndex(getVizFiles(visualization), name);
+export const getVizFileIndex = name => viz =>
+  getFileIndex(getVizFiles(viz), name);
 
-export const getVizFile = fileIndex => visualization =>
-  getVizFiles(visualization)[fileIndex];
+export const getVizFile = fileIndex => viz => getVizFiles(viz)[fileIndex];
 
 export const getExtension = fileName =>
   fileName.substr(fileName.lastIndexOf('.'));
@@ -56,6 +55,10 @@ export const extractTitle = html => {
   }
   return 'Untitled';
 };
+
+export const getVizUpvotes = viz => viz.info.upvotes;
+
+export const getUpvoteCount = upvotes => (upvotes ? upvotes.length : 0);
 
 // Pushes a new file entry onto the files array.
 // newFile is expected to be an object with "name" and "text" properties.
@@ -92,3 +95,45 @@ export const descriptionChangeOp = (
   realtimeModules
 ) =>
   textDiffOp(oldDescription, newDescription, ['description'], realtimeModules);
+
+export const upvoteOp = (userId, upvotes) => {
+  const op = [];
+
+  // Initialize the upvote field if needed.
+  if (!upvotes) {
+    op.push({
+      p: ['upvotes'],
+      oi: []
+    });
+  }
+
+  // Did this user already upvote here?
+  let voteIndex = -1;
+  let upvote;
+  for (let i = 0; i < getUpvoteCount(upvotes); i++) {
+    upvote = upvotes[i];
+    if (upvote.userId === userId) {
+      voteIndex = i;
+      break;
+    }
+  }
+
+  // If this user did not vote here,
+  if (voteIndex === -1) {
+    // then cast the vote.
+    op.push({
+      p: ['upvotes', 0],
+      li: {
+        userId,
+        timestamp: timestamp()
+      }
+    });
+  } else {
+    // otherwise, remove the existing vote
+    op.push({
+      p: ['upvotes', voteIndex],
+      ld: upvote
+    });
+  }
+  return op;
+};

@@ -7,8 +7,14 @@ import React, {
 } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
 
-import { getVizHeight } from '../../../../accessors';
+import {
+  getVizHeight,
+  getVizUpvotes,
+  getUpvoteCount,
+  upvoteOp
+} from '../../../../accessors';
 import { useValue } from '../../../../useValue';
+import { AuthContext } from '../../../../authentication';
 import { Centering } from '../../../styles';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { VizContext } from '../../VizContext';
@@ -27,9 +33,21 @@ export const Viewer = () => {
     forkedFromVisualizationOwnerUserName
   } = useContext(VizPageDataContext);
 
-  const { viz$ } = useContext(VizContext);
+  const { viz$, submitVizInfoOp } = useContext(VizContext);
+  const { me } = useContext(AuthContext);
+
   const vizInfo = useValue(viz$, viz => viz.info);
   const vizHeight = useValue(viz$, getVizHeight);
+
+  const upvotes = useValue(viz$, getVizUpvotes);
+  const upvoteCount = getUpvoteCount(upvotes);
+  // TODO use this pattern with title
+
+  const handleUpvote = useCallback(() => {
+    if (me) {
+      submitVizInfoOp(upvoteOp(me.id, upvotes));
+    }
+  }, [submitVizInfoOp, me, upvotes]);
 
   const scrollerRef = useRef();
   const perfectScrollbarRef = useRef();
@@ -77,7 +95,12 @@ export const Viewer = () => {
               scrollerRef={scrollerRef}
               setWidth={setWidth}
             />
-            <TitleBar title={vizInfo.title} />
+            <TitleBar
+              title={vizInfo.title}
+              canVote={!!me}
+              upvoteCount={upvoteCount}
+              onUpvoteClick={handleUpvote}
+            />
             <HorizontalRule />
             <DescriptionSection
               vizInfo={vizInfo}
