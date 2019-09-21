@@ -3,16 +3,16 @@ import { VoteSVG } from '../../../../../svg';
 import { showUpvote, showDownvote } from '../../../../../featureFlags';
 import { Wrapper, Title, Voter, VoteIcon } from './styles';
 
-export const TitleBar = ({ title }) => (
+export const TitleBar = ({ title, upvoteCount, onUpvoteClick }) => (
   <Wrapper>
     <Title>{title}</Title>
     <Voter>
       {showUpvote ? (
         <>
-          <VoteIcon leftmost={true}>
+          <VoteIcon leftmost={true} onClick={onUpvoteClick}>
             <VoteSVG />
           </VoteIcon>
-          36
+          {upvoteCount}
         </>
       ) : null}
       {showDownvote ? (
