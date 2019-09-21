@@ -9,7 +9,12 @@ export const TitleBar = ({ title, upvoteCount, onUpvoteClick, canVote }) => (
     <Voter>
       {showUpvote ? (
         <>
-          <VoteIcon leftmost={true} onClick={onUpvoteClick} canVote={canVote}>
+          <VoteIcon
+            leftmost={true}
+            onClick={onUpvoteClick}
+            canVote={canVote}
+            title={canVote ? undefined : 'Sign in to upvote.'}
+          >
             <VoteSVG />
           </VoteIcon>
           {upvoteCount}
