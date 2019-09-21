@@ -1,4 +1,4 @@
-export const showUpvote = false;
+export const showUpvote = true;
 export const showDownvote = false;
 export const showCreatedDate = false;
 export const showHeadPullRequest = false;

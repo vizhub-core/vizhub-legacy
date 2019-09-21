@@ -79,7 +79,6 @@ export const useConnection = () => {
       // If the user is not authenticated,
       // or is trying to edit a viz that belongs to someone else,
       newConnection.on('error', error => {
-
         // show them the error,
         setWarning(error.message);
 
