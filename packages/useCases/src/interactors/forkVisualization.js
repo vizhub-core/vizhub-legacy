@@ -32,7 +32,7 @@ export class ForkVisualization {
         description: visualization.info.description,
         height: visualization.info.height,
         files: visualization.content.files,
-        forkedFrom: visualization.id,
+        forkedFrom: visualization.info.id,
         createdTimestamp: nowTimestamp,
         lastUpdatedTimestamp: nowTimestamp
       }),
