@@ -23,5 +23,10 @@ export class VisualizationInfo extends DocumentInfo {
     // images for this visualization were last updated.
     // A value of undefined means there were never any images generated.
     this.imagesUpdatedTimestamp = data.imagesUpdatedTimestamp;
+
+    // An array of objects with propertes:
+    //  - userId - the ID of the user whose vote this is
+    //  - timestamp - the unix timestamp at which the vote was cast.
+    this.upvotes = data.upvotes;
   }
 }
