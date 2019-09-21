@@ -56,6 +56,8 @@ export const accessControl = (request, done) => {
         }
       }
     }
+
+    return done();
   }
 
   // Don't let people edit other people's stuff.
