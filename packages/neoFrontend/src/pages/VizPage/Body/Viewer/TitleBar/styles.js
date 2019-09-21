@@ -26,4 +26,5 @@ export const VoteIcon = styled.div`
   margin-right: 4px;
   line-height: 1;
   cursor: pointer;
+  pointer-events: ${props => props.canVote ? 'auto' : 'none'};
 `;
