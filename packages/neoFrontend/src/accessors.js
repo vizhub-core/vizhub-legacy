@@ -98,18 +98,39 @@ export const descriptionChangeOp = (
 
 export const upvoteOp = (userId, upvotes) => {
   const op = [];
+
+  // Initialize the upvote field if needed.
   if (!upvotes) {
     op.push({
       p: ['upvotes'],
       oi: []
     });
   }
-  op.push({
-    p: ['upvotes', 0],
-    li: {
-      userId,
-      timestamp: timestamp()
+
+  console.log(upvotes);
+
+  // Did this user already upvote here?
+  let voteIndex = -1;
+  for (let i = 0; i < getUpvoteCount(upvotes); i++) {
+    const upvote = upvotes[i];
+    if (upvote.userId === userId) {
+      voteIndex = i;
+      break;
     }
-  });
+  }
+
+  // If this user did not vote here,
+  if (voteIndex === -1) {
+    // then cast the vote.
+    op.push({
+      p: ['upvotes', 0],
+      li: {
+        userId,
+        timestamp: timestamp()
+      }
+    });
+  } else {
+    // otherwise, remove the existing vote
+  }
   return op;
 };
