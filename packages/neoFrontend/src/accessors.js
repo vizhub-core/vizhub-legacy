@@ -107,12 +107,11 @@ export const upvoteOp = (userId, upvotes) => {
     });
   }
 
-  console.log(upvotes);
-
   // Did this user already upvote here?
   let voteIndex = -1;
+  let upvote;
   for (let i = 0; i < getUpvoteCount(upvotes); i++) {
-    const upvote = upvotes[i];
+    upvote = upvotes[i];
     if (upvote.userId === userId) {
       voteIndex = i;
       break;
@@ -131,6 +130,10 @@ export const upvoteOp = (userId, upvotes) => {
     });
   } else {
     // otherwise, remove the existing vote
+    op.push({
+      p: ['upvotes', voteIndex],
+      ld: upvote
+    });
   }
   return op;
 };
