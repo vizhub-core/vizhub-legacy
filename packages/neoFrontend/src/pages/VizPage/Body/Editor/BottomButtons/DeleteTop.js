@@ -8,7 +8,8 @@ export const DeleteTop = ({
 }) => (
   <>
     <TopMessage>
-      Are you sure you want to delete the file {activeFile}?
+      Are you sure you want to delete{' '}
+      {activeFile ? `the file ${activeFile}` : 'this entire visualization'}?
     </TopMessage>
     <TopOptions>
       <TopOption>

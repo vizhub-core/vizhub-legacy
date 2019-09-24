@@ -39,7 +39,7 @@ export const BottomButtons = withTheme(
       onNewFileClick();
     }, [clearActiveButton, onNewFileClick]);
 
-    const onDeleteConfirm = useCallback(() => {
+    const onDeleteFileConfirm = useCallback(() => {
       const op = deleteFileOp(viz$.getValue(), activeFile);
       closeActiveFile();
       clearActiveButton();
@@ -51,6 +51,10 @@ export const BottomButtons = withTheme(
       closeActiveFile,
       clearActiveButton
     ]);
+
+    const onDeleteVizConfirm = useCallback(() => {
+      console.log('TODO delete this viz');
+    }, []);
 
     return (
       <Wrapper>
@@ -64,7 +68,9 @@ export const BottomButtons = withTheme(
           ) : activeButton === DELETE_BUTTON ? (
             <DeleteTop
               onNoClick={clearActiveButton}
-              onDeleteConfirm={onDeleteConfirm}
+              onDeleteConfirm={
+                activeFile ? onDeleteFileConfirm : onDeleteVizConfirm
+              }
               theme={theme}
               activeFile={activeFile}
             />
@@ -91,7 +97,7 @@ export const BottomButtons = withTheme(
               <ExportSVG />
             </ClickableOverlay>
           </BottomButton>
-          {activeFile && activeFile !== 'bundle.js' ? (
+          {activeFile !== 'bundle.js' ? (
             <BottomButton
               isActive={activeButton === DELETE_BUTTON}
               activeColor={theme.attentionGrabber}
