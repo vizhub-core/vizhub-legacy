@@ -17,6 +17,7 @@ export const defaultCodingFontFamily = fontFamily(
 export const defaultCodingFontSize = '16px';
 
 export const theme = {
+  background: '#f6eee3',
   dark: '#161514',
   attentionGrabber: '#f0353d',
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
@@ -33,6 +34,8 @@ export const theme = {
   userMenuOverlayBackgroundActive: 'rgba(246, 238, 227, 0.5)',
   hoverBackground: 'rgba(0, 0, 0, 0.05)',
   activeBackground: 'rgba(0, 0, 0, 0.1)',
+  hoverBackgroundInverted: 'rgba(255,255,255, 0.12)',
+  activeBackgroundInverted: 'rgba(255,255,255, 0.24)',
   //bottomButtonBackgroundActive: 'rgba(216, 216, 216, 0.75)',
   bottomButtonBackgroundActive: '#b3b6bc',
   //bottomButtonBackground: 'rgba(216, 216, 216, 0.22)',
