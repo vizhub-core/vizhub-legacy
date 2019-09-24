@@ -27,15 +27,23 @@ export class GetVisualization {
     let forkedFromVisualizationInfo;
     let forkedFromVisualizationOwnerUserName;
     if (visualization.info.forkedFrom) {
-      const { visualizationInfo } = await this.getVisualizationInfo.execute({
+      const response = await this.getVisualizationInfo.execute({
         id: visualization.info.forkedFrom
       });
-      forkedFromVisualizationInfo = visualizationInfo;
+      const { visualizationInfo } = response;
 
-      const { user } = await this.getUser.execute({
-        id: forkedFromVisualizationInfo.owner
-      });
-      forkedFromVisualizationOwnerUserName = user.userName;
+      // Detect the case that the forked from visualization has been deleted.
+      // In this case, don't show the viz as being forked from anything.
+      // TODO preserve lineage somehow
+      //  - reset it to be forked from the nearest ancestor?
+      //  - reset it to be formed from the most similar past viz?
+      if (visualizationInfo.owner) {
+        forkedFromVisualizationInfo = visualizationInfo;
+        const { user } = await this.getUser.execute({
+          id: forkedFromVisualizationInfo.owner
+        });
+        forkedFromVisualizationOwnerUserName = user.userName;
+      }
     }
 
     return {
