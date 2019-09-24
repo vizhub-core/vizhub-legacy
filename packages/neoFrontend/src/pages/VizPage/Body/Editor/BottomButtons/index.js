@@ -5,23 +5,21 @@ import { SettingsSVG, TrashSVG, NewSVG, ExportSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';
-import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
-import { SettingsTop } from './SettingsTop';
-import { NewTop } from './NewTop';
-import { ExportTop } from './ExportTop';
-import { DeleteTop } from './DeleteTop';
-
-const SETTINGS_BUTTON = 'settings';
-const NEW_BUTTON = 'new';
-const EXPORT_BUTTON = 'export';
-const DELETE_BUTTON = 'delete';
+import { Top } from './Top';
+import { Wrapper, BottomButton, ClickableOverlay, Bottom } from './styles';
+import {
+  SETTINGS_BUTTON,
+  NEW_BUTTON,
+  EXPORT_BUTTON,
+  DELETE_BUTTON
+} from './constants';
 
 export const BottomButtons = withTheme(
   ({ theme, activeFile, onNewFileClick }) => {
     const [activeButton, setActiveButton] = useState(null);
 
     const { viz$, submitVizContentOp } = useContext(VizContext);
-    const { closeActiveFile } = useContext(URLStateContext);
+    const { closeActiveFile, vizId } = useContext(URLStateContext);
 
     const onButtonClick = useCallback(
       buttonId => () => {
@@ -58,24 +56,15 @@ export const BottomButtons = withTheme(
 
     return (
       <Wrapper>
-        <Top>
-          {activeButton === SETTINGS_BUTTON ? (
-            <SettingsTop />
-          ) : activeButton === NEW_BUTTON ? (
-            <NewTop onNewFileListItemClick={onNewFileListItemClick} />
-          ) : activeButton === EXPORT_BUTTON ? (
-            <ExportTop />
-          ) : activeButton === DELETE_BUTTON ? (
-            <DeleteTop
-              onNoClick={clearActiveButton}
-              onDeleteConfirm={
-                activeFile ? onDeleteFileConfirm : onDeleteVizConfirm
-              }
-              theme={theme}
-              activeFile={activeFile}
-            />
-          ) : null}
-        </Top>
+        <Top
+          vizId={vizId}
+          activeFile={activeFile}
+          activeButton={activeButton}
+          clearActiveButton={clearActiveButton}
+          onNewFileListItemClick={onNewFileListItemClick}
+          onDeleteFileConfirm={onDeleteFileConfirm}
+          onDeleteVizConfirm={onDeleteVizConfirm}
+        />
         <Bottom>
           {showEditorSettings ? (
             <BottomButton isActive={activeButton === SETTINGS_BUTTON}>

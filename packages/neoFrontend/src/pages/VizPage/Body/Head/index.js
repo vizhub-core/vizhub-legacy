@@ -1,5 +1,10 @@
 import React, { useContext } from 'react';
-import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
+import {
+  ForkSVG,
+  PullSVG,
+  SettingsSVG,
+  ShareSVG /*TrashSVG*/
+} from '../../../../svg';
 import {
   showHeadPullRequest,
   showHeadShare,
@@ -28,10 +33,17 @@ export const Head = ({ onFork, showRight }) => {
             title="Fork this Viz"
             onClick={onFork}
             className="test-fork"
-            rightmost={true}
           >
             <ForkSVG />
           </HeadIcon>
+          {
+            //  <HeadIcon
+            //    title="Delete this Viz"
+            //    rightmost={true}
+            //  >
+            //    <TrashSVG />
+            //  </HeadIcon>
+          }
           {showHeadShare ? (
             <HeadIcon title="Share this Viz">
               <ShareSVG />
