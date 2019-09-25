@@ -11,6 +11,7 @@ import {
   getVizHeight,
   getVizUpvotes,
   getUpvoteCount,
+  getDidVote,
   upvoteOp
 } from '../../../../accessors';
 import { useValue } from '../../../../useValue';
@@ -41,8 +42,10 @@ export const Viewer = () => {
 
   const upvotes = useValue(viz$, getVizUpvotes);
   const upvoteCount = getUpvoteCount(upvotes);
-  // TODO use this pattern with title
+  const didVote = getDidVote(upvotes, me);
+  const canVote = !!me;
 
+  // TODO use this pattern with title
   const handleUpvote = useCallback(() => {
     if (me) {
       submitVizInfoOp(upvoteOp(me.id, upvotes));
@@ -97,7 +100,8 @@ export const Viewer = () => {
             />
             <TitleBar
               title={vizInfo.title}
-              canVote={!!me}
+              canVote={canVote}
+              didVote={didVote}
               upvoteCount={upvoteCount}
               onUpvoteClick={handleUpvote}
             />

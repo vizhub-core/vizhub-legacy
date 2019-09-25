@@ -59,6 +59,8 @@ export const extractTitle = html => {
 export const getVizUpvotes = viz => viz.info.upvotes;
 
 export const getUpvoteCount = upvotes => (upvotes ? upvotes.length : 0);
+export const getDidVote = (upvotes, user) =>
+  upvotes && user ? upvotes.some(vote => vote.userId === user.id) : false;
 
 // Pushes a new file entry onto the files array.
 // newFile is expected to be an object with "name" and "text" properties.
