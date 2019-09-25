@@ -19,7 +19,13 @@ export const TitleBar = ({
             leftmost={true}
             onClick={onUpvoteClick}
             canVote={canVote}
-            title={canVote ? null : 'Sign in to upvote.'}
+            title={
+              canVote
+                ? didVote
+                  ? 'Remove upvote'
+                  : 'Upvote'
+                : 'Sign in to upvote.'
+            }
           >
             <VoteSVG didVote={didVote} />
           </VoteIcon>
