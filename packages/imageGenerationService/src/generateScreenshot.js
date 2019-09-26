@@ -11,16 +11,37 @@ export const generateScreenshot = async ({ visualizationViewModel, waitTime }) =
     const page = await browser.newPage();
   
     await page.setViewport({ width, height });
-    await page.setContent(html);
-    await page.waitFor(waitTime);
-  
+
+    return await new Promise((resolve, reject) => {
+      // Catch errors.
+      // From https://github.com/GoogleChrome/puppeteer/issues/3709
+      page.on('error', error => {
+        console.log('got error event');
+        reject( error );
+      });
+
+      page.setContent(html)
+        .then(() => page.waitFor(waitTime))
+        .then(() => page.screenshot())
+        .then(screenshotBuffer => {
+          return page.close()
+            .then(() => browser.close())
+            .then(() => resolve(screenshotBuffer))
+	});
+    });
+
+  } catch (error) {
+    console.log('Caught screenshot generation error:');
+    console.log(error);
+
+    console.log('Using white image as thumbnail');
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setViewport({ width, height });
+    await page.setContent('<html></html>');
     const screenshotBuffer = await page.screenshot();
     await page.close();
     await browser.close();
-  
     return screenshotBuffer;
-  } catch (error) {
-    console.log(error);
-    process.exit();
   }
 };
