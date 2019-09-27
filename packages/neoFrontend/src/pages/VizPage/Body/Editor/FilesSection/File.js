@@ -3,6 +3,7 @@ import { FileEntry } from './styles';
 import { EditableFileEntry } from './EditableFileEntry';
 
 export const File = ({
+  name,
   file,
   activeFile,
   setActiveFile,
@@ -13,14 +14,12 @@ export const File = ({
 }) =>
   isRenamingActiveFile && file.name === activeFile ? (
     <EditableFileEntry
-      key={file.name}
       changeFileName={renameActiveFile}
       initialFileName={activeFile}
       indent={indent}
     />
   ) : (
     <FileEntry
-      key={file.name}
       isActive={file.name === activeFile}
       onClick={() => {
         setActiveFile(file.name);
@@ -35,8 +34,6 @@ export const File = ({
       }
       indent={indent}
     >
-      <div style={{ opacity: file.name === 'bundle.js' ? 0.6 : 1 }}>
-        {file.name}
-      </div>
+      <div style={{ opacity: file.name === 'bundle.js' ? 0.6 : 1 }}>{name}</div>
     </FileEntry>
   );

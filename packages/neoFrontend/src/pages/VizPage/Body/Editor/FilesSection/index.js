@@ -67,20 +67,25 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
 
   // TODO sort that shit recursively
   //  - directories come before files, like NERDTree
+  // TODO memoize
   const fileTree = sortedFiles && getFileTree(sortedFiles);
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">
-      {fileTree ? (
-        <FileTree
-          fileTree={fileTree}
-          activeFile={activeFile}
-          setActiveFile={setActiveFile}
-          isRenamingActiveFile={isRenamingActiveFile}
-          setIsRenamingActiveFile={setIsRenamingActiveFile}
-          renameActiveFile={renameActiveFile}
-        />
-      ) : null}
+      {fileTree
+        ? fileTree.children.map((fileNode, i) => (
+            <FileTree
+              key={i}
+              fileTree={fileNode}
+              activeFile={activeFile}
+              setActiveFile={setActiveFile}
+              isRenamingActiveFile={isRenamingActiveFile}
+              setIsRenamingActiveFile={setIsRenamingActiveFile}
+              renameActiveFile={renameActiveFile}
+              indent={1}
+            />
+          ))
+        : null}
       {isRenamingNewFile ? (
         <EditableFileEntry changeFileName={createNewFile} initialFileName="" />
       ) : null}
