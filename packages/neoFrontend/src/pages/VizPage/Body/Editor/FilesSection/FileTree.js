@@ -1,44 +1,5 @@
 import React from 'react';
-//import { Item } from '../../styles';
-//import { Menu } from '../../Menu';
-import { FileEntry } from './styles';
-import { EditableFileEntry } from './EditableFileEntry';
-
-const File = ({
-  file,
-  activeFile,
-  setActiveFile,
-  isRenamingActiveFile,
-  setIsRenamingActiveFile,
-  renameActiveFile
-}) =>
-  isRenamingActiveFile && file.name === activeFile ? (
-    <EditableFileEntry
-      key={file.name}
-      changeFileName={renameActiveFile}
-      initialFileName={activeFile}
-    />
-  ) : (
-    <FileEntry
-      key={file.name}
-      isActive={file.name === activeFile}
-      onClick={() => {
-        setActiveFile(file.name);
-
-        // Don't allow users to rename bundle.js
-        if (activeFile === 'bundle.js') return;
-
-        setIsRenamingActiveFile(activeFile === file.name);
-      }}
-      className={
-        file.name === 'index.html' ? 'test-editor-file-entry-index-html' : ''
-      }
-    >
-      <div style={{ opacity: file.name === 'bundle.js' ? 0.6 : 1 }}>
-        {file.name}
-      </div>
-    </FileEntry>
-  );
+import { File } from './File';
 
 export const FileTree = ({
   fileTree,
@@ -46,24 +7,32 @@ export const FileTree = ({
   setActiveFile,
   isRenamingActiveFile,
   setIsRenamingActiveFile,
-  renameActiveFile
+  renameActiveFile,
+  indent = 0
 }) =>
-  fileTree.children.map(node => {
-    if (node.file) {
-      return (
-        <File
-          file={node.file}
-          activeFile={activeFile}
-          setActiveFile={setActiveFile}
-          isRenamingActiveFile={isRenamingActiveFile}
-          setIsRenamingActiveFile={setIsRenamingActiveFile}
-          renameActiveFile={renameActiveFile}
-        />
-      );
-    } else {
-      return null;
-    }
-  });
+  fileTree.children ? (
+    fileTree.children.map(child => (
+      <FileTree
+        fileTree={child}
+        activeFile={activeFile}
+        setActiveFile={setActiveFile}
+        isRenamingActiveFile={isRenamingActiveFile}
+        setIsRenamingActiveFile={setIsRenamingActiveFile}
+        renameActiveFile={renameActiveFile}
+        indent={indent + 1}
+      />
+    ))
+  ) : (
+    <File
+      file={fileTree.file}
+      activeFile={activeFile}
+      setActiveFile={setActiveFile}
+      isRenamingActiveFile={isRenamingActiveFile}
+      setIsRenamingActiveFile={setIsRenamingActiveFile}
+      renameActiveFile={renameActiveFile}
+      indent={indent}
+    />
+  );
 //export const FileTree = ({
 //  node: { children, id, name },
 //  activeFileId,
