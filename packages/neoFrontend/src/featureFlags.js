@@ -8,3 +8,4 @@ export const showEditorSettings = false;
 export const showVideoThumbnail = false;
 export const showVisualEditor = false;
 export const showMobileConsole = false;
+export const renameFileWithoutPath = false;

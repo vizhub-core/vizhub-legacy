@@ -1,4 +1,5 @@
 import React from 'react';
+import { renameFileWithoutPath } from '../../../../../featureFlags';
 import { FileEntry } from './styles';
 import { EditableFileEntry } from './EditableFileEntry';
 import { addPath } from './addPath';
@@ -15,9 +16,13 @@ export const File = ({
 }) =>
   isRenamingActiveFile && file.name === activeFile ? (
     <EditableFileEntry
-      changeFileName={newName => renameActiveFile(addPath(newName, file.name))}
-      initialFileName={name}
-      indent={indent}
+      changeFileName={newName =>
+        renameActiveFile(
+          renameFileWithoutPath ? addPath(newName, file.name) : newName
+        )
+      }
+      initialFileName={renameFileWithoutPath ? name : file.name}
+      indent={renameFileWithoutPath ? indent : 0}
     />
   ) : (
     <FileEntry
