@@ -18,3 +18,12 @@ test('Parses two files', () => {
   expect(tree.children[1].name).toBe('name2');
   expect(tree.children[1].file).toBe(file2);
 });
+
+test('Parses one files in a directory', () => {
+  const file = { name: 'dir/name', text: 'text' };
+  const tree = getFileTree([file]);
+  expect(tree.children.length).toBe(1);
+  expect(tree.children[0].children.length).toBe(1);
+  expect(tree.children[0].children[0].name).toBe('name');
+  expect(tree.children[0].children[0].file).toBe(file);
+});
