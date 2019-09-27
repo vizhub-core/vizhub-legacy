@@ -11,17 +11,15 @@ export const useRenameActiveFile = (
   useCallback(
     newName => {
       setIsRenamingActiveFile(false);
-      const fileIndex = getFileIndex(files, activeFile);
-      const op = fileChangeOp(
-        fileIndex,
-        activeFile,
-        newName,
-        realtimeModules,
-        'name'
+      submitVizContentOp(
+        fileChangeOp(
+          getFileIndex(files, activeFile),
+          activeFile,
+          newName,
+          realtimeModules,
+          'name'
+        )
       );
-      if (op.length > 0) {
-        submitVizContentOp(op);
-      }
     },
     [
       activeFile,
