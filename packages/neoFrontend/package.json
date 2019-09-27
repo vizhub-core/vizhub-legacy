@@ -7,7 +7,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp -r build ../neoBackend/build",
-    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "test": "react-scripts test"
   },
   "proxy": "http://localhost:4000/",
   "author": "Datavis Tech INC",

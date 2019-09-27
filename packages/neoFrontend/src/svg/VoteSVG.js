@@ -34,7 +34,7 @@ export const VoteSVG = withTheme(
           cx={cx}
           cy={cy}
           r={r}
-          stroke-width="1.1"
+          strokeWidth="1.1"
           stroke={fill}
           fill={didVote ? fill : 'none'}
         />
