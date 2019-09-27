@@ -1,5 +1,6 @@
 import React from 'react';
 import { File } from './File';
+import { Directory } from './Directory';
 
 export const FileTree = ({
   fileTree,
@@ -11,17 +12,20 @@ export const FileTree = ({
   indent = 0
 }) =>
   fileTree.children ? (
-    fileTree.children.map(child => (
-      <FileTree
-        fileTree={child}
-        activeFile={activeFile}
-        setActiveFile={setActiveFile}
-        isRenamingActiveFile={isRenamingActiveFile}
-        setIsRenamingActiveFile={setIsRenamingActiveFile}
-        renameActiveFile={renameActiveFile}
-        indent={indent + 1}
-      />
-    ))
+    <>
+      <Directory indent={indent} name={fileTree.name} />
+      {fileTree.children.map(child => (
+        <FileTree
+          fileTree={child}
+          activeFile={activeFile}
+          setActiveFile={setActiveFile}
+          isRenamingActiveFile={isRenamingActiveFile}
+          setIsRenamingActiveFile={setIsRenamingActiveFile}
+          renameActiveFile={renameActiveFile}
+          indent={indent + 1}
+        />
+      ))}
+    </>
   ) : (
     <File
       file={fileTree.file}
