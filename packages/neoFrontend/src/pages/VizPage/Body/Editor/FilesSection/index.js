@@ -10,7 +10,7 @@ import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../../../VizContext';
 import { Section } from '../Section';
-import { FileEntry } from './styles';
+import { FileTree } from './FileTree';
 import { EditableFileEntry } from './EditableFileEntry';
 import { getFileTree } from './getFileTree';
 
@@ -20,8 +20,6 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
 
   const { viz$, submitVizContentOp } = useContext(VizContext);
   const files = useValue(viz$, getVizFiles);
-  const fileTree = getFileTree(files);
-  console.log(fileTree);
 
   const realtimeModules = useContext(RealtimeModulesContext);
 
@@ -67,41 +65,24 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const sortedFiles =
     files && files.slice().sort((a, b) => a.name.localeCompare(b.name));
 
+  const fileTree = sortedFiles && getFileTree(sortedFiles);
+
+  // TODO sort that shit recursively
+  //  - directories come before files, like NERDTree
+  console.log(fileTree);
+
   return (
     <Section title="files" id="files" className="test-editor-files-section">
-      {sortedFiles
-        ? sortedFiles.map(file =>
-            isRenamingActiveFile && file.name === activeFile ? (
-              <EditableFileEntry
-                key={file.name}
-                changeFileName={renameActiveFile}
-                initialFileName={activeFile}
-              />
-            ) : (
-              <FileEntry
-                key={file.name}
-                isActive={file.name === activeFile}
-                onClick={() => {
-                  setActiveFile(file.name);
-
-                  // Don't allow users to rename bundle.js
-                  if (activeFile === 'bundle.js') return;
-
-                  setIsRenamingActiveFile(activeFile === file.name);
-                }}
-                className={
-                  file.name === 'index.html'
-                    ? 'test-editor-file-entry-index-html'
-                    : ''
-                }
-              >
-                <div style={{ opacity: file.name === 'bundle.js' ? 0.6 : 1 }}>
-                  {file.name}
-                </div>
-              </FileEntry>
-            )
-          )
-        : null}
+      {fileTree ? (
+        <FileTree
+          fileTree={fileTree}
+          activeFile={activeFile}
+          setActiveFile={setActiveFile}
+          isRenamingActiveFile={isRenamingActiveFile}
+          setIsRenamingActiveFile={setIsRenamingActiveFile}
+          renameActiveFile={renameActiveFile}
+        />
+      ) : null}
       {isRenamingNewFile ? (
         <EditableFileEntry changeFileName={createNewFile} initialFileName="" />
       ) : null}
