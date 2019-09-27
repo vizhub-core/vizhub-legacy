@@ -12,6 +12,7 @@ import { VizContext } from '../../../VizContext';
 import { Section } from '../Section';
 import { FileEntry } from './styles';
 import { EditableFileEntry } from './EditableFileEntry';
+import { getFileTree } from './getFileTree';
 
 export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
@@ -19,6 +20,8 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
 
   const { viz$, submitVizContentOp } = useContext(VizContext);
   const files = useValue(viz$, getVizFiles);
+  const fileTree = getFileTree(files);
+  console.log(fileTree);
 
   const realtimeModules = useContext(RealtimeModulesContext);
 
