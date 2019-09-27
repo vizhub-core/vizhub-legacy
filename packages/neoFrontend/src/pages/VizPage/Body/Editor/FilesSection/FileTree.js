@@ -4,6 +4,42 @@ import React from 'react';
 import { FileEntry } from './styles';
 import { EditableFileEntry } from './EditableFileEntry';
 
+const File = ({
+  file,
+  activeFile,
+  setActiveFile,
+  isRenamingActiveFile,
+  setIsRenamingActiveFile,
+  renameActiveFile
+}) =>
+  isRenamingActiveFile && file.name === activeFile ? (
+    <EditableFileEntry
+      key={file.name}
+      changeFileName={renameActiveFile}
+      initialFileName={activeFile}
+    />
+  ) : (
+    <FileEntry
+      key={file.name}
+      isActive={file.name === activeFile}
+      onClick={() => {
+        setActiveFile(file.name);
+
+        // Don't allow users to rename bundle.js
+        if (activeFile === 'bundle.js') return;
+
+        setIsRenamingActiveFile(activeFile === file.name);
+      }}
+      className={
+        file.name === 'index.html' ? 'test-editor-file-entry-index-html' : ''
+      }
+    >
+      <div style={{ opacity: file.name === 'bundle.js' ? 0.6 : 1 }}>
+        {file.name}
+      </div>
+    </FileEntry>
+  );
+
 export const FileTree = ({
   fileTree,
   activeFile,
@@ -14,35 +50,15 @@ export const FileTree = ({
 }) =>
   fileTree.children.map(node => {
     if (node.file) {
-      const file = node.file;
-      return isRenamingActiveFile && file.name === activeFile ? (
-        <EditableFileEntry
-          key={file.name}
-          changeFileName={renameActiveFile}
-          initialFileName={activeFile}
+      return (
+        <File
+          file={node.file}
+          activeFile={activeFile}
+          setActiveFile={setActiveFile}
+          isRenamingActiveFile={isRenamingActiveFile}
+          setIsRenamingActiveFile={setIsRenamingActiveFile}
+          renameActiveFile={renameActiveFile}
         />
-      ) : (
-        <FileEntry
-          key={file.name}
-          isActive={file.name === activeFile}
-          onClick={() => {
-            setActiveFile(file.name);
-
-            // Don't allow users to rename bundle.js
-            if (activeFile === 'bundle.js') return;
-
-            setIsRenamingActiveFile(activeFile === file.name);
-          }}
-          className={
-            file.name === 'index.html'
-              ? 'test-editor-file-entry-index-html'
-              : ''
-          }
-        >
-          <div style={{ opacity: file.name === 'bundle.js' ? 0.6 : 1 }}>
-            {file.name}
-          </div>
-        </FileEntry>
       );
     } else {
       return null;
