@@ -9,13 +9,14 @@ export const FileTree = ({
   isRenamingActiveFile,
   setIsRenamingActiveFile,
   renameActiveFile,
-  indent = 0
+  indent
 }) =>
   fileTree.children ? (
     <>
       <Directory indent={indent} name={fileTree.name} />
-      {fileTree.children.map(child => (
+      {fileTree.children.map((child, i) => (
         <FileTree
+          key={i}
           fileTree={child}
           activeFile={activeFile}
           setActiveFile={setActiveFile}
@@ -28,6 +29,7 @@ export const FileTree = ({
     </>
   ) : (
     <File
+      name={fileTree.name}
       file={fileTree.file}
       activeFile={activeFile}
       setActiveFile={setActiveFile}
