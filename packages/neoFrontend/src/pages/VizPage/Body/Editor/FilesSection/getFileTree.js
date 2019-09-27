@@ -5,8 +5,26 @@ export const getFileTree = files => {
     const n = path.length;
     let node = tree;
     for (let i = 0; i < n - 1; i++) {
-      const child = { name: path[i] };
-      (node.children || (node.children = [])).push(child);
+
+      // Search for an existing child.
+      let child;
+      const name = path[i];
+      if(node.children){
+        for(let j = 0; j < node.children.length; j++){
+          const nodeChild = node.children[j];
+          if(nodeChild.name === name){
+            child = nodeChild;
+            break;
+          }
+        }
+      }
+
+      // Create a child if none with matching name exists.
+      if(!child){
+        child = { name: path[i] };
+        (node.children || (node.children = [])).push(child);
+      }
+
     //  if (!node[pathItem]) {
     //    const child ={name: pathItem};
     //    if(i === n - 1){
