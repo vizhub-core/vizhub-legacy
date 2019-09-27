@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileEntry } from './styles';
 import { EditableFileEntry } from './EditableFileEntry';
+import { addPath } from './addPath';
 
 export const File = ({
   name,
@@ -14,8 +15,8 @@ export const File = ({
 }) =>
   isRenamingActiveFile && file.name === activeFile ? (
     <EditableFileEntry
-      changeFileName={renameActiveFile}
-      initialFileName={activeFile}
+      changeFileName={newName => renameActiveFile(addPath(newName, file.name))}
+      initialFileName={name}
       indent={indent}
     />
   ) : (
