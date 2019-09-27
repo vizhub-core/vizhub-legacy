@@ -2,8 +2,7 @@ import React, { useContext, useState, useCallback } from 'react';
 import {
   getVizFiles,
   getFileIndex,
-  fileChangeOp,
-  fileCreateOp
+  fileChangeOp
 } from '../../../../../accessors';
 import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
@@ -13,6 +12,7 @@ import { Section } from '../Section';
 import { FileTree } from './FileTree';
 import { EditableFileEntry } from './EditableFileEntry';
 import { getFileTree } from './getFileTree';
+import { useCreateNewFile } from './useCreateNewFile';
 
 export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
@@ -47,19 +47,10 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
     ]
   );
 
-  const createNewFile = useCallback(
-    newName => {
-      setIsRenamingNewFile(false);
-      if (newName !== '') {
-        submitVizContentOp(
-          fileCreateOp(files, {
-            name: newName,
-            text: ''
-          })
-        );
-      }
-    },
-    [setIsRenamingNewFile, submitVizContentOp, files]
+  const createNewFile = useCreateNewFile(
+    setIsRenamingNewFile,
+    submitVizContentOp,
+    files
   );
 
   const sortedFiles =
