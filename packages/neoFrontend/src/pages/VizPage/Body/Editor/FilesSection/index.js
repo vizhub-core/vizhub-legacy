@@ -1,9 +1,5 @@
-import React, { useContext, useState, useCallback } from 'react';
-import {
-  getVizFiles,
-  getFileIndex,
-  fileChangeOp
-} from '../../../../../accessors';
+import React, { useContext, useState } from 'react';
+import { getVizFiles } from '../../../../../accessors';
 import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
@@ -13,6 +9,7 @@ import { FileTree } from './FileTree';
 import { EditableFileEntry } from './EditableFileEntry';
 import { getFileTree } from './getFileTree';
 import { useCreateNewFile } from './useCreateNewFile';
+import { useRenameActiveFile } from './useRenameActiveFile';
 
 export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
@@ -23,28 +20,12 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
 
   const realtimeModules = useContext(RealtimeModulesContext);
 
-  const renameActiveFile = useCallback(
-    newName => {
-      setIsRenamingActiveFile(false);
-      const fileIndex = getFileIndex(files, activeFile);
-      const op = fileChangeOp(
-        fileIndex,
-        activeFile,
-        newName,
-        realtimeModules,
-        'name'
-      );
-      if (op.length > 0) {
-        submitVizContentOp(op);
-      }
-    },
-    [
-      activeFile,
-      setIsRenamingActiveFile,
-      files,
-      submitVizContentOp,
-      realtimeModules
-    ]
+  const renameActiveFile = useRenameActiveFile(
+    activeFile,
+    setIsRenamingActiveFile,
+    files,
+    submitVizContentOp,
+    realtimeModules
   );
 
   const createNewFile = useCreateNewFile(
