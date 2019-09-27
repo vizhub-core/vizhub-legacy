@@ -1,7 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { Wrapper, EditableFileInput } from './styles';
 
-export const EditableFileEntry = ({ changeFileName, initialFileName }) => {
+export const EditableFileEntry = ({
+  changeFileName,
+  initialFileName,
+  indent
+}) => {
   const [fileName, setEditableFileNewName] = useState(initialFileName);
 
   const onEditableFileChange = useCallback(
@@ -36,6 +40,7 @@ export const EditableFileEntry = ({ changeFileName, initialFileName }) => {
         onBlur={onEditableFileBlur}
         onKeyDown={onEditableFileKeyDown}
         autoFocus
+        indent={indent}
       />
     </Wrapper>
   );
