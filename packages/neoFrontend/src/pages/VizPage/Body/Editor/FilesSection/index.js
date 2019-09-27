@@ -65,11 +65,9 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const sortedFiles =
     files && files.slice().sort((a, b) => a.name.localeCompare(b.name));
 
-  const fileTree = sortedFiles && getFileTree(sortedFiles);
-
   // TODO sort that shit recursively
   //  - directories come before files, like NERDTree
-  console.log(fileTree);
+  const fileTree = sortedFiles && getFileTree(sortedFiles);
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">
