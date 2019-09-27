@@ -1,20 +1,23 @@
 export const getFileTree = files => {
-  const root = { name: 'files', children: [] };
+  const tree = { name: 'files' };
   files.forEach(file => {
     const path = file.name.split('/');
+    const node = tree;
     const n = path.length;
-    let node = root;
-    for (let i = 1; i < n; i++) {
-      const pathItem = path[i];
-      if (!node[pathItem]) {
-        const child ={name: pathItem};
-        if(i === n - 1){
-          child.data = file;
-        }
-        (node.children || (node.children = [])).push(node[pathItem]);
-      }
-      node = node[pathItem];
+    for (let i = 0; i < n; i++) {
+      (node.children || (node.children = [])).push({
+        name: path[i],
+        file
+      });
+      //const pathItem = path[i];
+      //if (!node[pathItem]) {
+      //  const child ={name: pathItem};
+      //  if(i === n - 1){
+      //    child.data = file;
+      //  }
+      //}
+      //node = node[pathItem];
     }
   });
-  return root;
+  return tree;
 };
