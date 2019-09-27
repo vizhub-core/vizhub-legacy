@@ -52,10 +52,8 @@ test('Parses a complex directory structure', () => {
   const tree = getFileTree([file1, file2, file3, file4, file5, file6]);
   expect(tree.children.length).toBe(3);
 
-
   expect(tree.children[0].name).toBe('name1');
   expect(tree.children[0].file).toBe(file1);
-
 
   expect(tree.children[1].name).toBe('dir1');
   expect(tree.children[1].children.length).toBe(3);
@@ -74,7 +72,6 @@ test('Parses a complex directory structure', () => {
   expect(tree.children[1].children[2].children[0].file).toBe(file4);
   expect(tree.children[1].children[2].children[1].name).toBe('name3dar');
   expect(tree.children[1].children[2].children[1].file).toBe(file5);
-
 
   expect(tree.children[2].name).toBe('dir2');
   expect(tree.children[2].children.length).toBe(1);
