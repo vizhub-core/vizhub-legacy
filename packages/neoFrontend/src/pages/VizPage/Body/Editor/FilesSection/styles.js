@@ -7,4 +7,3 @@ export const FileStyle = props => `
   border-left: ${props.theme.editorEntryLeftBorderSize}px solid
     ${props.isActive ? props.theme.editorFileActiveColor : 'transparent'};
 `;
-
