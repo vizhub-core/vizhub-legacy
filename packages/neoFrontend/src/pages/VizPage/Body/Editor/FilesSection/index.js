@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { getVizFiles } from '../../../../../accessors';
 import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
@@ -14,6 +14,19 @@ import { useRenameActiveFile } from './useRenameActiveFile';
 export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
   const [isRenamingActiveFile, setIsRenamingActiveFile] = useState(false);
+  const [openDirectories, setOpenDirectories] = useState({});
+
+  const toggleDirectory = useCallback(
+    directory => {
+      setOpenDirectories(
+        Object.assign({}, openDirectories, {
+          [directory]: !openDirectories[directory]
+        })
+      );
+    },
+    [openDirectories, setOpenDirectories]
+  );
+  console.log(openDirectories);
 
   const { viz$, submitVizContentOp } = useContext(VizContext);
   const files = useValue(viz$, getVizFiles);
@@ -55,6 +68,8 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
               setIsRenamingActiveFile={setIsRenamingActiveFile}
               renameActiveFile={renameActiveFile}
               indent={1}
+              openDirectories={openDirectories}
+              toggleDirectory={toggleDirectory}
             />
           ))
         : null}

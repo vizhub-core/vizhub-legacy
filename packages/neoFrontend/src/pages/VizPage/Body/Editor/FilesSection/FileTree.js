@@ -9,23 +9,34 @@ export const FileTree = ({
   isRenamingActiveFile,
   setIsRenamingActiveFile,
   renameActiveFile,
-  indent
+  indent,
+  openDirectories,
+  toggleDirectory
 }) =>
   fileTree.children ? (
     <>
-      <Directory indent={indent} name={fileTree.name} />
-      {fileTree.children.map((child, i) => (
-        <FileTree
-          key={i}
-          fileTree={child}
-          activeFile={activeFile}
-          setActiveFile={setActiveFile}
-          isRenamingActiveFile={isRenamingActiveFile}
-          setIsRenamingActiveFile={setIsRenamingActiveFile}
-          renameActiveFile={renameActiveFile}
-          indent={indent + 1}
-        />
-      ))}
+      <Directory
+        indent={indent}
+        name={fileTree.name}
+        path={fileTree.path}
+        toggleDirectory={toggleDirectory}
+      />
+      {openDirectories[fileTree.path]
+        ? fileTree.children.map((child, i) => (
+            <FileTree
+              key={i}
+              fileTree={child}
+              activeFile={activeFile}
+              setActiveFile={setActiveFile}
+              isRenamingActiveFile={isRenamingActiveFile}
+              setIsRenamingActiveFile={setIsRenamingActiveFile}
+              renameActiveFile={renameActiveFile}
+              indent={indent + 1}
+              openDirectories={openDirectories}
+              toggleDirectory={toggleDirectory}
+            />
+          ))
+        : null}
     </>
   ) : (
     <File
@@ -39,29 +50,3 @@ export const FileTree = ({
       indent={indent}
     />
   );
-//export const FileTree = ({
-//  node: { children, id, name },
-//  activeFileId,
-//  selectFile
-//}) =>
-//  children ? (
-//    <Menu key={name} title={name} mono={true}>
-//      {children.map(child => (
-//        <FileTree
-//          key={child.name}
-//          node={child}
-//          activeFileId={activeFileId}
-//          selectFile={selectFile}
-//        />
-//      ))}
-//    </Menu>
-//  ) : (
-//    <Item
-//      key={name}
-//      onClick={selectFile(id)}
-//      isActive={id === activeFileId}
-//      mono={true}
-//    >
-//      {name}
-//    </Item>
-//  );
