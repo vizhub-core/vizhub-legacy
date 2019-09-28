@@ -1,6 +1,3 @@
-import styled from 'styled-components';
-import { Clickable } from '../../../../../styles';
-
 export const FileStyle = props => `
   display: flex;
   align-items: center;
@@ -11,12 +8,3 @@ export const FileStyle = props => `
     ${props.isActive ? props.theme.editorFileActiveColor : 'transparent'};
 `;
 
-export const FileEntry = styled(Clickable)`
-  ${FileStyle}
-  text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
-`;
-
-export const DirectoryEntry = styled(Clickable)`
-  ${FileStyle}
-  position: relative;
-`;
