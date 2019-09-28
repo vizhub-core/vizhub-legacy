@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { DirectoryArrowSVG } from '../../../../../../svg';
+import { DirectoryArrowSVG } from '../../../../../../../svg';
 import { DirectoryEntry } from '../styles';
 import { ArrowWrapper } from './styles';
 
