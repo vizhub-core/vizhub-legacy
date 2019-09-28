@@ -2,6 +2,7 @@ import React from 'react';
 import { File } from './File';
 import { Directory } from './Directory';
 export { getFileTree } from './getFileTree';
+export { sortFileTree } from './sortFileTree';
 
 export const FileTree = ({
   fileTree,

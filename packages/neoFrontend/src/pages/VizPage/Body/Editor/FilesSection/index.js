@@ -5,7 +5,7 @@ import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../../../VizContext';
 import { Section } from '../Section';
-import { getFileTree, FileTree } from './FileTree';
+import { FileTree, getFileTree, sortFileTree } from './FileTree';
 import { EditableFileEntry } from './EditableFileEntry';
 import { useCreateNewFile } from './useCreateNewFile';
 import { useRenameActiveFile } from './useRenameActiveFile';
@@ -36,13 +36,7 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
     files
   );
 
-  const sortedFiles =
-    files && files.slice().sort((a, b) => a.name.localeCompare(b.name));
-
-  // TODO sort that shit recursively
-  //  - directories come before files, like NERDTree
-  // TODO memoize
-  const fileTree = sortedFiles && getFileTree(sortedFiles);
+  const fileTree = files && sortFileTree(getFileTree(files));
 
   return (
     <Section title="files" id="files" className="test-editor-files-section">
