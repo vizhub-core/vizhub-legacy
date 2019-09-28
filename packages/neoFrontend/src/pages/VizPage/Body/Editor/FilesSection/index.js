@@ -10,11 +10,16 @@ import { EditableFileEntry } from './EditableFileEntry';
 import { getFileTree } from './getFileTree';
 import { useCreateNewFile } from './useCreateNewFile';
 import { useRenameActiveFile } from './useRenameActiveFile';
+import { initialOpenDirectories } from './initialOpenDirectories';
 
 export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const { activeFile, setActiveFile } = useContext(URLStateContext);
   const [isRenamingActiveFile, setIsRenamingActiveFile] = useState(false);
-  const [openDirectories, setOpenDirectories] = useState({});
+  const [openDirectories, setOpenDirectories] = useState(
+    initialOpenDirectories(activeFile)
+  );
+
+  console.log(activeFile);
 
   const toggleDirectory = useCallback(
     directory => {
