@@ -20,6 +20,7 @@ export const FileTree = ({
         name={fileTree.name}
         path={fileTree.path}
         toggleDirectory={toggleDirectory}
+        isOpen={openDirectories[fileTree.path]}
       />
       {openDirectories[fileTree.path]
         ? fileTree.children.map((child, i) => (
