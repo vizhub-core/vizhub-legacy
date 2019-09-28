@@ -22,7 +22,10 @@ export const getFileTree = files => {
 
       // Create a child if none with matching name exists.
       if (!child) {
-        child = { name: path[i] };
+        child = {
+          name: path[i],
+          path: path.slice(0, i + 1).join('/')
+        };
         (node.children || (node.children = [])).push(child);
       }
 

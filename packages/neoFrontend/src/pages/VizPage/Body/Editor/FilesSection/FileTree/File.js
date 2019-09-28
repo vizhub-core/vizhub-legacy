@@ -1,7 +1,7 @@
 import React from 'react';
-import { renameFileWithoutPath } from '../../../../../featureFlags';
+import { renameFileWithoutPath } from '../../../../../../featureFlags';
+import { EditableFileEntry } from '../EditableFileEntry';
 import { FileEntry } from './styles';
-import { EditableFileEntry } from './EditableFileEntry';
 import { addPath } from './addPath';
 
 export const File = ({
