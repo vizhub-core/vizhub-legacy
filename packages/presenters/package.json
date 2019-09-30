@@ -10,7 +10,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "vizhub-libraries": "^1.6.0",
+    "vizhub-libraries": "^1.7.0",
     "buble-jsx-only": "^0.19.8",
     "mocha": "^6.2.1",
     "path-posix": "^1.0.0",
