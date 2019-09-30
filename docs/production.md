@@ -176,7 +176,6 @@ Start image generation service
 
 ```
 cd ../imageGenerationService/
-npm run build
 pm2 start --name image-generation-service npm -- start
 ```
 
@@ -190,6 +189,22 @@ export REACT_APP_VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954
 export REACT_APP_VIZHUB_JWT_SECRET=fdsahjuyufidysyu4i3243sald89saf78
 export REACT_APP_VIZHUB_WEBSOCKET_URL=wss://beta.vizhub.com
 export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
+```
+
+
+Build and start the Web server
+
+```
+cd packages/neoBackend/
+npm run build
+pm2 start --name app npm -- start
+```
+
+Start image generation service
+
+```
+cd ../imageGenerationService/
+pm2 start --name image-generation-service npm -- start
 ```
 
 # Database Server
