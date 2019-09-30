@@ -181,7 +181,7 @@ pm2 start --name image-generation-service npm -- start
 
 # VizHub 2.0
 
-`~.bashrc`
+`~/.bashrc`
 
 ```
 export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=1a25f9b4693754964a7f
