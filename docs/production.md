@@ -196,7 +196,6 @@ Build and start the Web server
 
 ```
 cd packages/neoBackend/
-npm run build
 pm2 start --name app npm -- start
 ```
 
