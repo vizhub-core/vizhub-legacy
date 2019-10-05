@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { NavBar } from '../../../NavBar';
+import { VizPreviews, VizPreview } from '../../../VizPreview/styles';
 import { Wrapper, Content } from '../../styles';
-import { VizPreviews, VizPreview } from './styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
