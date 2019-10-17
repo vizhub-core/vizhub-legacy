@@ -27,7 +27,8 @@ export const generateScreenshot = async ({ visualizationViewModel, waitTime }) =
           return page.close()
             .then(() => browser.close())
             .then(() => resolve(screenshotBuffer))
-	});
+	})
+        .catch(reject);
     });
 
   } catch (error) {
