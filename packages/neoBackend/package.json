@@ -13,7 +13,7 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^6.1.0",
+    "eslint": "^6.5.1",
     "esm": "^3.2.25",
     "prettier": "^1.18.2"
   },
@@ -29,6 +29,6 @@
     "vizhub-database": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
-    "ws": "^7.1.1"
+    "ws": "^7.2.0"
   }
 }
