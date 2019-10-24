@@ -12,14 +12,14 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "adm-zip": "^0.4.13",
+    "adm-zip": "https://github.com/cthackers/adm-zip/tarball/master",
     "vizhub-entities": "1",
     "vizhub-i18n": "1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "mocha": "^6.1.4",
-    "eslint": "^6.0.1",
+    "mocha": "^6.2.2",
+    "eslint": "^6.5.1",
     "esm": "^3.2.25",
     "prettier": "^1.18.2"
   }
