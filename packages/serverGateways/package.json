@@ -12,7 +12,7 @@
     "@teamwork/sharedb": "^3.1.0",
     "@teamwork/sharedb-mingo-memory": "^3.0.1",
     "@teamwork/sharedb-mongo": "^3.0.0",
-    "mongodb": "^3.2.7",
+    "mongodb": "^3.3.3",
     "vizhub-gateways": "1",
     "vizhub-database": "1"
   }
