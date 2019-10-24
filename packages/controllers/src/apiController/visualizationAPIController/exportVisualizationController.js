@@ -9,11 +9,8 @@ export const exportVisualizationController = (expressApp, gateways) => {
 
       const { zipFileBuffer, zipFileName } = responseModel;
 
-      res.set({
-        'Content-Disposition': `attachment; filename="${zipFileName}"`,
-        'Content-Type': 'application/zip'
-      });
-
+      res.type('zip');
+      res.attachment(zipFileName);
       res.send(zipFileBuffer);
     } catch (error) {
       res.json({ error });
