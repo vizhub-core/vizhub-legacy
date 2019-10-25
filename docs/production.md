@@ -234,6 +234,23 @@ net:
 
 In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
 
+## Database Maintenance
+
+```
+mongo
+use vizhub
+db.stats()
+```
+Check the ratio of "fsUsedSize" to "fsTotalSize".
+
+To delete unnecessary data for ops on images:
+
+```
+db.o_thumbnailImages.remove({})
+db.o_previewImages.remove({})
+```
+
+
 # GitHub Authorization callback URL
 
 VizHub 1.0:
