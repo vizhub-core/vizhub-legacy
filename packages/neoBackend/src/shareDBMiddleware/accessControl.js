@@ -20,14 +20,14 @@ export const accessControl = (request, done) => {
   }
 
   // Let anyone add or remove their own upvotes.
-  if(op && op.op && op.op.length > 0 && op.op[0].p[0] === 'upvotes'){
-    for(let i = 0; i < op.op.length; i++){
+  if (op && op.op && op.op.length > 0 && op.op[0].p[0] === 'upvotes') {
+    for (let i = 0; i < op.op.length; i++) {
       const c = op.op[i];
 
       // Validate the upvote initialization op.
       // Looks like this: { p: [ 'upvotes' ], oi: [] }
-      if(c.p[0] === 'upvotes' && c.p.length == 1){
-        if(JSON.stringify(c.oi) !== '[]'){
+      if (c.p[0] === 'upvotes' && c.p.length == 1) {
+        if (JSON.stringify(c.oi) !== '[]') {
           return done('Unauthorized vote manipulation.');
         }
       }
@@ -43,12 +43,11 @@ export const accessControl = (request, done) => {
       //   p: [ 'upvotes', 0 ],
       //   ld: { userId: '47895473289547832938754', timestamp: 1569094989 }
       // }
-      if(c.p[0] === 'upvotes' && c.p.length == 2){
+      if (c.p[0] === 'upvotes' && c.p.length == 2) {
         const entry = c.li || c.ld;
-        if(entry){
-
+        if (entry) {
           // Users may only submit ops that change their own entries.
-          if(entry.userId !== userId) {
+          if (entry.userId !== userId) {
             return done('Unauthorized vote manipulation.');
           }
         } else {
@@ -62,7 +61,7 @@ export const accessControl = (request, done) => {
 
   // Don't let people edit other people's stuff.
   if (owner !== userId) {
-    return done("This visualization is unforked. Fork to save edits.");
+    return done('This visualization is unforked. Fork to save edits.');
   }
 
   done();

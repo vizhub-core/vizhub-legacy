@@ -2,7 +2,8 @@ import { rollup } from 'rollup/dist/rollup.browser';
 import vizhubLibraries from 'vizhub-libraries';
 import bubleJSXOnly from './bubleJSXOnly';
 import hypothetical from './hypothetical';
-import { d3Packages } from './d3Packages';
+
+const external = Object.keys(vizhubLibraries);
 
 const transformFilesToObject = files =>
   files
@@ -32,7 +33,7 @@ export const bundle = async (files) => {
         }
       })
     ],
-    external: d3Packages.concat('react')
+    external
   };
 
   const rollupBundle = await rollup(inputOptions);

@@ -13,9 +13,10 @@
   "license": "UNLICENSED",
   "dependencies": {
     "adm-zip": "https://github.com/cthackers/adm-zip/tarball/master",
+    "uuid": "^3.3.3",
     "vizhub-entities": "1",
     "vizhub-i18n": "1",
-    "uuid": "^3.3.3"
+    "vizhub-libraries": "^1.7.0"
   },
   "devDependencies": {
     "mocha": "^6.2.2",
