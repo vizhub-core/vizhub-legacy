@@ -1,5 +1,9 @@
 import { i18n } from 'vizhub-i18n';
 import { zipFiles } from './zipFiles';
+import vizhubLibraries from 'vizhub-libraries';
+
+const globalsJSON = JSON.stringify(vizhubLibraries);
+const externalJSON = JSON.stringify(Object.keys(vizhubLibraries));
 
 export class ExportVisualization {
   constructor({ visualizationGateway }) {
@@ -31,12 +35,12 @@ export class ExportVisualization {
         name: 'rollup.config.js',
         text: `export default {
   input: 'index.js',
-  external: ['d3'],
+  external: ${externalJSON},
   output: {
     file: 'bundle.js',
     format: 'iife',
     sourcemap: true,
-    globals: { d3: 'd3' }
+    globals: ${globalsJSON}
   }
 };`
       }

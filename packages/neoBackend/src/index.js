@@ -10,7 +10,7 @@ import { serveShareDB } from './serveShareDB';
 
 const expressApp = express();
 //expressApp.use(compression());
-expressApp.use(bodyParser.json({limit: '2mb'}));
+expressApp.use(bodyParser.json({ limit: '2mb' }));
 expressApp.use(cookieParser());
 
 const server = http.createServer(expressApp);
