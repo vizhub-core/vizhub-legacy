@@ -6,7 +6,7 @@ const noop = () => {};
 
 // Give some time after image generation for the images to be stored.
 // Otherwise we'd generate the same image twice in a row.
-const downTime = 1000;
+const downTime = 5000;
 
 export const startService = ({ waitTime = defaultWaitTime }) => {
 
