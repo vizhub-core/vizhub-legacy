@@ -176,19 +176,10 @@ Start image generation service
 
 ```
 cd ../imageGenerationService/
-pm2 start --name image-generation-service npm -- start
+pm2 start --cron "0 * * * *" --name image-generation-service npm -- start
 ```
 
-Set up a CRON job that restarts the image generation service every 10 min. This is a hacky solution for an unknown instability within the image generation service itself.
-
-```
-crontab -e
-```
-Paste the following:
-
-```
-*/10 * * * * pm2 restart image-generation-service
-```
+The above command sets up PM2 to mimic a CRON job that restarts the image generation service every hour. This is a hacky solution for an unknown instability within the image generation service itself.
 
 # VizHub 2.0
 
