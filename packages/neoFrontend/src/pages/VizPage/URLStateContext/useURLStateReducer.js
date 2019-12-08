@@ -5,7 +5,11 @@ import queryString from 'query-string';
 // but is not stored inside of it.
 // For example, remembering which editor section was open
 // after the editor is closed, so that it can be restored.
-let hiddenURLState = { edit: null };
+let hiddenURLState = {
+  // Until the visual editor is ready,
+  // open it to the files section automatically.
+  edit: 'files'
+};
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
   // TODO refactor state to {url, hidden}.
