@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { showMobileConsole } from '../../../featureFlags';
 import { NavBar } from '../../../NavBar';
-import { ForkingContext } from '../ForkingContext';
 import { URLStateContext } from '../URLStateContext';
 import { modShowViewer, modMode } from '../../../mobileMods';
 import { Wrapper, Top, Bottom } from './styles';
@@ -15,7 +14,6 @@ import { Mini } from './Mini';
 const consoleOutput = `hello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2`;
 
 export const Body = () => {
-  const onFork = useContext(ForkingContext);
   const { isFullScreen, showViewer, mode, showEditor, activeFile } = useContext(
     URLStateContext
   );
@@ -36,7 +34,7 @@ export const Body = () => {
         ) : (
           <>
             <NavBar showRight={showTopRight} />
-            <Head showRight={showTopRight} onFork={onFork} />
+            <Head showRight={showTopRight} />
           </>
         )}
       </Top>

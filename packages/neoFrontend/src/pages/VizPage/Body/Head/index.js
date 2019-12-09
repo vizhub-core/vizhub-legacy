@@ -1,15 +1,25 @@
 import React, { useContext } from 'react';
-import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
+import {
+  ForkSVG,
+  PullSVG,
+  SettingsSVG,
+  ShareSVG,
+  TrashSVG
+} from '../../../../svg';
 import {
   showHeadPullRequest,
   showHeadShare,
   showHeadSettings
 } from '../../../../featureFlags';
 import { WarningContext } from '../../WarningContext';
+import { ForkingContext } from '../../ForkingContext';
+import { DeleteVizContext } from '../../DeleteVizContext';
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
 
-export const Head = ({ onFork, showRight }) => {
+export const Head = ({ showRight }) => {
+  const onFork = useContext(ForkingContext);
+  const onDeleteViz = useContext(DeleteVizContext);
   const { warning } = useContext(WarningContext);
   return (
     <Wrapper warning={warning}>
@@ -28,9 +38,15 @@ export const Head = ({ onFork, showRight }) => {
             title="Fork this Viz"
             onClick={onFork}
             className="test-fork"
-            rightmost={true}
           >
             <ForkSVG />
+          </HeadIcon>
+          <HeadIcon
+            title="Delete this Viz"
+            onClick={onDeleteViz}
+            rightmost={true}
+          >
+            <TrashSVG />
           </HeadIcon>
           {showHeadShare ? (
             <HeadIcon title="Share this Viz">
