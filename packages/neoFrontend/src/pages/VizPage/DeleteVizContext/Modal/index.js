@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper, Box, CloseButton } from './styles';
 import { CloseSVG } from '../../../../svg';
-import { Icon } from '../../Body/styles';
+import { Icon } from '../../../styles';
 
 // Inspired by:
 // https://wecodetheweb.com/2019/03/02/easy-modals-with-react-hooks/

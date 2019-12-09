@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Icon } from '../../styles';
 import { Clickable } from '../../../../../styles';
+import { Icon } from '../../../../styles';
 
 const bottomButtonHeight = '40px';
 

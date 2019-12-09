@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../styles';
+import { Icon } from '../../../../styles';
 import { EditorComponent } from '../styles';
 import { backgroundColor } from '../themes/vizHub';
 
