@@ -14,7 +14,11 @@ import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
 import { LargeIcon } from '../../../../styles';
 import { FrameFooter } from '../../styles';
-import { Wrapper, RunTimerProgressIndicator, LargeIconRightmost } from './styles';
+import {
+  Wrapper,
+  RunTimerProgressIndicator,
+  LargeIconRightmost
+} from './styles';
 
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();

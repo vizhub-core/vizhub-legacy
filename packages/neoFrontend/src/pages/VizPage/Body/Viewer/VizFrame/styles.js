@@ -22,7 +22,6 @@ export const RunTimerProgressIndicator = styled.div.attrs(props => ({
   background-color: #3866e9;
 `;
 
-// TODO unify where border radius value is defined.
 export const LargeIconRightmost = styled(LargeIcon)`
-  border-bottom-right-radius: 3px;
+  border-bottom-right-radius: ${props => props.theme.borderRadiusSmall}px;
 `;
