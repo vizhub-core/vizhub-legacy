@@ -1,5 +1,6 @@
 // Common styles used in multiple pages.
 import styled from 'styled-components';
+import { Clickable } from '../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -52,4 +53,10 @@ export const Centering = styled.div`
 export const Text = styled.div`
   max-width: 960px;
   padding: 10px;
+`;
+
+export const Icon = styled(Clickable)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

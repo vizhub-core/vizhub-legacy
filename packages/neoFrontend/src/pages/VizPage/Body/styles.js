@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Clickable, Z_WAY_ABOVE } from '../../../styles';
+import { Z_WAY_ABOVE } from '../../../styles';
+import { Icon } from '../../styles';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -25,12 +26,6 @@ export const Bottom = styled.div`
   flex: 1;
   display: flex;
   min-height: 0;
-`;
-
-export const Icon = styled(Clickable)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const LargeIcon = styled(Icon)`
