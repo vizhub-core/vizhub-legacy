@@ -3,11 +3,11 @@ import { FullExitSVG } from '../../../../svg';
 import { MiniOrMicroSVG } from '../../../../mobileMods';
 import { vizWidth } from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
+import { LargeIcon } from '../../../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { URLStateContext } from '../../URLStateContext';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { useDimensions } from '../useDimensions';
-import { LargeIcon } from '../styles';
 import { Wrapper, FullScreenFooter, Backdrop } from './styles';
 
 export const FullScreen = () => {

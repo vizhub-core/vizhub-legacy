@@ -12,7 +12,8 @@ import { VizRunnerContext } from '../../../VizRunnerContext';
 import { RunContext } from '../../../RunContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
-import { LargeIcon, FrameFooter } from '../../styles';
+import { LargeIcon } from '../../../../styles';
+import { FrameFooter } from '../../styles';
 import { Wrapper, RunTimerProgressIndicator } from './styles';
 
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {

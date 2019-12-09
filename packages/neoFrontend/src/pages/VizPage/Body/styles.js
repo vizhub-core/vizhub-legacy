@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Z_WAY_ABOVE } from '../../../styles';
-import { Icon } from '../../styles';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -26,12 +25,6 @@ export const Bottom = styled.div`
   flex: 1;
   display: flex;
   min-height: 0;
-`;
-
-export const LargeIcon = styled(Icon)`
-  height: 40px;
-  padding-right: ${props => (props.rightmost ? 10 : 7)}px;
-  padding-left: ${props => (props.leftmost ? 10 : 7)}px;
 `;
 
 export const Footer = styled.div`
