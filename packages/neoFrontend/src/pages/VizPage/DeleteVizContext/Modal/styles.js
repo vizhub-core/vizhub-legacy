@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Z_WAY_WAY_ABOVE } from '../../../../styles';
+import { Z_WAY_WAY_ABOVE, Clickable } from '../../../../styles';
+
 export const Wrapper = styled.div`
   position: fixed;
   top: 0;
@@ -21,4 +22,6 @@ export const Box = styled.div`
   margin: 10px 10px 10px 10px;
   padding: 30px 10px 40px 10px;
   box-shadow: ${props => props.theme.shadow};
+  display: flex;
+  justify-content: center;
 `;
