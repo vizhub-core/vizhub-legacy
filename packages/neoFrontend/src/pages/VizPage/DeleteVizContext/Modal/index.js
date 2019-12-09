@@ -1,6 +1,6 @@
 import React from 'react';
 import { CloseSVG } from '../../../../svg';
-import { Wrapper, Box, CloseIcon } from './styles';
+import { Wrapper, Box, CloseIcon, Message } from './styles';
 
 export const Modal = ({ children, onClose }) => (
   <Wrapper onClick={onClose}>
@@ -12,3 +12,5 @@ export const Modal = ({ children, onClose }) => (
     </Box>
   </Wrapper>
 );
+
+Modal.Message = Message;
