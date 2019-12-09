@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Z_WAY_WAY_ABOVE, Clickable } from '../../../../styles';
+import { Z_WAY_WAY_ABOVE } from '../../../../styles';
+import { LargeIcon } from '../../../styles';
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -24,4 +25,12 @@ export const Box = styled.div`
   box-shadow: ${props => props.theme.shadow};
   display: flex;
   justify-content: center;
+  position: relative;
+`;
+
+export const CloseIcon = styled(LargeIcon)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 6px;
 `;
