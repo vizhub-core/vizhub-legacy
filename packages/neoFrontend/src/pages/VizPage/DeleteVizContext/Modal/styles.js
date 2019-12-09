@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 export const Box = styled.div`
   flex: 1;
   max-width: 600px;
-  border-radius: 6px;
+  border-radius: ${props => props.theme.borderRadiusLarge}px;
   background-color: white;
   margin: 10px 10px 10px 10px;
   padding: 30px 10px 40px 10px;
@@ -32,5 +32,5 @@ export const CloseIcon = styled(LargeIcon)`
   position: absolute;
   top: 0;
   right: 0;
-  border-top-right-radius: 6px;
+  border-top-right-radius: ${props => props.theme.borderRadiusLarge}px;
 `;
