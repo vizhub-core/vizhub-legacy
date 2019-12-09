@@ -1,7 +1,8 @@
 import React, { createContext } from 'react';
+import { withRouter } from 'react-router';
+import { Button } from '../../styles';
 import { useDeleteViz } from './useDeleteViz';
 import { Modal } from './Modal';
-import { withRouter } from 'react-router';
 
 export const DeleteVizContext = createContext();
 
@@ -16,7 +17,10 @@ export const DeleteVizProvider = withRouter(({ children, history }) => {
     <DeleteVizContext.Provider value={onDeleteViz}>
       {children}
       {isConfirmingDeleteViz ? (
-        <Modal onClose={onDeleteVizCancel}>test</Modal>
+        <Modal onClose={onDeleteVizCancel}>
+          <Modal.Message>Are you sure?</Modal.Message>
+          <Button>Yes</Button>
+        </Modal>
       ) : null}
     </DeleteVizContext.Provider>
   );

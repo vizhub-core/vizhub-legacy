@@ -24,7 +24,8 @@ export const Box = styled.div`
   padding: 30px 10px 40px 10px;
   box-shadow: ${props => props.theme.shadow};
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 `;
 
@@ -33,4 +34,8 @@ export const CloseIcon = styled(LargeIcon)`
   top: 0;
   right: 0;
   border-top-right-radius: ${props => props.theme.borderRadiusLarge}px;
+`;
+
+export const Message = styled.div`
+  padding-bottom: 40px;
 `;
