@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Z_WAY_WAY_ABOVE } from '../../../../styles';
-import { LargeIcon } from '../../../styles';
+import { Z_WAY_WAY_ABOVE } from '../styles';
+import { LargeIcon } from '../pages/styles';
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -21,7 +21,7 @@ export const Box = styled.div`
   border-radius: ${props => props.theme.borderRadiusLarge}px;
   background-color: white;
   margin: 10px 10px 10px 10px;
-  padding: 30px 10px 40px 10px;
+  padding: 30px 10px 30px 10px;
   box-shadow: ${props => props.theme.shadow};
   display: flex;
   flex-direction: column;
