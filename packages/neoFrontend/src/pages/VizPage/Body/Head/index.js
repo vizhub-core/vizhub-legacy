@@ -5,9 +5,14 @@ import {
   showHeadShare,
   showHeadSettings
 } from '../../../../featureFlags';
+import { useValue } from '../../../../useValue';
+import { getVizOwner } from '../../../../accessors';
+import { AuthContext } from '../../../../authentication/AuthContext';
 import { WarningContext } from '../../WarningContext';
 import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
+import { VizContext } from '../../VizContext';
+
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
 import { TrashIcon } from '../TrashIcon';
@@ -16,6 +21,12 @@ export const Head = ({ showRight }) => {
   const onFork = useContext(ForkingContext);
   const onDeleteViz = useContext(DeleteVizContext);
   const { warning } = useContext(WarningContext);
+  const { me } = useContext(AuthContext);
+  const { viz$ } = useContext(VizContext);
+  const owner = useValue(viz$, getVizOwner);
+
+  const showHeadTrash = me && me.id === owner;
+
   return (
     <Wrapper warning={warning}>
       <Left>
@@ -33,14 +44,17 @@ export const Head = ({ showRight }) => {
             title="Fork this viz"
             onClick={onFork}
             className="test-fork"
+            rightmost={!showHeadTrash}
           >
             <ForkSVG />
           </HeadIcon>
-          <TrashIcon
-            title="Delete this viz"
-            onClick={onDeleteViz}
-            iconComponent={HeadIcon}
-          />
+          {showHeadTrash ? (
+            <TrashIcon
+              title="Delete this viz"
+              onClick={onDeleteViz}
+              iconComponent={HeadIcon}
+            />
+          ) : null}
           {showHeadShare ? (
             <HeadIcon title="Share this viz">
               <ShareSVG />
