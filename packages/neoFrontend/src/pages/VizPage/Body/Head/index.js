@@ -10,7 +10,7 @@ import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
-import { TrashIcon } from './TrashIcon';
+import { TrashIcon } from '../TrashIcon';
 
 export const Head = ({ showRight }) => {
   const onFork = useContext(ForkingContext);

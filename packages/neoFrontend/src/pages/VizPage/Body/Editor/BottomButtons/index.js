@@ -10,6 +10,7 @@ import { SettingsTop } from './SettingsTop';
 import { NewTop } from './NewTop';
 import { ExportTop } from './ExportTop';
 import { DeleteTop } from './DeleteTop';
+import { TrashIcon } from '../../TrashIcon';
 
 const SETTINGS_BUTTON = 'settings';
 const NEW_BUTTON = 'new';
@@ -96,9 +97,10 @@ export const BottomButtons = withTheme(
               isActive={activeButton === DELETE_BUTTON}
               activeColor={theme.attentionGrabber}
             >
-              <ClickableOverlay onClick={onButtonClick(DELETE_BUTTON)}>
-                <TrashSVG />
-              </ClickableOverlay>
+              <TrashIcon
+                onClick={onButtonClick(DELETE_BUTTON)}
+                iconComponent={ClickableOverlay}
+              />
             </BottomButton>
           ) : null}
         </Bottom>
