@@ -1,13 +1,13 @@
 import React, { useState, useCallback } from 'react';
-import { HeadIcon } from './styles';
 import { TrashSVG } from '../../../../svg';
 
-export const TrashIcon = ({ onClick }) => {
+export const TrashIcon = ({ onClick, iconComponent }) => {
   const [isHovering, setIsHovering] = useState(false);
   const onMouseEnter = useCallback(() => setIsHovering(true), []);
   const onMouseLeave = useCallback(() => setIsHovering(false), []);
+  const IconComponent = iconComponent;
   return (
-    <HeadIcon
+    <IconComponent
       title="Delete this Viz"
       onClick={onClick}
       rightmost={true}
@@ -15,6 +15,6 @@ export const TrashIcon = ({ onClick }) => {
       onMouseLeave={onMouseLeave}
     >
       <TrashSVG isRed={isHovering} />
-    </HeadIcon>
+    </IconComponent>
   );
 };

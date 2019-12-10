@@ -36,7 +36,7 @@ export const Head = ({ showRight }) => {
           >
             <ForkSVG />
           </HeadIcon>
-          <TrashIcon onClick={onDeleteViz} />
+          <TrashIcon onClick={onDeleteViz} iconComponent={HeadIcon} />
           {showHeadShare ? (
             <HeadIcon title="Share this Viz">
               <ShareSVG />
