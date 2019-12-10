@@ -5,6 +5,7 @@ import {
   showHeadShare,
   showHeadSettings
 } from '../../../../featureFlags';
+import { AuthContext } from '../../../../authentication/AuthContext';
 import { WarningContext } from '../../WarningContext';
 import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
@@ -16,6 +17,10 @@ export const Head = ({ showRight }) => {
   const onFork = useContext(ForkingContext);
   const onDeleteViz = useContext(DeleteVizContext);
   const { warning } = useContext(WarningContext);
+  const { me } = useContext(AuthContext);
+
+  const showHeadTrash = me ? true : false;
+
   return (
     <Wrapper warning={warning}>
       <Left>
@@ -33,14 +38,17 @@ export const Head = ({ showRight }) => {
             title="Fork this viz"
             onClick={onFork}
             className="test-fork"
+            rightmost={!showHeadTrash}
           >
             <ForkSVG />
           </HeadIcon>
-          <TrashIcon
-            title="Delete this viz"
-            onClick={onDeleteViz}
-            iconComponent={HeadIcon}
-          />
+          {showHeadTrash ? (
+            <TrashIcon
+              title="Delete this viz"
+              onClick={onDeleteViz}
+              iconComponent={HeadIcon}
+            />
+          ) : null}
           {showHeadShare ? (
             <HeadIcon title="Share this viz">
               <ShareSVG />
