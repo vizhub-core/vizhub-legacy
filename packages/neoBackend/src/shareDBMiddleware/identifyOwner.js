@@ -4,11 +4,12 @@ import {
   fetchShareDBDoc
 } from 'vizhub-database';
 
+// Populates request.owner with the owner of the document.
 export const identifyOwner = connection => (request, done) => {
   const { collection, snapshot, op, id } = request;
 
-  // Do nothing in the case of create ops.
-  if (op.create) {
+  // Do nothing in the case of create and delete ops.
+  if (op.create || op.del) {
     return done();
   }
 

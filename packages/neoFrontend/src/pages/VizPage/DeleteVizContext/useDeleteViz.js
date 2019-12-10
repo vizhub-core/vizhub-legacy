@@ -2,19 +2,10 @@ import { useState, useContext, useCallback } from 'react';
 import { minSpinnerTime } from '../../../constants';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { ErrorContext } from '../../../ErrorContext';
+import { AlertDialogContext } from '../../../AlertDialogContext';
 import { waitForSpinner } from '../../../LoadingScreen';
 import { VizContext } from '../VizContext';
 import { fetchDeleteViz } from './fetchDeleteViz';
-
-// TODO put this somewhere above all pages.
-//const showAlertModal = message => {
-//  const [isShowingAlertModal, setIsShowingAlertModal] = useState(false);
-//  return isShowingAlertModal ? (
-//    <Modal onClose={onDeleteSuccessAlertClose}>
-//      <Modal.Message>{message}</Modal.Message>
-//    </Modal>
-//  ) : null;
-//};
 
 export const useDeleteViz = history => {
   const [isConfirmingDeleteViz, setIsConfirmingDeleteViz] = useState(false);
@@ -23,6 +14,7 @@ export const useDeleteViz = history => {
   const { viz$ } = useContext(VizContext);
   const { me } = useContext(AuthContext);
   const { setError } = useContext(ErrorContext);
+  const showAlertModal = useContext(AlertDialogContext);
 
   const onDeleteViz = useCallback(() => {
     setIsConfirmingDeleteViz(true);
@@ -49,13 +41,12 @@ export const useDeleteViz = history => {
           return setError(new Error(data.error));
         }
         history.push(`/${me.userName}`);
-        // TODO make this work
-        //showAlertModal('The viz has been deleted.');
+        showAlertModal('The viz has been deleted.');
       })
       .catch(error => {
         console.log(error);
       });
-  }, [me, setError, viz$, history]);
+  }, [me, setError, viz$, history, showAlertModal]);
 
   return {
     onDeleteViz,

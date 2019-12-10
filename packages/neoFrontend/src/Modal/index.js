@@ -1,5 +1,5 @@
 import React from 'react';
-import { CloseSVG } from '../../../../svg';
+import { CloseSVG } from '../svg';
 import { Wrapper, Box, CloseIcon, Message } from './styles';
 
 export const Modal = ({ children, onClose }) => (
