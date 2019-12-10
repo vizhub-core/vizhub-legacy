@@ -43,6 +43,8 @@ export const Button = styled.div`
     background-color: ${props => props.theme.dark};
     color: white;
   }
+
+  cursor: pointer;
 `;
 
 export const Centering = styled.div`
