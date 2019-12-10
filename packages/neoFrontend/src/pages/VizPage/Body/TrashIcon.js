@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { TrashSVG } from '../../../../svg';
+import { TrashSVG } from '../../../svg';
 
 export const TrashIcon = ({ onClick, iconComponent }) => {
   const [isHovering, setIsHovering] = useState(false);
