@@ -98,6 +98,7 @@ export const BottomButtons = withTheme(
               activeColor={theme.attentionGrabber}
             >
               <TrashIcon
+                title="Delete this file"
                 onClick={onButtonClick(DELETE_BUTTON)}
                 iconComponent={ClickableOverlay}
               />
