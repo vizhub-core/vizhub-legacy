@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Clickable, Z_WAY_ABOVE } from '../../../styles';
+import { Z_WAY_ABOVE } from '../../../styles';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -27,18 +27,6 @@ export const Bottom = styled.div`
   min-height: 0;
 `;
 
-export const Icon = styled(Clickable)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const LargeIcon = styled(Icon)`
-  height: 40px;
-  padding-right: ${props => (props.rightmost ? 10 : 7)}px;
-  padding-left: ${props => (props.leftmost ? 10 : 7)}px;
-`;
-
 export const Footer = styled.div`
   box-shadow: ${props => props.theme.shadow};
   height: 40px;
@@ -49,7 +37,8 @@ export const Footer = styled.div`
 `;
 
 export const FrameFooter = styled(Footer)`
-  border-radius: 0 0 3px 3px;
+  border-bottom-right-radius: ${props => props.theme.borderRadiusSmall}px;
+  border-bottom-left-radius: ${props => props.theme.borderRadiusSmall}px;
   position: relative;
   z-index: ${Z_WAY_ABOVE};
 `;

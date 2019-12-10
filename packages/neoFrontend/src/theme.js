@@ -50,7 +50,9 @@ export const theme = {
   editorFileActiveColor: '#ffffff',
   editorEntryHorizontalPadding: 15,
   editorEntryIndentation: 10,
-  editorEntryLeftBorderSize: 5
+  editorEntryLeftBorderSize: 5,
+  borderRadiusSmall: 3,
+  borderRadiusLarge: 6
 };
 theme.userMenuOverlayForeground = theme.dark;
 theme.bottomButtonBackground = theme.editorSectionActiveColor;
