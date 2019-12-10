@@ -30,15 +30,19 @@ export const Head = ({ showRight }) => {
             </HeadIcon>
           ) : null}
           <HeadIcon
-            title="Fork this Viz"
+            title="Fork this viz"
             onClick={onFork}
             className="test-fork"
           >
             <ForkSVG />
           </HeadIcon>
-          <TrashIcon onClick={onDeleteViz} iconComponent={HeadIcon} />
+          <TrashIcon
+            title="Delete this viz"
+            onClick={onDeleteViz}
+            iconComponent={HeadIcon}
+          />
           {showHeadShare ? (
-            <HeadIcon title="Share this Viz">
+            <HeadIcon title="Share this viz">
               <ShareSVG />
             </HeadIcon>
           ) : null}
