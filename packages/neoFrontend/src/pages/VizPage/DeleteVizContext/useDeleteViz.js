@@ -5,6 +5,16 @@ import { ErrorContext } from '../../../ErrorContext';
 import { VizContext } from '../VizContext';
 import { fetchDeleteViz } from './fetchDeleteViz';
 
+// TODO put this somewhere above all pages.
+//const showAlertModal = message => {
+//  const [isShowingAlertModal, setIsShowingAlertModal] = useState(false);
+//  return isShowingAlertModal ? (
+//    <Modal onClose={onDeleteSuccessAlertClose}>
+//      <Modal.Message>{message}</Modal.Message>
+//    </Modal>
+//  ) : null;
+//};
+
 export const useDeleteViz = history => {
   const [isConfirmingDeleteViz, setIsConfirmingDeleteViz] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -32,14 +42,13 @@ export const useDeleteViz = history => {
       return setError(new Error('You must be signed in to delete this viz.'));
     }
 
-    setTimeout(() => {}, 3000);
+    setTimeout(() => {
+      history.push(`/${me.userName}`);
+      // TODO make this work
+      //showAlertModal('The viz has been deleted.');
+    }, 3000);
 
     //waitForSpinner(dataLoaded, minSpinnerTime).then(data => {
-    //  if (data.error) {
-    //    return setError(new Error(data.error));
-    //  }
-    //  history.push(`/${me.userName}`);
-    //  setIsAlertingDeleteVizSuccess(true);
     //});
   }, [me, setError]); //[viz$, history ]);
 
