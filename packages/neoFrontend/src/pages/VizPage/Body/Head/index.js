@@ -6,10 +6,15 @@ import {
   showHeadSettings
 } from '../../../../featureFlags';
 import { WarningContext } from '../../WarningContext';
+import { ForkingContext } from '../../ForkingContext';
+import { DeleteVizContext } from '../../DeleteVizContext';
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
+import { TrashIcon } from '../TrashIcon';
 
-export const Head = ({ onFork, showRight }) => {
+export const Head = ({ showRight }) => {
+  const onFork = useContext(ForkingContext);
+  const onDeleteViz = useContext(DeleteVizContext);
   const { warning } = useContext(WarningContext);
   return (
     <Wrapper warning={warning}>
@@ -25,15 +30,19 @@ export const Head = ({ onFork, showRight }) => {
             </HeadIcon>
           ) : null}
           <HeadIcon
-            title="Fork this Viz"
+            title="Fork this viz"
             onClick={onFork}
             className="test-fork"
-            rightmost={true}
           >
             <ForkSVG />
           </HeadIcon>
+          <TrashIcon
+            title="Delete this viz"
+            onClick={onDeleteViz}
+            iconComponent={HeadIcon}
+          />
           {showHeadShare ? (
-            <HeadIcon title="Share this Viz">
+            <HeadIcon title="Share this viz">
               <ShareSVG />
             </HeadIcon>
           ) : null}

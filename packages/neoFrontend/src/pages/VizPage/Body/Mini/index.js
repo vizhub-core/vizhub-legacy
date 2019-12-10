@@ -2,13 +2,14 @@ import React, { useRef, useContext, useCallback } from 'react';
 import { SplitSVG, FullSVG } from '../../../../svg';
 import { vizWidth } from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
+import { theme } from '../../../../theme';
+import { LargeIcon } from '../../../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { URLStateContext } from '../../URLStateContext';
 import { useDimensions } from '../useDimensions';
-import { LargeIcon, FrameFooter } from '../styles';
+import { FrameFooter } from '../styles';
 import { Wrapper } from './styles';
-import { theme } from '../../../../theme';
 
 const scale = theme.miniWidth / vizWidth;
 

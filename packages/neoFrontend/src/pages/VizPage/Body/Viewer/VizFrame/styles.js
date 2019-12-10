@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LargeIcon } from '../../../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -19,4 +20,8 @@ export const RunTimerProgressIndicator = styled.div.attrs(props => ({
   transition: opacity 2s;
   opacity: ${props => (props.runTimerProgress === null ? 0 : 1)};
   background-color: #3866e9;
+`;
+
+export const LargeIconRightmost = styled(LargeIcon)`
+  border-bottom-right-radius: ${props => props.theme.borderRadiusSmall}px;
 `;

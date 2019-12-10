@@ -12,8 +12,13 @@ import { VizRunnerContext } from '../../../VizRunnerContext';
 import { RunContext } from '../../../RunContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
-import { LargeIcon, FrameFooter } from '../../styles';
-import { Wrapper, RunTimerProgressIndicator } from './styles';
+import { LargeIcon } from '../../../../styles';
+import { FrameFooter } from '../../styles';
+import {
+  Wrapper,
+  RunTimerProgressIndicator,
+  LargeIconRightmost
+} from './styles';
 
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
@@ -63,13 +68,13 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
             >
               <MiniOrMicroSVG />
             </LargeIcon>
-            <LargeIcon
+            <LargeIconRightmost
               rightmost={true}
               onClick={enterFullScreen}
               className="test-enter-fullscreen-from-viewer"
             >
               <FullSVG />
-            </LargeIcon>
+            </LargeIconRightmost>
           </FrameFooter>
         </>
       ) : null}

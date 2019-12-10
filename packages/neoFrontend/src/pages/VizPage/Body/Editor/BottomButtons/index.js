@@ -1,7 +1,7 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
 import { showEditorSettings } from '../../../../../featureFlags';
-import { SettingsSVG, TrashSVG, NewSVG, ExportSVG } from '../../../../../svg';
+import { SettingsSVG, NewSVG, ExportSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';
@@ -10,6 +10,7 @@ import { SettingsTop } from './SettingsTop';
 import { NewTop } from './NewTop';
 import { ExportTop } from './ExportTop';
 import { DeleteTop } from './DeleteTop';
+import { TrashIcon } from '../../TrashIcon';
 
 const SETTINGS_BUTTON = 'settings';
 const NEW_BUTTON = 'new';
@@ -96,9 +97,11 @@ export const BottomButtons = withTheme(
               isActive={activeButton === DELETE_BUTTON}
               activeColor={theme.attentionGrabber}
             >
-              <ClickableOverlay onClick={onButtonClick(DELETE_BUTTON)}>
-                <TrashSVG />
-              </ClickableOverlay>
+              <TrashIcon
+                title="Delete this file"
+                onClick={onButtonClick(DELETE_BUTTON)}
+                iconComponent={ClickableOverlay}
+              />
             </BottomButton>
           ) : null}
         </Bottom>
