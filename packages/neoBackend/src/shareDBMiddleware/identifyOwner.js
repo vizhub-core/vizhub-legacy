@@ -22,7 +22,7 @@ export const identifyOwner = connection => (request, done) => {
   // Handle migration case, where owner ID is not present on content documents.
   if (collection === DOCUMENT_CONTENT && !snapshot.data.owner) {
     // Guard against middleware triggered from setting the owner.
-    if (op.op.length === 1) {
+    if (op && op.op && op.op.length === 1) {
       if (op.op[0].p.length === 1) {
         if (op.op[0].p[0] === 'owner') {
           return done();
