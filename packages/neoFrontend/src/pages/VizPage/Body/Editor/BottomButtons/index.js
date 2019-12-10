@@ -1,7 +1,7 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
 import { showEditorSettings } from '../../../../../featureFlags';
-import { SettingsSVG, TrashSVG, NewSVG, ExportSVG } from '../../../../../svg';
+import { SettingsSVG, NewSVG, ExportSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';

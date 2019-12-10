@@ -10,7 +10,8 @@ export const DeleteVizProvider = withRouter(({ children, history }) => {
   const {
     onDeleteViz,
     onDeleteVizCancel,
-    isConfirmingDeleteViz
+    isConfirmingDeleteViz,
+    onDeleteVizConfirm
   } = useDeleteViz(history);
 
   return (
@@ -18,8 +19,10 @@ export const DeleteVizProvider = withRouter(({ children, history }) => {
       {children}
       {isConfirmingDeleteViz ? (
         <Modal onClose={onDeleteVizCancel}>
-          <Modal.Message>Are you sure?</Modal.Message>
-          <Button>Yes</Button>
+          <Modal.Message>
+            Are you sure you want to permanently delete this viz?
+          </Modal.Message>
+          <Button onClick={onDeleteVizConfirm}>Yes</Button>
         </Modal>
       ) : null}
     </DeleteVizContext.Provider>

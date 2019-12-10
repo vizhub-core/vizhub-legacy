@@ -37,5 +37,5 @@ export const CloseIcon = styled(LargeIcon)`
 `;
 
 export const Message = styled.div`
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 `;

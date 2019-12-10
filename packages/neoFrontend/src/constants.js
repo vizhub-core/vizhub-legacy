@@ -3,7 +3,11 @@ export const defaultVizHeight = 500;
 
 const isProd = process.env.NODE_ENV !== 'development';
 
-export const showSpinner = isProd;
+// The minimum time that the interstitial spinner is shown to the user.
+// Allow the tests to run fast in development.
+// Force the user to perceive the loading screen message in production.
+export const minSpinnerTime = isProd ? 2000 : 0;
+
 //export const showSpinner = true;
 
 // Disable transitions in developme
