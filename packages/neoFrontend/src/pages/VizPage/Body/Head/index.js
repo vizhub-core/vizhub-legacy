@@ -5,10 +5,14 @@ import {
   showHeadShare,
   showHeadSettings
 } from '../../../../featureFlags';
+import { useValue } from '../../../../useValue';
+import { getVizOwner } from '../../../../accessors';
 import { AuthContext } from '../../../../authentication/AuthContext';
 import { WarningContext } from '../../WarningContext';
 import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
+import { VizContext } from '../../VizContext';
+
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
 import { TrashIcon } from '../TrashIcon';
@@ -18,8 +22,10 @@ export const Head = ({ showRight }) => {
   const onDeleteViz = useContext(DeleteVizContext);
   const { warning } = useContext(WarningContext);
   const { me } = useContext(AuthContext);
+  const { viz$ } = useContext(VizContext);
+  const owner = useValue(viz$, getVizOwner);
 
-  const showHeadTrash = me ? true : false;
+  const showHeadTrash = me && me.id === owner;
 
   return (
     <Wrapper warning={warning}>

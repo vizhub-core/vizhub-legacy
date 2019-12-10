@@ -36,6 +36,8 @@ export const getVizFile = fileIndex => viz => getVizFiles(viz)[fileIndex];
 export const getExtension = fileName =>
   fileName.substr(fileName.lastIndexOf('.'));
 
+export const getVizOwner = viz => viz.info.owner;
+
 export const deleteFileOp = (viz, fileName) => {
   const fileIndex = getVizFileIndex(fileName)(viz);
   return [
