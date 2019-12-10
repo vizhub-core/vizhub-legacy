@@ -27,7 +27,9 @@ export const VizPage = () => (
               <VizProvider>
                 <PrettierProvider>
                   <RunProvider>
-                    <DeleteVizProvider>
+                    <DeleteVizProvider
+                      fallback={<LoadingScreen message="Deleting..." />}
+                    >
                       <ForkingProvider
                         fallback={<LoadingScreen message="Forking..." />}
                       >

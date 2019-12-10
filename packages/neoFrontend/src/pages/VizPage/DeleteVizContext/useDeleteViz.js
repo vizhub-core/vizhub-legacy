@@ -1,4 +1,5 @@
 import { useState, useContext, useCallback } from 'react';
+import { minSpinnerTime } from '../../../constants';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { ErrorContext } from '../../../ErrorContext';
 import { VizContext } from '../VizContext';
@@ -6,6 +7,7 @@ import { fetchDeleteViz } from './fetchDeleteViz';
 
 export const useDeleteViz = history => {
   const [isConfirmingDeleteViz, setIsConfirmingDeleteViz] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const { viz$ } = useContext(VizContext);
   const { me } = useContext(AuthContext);
@@ -21,18 +23,16 @@ export const useDeleteViz = history => {
 
   const onDeleteVizConfirm = useCallback(() => {
     setIsConfirmingDeleteViz(false);
+    setIsDeleting(true);
 
     //const viz = viz$.getValue();
     //const dataLoaded = fetchDeleteViz(viz);
 
-    //// Allow the tests to run fast in development.
-    //// Force the user to perceive the loading screen message in production.
-    //// TODO unify where this is defined.
-    //const minSpinnerTime = showSpinner ? 2000 : 0;
-
     if (!me) {
       return setError(new Error('You must be signed in to delete this viz.'));
     }
+
+    setTimeout(() => {}, 3000);
 
     //waitForSpinner(dataLoaded, minSpinnerTime).then(data => {
     //  if (data.error) {
@@ -47,6 +47,7 @@ export const useDeleteViz = history => {
     onDeleteViz,
     onDeleteVizCancel,
     isConfirmingDeleteViz,
-    onDeleteVizConfirm
+    onDeleteVizConfirm,
+    isDeleting
   };
 };
