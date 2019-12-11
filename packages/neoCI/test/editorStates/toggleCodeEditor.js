@@ -9,8 +9,10 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
   await navClick(page, '.test-toggle-editor');
   await page.waitFor('.test-editor');
 
+  // The following test should be reinstated when the visual editor is introduced.
+  // Currently, the files section is open automatically, which may not be the case in the future.
   // Open files section.
-  await navClick(page, '.test-editor-files-section');
+  //await navClick(page, '.test-editor-files-section');
 
   // Open a file.
   await navClick(page, '.test-editor-file-entry-index-html');
@@ -43,6 +45,6 @@ export const toggleCodeEditor = (my, isMobile) => async () => {
   await page.waitFor('.test-editor');
 
   // Return to home state.
-  await navClick(page, '.test-editor-files-section');
+  //await navClick(page, '.test-editor-files-section');
   await navClick(page, '.test-toggle-editor');
 };
