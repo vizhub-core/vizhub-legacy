@@ -1,8 +1,30 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Centering, Text } from '../styles';
-import { HomePageDataProvider } from './HomePageDataContext';
+import { VizPreviews, VizPreview } from '../../VizPreview/styles';
+import { HomePageDataProvider, HomePageDataContext } from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
+
+// TODO use correct usernames
+const userName='undefined';
+
+const Vizzes = () => {
+  const homePageData = useContext(HomePageDataContext);
+  return (
+    <VizPreviews>
+      {homePageData.map(({ id, title }) => (
+        <VizPreview
+          key={id}
+          to={`/${userName}/${id}?edit=files`}
+          title={title}
+          style={{
+            backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
+          }}
+        />
+      ))}
+    </VizPreviews>
+  );
+};
 
 export const HomePage = () => (
   <HomePageDataProvider fallback={<LoadingScreen />}>
@@ -25,6 +47,7 @@ export const HomePage = () => (
               .
             </p>
           </Text>
+          <Vizzes />
         </Centering>
       </Content>
     </Wrapper>
