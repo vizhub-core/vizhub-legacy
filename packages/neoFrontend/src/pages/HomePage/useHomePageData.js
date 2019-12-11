@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { waitForSpinner } from '../../LoadingScreen';
-import { fakeDataLoaded } from '../fakeDataLoaded';
+import { fetchHomePageData } from './fetchHomePageData';
 
 export const useHomePageData = () => {
-  const [loading, setLoading] = useState(true);
+  const [homePageData, setHomePageData] = useState(null);
   useEffect(() => {
-    waitForSpinner(fakeDataLoaded()).then(() => {
-      setLoading(false);
-    });
+    waitForSpinner(fetchHomePageData()).then(setHomePageData);
   }, []);
-  return !loading;
+  return homePageData;
 };
