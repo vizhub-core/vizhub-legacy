@@ -43,6 +43,5 @@ export const toggleMini = (my, isMobile) => async () => {
   }
 
   // Return to home state.
-  await navClick(page, '.test-editor-files-section');
   await navClick(page, '.test-toggle-editor');
 };
