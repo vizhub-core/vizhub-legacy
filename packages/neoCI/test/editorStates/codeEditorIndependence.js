@@ -7,7 +7,7 @@ export const codeEditorIndependence = (my, isMobile) => async () => {
 
   // Enter full editor mode.
   await navClick(page, '.test-toggle-editor');
-  await navClick(page, '.test-editor-files-section');
+  //await navClick(page, '.test-editor-files-section');
   await navClick(page, '.test-editor-file-entry-index-html');
   await navClick(page, '.test-enter-full-editor');
 
@@ -43,6 +43,6 @@ export const codeEditorIndependence = (my, isMobile) => async () => {
   await navClick(page, '.test-exit-full-editor');
   await navClick(page, '.test-close-code-editor');
   await navClick(page, '.test-toggle-editor');
-  await navClick(page, '.test-editor-files-section');
+  //await navClick(page, '.test-editor-files-section');
   await navClick(page, '.test-toggle-editor');
 };

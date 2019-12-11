@@ -7,7 +7,7 @@ export const toggleFullEditor = (my, isMobile) => async () => {
 
   // Open editor and file.
   await navClick(page, '.test-toggle-editor');
-  await navClick(page, '.test-editor-files-section');
+  //await navClick(page, '.test-editor-files-section');
   await navClick(page, '.test-editor-file-entry-index-html');
 
   if (isMobile) {
@@ -36,6 +36,6 @@ export const toggleFullEditor = (my, isMobile) => async () => {
     await navClick(page, '.test-close-code-editor');
   }
   // Return to home state.
-  await navClick(page, '.test-editor-files-section');
+  //await navClick(page, '.test-editor-files-section');
   await navClick(page, '.test-toggle-editor');
 };

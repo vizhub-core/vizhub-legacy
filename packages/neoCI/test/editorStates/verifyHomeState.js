@@ -18,6 +18,6 @@ export const verifyHomeState = (my, isMobile) => async () => {
 
   assert.equal(
     await page.evaluate(() => window.testVizHubHiddenURLState.edit),
-    null
+    'files'
   );
 };
