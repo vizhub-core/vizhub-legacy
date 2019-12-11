@@ -5,7 +5,9 @@ import { fetchHomePageData } from './fetchHomePageData';
 export const useHomePageData = () => {
   const [homePageData, setHomePageData] = useState(null);
   useEffect(() => {
-    waitForSpinner(fetchHomePageData()).then(setHomePageData);
+    waitForSpinner(fetchHomePageData()).then(data => {
+      setHomePageData(data.reverse().slice(0, 500));
+    });
   }, []);
   return homePageData;
 };
