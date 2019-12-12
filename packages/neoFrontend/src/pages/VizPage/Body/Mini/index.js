@@ -3,12 +3,12 @@ import { SplitSVG, FullSVG } from '../../../../svg';
 import { vizWidth } from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
 import { theme } from '../../../../theme';
+import { FrameFooter } from '../../../../styles';
 import { LargeIcon } from '../../../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { URLStateContext } from '../../URLStateContext';
 import { useDimensions } from '../useDimensions';
-import { FrameFooter } from '../styles';
 import { Wrapper } from './styles';
 
 const scale = theme.miniWidth / vizWidth;

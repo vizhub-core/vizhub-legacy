@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Z_BELOW, Z_WAY_ABOVE } from '../../../../styles';
-import { Footer } from '../styles';
+import { Footer } from '../../../../styles';
 
 export const Backdrop = styled.div`
   position: fixed;
