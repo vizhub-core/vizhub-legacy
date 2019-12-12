@@ -8,7 +8,7 @@ export const VizPreviews = styled.div`
 `;
 
 // Inspired by https://vega.github.io/vega/
-export const VizPreview = styled(Link)`
+export const Wrapper = styled(Link)`
   margin: 12px;
   width: 230px;
   height: 120px;
