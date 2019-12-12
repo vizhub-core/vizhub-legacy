@@ -11,7 +11,8 @@ const initialState = {
   homePageVisualizationInfos: [],
   isFetchingNextPage: false,
   currentPage: 0,
-  fetchedAllPages: false
+  fetchedAllPages: false,
+  usersById: {}
 };
 
 function reducer(state, action) {
@@ -24,15 +25,21 @@ function reducer(state, action) {
       };
     case 'FETCH_NEXT_PAGE_SUCCESS':
       const { visualizationInfos, ownerUsers } = action.data;
-      const { homePageVisualizationInfos } = state;
-      console.log(ownerUsers);
+      const { homePageVisualizationInfos, usersById } = state;
+
+      const newUsersById = ownerUsers.reduce(
+        (accumulator, user) => ({ ...accumulator, [user.id]: user }),
+        {}
+      );
+
       return {
         ...state,
         homePageVisualizationInfos: homePageVisualizationInfos.concat(
           visualizationInfos
         ),
         isFetchingNextPage: false,
-        fetchedAllPages: visualizationInfos.length === 0
+        fetchedAllPages: visualizationInfos.length === 0,
+        usersById: { ...usersById, ...newUsersById }
       };
     default:
       throw new Error();
@@ -47,13 +54,13 @@ export const useHomePageData = () => {
     homePageVisualizationInfos,
     isFetchingNextPage,
     currentPage,
-    fetchedAllPages
+    fetchedAllPages,
+    usersById
   } = state;
 
   // Fetch the next page of visualizations.
   const fetchNextPage = useCallback(() => {
     dispatch({ type: 'FETCH_NEXT_PAGE_REQUEST' });
-    console.log('fetching page ' + currentPage);
     fetchHomePageData(currentPage).then(data => {
       dispatch({ type: 'FETCH_NEXT_PAGE_SUCCESS', data });
     });
@@ -73,5 +80,5 @@ export const useHomePageData = () => {
       isFetchingNextPage || fetchedAllPages ? noop : fetchNextPage;
   }, [isFetchingNextPage, fetchNextPage, fetchedAllPages]);
 
-  return { homePageVisualizationInfos, paginate };
+  return { homePageVisualizationInfos, paginate, usersById };
 };
