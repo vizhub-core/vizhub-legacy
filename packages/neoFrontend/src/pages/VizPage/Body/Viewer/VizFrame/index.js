@@ -8,8 +8,8 @@ import React, {
 import { FullSVG } from '../../../../../svg';
 import { MiniOrMicroSVG } from '../../../../../mobileMods';
 import { vizWidth } from '../../../../../constants';
-import { FrameFooter } from '../../../../../styles';
 import { LargeIcon } from '../../../../styles';
+import { FrameFooter } from '../../styles';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { RunContext } from '../../../RunContext';
 import { URLStateContext } from '../../../URLStateContext';

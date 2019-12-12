@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_WAY_ABOVE } from '../../../styles';
+import { Z_WAY_ABOVE, Footer } from '../../../styles';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -25,4 +25,11 @@ export const Bottom = styled.div`
   flex: 1;
   display: flex;
   min-height: 0;
+`;
+
+export const FrameFooter = styled(Footer)`
+  border-bottom-right-radius: ${props => props.theme.borderRadiusSmall}px;
+  border-bottom-left-radius: ${props => props.theme.borderRadiusSmall}px;
+  position: relative;
+  z-index: ${Z_WAY_ABOVE};
 `;
