@@ -1,14 +1,14 @@
 import React from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
-import { VizPreviews, VizPreview } from '../../VizPreview/styles';
+import { VizPreviews, VizPreview } from '../../VizPreview';
 import { Wrapper, Content } from '../styles';
 import { CreateVizPageDataProvider } from './CreateVizPageDataContext';
 import { FromScratchSection } from './FromScratchSection';
 import { AttentionGrabbingTitle, Centered, Subtitle } from './styles';
 
 // Temporary setup for first pass at template listing.
-const userName = 'curran';
+const ownerUserName = 'curran';
 const visualizationInfos = [
   { id: '469e558ba77941aa9e1b416ea521b0aa', title: 'HTML Starter' },
   { id: 'c3b14112dae34ef395999cef5783324f', title: 'React Starter' },
@@ -42,14 +42,11 @@ export const CreateVizPage = () => (
             users.
           </Subtitle>
           <VizPreviews>
-            {visualizationInfos.map(({ id, title }) => (
+            {visualizationInfos.map(vizInfo => (
               <VizPreview
-                key={id}
-                to={`/${userName}/${id}`}
-                title={title}
-                style={{
-                  backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
-                }}
+                vizInfo={vizInfo}
+                ownerUserName={ownerUserName}
+                openEditor={true}
               />
             ))}
           </VizPreviews>

@@ -8,12 +8,12 @@ import React, {
 import { FullSVG } from '../../../../../svg';
 import { MiniOrMicroSVG } from '../../../../../mobileMods';
 import { vizWidth } from '../../../../../constants';
+import { LargeIcon } from '../../../../styles';
+import { FrameFooter } from '../../styles';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { RunContext } from '../../../RunContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
-import { LargeIcon } from '../../../../styles';
-import { FrameFooter } from '../../styles';
 import {
   Wrapper,
   RunTimerProgressIndicator,

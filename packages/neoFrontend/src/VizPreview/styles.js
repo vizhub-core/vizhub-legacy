@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Footer, Z_WAY_ABOVE } from '../styles';
 
 export const VizPreviews = styled.div`
   display: flex;
@@ -7,9 +8,14 @@ export const VizPreviews = styled.div`
   justify-content: center;
 `;
 
-// Inspired by https://vega.github.io/vega/
-export const VizPreview = styled(Link)`
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 12px;
+`;
+
+// Inspired by https://vega.github.io/vega/
+export const ImageLink = styled(Link)`
   width: 230px;
   height: 120px;
   background-position: left top;
@@ -18,8 +24,18 @@ export const VizPreview = styled(Link)`
   position: relative;
   transition: background-position 3s;
   box-shadow: ${props => props.theme.shadow};
-  border-radius: 5px;
+  border-top-right-radius: ${props => props.theme.borderRadiusLarge}px;
+  border-top-left-radius: ${props => props.theme.borderRadiusLarge}px;
   &:hover {
     background-position: right bottom;
   }
+`;
+
+export const VizPreviewFooter = styled(Footer)`
+  border-bottom-right-radius: ${props => props.theme.borderRadiusLarge}px;
+  border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
+  z-index: ${Z_WAY_ABOVE};
+  justify-content: space-between;
+  padding-left: 10px;
+  height: 50px;
 `;
