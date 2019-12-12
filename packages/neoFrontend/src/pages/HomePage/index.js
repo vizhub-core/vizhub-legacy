@@ -1,33 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Centering, Text } from '../styles';
-import { VizPreviews, VizPreview } from '../../VizPreview/styles';
-import {
-  HomePageDataProvider,
-  HomePageDataContext
-} from './HomePageDataContext';
+import { HomePageDataProvider } from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
-
-// TODO use correct usernames
-const userName = 'undefined';
-
-const Vizzes = () => {
-  const homePageData = useContext(HomePageDataContext);
-  return (
-    <VizPreviews>
-      {homePageData.map(({ id, title }) => (
-        <VizPreview
-          key={id}
-          to={`/${userName}/${id}?edit=files`}
-          title={title}
-          style={{
-            backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
-          }}
-        />
-      ))}
-    </VizPreviews>
-  );
-};
+import { Vizzes } from './Vizzes';
 
 export const HomePage = () => (
   <HomePageDataProvider fallback={<LoadingScreen />}>
