@@ -70,6 +70,10 @@ export class DatabaseVisualizationGateway {
     return await this.database.getAllVisualizationInfos();
   }
 
+  async getHomePageVisualizationInfos() {
+    return await this.database.getHomePageVisualizationInfos();
+  }
+
   async deleteVisualization({ id }) {
     return await this.database.deleteVisualization({ id });
   }

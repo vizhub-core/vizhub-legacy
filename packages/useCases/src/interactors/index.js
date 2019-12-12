@@ -10,6 +10,7 @@ export { GetUser } from './getUser';
 export { GetOrCreateUser } from './getOrCreateUser';
 export { GetUserProfileData } from './getUserProfileData';
 export { GetAllVisualizationInfos } from './getAllVisualizationInfos';
+export { GetHomePageData } from './getHomePageData';
 export { DeleteVisualization } from './deleteVisualization';
 export { UpdateImages } from './updateImages';
 export { GetThumbnail } from './getThumbnail';
