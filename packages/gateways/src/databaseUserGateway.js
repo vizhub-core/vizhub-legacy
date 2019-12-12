@@ -11,6 +11,10 @@ export class DatabaseUserGateway {
     return await this.database.getUser(id);
   }
 
+  async getUsers(ids) {
+    return await this.database.getUsers(ids);
+  }
+
   async getUserByUserName(userName) {
     return await this.database.getUserByUserName(userName);
   }

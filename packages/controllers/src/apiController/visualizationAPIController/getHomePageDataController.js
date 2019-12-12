@@ -5,8 +5,8 @@ export const getHomePageDataController = (expressApp, gateways) => {
   expressApp.get('/api/visualization/home', async (req, res) => {
     const { offset } = req.query;
     try {
-      const { visualizationInfos } = await getHomePageData.execute(offset);
-      res.json(visualizationInfos);
+      const homePageData = await getHomePageData.execute(offset);
+      res.json(homePageData);
     } catch (error) {
       console.log(error);
       res.json({ error });
