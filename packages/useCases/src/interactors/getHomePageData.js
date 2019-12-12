@@ -3,9 +3,11 @@ export class GetHomePageData {
     this.visualizationGateway = visualizationGateway;
   }
 
-  async execute() {
+  async execute(offset) {
     return {
-      visualizationInfos: await this.visualizationGateway.getHomePageVisualizationInfos()
+      visualizationInfos: await this.visualizationGateway.getHomePageVisualizationInfos(
+        offset
+      )
     };
   }
 }
