@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { HomePageDataContext } from './HomePageDataContext';
 import { VizPreviews, VizPreview } from '../../VizPreview/styles';
 
@@ -6,17 +6,9 @@ import { VizPreviews, VizPreview } from '../../VizPreview/styles';
 const distanceFromBottomTrigger = 100;
 
 export const Vizzes = () => {
-  const {
-    homePageVisualizationInfos,
-    fetchNextPage,
-    isFetchingNextPage
-  } = useContext(HomePageDataContext);
-
-  const paginate = useCallback(() => {
-    if (!isFetchingNextPage) {
-      fetchNextPage();
-    }
-  }, [isFetchingNextPage, fetchNextPage]);
+  const { homePageVisualizationInfos, paginate } = useContext(
+    HomePageDataContext
+  );
 
   // TODO use correct usernames
   const userName = 'undefined';
@@ -26,7 +18,7 @@ export const Vizzes = () => {
       const distanceFromBottom =
         document.body.offsetHeight - (window.innerHeight + window.scrollY);
       if (distanceFromBottom < distanceFromBottomTrigger) {
-        paginate();
+        paginate.current();
       }
     };
     window.addEventListener('scroll', onScroll);
