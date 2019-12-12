@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_WAY_ABOVE } from '../../../styles';
+import { Z_WAY_ABOVE, Footer } from '../../../styles';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -25,15 +25,6 @@ export const Bottom = styled.div`
   flex: 1;
   display: flex;
   min-height: 0;
-`;
-
-export const Footer = styled.div`
-  box-shadow: ${props => props.theme.shadow};
-  height: 40px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: #ffffff;
 `;
 
 export const FrameFooter = styled(Footer)`

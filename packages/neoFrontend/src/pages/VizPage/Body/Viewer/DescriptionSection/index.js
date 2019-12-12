@@ -5,22 +5,19 @@ import {
   showCreatedDate,
   showVideoThumbnail
 } from '../../../../../featureFlags';
-import { Avatar } from '../../../../../Avatar';
 import {
   Wrapper,
   Left,
   Right,
   Authorship,
-  AuthorAvatar,
-  AuthorName,
   AuthorshipMeta,
   Video,
   VideoThumbnail,
   Description,
   SemiBold,
-  VizLink,
-  Author
+  VizLink
 } from './styles';
+import { Author } from '../../../../../Author';
 
 const formatTimestamp = timestamp =>
   toDate(timestamp).toLocaleString(undefined, {
@@ -49,12 +46,7 @@ export const DescriptionSection = ({
     <Wrapper size={size}>
       <Left>
         <Authorship size={size}>
-          <Author to={`/${ownerUser.userName}`}>
-            <AuthorAvatar>
-              <Avatar size={40} user={ownerUser} />
-            </AuthorAvatar>
-            <AuthorName>{ownerUser.fullName}</AuthorName>
-          </Author>
+          <Author ownerUser={ownerUser} />
           <AuthorshipMeta size={size}>
             <div>
               Lasted Edited <SemiBold>{lastUpdated}</SemiBold>

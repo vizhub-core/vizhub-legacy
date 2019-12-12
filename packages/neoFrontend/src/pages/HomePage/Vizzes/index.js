@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useCallback } from 'react';
-import { VizPreviews, VizPreview } from '../../../VizPreview/styles';
+import { VizPreviews, VizPreview } from '../../../VizPreview';
+import { AuthContext } from '../../../authentication';
 import { LoadingScreen } from '../../../LoadingScreen';
 import { HomePageDataContext } from '../HomePageDataContext';
-import { AuthContext } from '../../../authentication';
 import { Wrapper } from './styles';
 
 // Trigger infinite scroll when the user gets 100px away from the bottom.
@@ -15,6 +15,7 @@ export const Vizzes = () => {
     usersById,
     isFetchingNextPage
   } = useContext(HomePageDataContext);
+
   const { me } = useContext(AuthContext);
 
   useEffect(() => {
@@ -29,27 +30,16 @@ export const Vizzes = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, [paginate]);
 
-  const getUserName = useCallback(
-    id => {
-      const user = usersById[id];
-      return user && user.userName;
-    },
-    [usersById]
-  );
+  const getUser = useCallback(id => usersById[id], [usersById]);
 
   return (
     <Wrapper>
       <VizPreviews>
-        {homePageVisualizationInfos.map(({ id, title, owner }) => (
+        {homePageVisualizationInfos.map(vizInfo => (
           <VizPreview
-            key={id}
-            to={`/${getUserName(owner)}/${id}${
-              owner === me.id ? '?edit=files' : ''
-            }`}
-            title={title}
-            style={{
-              backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
-            }}
+            vizInfo={vizInfo}
+            ownerUser={getUser(vizInfo.owner)}
+            openEditor={vizInfo.owner === me.id}
           />
         ))}
       </VizPreviews>

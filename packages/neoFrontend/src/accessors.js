@@ -141,3 +141,6 @@ export const upvoteOp = (userId, upvotes) => {
   }
   return op;
 };
+
+export const getUserName = user => user && user.userName;
+export const getUserFullName = user => user && (user.fullName || user.userName);
