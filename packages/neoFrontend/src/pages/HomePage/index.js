@@ -1,12 +1,15 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Centering, Text } from '../styles';
 import { VizPreviews, VizPreview } from '../../VizPreview/styles';
-import { HomePageDataProvider, HomePageDataContext } from './HomePageDataContext';
+import {
+  HomePageDataProvider,
+  HomePageDataContext
+} from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
 
 // TODO use correct usernames
-const userName='undefined';
+const userName = 'undefined';
 
 const Vizzes = () => {
   const homePageData = useContext(HomePageDataContext);
