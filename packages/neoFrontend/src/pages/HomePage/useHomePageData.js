@@ -13,9 +13,12 @@ export const useHomePageData = () => {
     const nextPage = currentPage + 1;
     setIsFetchingNextPage(true);
     fetchHomePageData(nextPage).then(data => {
-      setHomePageVisualizationInfos(homePageVisualizationInfos.concat(data));
+      const { visualizationInfos, ownerUsers } = data;
+      setHomePageVisualizationInfos(homePageVisualizationInfos.concat(visualizationInfos));
       setCurrentPage(nextPage);
       setIsFetchingNextPage(false);
+
+      console.log(ownerUsers);
     });
     setCurrentPage(nextPage);
   }, [currentPage, homePageVisualizationInfos]);

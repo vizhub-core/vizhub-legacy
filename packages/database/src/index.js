@@ -7,6 +7,7 @@ import { createDataset } from './createDataset';
 import { getDataset } from './getDataset';
 import { createUser } from './createUser';
 import { getUser } from './getUser';
+import { getUsers } from './getUsers';
 import { getUserByUserName } from './getUserByUserName';
 import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
@@ -34,6 +35,7 @@ export const Database = connection => ({
   getDataset: getDataset(connection),
   createUser: createUser(connection),
   getUser: getUser(connection),
+  getUsers: getUsers(connection),
   getUserByUserName: getUserByUserName(connection),
   getVisualizationInfosByUserId: getVisualizationInfosByUserId(connection),
   getAllVisualizationInfos: getAllVisualizationInfos(connection),
