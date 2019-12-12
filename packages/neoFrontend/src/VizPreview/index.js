@@ -1,6 +1,5 @@
 import React from 'react';
-import { FrameFooter } from '../styles';
-import { Wrapper, ImageLink } from './styles';
+import { Wrapper, ImageLink, VizPreviewFooter } from './styles';
 export { VizPreviews } from './styles';
 
 export const VizPreview = ({ vizInfo, ownerUserName, openEditor }) => {
@@ -15,7 +14,10 @@ export const VizPreview = ({ vizInfo, ownerUserName, openEditor }) => {
           backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
         }}
       />
-      <FrameFooter>foo</FrameFooter>
+      <VizPreviewFooter borderRadiusLarge={true}>
+        <div>foo</div>
+        <div>bar</div>
+      </VizPreviewFooter>
     </Wrapper>
   );
 };

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Footer, Z_WAY_ABOVE } from '../styles';
 
 export const VizPreviews = styled.div`
   display: flex;
@@ -23,9 +24,16 @@ export const ImageLink = styled(Link)`
   position: relative;
   transition: background-position 3s;
   box-shadow: ${props => props.theme.shadow};
-  border-top-right-radius: ${props => props.theme.borderRadiusSmall}px;
-  border-top-left-radius: ${props => props.theme.borderRadiusSmall}px;
+  border-top-right-radius: ${props => props.theme.borderRadiusLarge}px;
+  border-top-left-radius: ${props => props.theme.borderRadiusLarge}px;
   &:hover {
     background-position: right bottom;
   }
+`;
+
+export const VizPreviewFooter = styled(Footer)`
+  border-bottom-right-radius: ${props => props.theme.borderRadiusLarge}px;
+  border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
+  z-index: ${Z_WAY_ABOVE};
+  justify-content: space-between;
 `;
