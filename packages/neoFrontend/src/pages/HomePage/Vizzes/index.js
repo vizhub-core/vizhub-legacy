@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useCallback } from 'react';
 import { VizPreviews, VizPreview } from '../../../VizPreview/styles';
 import { LoadingScreen } from '../../../LoadingScreen';
 import { HomePageDataContext } from '../HomePageDataContext';
+import { AuthContext } from '../../../authentication';
 import { Wrapper } from './styles';
 
 // Trigger infinite scroll when the user gets 100px away from the bottom.
@@ -14,6 +15,7 @@ export const Vizzes = () => {
     usersById,
     isFetchingNextPage
   } = useContext(HomePageDataContext);
+  const { me } = useContext(AuthContext);
 
   useEffect(() => {
     const onScroll = () => {
@@ -41,7 +43,9 @@ export const Vizzes = () => {
         {homePageVisualizationInfos.map(({ id, title, owner }) => (
           <VizPreview
             key={id}
-            to={`/${getUserName(owner)}/${id}?edit=files`}
+            to={`/${getUserName(owner)}/${id}${
+              owner === me.id ? '?edit=files' : ''
+            }`}
             title={title}
             style={{
               backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
