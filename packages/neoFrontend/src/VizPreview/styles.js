@@ -7,9 +7,14 @@ export const VizPreviews = styled.div`
   justify-content: center;
 `;
 
-// Inspired by https://vega.github.io/vega/
-export const Wrapper = styled(Link)`
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 12px;
+`;
+
+// Inspired by https://vega.github.io/vega/
+export const ImageLink = styled(Link)`
   width: 230px;
   height: 120px;
   background-position: left top;
@@ -18,7 +23,8 @@ export const Wrapper = styled(Link)`
   position: relative;
   transition: background-position 3s;
   box-shadow: ${props => props.theme.shadow};
-  border-radius: 5px;
+  border-top-right-radius: ${props => props.theme.borderRadiusSmall}px;
+  border-top-left-radius: ${props => props.theme.borderRadiusSmall}px;
   &:hover {
     background-position: right bottom;
   }
