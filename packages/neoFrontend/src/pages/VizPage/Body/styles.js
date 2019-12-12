@@ -27,18 +27,3 @@ export const Bottom = styled.div`
   min-height: 0;
 `;
 
-export const Footer = styled.div`
-  box-shadow: ${props => props.theme.shadow};
-  height: 40px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: #ffffff;
-`;
-
-export const FrameFooter = styled(Footer)`
-  border-bottom-right-radius: ${props => props.theme.borderRadiusSmall}px;
-  border-bottom-left-radius: ${props => props.theme.borderRadiusSmall}px;
-  position: relative;
-  z-index: ${Z_WAY_ABOVE};
-`;
