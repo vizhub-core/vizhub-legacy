@@ -26,4 +26,3 @@ export const Bottom = styled.div`
   display: flex;
   min-height: 0;
 `;
-
