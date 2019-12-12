@@ -5,13 +5,14 @@ import { fetchShareDBQuery } from './fetchShareDBQuery';
 
 // The number of vizzes shown in a page of content.
 // Infinite scroll pagination fetches the next page.
-const pageSize = 200;
+const pageSize = 100;
 
-export const getHomePageVisualizationInfos = connection => async () => {
+export const getHomePageVisualizationInfos = connection => async offset => {
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
     $limit: pageSize,
-    $sort: {lastUpdatedTimestamp: -1}
+    $skip: offset * pageSize,
+    $sort: { lastUpdatedTimestamp: -1 }
   };
   const results = await fetchShareDBQuery(
     DOCUMENT_INFO,
