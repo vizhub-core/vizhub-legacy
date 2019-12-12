@@ -10,7 +10,8 @@ import { fetchHomePageData } from './fetchHomePageData';
 const initialState = {
   homePageVisualizationInfos: [],
   isFetchingNextPage: false,
-  currentPage: 0
+  currentPage: 0,
+  fetchedAllPages: false
 };
 
 function reducer(state, action) {
@@ -23,13 +24,15 @@ function reducer(state, action) {
       };
     case 'FETCH_NEXT_PAGE_SUCCESS':
       const { visualizationInfos, ownerUsers } = action.data;
+      const { homePageVisualizationInfos } = state;
       console.log(ownerUsers);
       return {
         ...state,
-        homePageVisualizationInfos: state.homePageVisualizationInfos.concat(
+        homePageVisualizationInfos: homePageVisualizationInfos.concat(
           visualizationInfos
         ),
-        isFetchingNextPage: false
+        isFetchingNextPage: false,
+        fetchedAllPages: visualizationInfos.length === 0
       };
     default:
       throw new Error();
@@ -40,7 +43,12 @@ const noop = () => {};
 
 export const useHomePageData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { homePageVisualizationInfos, isFetchingNextPage, currentPage } = state;
+  const {
+    homePageVisualizationInfos,
+    isFetchingNextPage,
+    currentPage,
+    fetchedAllPages
+  } = state;
 
   // Fetch the next page of visualizations.
   const fetchNextPage = useCallback(() => {
@@ -61,8 +69,9 @@ export const useHomePageData = () => {
   const paginate = useRef(noop);
 
   useLayoutEffect(() => {
-    paginate.current = isFetchingNextPage ? noop : fetchNextPage;
-  }, [isFetchingNextPage, fetchNextPage]);
+    paginate.current =
+      isFetchingNextPage || fetchedAllPages ? noop : fetchNextPage;
+  }, [isFetchingNextPage, fetchNextPage, fetchedAllPages]);
 
   return { homePageVisualizationInfos, paginate };
 };
