@@ -21,6 +21,6 @@ export const getHomePageVisualizationInfos = connection => async offset => {
   );
 
   // Uncomment to introduce delay for manual testing.
-  //const foo = await new Promise(resolve => {setTimeout(() => resolve(), 1000);});
+  //const foo = await new Promise(resolve => {setTimeout(() => resolve(), 3000);});
   return results.map(shareDBDoc => new VisualizationInfo(shareDBDoc.data));
 };

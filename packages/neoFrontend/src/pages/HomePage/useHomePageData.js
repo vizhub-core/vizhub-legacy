@@ -80,5 +80,10 @@ export const useHomePageData = () => {
       isFetchingNextPage || fetchedAllPages ? noop : fetchNextPage;
   }, [isFetchingNextPage, fetchNextPage, fetchedAllPages]);
 
-  return { homePageVisualizationInfos, paginate, usersById };
+  return {
+    homePageVisualizationInfos,
+    paginate,
+    usersById,
+    isFetchingNextPage
+  };
 };
