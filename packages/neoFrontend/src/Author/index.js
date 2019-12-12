@@ -1,0 +1,14 @@
+import React from 'react';
+import { Wrapper, AuthorAvatar, AuthorName } from './styles';
+import { getUserName, getUserFullName } from '../accessors';
+import { Avatar } from '../Avatar';
+
+export const Author = ({ ownerUser, isSmall = false }) =>
+  ownerUser ? (
+    <Wrapper to={`/${getUserName(ownerUser)}`}>
+      <AuthorAvatar isSmall={isSmall}>
+        <Avatar size={isSmall ? 30 : 40} user={ownerUser} />
+      </AuthorAvatar>
+      <AuthorName isSmall={isSmall}>{getUserFullName(ownerUser)}</AuthorName>
+    </Wrapper>
+  ) : null;

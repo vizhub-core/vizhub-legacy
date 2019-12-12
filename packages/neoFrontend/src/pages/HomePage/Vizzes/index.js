@@ -30,13 +30,7 @@ export const Vizzes = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, [paginate]);
 
-  const getUserName = useCallback(
-    id => {
-      const user = usersById[id];
-      return user && user.userName;
-    },
-    [usersById]
-  );
+  const getUser = useCallback(id => usersById[id], [usersById]);
 
   return (
     <Wrapper>
@@ -44,7 +38,7 @@ export const Vizzes = () => {
         {homePageVisualizationInfos.map(vizInfo => (
           <VizPreview
             vizInfo={vizInfo}
-            ownerUserName={getUserName(vizInfo.owner)}
+            ownerUser={getUser(vizInfo.owner)}
             openEditor={vizInfo.owner === me.id}
           />
         ))}

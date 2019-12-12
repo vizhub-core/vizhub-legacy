@@ -36,4 +36,6 @@ export const VizPreviewFooter = styled(Footer)`
   border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
   z-index: ${Z_WAY_ABOVE};
   justify-content: space-between;
+  padding-left: 10px;
+  height: 50px;
 `;
