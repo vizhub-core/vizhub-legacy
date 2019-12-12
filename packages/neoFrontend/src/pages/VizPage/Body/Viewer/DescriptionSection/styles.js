@@ -34,23 +34,6 @@ export const Authorship = styled.div`
   flex-direction: ${props => (props.size === 'small' ? 'column' : 'row')};
 `;
 
-export const Author = styled(Link)`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  color: currentcolor;
-`;
-
-export const AuthorAvatar = styled.div`
-  width: 40px;
-  margin-right: 10px;
-`;
-
-export const AuthorName = styled.div`
-  font-size: 16px;
-  font-weight: 600;
-`;
-
 export const AuthorshipMeta = styled.div`
   display: flex;
   flex-direction: column;

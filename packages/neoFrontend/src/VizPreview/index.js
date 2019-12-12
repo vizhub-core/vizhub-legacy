@@ -1,22 +1,27 @@
 import React from 'react';
+import { getUserName } from '../accessors';
+import { Author } from '../Author';
 import { Wrapper, ImageLink, VizPreviewFooter } from './styles';
+
 export { VizPreviews } from './styles';
 
-export const VizPreview = ({ vizInfo, ownerUserName, openEditor }) => {
+export const VizPreview = ({ vizInfo, ownerUser, openEditor }) => {
   const { id, title } = vizInfo;
+
   return (
     <Wrapper>
       <ImageLink
         key={id}
-        to={`/${ownerUserName}/${id}${openEditor ? '?edit=files' : ''}`}
+        to={`/${getUserName(ownerUser)}/${id}${
+          openEditor ? '?edit=files' : ''
+        }`}
         title={title}
         style={{
           backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
         }}
       />
       <VizPreviewFooter borderRadiusLarge={true}>
-        <div>foo</div>
-        <div>bar</div>
+        <Author ownerUser={ownerUser} isSmall={true} />
       </VizPreviewFooter>
     </Wrapper>
   );
