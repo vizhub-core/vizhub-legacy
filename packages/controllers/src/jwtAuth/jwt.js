@@ -5,7 +5,7 @@ const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET || 'hfdsjkalhfjklda';
 
 export const jwtSign = async userId => {
   try {
-    return jwt.sign({ userId }, secret, { expiresIn: '2 days' });
+    return jwt.sign({ userId }, secret, { expiresIn: '14 days' });
   } catch (error) {
     throw new VizHubAPIError({
       error: 'jwt_signing_error',
