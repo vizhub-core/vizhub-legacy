@@ -39,7 +39,7 @@ export const Vizzes = () => {
           <VizPreview
             vizInfo={vizInfo}
             ownerUser={getUser(vizInfo.owner)}
-            openEditor={me ? (vizInfo.owner === me.id) : false}
+            openEditor={me ? vizInfo.owner === me.id : false}
           />
         ))}
       </VizPreviews>

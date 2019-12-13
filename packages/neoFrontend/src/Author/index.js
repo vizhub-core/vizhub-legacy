@@ -7,7 +7,7 @@ export const Author = ({ ownerUser, isSmall = false }) =>
   ownerUser ? (
     <Wrapper to={`/${getUserName(ownerUser)}`}>
       <AuthorAvatar isSmall={isSmall}>
-        <Avatar size={isSmall ? 30 : 40} user={ownerUser} />
+        <Avatar size={isSmall ? 20 : 40} user={ownerUser} />
       </AuthorAvatar>
       <AuthorName isSmall={isSmall}>{getUserFullName(ownerUser)}</AuthorName>
     </Wrapper>

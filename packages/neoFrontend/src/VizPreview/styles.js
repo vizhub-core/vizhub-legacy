@@ -8,14 +8,15 @@ export const VizPreviews = styled.div`
   justify-content: center;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   margin: 12px;
+  color: ${props => props.theme.dark};
 `;
 
 // Inspired by https://vega.github.io/vega/
-export const ImageLink = styled(Link)`
+export const ImageLink = styled.div`
   width: 230px;
   height: 120px;
   background-position: left top;
@@ -34,8 +35,24 @@ export const ImageLink = styled(Link)`
 export const VizPreviewFooter = styled(Footer)`
   border-bottom-right-radius: ${props => props.theme.borderRadiusLarge}px;
   border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
+  box-sizing: border-box;
   z-index: ${Z_WAY_ABOVE};
+  padding-left: 6px;
+  flex-direction: column;
+  align-items: start;
   justify-content: space-between;
-  padding-left: 10px;
+  padding-top: 2px;
+  padding-bottom: 6px;
   height: 50px;
+  width: 230px;
+`;
+
+export const VizPreviewTitle = styled.div`
+  font-size: 14px;
+  padding-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: left;
 `;
