@@ -8,14 +8,15 @@ export const VizPreviews = styled.div`
   justify-content: center;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   margin: 12px;
+  color: ${props => props.theme.dark};
 `;
 
 // Inspired by https://vega.github.io/vega/
-export const ImageLink = styled(Link)`
+export const ImageLink = styled.div`
   width: 230px;
   height: 120px;
   background-position: left top;
@@ -42,9 +43,15 @@ export const VizPreviewFooter = styled(Footer)`
   flex: 1;
   padding-top: 4px;
   padding-bottom: 10px;
+  height: 58px;
+  width: 220px;
 `;
 
 export const VizPreviewTitle = styled.div`
   font-size: 15px;
-  padding-bottom: 3px;
+  padding-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 `;
