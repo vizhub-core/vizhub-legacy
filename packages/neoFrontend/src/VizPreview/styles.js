@@ -35,7 +35,16 @@ export const VizPreviewFooter = styled(Footer)`
   border-bottom-right-radius: ${props => props.theme.borderRadiusLarge}px;
   border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
   z-index: ${Z_WAY_ABOVE};
-  justify-content: space-between;
   padding-left: 10px;
-  height: 50px;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  flex: 1;
+  padding-top: 4px;
+  padding-bottom: 10px;
+`;
+
+export const VizPreviewTitle = styled.div`
+  font-size: 15px;
+  padding-bottom: 3px;
 `;

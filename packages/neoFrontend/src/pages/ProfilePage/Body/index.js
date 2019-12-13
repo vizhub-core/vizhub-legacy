@@ -16,8 +16,8 @@ export const Body = () => {
           {visualizationInfos.map(vizInfo => (
             <VizPreview
               vizInfo={vizInfo}
-              ownerUserName={user.userName}
               openEditor={true}
+              ownerUser={user}
             />
           ))}
         </VizPreviews>
