@@ -35,23 +35,24 @@ export const ImageLink = styled.div`
 export const VizPreviewFooter = styled(Footer)`
   border-bottom-right-radius: ${props => props.theme.borderRadiusLarge}px;
   border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
+  box-sizing: border-box;
   z-index: ${Z_WAY_ABOVE};
-  padding-left: 10px;
+  padding-left: 5px;
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  flex: 1;
-  padding-top: 4px;
-  padding-bottom: 10px;
-  height: 58px;
-  width: 220px;
+  padding-top: 2px;
+  padding-bottom: 6px;
+  height: 50px;
+  width: 230px;
 `;
 
 export const VizPreviewTitle = styled.div`
-  font-size: 15px;
+  font-size: 14px;
   padding-bottom: 4px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+  text-align: left;
 `;
