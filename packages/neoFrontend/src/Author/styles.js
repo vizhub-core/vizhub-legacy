@@ -10,7 +10,7 @@ export const Wrapper = styled(Link)`
 
 export const AuthorAvatar = styled.div`
   width: ${props => (props.isSmall ? 20 : 40)}px;
-  margin-right: ${props => (props.isSmall ? 5 : 10)}px;
+  margin-right: ${props => (props.isSmall ? 6 : 10)}px;
 `;
 
 export const AuthorName = styled.div`
