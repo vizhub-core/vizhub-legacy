@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
 import { VizPreviews, VizPreview } from '../../VizPreview';
 import { Wrapper, Content } from '../styles';
-import { CreateVizPageDataProvider } from './CreateVizPageDataContext';
+import {
+  CreateVizPageDataProvider,
+  CreateVizPageDataContext
+} from './CreateVizPageDataContext';
 import { FromScratchSection } from './FromScratchSection';
 import { AttentionGrabbingTitle, Centered, Subtitle } from './styles';
 
 // Temporary setup for first pass at template listing.
-const ownerUserName = 'curran';
 const visualizationInfos = [
   { id: '469e558ba77941aa9e1b416ea521b0aa', title: 'HTML Starter' },
   { id: 'c3b14112dae34ef395999cef5783324f', title: 'React Starter' },
@@ -28,6 +30,18 @@ const visualizationInfos = [
   { id: '8b699c4000704216a709adfeb38f2411', title: 'Interactive Color Legend' }
 ];
 
+const Vizzes = () => {
+  const ownerUser = useContext(CreateVizPageDataContext);
+
+  return (
+    <VizPreviews>
+      {visualizationInfos.map(vizInfo => (
+        <VizPreview vizInfo={vizInfo} ownerUser={ownerUser} openEditor={true} />
+      ))}
+    </VizPreviews>
+  );
+};
+
 export const CreateVizPage = () => (
   <CreateVizPageDataProvider fallback={<LoadingScreen />}>
     <Wrapper>
@@ -41,15 +55,7 @@ export const CreateVizPage = () => (
             Create a new visualization from a template or fork one from our
             users.
           </Subtitle>
-          <VizPreviews>
-            {visualizationInfos.map(vizInfo => (
-              <VizPreview
-                vizInfo={vizInfo}
-                ownerUserName={ownerUserName}
-                openEditor={true}
-              />
-            ))}
-          </VizPreviews>
+          <Vizzes />
           <FromScratchSection />
         </Centered>
       </Content>
