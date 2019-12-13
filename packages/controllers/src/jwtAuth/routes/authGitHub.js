@@ -25,7 +25,8 @@ export const authGitHub = userGateway => {
       const vizHubJWT = await jwtSign(user.id);
 
       // Store the JWT securely in an httpOnly cookie.
-      res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true });
+      const days = 1000 * 60 * 60 * 24;
+      res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true, maxAge: 14 * days });
 
       // Send the user data as the response (same response as authMe).
       res.send(user);
