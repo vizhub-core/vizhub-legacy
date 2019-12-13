@@ -37,7 +37,7 @@ export const VizPreviewFooter = styled(Footer)`
   border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
   box-sizing: border-box;
   z-index: ${Z_WAY_ABOVE};
-  padding-left: 5px;
+  padding-left: 6px;
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
