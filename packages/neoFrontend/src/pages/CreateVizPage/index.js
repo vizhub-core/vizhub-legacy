@@ -36,7 +36,12 @@ const Vizzes = () => {
   return (
     <VizPreviews>
       {visualizationInfos.map(vizInfo => (
-        <VizPreview vizInfo={vizInfo} ownerUser={ownerUser} openEditor={true} />
+        <VizPreview
+          key={vizInfo.id}
+          vizInfo={vizInfo}
+          ownerUser={ownerUser}
+          openEditor={true}
+        />
       ))}
     </VizPreviews>
   );
