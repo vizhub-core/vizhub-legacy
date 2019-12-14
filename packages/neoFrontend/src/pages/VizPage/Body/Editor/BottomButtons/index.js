@@ -58,7 +58,7 @@ export const BottomButtons = withTheme(
     const onPrivacyClick = useCallback(() => {
       clearActiveButton();
       showPrivacyModal();
-    }, [clearActiveButton]);
+    }, [clearActiveButton, showPrivacyModal]);
 
     return (
       <Wrapper>
