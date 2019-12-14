@@ -5,7 +5,7 @@ import { AlertDialogContext } from '../../../AlertDialogContext';
 import { VizContext } from '../VizContext';
 
 export const usePrivacy = history => {
-  const [isShowingPrivacyModal, setIsConfirmingPrivacy] = useState(true);
+  const [isShowingPrivacyModal, setIsConfirmingPrivacy] = useState(false);
 
   const { viz$ } = useContext(VizContext);
   const { me } = useContext(AuthContext);
