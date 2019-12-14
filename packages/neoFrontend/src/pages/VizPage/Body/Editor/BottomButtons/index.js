@@ -4,6 +4,7 @@ import { showEditorSettings } from '../../../../../featureFlags';
 import { SettingsSVG, NewSVG, ExportSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
 import { VizContext } from '../../../VizContext';
+import { PrivacyContext } from '../../../PrivacyContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
 import { SettingsTop } from './SettingsTop';
@@ -23,6 +24,7 @@ export const BottomButtons = withTheme(
 
     const { viz$, submitVizContentOp } = useContext(VizContext);
     const { closeActiveFile } = useContext(URLStateContext);
+    const showPrivacyModal = useContext(PrivacyContext);
 
     const onButtonClick = useCallback(
       buttonId => () => {
@@ -55,13 +57,14 @@ export const BottomButtons = withTheme(
 
     const onPrivacyClick = useCallback(() => {
       clearActiveButton();
-    },[clearActiveButton]);
+      showPrivacyModal();
+    }, [clearActiveButton]);
 
     return (
       <Wrapper>
         <Top>
           {activeButton === SETTINGS_BUTTON ? (
-            <SettingsTop onPrivacyClick={onPrivacyClick}/>
+            <SettingsTop onPrivacyClick={onPrivacyClick} />
           ) : activeButton === NEW_BUTTON ? (
             <NewTop onNewFileListItemClick={onNewFileListItemClick} />
           ) : activeButton === EXPORT_BUTTON ? (
