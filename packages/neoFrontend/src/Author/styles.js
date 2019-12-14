@@ -14,6 +14,6 @@ export const AuthorAvatar = styled.div`
 `;
 
 export const AuthorName = styled.div`
-  font-size: ${props => (props.isSmall ? 10 : 16)}px;
+  font-size: ${props => (props.isSmall ? 11 : 16)}px;
   font-weight: 600;
 `;
