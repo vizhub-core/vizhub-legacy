@@ -12,10 +12,12 @@ export { VizPreviews } from './styles';
 
 export const VizPreview = ({ vizInfo, ownerUser, openEditor }) => {
   const { id, title } = vizInfo;
-  const link = `/${getUserName(ownerUser)}/${id}${openEditor ? '?edit=files' : ''}`;
+  const link = `/${getUserName(ownerUser)}/${id}${
+    openEditor ? '?edit=files' : ''
+  }`;
 
   return (
-    <Wrapper >
+    <Wrapper>
       <ImageLink
         to={link}
         key={id}
