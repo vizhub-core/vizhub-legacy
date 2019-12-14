@@ -1,9 +1,7 @@
 import { useState, useContext, useCallback } from 'react';
-import { getVizPrivacy } from '../../../accessors';
+import { getVizPrivacy, privacyChangeOp } from '../../../accessors';
 import { useValue } from '../../../useValue';
-import { AuthContext } from '../../../authentication/AuthContext';
-import { ErrorContext } from '../../../ErrorContext';
-import { AlertDialogContext } from '../../../AlertDialogContext';
+import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { VizContext } from '../VizContext';
 
 export const usePrivacy = history => {
@@ -11,8 +9,7 @@ export const usePrivacy = history => {
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);
   const vizPrivacy = useValue(viz$, getVizPrivacy);
-  const { me } = useContext(AuthContext);
-  const { setError } = useContext(ErrorContext);
+  const realtimeModules = useContext(RealtimeModulesContext);
 
   const showPrivacyModal = useCallback(() => {
     setIsConfirmingPrivacy(true);
@@ -22,10 +19,24 @@ export const usePrivacy = history => {
     setIsConfirmingPrivacy(false);
   }, []);
 
+  const setVizPrivacy = useCallback(
+    newVizPrivacy => {
+      submitVizInfoOp(
+        privacyChangeOp(
+          viz$.getValue().info.privacy,
+          newVizPrivacy,
+          realtimeModules
+        )
+      );
+    },
+    [submitVizInfoOp, realtimeModules, viz$]
+  );
+
   return {
     showPrivacyModal,
     hidePrivacyModal,
     isShowingPrivacyModal,
-    vizPrivacy
+    vizPrivacy,
+    setVizPrivacy
   };
 };
