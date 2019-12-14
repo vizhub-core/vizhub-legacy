@@ -144,3 +144,6 @@ export const upvoteOp = (userId, upvotes) => {
 
 export const getUserName = user => user && user.userName;
 export const getUserFullName = user => user && (user.fullName || user.userName);
+
+const defaultVizPrivacy = 'public';
+export const getVizPrivacy = viz => viz.info.privacy || defaultVizPrivacy;

@@ -10,7 +10,8 @@ export const PrivacyProvider = ({ children }) => {
   const {
     showPrivacyModal,
     isShowingPrivacyModal,
-    hidePrivacyModal
+    hidePrivacyModal,
+    vizPrivacy
   } = usePrivacy();
 
   const onPrivacyOptionChange = useCallback(value => {
@@ -25,7 +26,7 @@ export const PrivacyProvider = ({ children }) => {
           <Modal.Message>Privacy settings for this viz:</Modal.Message>
           <RadioButton.Group
             onChange={onPrivacyOptionChange}
-            currentValue={'public'}
+            currentValue={vizPrivacy}
           >
             <RadioButton value="public" />
             <RadioButton value="private" />
