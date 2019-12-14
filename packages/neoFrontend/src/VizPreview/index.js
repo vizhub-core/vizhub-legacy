@@ -12,12 +12,12 @@ export { VizPreviews } from './styles';
 
 export const VizPreview = ({ vizInfo, ownerUser, openEditor }) => {
   const { id, title } = vizInfo;
+  const link = `/${getUserName(ownerUser)}/${id}${openEditor ? '?edit=files' : ''}`;
 
   return (
-    <Wrapper
-      to={`/${getUserName(ownerUser)}/${id}${openEditor ? '?edit=files' : ''}`}
-    >
+    <Wrapper >
       <ImageLink
+        to={link}
         key={id}
         title={title}
         style={{
@@ -25,7 +25,7 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor }) => {
         }}
       />
       <VizPreviewFooter borderRadiusLarge={true}>
-        <VizPreviewTitle>{title}</VizPreviewTitle>
+        <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
         <Author ownerUser={ownerUser} isSmall={true} />
       </VizPreviewFooter>
     </Wrapper>
