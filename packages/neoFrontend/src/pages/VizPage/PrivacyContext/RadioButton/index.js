@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useCallback } from 'react';
 import { RadioButtonSVG } from '../../../../svg';
-import { Wrapper } from './styles';
+import { Wrapper, Group, Label } from './styles';
 
 const RadioButtonsContext = createContext();
 
@@ -12,13 +12,15 @@ export const RadioButton = ({ value }) => {
   return (
     <Wrapper>
       <RadioButtonSVG onClick={onClick} isActive={value === currentValue} />
-      {value}
+      <Label>{value}</Label>
     </Wrapper>
   );
 };
 
 RadioButton.Group = ({ children, onChange, currentValue }) => (
-  <RadioButtonsContext.Provider value={{ onChange, currentValue }}>
-    {children}
-  </RadioButtonsContext.Provider>
+  <Group>
+    <RadioButtonsContext.Provider value={{ onChange, currentValue }}>
+      {children}
+    </RadioButtonsContext.Provider>
+  </Group>
 );

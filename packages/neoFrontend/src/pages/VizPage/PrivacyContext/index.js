@@ -22,8 +22,7 @@ export const PrivacyProvider = ({ children }) => {
       {children}
       {isShowingPrivacyModal ? (
         <Modal onClose={hidePrivacyModal}>
-          <Modal.Message>Privacy settings for this viz.</Modal.Message>
-          <Button onClick={hidePrivacyModal}>Save</Button>
+          <Modal.Message>Privacy settings for this viz:</Modal.Message>
           <RadioButton.Group
             onChange={onPrivacyOptionChange}
             currentValue={'public'}
@@ -31,6 +30,9 @@ export const PrivacyProvider = ({ children }) => {
             <RadioButton value="public" />
             <RadioButton value="private" />
           </RadioButton.Group>
+          <Button style={{ marginTop: '30px' }} onClick={hidePrivacyModal}>
+            Save
+          </Button>
         </Modal>
       ) : null}
     </PrivacyContext.Provider>
