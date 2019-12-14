@@ -1,20 +1,24 @@
 import React, { createContext, useContext, useCallback } from 'react';
 import { RadioButtonSVG } from '../../../../svg';
+import { Wrapper } from './styles';
 
 const RadioButtonsContext = createContext();
 
-export const RadioButtons = ({ children, onChange, value }) => {
-  return (
-    <RadioButtonsContext.Provider value={{ onChange, value }}>
-      {children}
-    </RadioButtonsContext.Provider>
-  );
-};
-
-export const RadioButton = () => {
-  const { onChange, value } = useContext(RadioButtonsContext);
+export const RadioButton = ({ value }) => {
+  const { onChange, currentValue } = useContext(RadioButtonsContext);
   const onClick = useCallback(() => {
     onChange(value);
   }, [onChange, value]);
-  return <RadioButtonSVG onClick={onClick} />;
+  return (
+    <Wrapper>
+      <RadioButtonSVG onClick={onClick} isActive={value === currentValue} />
+      {value}
+    </Wrapper>
+  );
 };
+
+RadioButton.Group = ({ children, onChange, currentValue }) => (
+  <RadioButtonsContext.Provider value={{ onChange, currentValue }}>
+    {children}
+  </RadioButtonsContext.Provider>
+);
