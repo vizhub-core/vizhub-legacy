@@ -1,8 +1,8 @@
 import React from 'react';
 import { TopList, TopListItem } from './styles';
 
-export const SettingsTop = () => (
+export const SettingsTop = ({onPrivacyClick}) => (
   <TopList>
-    <TopListItem>privacy</TopListItem>
+    <TopListItem onClick={onPrivacyClick}>privacy</TopListItem>
   </TopList>
 );

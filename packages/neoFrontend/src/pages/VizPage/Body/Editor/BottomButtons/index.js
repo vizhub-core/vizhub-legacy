@@ -53,11 +53,15 @@ export const BottomButtons = withTheme(
       clearActiveButton
     ]);
 
+    const onPrivacyClick = useCallback(() => {
+      clearActiveButton();
+    },[clearActiveButton]);
+
     return (
       <Wrapper>
         <Top>
           {activeButton === SETTINGS_BUTTON ? (
-            <SettingsTop />
+            <SettingsTop onPrivacyClick={onPrivacyClick}/>
           ) : activeButton === NEW_BUTTON ? (
             <NewTop onNewFileListItemClick={onNewFileListItemClick} />
           ) : activeButton === EXPORT_BUTTON ? (
