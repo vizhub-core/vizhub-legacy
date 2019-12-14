@@ -1,6 +1,5 @@
-import React, { createContext, useCallback } from 'react';
+import React, { createContext } from 'react';
 import { Modal } from '../../../Modal';
-import { Button } from '../../styles';
 import { usePrivacy } from './usePrivacy';
 import { RadioButton } from './RadioButton';
 
@@ -11,12 +10,9 @@ export const PrivacyProvider = ({ children }) => {
     showPrivacyModal,
     isShowingPrivacyModal,
     hidePrivacyModal,
-    vizPrivacy
+    vizPrivacy,
+    setVizPrivacy
   } = usePrivacy();
-
-  const onPrivacyOptionChange = useCallback(value => {
-    console.log(value);
-  }, []);
 
   return (
     <PrivacyContext.Provider value={showPrivacyModal}>
@@ -24,16 +20,10 @@ export const PrivacyProvider = ({ children }) => {
       {isShowingPrivacyModal ? (
         <Modal onClose={hidePrivacyModal}>
           <Modal.Message>Privacy settings for this viz:</Modal.Message>
-          <RadioButton.Group
-            onChange={onPrivacyOptionChange}
-            currentValue={vizPrivacy}
-          >
+          <RadioButton.Group onChange={setVizPrivacy} currentValue={vizPrivacy}>
             <RadioButton value="public" />
             <RadioButton value="private" />
           </RadioButton.Group>
-          <Button style={{ marginTop: '30px' }} onClick={hidePrivacyModal}>
-            Save
-          </Button>
         </Modal>
       ) : null}
     </PrivacyContext.Provider>

@@ -10,8 +10,8 @@ export const RadioButton = ({ value }) => {
     onChange(value);
   }, [onChange, value]);
   return (
-    <Wrapper>
-      <RadioButtonSVG onClick={onClick} isActive={value === currentValue} />
+    <Wrapper onClick={onClick}>
+      <RadioButtonSVG isActive={value === currentValue} />
       <Label>{value}</Label>
     </Wrapper>
   );
