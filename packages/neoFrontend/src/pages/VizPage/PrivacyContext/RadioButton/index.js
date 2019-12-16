@@ -6,12 +6,16 @@ const RadioButtonsContext = createContext();
 
 export const RadioButton = ({ value, className }) => {
   const { onChange, currentValue } = useContext(RadioButtonsContext);
+
   const onClick = useCallback(() => {
     onChange(value);
   }, [onChange, value]);
+
+  const isActive = value === currentValue;
+
   return (
-    <Wrapper onClick={onClick} className={className}>
-      <RadioButtonSVG isActive={value === currentValue} />
+    <Wrapper onClick={onClick} className={className} data-test-is-active={isActive}>
+      <RadioButtonSVG isActive={isActive} />
       <Label>{value}</Label>
     </Wrapper>
   );
