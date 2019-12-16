@@ -3,6 +3,8 @@ import { TopList, TopListItem } from './styles';
 
 export const SettingsTop = ({ onPrivacyClick }) => (
   <TopList>
-    <TopListItem onClick={onPrivacyClick}>privacy</TopListItem>
+    <TopListItem onClick={onPrivacyClick} className="test-privacy">
+      privacy
+    </TopListItem>
   </TopList>
 );

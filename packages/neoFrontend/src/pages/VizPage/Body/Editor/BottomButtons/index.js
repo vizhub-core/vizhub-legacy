@@ -80,7 +80,10 @@ export const BottomButtons = withTheme(
         </Top>
         <Bottom>
           {showEditorSettings ? (
-            <BottomButton isActive={activeButton === SETTINGS_BUTTON}>
+            <BottomButton
+              isActive={activeButton === SETTINGS_BUTTON}
+              className="test-editor-settings"
+            >
               <ClickableOverlay onClick={onButtonClick(SETTINGS_BUTTON)}>
                 <SettingsSVG />
               </ClickableOverlay>
