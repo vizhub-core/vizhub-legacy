@@ -4,13 +4,13 @@ import { Wrapper, Group, Label } from './styles';
 
 const RadioButtonsContext = createContext();
 
-export const RadioButton = ({ value }) => {
+export const RadioButton = ({ value, className }) => {
   const { onChange, currentValue } = useContext(RadioButtonsContext);
   const onClick = useCallback(() => {
     onChange(value);
   }, [onChange, value]);
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={onClick} className={className}>
       <RadioButtonSVG isActive={value === currentValue} />
       <Label>{value}</Label>
     </Wrapper>

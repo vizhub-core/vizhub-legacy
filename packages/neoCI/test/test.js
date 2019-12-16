@@ -30,9 +30,9 @@ describe('VizHub End to End Tests', () => {
 
   describe('Privacy', privacy(my));
 
-  //describe('Tear Down', () => {
-  //  it('should close', async () => {
-  //    await my.browser.close();
-  //  });
-  //});
+  describe('Tear Down', () => {
+    it('should close', async () => {
+      await my.browser.close();
+    });
+  });
 });

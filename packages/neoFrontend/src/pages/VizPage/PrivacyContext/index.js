@@ -22,7 +22,7 @@ export const PrivacyProvider = ({ children }) => {
           <Modal.Message>Privacy settings for this viz:</Modal.Message>
           <RadioButton.Group onChange={setVizPrivacy} currentValue={vizPrivacy}>
             <RadioButton value="public" />
-            <RadioButton value="private" />
+            <RadioButton value="private" className="test-privacy-dialog-radio-private" />
           </RadioButton.Group>
         </Modal>
       ) : null}
