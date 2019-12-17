@@ -30,4 +30,7 @@ export const switchToPrivate = my => async () => {
     privateRadioButton
   );
   assert.equal(privateRadioButtonIsActive, 'true');
+
+  // Wait some time to ensure the change was passed to backend fia WebSocket.
+  await new Promise(resolve => setTimeout(resolve, 100));
 };
