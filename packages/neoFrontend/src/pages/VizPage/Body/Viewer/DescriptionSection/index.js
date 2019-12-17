@@ -70,6 +70,7 @@ export const DescriptionSection = ({
           </AuthorshipMeta>
         </Authorship>
         <Description
+          className="viz-viewer-description"
           size={size}
           dangerouslySetInnerHTML={{ __html: marked(vizInfo.description) }}
         />
