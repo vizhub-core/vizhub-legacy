@@ -18,7 +18,7 @@ export const PrivacyProvider = ({ children }) => {
     <PrivacyContext.Provider value={showPrivacyModal}>
       {children}
       {isShowingPrivacyModal ? (
-        <Modal onClose={hidePrivacyModal}>
+        <Modal onClose={hidePrivacyModal} closeButtonClassName="test-privacy-dialog-close">
           <Modal.Message>Privacy settings for this viz:</Modal.Message>
           <RadioButton.Group onChange={setVizPrivacy} currentValue={vizPrivacy}>
             <RadioButton value="public" className="test-privacy-dialog-radio-public" />
