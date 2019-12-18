@@ -33,3 +33,29 @@ export const Right = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const Message = styled.div`
+  text-align: center;
+`;
+
+export const MessageSmallText = styled.div`
+  font-size: 16.8px;
+  font-weight: 600;
+`;
+
+export const MessageLargeText = styled.div`
+  font-family: Poppins;
+  font-size: 28.8px;
+  font-weight: 300;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
+export const MessageList = styled.ul`
+  text-align: left;
+`;
+
+export const MessageLink = styled.a`
+  color: white;
+  text-decoration: underline;
+`;
