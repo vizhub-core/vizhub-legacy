@@ -9,7 +9,6 @@ if (window.location.host === 'beta.vizhub.com') {
     'vizhub.com'
   );
 } else {
-
   // A place to put feature previews and easter eggs.
   window.vizhub = {};
 
