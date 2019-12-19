@@ -14,7 +14,7 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>VizHub</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
     <style>
       /* font-face does not work well in CSS-in-js (causes multiple fetches). */
       @font-face {
@@ -78,6 +78,12 @@
       a {
         color: #3866e9;
         text-decoration: none;
+      }
+
+      .viz-viewer-description img {
+        width: 100%;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+        border-radius: 3px;
       }
     </style>
   </head>

@@ -33,4 +33,7 @@ export const switchToPrivate = my => async () => {
 
   // Wait some time to ensure the change was passed to backend fia WebSocket.
   await new Promise(resolve => setTimeout(resolve, 100));
+
+  // Close the modal.
+  await (await my.page.waitFor( '.test-privacy-dialog-close')).click();
 };

@@ -3,6 +3,7 @@ import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Centering } from '../styles';
 import { HomePageDataProvider } from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
+import { Banner } from './Banner';
 import { Vizzes } from './Vizzes';
 
 export const HomePage = () => (
@@ -10,6 +11,7 @@ export const HomePage = () => (
     <Wrapper>
       <Content>
         <NavBar />
+        <Banner />
         <Centering>
           <Vizzes />
         </Centering>
