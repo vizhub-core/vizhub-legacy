@@ -5,6 +5,7 @@ import {
   Left,
   Right,
   Message,
+  MessageTinyText,
   MessageSmallText,
   MessageLargeText,
   MessageList,
@@ -64,6 +65,10 @@ export const Banner = () => (
             </li>
           </MessageList>
         </MessageSmallText>
+        <MessageTinyText>
+          Problems with VizHub 2.0? Switch back to the{' '}
+          <MessageLink href="https://v1.vizhub.com">old version</MessageLink>.
+        </MessageTinyText>
       </Message>
     </Right>
   </Wrapper>
