@@ -90,7 +90,7 @@
       // Redirect users from 'beta.vizhub.com' to 'vizhub.com'.
       // Migrate fullscreen URLs from VizHub 1.0 to VizHub 2.0.
       const isBeta = window.location.host === 'beta.vizhub.com';
-      const isFull = window.location.host.indexOf('/fullscreen') !== -1;
+      const isFull = window.location.href.indexOf('/fullscreen') !== -1;
       if (isBeta || isFull) {
         window.location.replace(window.location.href
           .replace('beta.vizhub.com', 'vizhub.com')
