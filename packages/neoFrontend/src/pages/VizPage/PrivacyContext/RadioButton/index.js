@@ -14,7 +14,11 @@ export const RadioButton = ({ value, className }) => {
   const isActive = value === currentValue;
 
   return (
-    <Wrapper onClick={onClick} className={className} data-test-is-active={isActive}>
+    <Wrapper
+      onClick={onClick}
+      className={className}
+      data-test-is-active={isActive}
+    >
       <RadioButtonSVG isActive={isActive} />
       <Label>{value}</Label>
     </Wrapper>
