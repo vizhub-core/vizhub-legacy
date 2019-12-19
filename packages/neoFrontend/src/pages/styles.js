@@ -33,8 +33,7 @@ export const Button = styled.div`
   width: 232px;
   height: 36px;
   border-radius: 6px;
-  border: solid 1px #161514;
-
+  border: solid 1px ${props => props.theme.dark};
   font-size: 12px;
   color: ${props => props.theme.dark};
   text-decoration: none;
