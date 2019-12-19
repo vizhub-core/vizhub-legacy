@@ -208,6 +208,12 @@ cd ../imageGenerationService/
 pm2 start --name image-generation-service npm -- start
 ```
 
+To update environment variables:
+
+```
+pm2 restart all --update-env
+```
+
 # Database Server
 
 If the MongoDB database lives in a separate machine, you'll need to do the following:
