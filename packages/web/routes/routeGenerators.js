@@ -1,4 +1,4 @@
-export const absolute = relative => 'https://vizhub.com' + relative;
+export const absolute = relative => 'https://v1.vizhub.com' + relative;
 
 export const thumbnailUrl = id => `/api/visualization/thumbnail/${id}.png`;
 export const previewUrl = id => `/api/visualization/preview/${id}.png`;
