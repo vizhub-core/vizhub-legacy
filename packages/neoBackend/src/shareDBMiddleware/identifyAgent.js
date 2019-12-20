@@ -8,8 +8,6 @@ export const identifyAgent = (request, done) => {
     if (cookie) {
       const { vizHubJWT } = parse(cookie);
 
-      console.log(JSON.stringify(parse(cookie, null, 2)));
-
       // and the user is authenticated,
       // expose the user id to downstream middleware via agent.session.
       if (vizHubJWT) {

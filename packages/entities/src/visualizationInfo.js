@@ -28,5 +28,12 @@ export class VisualizationInfo extends DocumentInfo {
     //  - userId - the ID of the user whose vote this is
     //  - timestamp - the unix timestamp at which the vote was cast.
     this.upvotes = data.upvotes;
+
+    // A value that determines the privacy level of this viz.
+    // Possible values include:
+    //  - undefined or null means public visibility
+    //  - "public" also means public visibility
+    //  - "private" means visible only to collaborators
+    this.privacy = data.privacy;
   }
 }
