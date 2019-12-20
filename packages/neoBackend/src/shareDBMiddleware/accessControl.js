@@ -2,8 +2,6 @@
 //const { isIncrementViewCount } = require('../db/accessors')
 
 export const accessControl = (request, done) => {
-  console.log('inside accessControl');
-  console.log(request);
   // Unpack the ShareDB request object.
   const {
     agent: { isServer, userId },

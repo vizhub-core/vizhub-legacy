@@ -3,16 +3,8 @@ import { getUserIDFromJWT } from 'vizhub-controllers';
 
 export const identifyAgent = (request, done) => {
   // If the connection is coming from the browser,
-  console.log('request.req:');
-  console.log(request.req);
   if (request.req) {
     const cookie = request.req.headers.cookie;
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("Cookie report:")
-    console.log(cookie);
     if (cookie) {
       const { vizHubJWT } = parse(cookie);
 
@@ -24,10 +16,6 @@ export const identifyAgent = (request, done) => {
         request.agent.userId = getUserIDFromJWT(vizHubJWT);
       }
     }
-    console.log("");
-    console.log("");
-    console.log("");
-    console.log("");
   } else {
     // Otherwise set a flag that clarifies that
     // the connection is coming from the server (e.g. for creating User entries).
