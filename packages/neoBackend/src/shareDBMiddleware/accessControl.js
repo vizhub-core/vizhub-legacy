@@ -10,8 +10,6 @@ export const accessControl = (request, done) => {
     op
   } = request;
 
-  console.log(vizInfo);
-
   // Let the server do whatever the fuck it wants.
   if (isServer) {
     return done();
