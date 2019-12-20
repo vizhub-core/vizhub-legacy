@@ -5,10 +5,12 @@ import {
   Left,
   Right,
   Message,
+  MessageTinyText,
   MessageSmallText,
   MessageLargeText,
   MessageList,
-  MessageLink
+  MessageLink,
+  MessageButton
 } from './styles';
 export const Banner = () => (
   <Wrapper>
@@ -18,6 +20,13 @@ export const Banner = () => (
         <MessageSmallText>Teach, learn, & practice</MessageSmallText>
         <MessageLargeText>Data Visualization</MessageLargeText>
         <MessageSmallText>using Web technologies.</MessageSmallText>
+        <a
+          href="https://datavis.tech/vizhub/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MessageButton>Learn more</MessageButton>
+        </a>
       </Message>
     </Left>
     <Right>
@@ -27,20 +36,11 @@ export const Banner = () => (
           <MessageList>
             <li>
               <MessageLink
-                href="https://www.kickstarter.com/projects/curran/vizhub-launch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                VizHub Launch Kickstarter
-              </MessageLink>
-            </li>
-            <li>
-              <MessageLink
                 href="https://discourse.vizhub.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                User Forum
+                VizHub User Forum
               </MessageLink>
             </li>
             <li>
@@ -62,8 +62,21 @@ export const Banner = () => (
                 Datavis 2020 Launch Subscription
               </MessageLink>
             </li>
+            <li>
+              <MessageLink
+                href="https://www.kickstarter.com/projects/curran/vizhub-launch"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VizHub Launch Kickstarter
+              </MessageLink>
+            </li>
           </MessageList>
         </MessageSmallText>
+        <MessageTinyText>
+          Problems with VizHub 2.0? Switch back to the{' '}
+          <MessageLink href="https://v1.vizhub.com">old version</MessageLink>.
+        </MessageTinyText>
       </Message>
     </Right>
   </Wrapper>
