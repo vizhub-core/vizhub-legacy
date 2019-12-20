@@ -6,8 +6,11 @@ export const accessControl = (request, done) => {
   const {
     agent: { isServer, userId },
     owner,
+    vizInfo,
     op
   } = request;
+
+  console.log(vizInfo);
 
   // Let the server do whatever the fuck it wants.
   if (isServer) {
