@@ -3,6 +3,8 @@ import { getUserIDFromJWT } from 'vizhub-controllers';
 
 export const identifyAgent = (request, done) => {
   // If the connection is coming from the browser,
+  console.log('request.req:');
+  console.log(request.req);
   if (request.req) {
     const cookie = request.req.headers.cookie;
     console.log("");
