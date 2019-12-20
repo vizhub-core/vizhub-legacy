@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Z_BELOW } from '../../../styles';
+import { Button } from '../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -38,6 +39,11 @@ export const Message = styled.div`
   text-align: center;
 `;
 
+export const MessageTinyText = styled.div`
+  font-size: 10px;
+  font-weight: 500;
+`;
+
 export const MessageSmallText = styled.div`
   font-size: 16.8px;
   font-weight: 600;
@@ -58,4 +64,11 @@ export const MessageList = styled.ul`
 export const MessageLink = styled.a`
   color: white;
   text-decoration: underline;
+`;
+
+export const MessageButton = styled(Button)`
+  margin-top: 30px;
+  border: solid 1px ${props => props.theme.attentionGrabber};
+  font-size: 15px;
+  color: white;
 `;

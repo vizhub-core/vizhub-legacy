@@ -2,6 +2,7 @@
 git pull
 lerna bootstrap
 cd packages/neoFrontend/
-rm -rf ../neoBackend/build/
 npm run build
+rm -rf ../neoBackend/build/
+cp -r build ../neoBackend/build
 pm2 restart all
