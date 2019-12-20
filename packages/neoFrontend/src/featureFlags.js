@@ -4,7 +4,7 @@ export const showCreatedDate = false;
 export const showHeadPullRequest = false;
 export const showHeadShare = false;
 export const showHeadSettings = false;
-export const showEditorSettings = false;
+export const showEditorSettings = process.env.NODE_ENV === 'development';
 export const showVideoThumbnail = false;
 export const showVisualEditor = false;
 export const showMobileConsole = false;

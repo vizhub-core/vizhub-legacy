@@ -3,6 +3,7 @@ import { authentication } from './authentication';
 import { vizCreation } from './vizCreation';
 import { editorStates } from './editorStates';
 import { realtime } from './realtime';
+import { privacy } from './privacy';
 
 // Testing technique inspired by https://medium.com/@dpark/ui-testing-with-puppeteer-and-mocha-8a5c6feb3407
 //
@@ -22,9 +23,12 @@ describe('VizHub End to End Tests', () => {
 
   describe('Viz Creation', vizCreation(my));
 
-  describe('Editor States', editorStates(my));
+  // Temp skip for privacy testing.
+  describe.skip('Editor States', editorStates(my));
 
-  describe('Real Time', realtime(my));
+  describe.skip('Real Time', realtime(my));
+
+  describe('Privacy', privacy(my));
 
   describe('Tear Down', () => {
     it('should close', async () => {

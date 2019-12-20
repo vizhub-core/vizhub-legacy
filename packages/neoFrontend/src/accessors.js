@@ -100,6 +100,17 @@ export const descriptionChangeOp = (
 ) =>
   textDiffOp(oldDescription, newDescription, ['description'], realtimeModules);
 
+export const privacyChangeOp = (oldPrivacy, newPrivacy, realtimeModules) =>
+  // Initialize the privacy field if needed.
+  oldPrivacy
+    ? textDiffOp(oldPrivacy, newPrivacy, ['privacy'], realtimeModules)
+    : [
+        {
+          p: ['privacy'],
+          oi: newPrivacy
+        }
+      ];
+
 export const upvoteOp = (userId, upvotes) => {
   const op = [];
 
@@ -144,3 +155,6 @@ export const upvoteOp = (userId, upvotes) => {
 
 export const getUserName = user => user && user.userName;
 export const getUserFullName = user => user && (user.fullName || user.userName);
+
+const defaultVizPrivacy = 'public';
+export const getVizPrivacy = viz => viz.info.privacy || defaultVizPrivacy;
