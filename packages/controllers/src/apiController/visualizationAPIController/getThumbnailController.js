@@ -1,5 +1,7 @@
 import { GetThumbnail } from 'vizhub-use-cases';
 
+const minutes = 60;
+
 export const getThumbnailController = (expressApp, gateways) => {
   const getThumbnail = new GetThumbnail(gateways);
   expressApp.get('/api/visualization/thumbnail/:id.png', async (req, res) => {
@@ -13,7 +15,8 @@ export const getThumbnailController = (expressApp, gateways) => {
 
       res.writeHead(200, {
         'Content-Type': 'image/png',
-        'Content-Length': img.length
+        'Content-Length': img.length,
+        'Cache-Control': `max-age=${10 * minutes}`
       });
 
       res.end(img);
