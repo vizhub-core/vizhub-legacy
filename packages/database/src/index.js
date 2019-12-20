@@ -22,7 +22,7 @@ import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
 // The exposure of this outside the database package doesn't quite feel right,
 // but not sure what a better solution would be.
 // TODO think about architectural choices around this.
-export { DOCUMENT_CONTENT, DOCUMENT_INFO } from './collectionName';
+export { DOCUMENT_CONTENT, DOCUMENT_INFO, USER, THUMBNAIL_IMAGES, PREVIEW_IMAGES } from './collectionName';
 export { fetchShareDBDoc } from './fetchShareDBDoc';
 
 export const Database = connection => ({
