@@ -45,7 +45,7 @@ Paste the following:
 
 ```
 upstream app_vizhub {
-  server 127.0.0.1:3000;
+  server 127.0.0.1:4000;
   keepalive 8;
 }
 
@@ -60,6 +60,9 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_set_header X-NginX-Proxy true;
+    
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
 
     proxy_pass http://app_vizhub/;
     proxy_redirect off;
@@ -75,6 +78,57 @@ tail /var/log/nginx/error.log
 ```
 
 Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
+
+After certbot, should look something like this working config:
+
+```
+upstream app_vizhub {
+  server 127.0.0.1:4000;
+  keepalive 8;
+}
+
+server {
+  server_name vizhub.com;
+  access_log /var/log/nginx/vizhub.log;
+
+  location / {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_pass http://app_vizhub/;
+    proxy_redirect off;
+  }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/vizhub.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/vizhub.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+
+server {
+    if ($host = vizhub.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name vizhub.com;
+    return 404; # managed by Certbot
+
+
+}
+
+```
 
 Install MongoDB (see also [Install MongoDB Community Edition on Ubuntu](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)):
 
