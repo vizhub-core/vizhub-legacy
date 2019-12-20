@@ -37,6 +37,7 @@ export const Vizzes = () => {
       <VizPreviews>
         {homePageVisualizationInfos.map(vizInfo => (
           <VizPreview
+            key={vizInfo.id}
             vizInfo={vizInfo}
             ownerUser={getUser(vizInfo.owner)}
             openEditor={me ? vizInfo.owner === me.id : false}

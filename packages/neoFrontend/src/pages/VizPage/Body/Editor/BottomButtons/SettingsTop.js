@@ -1,9 +1,10 @@
 import React from 'react';
 import { TopList, TopListItem } from './styles';
 
-export const SettingsTop = () => (
+export const SettingsTop = ({ onPrivacyClick }) => (
   <TopList>
-    <TopListItem>height</TopListItem>
-    <TopListItem>anyone can edit</TopListItem>
+    <TopListItem onClick={onPrivacyClick} className="test-privacy">
+      privacy
+    </TopListItem>
   </TopList>
 );

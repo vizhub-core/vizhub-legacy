@@ -2,10 +2,17 @@ import React from 'react';
 import { CloseSVG } from '../svg';
 import { Wrapper, Box, CloseIcon, Message } from './styles';
 
-export const Modal = ({ children, onClose }) => (
+const stopPropagation = event => event.stopPropagation();
+
+export const Modal = ({ children, onClose, closeButtonClassName }) => (
   <Wrapper onClick={onClose}>
-    <Box>
-      <CloseIcon onClick={onClose} rightmost={true} leftmost={true}>
+    <Box onClick={stopPropagation}>
+      <CloseIcon
+        onClick={onClose}
+        rightmost={true}
+        leftmost={true}
+        className={closeButtonClassName}
+      >
         <CloseSVG />
       </CloseIcon>
       {children}

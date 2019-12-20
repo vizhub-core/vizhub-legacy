@@ -9,7 +9,10 @@ export const VizPageDataProvider = ({ fallback, children }) => {
   const { setError } = useContext(ErrorContext);
 
   if (vizPageData && vizPageData.error) {
-    setError(new Error('Visualization not found.'));
+    setError({
+      message: 'Visualization not found.',
+      className: 'test-viz-not-found'
+    });
     return null;
   }
 

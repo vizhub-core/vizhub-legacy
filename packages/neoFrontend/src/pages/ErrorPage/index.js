@@ -1,4 +1,6 @@
 import React from 'react';
 import { Message } from './styles';
 
-export const ErrorPage = ({ error }) => <Message>{error.message}</Message>;
+export const ErrorPage = ({ error }) => (
+  <Message className={error.className}>{error.message}</Message>
+);

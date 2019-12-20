@@ -8,7 +8,7 @@ export const VizPreviews = styled.div`
   justify-content: center;
 `;
 
-export const Wrapper = styled(Link)`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 12px;
@@ -16,7 +16,7 @@ export const Wrapper = styled(Link)`
 `;
 
 // Inspired by https://vega.github.io/vega/
-export const ImageLink = styled.div`
+export const ImageLink = styled(Link)`
   width: 230px;
   height: 120px;
   background-position: left top;
@@ -47,7 +47,7 @@ export const VizPreviewFooter = styled(Footer)`
   width: 230px;
 `;
 
-export const VizPreviewTitle = styled.div`
+export const VizPreviewTitle = styled(Link)`
   font-size: 14px;
   padding-bottom: 4px;
   white-space: nowrap;
@@ -55,4 +55,5 @@ export const VizPreviewTitle = styled.div`
   text-overflow: ellipsis;
   width: 100%;
   text-align: left;
+  color: currentcolor;
 `;
