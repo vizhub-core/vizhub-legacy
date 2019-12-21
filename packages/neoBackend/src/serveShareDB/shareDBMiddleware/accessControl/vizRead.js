@@ -18,15 +18,14 @@ export const vizRead = (request, callback) => {
     return callback();
   }
 
-  //if (collection === DOCUMENT_CONTENT || collection === DOCUMENT_INFO){
-  //  console.log('reading a viz');
-  //  console.log(vizInfo);
-  //  if (vizInfo.privacy === 'private') {
-  //    return callback(new Error('Private viz.'));
-  //  }
-  //}
+  if (collection === DOCUMENT_CONTENT || collection === DOCUMENT_INFO){
+    console.log('reading a viz');
+    console.log(vizInfo);
+    if (vizInfo.privacy === 'private') {
+      return callback(new Error('Private viz.'));
+    }
+  }
 
-  return callback('This error does not appear');
-  //return callback();
+  return callback();
 
 };
