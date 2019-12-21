@@ -5,7 +5,8 @@ import {
 } from 'vizhub-database';
 import { VisualizationInfo } from 'vizhub-entities';
 
-// Populates request.vizInfo.
+// Populates request.vizInfo with the VisualitionInfo document
+// corresponding to the document to which the op is being applied.
 export const getVizInfo = connection => (request, done) => {
   const { collection, snapshot, snapshots, op, id } = request;
 
@@ -17,9 +18,7 @@ export const getVizInfo = connection => (request, done) => {
   // Query for viz info in case of op agains a viz content document.
   if (collection === DOCUMENT_CONTENT) {
     // Query for corresponding info document
-    // TODO work on the case of fetching multiple documents.
-    const primaryId = id || snapshots[0].id;
-    fetchShareDBDoc(DOCUMENT_INFO, primaryId, connection).then(infoDoc => {
+    fetchShareDBDoc(DOCUMENT_INFO, id, connection).then(infoDoc => {
       request.vizInfo = new VisualizationInfo(infoDoc.data);
       done();
     });

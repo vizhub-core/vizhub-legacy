@@ -1,6 +1,6 @@
-import ShareDB from '@teamwork/sharedb';
-import ShareDBMingoMemory from '@teamwork/sharedb-mingo-memory';
-import ShareDBMongo from '@teamwork/sharedb-mongo';
+import ShareDB from 'sharedb';
+import ShareDBMingoMemory from 'sharedb-mingo-memory';
+import ShareDBMongo from 'sharedb-mongo';
 import { type as json0 } from '@datavis-tech/ot-json0';
 
 // Spoof json0 name and URI to match existing documents from VizHub 1.0.
