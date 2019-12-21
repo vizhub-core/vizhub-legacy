@@ -5,9 +5,9 @@ export const vizWrite = (request, callback) => {
   // Unpack the ShareDB request object.
   const {
     agent: { isServer, userId },
-    vizInfo,
     op,
-    collection
+    collection,
+    snapshot
   } = request;
 
   // Only vet ops against viz info and content documents.
@@ -26,7 +26,14 @@ export const vizWrite = (request, callback) => {
     return callback('You must be logged in to edit.');
   }
 
-  getVizInfo(request, (error, vizInfo) => {
+  // Do nothing in the case of create and delete ops.
+  // TODO check that owner matches in case of create ops
+  // TODO check that owner matches in case of delete ops
+  if (op && (op.create || op.del)) {
+    return callback();
+  }
+
+  getVizInfo(collection, snapshot, (error, vizInfo) => {
     if(error) return callback(error);
 
     // Let anyone add or remove their own upvotes to any viz.
