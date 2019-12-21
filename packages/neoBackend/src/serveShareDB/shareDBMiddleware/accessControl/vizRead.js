@@ -1,7 +1,7 @@
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
 import { getVizInfo } from './getVizInfo';
 
-const vizReadAsync = async (request) => {
+const vizReadAsync = async request => {
 
   // Unpack the ShareDB request object.
   const {
@@ -32,5 +32,5 @@ const vizReadAsync = async (request) => {
 export const vizRead = (request, callback) => {
   vizReadAsync(request)
     .then(() => callback())
-    .catch(error => callback(error));
+    .catch(error => callback(error.message));
 };
