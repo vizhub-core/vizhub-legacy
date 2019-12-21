@@ -19,16 +19,19 @@ export const useShareDBDoc = (collection, id) => {
     // (don't want the user to see stale stuff).
     setVizContentDoc(null);
 
-    const doc = connection.get(collection, id, err => {
-      console.log('hered');
-    });
+    const doc = connection.get(collection, id);
+
     doc.on('error', onError);
 
     // Wait until subscribe finishes before passing this out,
     // so that downstream code can assume data is present
-    // and that submitOp will work.
-    doc.subscribe(() => {
-      setVizContentDoc(doc);
+    // and that submitOp will always work.
+    doc.subscribe(error => {
+      if(error){
+        onError(error);
+      } else {
+        setVizContentDoc(doc);
+      }
     });
 
     return () => {
