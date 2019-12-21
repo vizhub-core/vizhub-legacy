@@ -20,10 +20,11 @@ export const vizRead = (request, callback) => {
 
   if (collection === DOCUMENT_CONTENT || collection === DOCUMENT_INFO){
     console.log('reading a viz');
-    console.log(vizInfo);
-    if (vizInfo.privacy === 'private') {
-      return callback(new Error('Private viz.'));
-    }
+    return callback();
+    //console.log(vizInfo);
+    //if (vizInfo.privacy === 'private') {
+    //  return callback(new Error('Private viz.'));
+    //}
   }
 
   return callback();
