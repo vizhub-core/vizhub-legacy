@@ -1,6 +1,8 @@
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
+import { getVizInfo } from './getVizInfo';
 
-export const vizRead = (request, callback) => {
+const vizReadAsync = async (request) => {
+
   // Unpack the ShareDB request object.
   const {
     agent: { isServer, userId },
@@ -10,17 +12,25 @@ export const vizRead = (request, callback) => {
 
   // Only vet ops against viz info and content documents.
   if (collection !== DOCUMENT_CONTENT && collection === DOCUMENT_INFO){
-    return callback();
+    return;
   }
 
   // Let the server do whatever it wants, because
   // all interactions there are mediated by interactors.
   if (isServer) {
-    return callback();
+    return;
   }
 
-  console.log('reading a viz from the client');
+  return getVizInfo(collection, snapshots[0]).then(vizInfo => {
+    console.log('reading a viz from the client');
+    console.log(vizInfo);
+    return;
+  });
 
-  return callback();
+};
 
+export const vizRead = (request, callback) => {
+  vizReadAsync(request)
+    .then(() => callback())
+    .catch(error => callback(error));
 };
