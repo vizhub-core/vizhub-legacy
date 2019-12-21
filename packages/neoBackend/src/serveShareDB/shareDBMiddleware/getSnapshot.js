@@ -1,4 +1,5 @@
 // Extracts the document snapshot from the ShareDB request.
+// TODO is this really the way?
 export const getSnapshot = (request, callback) => {
   const { snapshot, snapshots } = request;
 
