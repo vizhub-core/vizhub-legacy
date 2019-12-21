@@ -1,6 +1,3 @@
-//const get = require('lodash/get')
-//const { isIncrementViewCount } = require('../db/accessors')
-
 export const accessControl = (request, done) => {
   // Unpack the ShareDB request object.
   const {
@@ -10,7 +7,8 @@ export const accessControl = (request, done) => {
     op
   } = request;
 
-  // Let the server do whatever the fuck it wants.
+  // Let the server do whatever it wants, because
+  // all interactions there are mediated by interactors.
   if (isServer) {
     return done();
   }

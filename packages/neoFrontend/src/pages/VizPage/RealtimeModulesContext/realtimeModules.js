@@ -1,6 +1,6 @@
 // These modules required for real-time features
 // are split out into a separate chunk and loaded dynamically.
-import ShareDB, { Connection } from '@teamwork/sharedb/lib/client';
+import ShareDB, { Connection } from 'sharedb/lib/client';
 import { type as json0 } from '@datavis-tech/ot-json0';
 import jsondiff from 'json0-ot-diff';
 import diffMatchPatch from 'diff-match-patch';
