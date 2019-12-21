@@ -9,7 +9,7 @@
   "dependencies": {
     "@datavis-tech/ot-json0": "^2.1.0",
     "mongodb": "^3.3.3",
-    "sharedb": "^1.1.0",
+    "sharedb": "^1.0.0",
     "sharedb-mingo-memory": "^1.1.1",
     "sharedb-mongo": "^1.0.0-beta.11",
     "vizhub-database": "1",

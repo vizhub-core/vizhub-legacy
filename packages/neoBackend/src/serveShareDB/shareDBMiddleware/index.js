@@ -9,6 +9,6 @@ export const shareDBMiddleware = shareDB => {
   shareDB.use('apply', getVizInfo(getConnection()));
   shareDB.use('apply', vizWrite);
 
-  shareDB.use('readSnapshots', getVizInfo(getConnection()));
+  //shareDB.use('readSnapshots', getVizInfo(getConnection()));
   shareDB.use('readSnapshots', vizRead);
 };
