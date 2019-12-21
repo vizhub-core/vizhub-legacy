@@ -8,7 +8,7 @@ import { VisualizationInfo } from 'vizhub-entities';
 // Populates request.vizInfo with the VisualitionInfo document
 // corresponding to the document to which the op is being applied.
 export const getVizInfo = connection => (request, done) => {
-  const { collection, snapshot, snapshots, op, id } = request;
+  const { collection, snapshot, snapshots, op } = request;
 
   // Do nothing in the case of create and delete ops.
   if (op && (op.create || op.del)) {
@@ -17,6 +17,18 @@ export const getVizInfo = connection => (request, done) => {
 
   // Query for viz info in case of op agains a viz content document.
   if (collection === DOCUMENT_CONTENT) {
+    let id;
+
+    if (snapshot) {
+      id = snapshot.id;
+    } else if (snapshots) {
+      if(snapshots.length === 1){
+        id = snapshots[0].id;
+      } else {
+        return done('Case of multiple content documents not handled')
+      }
+    }
+
     // Query for corresponding info document
     fetchShareDBDoc(DOCUMENT_INFO, id, connection).then(infoDoc => {
       request.vizInfo = new VisualizationInfo(infoDoc.data);
