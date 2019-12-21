@@ -21,12 +21,14 @@ const vizReadAsync = async request => {
     return;
   }
 
-  return getVizInfo(collection, snapshots[0]).then(vizInfo => {
-    console.log('reading a viz from the client');
-    console.log(vizInfo);
-    return;
-  });
-
+  return Promise.all(snapshots.map(async snapshot => {
+    const vizInfo = await getVizInfo(collection, snapshot)
+    if(vizInfo.privacy === 'private'){
+      if (vizInfo.owner !== userId) {
+        throw new Error('This visualization is private.');
+      }
+    }
+  }));
 };
 
 export const vizRead = (request, callback) => {
