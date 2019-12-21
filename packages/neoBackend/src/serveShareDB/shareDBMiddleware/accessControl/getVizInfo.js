@@ -1,14 +1,14 @@
+import { VisualizationInfo } from 'vizhub-entities';
+import { getConnection } from 'vizhub-server-gateways';
 import {
   DOCUMENT_CONTENT,
   DOCUMENT_INFO,
   fetchShareDBDoc
 } from 'vizhub-database';
-import { VisualizationInfo } from 'vizhub-entities';
-import { getSnapshot } from './getSnapshot';
 
 // Populates request.vizInfo with the VisualitionInfo document
 // corresponding to the document to which the op is being applied.
-export const getVizInfo = connection => (request, callback) => {
+export const getVizInfo = (request, callback) => {
   const { collection, op, snapshot } = request;
   const { id } = snapshot;
 
@@ -21,9 +21,8 @@ export const getVizInfo = connection => (request, callback) => {
   if (collection === DOCUMENT_CONTENT) {
 
     // Query for corresponding info document
-    return fetchShareDBDoc(DOCUMENT_INFO, id, connection).then(infoDoc => {
-      request.vizInfo = new VisualizationInfo(infoDoc.data);
-      callback();
+    return fetchShareDBDoc(DOCUMENT_INFO, id, getConnection()).then(infoDoc => {
+      callback(null, new VisualizationInfo(infoDoc.data));
     });
   }
   
