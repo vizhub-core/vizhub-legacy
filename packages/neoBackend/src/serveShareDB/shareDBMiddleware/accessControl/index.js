@@ -2,7 +2,6 @@ export const accessControl = (request, done) => {
   // Unpack the ShareDB request object.
   const {
     agent: { isServer, userId },
-    owner,
     vizInfo,
     op
   } = request;
@@ -59,11 +58,16 @@ export const accessControl = (request, done) => {
   }
 
   // Don't let people edit other people's stuff.
-  if (owner !== userId) {
+  if (vizInfo.owner !== userId) {
     return done('This visualization is unforked. Fork to save edits.');
   }
 
-  done();
+  // Explicitly whitelist conditions for allowed ops.
+  if (vizInfo.owner === userId) {
+    return done();
+  }
+
+  done('Case not handled');
 
   // TODO this might be useful when we add collaborators in future.
   //// Check that the user is either the owner or a collaborator.
