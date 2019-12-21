@@ -9,9 +9,6 @@ export const vizRead = (request, callback) => {
     snapshots
   } = request;
 
-  console.log('isServer:');
-  console.log(isServer);
-
   // Let the server do whatever it wants, because
   // all interactions there are mediated by interactors.
   if (isServer) {
