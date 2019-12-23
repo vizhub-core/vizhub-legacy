@@ -16,6 +16,9 @@ export const openPage = my => async () => {
   const response = await retry(() => page.goto('http://localhost:3000'), 2000);
   assert.equal(response.status(), 200);
 
+  console.log('browser');
+  console.log(browser);
+
   my.browser = browser;
   my.page = page;
 };
