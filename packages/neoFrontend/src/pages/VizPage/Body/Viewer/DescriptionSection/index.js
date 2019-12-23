@@ -18,6 +18,7 @@ import {
   VizLink
 } from './styles';
 import { Author } from '../../../../../Author';
+import { responsiveYouTube } from './responsiveYouTube';
 
 const formatTimestamp = timestamp =>
   toDate(timestamp).toLocaleString(undefined, {
@@ -40,6 +41,12 @@ export const DescriptionSection = ({
   const lastUpdated = useMemo(
     () => formatTimestamp(vizInfo.lastUpdatedTimestamp),
     [vizInfo.lastUpdatedTimestamp]
+  );
+  
+  const description = vizInfo.description;
+  const descriptionHTML = useMemo(
+    () => responsiveYouTube(marked(description)),
+    [description]
   );
 
   return (
@@ -72,7 +79,7 @@ export const DescriptionSection = ({
         <Description
           className="viz-viewer-description"
           size={size}
-          dangerouslySetInnerHTML={{ __html: marked(vizInfo.description) }}
+          dangerouslySetInnerHTML={{ __html: descriptionHTML }}
         />
       </Left>
       {showVideoThumbnail ? (
