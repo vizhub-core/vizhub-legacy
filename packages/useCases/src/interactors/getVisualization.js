@@ -12,7 +12,6 @@ export class GetVisualization {
   }
 
   async execute(requestModel) {
-    console.log(requestModel);
     if (!requestModel.id) {
       throw new Error(i18n('errorNoId'));
     }
