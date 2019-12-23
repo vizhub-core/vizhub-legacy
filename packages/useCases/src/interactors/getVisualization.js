@@ -20,9 +20,19 @@ export class GetVisualization {
       id: requestModel.id
     });
 
-    const { user } = await this.getUser.execute({
+    const owner = (await this.getUser.execute({
       id: visualization.info.owner
-    });
+    })).user;
+
+    const userId = requestModel.user;
+    const vizInfo = visualization.info;
+
+    // Only allow owners to get private documents.
+    if(vizInfo.privacy === 'private'){
+      if (vizInfo.owner !== userId) {
+        throw new Error('This visualization is private.');
+      }
+    }
 
     let forkedFromVisualizationInfo;
     let forkedFromVisualizationOwnerUserName;
@@ -52,7 +62,7 @@ export class GetVisualization {
 
     return {
       visualization,
-      ownerUser: user,
+      ownerUser: owner,
       forkedFromVisualizationInfo,
       forkedFromVisualizationOwnerUserName
     };
