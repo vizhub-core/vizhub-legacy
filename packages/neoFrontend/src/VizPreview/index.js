@@ -10,7 +10,7 @@ import {
 
 export { VizPreviews } from './styles';
 
-export const VizPreview = ({ vizInfo, ownerUser, openEditor }) => {
+export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
   const { id, title } = vizInfo;
   const link = `/${getUserName(ownerUser)}/${id}${
     openEditor ? '?edit=files' : ''
