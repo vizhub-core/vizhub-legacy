@@ -14,7 +14,7 @@ export const Body = () => {
         <NavBar />
         <VizPreviews>
           {visualizationInfos.map(vizInfo => (
-            <VizPreview key={vizInfo.id} vizInfo={vizInfo} openEditor={true} ownerUser={user} />
+            <VizPreview key={vizInfo.id} vizInfo={vizInfo} ownerUser={user} />
           ))}
         </VizPreviews>
       </Content>
