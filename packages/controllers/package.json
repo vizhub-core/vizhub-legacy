@@ -10,14 +10,15 @@
   "author": "Curran Kelleher",
   "license": "MIT",
   "dependencies": {
-    "express-async-handler": "^1.1.4",
-    "jsonwebtoken": "^8.5.1",
-    "node-fetch": "^2.6.0",
     "diff-match-patch": "^1.0.4",
+    "express-async-handler": "^1.1.4",
     "json0-ot-diff": "^1.0.5",
-    "vizhub-use-cases": "1",
+    "jsonwebtoken": "^8.5.1",
+    "marked": "^0.8.0",
+    "node-fetch": "^2.6.0",
+    "vizhub-entities": "1",
     "vizhub-presenters": "1",
-    "vizhub-entities": "1"
+    "vizhub-use-cases": "1"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
