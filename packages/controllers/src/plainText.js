@@ -4,9 +4,8 @@ import marked from 'marked';
 // plain text with no line breaks.
 const PlainTextRenderer = new marked.Renderer();
 
-const textArg = (href, title, text) => text;
-PlainTextRenderer.link = textArg;
-PlainTextRenderer.image = textArg;
+PlainTextRenderer.link = (href, title, text) => text;
+PlainTextRenderer.image = () => '';
 
 const space = () => ' ';
 PlainTextRenderer.hr = space;
