@@ -20,7 +20,7 @@ import { Centering } from '../../../styles';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { VizContext } from '../../VizContext';
 import { useListener } from '../useListener';
-import { Wrapper, Scroller, ViewerContent, HorizontalRule } from './styles';
+import { Wrapper, Scroller, ViewerContent, HorizontalRule, ViewerFooter } from './styles';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
@@ -116,6 +116,9 @@ export const Viewer = () => {
               size={size}
             />
             <HorizontalRule />
+            <ViewerFooter title="All public code in VizHub is released under the MIT License.">
+              MIT Licensed
+            </ViewerFooter>
           </ViewerContent>
         </Centering>
       </Scroller>

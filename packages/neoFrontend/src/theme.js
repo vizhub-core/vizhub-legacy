@@ -52,7 +52,8 @@ export const theme = {
   editorEntryIndentation: 10,
   editorEntryLeftBorderSize: 5,
   borderRadiusSmall: 3,
-  borderRadiusLarge: 6
+  borderRadiusLarge: 6,
+  veryLightPink: '#c0c0c0'
 };
 theme.userMenuOverlayForeground = theme.dark;
 theme.bottomButtonBackground = theme.editorSectionActiveColor;
