@@ -1,6 +1,4 @@
-# VizHub
-
-https://vizhub.com
+# [VizHub](https://vizhub.com)
 
 To set up your development environment:
 
