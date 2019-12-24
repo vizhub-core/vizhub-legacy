@@ -21,7 +21,7 @@ const gateways = serverGateways();
 jwtAuth(expressApp, gateways.userGateway);
 apiController(expressApp, gateways);
 
-serveFrontend(expressApp);
+serveFrontend(expressApp, gateways);
 
 const port = 4000;
 server.listen(port);
