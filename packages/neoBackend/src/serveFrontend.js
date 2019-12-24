@@ -1,5 +1,4 @@
 import express from 'express';
-
 import path from 'path';
 
 // Serve the frontend build for production deployment.
@@ -12,6 +11,11 @@ export const serveFrontend = app => {
     //  maxAge: '2 days'
     //})
   );
+
+  app.get('/:userName/:vizId', (req, res) => {
+    console.log('Serving a Viz page');
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  });
 
   // Always serve index.html, let React Router take care of the rest.
   app.get('*', (req, res) => {
