@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useCallback } from 'react';
 import { VizPreviews, VizPreview } from '../../../VizPreview';
-import { AuthContext } from '../../../authentication';
+//import { AuthContext } from '../../../authentication';
 import { LoadingScreen } from '../../../LoadingScreen';
 import { HomePageDataContext } from '../HomePageDataContext';
 import { Wrapper } from './styles';
@@ -16,7 +16,11 @@ export const Vizzes = () => {
     isFetchingNextPage
   } = useContext(HomePageDataContext);
 
-  const { me } = useContext(AuthContext);
+  // TODO we'll need to bring this back when we implement
+  // display of upvote counts on home page, to show the
+  // ones the logged in user voted on as black.
+  // https://discourse.vizhub.com/t/feature-request-show-upvote-count-in-viz-previews/105
+  //const { me } = useContext(AuthContext);
 
   useEffect(() => {
     const onScroll = () => {
@@ -40,7 +44,6 @@ export const Vizzes = () => {
             key={vizInfo.id}
             vizInfo={vizInfo}
             ownerUser={getUser(vizInfo.owner)}
-            openEditor={me ? vizInfo.owner === me.id : false}
           />
         ))}
       </VizPreviews>
