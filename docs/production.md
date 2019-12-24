@@ -297,8 +297,11 @@ Check the ratio of "fsUsedSize" to "fsTotalSize".
 To delete unnecessary data for ops on images:
 
 ```
-db.o_thumbnailImages.remove({})
-db.o_previewImages.remove({})
+db.stats()
+db.o_previewImages.stats()
+db.o_previewImages.drop()
+db.o_thumbnailImages.stats()
+db.o_thumbnailImages.drop()
 ```
 
 
