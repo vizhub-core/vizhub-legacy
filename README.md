@@ -22,7 +22,7 @@ To run the end-to-end tests (in another terminal):
 
 ```
 cd ../packages/neoCI
-npm test
+npm test # Beware: auth as CI test case is a bit brittle, fails sporadically
 ```
 
 These tests use [Puppeteer](https://github.com/puppeteer/puppeteer), which has some [system-level dependencies](https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#chrome-headless-doesnt-launch-on-unix) that need to be installed separately (OS-specific).
