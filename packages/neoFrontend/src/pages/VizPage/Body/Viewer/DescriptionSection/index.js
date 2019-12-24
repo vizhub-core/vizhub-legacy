@@ -42,7 +42,7 @@ export const DescriptionSection = ({
     () => formatTimestamp(vizInfo.lastUpdatedTimestamp),
     [vizInfo.lastUpdatedTimestamp]
   );
-  
+
   const description = vizInfo.description;
   const descriptionHTML = useMemo(
     () => responsiveYouTube(marked(description)),

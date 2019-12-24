@@ -35,5 +35,5 @@ export const switchToPrivate = my => async () => {
   await new Promise(resolve => setTimeout(resolve, 500));
 
   // Close the modal.
-  await (await my.page.waitFor( '.test-privacy-dialog-close')).click();
+  await (await my.page.waitFor('.test-privacy-dialog-close')).click();
 };

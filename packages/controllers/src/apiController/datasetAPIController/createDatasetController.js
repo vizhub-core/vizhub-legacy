@@ -1,5 +1,5 @@
 import { CreateDataset } from 'vizhub-use-cases';
-import { userIdFromReq } from '../userIdFromReq';
+import { userIdFromReq } from '../../userIdFromReq';
 
 export const createDatasetController = (expressApp, gateways) => {
   const createDataset = new CreateDataset(gateways);

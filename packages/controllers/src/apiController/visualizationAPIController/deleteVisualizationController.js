@@ -1,5 +1,5 @@
 import { DeleteVisualization } from 'vizhub-use-cases';
-import { userIdFromReq } from '../userIdFromReq';
+import { userIdFromReq } from '../../userIdFromReq';
 
 export const deleteVisualizationController = (expressApp, gateways) => {
   const deleteVisualization = new DeleteVisualization(gateways);

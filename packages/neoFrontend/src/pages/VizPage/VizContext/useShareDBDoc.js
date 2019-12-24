@@ -8,9 +8,12 @@ export const useShareDBDoc = (collection, id) => {
 
   const [vizContentDoc, setVizContentDoc] = useState(null);
 
-  const onError = useCallback(error => {
-    setWarning(error.message);
-  }, [setWarning]);
+  const onError = useCallback(
+    error => {
+      setWarning(error.message);
+    },
+    [setWarning]
+  );
 
   useEffect(() => {
     if (!connection) return;
@@ -27,7 +30,7 @@ export const useShareDBDoc = (collection, id) => {
     // so that downstream code can assume data is present
     // and that submitOp will always work.
     doc.subscribe(error => {
-      if(error){
+      if (error) {
         onError(error);
       } else {
         setVizContentDoc(doc);
