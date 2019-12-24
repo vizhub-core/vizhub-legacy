@@ -1,5 +1,5 @@
 import { ForkVisualization } from 'vizhub-use-cases';
-import { userIdFromReq } from '../userIdFromReq';
+import { userIdFromReq } from '../../userIdFromReq';
 
 export const forkVisualizationController = (expressApp, gateways) => {
   const forkVisualization = new ForkVisualization(gateways);

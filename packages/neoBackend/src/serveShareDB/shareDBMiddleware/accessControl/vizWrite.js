@@ -2,7 +2,6 @@ import { getVizInfo } from './getVizInfo';
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
 
 const vizWriteAsync = async request => {
-
   // Unpack the ShareDB request object.
   const {
     agent: { isServer, userId },
@@ -12,7 +11,7 @@ const vizWriteAsync = async request => {
   } = request;
 
   // Only vet ops against viz info and content documents.
-  if (collection !== DOCUMENT_CONTENT && collection === DOCUMENT_INFO){
+  if (collection !== DOCUMENT_CONTENT && collection === DOCUMENT_INFO) {
     return;
   }
 
@@ -88,7 +87,6 @@ const vizWriteAsync = async request => {
   }
 
   throw new Error('Case not handled');
-
 
   // TODO this might be useful when we add collaborators in future.
   //// Check that the user is either the owner or a collaborator.

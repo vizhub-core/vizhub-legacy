@@ -1,6 +1,12 @@
 //const get = require('lodash/get')
 //const { isIncrementViewCount } = require('../db/accessors')
-import { USER, THUMBNAIL_IMAGES, PREVIEW_IMAGES, DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
+import {
+  USER,
+  THUMBNAIL_IMAGES,
+  PREVIEW_IMAGES,
+  DOCUMENT_CONTENT,
+  DOCUMENT_INFO
+} from 'vizhub-database';
 
 export const accessControlRead = (request, done) => {
   // Unpack the ShareDB request object.
@@ -12,7 +18,7 @@ export const accessControlRead = (request, done) => {
     collection
   } = request;
 
-  if (collection === DOCUMENT_CONTENT || collection === DOCUMENT_INFO){
+  if (collection === DOCUMENT_CONTENT || collection === DOCUMENT_INFO) {
     if (vizInfo.privacy === 'private') {
       return done('Private viz.');
     }

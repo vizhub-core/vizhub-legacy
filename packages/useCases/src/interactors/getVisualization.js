@@ -28,7 +28,7 @@ export class GetVisualization {
     const vizInfo = visualization.info;
 
     // Only allow owners to get private documents.
-    if(vizInfo.privacy === 'private'){
+    if (vizInfo.privacy === 'private') {
       if (vizInfo.owner !== userId) {
         throw new Error('This visualization is private.');
       }
