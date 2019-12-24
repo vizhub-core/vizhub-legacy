@@ -11,5 +11,4 @@ export const privacy = my => () => {
 
   // TODO get this working.
   //it('should display viz not found if not authenticated', vizNotFound(my));
-
 };

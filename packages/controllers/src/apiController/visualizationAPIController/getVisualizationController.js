@@ -1,5 +1,5 @@
 import { GetVisualization } from 'vizhub-use-cases';
-import { userIdFromReq } from '../userIdFromReq';
+import { userIdFromReq } from '../../userIdFromReq';
 
 export const getVisualizationController = (expressApp, gateways) => {
   const getVisualization = new GetVisualization(gateways);

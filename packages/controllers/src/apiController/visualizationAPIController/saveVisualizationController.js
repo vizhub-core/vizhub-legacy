@@ -1,5 +1,5 @@
 import { SaveVisualization } from 'vizhub-use-cases';
-import { userIdFromReq } from '../userIdFromReq';
+import { userIdFromReq } from '../../userIdFromReq';
 
 export const saveVisualizationController = (expressApp, gateways) => {
   const saveVisualization = new SaveVisualization(gateways);
