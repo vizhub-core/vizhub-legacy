@@ -11,7 +11,7 @@ import {
   CreatingVizFromScratchPage,
   VizPage,
   ProfilePage,
-  ContactPage,
+  PricingPage,
   ErrorPage
 } from './pages';
 import { Themed } from './theme';
@@ -26,7 +26,7 @@ export const App = () => (
               <Route path="/authenticated" component={AuthPopupPage} />
               <Route exact path="/" component={HomePage} />
               <Route path="/auth" component={AuthPage} />
-              <Route path="/contact" component={ContactPage} />
+              <Route path="/pricing" component={PricingPage} />
               <Route path="/create-viz" component={CreateVizPage} />
               <Route
                 path="/creating-viz-from-scratch"

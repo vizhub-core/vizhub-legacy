@@ -23,7 +23,9 @@ export const NavBar = withRouter(
         )}
 
         <Right>
-          {showPricing ? <PricingLink to="/pricing">Pricing</PricingLink> : null}
+          {showPricing ? (
+            <PricingLink to="/pricing">Pricing</PricingLink>
+          ) : null}
           {me === AUTH_PENDING || !showRight ? null : me ? (
             <UserActionsMenu />
           ) : (
