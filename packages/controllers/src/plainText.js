@@ -1,4 +1,5 @@
 import marked from 'marked';
+import stripHtml from 'string-strip-html';
 
 // This renderer for Marked renders Markdown to
 // plain text with no line breaks.
@@ -31,9 +32,9 @@ const ellipsis = line =>
     ? line.substr(0, maxCharacters).trim() + '…'
     : line;
 export const plainText = markdown =>
-  marked(markdown, {
+  stripHtml(marked(markdown, {
     renderer: PlainTextRenderer
-  });
+  }));
 
 //const unescapeHTML = html => html
 //  .replace(/&amp;/, '&')
