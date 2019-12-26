@@ -39,9 +39,8 @@ export const Banner = () => (
                 href="https://www.kickstarter.com/projects/curran/vizhub-launch"
                 target="_blank"
                 rel="noopener noreferrer"
-                isRed={true}
               >
-                Back the VizHub Launch Kickstarter
+                VizHub Launch Kickstarter
               </MessageLink>
             </li>
             <li>
