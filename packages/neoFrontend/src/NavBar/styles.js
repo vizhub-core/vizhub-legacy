@@ -6,10 +6,19 @@ export const SignIn = styled.div`
   font-weight: bold;
   cursor: pointer;
   user-select: none;
-  margin-top: 2px;
+`;
+
+export const PricingLink = styled(Link)`
+  font-weight: bold;
+  margin-right: 50px;
 `;
 
 export const LogoLink = styled(Link)`
   line-height: 0;
   color: currentcolor;
+`;
+
+export const Right = styled.div`
+  display: flex;
+  align-items: center;
 `;
