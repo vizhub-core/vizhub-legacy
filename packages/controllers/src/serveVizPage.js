@@ -22,7 +22,7 @@ const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) => `
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${descriptionPlainText}" />
   <meta property="og:image" content="${image}" />
-  <meta property="og:site_name" content="VizHub"/>
+  <meta property="og:site_name" content="VizHub" />
 `;
 
 export const serveVizPage = (gateways, indexHTML) => {
@@ -52,7 +52,7 @@ export const serveVizPage = (gateways, indexHTML) => {
 
       res.send(indexHTML.replace(unfurlPlaceholder, unfurlHTML));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
       // In error case, simply serve static index.html with no unfurl metadata.
       // It will show a 404 when it hits the API and the request fails.
       res.send(indexHTML);
