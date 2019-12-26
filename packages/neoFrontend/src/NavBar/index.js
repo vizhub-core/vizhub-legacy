@@ -4,11 +4,11 @@ import { withRouter } from 'react-router';
 import { LogoSVG } from '../svg';
 import { AuthContext, AUTH_PENDING } from '../authentication';
 import { Banner } from '../styles';
-import { SignIn, LogoLink } from './styles';
+import { SignIn, LogoLink, Right, PricingLink } from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
 
 export const NavBar = withRouter(
-  withTheme(({ theme, location, showRight = true }) => {
+  withTheme(({ theme, location, showRight = true, showPricing = false }) => {
     const { navbarHeight, navbarLogoColor } = theme;
     const { me, signIn } = useContext(AuthContext);
 
@@ -22,13 +22,18 @@ export const NavBar = withRouter(
           </LogoLink>
         )}
 
-        {me === AUTH_PENDING || !showRight ? null : me ? (
-          <UserActionsMenu />
-        ) : (
-          <SignIn className="test-sign-in" onClick={signIn}>
-            Sign up / Sign in
-          </SignIn>
-        )}
+        <Right>
+          {showPricing ? (
+            <PricingLink to="/pricing">Pricing</PricingLink>
+          ) : null}
+          {me === AUTH_PENDING || !showRight ? null : me ? (
+            <UserActionsMenu />
+          ) : (
+            <SignIn className="test-sign-in" onClick={signIn}>
+              Sign up / Sign in
+            </SignIn>
+          )}
+        </Right>
       </Banner>
     );
   })
