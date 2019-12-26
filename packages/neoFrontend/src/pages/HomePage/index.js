@@ -10,7 +10,7 @@ export const HomePage = () => (
   <HomePageDataProvider fallback={<LoadingScreen />}>
     <Wrapper>
       <Content>
-        <NavBar />
+        <NavBar showPricing={true}/>
         <Banner />
         <Centering>
           <Vizzes />
