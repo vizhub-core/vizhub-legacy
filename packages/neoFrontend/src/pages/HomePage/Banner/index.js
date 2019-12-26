@@ -36,6 +36,16 @@ export const Banner = () => (
           <MessageList>
             <li>
               <MessageLink
+                href="https://www.kickstarter.com/projects/curran/vizhub-launch"
+                target="_blank"
+                rel="noopener noreferrer"
+                isRed={true}
+              >
+                Back the VizHub Launch Kickstarter
+              </MessageLink>
+            </li>
+            <li>
+              <MessageLink
                 href="https://discourse.vizhub.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -60,15 +70,6 @@ export const Banner = () => (
                 rel="noopener noreferrer"
               >
                 Datavis 2020 Launch Subscription
-              </MessageLink>
-            </li>
-            <li>
-              <MessageLink
-                href="https://www.kickstarter.com/projects/curran/vizhub-launch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                VizHub Launch Kickstarter
               </MessageLink>
             </li>
           </MessageList>
