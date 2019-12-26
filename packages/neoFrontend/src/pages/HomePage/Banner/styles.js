@@ -62,7 +62,7 @@ export const MessageList = styled.ul`
 `;
 
 export const MessageLink = styled.a`
-  color: ${props => props.isRed ? props.theme.attentionGrabber : 'white'};
+  color: ${props => (props.isRed ? props.theme.attentionGrabber : 'white')};
   text-decoration: underline;
 `;
 
