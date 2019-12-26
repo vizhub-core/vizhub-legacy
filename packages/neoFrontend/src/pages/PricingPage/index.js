@@ -18,7 +18,7 @@ export const PricingPage = () => (
               rel="noopener noreferrer"
             >
               {' '}
-              VizHub Launch Kickstarter{' '}
+              VizHub Launch Kickstarter{'.'}
             </a>
           </p>
           <p>To contact the site owner, email curran@datavis.tech.</p>
