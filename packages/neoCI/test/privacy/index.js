@@ -9,5 +9,5 @@ export const privacy = my => () => {
   it('should switch from public to private', switchToPrivate(my));
   it('should sign out', signOut(my));
 
-  //it('should display viz not found if not authenticated', vizNotFound(my));
+  it('should display viz not found if not authenticated', vizNotFound(my));
 };
