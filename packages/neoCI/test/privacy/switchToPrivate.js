@@ -20,7 +20,7 @@ export const switchToPrivate = my => async () => {
 
   // Switch viz to private.
   const privateRadioButton = await my.page.waitFor(
-    '.test-privacy-dialog-radio-public'
+    '.test-privacy-dialog-radio-private'
   );
   await privateRadioButton.click();
 
@@ -32,7 +32,7 @@ export const switchToPrivate = my => async () => {
   assert.equal(privateRadioButtonIsActive, 'true');
 
   // Wait some time to ensure the change was passed to backend fia WebSocket.
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise(resolve => setTimeout(resolve, 300));
 
   // Close the modal.
   await (await my.page.waitFor('.test-privacy-dialog-close')).click();
