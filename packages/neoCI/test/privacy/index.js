@@ -1,6 +1,6 @@
 import { signOut } from '../authentication';
 import { setupPrivateViz } from './setupPrivateViz';
-import { togglePrivacy } from './togglePrivacy';
+import { switchPrivacy } from './switchPrivacy';
 import { vizNotFound } from './vizNotFound';
 
 export const privacy = my => () => {
@@ -8,11 +8,11 @@ export const privacy = my => () => {
 
   it(
     'should switch from public to private',
-    togglePrivacy(my, 'public', 'private')
+    switchPrivacy(my, 'public', 'private')
   );
   it('should sign out', signOut(my));
   it('should display viz not found if not authenticated', vizNotFound(my));
 
   //it('should sign in', signIn(my));
-  //it('should switch private to public', togglePrivacy(my, 'public'));
+  //it('should switch private to public', switchPrivacy(my, 'public'));
 };
