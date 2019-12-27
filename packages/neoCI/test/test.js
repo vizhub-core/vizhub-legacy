@@ -23,9 +23,9 @@ describe('VizHub End to End Tests', () => {
 
   describe('Viz Creation', vizCreation(my));
 
-  describe('Editor States', editorStates(my));
+  describe.skip('Editor States', editorStates(my));
 
-  describe('Real Time', realtime(my));
+  //describe('Real Time', realtime(my));
 
   describe('Privacy', privacy(my));
 
