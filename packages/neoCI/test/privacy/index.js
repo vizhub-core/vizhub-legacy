@@ -10,8 +10,21 @@ import { shareDBBlockReads } from './shareDBBlockReads';
 export const privacy = my => () => {
   before(setupPrivateViz(my));
 
+  //d3.cross(['public','private'], ['owner', 'non-owner', 'collaborator','anonymous']).forEach(x => console.log(x.join('\t')))
+  //
+  //  1. public   owner          yes
+  //  2. public   non-owner      yes
+  //  3. public   collaborator   yes
+  //  4. public   anonymous      yes   ✓
+  //  5. private  owner          yes   ✓
+  //  6. private  non-owner      no
+  //  7. private  collaborator   yes
+  //  8. private  anonymous      no    ✓
+  //
   describe('Direct Access to Private Viz', () => {
     it('should return to home state', goToHomeState(my));
+
+    // 4.
     it('should display public viz if not authenticated', vizFound(my));
 
     it('should sign in', signIn(my));
@@ -20,12 +33,13 @@ export const privacy = my => () => {
       switchPrivacy(my, 'public', 'private')
     );
 
-    it('should sign out', signOut(my));
-    it('should display viz not found if not authenticated', vizNotFound(my));
+    // 5.
+    it('should display private viz if authenticated as owner', vizFound(my));
 
-    //it('should return to home state', goToHomeState(my));
-    //it('should sign in', signIn(my));
-    //it('should display viz if authenticated', vizFound(my));
+    it('should sign out', signOut(my));
+
+    // 8.
+    it('should display viz not found if not authenticated', vizNotFound(my));
   });
 
   //describe('ShareDB Middleware Access Control', () => {

@@ -10,7 +10,7 @@ export const goToHomeState = (my, isMobile) => async () => {
   await page.goto('http://localhost:3000');
 
   const isAuthenticated = await my.page.evaluate(
-    el => el.getAttribute('data-test-is-authenticated'),
+    el => el.getAttribute('data-test-is-authenticated') === 'true',
     await page.waitFor('.test-user-navbar-section')
   );
 
