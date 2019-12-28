@@ -22,7 +22,10 @@ export const NavBar = withRouter(
           </LogoLink>
         )}
 
-        <Right>
+        <Right
+          className="test-user-navbar-section"
+          data-test-is-authenticated={Boolean(me)}
+        >
           {showPricing ? (
             <PricingLink to="/pricing">Pricing</PricingLink>
           ) : null}

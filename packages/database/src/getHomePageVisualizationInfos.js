@@ -12,7 +12,8 @@ export const getHomePageVisualizationInfos = connection => async offset => {
     documentType: VISUALIZATION_TYPE,
     $limit: pageSize,
     $skip: offset * pageSize,
-    $sort: { lastUpdatedTimestamp: -1 }
+    $sort: { lastUpdatedTimestamp: -1 },
+    privacy: { $ne: 'private' }
   };
   const results = await fetchShareDBQuery(
     DOCUMENT_INFO,
