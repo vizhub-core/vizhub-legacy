@@ -3,7 +3,7 @@ import { getVizIdList } from './getVizIdList';
 
 export const excludePrivateFromPage = (
   my,
-  { url, parentSelector }
+  { url, parentSelector, expectPrivate = false }
 ) => async () => {
   const page = my.page;
 
@@ -13,5 +13,5 @@ export const excludePrivateFromPage = (
   const vizIdList = await getVizIdList(page, parentHandle);
   const privateVizIsShown = vizIdList.includes(my.privateVizId);
 
-  assert.equal(privateVizIsShown, false);
+  assert.equal(privateVizIsShown, expectPrivate);
 };

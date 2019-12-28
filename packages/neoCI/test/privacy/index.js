@@ -6,6 +6,7 @@ import { vizNotFound } from './vizNotFound';
 import { vizFound } from './vizFound';
 import { excludePrivateFromHomePage } from './excludePrivateFromHomePage';
 import { excludePrivateFromProfilePage } from './excludePrivateFromProfilePage';
+import { includePrivateOnProfilePage } from './includePrivateOnProfilePage';
 import { shareDBBlockReads } from './shareDBBlockReads';
 
 export const privacy = my => () => {
@@ -56,6 +57,11 @@ export const privacy = my => () => {
     it(
       'should exclude private viz from profile page',
       excludePrivateFromProfilePage(my)
+    );
+    it('should sign in', signIn(my));
+    it(
+      'should include private viz in profile page if owner is authenticated',
+      includePrivateOnProfilePage(my)
     );
   });
 
