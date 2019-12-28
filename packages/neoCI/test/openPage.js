@@ -5,10 +5,10 @@ import { retry } from './retry';
 const puppeteerOptions = { args: ['--no-sandbox'] };
 
 // Use this for magic.
-Object.assign(puppeteerOptions, {
-  //slowMo: 50,
-  headless: false
-});
+// Object.assign(puppeteerOptions, {
+//   //slowMo: 50,
+//   headless: false
+// });
 
 export const openPage = my => async () => {
   const browser = await puppeteer.launch(puppeteerOptions);
