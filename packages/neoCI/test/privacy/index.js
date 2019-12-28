@@ -5,6 +5,7 @@ import { switchPrivacy } from './switchPrivacy';
 import { vizNotFound } from './vizNotFound';
 import { vizFound } from './vizFound';
 import { excludePrivateFromHomePage } from './excludePrivateFromHomePage';
+import { excludePrivateFromProfilePage } from './excludePrivateFromProfilePage';
 import { shareDBBlockReads } from './shareDBBlockReads';
 
 export const privacy = my => () => {
@@ -21,7 +22,7 @@ export const privacy = my => () => {
   //  7. private  collaborator   yes
   //  8. private  anonymous      no    ✓
   //
-  describe('Direct Access to Private Viz', () => {
+  describe('Viz Page', () => {
     it('should return to home state', goToHomeState(my));
 
     // 4.
@@ -47,6 +48,14 @@ export const privacy = my => () => {
     it(
       'should exclude private viz from home page',
       excludePrivateFromHomePage(my)
+    );
+  });
+
+  describe('Profile Page', () => {
+    it('should return to home state', goToHomeState(my));
+    it(
+      'should exclude private viz from profile page',
+      excludePrivateFromProfilePage(my)
     );
   });
 
