@@ -1,4 +1,5 @@
 import { GetUserProfileData } from 'vizhub-use-cases';
+import { userIdFromReq } from '../../userIdFromReq';
 
 export const getProfileDataController = (expressApp, gateways) => {
   const getUserProfileData = new GetUserProfileData(gateways);
@@ -6,7 +7,7 @@ export const getProfileDataController = (expressApp, gateways) => {
   expressApp.get('/api/user/getProfileData/:userName', async (req, res) => {
     try {
       const { userName } = req.params;
-      const requestModel = { userName };
+      const requestModel = { userName, authenticatedUser: userIdFromReq(req) };
       const responseModel = await getUserProfileData.execute(requestModel);
       res.json(responseModel);
     } catch (error) {

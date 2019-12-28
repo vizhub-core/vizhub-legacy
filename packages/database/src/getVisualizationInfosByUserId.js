@@ -3,15 +3,16 @@ import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
-export const getVisualizationInfosByUserId = connection => async id => {
-  const mongoQuery = {
-    owner: id,
-    documentType: VISUALIZATION_TYPE
-  };
+export const getVisualizationInfosByUserId = connection => async (
+  owner,
+  authenticatedUser
+) => {
+  const mongoQuery = { owner, documentType: VISUALIZATION_TYPE };
 
-  // TODO show private visualizations if owner is currently authenticated
-  //if(id !== authenticatedId){
-  mongoQuery.privacy = { $ne: 'private' }
+  // Show private visualizations if profile owner is currently authenticated.
+  if (owner !== authenticatedUser) {
+    mongoQuery.privacy = { $ne: 'private' };
+  }
 
   const results = await fetchShareDBQuery(
     DOCUMENT_INFO,
