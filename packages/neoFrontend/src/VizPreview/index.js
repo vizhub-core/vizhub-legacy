@@ -17,7 +17,7 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
   }`;
 
   return (
-    <Wrapper>
+    <Wrapper className="test-viz-preview" data-test-viz-id={id}>
       <ImageLink
         to={link}
         key={id}

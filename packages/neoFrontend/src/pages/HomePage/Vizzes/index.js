@@ -38,15 +38,17 @@ export const Vizzes = () => {
 
   return (
     <Wrapper>
-      <VizPreviews>
-        {homePageVisualizationInfos.map(vizInfo => (
-          <VizPreview
-            key={vizInfo.id}
-            vizInfo={vizInfo}
-            ownerUser={getUser(vizInfo.owner)}
-          />
-        ))}
-      </VizPreviews>
+      {homePageVisualizationInfos.length !== 0 ? (
+        <VizPreviews className="test-home-page-viz-previews">
+          {homePageVisualizationInfos.map(vizInfo => (
+            <VizPreview
+              key={vizInfo.id}
+              vizInfo={vizInfo}
+              ownerUser={getUser(vizInfo.owner)}
+            />
+          ))}
+        </VizPreviews>
+      ) : null}
       {isFetchingNextPage ? <LoadingScreen isChild={true} /> : null}
     </Wrapper>
   );
