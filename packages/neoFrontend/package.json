@@ -32,6 +32,7 @@
     "sharedb": "^1.0.0",
     "styled-components": "^4.4.1",
     "vizhub-entities": "1",
+    "vizhub-database": "1",
     "vizhub-presenters": "1"
   },
   "browserslist": [

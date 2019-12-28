@@ -135,7 +135,7 @@ export const useConnection = () => {
 
   // Expose connection to end-to-end tests,
   // so they can test ShareDB middleware directly.
-  if(process.env.NODE_ENV === 'development'){
+  if (process.env.NODE_ENV === 'development') {
     window.shareDBConnection = connection;
   }
 

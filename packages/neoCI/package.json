@@ -6,7 +6,9 @@
     "prettier": "prettier --single-quote --write 'test/**/*.js'",
     "lint": "eslint test -c ./.eslintrc.js --no-eslintrc --fix"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vizhub-database": "1"
+  },
   "devDependencies": {
     "esm": "^3.2.25",
     "mocha": "^6.1.4",

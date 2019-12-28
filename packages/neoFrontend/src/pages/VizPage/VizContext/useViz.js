@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useCallback } from 'react';
 import { BehaviorSubject } from 'rxjs';
-import { DOCUMENT_CONTENT, DOCUMENT_INFO } from '../../../constants';
+import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
 import { useShareDBDoc } from './useShareDBDoc';
 import { useOpStream } from './useOpStream';
 import { useSubmitOp } from './useSubmitOp';
