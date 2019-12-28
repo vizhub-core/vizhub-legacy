@@ -23,7 +23,7 @@ describe('VizHub End to End Tests', () => {
 
   describe('Viz Creation', vizCreation(my));
 
-  describe.skip('Editor States', editorStates(my));
+  describe('Editor States', editorStates(my));
 
   //describe('Real Time', realtime(my));
 
