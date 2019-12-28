@@ -1,8 +1,7 @@
 import assert from 'assert';
 
 export const excludePrivateFromHomePage = my => async () => {
-  const page = await my.browser.newPage();
-  await page.goto('http://localhost:3000');
+  const page = my.page;
 
   await page.waitFor('.test-home-page-viz-previews');
 
