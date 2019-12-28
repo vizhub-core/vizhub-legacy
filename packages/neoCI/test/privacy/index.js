@@ -42,21 +42,16 @@ export const privacy = my => () => {
     it('should display viz not found if not authenticated', vizNotFound(my));
   });
 
+  describe('Home Page', () => {
+    it('should return to home state', goToHomeState(my));
+    it(
+      'should exclude private viz from home page',
+      excludePrivateFromHomePage(my)
+    );
+  });
+
   //describe('ShareDB Middleware Access Control', () => {
   //  it('should block reads for private visualizations', shareDBBlockReads(my));
-  //});
-
-  //describe('Block Indirect Access to Private Viz', () => {
-  //  it(
-  //    'should exclude private viz from home page',
-  //    excludePrivateFromHomePage(my)
-  //  );
-  //  //it(
-  //  //  'should switch from public to private',
-  //  //  switchPrivacy(my, 'public', 'private')
-  //  //);
-  //  //it('should sign out', signOut(my));
-  //  //it('should display viz not found if not authenticated', vizNotFound(my));
   //});
 
   //it('should sign in', signIn(my));
