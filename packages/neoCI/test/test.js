@@ -25,7 +25,7 @@ describe('VizHub End to End Tests', () => {
 
   describe('Editor States', editorStates(my));
 
-  describe('Real Time', realtime(my));
+  //describe('Real Time', realtime(my));
 
   describe('Privacy', privacy(my));
 

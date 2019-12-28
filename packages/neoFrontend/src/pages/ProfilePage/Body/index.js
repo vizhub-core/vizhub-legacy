@@ -12,7 +12,7 @@ export const Body = () => {
     <Wrapper>
       <Content>
         <NavBar />
-        <VizPreviews>
+        <VizPreviews className="test-profile-page-viz-previews">
           {visualizationInfos.map(vizInfo => (
             <VizPreview key={vizInfo.id} vizInfo={vizInfo} ownerUser={user} />
           ))}

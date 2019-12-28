@@ -18,4 +18,5 @@ export const setupPrivateViz = my => async () => {
 
   // Stash the URL for later mobile testing.
   my.privateVizURL = url;
+  my.privateVizId = id;
 };

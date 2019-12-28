@@ -6,6 +6,7 @@ import { toggleCodeEditor } from './toggleCodeEditor';
 import { verifyHomeState } from './verifyHomeState';
 import { codeEditorIndependence } from './codeEditorIndependence';
 import { openMobilePage } from './openMobilePage';
+import { closeMobilePage } from './closeMobilePage';
 import { restoreEditorSection } from './restoreEditorSection';
 
 export const editorStates = my => () => {
@@ -28,6 +29,6 @@ export const editorStates = my => () => {
     it('should toggle mini', toggleMini(my, true));
     it('should toggle code editor', toggleCodeEditor(my, true));
     it('should toggle full code editor mode', toggleFullEditor(my, true));
-    //it('should toggle code editor independently') not relevant on mobile.
+    after(closeMobilePage(my));
   });
 };

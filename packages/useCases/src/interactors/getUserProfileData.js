@@ -8,7 +8,7 @@ export class GetUserProfileData {
   }
 
   async execute(requestModel) {
-    const { userName } = requestModel;
+    const { userName, authenticatedUser } = requestModel;
 
     const user =
       userName === ciUser.userName
@@ -16,7 +16,10 @@ export class GetUserProfileData {
         : await this.userGateway.getUserByUserName(userName);
 
     const [visualizationInfos, datasetInfos] = await Promise.all([
-      this.visualizationGateway.getVisualizationInfosByUserId(user.id),
+      this.visualizationGateway.getVisualizationInfosByUserId(
+        user.id,
+        authenticatedUser
+      ),
       this.datasetGateway.getDatasetInfosByUserId(user.id)
     ]);
 
