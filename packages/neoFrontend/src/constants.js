@@ -17,3 +17,11 @@ export const useTransitions = isProd;
 //export const useTransitions = true;
 
 export const clearConsole = isProd;
+
+export const enterFullScreenTooltip = 'Full Screen Mode';
+export const enterMiniModeTooltip = 'Mini Mode';
+export const exitFullScreenTooltip = 'Exit Full Screen';
+export const exitMiniModeTooltip = 'Exit Mini Mode';
+export const sidebarSettingsTooltip = 'Settings';
+export const sidebarNewTooltip = 'New';
+export const sidebarExportTooltip = 'Export';
