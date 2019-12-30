@@ -1,7 +1,11 @@
 import React, { useRef, useContext, useCallback } from 'react';
 import { FullExitSVG } from '../../../../svg';
 import { MiniOrMicroSVG } from '../../../../mobileMods';
-import { vizWidth } from '../../../../constants';
+import {
+  vizWidth,
+  exitFullScreenTooltip,
+  enterMiniModeTooltip
+} from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
 import { LargeIcon } from '../../../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
@@ -47,13 +51,18 @@ export const FullScreen = () => {
       <Backdrop />
       <Wrapper ref={wrapperRef} className="test-fullscreen">
         <FullScreenFooter>
-          <LargeIcon leftmost={true} onClick={enterMini}>
+          <LargeIcon
+            title={enterMiniModeTooltip}
+            leftmost={true}
+            onClick={enterMini}
+          >
             <MiniOrMicroSVG />
           </LargeIcon>
           <LargeIcon
             rightmost={true}
             onClick={exitFullScreen}
             className="exit-fullscreen-from-fullscreen"
+            title={exitFullScreenTooltip}
           >
             <FullExitSVG />
           </LargeIcon>

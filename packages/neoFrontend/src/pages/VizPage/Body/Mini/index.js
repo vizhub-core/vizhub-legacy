@@ -1,6 +1,10 @@
 import React, { useRef, useContext, useCallback } from 'react';
 import { SplitSVG, FullSVG } from '../../../../svg';
-import { vizWidth } from '../../../../constants';
+import {
+  vizWidth,
+  enterFullScreenTooltip,
+  exitMiniModeTooltip
+} from '../../../../constants';
 import { getVizHeight } from '../../../../accessors';
 import { theme } from '../../../../theme';
 import { LargeIcon } from '../../../styles';
@@ -39,10 +43,15 @@ export const Mini = () => {
           leftmost={true}
           onClick={exitMini}
           className="exit-mini-from-mini"
+          title={exitMiniModeTooltip}
         >
           <SplitSVG />
         </LargeIcon>
-        <LargeIcon rightmost={true} onClick={enterFullScreen}>
+        <LargeIcon
+          rightmost={true}
+          onClick={enterFullScreen}
+          title={enterFullScreenTooltip}
+        >
           <FullSVG />
         </LargeIcon>
       </FrameFooter>

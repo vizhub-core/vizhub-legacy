@@ -7,7 +7,11 @@ import React, {
 } from 'react';
 import { FullSVG } from '../../../../../svg';
 import { MiniOrMicroSVG } from '../../../../../mobileMods';
-import { vizWidth } from '../../../../../constants';
+import {
+  vizWidth,
+  enterFullScreenTooltip,
+  enterMiniModeTooltip
+} from '../../../../../constants';
 import { LargeIcon } from '../../../../styles';
 import { FrameFooter } from '../../styles';
 import { VizRunnerContext } from '../../../VizRunnerContext';
@@ -65,6 +69,7 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
               leftmost={true}
               onClick={enterMini}
               className="test-enter-mini-from-viewer"
+              title={enterMiniModeTooltip}
             >
               <MiniOrMicroSVG />
             </LargeIcon>
@@ -72,6 +77,7 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
               rightmost={true}
               onClick={enterFullScreen}
               className="test-enter-fullscreen-from-viewer"
+              title={enterFullScreenTooltip}
             >
               <FullSVG />
             </LargeIconRightmost>

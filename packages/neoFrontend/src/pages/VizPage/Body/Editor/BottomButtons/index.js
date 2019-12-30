@@ -3,6 +3,11 @@ import { withTheme } from 'styled-components';
 import { showEditorSettings } from '../../../../../featureFlags';
 import { SettingsSVG, NewSVG, ExportSVG } from '../../../../../svg';
 import { deleteFileOp } from '../../../../../accessors';
+import {
+  sidebarSettingsTooltip,
+  sidebarNewTooltip,
+  sidebarExportTooltip
+} from '../../../../../constants';
 import { VizContext } from '../../../VizContext';
 import { PrivacyContext } from '../../../PrivacyContext';
 import { URLStateContext } from '../../../URLStateContext';
@@ -83,6 +88,7 @@ export const BottomButtons = withTheme(
             <BottomButton
               isActive={activeButton === SETTINGS_BUTTON}
               className="test-editor-settings"
+              title={sidebarSettingsTooltip}
             >
               <ClickableOverlay onClick={onButtonClick(SETTINGS_BUTTON)}>
                 <SettingsSVG />
@@ -92,12 +98,16 @@ export const BottomButtons = withTheme(
           <BottomButton
             isActive={activeButton === NEW_BUTTON}
             activeColor={'#3866e9'}
+            title={sidebarNewTooltip}
           >
             <ClickableOverlay onClick={onButtonClick(NEW_BUTTON)}>
               <NewSVG />
             </ClickableOverlay>
           </BottomButton>
-          <BottomButton isActive={activeButton === EXPORT_BUTTON}>
+          <BottomButton
+            isActive={activeButton === EXPORT_BUTTON}
+            title={sidebarExportTooltip}
+          >
             <ClickableOverlay onClick={onButtonClick(EXPORT_BUTTON)}>
               <ExportSVG />
             </ClickableOverlay>
