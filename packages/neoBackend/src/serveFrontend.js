@@ -5,7 +5,15 @@ import { serveVizPage } from 'vizhub-controllers';
 
 const buildPath = path.join(__dirname, '..', 'build');
 const indexHTMLPath = path.join(buildPath, 'index.html');
-const indexHTML = fs.readFileSync(indexHTMLPath, 'utf8');
+
+// Necessary only in production or when manually testing unfurl.
+let indexHTML = 'Did you forget to run <code>npm run build</code>?';
+try {
+  indexHTML = fs.readFileSync(indexHTMLPath, 'utf8');
+} catch (error) {
+  // Fail silently, as this is likely a dev environment.
+  // Doesn't matter, as create-react-app dev server serves index.html.
+}
 
 // Serve the frontend build for production deployment.
 // Assumes that `npm run build` has been run in the frontend.
