@@ -20,8 +20,13 @@ export const clearConsole = isProd;
 
 export const enterFullScreenTooltip = 'Full Screen Mode';
 export const enterMiniModeTooltip = 'Mini Mode';
-export const exitFullScreenTooltip = 'Exit Full Screen';
+export const exitFullScreenTooltip = 'Exit Full Screen Mode';
 export const exitMiniModeTooltip = 'Exit Mini Mode';
+
+export const codeEditorHeaderCloseTooltip = 'Close Code Editor';
+export const codeEditorHeaderEnterFullEditorTooltip = 'Full Code Mode';
+export const codeEditorHeaderExitFullEditorTooltip = 'Exit Full Code Mode';
+
 export const sidebarSettingsTooltip = 'Settings';
 export const sidebarNewTooltip = 'New';
 export const sidebarExportTooltip = 'Export';

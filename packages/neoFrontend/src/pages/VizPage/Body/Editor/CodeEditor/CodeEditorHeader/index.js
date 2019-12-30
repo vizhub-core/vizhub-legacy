@@ -1,5 +1,10 @@
 import React from 'react';
 import { FullSVG, CloseSVG, PrettierSVG } from '../../../../../../svg';
+import {
+  codeEditorHeaderCloseTooltip,
+  codeEditorHeaderEnterFullEditorTooltip,
+  codeEditorHeaderExitFullEditorTooltip
+} from '../../../../../../constants';
 import { isMobile } from '../../../../../../mobileMods';
 import { CodeEditorIcon } from '../styles';
 import { Wrapper, Icons, Text } from './styles';
@@ -42,6 +47,7 @@ Keyboard shortcut: Alt + p`}
           <CodeEditorIcon
             onClick={onHideViz}
             className="test-enter-full-editor"
+            title={codeEditorHeaderEnterFullEditorTooltip}
           >
             <FullSVG height={svgHeight} />
           </CodeEditorIcon>
@@ -49,6 +55,7 @@ Keyboard shortcut: Alt + p`}
             onClick={closeActiveFile}
             rightmost={true}
             className="test-close-code-editor"
+            title={codeEditorHeaderCloseTooltip}
           >
             <CloseSVG height={svgHeight} />
           </CodeEditorIcon>
@@ -68,6 +75,7 @@ Keyboard shortcut: Alt + p`}
           leftmost={true}
           rightmost={true}
           className="test-exit-full-editor"
+          title={codeEditorHeaderExitFullEditorTooltip}
         >
           <CloseSVG height={svgHeight} />
         </CodeEditorIcon>
