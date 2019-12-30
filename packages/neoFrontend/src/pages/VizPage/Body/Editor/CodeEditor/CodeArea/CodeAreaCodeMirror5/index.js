@@ -78,6 +78,10 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
     const { CodeMirror } = editorModules;
 
+    CodeMirror.commands.autocomplete = cm => {
+      cm.showHint({ hint: CodeMirror.hint.anyword });
+    };
+
     setCodeMirror(
       new CodeMirror(ref.current, {
         value: file.text,
@@ -85,7 +89,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         lineWrapping: true,
         tabSize: 2,
         matchBrackets: true,
-        closeOnBlur: false
+        closeOnBlur: false,
+        extraKeys: { 'Ctrl-Space': 'autocomplete' }
       })
     );
   }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
