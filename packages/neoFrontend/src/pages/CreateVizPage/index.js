@@ -1,14 +1,25 @@
-import React, { useContext } from 'react';
-import { LoadingScreen } from '../../LoadingScreen';
+import React from 'react';
 import { NavBar } from '../../NavBar';
 import { VizPreviews, VizPreview } from '../../VizPreview';
 import { Wrapper, Content } from '../styles';
-import {
-  CreateVizPageDataProvider,
-  CreateVizPageDataContext
-} from './CreateVizPageDataContext';
 import { FromScratchSection } from './FromScratchSection';
 import { AttentionGrabbingTitle, Centered, Subtitle } from './styles';
+
+// TODO make an API request here, for the list of template and popular vizzes.
+// TODO find a better solution - perhaps present the templates as a collection,
+// using an infrastructure unified between profile page and home page.
+const ownerUser = {
+  id: '68416',
+  userName: 'curran',
+  fullName: 'Curran Kelleher',
+  email: 'curran@datavis.tech',
+  avatarUrl: 'https://avatars3.githubusercontent.com/u/68416?v=4',
+  company: '@datavis-tech',
+  website: 'https://datavis.tech',
+  location: 'Remote',
+  bio:
+    'Fascinated by visual presentation of data as a means to understand the world better and communicate that understanding to others.'
+};
 
 // Temporary setup for first pass at template listing.
 const visualizationInfos = [
@@ -30,40 +41,27 @@ const visualizationInfos = [
   { id: '8b699c4000704216a709adfeb38f2411', title: 'Interactive Color Legend' }
 ];
 
-const Vizzes = () => {
-  const ownerUser = useContext(CreateVizPageDataContext);
-
-  return (
-    <VizPreviews>
-      {visualizationInfos.map(vizInfo => (
-        <VizPreview
-          key={vizInfo.id}
-          vizInfo={vizInfo}
-          ownerUser={ownerUser}
-          openEditor={true}
-        />
-      ))}
-    </VizPreviews>
-  );
-};
-
 export const CreateVizPage = () => (
-  <CreateVizPageDataProvider fallback={<LoadingScreen />}>
-    <Wrapper>
-      <Content>
-        <NavBar />
-        <Centered>
-          <AttentionGrabbingTitle>
-            Create a Visualization!
-          </AttentionGrabbingTitle>
-          <Subtitle>
-            Create a new visualization from a template or fork one from our
-            users.
-          </Subtitle>
-          <Vizzes />
-          <FromScratchSection />
-        </Centered>
-      </Content>
-    </Wrapper>
-  </CreateVizPageDataProvider>
+  <Wrapper>
+    <Content>
+      <NavBar />
+      <Centered>
+        <AttentionGrabbingTitle>Create a Visualization!</AttentionGrabbingTitle>
+        <Subtitle>
+          Create a new visualization from a template or fork one from our users.
+        </Subtitle>
+        <VizPreviews>
+          {visualizationInfos.map(vizInfo => (
+            <VizPreview
+              key={vizInfo.id}
+              vizInfo={vizInfo}
+              ownerUser={ownerUser}
+              openEditor={true}
+            />
+          ))}
+        </VizPreviews>
+        <FromScratchSection />
+      </Centered>
+    </Content>
+  </Wrapper>
 );
