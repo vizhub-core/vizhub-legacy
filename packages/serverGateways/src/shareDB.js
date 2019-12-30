@@ -24,9 +24,9 @@ export const getShareDB = () => {
         db: new ShareDBMongo(process.env.MONGO_URI)
       });
     } else {
-      shareDB = ShareDB(Object.assign(options, {
+      shareDB = ShareDB({
         db: new ShareDBMingoMemory()
-      }));
+      });
     }
   }
   return shareDB;
