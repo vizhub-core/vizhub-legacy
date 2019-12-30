@@ -7,7 +7,7 @@ cd vizhub
 npm install -G lerna # one time only
 lerna bootstrap
 cd packages/neoBackend
-npm start # Leave this open in a console tab. Serves on port 4000
+npm run dev # Leave this open in a console tab. Serves on port 4000
 ```
 In another terminal:
 
