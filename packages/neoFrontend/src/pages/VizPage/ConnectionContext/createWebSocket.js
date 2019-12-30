@@ -1,5 +1,6 @@
-const webSocketURL =
-  process.env.REACT_APP_VIZHUB_WEBSOCKET_URL || 'ws://localhost:4000';
+const protocol = process.env.NODE_ENV === 'development' ? 'ws' : 'wss'
+const port = process.env.NODE_ENV === 'development' ? ':4000' : ''
+const webSocketURL = `${protocol}://${window.location.hostname}${port}`;
 
 export const createWebSocket = ({ onOpen, onClose, onError }) => {
   const webSocket = new WebSocket(webSocketURL);
