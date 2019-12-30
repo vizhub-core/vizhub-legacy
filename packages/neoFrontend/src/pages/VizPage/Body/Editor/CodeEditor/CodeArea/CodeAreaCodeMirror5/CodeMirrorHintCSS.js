@@ -12,18 +12,21 @@ export const CodeMirrorHintCSS = `
   list-style: none;
 
   margin: 0;
+  padding: 0;
 
-  max-height: 20em;
-  overflow-y: auto;
-  color: white;
   font-family: ${defaultCodingFontFamily};
   font-size: ${defaultCodingFontSize};
   line-height: 1.4;
+
+  max-height: 20em;
+  overflow-y: auto;
+
+  color: white;
 }
 
 .CodeMirror-hint {
   margin: 0;
-  padding: 0 4px;
+  padding: 0 6px;
   white-space: pre;
   background-color: #3d4b65
   cursor: pointer;
