@@ -18,6 +18,9 @@ import 'codemirror/addon/comment/comment';
 //import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/keymap/sublime';
 
+import 'codemirror/addon/hint/show-hint';
+import 'codemirror/addon/hint/anyword-hint';
+
 import { bundle } from 'vizhub-presenters';
 
 export { CodeMirror, bundle };
