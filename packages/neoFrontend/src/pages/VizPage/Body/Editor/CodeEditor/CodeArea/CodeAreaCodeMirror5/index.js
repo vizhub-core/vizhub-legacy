@@ -24,9 +24,6 @@ const modes = {
 };
 const getMode = extension => modes[extension];
 
-// Wrap lines on .md files.
-const getLineWrapping = extension => extension === '.md';
-
 const defaultKeyMap = 'sublime';
 
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
@@ -85,6 +82,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       new CodeMirror(ref.current, {
         value: file.text,
         lineNumbers: true,
+        lineWrapping: true,
         tabSize: 2,
         matchBrackets: true,
         closeOnBlur: false
@@ -99,7 +97,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   useEffect(() => {
     if (!codeMirror) return;
     codeMirror.setOption('mode', getMode(extension));
-    codeMirror.setOption('lineWrapping', getLineWrapping(extension));
   }, [codeMirror, extension]);
 
   // Don't allow editing of bundle.js.
