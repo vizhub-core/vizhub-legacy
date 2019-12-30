@@ -11,7 +11,8 @@ const vizWriteAsync = async request => {
   } = request;
 
   // Only vet ops against viz info and content documents.
-  if (collection !== DOCUMENT_CONTENT && collection === DOCUMENT_INFO) {
+  // TODO cover this logic with tests
+  if (collection !== DOCUMENT_CONTENT && collection !== DOCUMENT_INFO) {
     return;
   }
 
