@@ -1,20 +1,23 @@
 import styled from 'styled-components';
+import { isMobile } from '../../../mobileMods';
 import { Z_BELOW } from '../../../styles';
 import { Button } from '../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
-  height: 400px;
+  flex-direction: ${isMobile ? 'column' : 'row'};
+  height: ${isMobile ? 600 : 400}px;
   position: relative;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   color: white;
+  margin-bottom: ${isMobile ? 30 : 0}px;
 `;
 
 export const Bar = styled.div`
   position: absolute;
-  top: 30px;
-  bottom: 30px;
+  top: ${isMobile ? 0 : 30}px;
+  bottom: ${isMobile ? 0 : 30}px;
   right: 0;
   left: 0;
   border-radius: 3px;
@@ -24,15 +27,13 @@ export const Bar = styled.div`
 `;
 
 export const Left = styled.div`
-  flex: 1;
   display: flex;
-  justify-content: center;
+  align-items: center;
 `;
 
 export const Right = styled.div`
-  flex: 1;
   display: flex;
-  justify-content: center;
+  align-items: center;
 `;
 
 export const Message = styled.div`
