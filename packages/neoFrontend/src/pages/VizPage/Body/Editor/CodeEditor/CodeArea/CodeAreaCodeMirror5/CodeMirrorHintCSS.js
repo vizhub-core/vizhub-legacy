@@ -1,3 +1,8 @@
+import {
+  defaultCodingFontFamily,
+  defaultCodingFontSize
+} from '../../../../../../../theme';
+
 // Derived from node_modules/codemirror/addon/hint/show-hint.css
 export const CodeMirrorHintCSS = `
 .CodeMirror-hints {
@@ -7,33 +12,24 @@ export const CodeMirrorHintCSS = `
   list-style: none;
 
   margin: 0;
-  padding: 2px;
-
-  -webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-  -moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-  box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-  border-radius: 3px;
-  border: 1px solid silver;
-
-  background: white;
-  font-size: 90%;
-  font-family: monospace;
 
   max-height: 20em;
   overflow-y: auto;
+  color: white;
+  font-family: ${defaultCodingFontFamily};
+  font-size: ${defaultCodingFontSize};
+  line-height: 1.4;
 }
 
 .CodeMirror-hint {
   margin: 0;
   padding: 0 4px;
-  border-radius: 2px;
   white-space: pre;
-  color: black;
+  background-color: #3d4b65
   cursor: pointer;
 }
 
 li.CodeMirror-hint-active {
-  background: #08f;
-  color: white;
+  background-color: #5b677d;
 }
 `;
