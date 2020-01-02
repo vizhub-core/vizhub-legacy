@@ -56,7 +56,7 @@ export const DescriptionSection = ({
           <Author ownerUser={ownerUser} />
           <AuthorshipMeta size={size}>
             <div>
-              Lasted Edited <SemiBold>{lastUpdated}</SemiBold>
+              Last Edited <SemiBold>{lastUpdated}</SemiBold>
             </div>
             {forkedFromVisualizationInfo ? (
               <div>
