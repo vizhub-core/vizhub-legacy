@@ -4,6 +4,7 @@ dist
 yarn.lock
 yarn-error.log
 lerna-debug.log
+npm-debug.log
 .next
 *.swp
 *.autosave
