@@ -2,7 +2,8 @@ import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
 import { showEditorSettings } from '../../../../../featureFlags';
 import { SettingsSVG, NewSVG, ExportSVG } from '../../../../../svg';
-import { deleteFileOp } from '../../../../../accessors';
+import { deleteFileOp, getVizInfo } from '../../../../../accessors';
+import { useValue } from '../../../../../useValue';
 import {
   sidebarSettingsTooltip,
   sidebarNewTooltip,
@@ -29,6 +30,8 @@ export const BottomButtons = withTheme(
     const [activeButton, setActiveButton] = useState(null);
 
     const { viz$, submitVizContentOp } = useContext(VizContext);
+    const vizInfo = useValue(viz$, getVizInfo);
+
     const { closeActiveFile } = useContext(URLStateContext);
     const showPrivacyModal = useContext(PrivacyContext);
     const { me } = useContext(AuthContext);
@@ -86,7 +89,7 @@ export const BottomButtons = withTheme(
           ) : null}
         </Top>
         <Bottom>
-          {showEditorSettings(me) ? (
+          {showEditorSettings(me, vizInfo) ? (
             <BottomButton
               isActive={activeButton === SETTINGS_BUTTON}
               className="test-editor-settings"
