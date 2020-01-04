@@ -158,3 +158,4 @@ export const getUserFullName = user => user && (user.fullName || user.userName);
 
 const defaultVizPrivacy = 'public';
 export const getVizPrivacy = viz => viz.info.privacy || defaultVizPrivacy;
+export const getVizInfo = viz => viz.info;
