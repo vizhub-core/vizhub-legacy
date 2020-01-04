@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
+  flex-grow: 1;
   font-size: 20px;
 `;
 
