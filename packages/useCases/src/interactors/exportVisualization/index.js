@@ -27,13 +27,16 @@ export class ExportVisualization {
     "build": "rollup -c"
   },
   "devDependencies": {
-    "rollup": "latest"
+    "rollup": "latest",
+    "@rollup/plugin-buble": "latest"
   }
 }`
       },
       {
         name: 'rollup.config.js',
-        text: `export default {
+        text: `const buble = require('@rollup/plugin-buble');
+  
+  export default {
   input: 'index.js',
   external: ${externalJSON},
   output: {
@@ -41,7 +44,8 @@ export class ExportVisualization {
     format: 'iife',
     sourcemap: true,
     globals: ${globalsJSON}
-  }
+  },
+  plugins: [buble()]
 };`
       }
     ]);
