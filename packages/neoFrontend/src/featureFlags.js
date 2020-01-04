@@ -14,6 +14,5 @@ export const renameFileWithoutPath = false;
 const whitelist = ['curran', 'nitanagdeote'];
 
 // Gateway to the private viz feature.
-export const showEditorSettings = user =>
-  process.env.NODE_ENV === 'development' ||
-  whitelist.includes(user && user.userName);
+export const showEditorSettings = (user, vizInfo) =>
+  user ? vizInfo.owner === user.id && whitelist.includes(user.userName) : false;
