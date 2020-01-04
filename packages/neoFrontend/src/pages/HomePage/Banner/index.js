@@ -45,6 +45,15 @@ export const Banner = () => (
             </li>
             <li>
               <MessageLink
+                href="https://datavis.tech/datavis-2020/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Datavis 2020 Free Online Course
+              </MessageLink>
+            </li>
+            <li>
+              <MessageLink
                 href="https://discourse.vizhub.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -61,15 +70,6 @@ export const Banner = () => (
                 D3 Slack
               </MessageLink>{' '}
               #vizhub channel
-            </li>
-            <li>
-              <MessageLink
-                href="https://docs.google.com/forms/d/e/1FAIpQLSc5Wju6Y73RS_wL_UXRDFvKl7NGbsGdt-CBNcAQONHHe3dtvw/viewform?usp=sf_link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Datavis 2020 Launch Subscription
-              </MessageLink>
             </li>
           </MessageList>
         </MessageSmallText>
