@@ -8,6 +8,7 @@ import {
   sidebarNewTooltip,
   sidebarExportTooltip
 } from '../../../../../constants';
+import { AuthContext } from '../../../../../authentication';
 import { VizContext } from '../../../VizContext';
 import { PrivacyContext } from '../../../PrivacyContext';
 import { URLStateContext } from '../../../URLStateContext';
@@ -30,6 +31,7 @@ export const BottomButtons = withTheme(
     const { viz$, submitVizContentOp } = useContext(VizContext);
     const { closeActiveFile } = useContext(URLStateContext);
     const showPrivacyModal = useContext(PrivacyContext);
+    const { me } = useContext(AuthContext);
 
     const onButtonClick = useCallback(
       buttonId => () => {
@@ -84,7 +86,7 @@ export const BottomButtons = withTheme(
           ) : null}
         </Top>
         <Bottom>
-          {showEditorSettings ? (
+          {showEditorSettings(me) ? (
             <BottomButton
               isActive={activeButton === SETTINGS_BUTTON}
               className="test-editor-settings"
