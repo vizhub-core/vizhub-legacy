@@ -83,6 +83,7 @@ export const VizRunnerProvider = ({ children }) => {
       if (clearConsole) {
         console.clear();
       }
+
       iFrame.setAttribute(
         'srcDoc',
         computeSrcDoc(getVizFiles(viz$.getValue()))
