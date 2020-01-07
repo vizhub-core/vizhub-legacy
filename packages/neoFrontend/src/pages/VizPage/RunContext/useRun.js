@@ -17,6 +17,7 @@ import { updateLastUpdatedTimestamp } from './updateLastUpdatedTimestamp';
 import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
 import { changesJS } from './changesJS';
+import { changesMD } from './changesMD';
 
 // The delay in ms between the time a change is made and the time
 // the program is run.
@@ -35,6 +36,7 @@ export const useRun = () => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
   const jsChanged = useRef(false);
+  const mdChanged = useRef(false);
   const localChanges = useRef(false);
   const timeoutId = useRef();
   const runTimerStart = useRef();
@@ -71,7 +73,8 @@ export const useRun = () => {
   );
 
   const run = useCallback(async () => {
-    if (!jsChanged.current) {
+    // if not js or md files are changed then generate run id
+    if (!(jsChanged.current || mdChanged.current)) {
       setRunId(generateRunId());
     } else if (jsChanged.current === 'local') {
       try {
@@ -98,6 +101,7 @@ export const useRun = () => {
       updateDescriptionIfNeeded(viz$, submitVizInfoOp, realtimeModules);
       updateLastUpdatedTimestamp(viz$, submitVizInfoOp);
       localChanges.current = false;
+      mdChanged.current = false;
     }
 
     // Flag that the timer is no longer running.
@@ -132,13 +136,18 @@ export const useRun = () => {
     }
   }, [resetRunTimer, run, startRunTimerProgress]);
 
-  // Keep track of when JS files were changed locally.
+  // Keep track of when JS and MD files were changed locally.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
       ({ previous, op, originatedLocally }) => {
         if (changesJS(op, previous.files)) {
           jsChanged.current = originatedLocally ? 'local' : 'remote';
         }
+
+        if (changesMD(op, previous.files)) {
+          mdChanged.current = originatedLocally ? 'local' : 'remote';
+        }
+
         if (originatedLocally) {
           localChanges.current = true;
         }
@@ -150,7 +159,7 @@ export const useRun = () => {
   // Reset run timer whenever files are changed by the user.
   // Do not reset run timer when bundle.js gets generated.
   useEffect(() => {
-    const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
+    const subscription = vizContentOp$.subscribe(({ previous, next }) => {
       if (previous.files !== next.files) {
         if (!onlyBundleJSChanged(previous.files, next.files)) {
           startRunTimer();
@@ -164,7 +173,7 @@ export const useRun = () => {
   // that causes the bundle to update.
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
-      ({ previous, next, op, originatedLocally }) => {
+      ({ previous, next, originatedLocally }) => {
         if (!originatedLocally) {
           if (previous.files !== next.files) {
             if (onlyBundleJSChanged(previous.files, next.files)) {
