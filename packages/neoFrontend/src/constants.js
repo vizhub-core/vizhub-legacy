@@ -30,3 +30,7 @@ export const codeEditorHeaderExitFullEditorTooltip = 'Exit Full Code Mode';
 export const sidebarSettingsTooltip = 'Settings';
 export const sidebarNewTooltip = 'New';
 export const sidebarExportTooltip = 'Export';
+
+// The delay in ms between the time a change is made and the time
+// the program is run. Connected to the timer indicator.
+export const runDelay = 1200;
