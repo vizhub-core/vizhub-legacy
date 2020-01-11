@@ -1,9 +1,4 @@
-import React, {
-  useRef,
-  useContext,
-  useCallback,
-  useState
-} from 'react';
+import React, { useRef, useContext, useCallback, useState } from 'react';
 import { FullSVG } from '../../../../../svg';
 import { MiniOrMicroSVG } from '../../../../../mobileMods';
 import {

@@ -22,28 +22,35 @@ const Play = () => (
     <path d="M16 11L8.5 15.3301L8.5 6.66987L16 11Z" />
   </g>
 );
+const blue = '#3866e9';
+
+// Add a bit extra (.01) so it displays as a full circle.
+// Otherwise there is a tiny but visible gap.
+const twoPI = Math.PI * 2.01;
 
 export const PlayPauseSVG = ({
   height = 20,
   runTimerProgress,
-  isAutoRunEnabled
+  isAutoRunEnabled,
+  needsManualRun
 }) => (
   <svg height={height} viewBox={`0 0 20 20`}>
     <g transform="translate(10,10)" fill="currentcolor">
       <path
-        fill="#3866e9"
+        fill={blue}
         d={runTimerProgressArc({
-          startAngle: 0,
-          endAngle: 1.01 * runTimerProgress * Math.PI * 2
+          endAngle: needsManualRun ? twoPI : runTimerProgress * twoPI
         })}
       />
       <circle
         r={r}
         strokeWidth={strokeWidth}
-        stroke="currentcolor"
+        stroke={needsManualRun ? blue : 'currentcolor'}
         fill="none"
       />
-      {isAutoRunEnabled ? <Pause /> : <Play />}
+      <g fill={needsManualRun ? blue : 'currentcolor'}>
+        {isAutoRunEnabled ? <Pause /> : <Play />}
+      </g>
     </g>
   </svg>
 );

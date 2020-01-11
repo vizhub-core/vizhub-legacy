@@ -13,7 +13,9 @@ export const PlayPauseControl = () => {
   const {
     runTimerProgress$,
     isAutoRunEnabled,
-    setIsAutoRunEnabled
+    setIsAutoRunEnabled,
+    needsManualRun,
+    run
   } = useContext(RunContext);
   const [runTimerProgress, setRunTimerProgress] = useState();
 
@@ -23,13 +25,36 @@ export const PlayPauseControl = () => {
   }, [runTimerProgress$]);
 
   const onIconClick = useCallback(() => {
-    setIsAutoRunEnabled(!isAutoRunEnabled);
-  }, [isAutoRunEnabled, setIsAutoRunEnabled]);
+    if (needsManualRun) {
+      run();
+    } else {
+      setIsAutoRunEnabled(!isAutoRunEnabled);
+    }
+  }, [isAutoRunEnabled, setIsAutoRunEnabled, needsManualRun, run]);
 
   const iconTooltip = useMemo(
-    () => (isAutoRunEnabled ? 'Disable auto-run' : 'Enable auto-run'),
-    [isAutoRunEnabled]
+    () =>
+      needsManualRun
+        ? 'Run now (Shift + Enter)'
+        : isAutoRunEnabled
+        ? 'Disable auto-run'
+        : 'Enable auto-run',
+    [isAutoRunEnabled, needsManualRun]
   );
+
+  // Handle global keyboard shortcut.
+  //useEffect(() => {
+  //  const listener = event => {
+  //    if(event.shiftKey && event.code === "Enter"){
+  //      run();
+  //    }
+  //    console.log(event);
+  //  };
+  //  document.addEventListener('keydown', listener);
+  //  return () => {
+  //    document.removeEventListener('keydown', listener);
+  //  };
+  //}, [run]);
 
   return (
     <LargeIcon
@@ -41,6 +66,7 @@ export const PlayPauseControl = () => {
       <PlayPauseSVG
         runTimerProgress={runTimerProgress}
         isAutoRunEnabled={isAutoRunEnabled}
+        needsManualRun={needsManualRun}
       />
     </LargeIcon>
   );
