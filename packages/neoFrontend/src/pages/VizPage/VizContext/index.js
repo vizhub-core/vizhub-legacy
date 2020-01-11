@@ -4,7 +4,7 @@ import { useViz } from './useViz';
 
 export const VizContext = createContext();
 
-export const VizProvider = ({ fallback, children }) => {
+export const VizProvider = ({ children }) => {
   const vizPageData = useContext(VizPageDataContext);
   const contextValue = useViz(vizPageData.visualization);
 
