@@ -17,6 +17,14 @@ const Pause = () => (
   </>
 );
 
+const Play = () => (
+  <g transform="translate(-11,-11)">
+    <path d="M16 11L8.5 15.3301L8.5 6.66987L16 11Z" />
+  </g>
+);
+
+const isAutoRunEnabled = true;
+
 export const PlayPauseSVG = ({ height = 20, runTimerProgress }) => (
   <svg height={height} viewBox={`0 0 20 20`}>
     <g transform="translate(10,10)" fill="currentcolor">
@@ -24,7 +32,7 @@ export const PlayPauseSVG = ({ height = 20, runTimerProgress }) => (
         fill="#3866e9"
         d={runTimerProgressArc({
           startAngle: 0,
-          endAngle: runTimerProgress * Math.PI * 2
+          endAngle: 1.01 * runTimerProgress * Math.PI * 2
         })}
       />
       <circle
@@ -33,7 +41,7 @@ export const PlayPauseSVG = ({ height = 20, runTimerProgress }) => (
         stroke="currentcolor"
         fill="none"
       />
-      <Pause />
+      {isAutoRunEnabled ? <Pause /> : <Play />}
     </g>
   </svg>
 );
