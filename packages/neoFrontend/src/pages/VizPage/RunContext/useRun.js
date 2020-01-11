@@ -29,6 +29,7 @@ export const useRun = () => {
   } = useContext(VizContext);
   const [runId, setRunId] = useState(generateRunId());
   const [runError, setRunError] = useState(null);
+  const [isAutoRunEnabled, setIsAutoRunEnabled] = useState(true);
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
@@ -190,6 +191,8 @@ export const useRun = () => {
     resetRunTimer,
     runId,
     runTimerProgress$,
-    runError
+    runError,
+    isAutoRunEnabled,
+    setIsAutoRunEnabled
   };
 };

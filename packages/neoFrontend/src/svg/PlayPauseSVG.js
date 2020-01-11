@@ -23,9 +23,11 @@ const Play = () => (
   </g>
 );
 
-const isAutoRunEnabled = true;
-
-export const PlayPauseSVG = ({ height = 20, runTimerProgress }) => (
+export const PlayPauseSVG = ({
+  height = 20,
+  runTimerProgress,
+  isAutoRunEnabled
+}) => (
   <svg height={height} viewBox={`0 0 20 20`}>
     <g transform="translate(10,10)" fill="currentcolor">
       <path
