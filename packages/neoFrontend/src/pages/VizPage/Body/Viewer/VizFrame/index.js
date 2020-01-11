@@ -13,16 +13,17 @@ import {
   enterMiniModeTooltip
 } from '../../../../../constants';
 import { LargeIcon } from '../../../../styles';
-import { FrameFooter } from '../../styles';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { RunContext } from '../../../RunContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { useDimensions } from '../../useDimensions';
 import {
   Wrapper,
-  RunTimerProgressIndicator,
-  LargeIconRightmost
+  LargeIconRightmost,
+  VizFrameFooter,
+  VizFrameFooterRight
 } from './styles';
+import { PlayPauseControl } from './PlayPauseControl';
 
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
@@ -63,25 +64,34 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
       {scale ? (
         <>
           <div style={{ height: vizHeight * scale }} />
-          <FrameFooter>
-            <RunTimerProgressIndicator runTimerProgress={runTimerProgress} />
+          <VizFrameFooter>
             <LargeIcon
               leftmost={true}
+              rightmost={true}
               onClick={enterMini}
-              className="test-enter-mini-from-viewer"
               title={enterMiniModeTooltip}
             >
-              <MiniOrMicroSVG />
+              <PlayPauseControl runTimerProgress={runTimerProgress} />
             </LargeIcon>
-            <LargeIconRightmost
-              rightmost={true}
-              onClick={enterFullScreen}
-              className="test-enter-fullscreen-from-viewer"
-              title={enterFullScreenTooltip}
-            >
-              <FullSVG />
-            </LargeIconRightmost>
-          </FrameFooter>
+            <VizFrameFooterRight>
+              <LargeIcon
+                leftmost={true}
+                onClick={enterMini}
+                className="test-enter-mini-from-viewer"
+                title={enterMiniModeTooltip}
+              >
+                <MiniOrMicroSVG />
+              </LargeIcon>
+              <LargeIconRightmost
+                rightmost={true}
+                onClick={enterFullScreen}
+                className="test-enter-fullscreen-from-viewer"
+                title={enterFullScreenTooltip}
+              >
+                <FullSVG />
+              </LargeIconRightmost>
+            </VizFrameFooterRight>
+          </VizFrameFooter>
         </>
       ) : null}
     </Wrapper>
