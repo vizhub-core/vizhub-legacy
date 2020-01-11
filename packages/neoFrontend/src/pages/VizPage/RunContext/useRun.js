@@ -6,6 +6,7 @@ import {
   useState,
   useRef
 } from 'react';
+import { runDelay } from '../../../constants';
 import { Subject } from 'rxjs';
 import { VizContext } from '../VizContext';
 import { EditorModulesContext } from '../EditorModulesContext';
@@ -18,10 +19,6 @@ import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
 import { changesJS } from './changesJS';
 import { changesMD } from './changesMD';
-
-// The delay in ms between the time a change is made and the time
-// the program is run.
-const runDelay = 1000;
 
 export const useRun = () => {
   const {
