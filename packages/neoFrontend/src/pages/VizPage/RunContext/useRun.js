@@ -29,6 +29,8 @@ export const useRun = () => {
   } = useContext(VizContext);
   const [runId, setRunId] = useState(generateRunId());
   const [runError, setRunError] = useState(null);
+  const [isAutoRunEnabled, setIsAutoRunEnabled] = useState(true);
+  const [needsManualRun, setNeedsManualRun] = useState(false);
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
@@ -103,6 +105,8 @@ export const useRun = () => {
 
     // Flag that the timer is no longer running.
     timeoutId.current = undefined;
+
+    setNeedsManualRun(false);
   }, [
     setRunId,
     editorModules,
@@ -159,12 +163,16 @@ export const useRun = () => {
     const subscription = vizContentOp$.subscribe(({ previous, next }) => {
       if (previous.files !== next.files) {
         if (!onlyBundleJSChanged(previous.files, next.files)) {
-          startRunTimer();
+          if (isAutoRunEnabled) {
+            startRunTimer();
+          } else {
+            setNeedsManualRun(true);
+          }
         }
       }
     });
     return () => subscription.unsubscribe();
-  }, [vizContentOp$, startRunTimer]);
+  }, [vizContentOp$, startRunTimer, isAutoRunEnabled]);
 
   // Handle the case that a remote user changes some JS
   // that causes the bundle to update.
@@ -190,6 +198,10 @@ export const useRun = () => {
     resetRunTimer,
     runId,
     runTimerProgress$,
-    runError
+    runError,
+    isAutoRunEnabled,
+    setIsAutoRunEnabled,
+    needsManualRun,
+    run
   };
 };

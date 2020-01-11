@@ -45,7 +45,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   }, [keyMap, setKeyMap]);
 
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
-  const { resetRunTimer } = useContext(RunContext);
+  const { resetRunTimer, setIsAutoRunEnabled, run } = useContext(RunContext);
   const fileIndex = useFileIndex(viz$, activeFile);
   const path = usePath(fileIndex);
   const realtimeModules = useContext(RealtimeModulesContext);
@@ -53,6 +53,14 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
+
+  const manualRunRef = useRef(() => {});
+  useEffect(() => {
+    manualRunRef.current = () => {
+      setIsAutoRunEnabled(false);
+      run();
+    };
+  }, [setIsAutoRunEnabled, run]);
 
   // Request to load editor modules.
   // This line is only strictly required in the case that the user opens a link
@@ -90,7 +98,12 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         tabSize: 2,
         matchBrackets: true,
         closeOnBlur: false,
-        extraKeys: { 'Ctrl-Space': 'autocomplete' }
+        extraKeys: {
+          'Ctrl-Space': 'autocomplete',
+          'Shift-Enter': () => {
+            manualRunRef.current();
+          }
+        }
       })
     );
   }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
