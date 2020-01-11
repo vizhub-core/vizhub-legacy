@@ -18,5 +18,6 @@ export { ExportSVG } from './ExportSVG';
 export { PrettierSVG } from './PrettierSVG';
 export { DirectoryArrowSVG } from './DirectoryArrowSVG';
 export { RadioButtonSVG } from './RadioButtonSVG';
+export { PlayPauseSVG } from './PlayPauseSVG';
 
 export { SVGGallery } from './svgGallery';
