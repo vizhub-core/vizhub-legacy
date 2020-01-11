@@ -2,8 +2,7 @@ import React, {
   useRef,
   useContext,
   useCallback,
-  useState,
-  useEffect
+  useState
 } from 'react';
 import { FullSVG } from '../../../../../svg';
 import { MiniOrMicroSVG } from '../../../../../mobileMods';
@@ -13,9 +12,8 @@ import {
   enterMiniModeTooltip
 } from '../../../../../constants';
 import { LargeIcon } from '../../../../styles';
-import { VizRunnerContext } from '../../../VizRunnerContext';
-import { RunContext } from '../../../RunContext';
 import { URLStateContext } from '../../../URLStateContext';
+import { VizRunnerContext } from '../../../VizRunnerContext';
 import { useDimensions } from '../../useDimensions';
 import {
   Wrapper,
@@ -31,13 +29,6 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
   const { enterFullScreen, enterMini } = useContext(URLStateContext);
   const [scale, setScale] = useState();
-  const { runTimerProgress$ } = useContext(RunContext);
-  const [runTimerProgress, setRunTimerProgress] = useState();
-
-  useEffect(() => {
-    const subscription = runTimerProgress$.subscribe(setRunTimerProgress);
-    return () => subscription.unsubscribe();
-  }, [runTimerProgress$]);
 
   const setDomRect = useCallback(
     ({ x, y, width }) => {
@@ -65,14 +56,7 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
         <>
           <div style={{ height: vizHeight * scale }} />
           <VizFrameFooter>
-            <LargeIcon
-              leftmost={true}
-              rightmost={true}
-              onClick={enterMini}
-              title={enterMiniModeTooltip}
-            >
-              <PlayPauseControl runTimerProgress={runTimerProgress} />
-            </LargeIcon>
+            <PlayPauseControl />
             <VizFrameFooterRight>
               <LargeIcon
                 leftmost={true}
