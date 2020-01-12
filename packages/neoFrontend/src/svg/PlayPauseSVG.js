@@ -48,7 +48,7 @@ export const PlayPauseSVG = ({
           <circle
             r={r}
             strokeWidth={strokeWidth}
-            stroke={needsManualRun ? blue : 'currentcolor'}
+            stroke="currentcolor"
             fill="none"
           />
           <g fill={needsManualRun ? blue : 'currentcolor'}>
