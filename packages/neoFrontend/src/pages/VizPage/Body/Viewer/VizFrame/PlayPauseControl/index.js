@@ -8,6 +8,7 @@ import React, {
 import { PlayPauseSVG } from '../../../../../../svg';
 import { LargeIcon } from '../../../../../styles';
 import { RunContext } from '../../../../RunContext';
+import { URLStateContext } from '../../../../URLStateContext';
 
 export const PlayPauseControl = () => {
   const {
@@ -17,6 +18,7 @@ export const PlayPauseControl = () => {
     needsManualRun,
     run
   } = useContext(RunContext);
+  const { activeFile } = useContext(URLStateContext);
   const [runTimerProgress, setRunTimerProgress] = useState();
 
   useEffect(() => {
@@ -67,6 +69,7 @@ export const PlayPauseControl = () => {
         runTimerProgress={runTimerProgress}
         isAutoRunEnabled={isAutoRunEnabled}
         needsManualRun={needsManualRun}
+        showButton={!!activeFile}
       />
     </LargeIcon>
   );

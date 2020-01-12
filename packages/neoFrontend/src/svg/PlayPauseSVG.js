@@ -32,7 +32,8 @@ export const PlayPauseSVG = ({
   height = 20,
   runTimerProgress,
   isAutoRunEnabled,
-  needsManualRun
+  needsManualRun,
+  showButton
 }) => (
   <svg height={height} viewBox={`0 0 20 20`}>
     <g transform="translate(10,10)" fill="currentcolor">
@@ -42,15 +43,19 @@ export const PlayPauseSVG = ({
           endAngle: needsManualRun ? twoPI : runTimerProgress * twoPI
         })}
       />
-      <circle
-        r={r}
-        strokeWidth={strokeWidth}
-        stroke={needsManualRun ? blue : 'currentcolor'}
-        fill="none"
-      />
-      <g fill={needsManualRun ? blue : 'currentcolor'}>
-        {isAutoRunEnabled ? <Pause /> : <Play />}
-      </g>
+      {showButton ? (
+        <>
+          <circle
+            r={r}
+            strokeWidth={strokeWidth}
+            stroke={needsManualRun ? blue : 'currentcolor'}
+            fill="none"
+          />
+          <g fill={needsManualRun ? blue : 'currentcolor'}>
+            {isAutoRunEnabled ? <Pause /> : <Play />}
+          </g>
+        </>
+      ) : null}
     </g>
   </svg>
 );
