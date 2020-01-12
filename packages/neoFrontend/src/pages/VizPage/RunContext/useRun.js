@@ -126,6 +126,14 @@ export const useRun = () => {
     }
   }, [run, resetRunTimerProgress]);
 
+  const cancelRunTimer = useCallback(() => {
+    console.log('here');
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
+      runTimerStart.current = 0;
+    }
+  }, []);
+
   // If the timer has been started, reset it.
   // If the timer has not been started, this function starts it.
   const startRunTimer = useCallback(() => {
@@ -196,6 +204,7 @@ export const useRun = () => {
 
   return {
     resetRunTimer,
+    cancelRunTimer,
     runId,
     runTimerProgress$,
     runError,

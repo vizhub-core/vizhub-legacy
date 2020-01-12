@@ -45,7 +45,14 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   }, [keyMap, setKeyMap]);
 
   const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
-  const { resetRunTimer, setIsAutoRunEnabled, run } = useContext(RunContext);
+  const {
+    resetRunTimer,
+    needsManualRun,
+    cancelRunTimer,
+    isAutoRunEnabled,
+    setIsAutoRunEnabled,
+    run
+  } = useContext(RunContext);
   const fileIndex = useFileIndex(viz$, activeFile);
   const path = usePath(fileIndex);
   const realtimeModules = useContext(RealtimeModulesContext);
@@ -57,10 +64,21 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const manualRunRef = useRef(() => {});
   useEffect(() => {
     manualRunRef.current = () => {
-      setIsAutoRunEnabled(false);
-      run();
+      if (isAutoRunEnabled) {
+        setIsAutoRunEnabled(false);
+        cancelRunTimer();
+        run();
+      } else if (needsManualRun) {
+        run();
+      }
     };
-  }, [setIsAutoRunEnabled, run]);
+  }, [
+    isAutoRunEnabled,
+    setIsAutoRunEnabled,
+    run,
+    cancelRunTimer,
+    needsManualRun
+  ]);
 
   // Request to load editor modules.
   // This line is only strictly required in the case that the user opens a link
