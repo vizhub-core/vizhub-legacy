@@ -3,7 +3,6 @@ import { modShowViewer } from '../../../../../mobileMods';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
 import { VizContext } from '../../../VizContext';
-import { PrettierContext } from '../../../PrettierContext';
 import { Wrapper } from './styles';
 import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
@@ -28,8 +27,6 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
   // Easter egg.
   // Manual test for cursor transform.
   const { submitVizContentOp } = useContext(VizContext);
-
-  const { prettify } = useContext(PrettierContext);
 
   useEffect(() => {
     if (!submitVizContentOp) {
@@ -62,7 +59,6 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
         onShowViz={onShowViz}
         onHideViz={onHideViz}
         closeActiveFile={closeActiveFile}
-        prettify={prettify}
       />
       <CodeArea
         key={activeFile}

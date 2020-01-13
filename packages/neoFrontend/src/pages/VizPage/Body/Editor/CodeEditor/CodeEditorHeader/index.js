@@ -2,7 +2,6 @@ import React from 'react';
 import {
   FullSVG,
   CloseSVG,
-  PrettierSVG,
   ArrowSVG
 } from '../../../../../../svg';
 import {
@@ -26,7 +25,6 @@ export const CodeEditorHeader = ({
   onShowViz,
   onHideViz,
   closeActiveFile,
-  prettify,
   showTop,
   toggleShowTop
 }) => (
@@ -41,21 +39,12 @@ export const CodeEditorHeader = ({
     <Icons>
       {viewer ? (
         <>
-          {activeFile !== 'bundle.js' ? (
-            <CodeEditorIcon
-              onClick={prettify}
-              title={`Auto-format code with Prettier
-Keyboard shortcut: Alt + p`}
-            >
-              <PrettierSVG height={svgHeight} />
-            </CodeEditorIcon>
-          ) : null}
           <CodeEditorIcon
             onClick={toggleShowTop}
             leftmost={true}
             title={showTop ? 'Hide top bar' : 'Show top bar'}
           >
-            <ArrowSVG height={svgHeight} />
+            <ArrowSVG height={svgHeight} up={showTop} down={!showTop} />
           </CodeEditorIcon>
           <CodeEditorIcon
             onClick={onHideViz}
