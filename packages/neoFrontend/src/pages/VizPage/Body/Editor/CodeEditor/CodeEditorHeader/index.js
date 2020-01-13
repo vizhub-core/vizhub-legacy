@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FullSVG,
-  CloseSVG,
-  ArrowSVG
-} from '../../../../../../svg';
+import { FullSVG, CloseSVG, ArrowSVG } from '../../../../../../svg';
 import {
   codeEditorHeaderCloseTooltip,
   codeEditorHeaderEnterFullEditorTooltip,
@@ -37,15 +33,15 @@ export const CodeEditorHeader = ({
       {activeFile}
     </Text>
     <Icons>
+      <CodeEditorIcon
+        onClick={toggleShowTop}
+        leftmost={true}
+        title={showTop ? 'Hide top bar' : 'Show top bar'}
+      >
+        <ArrowSVG height={svgHeight} up={showTop} down={!showTop} />
+      </CodeEditorIcon>
       {viewer ? (
         <>
-          <CodeEditorIcon
-            onClick={toggleShowTop}
-            leftmost={true}
-            title={showTop ? 'Hide top bar' : 'Show top bar'}
-          >
-            <ArrowSVG height={svgHeight} up={showTop} down={!showTop} />
-          </CodeEditorIcon>
           <CodeEditorIcon
             onClick={onHideViz}
             className="test-enter-full-editor"
