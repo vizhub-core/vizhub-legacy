@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { showMobileConsole } from '../../../featureFlags';
 import { NavBar } from '../../../NavBar';
 import { URLStateContext } from '../URLStateContext';
@@ -24,22 +24,30 @@ export const Body = () => {
   const showTopRight = !isMicro;
   const showMicroConsole = showMobileConsole && isMicro && activeFile;
 
+  const [showTop, setShowTop] = useState(true);
+  const toggleShowTop = useCallback(() => setShowTop(!showTop), [
+    showTop,
+    setShowTop
+  ]);
+
   return isFullScreen ? (
     <FullScreen />
   ) : (
     <Wrapper>
-      <Top>
-        {showMicroConsole ? (
-          <MicroConsole consoleOutput={consoleOutput} />
-        ) : (
-          <>
-            <NavBar showRight={showTopRight} />
-            <Head showRight={showTopRight} />
-          </>
-        )}
-      </Top>
+      {showTop || !activeFile ? (
+        <Top>
+          {showMicroConsole ? (
+            <MicroConsole consoleOutput={consoleOutput} />
+          ) : (
+            <>
+              <NavBar showRight={showTopRight} />
+              <Head showRight={showTopRight} />
+            </>
+          )}
+        </Top>
+      ) : null}
       <Bottom>
-        <Editor />
+        <Editor showTop={showTop} toggleShowTop={toggleShowTop} />
         {modShowViewer(showViewer, showEditor, activeFile) ? <Viewer /> : null}
         {isMini ? <Mini /> : null}
       </Bottom>

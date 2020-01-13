@@ -29,8 +29,8 @@ iFrame.setAttribute('width', vizWidth);
 
 iFrame.style.position = 'fixed';
 iFrame.style.border = 0;
-iFrame.style.top = `0px`;
-iFrame.style.left = `0px`;
+iFrame.style.top = '0px';
+iFrame.style.left = '0px';
 iFrame.style['transform-origin'] = '0 0';
 iFrame.style['z-index'] = Z_BELOW;
 iFrame.style['background-color'] = '#ffffff';
