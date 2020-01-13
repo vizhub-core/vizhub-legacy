@@ -34,7 +34,7 @@ export const Body = () => {
     <FullScreen />
   ) : (
     <Wrapper>
-      {showTop ? (
+      {(showTop || !activeFile) ? (
         <Top>
           {showMicroConsole ? (
             <MicroConsole consoleOutput={consoleOutput} />
