@@ -1,5 +1,10 @@
 import React from 'react';
-import { FullSVG, CloseSVG, PrettierSVG } from '../../../../../../svg';
+import {
+  FullSVG,
+  CloseSVG,
+  PrettierSVG,
+  ArrowSVG
+} from '../../../../../../svg';
 import {
   codeEditorHeaderCloseTooltip,
   codeEditorHeaderEnterFullEditorTooltip,
@@ -21,7 +26,9 @@ export const CodeEditorHeader = ({
   onShowViz,
   onHideViz,
   closeActiveFile,
-  prettify
+  prettify,
+  showTop,
+  toggleShowTop
 }) => (
   <Wrapper showEditor={showEditor}>
     <Text
@@ -37,13 +44,19 @@ export const CodeEditorHeader = ({
           {activeFile !== 'bundle.js' ? (
             <CodeEditorIcon
               onClick={prettify}
-              leftmost={true}
               title={`Auto-format code with Prettier
 Keyboard shortcut: Alt + p`}
             >
               <PrettierSVG height={svgHeight} />
             </CodeEditorIcon>
           ) : null}
+          <CodeEditorIcon
+            onClick={toggleShowTop}
+            leftmost={true}
+            title={showTop ? 'Hide top bar' : 'Show top bar'}
+          >
+            <ArrowSVG height={svgHeight} />
+          </CodeEditorIcon>
           <CodeEditorIcon
             onClick={onHideViz}
             className="test-enter-full-editor"
