@@ -1,13 +1,13 @@
 import { useCallback, useLayoutEffect } from 'react';
 import { useListener } from '../useListener';
-import { useWidthDetector } from './useWidthDetector';
+import { useDimensionsDetector } from './useDimensionsDetector';
 
 // Inspired by https://github.com/Swizec/useDimensions
 export const useDimensions = ({
   wrapperRef,
   setDomRect,
   scrollerRef,
-  onWidthChanged,
+  onDimensionsChanged,
   globalResize = false
 }) => {
   // Measures the current dimensions.
@@ -26,14 +26,14 @@ export const useDimensions = ({
   // Detect when width of the scroller element changes.
   // This also fires when the scrollbar is added or removed.
   // Does nothing if scrollerRef is undefined.
-  useWidthDetector(
+  useDimensionsDetector(
     scrollerRef,
     useCallback(() => {
       measure();
-      if (onWidthChanged) {
-        onWidthChanged();
+      if (onDimensionsChanged) {
+        onDimensionsChanged();
       }
-    }, [measure, onWidthChanged])
+    }, [measure, onDimensionsChanged])
   );
 
   // Measure the dimensions on window resize
