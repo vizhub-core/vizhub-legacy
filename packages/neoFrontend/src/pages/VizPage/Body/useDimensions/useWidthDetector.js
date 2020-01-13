@@ -14,9 +14,9 @@ export const useWidthDetector = (containerRef, onWidthChanged) => {
     if (containerRef) {
       const detector = document.createElement('iframe');
       Object.assign(detector.style, {
-        height: 0,
         border: 0,
-        width: '100%'
+        width: '100%',
+        height: '100%'
       });
 
       const container = containerRef.current;
