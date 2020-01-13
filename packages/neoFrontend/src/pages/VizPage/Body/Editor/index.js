@@ -13,7 +13,7 @@ import { useEditorTheme } from './useEditorTheme';
 
 const defaultRotation = 0.397;
 
-export const Editor = () => {
+export const Editor = ({ showTop, toggleShowTop }) => {
   const { showEditor, activeFile } = useContext(URLStateContext);
   const [rotation, setRotation] = useState(defaultRotation);
   const [rotationEnabled, setRotationEnabled] = useState(false);
@@ -71,7 +71,9 @@ export const Editor = () => {
             </Bottom>
           </Sidebar>
         ) : null}
-        {activeFile ? <CodeEditor /> : null}
+        {activeFile ? (
+          <CodeEditor showTop={showTop} toggleShowTop={toggleShowTop} />
+        ) : null}
       </>
     </ThemeProvider>
   );

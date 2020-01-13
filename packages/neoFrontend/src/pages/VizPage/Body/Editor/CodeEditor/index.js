@@ -9,7 +9,7 @@ import { CodeArea } from './CodeArea';
 import { CodeEditorHeader } from './CodeEditorHeader';
 import { useUpdateURLOnRename } from './useUpdateURLOnRename';
 
-export const CodeEditor = () => {
+export const CodeEditor = ({ showTop, toggleShowTop }) => {
   const {
     activeFile,
     showEditor,
@@ -54,6 +54,8 @@ export const CodeEditor = () => {
       className="test-code-editor"
     >
       <CodeEditorHeader
+        showTop={showTop}
+        toggleShowTop={toggleShowTop}
         showEditor={showEditor}
         activeFile={activeFile}
         viewer={viewer}
