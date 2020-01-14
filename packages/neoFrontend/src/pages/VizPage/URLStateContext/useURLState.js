@@ -79,6 +79,11 @@ export const useURLState = props => {
 
   const showResizer = activeFile !== undefined;
 
+  const isRecoveryMode = window.location.hash === '#recover';
+  const exitRecoveryMode = useCallback(() => {
+    dispatch({ type: 'exitRecoveryMode' });
+  }, [dispatch]);
+
   // Derived accessors for URL state, exposed to components.
   return {
     activeFile,
@@ -99,6 +104,8 @@ export const useURLState = props => {
     showViewer,
     enterMini,
     exitMini,
-    showResizer
+    showResizer,
+    isRecoveryMode,
+    exitRecoveryMode
   };
 };
