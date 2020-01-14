@@ -27,9 +27,11 @@ export const useURLStateReducer = (reducer, { history, match, location }) => {
       window.testVizHubHiddenURLState = hiddenURLState;
 
       delete nextState.hidden;
+
       history.push({
         pathname: match.url,
-        search: queryString.stringify(nextState)
+        search: queryString.stringify(nextState),
+        hash: window.location.hash
       });
     },
     [reducer, state, history, match.url]
