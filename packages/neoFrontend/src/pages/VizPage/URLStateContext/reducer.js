@@ -53,6 +53,10 @@ export const reducer = (state, action) => {
         mode: action.mode === 'viewer' ? undefined : action.mode
       });
 
+    case 'exitRecoveryMode':
+      window.location.hash = '';
+      return state;
+
     default:
       throw new Error();
   }

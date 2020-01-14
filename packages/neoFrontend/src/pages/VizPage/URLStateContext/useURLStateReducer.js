@@ -12,7 +12,6 @@ let hiddenURLState = {
 };
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
-  // TODO refactor state to {url, hidden}.
   const state = useMemo(() => queryString.parse(location.search), [
     location.search
   ]);
