@@ -21,7 +21,8 @@ export const Body = () => {
     mode,
     showEditor,
     activeFile,
-    isRecoveryMode
+    isRecoveryMode,
+    exitRecoveryMode
   } = useContext(URLStateContext);
 
   const mod = modMode(mode, showEditor, activeFile);
@@ -47,7 +48,7 @@ export const Body = () => {
           ) : (
             <>
               {isRecoveryMode ? (
-                <RecoveryModeBanner />
+                <RecoveryModeBanner exitRecoveryMode={exitRecoveryMode} />
               ) : (
                 <NavBar showRight={showTopRight} />
               )}
