@@ -8,7 +8,6 @@ export const ArrowSVG = ({
   down = false
 }) => {
   const isVertical = up || down;
-  console.log(isVertical);
   const w = isVertical ? 20 : 11;
   const h = isVertical ? 11 : 20;
   return (
