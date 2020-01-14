@@ -6,7 +6,7 @@ import {
   getVizHeight,
   vizWidth,
   getVizFiles,
-  computeSrcDoc,
+  computeSrcDoc
 } from 'vizhub-presenters';
 import { clearConsole } from '../../../constants';
 import { useValue } from '../../../useValue';
@@ -49,7 +49,9 @@ const setVizRunnerTransform = ({ x, y, scale }) => {
 
 export const VizRunnerProvider = ({ children }) => {
   const { viz$ } = useContext(VizContext);
-  const { mode, showEditor, activeFile, isRecoveryMode } = useContext(URLStateContext);
+  const { mode, showEditor, activeFile, isRecoveryMode } = useContext(
+    URLStateContext
+  );
 
   const vizHeight = useValue(viz$, getVizHeight);
   const { runId, runError } = useContext(RunContext);
@@ -80,9 +82,9 @@ export const VizRunnerProvider = ({ children }) => {
         'srcDoc',
         generateErrorMessageSrcDoc(prettierError.message, false)
       );
-    } else if(isRecoveryMode){
+    } else if (isRecoveryMode) {
       // Do nothing, to allow user to fix their code in "recovery mode".
-    }else {
+    } else {
       if (clearConsole) {
         console.clear();
       }

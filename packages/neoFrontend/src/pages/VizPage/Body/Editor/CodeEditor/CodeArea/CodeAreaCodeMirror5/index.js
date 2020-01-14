@@ -1,9 +1,5 @@
 import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
-import {
-  getVizFile,
-  getExtension,
-  fileChangeOp
-} from 'vizhub-presenters';
+import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';
