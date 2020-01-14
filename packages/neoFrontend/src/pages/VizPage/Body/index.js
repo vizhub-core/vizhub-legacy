@@ -10,13 +10,19 @@ import { FullScreen } from './FullScreen';
 import { Editor } from './Editor';
 import { Viewer } from './Viewer';
 import { Mini } from './Mini';
+import { RecoveryModeBanner } from './RecoveryModeBanner';
 
 const consoleOutput = `hello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2`;
 
 export const Body = () => {
-  const { isFullScreen, showViewer, mode, showEditor, activeFile } = useContext(
-    URLStateContext
-  );
+  const {
+    isFullScreen,
+    showViewer,
+    mode,
+    showEditor,
+    activeFile,
+    isRecoveryMode
+  } = useContext(URLStateContext);
 
   const mod = modMode(mode, showEditor, activeFile);
   const isMini = mod === 'mini';
@@ -40,7 +46,11 @@ export const Body = () => {
             <MicroConsole consoleOutput={consoleOutput} />
           ) : (
             <>
-              <NavBar showRight={showTopRight} />
+              {isRecoveryMode ? (
+                <RecoveryModeBanner />
+              ) : (
+                <NavBar showRight={showTopRight} />
+              )}
               <Head showRight={showTopRight} />
             </>
           )}
