@@ -14,14 +14,13 @@
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-use-cases": "1",
-    "dotenv": "^6.1.0",
-    "puppeteer": "^1.8.0",
-    "sharp": "^0.22.1",
-    "vizhub-server-gateways": "1",
-    "vizhub-ui": "1"
+    "dotenv": "^8.2.0",
+    "puppeteer": "^2.0.0",
+    "sharp": "^0.23.4",
+    "vizhub-server-gateways": "1"
   },
   "devDependencies": {
-    "esm": "^3.0.84",
-    "mocha": "^5.2.0"
+    "esm": "^3.2.25",
+    "mocha": "^7.0.0"
   }
 }

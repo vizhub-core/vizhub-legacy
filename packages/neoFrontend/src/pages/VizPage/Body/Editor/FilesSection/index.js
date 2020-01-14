@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { getVizFiles } from '../../../../../accessors';
+import { getVizFiles } from 'vizhub-presenters';
 import { useValue } from '../../../../../useValue';
 import { URLStateContext } from '../../../URLStateContext';
 import { RealtimeModulesContext } from '../../../RealtimeModulesContext';

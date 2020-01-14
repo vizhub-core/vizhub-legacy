@@ -1,4 +1,4 @@
-import { extractTitle, getFile, titleChangeOp } from '../../../accessors';
+import { extractTitle, getFile, titleChangeOp } from 'vizhub-presenters';
 
 export const updateTitleIfNeeded = (viz$, submitVizInfoOp, realtimeModules) => {
   const { info, content } = viz$.getValue();

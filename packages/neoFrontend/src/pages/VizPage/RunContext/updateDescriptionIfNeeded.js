@@ -1,4 +1,4 @@
-import { getFile, descriptionChangeOp } from '../../../accessors';
+import { getFile, descriptionChangeOp } from 'vizhub-presenters';
 
 export const updateDescriptionIfNeeded = (
   viz$,

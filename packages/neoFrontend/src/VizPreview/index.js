@@ -1,5 +1,5 @@
 import React from 'react';
-import { getUserName } from '../accessors';
+import { getUserName } from 'vizhub-presenters';
 import { Author } from '../Author';
 import {
   Wrapper,

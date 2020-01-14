@@ -1,6 +1,3 @@
-export const vizWidth = 960;
-export const defaultVizHeight = 500;
-
 const isProd = process.env.NODE_ENV !== 'development';
 
 // The minimum time that the interstitial spinner is shown to the user.

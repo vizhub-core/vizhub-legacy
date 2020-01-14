@@ -3,7 +3,7 @@ import {
   getVizFile,
   getExtension,
   fileChangeOp
-} from '../../../../../../../accessors';
+} from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';

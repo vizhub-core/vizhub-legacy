@@ -1,5 +1,5 @@
 import magicSandbox from './magicSandbox';
-import { getText } from '../../../accessors';
+import { getText } from './accessors';
 
 const template = files => getText(files, 'index.html');
 
