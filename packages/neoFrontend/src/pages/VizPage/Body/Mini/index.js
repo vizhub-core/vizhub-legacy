@@ -1,11 +1,10 @@
 import React, { useRef, useContext, useCallback } from 'react';
 import { SplitSVG, FullSVG } from '../../../../svg';
+import { vizWidth, getVizHeight } from 'vizhub-presenters';
 import {
-  vizWidth,
   enterFullScreenTooltip,
   exitMiniModeTooltip
 } from '../../../../constants';
-import { getVizHeight } from '../../../../accessors';
 import { theme } from '../../../../theme';
 import { LargeIcon } from '../../../styles';
 import { FrameFooter } from '../styles';

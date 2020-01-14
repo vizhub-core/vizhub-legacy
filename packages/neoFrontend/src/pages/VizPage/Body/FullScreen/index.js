@@ -1,12 +1,11 @@
 import React, { useRef, useContext, useCallback } from 'react';
+import { getVizHeight, vizWidth } from 'vizhub-presenters';
 import { FullExitSVG } from '../../../../svg';
 import { MiniOrMicroSVG } from '../../../../mobileMods';
 import {
-  vizWidth,
   exitFullScreenTooltip,
   enterMiniModeTooltip
 } from '../../../../constants';
-import { getVizHeight } from '../../../../accessors';
 import { LargeIcon } from '../../../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { URLStateContext } from '../../URLStateContext';

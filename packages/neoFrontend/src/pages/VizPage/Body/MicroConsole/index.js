@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { getMicroScale, getMicroWidth } from '../../../../accessors';
+import { getMicroScale, getMicroWidth } from 'vizhub-presenters';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { Wrapper, Output, CornerTitle, Scroller } from './styles';
 

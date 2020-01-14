@@ -1,4 +1,4 @@
-import { computeSrcDoc } from 'vizhub-ui';
+import { computeSrcDoc } from 'vizhub-presenters';
 import puppeteer from 'puppeteer';
 
 export const generateScreenshot = async ({ visualizationViewModel, waitTime }) => {

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { getVizOwner } from 'vizhub-presenters';
 import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
 import {
   showHeadPullRequest,
@@ -6,7 +7,6 @@ import {
   showHeadSettings
 } from '../../../../featureFlags';
 import { useValue } from '../../../../useValue';
-import { getVizOwner } from '../../../../accessors';
 import { AuthContext } from '../../../../authentication/AuthContext';
 import { WarningContext } from '../../WarningContext';
 import { ForkingContext } from '../../ForkingContext';

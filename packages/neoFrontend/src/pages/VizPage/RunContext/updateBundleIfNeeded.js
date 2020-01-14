@@ -4,7 +4,7 @@ import {
   deleteFileOp,
   fileChangeOp,
   fileCreateOp
-} from '../../../accessors';
+} from 'vizhub-presenters';
 
 export const updateBundleIfNeeded = async (
   viz$,

@@ -4,7 +4,7 @@ import {
   getVizFile,
   getExtension,
   fileChangeOp
-} from '../../../accessors';
+} from 'vizhub-presenters';
 import { VizContext } from '../VizContext';
 import { URLStateContext } from '../URLStateContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';

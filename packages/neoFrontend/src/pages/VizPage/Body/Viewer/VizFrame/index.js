@@ -1,8 +1,8 @@
 import React, { useRef, useContext, useCallback, useState } from 'react';
 import { FullSVG } from '../../../../../svg';
 import { MiniOrMicroSVG } from '../../../../../mobileMods';
+import { vizWidth } from 'vizhub-presenters';
 import {
-  vizWidth,
   enterFullScreenTooltip,
   enterMiniModeTooltip
 } from '../../../../../constants';

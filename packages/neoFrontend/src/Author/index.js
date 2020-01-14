@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrapper, AuthorAvatar, AuthorName } from './styles';
-import { getUserName, getUserFullName } from '../accessors';
+import { getUserName, getUserFullName } from 'vizhub-presenters';
 import { Avatar } from '../Avatar';
 
 export const Author = ({ ownerUser, isSmall = false }) =>

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { fileCreateOp } from '../../../../../accessors';
+import { fileCreateOp } from 'vizhub-presenters';
 
 export const useCreateNewFile = (
   setIsRenamingNewFile,

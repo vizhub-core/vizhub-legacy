@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { getFileIndex, fileChangeOp } from '../../../../../accessors';
+import { getFileIndex, fileChangeOp } from 'vizhub-presenters';
 
 export const useRenameActiveFile = (
   activeFile,

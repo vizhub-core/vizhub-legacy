@@ -1,5 +1,5 @@
 import { useState, useContext, useCallback } from 'react';
-import { getVizPrivacy, privacyChangeOp } from '../../../accessors';
+import { getVizPrivacy, privacyChangeOp } from 'vizhub-presenters';
 import { useValue } from '../../../useValue';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { VizContext } from '../VizContext';

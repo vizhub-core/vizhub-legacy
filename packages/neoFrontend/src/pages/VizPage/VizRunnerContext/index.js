@@ -4,9 +4,11 @@ import {
   getMicroScale,
   getMicroWidth,
   getVizHeight,
-  getVizFiles
-} from '../../../accessors';
-import { vizWidth, clearConsole } from '../../../constants';
+  vizWidth,
+  getVizFiles,
+  computeSrcDoc,
+} from 'vizhub-presenters';
+import { clearConsole } from '../../../constants';
 import { useValue } from '../../../useValue';
 import { modMode } from '../../../mobileMods';
 import { VizContext } from '../VizContext';
@@ -14,7 +16,6 @@ import { SplitPaneResizeContext } from '../SplitPaneResizeContext';
 import { RunContext } from '../RunContext';
 import { PrettierContext } from '../PrettierContext';
 import { URLStateContext } from '../URLStateContext';
-import { computeSrcDoc } from './computeSrcDoc';
 import { setVizRunnerMode } from './setVizRunnerMode';
 import { generateErrorMessageSrcDoc } from './generateErrorMessageSrcDoc';
 import { generateRunErrorMessage } from './generateRunErrorMessage';

@@ -1,4 +1,4 @@
-import { getExtension } from '../../../accessors';
+import { getExtension } from 'vizhub-presenters';
 
 export const createChangesChecker = (
   targetExtension,

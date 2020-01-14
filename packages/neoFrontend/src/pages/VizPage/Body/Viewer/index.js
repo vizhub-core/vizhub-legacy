@@ -6,14 +6,13 @@ import React, {
   useEffect
 } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
-
 import {
   getVizHeight,
   getVizUpvotes,
   getUpvoteCount,
   getDidVote,
   upvoteOp
-} from '../../../../accessors';
+} from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
 import { Centering } from '../../../styles';

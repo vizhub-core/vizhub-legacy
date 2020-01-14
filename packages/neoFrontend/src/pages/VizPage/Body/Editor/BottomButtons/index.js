@@ -1,8 +1,8 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
+import { deleteFileOp, getVizInfo } from 'vizhub-presenters';
 import { showEditorSettings } from '../../../../../featureFlags';
 import { SettingsSVG, NewSVG, ExportSVG } from '../../../../../svg';
-import { deleteFileOp, getVizInfo } from '../../../../../accessors';
 import { useValue } from '../../../../../useValue';
 import {
   sidebarSettingsTooltip,

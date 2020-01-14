@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { getFileIndex } from '../../../../../accessors';
+import { getFileIndex } from 'vizhub-presenters';
 import { URLStateContext } from '../../../URLStateContext';
 import { VizContext } from '../../../VizContext';
 import { getPath } from './usePath';
