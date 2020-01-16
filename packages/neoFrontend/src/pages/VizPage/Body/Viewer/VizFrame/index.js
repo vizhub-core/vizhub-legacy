@@ -11,12 +11,8 @@ import { URLStateContext } from '../../../URLStateContext';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { useDimensions } from '../../useDimensions';
 import { PlayPauseControl } from '../../PlayPauseControl';
-import {
-  Wrapper,
-  LargeIconRightmost,
-  VizFrameFooter,
-  VizFrameFooterRight
-} from './styles';
+import { FrameFooter, FrameFooterRight } from '../../styles';
+import { Wrapper, LargeIconRightmost } from './styles';
 
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
@@ -50,9 +46,9 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
       {scale ? (
         <>
           <div style={{ height: vizHeight * scale }} />
-          <VizFrameFooter>
+          <FrameFooter>
             <PlayPauseControl />
-            <VizFrameFooterRight>
+            <FrameFooterRight>
               <LargeIcon
                 leftmost={true}
                 onClick={enterMini}
@@ -69,8 +65,8 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
               >
                 <FullSVG />
               </LargeIconRightmost>
-            </VizFrameFooterRight>
-          </VizFrameFooter>
+            </FrameFooterRight>
+          </FrameFooter>
         </>
       ) : null}
     </Wrapper>
