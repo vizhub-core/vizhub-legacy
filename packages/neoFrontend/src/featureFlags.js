@@ -11,7 +11,18 @@ export const renameFileWithoutPath = false;
 
 // List of usernames who have access to
 // private viz feature.
-const whitelist = ['curran', 'nitanagdeote'];
+const core = ['curran', 'nitanagdeote'];
+
+const stamen = [
+  'almccon',
+  'alecburch',
+  'schroedermarc',
+  'loganwilliams',
+  'colinsullivan',
+  'swvogt'
+];
+
+const whitelist = core.concat(stamen);
 
 // Gateway to the private viz feature.
 export const showEditorSettings = (user, vizInfo) =>
