@@ -11,6 +11,7 @@ import { FrameFooter } from '../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { URLStateContext } from '../../URLStateContext';
+import { PlayPauseControl } from '../PlayPauseControl';
 import { useDimensions } from '../useDimensions';
 import { Wrapper } from './styles';
 
@@ -38,6 +39,7 @@ export const Mini = () => {
     <Wrapper ref={wrapperRef} className="test-mini">
       <div style={{ height: vizHeight * scale }} />
       <FrameFooter>
+        <PlayPauseControl />
         <LargeIcon
           leftmost={true}
           onClick={exitMini}
