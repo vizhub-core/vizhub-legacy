@@ -10,13 +10,13 @@ import { LargeIcon } from '../../../../styles';
 import { URLStateContext } from '../../../URLStateContext';
 import { VizRunnerContext } from '../../../VizRunnerContext';
 import { useDimensions } from '../../useDimensions';
+import { PlayPauseControl } from '../../PlayPauseControl';
 import {
   Wrapper,
   LargeIconRightmost,
   VizFrameFooter,
   VizFrameFooterRight
 } from './styles';
-import { PlayPauseControl } from './PlayPauseControl';
 
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
