@@ -15,8 +15,11 @@ export const useDimensionsDetector = (containerRef, onDimensionsChanged) => {
       const detector = document.createElement('iframe');
       Object.assign(detector.style, {
         border: 0,
+        position: 'absolute',
+        top: 0,
         width: '100%',
-        height: '100%'
+        height: '100%',
+        'pointer-events': 'none'
       });
 
       const container = containerRef.current;
