@@ -14,12 +14,13 @@ export const renameFileWithoutPath = false;
 const core = ['curran', 'nitanagdeote'];
 
 const stamen = [
+  'vinaydixit',
   'almccon',
   'alecburch',
-  'schroedermarc',
+  'swvogt',
   'loganwilliams',
   'colinsullivan',
-  'swvogt'
+  'schroedermarc'
 ];
 
 const whitelist = core.concat(stamen);
