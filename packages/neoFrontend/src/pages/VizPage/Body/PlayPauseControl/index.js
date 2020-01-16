@@ -5,10 +5,10 @@ import React, {
   useState,
   useEffect
 } from 'react';
-import { PlayPauseSVG } from '../../../../../../svg';
-import { LargeIcon } from '../../../../../styles';
-import { RunContext } from '../../../../RunContext';
-import { URLStateContext } from '../../../../URLStateContext';
+import { PlayPauseSVG } from '../../../../svg';
+import { LargeIcon } from '../../../styles';
+import { RunContext } from '../../RunContext';
+import { URLStateContext } from '../../URLStateContext';
 
 export const PlayPauseControl = () => {
   const {

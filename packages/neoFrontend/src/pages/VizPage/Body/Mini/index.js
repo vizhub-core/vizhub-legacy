@@ -7,11 +7,13 @@ import {
 } from '../../../../constants';
 import { theme } from '../../../../theme';
 import { LargeIcon } from '../../../styles';
-import { FrameFooter } from '../styles';
+import { FrameFooter, FrameFooterRight } from '../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { URLStateContext } from '../../URLStateContext';
+import { PlayPauseControl } from '../PlayPauseControl';
 import { useDimensions } from '../useDimensions';
+
 import { Wrapper } from './styles';
 
 const scale = theme.miniWidth / vizWidth;
@@ -38,21 +40,24 @@ export const Mini = () => {
     <Wrapper ref={wrapperRef} className="test-mini">
       <div style={{ height: vizHeight * scale }} />
       <FrameFooter>
-        <LargeIcon
-          leftmost={true}
-          onClick={exitMini}
-          className="exit-mini-from-mini"
-          title={exitMiniModeTooltip}
-        >
-          <SplitSVG />
-        </LargeIcon>
-        <LargeIcon
-          rightmost={true}
-          onClick={enterFullScreen}
-          title={enterFullScreenTooltip}
-        >
-          <FullSVG />
-        </LargeIcon>
+        <PlayPauseControl />
+        <FrameFooterRight>
+          <LargeIcon
+            leftmost={true}
+            onClick={exitMini}
+            className="exit-mini-from-mini"
+            title={exitMiniModeTooltip}
+          >
+            <SplitSVG />
+          </LargeIcon>
+          <LargeIcon
+            rightmost={true}
+            onClick={enterFullScreen}
+            title={enterFullScreenTooltip}
+          >
+            <FullSVG />
+          </LargeIcon>
+        </FrameFooterRight>
       </FrameFooter>
     </Wrapper>
   );

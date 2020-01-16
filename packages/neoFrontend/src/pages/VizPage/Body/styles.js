@@ -32,4 +32,9 @@ export const FrameFooter = styled(Footer)`
   border-bottom-left-radius: ${props => props.theme.borderRadiusSmall}px;
   position: relative;
   z-index: ${Z_WAY_ABOVE};
+  justify-content: space-between;
+`;
+
+export const FrameFooterRight = styled.div`
+  display: flex;
 `;
