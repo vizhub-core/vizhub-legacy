@@ -112,6 +112,17 @@ export const privacyChangeOp = (oldPrivacy, newPrivacy, realtimeModules) =>
         }
       ];
 
+export const heightChangeOp = (oldHeight, newHeight, realtimeModules) =>
+  // Initialize the height field if needed.
+  oldHeight
+    ? textDiffOp(oldHeight, newHeight, ['height'], realtimeModules)
+    : [
+        {
+          p: ['height'],
+          oi: newHeight
+        }
+      ];
+
 export const upvoteOp = (userId, upvotes) => {
   const op = [];
 

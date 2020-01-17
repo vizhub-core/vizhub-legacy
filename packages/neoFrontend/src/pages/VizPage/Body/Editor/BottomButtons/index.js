@@ -12,14 +12,17 @@ import {
 import { AuthContext } from '../../../../../authentication';
 import { VizContext } from '../../../VizContext';
 import { PrivacyContext } from '../../../PrivacyContext';
+import { HeightContext } from '../../../HeightContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
 import { SettingsTop } from './SettingsTop';
+import { HeightTop } from './HeightTop';
 import { NewTop } from './NewTop';
 import { ExportTop } from './ExportTop';
 import { DeleteTop } from './DeleteTop';
 import { TrashIcon } from '../../TrashIcon';
 
+const HEIGHT = 'height';
 const SETTINGS_BUTTON = 'settings';
 const NEW_BUTTON = 'new';
 const EXPORT_BUTTON = 'export';
@@ -34,6 +37,7 @@ export const BottomButtons = withTheme(
 
     const { closeActiveFile } = useContext(URLStateContext);
     const showPrivacyModal = useContext(PrivacyContext);
+    const showHeightModal = useContext(HeightContext);
     const { me } = useContext(AuthContext);
 
     const onButtonClick = useCallback(
@@ -70,11 +74,18 @@ export const BottomButtons = withTheme(
       showPrivacyModal();
     }, [clearActiveButton, showPrivacyModal]);
 
+    const onHeightClick = useCallback(() => {
+      clearActiveButton();
+      showHeightModal();
+    }, [clearActiveButton, showHeightModal]);
+
     return (
       <Wrapper>
         <Top>
           {activeButton === SETTINGS_BUTTON ? (
             <SettingsTop onPrivacyClick={onPrivacyClick} />
+          ) : activeButton === HEIGHT ? (
+            <HeightTop onHeightClick={onHeightClick} />
           ) : activeButton === NEW_BUTTON ? (
             <NewTop onNewFileListItemClick={onNewFileListItemClick} />
           ) : activeButton === EXPORT_BUTTON ? (
@@ -100,6 +111,17 @@ export const BottomButtons = withTheme(
               </ClickableOverlay>
             </BottomButton>
           ) : null}
+
+          <BottomButton
+            isActive={activeButton === HEIGHT}
+            activeColor={'#3866e9'}
+            title={'blabla'}
+          >
+            <ClickableOverlay onClick={onButtonClick(HEIGHT)}>
+              <NewSVG />
+            </ClickableOverlay>
+          </BottomButton>
+
           <BottomButton
             isActive={activeButton === NEW_BUTTON}
             activeColor={'#3866e9'}
