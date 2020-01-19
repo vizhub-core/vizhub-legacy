@@ -7,7 +7,11 @@ export const getVisualizationInfosByUserId = connection => async (
   owner,
   authenticatedUser
 ) => {
-  const mongoQuery = { owner, documentType: VISUALIZATION_TYPE };
+  const mongoQuery = {
+    owner,
+    documentType: VISUALIZATION_TYPE ,
+    $sort: { lastUpdatedTimestamp: -1 },
+  };
 
   // Show private visualizations if profile owner is currently authenticated.
   if (owner !== authenticatedUser) {
@@ -19,9 +23,7 @@ export const getVisualizationInfosByUserId = connection => async (
     mongoQuery,
     connection
   );
-  // TODO sort by most recently edited, like in home page
   // TODO pagination for profile page, like in home page
   return results
-    .map(shareDBDoc => new VisualizationInfo(shareDBDoc.data))
-    .reverse(); // Show most recent first
+    .map(shareDBDoc => new VisualizationInfo(shareDBDoc.data));
 };
