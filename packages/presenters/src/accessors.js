@@ -3,7 +3,7 @@ import { timestamp } from 'vizhub-entities';
 export const vizWidth = 960;
 export const defaultVizHeight = 500;
 
-const microHeight = darkNavbarTheme => 40 + 30; // bannerHeight + headHeight;
+const microHeight = 40 + 30; // bannerHeight + headHeight;
 
 export const getMicroScale = vizHeight => microHeight / vizHeight;
 
