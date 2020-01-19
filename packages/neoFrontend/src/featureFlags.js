@@ -11,7 +11,7 @@ export const renameFileWithoutPath = false;
 
 // List of usernames who have access to
 // private viz feature.
-const core = ['curran', 'nitanagdeote'];
+const core = ['ci', 'curran', 'nitanagdeote'];
 
 const stamen = [
   'vinaydixit',
