@@ -36,15 +36,6 @@ export const Banner = () => (
           <MessageList>
             <li>
               <MessageLink
-                href="https://www.kickstarter.com/projects/curran/vizhub-launch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                VizHub Launch Kickstarter
-              </MessageLink>
-            </li>
-            <li>
-              <MessageLink
                 href="https://datavis.tech/datavis-2020/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -54,22 +45,12 @@ export const Banner = () => (
             </li>
             <li>
               <MessageLink
-                href="https://discourse.vizhub.com"
+                href="https://discourse.vizhub.com/t/welcome-to-the-vizhub-user-forum/7"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 VizHub User Forum
               </MessageLink>
-            </li>
-            <li>
-              <MessageLink
-                href="https://d3-slackin.herokuapp.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                D3 Slack
-              </MessageLink>{' '}
-              #vizhub channel
             </li>
           </MessageList>
         </MessageSmallText>
