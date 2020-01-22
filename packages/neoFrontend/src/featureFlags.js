@@ -23,7 +23,11 @@ const stamen = [
   'schroedermarc'
 ];
 
-const whitelist = core.concat(stamen);
+const kickstarter = [
+  'KoSMik9'
+];
+
+const whitelist = core.concat(stamen).concat(kickstarter);
 
 // Gateway to the private viz feature.
 export const showEditorSettings = (user, vizInfo) =>
