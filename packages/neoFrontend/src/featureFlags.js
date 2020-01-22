@@ -23,8 +23,16 @@ const stamen = [
   'schroedermarc'
 ];
 
+// 1 Year of VizHub Pro
 const kickstarter = [
-  'KoSMik9'
+  'KoSMik9',
+  'afraser',
+  'alangwilson',
+  'mochabits',
+  'JunyanL',
+  'leonardsip',
+  'pfmiriks',
+  'romkey'
 ];
 
 const whitelist = core.concat(stamen).concat(kickstarter);
