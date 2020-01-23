@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Banner } from '../../styles';
+import { NavBar } from '../../NavBar';
 import {
   Wrapper,
   Content,
@@ -10,16 +10,13 @@ import {
   Centering
 } from '../styles';
 import { Box, Octocat, Terms } from './styles';
-import { LogoSVG } from '../../svg';
 import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';
 
 export const AuthPage = () => {
   return (
     <Wrapper>
       <Content>
-        <Banner>
-          <LogoSVG height={40} fill="currentcolor" />
-        </Banner>
+        <NavBar isAuthPage={true} />
         <Centering>
           <Box>
             <Title>Sign up or Sign in</Title>
