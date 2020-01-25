@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 export const Label = styled.div`
   margin-left: 8px;
   font-size: 16px;
+  font-family: Inter;
 `;
 
 export const Group = styled.div`
