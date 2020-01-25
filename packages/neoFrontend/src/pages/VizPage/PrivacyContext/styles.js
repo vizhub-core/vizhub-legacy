@@ -10,3 +10,10 @@ export const SectionTitle = styled.div`
   font-weight: 600;
   font-size: 22px;
 `;
+
+export const SectionDescription = styled.div`
+  font-size: 16px;
+  color: #797979;
+  padding-top: 32px;
+  padding-bottom: 24px;
+`;
