@@ -9,8 +9,7 @@ export const switchPrivacy = (
   // Open the privacy dialog.
   await navClick(my.page, '.test-toggle-editor');
   await my.page.waitFor('.test-editor');
-  await (await my.page.waitFor('.test-editor-settings')).click();
-  await (await my.page.waitFor('.test-privacy')).click();
+  await (await my.page.waitFor('.test-settings')).click();
 
   // Assert that the viz has the expected privacy state to start with
   const fromRadioButton = await my.page.waitFor(
