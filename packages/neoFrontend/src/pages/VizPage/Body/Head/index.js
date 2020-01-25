@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { getVizOwner } from 'vizhub-presenters';
+import React, { useContext, useCallback } from 'react';
+import { getVizOwner, getVizInfo } from 'vizhub-presenters';
 import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
 import {
   showHeadPullRequest,
   showHeadShare,
-  showHeadSettings
+  showPrivacySettings
 } from '../../../../featureFlags';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication/AuthContext';
@@ -12,6 +12,7 @@ import { WarningContext } from '../../WarningContext';
 import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
 import { VizContext } from '../../VizContext';
+import { PrivacyContext } from '../../PrivacyContext';
 
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
@@ -23,9 +24,16 @@ export const Head = ({ showRight }) => {
   const { warning } = useContext(WarningContext);
   const { me } = useContext(AuthContext);
   const { viz$ } = useContext(VizContext);
+  const vizInfo = useValue(viz$, getVizInfo);
+  const showPrivacyModal = useContext(PrivacyContext);
   const owner = useValue(viz$, getVizOwner);
 
   const showHeadTrash = me && me.id === owner;
+
+  const onSettingsClick = useCallback(() => {
+    console.log('here');
+    showPrivacyModal();
+  }, [showPrivacyModal]);
 
   return (
     <Wrapper warning={warning}>
@@ -35,6 +43,11 @@ export const Head = ({ showRight }) => {
       {warning ? <Center>{warning}</Center> : null}
       {showRight ? (
         <Right>
+          {showPrivacySettings(me, vizInfo) ? (
+            <HeadIcon title="Settings" onClick={onSettingsClick}>
+              <SettingsSVG />
+            </HeadIcon>
+          ) : null}
           {showHeadPullRequest ? (
             <HeadIcon title="Create a Pull Request">
               <PullSVG />
@@ -58,11 +71,6 @@ export const Head = ({ showRight }) => {
           {showHeadShare ? (
             <HeadIcon title="Share this viz">
               <ShareSVG />
-            </HeadIcon>
-          ) : null}
-          {showHeadSettings ? (
-            <HeadIcon title="Settings" rightmost={true}>
-              <SettingsSVG />
             </HeadIcon>
           ) : null}
         </Right>
