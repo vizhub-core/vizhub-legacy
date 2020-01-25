@@ -44,7 +44,11 @@ export const Head = ({ showRight }) => {
       {showRight ? (
         <Right>
           {showPrivacySettings(me, vizInfo) ? (
-            <HeadIcon title="Settings" onClick={onSettingsClick}>
+            <HeadIcon
+              title="Settings"
+              onClick={onSettingsClick}
+              className="test-settings"
+            >
               <SettingsSVG />
             </HeadIcon>
           ) : null}
