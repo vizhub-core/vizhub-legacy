@@ -24,7 +24,6 @@ export const codeEditorHeaderCloseTooltip = 'Close Code Editor';
 export const codeEditorHeaderEnterFullEditorTooltip = 'Full Code Mode';
 export const codeEditorHeaderExitFullEditorTooltip = 'Exit Full Code Mode';
 
-export const sidebarSettingsTooltip = 'Settings';
 export const sidebarNewTooltip = 'New';
 export const sidebarExportTooltip = 'Export';
 
