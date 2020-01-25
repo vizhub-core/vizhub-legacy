@@ -1,26 +1,19 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { withTheme } from 'styled-components';
-import { deleteFileOp, getVizInfo } from 'vizhub-presenters';
-import { showEditorSettings } from '../../../../../featureFlags';
-import { SettingsSVG, NewSVG, ExportSVG } from '../../../../../svg';
-import { useValue } from '../../../../../useValue';
+import { deleteFileOp } from 'vizhub-presenters';
+import { NewSVG, ExportSVG } from '../../../../../svg';
 import {
-  sidebarSettingsTooltip,
   sidebarNewTooltip,
   sidebarExportTooltip
 } from '../../../../../constants';
-import { AuthContext } from '../../../../../authentication';
 import { VizContext } from '../../../VizContext';
-import { PrivacyContext } from '../../../PrivacyContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
-import { SettingsTop } from './SettingsTop';
 import { NewTop } from './NewTop';
 import { ExportTop } from './ExportTop';
 import { DeleteTop } from './DeleteTop';
 import { TrashIcon } from '../../TrashIcon';
 
-const SETTINGS_BUTTON = 'settings';
 const NEW_BUTTON = 'new';
 const EXPORT_BUTTON = 'export';
 const DELETE_BUTTON = 'delete';
@@ -30,11 +23,8 @@ export const BottomButtons = withTheme(
     const [activeButton, setActiveButton] = useState(null);
 
     const { viz$, submitVizContentOp } = useContext(VizContext);
-    const vizInfo = useValue(viz$, getVizInfo);
 
     const { closeActiveFile } = useContext(URLStateContext);
-    const showPrivacyModal = useContext(PrivacyContext);
-    const { me } = useContext(AuthContext);
 
     const onButtonClick = useCallback(
       buttonId => () => {
@@ -65,17 +55,10 @@ export const BottomButtons = withTheme(
       clearActiveButton
     ]);
 
-    const onPrivacyClick = useCallback(() => {
-      clearActiveButton();
-      showPrivacyModal();
-    }, [clearActiveButton, showPrivacyModal]);
-
     return (
       <Wrapper>
         <Top>
-          {activeButton === SETTINGS_BUTTON ? (
-            <SettingsTop onPrivacyClick={onPrivacyClick} />
-          ) : activeButton === NEW_BUTTON ? (
+          {activeButton === NEW_BUTTON ? (
             <NewTop onNewFileListItemClick={onNewFileListItemClick} />
           ) : activeButton === EXPORT_BUTTON ? (
             <ExportTop />
@@ -89,17 +72,6 @@ export const BottomButtons = withTheme(
           ) : null}
         </Top>
         <Bottom>
-          {showEditorSettings(me, vizInfo) ? (
-            <BottomButton
-              isActive={activeButton === SETTINGS_BUTTON}
-              className="test-editor-settings"
-              title={sidebarSettingsTooltip}
-            >
-              <ClickableOverlay onClick={onButtonClick(SETTINGS_BUTTON)}>
-                <SettingsSVG />
-              </ClickableOverlay>
-            </BottomButton>
-          ) : null}
           <BottomButton
             isActive={activeButton === NEW_BUTTON}
             activeColor={'#3866e9'}
