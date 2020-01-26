@@ -12,6 +12,7 @@ import { getUserByUserName } from './getUserByUserName';
 import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
 import { getHomePageVisualizationInfos } from './getHomePageVisualizationInfos';
+import { searchVisualizationInfos } from './searchVisualizationInfos';
 import { getDatasetInfosByUserId } from './getDatasetInfosByUserId';
 import { updateImages } from './updateImages';
 import { getThumbnail } from './getThumbnail';
@@ -42,6 +43,7 @@ export const Database = connection => ({
   getVisualizationInfosByUserId: getVisualizationInfosByUserId(connection),
   getAllVisualizationInfos: getAllVisualizationInfos(connection),
   getHomePageVisualizationInfos: getHomePageVisualizationInfos(connection),
+  searchVisualizationInfos: searchVisualizationInfos(connection),
   getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
   updateImages: updateImages(connection),
   getThumbnail: getThumbnail(connection),
