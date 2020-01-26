@@ -47,7 +47,7 @@ export const PrivacyProvider = ({ children }) => {
             </RadioButton.Group>
             <DialogButtons>
               <Button>Save Changes</Button>
-              <Button>Cancel</Button>
+              <Button isRed={true}>Cancel</Button>
             </DialogButtons>
           </Dialog>
         </Modal>
