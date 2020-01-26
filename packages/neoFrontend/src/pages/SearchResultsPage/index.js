@@ -1,21 +1,19 @@
 import React from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Centering } from '../styles';
-import { HomePageDataProvider } from './HomePageDataContext';
+import { SearchResultsPageDataProvider } from './SearchResultsPageDataContext';
 import { NavBar } from '../../NavBar';
-import { Banner } from './Banner';
 import { Vizzes } from './Vizzes';
 
-export const HomePage = () => (
-  <HomePageDataProvider fallback={<LoadingScreen />}>
+export const SearchResultsPage = () => (
+  <SearchResultsPageDataProvider fallback={<LoadingScreen />}>
     <Wrapper>
       <Content>
-        <NavBar isHomePage={true} showSearch />
-        <Banner />
+        <NavBar showSearch />
         <Centering>
           <Vizzes />
         </Centering>
       </Content>
     </Wrapper>
-  </HomePageDataProvider>
+  </SearchResultsPageDataProvider>
 );
