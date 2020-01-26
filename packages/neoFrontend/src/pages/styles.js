@@ -33,15 +33,16 @@ export const Button = styled.div`
   width: 232px;
   height: 48px;
   border-radius: 6px;
-  border: solid 1px ${props => props.theme.dark};
+  border: solid 1px
+    ${props => (props.isRed ? props.theme.red : props.theme.blue)};
   font-size: 16px;
   font-weight: 500;
   color: ${props => props.theme.dark};
   text-decoration: none;
 
   :hover {
-    background-color: ${props => props.theme.dark};
-    color: white;
+    background-color: ${props =>
+      props.isRed ? props.theme.redHover : props.theme.blueHover};
   }
 
   cursor: pointer;
