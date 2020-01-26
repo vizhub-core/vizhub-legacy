@@ -8,6 +8,7 @@ import { getAllVisualizationInfosController } from './getAllVisualizationInfosCo
 import { getHomePageDataController } from './getHomePageDataController';
 import { getThumbnailController } from './getThumbnailController';
 import { getPreviewController } from './getPreviewController';
+import { getSearchResultsPageDataController } from './getSearchResultsPageData';
 
 export const visualizationAPIController = (expressApp, gateways) => {
   createVisualizationController(expressApp, gateways);
@@ -20,4 +21,5 @@ export const visualizationAPIController = (expressApp, gateways) => {
   getHomePageDataController(expressApp, gateways);
   getThumbnailController(expressApp, gateways);
   getPreviewController(expressApp, gateways);
+  getSearchResultsPageDataController(expressApp, gateways);
 };

@@ -15,3 +15,4 @@ export { DeleteVisualization } from './deleteVisualization';
 export { UpdateImages } from './updateImages';
 export { GetThumbnail } from './getThumbnail';
 export { GetPreview } from './getPreview';
+export { GetSearchResultsPageData } from './getSearchResultsPageData';
