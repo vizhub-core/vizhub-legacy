@@ -26,8 +26,6 @@ export const Vizzes = ({
 
   const getUser = useCallback(id => usersById[id], [usersById]);
 
-  console.log(paginate, visualizationInfos);
-
   return (
     <Wrapper>
       {visualizationInfos.length !== 0 ? (
