@@ -1,12 +1,12 @@
 import React from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Centering } from '../styles';
-import { SearchResultsPageDataProvider } from './SearchResultsPageDataContext';
+import { PageDataProvider } from './PageDataContext';
 import { NavBar } from '../../NavBar';
 import { Vizzes } from './Vizzes';
 
 export const SearchResultsPage = () => (
-  <SearchResultsPageDataProvider fallback={<LoadingScreen />}>
+  <PageDataProvider fallback={<LoadingScreen />}>
     <Wrapper>
       <Content>
         <NavBar showSearch />
@@ -15,5 +15,5 @@ export const SearchResultsPage = () => (
         </Centering>
       </Content>
     </Wrapper>
-  </SearchResultsPageDataProvider>
+  </PageDataProvider>
 );

@@ -5,10 +5,9 @@ import {
   useReducer,
   useRef
 } from 'react';
-import { fetchSearchResultsPageData } from './fetchSearchResultsPageData';
 
 const initialState = {
-  searchResultsPageVisualizationInfos: [],
+  visualizationInfos: [],
   isFetchingNextPage: false,
   currentPage: 0,
   fetchedAllPages: false,
@@ -27,7 +26,6 @@ function reducer(state, action) {
       };
     case 'FETCH_NEXT_PAGE_SUCCESS':
       const { visualizationInfos, ownerUsers } = action.data;
-      const { searchResultsPageVisualizationInfos, usersById } = state;
 
       const newUsersById = ownerUsers.reduce(
         (accumulator, user) => ({ ...accumulator, [user.id]: user }),
@@ -36,12 +34,10 @@ function reducer(state, action) {
 
       return {
         ...state,
-        searchResultsPageVisualizationInfos: searchResultsPageVisualizationInfos.concat(
-          visualizationInfos
-        ),
+        visualizationInfos: state.visualizationInfos.concat(visualizationInfos),
         isFetchingNextPage: false,
         fetchedAllPages: visualizationInfos.length === 0,
-        usersById: { ...usersById, ...newUsersById }
+        usersById: { ...state.usersById, ...newUsersById }
       };
     default:
       throw new Error();
@@ -50,10 +46,10 @@ function reducer(state, action) {
 
 const noop = () => {};
 
-export const useSearchResultsPageData = query => {
+export const usePageData = fetchData => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
-    searchResultsPageVisualizationInfos,
+    visualizationInfos,
     isFetchingNextPage,
     currentPage,
     fetchedAllPages,
@@ -63,14 +59,10 @@ export const useSearchResultsPageData = query => {
   // Fetch the next page of visualizations.
   const fetchNextPage = useCallback(() => {
     dispatch({ type: 'FETCH_NEXT_PAGE_REQUEST' });
-    fetchSearchResultsPageData(query, currentPage).then(data => {
+    fetchData(currentPage).then(data => {
       dispatch({ type: 'FETCH_NEXT_PAGE_SUCCESS', data });
     });
-  }, [query, currentPage]);
-
-  useEffect(() => {
-    dispatch({ type: 'RESET' });
-  }, [query]);
+  }, [currentPage, fetchData]);
 
   // Fetch the first page of visualizations.
   useEffect(() => {
@@ -87,9 +79,10 @@ export const useSearchResultsPageData = query => {
   }, [isFetchingNextPage, fetchNextPage, fetchedAllPages]);
 
   return {
-    searchResultsPageVisualizationInfos,
+    visualizationInfos,
     paginate,
     usersById,
-    isFetchingNextPage
+    isFetchingNextPage,
+    reset: useCallback(() => dispatch({ type: 'RESET' }), [dispatch])
   };
 };
