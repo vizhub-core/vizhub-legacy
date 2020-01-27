@@ -1,4 +1,4 @@
-export const fetchSearchResultsPageData = async (query, offset) => {
+export const fetchPageData = async (query, offset) => {
   const url = `/api/visualization/search?query=${query}&offset=${offset}`;
   const response = await fetch(url, {
     method: 'GET',
