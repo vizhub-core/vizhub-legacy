@@ -31,10 +31,25 @@ const kickstarter = [
   'JunyanL',
   'leonardsip',
   'pfmiriks',
-  'romkey'
+  'romkey',
+  'rdwong',
+  'kirkdebaets',
+  'tejbir-singh',
+  'mrwatson-de'
 ];
+
+// Backers who get 2 years of "VizHub Pro".
+const kickstarter2years = [
+  'seemantk',
+  'aarondake', // Did not select reward but gave $300
+  'mbsmrtic' // Did not select reward but gave $100
+];
+
 //showPrivacySettings(me, vizInfo)
-const whitelist = core.concat(stamen).concat(kickstarter);
+const whitelist = core
+  .concat(stamen)
+  .concat(kickstarter)
+  .concat(kickstarter2years);
 
 // Gateway to the private viz feature.
 export const showPrivacySettings = (user, vizInfo) =>
