@@ -12,13 +12,12 @@ export const SettingsProvider = ({ children }) => {
     showSettingsModal,
     isShowingSettingsModal,
     hideSettingsModal,
-    vizSettings,
-    setVizSettings,
+    vizPrivacy,
+    setVizPrivacy,
     vizHeight,
     setVizHeight
   } = useSettings();
 
-  // TODO rename to SettingsContext
   return (
     <SettingsContext.Provider value={showSettingsModal}>
       {children}
@@ -31,8 +30,8 @@ export const SettingsProvider = ({ children }) => {
             <SectionTitle>Settings</SectionTitle>
             <SectionDescription>Visibility</SectionDescription>
             <RadioButton.Group
-              onChange={setVizSettings}
-              currentValue={vizSettings}
+              onChange={setVizPrivacy}
+              currentValue={vizPrivacy}
             >
               <RadioButton
                 value="public"
