@@ -57,7 +57,8 @@ export const theme = {
   blue: 'rgba(56, 102, 233)', // New blue from Sam / Figma
   blueHover: 'rgba(56, 102, 233, 0.2)',
   red: 'rgba(255, 0, 107)',
-  redHover: 'rgba(255, 0, 107, 0.2)'
+  redHover: 'rgba(255, 0, 107, 0.2)',
+  rule: '#E5E5E5'
 };
 theme.userMenuOverlayForeground = theme.dark;
 theme.bottomButtonBackground = theme.editorSectionActiveColor;
