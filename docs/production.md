@@ -285,6 +285,14 @@ net:
 
 In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
 
+For search, you need to set up indices like this:
+
+```
+use vizhub
+db.documentInfo.createIndex( { title: "text", description: "text" } )
+```
+
+
 ## Database Maintenance
 
 ```
