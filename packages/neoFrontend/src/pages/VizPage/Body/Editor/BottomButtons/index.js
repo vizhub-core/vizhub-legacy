@@ -7,13 +7,19 @@ import {
   sidebarExportTooltip
 } from '../../../../../constants';
 import { VizContext } from '../../../VizContext';
+import { PrivacyContext } from '../../../PrivacyContext';
+import { HeightContext } from '../../../HeightContext';
 import { URLStateContext } from '../../../URLStateContext';
 import { Wrapper, BottomButton, ClickableOverlay, Top, Bottom } from './styles';
+import { SettingsTop } from './SettingsTop';
+import { HeightTop } from './HeightTop';
 import { NewTop } from './NewTop';
 import { ExportTop } from './ExportTop';
 import { DeleteTop } from './DeleteTop';
 import { TrashIcon } from '../../TrashIcon';
 
+const HEIGHT = 'height';
+const SETTINGS_BUTTON = 'settings';
 const NEW_BUTTON = 'new';
 const EXPORT_BUTTON = 'export';
 const DELETE_BUTTON = 'delete';
@@ -25,6 +31,8 @@ export const BottomButtons = withTheme(
     const { viz$, submitVizContentOp } = useContext(VizContext);
 
     const { closeActiveFile } = useContext(URLStateContext);
+    const showPrivacyModal = useContext(PrivacyContext);
+    const showHeightModal = useContext(HeightContext);
 
     const onButtonClick = useCallback(
       buttonId => () => {
@@ -55,10 +63,24 @@ export const BottomButtons = withTheme(
       clearActiveButton
     ]);
 
+    const onPrivacyClick = useCallback(() => {
+      clearActiveButton();
+      showPrivacyModal();
+    }, [clearActiveButton, showPrivacyModal]);
+
+    const onHeightClick = useCallback(() => {
+      clearActiveButton();
+      showHeightModal();
+    }, [clearActiveButton, showHeightModal]);
+
     return (
       <Wrapper>
         <Top>
-          {activeButton === NEW_BUTTON ? (
+          {activeButton === SETTINGS_BUTTON ? (
+            <SettingsTop onPrivacyClick={onPrivacyClick} />
+          ) : activeButton === HEIGHT ? (
+            <HeightTop onHeightClick={onHeightClick} />
+          ) : activeButton === NEW_BUTTON ? (
             <NewTop onNewFileListItemClick={onNewFileListItemClick} />
           ) : activeButton === EXPORT_BUTTON ? (
             <ExportTop />
@@ -72,6 +94,7 @@ export const BottomButtons = withTheme(
           ) : null}
         </Top>
         <Bottom>
+
           <BottomButton
             isActive={activeButton === NEW_BUTTON}
             activeColor={'#3866e9'}
