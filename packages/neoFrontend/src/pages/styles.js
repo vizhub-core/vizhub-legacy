@@ -31,19 +31,23 @@ export const Button = styled.div`
   align-items: center;
 
   width: 232px;
-  height: 36px;
+  height: 48px;
   border-radius: 6px;
-  border: solid 1px ${props => props.theme.dark};
-  font-size: 12px;
+  border: solid 1px
+    ${props => (props.isRed ? props.theme.red : props.theme.blue)};
+  font-size: 16px;
+  font-weight: 500;
   color: ${props => props.theme.dark};
   text-decoration: none;
 
   :hover {
-    background-color: ${props => props.theme.dark};
-    color: white;
+    background-color: ${props =>
+      props.isRed ? props.theme.redHover : props.theme.blueHover};
   }
 
   cursor: pointer;
+  margin-left: 8px;
+  font-family: Inter;
 `;
 
 export const Centering = styled.div`

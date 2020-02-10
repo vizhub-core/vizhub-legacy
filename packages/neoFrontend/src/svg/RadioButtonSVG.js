@@ -1,26 +1,18 @@
 import React from 'react';
 
-const cx = 10;
-const cy = 10;
-const r = 9.45;
-const rInner = 6;
-
-export const RadioButtonSVG = ({
-  height = 20,
-  fill = 'currentcolor',
-  isActive
-}) => (
+export const RadioButtonSVG = ({ height = 20, isActive }) => (
   <svg height={height} viewBox={`0 0 20 20`}>
-    <g>
-      <circle
-        cx={cx}
-        cy={cy}
-        r={r}
-        strokeWidth="1.1"
-        stroke={fill}
-        fill="none"
-      />
-      <circle cx={cx} cy={cy} r={rInner} fill={isActive ? fill : 'none'} />
-    </g>
+    <rect
+      x="0.5"
+      y="0.5"
+      width="19"
+      height="19"
+      rx="3.5"
+      stroke="#E6E6E6"
+      fill="none"
+    />
+    {isActive ? (
+      <rect x="4" y="4" width="12" height="12" rx="2" fill="#3866E9" />
+    ) : null}
   </svg>
 );
