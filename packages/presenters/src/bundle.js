@@ -20,7 +20,7 @@ const outputOptions = {
   globals: vizhubLibraries
 };
 
-export const bundle = async (files) => {
+export const bundle = async files => {
   const inputOptions = {
     input: './index.js',
     plugins: [
@@ -37,7 +37,7 @@ export const bundle = async (files) => {
   };
 
   const rollupBundle = await rollup(inputOptions);
-  const { output} = await rollupBundle.generate(outputOptions);
+  const { output } = await rollupBundle.generate(outputOptions);
 
   // Monkey patch magic-string internals
   // to support characters outside of the Latin1 range, e.g. Cyrillic.
@@ -46,8 +46,10 @@ export const bundle = async (files) => {
   //  - https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
   //  - https://github.com/Rich-Harris/magic-string/blob/3466b0230dddc95eb378ed3e0d199e36fbd1f572/src/SourceMap.js#L3
   //
-  if( output.length !== 1) {
-    throw new Error('Expected Rollup output length to be 1. This Error is a VizHub bug if it happens.');
+  if (output.length !== 1) {
+    throw new Error(
+      'Expected Rollup output length to be 1. This Error is a VizHub bug if it happens.'
+    );
   }
   const { code, map } = output[0];
 
@@ -57,8 +59,10 @@ export const bundle = async (files) => {
   // Inspired by https://github.com/rollup/rollup/issues/121
   const codeWithSourceMap = code + '\n//# sourceMappingURL=' + map.toUrl();
 
-  return [{
-    name: 'bundle.js',
-    text: codeWithSourceMap
-  }];
+  return [
+    {
+      name: 'bundle.js',
+      text: codeWithSourceMap
+    }
+  ];
 };

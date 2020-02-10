@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
-    "test": "mocha -r esm test/test.js"
+    "test": "mocha -r esm test/test.js",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^7.0.1"
+    "mocha": "^7.0.1",
+    "prettier": "^1.19.1"
   }
 }
