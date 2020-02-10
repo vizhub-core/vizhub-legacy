@@ -53,7 +53,11 @@ export const theme = {
   editorEntryLeftBorderSize: 5,
   borderRadiusSmall: 3,
   borderRadiusLarge: 6,
-  veryLightPink: '#c0c0c0'
+  veryLightPink: '#c0c0c0',
+  blue: 'rgba(56, 102, 233)', // New blue from Sam / Figma
+  blueHover: 'rgba(56, 102, 233, 0.2)',
+  red: 'rgba(255, 0, 107)',
+  redHover: 'rgba(255, 0, 107, 0.2)'
 };
 theme.userMenuOverlayForeground = theme.dark;
 theme.bottomButtonBackground = theme.editorSectionActiveColor;

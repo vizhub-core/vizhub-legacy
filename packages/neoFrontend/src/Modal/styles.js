@@ -20,8 +20,7 @@ export const Box = styled.div`
   max-width: 600px;
   border-radius: ${props => props.theme.borderRadiusLarge}px;
   background-color: white;
-  margin: 10px 10px 10px 10px;
-  padding: 30px 10px 30px 10px;
+  padding: 30px;
   box-shadow: ${props => props.theme.shadow};
   display: flex;
   flex-direction: column;
