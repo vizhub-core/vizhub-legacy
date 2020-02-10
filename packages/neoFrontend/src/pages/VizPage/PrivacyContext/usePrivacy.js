@@ -1,14 +1,18 @@
 import { useState, useContext, useCallback } from 'react';
-import { getVizPrivacy, privacyChangeOp } from 'vizhub-presenters';
+import {
+  getVizPrivacy,
+  privacyChangeOp,
+  getVizHeight,
+  heightChangeOp
+} from 'vizhub-presenters';
 import { useValue } from '../../../useValue';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { VizContext } from '../VizContext';
 
-export const usePrivacy = history => {
+export const usePrivacy = () => {
   const [isShowingPrivacyModal, setIsConfirmingPrivacy] = useState(false);
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);
-  const vizPrivacy = useValue(viz$, getVizPrivacy);
   const realtimeModules = useContext(RealtimeModulesContext);
 
   const showPrivacyModal = useCallback(() => {
@@ -19,6 +23,7 @@ export const usePrivacy = history => {
     setIsConfirmingPrivacy(false);
   }, []);
 
+  const vizPrivacy = useValue(viz$, getVizPrivacy);
   const setVizPrivacy = useCallback(
     newVizPrivacy => {
       submitVizInfoOp(
@@ -32,11 +37,27 @@ export const usePrivacy = history => {
     [submitVizInfoOp, realtimeModules, viz$]
   );
 
+  const vizHeight = useValue(viz$, getVizHeight);
+  const setVizHeight = useCallback(
+    newVizHeight => {
+      submitVizInfoOp(
+        heightChangeOp(
+          viz$.getValue().info.height,
+          newVizHeight,
+          realtimeModules
+        )
+      );
+    },
+    [submitVizInfoOp, realtimeModules, viz$]
+  );
+
   return {
     showPrivacyModal,
     hidePrivacyModal,
     isShowingPrivacyModal,
     vizPrivacy,
-    setVizPrivacy
+    setVizPrivacy,
+    vizHeight,
+    setVizHeight
   };
 };

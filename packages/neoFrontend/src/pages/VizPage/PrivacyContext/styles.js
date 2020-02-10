@@ -6,11 +6,11 @@ export const Dialog = styled.div`
   width: 100%;
 `;
 
-export const DialogButtons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 32px;
-`;
+//export const DialogButtons = styled.div`
+//  display: flex;
+//  justify-content: flex-end;
+//  padding-top: 32px;
+//`;
 
 export const SectionTitle = styled.div`
   font-weight: 600;

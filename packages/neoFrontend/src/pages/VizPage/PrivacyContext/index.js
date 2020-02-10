@@ -1,14 +1,9 @@
 import React, { createContext } from 'react';
-import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
 import { usePrivacy } from './usePrivacy';
 import { RadioButton } from './RadioButton';
-import {
-  Dialog,
-  SectionTitle,
-  SectionDescription,
-  DialogButtons
-} from './styles';
+import { Input } from './Input';
+import { Dialog, SectionTitle, SectionDescription } from './styles';
 
 export const PrivacyContext = createContext();
 
@@ -18,9 +13,12 @@ export const PrivacyProvider = ({ children }) => {
     isShowingPrivacyModal,
     hidePrivacyModal,
     vizPrivacy,
-    setVizPrivacy
+    setVizPrivacy,
+    vizHeight,
+    setVizHeight
   } = usePrivacy();
 
+  // TODO rename to SettingsContext
   return (
     <PrivacyContext.Provider value={showPrivacyModal}>
       {children}
@@ -45,10 +43,7 @@ export const PrivacyProvider = ({ children }) => {
                 className="test-privacy-dialog-radio-private"
               />
             </RadioButton.Group>
-            <DialogButtons>
-              <Button>Save Changes</Button>
-              <Button isRed={true}>Cancel</Button>
-            </DialogButtons>
+            <Input value={vizHeight} onChange={setVizHeight} />
           </Dialog>
         </Modal>
       ) : null}
