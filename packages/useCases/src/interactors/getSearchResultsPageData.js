@@ -1,15 +1,15 @@
 import { GetVisualizationsOwners } from './getVisualizationsOwners';
 
-export class GetHomePageData {
+export class GetSearchResultsPageData {
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
 
     this.getOwnersInteractor = new GetVisualizationsOwners({ userGateway });
   }
 
-  async execute(offset) {
-    const visualizationInfos = await this.visualizationGateway.getHomePageVisualizationInfos(
-      offset
+  async execute(requestModel) {
+    const visualizationInfos = await this.visualizationGateway.searchVisualizationInfos(
+      requestModel
     );
 
     const ownerUsers = await this.getOwnersInteractor.execute(

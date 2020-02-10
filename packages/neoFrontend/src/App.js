@@ -12,7 +12,8 @@ import {
   VizPage,
   ProfilePage,
   PricingPage,
-  ErrorPage
+  ErrorPage,
+  SearchResultsPage
 } from './pages';
 import { Themed } from './theme';
 
@@ -28,6 +29,7 @@ export const App = () => (
               <Route path="/auth" component={AuthPage} />
               <Route path="/pricing" component={PricingPage} />
               <Route path="/create-viz" component={CreateVizPage} />
+              <Route path="/search" component={SearchResultsPage} />
               <Route
                 path="/creating-viz-from-scratch"
                 component={CreatingVizFromScratchPage}
