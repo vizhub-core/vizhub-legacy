@@ -5,7 +5,7 @@ import { AuthContext, AUTH_PENDING } from '../authentication';
 import { Banner } from '../styles';
 import { SignIn, LogoLink, Right, PricingLink } from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
-import { Search } from './search';
+import { Search } from './Search';
 
 export const NavBar = withTheme(
   ({
