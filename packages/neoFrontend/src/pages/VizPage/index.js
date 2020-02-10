@@ -5,7 +5,7 @@ import { darkNavbarTheme } from '../../theme';
 import { VizPageDataProvider } from './VizPageDataContext';
 import { ForkingProvider } from './ForkingContext';
 import { DeleteVizProvider } from './DeleteVizContext';
-import { PrivacyProvider } from './PrivacyContext';
+import { SettingsProvider } from './SettingsContext';
 import { URLStateProvider } from './URLStateContext';
 import { VizRunnerProvider } from './VizRunnerContext';
 import { VizProvider } from './VizContext';
@@ -28,7 +28,7 @@ export const VizPage = () => (
               <VizProvider>
                 <PrettierProvider>
                   <RunProvider>
-                    <PrivacyProvider>
+                    <SettingsProvider>
                       <DeleteVizProvider
                         fallback={<LoadingScreen message="Deleting..." />}
                       >
@@ -44,7 +44,7 @@ export const VizPage = () => (
                           </ThemeProvider>
                         </ForkingProvider>
                       </DeleteVizProvider>
-                    </PrivacyProvider>
+                    </SettingsProvider>
                   </RunProvider>
                 </PrettierProvider>
               </VizProvider>

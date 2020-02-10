@@ -67,5 +67,5 @@ export const Item = styled(Clickable)`
 
 export const HorizontalRule = styled.div`
   height: 1px;
-  background-color: #dddddd;
+  background-color: ${props => props.theme.rule};
 `;
