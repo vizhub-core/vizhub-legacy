@@ -5,10 +5,12 @@ import { AuthContext, AUTH_PENDING } from '../authentication';
 import { Banner } from '../styles';
 import { SignIn, LogoLink, Right, PricingLink } from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
+import { Search } from './search';
 
 export const NavBar = withTheme(
   ({
     theme,
+    showSearch = false,
     showRight = true,
     showPricing = false,
     isHomePage = false,
@@ -26,6 +28,8 @@ export const NavBar = withTheme(
             <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
           </LogoLink>
         )}
+
+        {showSearch && <Search />}
 
         {isAuthPage ? null : (
           <Right

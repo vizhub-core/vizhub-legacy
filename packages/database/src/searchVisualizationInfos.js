@@ -6,13 +6,16 @@ import { fetchShareDBQuery } from './fetchShareDBQuery';
 // Infinite scroll pagination fetches the next page.
 const pageSize = 100;
 
-export const getHomePageVisualizationInfos = connection => async offset => {
+export const searchVisualizationInfos = connection => async ({
+  query,
+  offset
+}) => {
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
     $limit: pageSize,
     $skip: offset * pageSize,
     $sort: { lastUpdatedTimestamp: -1 },
-    privacy: { $ne: 'private' }
+    $text: { $search: query }
   };
   const results = await fetchShareDBQuery(
     DOCUMENT_INFO,
