@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import useDebounce from '../../../useDebounce';
+import useDebounce from '../../../../useDebounce';
+import { Wrapper } from './styles';
 
 export const Input = ({ value, onChange }) => {
   const [current, setCurrent] = useState(value);
@@ -13,8 +14,7 @@ export const Input = ({ value, onChange }) => {
   }, [value, debouncedValue, onChange]);
 
   return (
-    <input
-      type="number"
+    <Wrapper
       value={current}
       onChange={useCallback(({ target: { value } }) => setCurrent(value), [
         setCurrent
