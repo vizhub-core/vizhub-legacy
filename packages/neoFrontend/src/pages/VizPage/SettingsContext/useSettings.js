@@ -9,18 +9,18 @@ import { useValue } from '../../../useValue';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { VizContext } from '../VizContext';
 
-export const usePrivacy = () => {
-  const [isShowingPrivacyModal, setIsConfirmingPrivacy] = useState(false);
+export const useSettings = () => {
+  const [isShowingSettingsModal, setIsShowingSettingsModel] = useState(false);
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);
   const realtimeModules = useContext(RealtimeModulesContext);
 
-  const showPrivacyModal = useCallback(() => {
-    setIsConfirmingPrivacy(true);
+  const showSettingsModal = useCallback(() => {
+    setIsShowingSettingsModel(true);
   }, []);
 
-  const hidePrivacyModal = useCallback(() => {
-    setIsConfirmingPrivacy(false);
+  const hideSettingsModal = useCallback(() => {
+    setIsShowingSettingsModel(false);
   }, []);
 
   const vizPrivacy = useValue(viz$, getVizPrivacy);
@@ -52,9 +52,9 @@ export const usePrivacy = () => {
   );
 
   return {
-    showPrivacyModal,
-    hidePrivacyModal,
-    isShowingPrivacyModal,
+    showSettingsModal,
+    hideSettingsModal,
+    isShowingSettingsModal,
     vizPrivacy,
     setVizPrivacy,
     vizHeight,
