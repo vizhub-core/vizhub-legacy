@@ -42,6 +42,7 @@ export const SettingsProvider = ({ children }) => {
                 className="test-settings-dialog-radio-private"
               />
             </RadioButton.Group>
+            <SectionDescription>Height</SectionDescription>
             <Input value={vizHeight} onChange={setVizHeight} />
           </Dialog>
         </Modal>
