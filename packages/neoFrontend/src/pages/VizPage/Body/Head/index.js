@@ -1,11 +1,7 @@
 import React, { useContext, useCallback } from 'react';
-import { getVizOwner, getVizInfo } from 'vizhub-presenters';
+import { getVizOwner } from 'vizhub-presenters';
 import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
-import {
-  showHeadPullRequest,
-  showHeadShare,
-  showPrivacySettings
-} from '../../../../featureFlags';
+import { showHeadPullRequest, showHeadShare } from '../../../../featureFlags';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication/AuthContext';
 import { WarningContext } from '../../WarningContext';
@@ -24,14 +20,13 @@ export const Head = ({ showRight }) => {
   const { warning } = useContext(WarningContext);
   const { me } = useContext(AuthContext);
   const { viz$ } = useContext(VizContext);
-  const vizInfo = useValue(viz$, getVizInfo);
   const showSettingsModal = useContext(SettingsContext);
   const owner = useValue(viz$, getVizOwner);
 
   const showHeadTrash = me && me.id === owner;
+  const showHeadSettings = showHeadTrash;
 
   const onSettingsClick = useCallback(() => {
-    console.log('here');
     showSettingsModal();
   }, [showSettingsModal]);
 
@@ -43,7 +38,7 @@ export const Head = ({ showRight }) => {
       {warning ? <Center>{warning}</Center> : null}
       {showRight ? (
         <Right>
-          {showPrivacySettings(me, vizInfo) ? (
+          {showHeadSettings ? (
             <HeadIcon
               title="Settings"
               onClick={onSettingsClick}
