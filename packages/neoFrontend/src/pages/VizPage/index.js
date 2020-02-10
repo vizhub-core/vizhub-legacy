@@ -6,7 +6,6 @@ import { VizPageDataProvider } from './VizPageDataContext';
 import { ForkingProvider } from './ForkingContext';
 import { DeleteVizProvider } from './DeleteVizContext';
 import { PrivacyProvider } from './PrivacyContext';
-import { HeightProvider } from './HeightContext';
 import { URLStateProvider } from './URLStateContext';
 import { VizRunnerProvider } from './VizRunnerContext';
 import { VizProvider } from './VizContext';
@@ -38,11 +37,9 @@ export const VizPage = () => (
                         >
                           <ThemeProvider theme={darkNavbarTheme}>
                             <SplitPaneResizeProvider>
-                              <HeightProvider>
-                                <VizRunnerProvider>
-                                  <Body />
-                                </VizRunnerProvider>
-                              </HeightProvider>
+                              <VizRunnerProvider>
+                                <Body />
+                              </VizRunnerProvider>
                             </SplitPaneResizeProvider>
                           </ThemeProvider>
                         </ForkingProvider>
