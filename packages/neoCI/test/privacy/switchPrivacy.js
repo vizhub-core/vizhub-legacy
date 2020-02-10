@@ -13,7 +13,7 @@ export const switchPrivacy = (
 
   // Assert that the viz has the expected privacy state to start with
   const fromRadioButton = await my.page.waitFor(
-    `.test-privacy-dialog-radio-${fromPrivacyValue}`
+    `.test-settings-dialog-radio-${fromPrivacyValue}`
   );
   const fromRadioButtonIsActive = await my.page.evaluate(
     el => el.getAttribute('data-test-is-active'),
@@ -23,7 +23,7 @@ export const switchPrivacy = (
 
   // Switch to desired privacy setting.
   const toRadioButton = await my.page.waitFor(
-    `.test-privacy-dialog-radio-${toPrivacyValue}`
+    `.test-settings-dialog-radio-${toPrivacyValue}`
   );
   await toRadioButton.click();
 
@@ -38,5 +38,5 @@ export const switchPrivacy = (
   await new Promise(resolve => setTimeout(resolve, 300));
 
   // Close the modal.
-  await (await my.page.waitFor('.test-privacy-dialog-close')).click();
+  await (await my.page.waitFor('.test-settings-dialog-close')).click();
 };

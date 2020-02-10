@@ -24,7 +24,7 @@ export const SettingsProvider = ({ children }) => {
       {isShowingSettingsModal ? (
         <Modal
           onClose={hideSettingsModal}
-          closeButtonClassName="test-privacy-dialog-close"
+          closeButtonClassName="test-settings-dialog-close"
         >
           <Dialog>
             <SectionTitle>Settings</SectionTitle>
@@ -35,11 +35,11 @@ export const SettingsProvider = ({ children }) => {
             >
               <RadioButton
                 value="public"
-                className="test-privacy-dialog-radio-public"
+                className="test-settings-dialog-radio-public"
               />
               <RadioButton
                 value="private"
-                className="test-privacy-dialog-radio-private"
+                className="test-settings-dialog-radio-private"
               />
             </RadioButton.Group>
             <Input value={vizHeight} onChange={setVizHeight} />
