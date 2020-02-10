@@ -12,7 +12,7 @@ import { WarningContext } from '../../WarningContext';
 import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
 import { VizContext } from '../../VizContext';
-import { PrivacyContext } from '../../PrivacyContext';
+import { SettingsContext } from '../../SettingsContext';
 
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
@@ -25,15 +25,15 @@ export const Head = ({ showRight }) => {
   const { me } = useContext(AuthContext);
   const { viz$ } = useContext(VizContext);
   const vizInfo = useValue(viz$, getVizInfo);
-  const showPrivacyModal = useContext(PrivacyContext);
+  const showSettingsModal = useContext(SettingsContext);
   const owner = useValue(viz$, getVizOwner);
 
   const showHeadTrash = me && me.id === owner;
 
   const onSettingsClick = useCallback(() => {
     console.log('here');
-    showPrivacyModal();
-  }, [showPrivacyModal]);
+    showSettingsModal();
+  }, [showSettingsModal]);
 
   return (
     <Wrapper warning={warning}>
