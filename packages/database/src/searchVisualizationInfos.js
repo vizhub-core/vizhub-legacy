@@ -15,7 +15,8 @@ export const searchVisualizationInfos = connection => async ({
     $limit: pageSize,
     $skip: offset * pageSize,
     $sort: { lastUpdatedTimestamp: -1 },
-    $text: { $search: query }
+    $text: { $search: query },
+    privacy: { $ne: 'private' }
   };
   const results = await fetchShareDBQuery(
     DOCUMENT_INFO,
