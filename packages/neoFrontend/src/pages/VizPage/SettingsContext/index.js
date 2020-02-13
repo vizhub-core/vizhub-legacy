@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from 'react';
+import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
@@ -9,6 +10,7 @@ import { SetHeight } from './SetHeight';
 import {
   Dialog,
   DialogTitle,
+  DialogButtons,
   Section,
   SectionTitle,
   SectionDescription,
@@ -74,6 +76,9 @@ export const SettingsProvider = ({ children }) => {
               </SectionDescription>
               <SetHeight height={vizHeight} setHeight={setVizHeight} />
             </Section>
+            <DialogButtons>
+              <Button onClick={hideSettingsModal}>Done</Button>
+            </DialogButtons>
           </Dialog>
         </Modal>
       ) : null}
