@@ -11,18 +11,18 @@ export const DialogTitle = styled.div`
   font-size: 22px;
 `;
 
-//export const DialogButtons = styled.div`
-//  display: flex;
-//  justify-content: flex-end;
-//  padding-top: 32px;
-//`;
+export const Section = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: Inter;
+`;
 
 export const SectionTitle = styled.div`
   font-size: 16px;
   color: #797979;
   padding-top: 32px;
   padding-bottom: 8px;
-  font-family: Inter;
 `;
 
 export const SectionDescription = styled.div`
