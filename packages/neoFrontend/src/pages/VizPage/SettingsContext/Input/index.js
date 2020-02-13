@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import useDebounce from '../../../../useDebounce';
 import { Wrapper } from './styles';
 
-export const Input = ({ value, onChange }) => {
+export const Input = ({ value, onChange, id }) => {
   const [current, setCurrent] = useState(value);
   const debouncedValue = useDebounce(current, 800);
 
@@ -19,6 +19,7 @@ export const Input = ({ value, onChange }) => {
       onChange={useCallback(({ target: { value } }) => setCurrent(value), [
         setCurrent
       ])}
+      id={id}
     />
   );
 };
