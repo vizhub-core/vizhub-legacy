@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 import { Modal } from '../../../Modal';
 import { useSettings } from './useSettings';
 import { RadioButton } from './RadioButton';
-import { Input } from './Input';
+import { SetHeight } from './SetHeight';
 import { Dialog, SectionTitle, SectionDescription } from './styles';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
@@ -52,7 +52,7 @@ export const SettingsProvider = ({ children }) => {
               </>
             ) : null}
             <SectionDescription>Height</SectionDescription>
-            <Input value={vizHeight} onChange={setVizHeight} />
+            <SetHeight height={vizHeight} setHeight={setVizHeight} />
           </Dialog>
         </Modal>
       ) : null}
