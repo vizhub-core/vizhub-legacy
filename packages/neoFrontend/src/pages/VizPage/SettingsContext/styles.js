@@ -30,3 +30,7 @@ export const SectionDescription = styled.div`
   padding-bottom: 24px;
   color: ${props => props.theme.dark};
 `;
+
+export const Spacer = styled.div`
+  margin-top: 32px;
+`;

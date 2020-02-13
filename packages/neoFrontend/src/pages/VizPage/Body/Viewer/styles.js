@@ -19,11 +19,6 @@ export const ViewerContent = styled(Content)`
   padding: 10px;
 `;
 
-export const HorizontalRule = styled.div`
-  height: 1px;
-  background-color: ${props => props.theme.veryLightPink};
-`;
-
 export const ViewerFooter = styled.div`
   font-size: 10px;
   text-align: center;

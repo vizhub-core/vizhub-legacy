@@ -59,7 +59,7 @@ export const theme = {
   blueHover: 'rgba(56, 102, 233, 0.2)',
   red: 'rgba(255, 0, 107)',
   redHover: 'rgba(255, 0, 107, 0.2)',
-  rule: '#E5E5E5'
+  rule: 'rgba(0, 0, 0, 0.19)'
 };
 theme.userMenuOverlayForeground = theme.dark;
 theme.bottomButtonBackground = theme.editorSectionActiveColor;

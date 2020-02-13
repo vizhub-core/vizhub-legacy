@@ -1,5 +1,8 @@
 import React, { createContext, useContext } from 'react';
 import { Modal } from '../../../Modal';
+import { AuthContext } from '../../../authentication/AuthContext';
+import { showPrivacySettings } from '../../../featureFlags';
+import { HorizontalRule } from '../styles';
 import { useSettings } from './useSettings';
 import { RadioButton } from './RadioButton';
 import { SetHeight } from './SetHeight';
@@ -8,10 +11,9 @@ import {
   DialogTitle,
   Section,
   SectionTitle,
-  SectionDescription
+  SectionDescription,
+  Spacer
 } from './styles';
-import { AuthContext } from '../../../authentication/AuthContext';
-import { showPrivacySettings } from '../../../featureFlags';
 
 export const SettingsContext = createContext();
 
@@ -40,25 +42,29 @@ export const SettingsProvider = ({ children }) => {
           <Dialog>
             <DialogTitle>Settings</DialogTitle>
             {showPrivacySettings(me, vizInfo) ? (
-              <Section>
-                <SectionTitle>Visibility</SectionTitle>
-                <SectionDescription>
-                  Who can see your visualization.
-                </SectionDescription>
-                <RadioButton.Group
-                  onChange={setVizPrivacy}
-                  currentValue={vizPrivacy}
-                >
-                  <RadioButton
-                    value="public"
-                    className="test-settings-dialog-radio-public"
-                  />
-                  <RadioButton
-                    value="private"
-                    className="test-settings-dialog-radio-private"
-                  />
-                </RadioButton.Group>
-              </Section>
+              <>
+                <Section>
+                  <SectionTitle>Visibility</SectionTitle>
+                  <SectionDescription>
+                    Who can see your visualization.
+                  </SectionDescription>
+                  <RadioButton.Group
+                    onChange={setVizPrivacy}
+                    currentValue={vizPrivacy}
+                  >
+                    <RadioButton
+                      value="public"
+                      className="test-settings-dialog-radio-public"
+                    />
+                    <RadioButton
+                      value="private"
+                      className="test-settings-dialog-radio-private"
+                    />
+                  </RadioButton.Group>
+                </Section>
+                <Spacer />
+                <HorizontalRule />
+              </>
             ) : null}
             <Section>
               <SectionTitle>Height</SectionTitle>
