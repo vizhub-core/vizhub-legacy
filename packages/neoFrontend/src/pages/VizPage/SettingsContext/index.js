@@ -77,7 +77,9 @@ export const SettingsProvider = ({ children }) => {
               <SetHeight height={vizHeight} setHeight={setVizHeight} />
             </Section>
             <DialogButtons>
-              <Button onClick={hideSettingsModal}>Done</Button>
+              <Button isFilled onClick={hideSettingsModal}>
+                Done
+              </Button>
             </DialogButtons>
           </Dialog>
         </Modal>
