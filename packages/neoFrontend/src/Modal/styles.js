@@ -17,10 +17,10 @@ export const Wrapper = styled.div`
 
 export const Box = styled.div`
   flex: 1;
-  max-width: 600px;
-  border-radius: ${props => props.theme.borderRadiusLarge}px;
+  max-width: 570px;
+  border-radius: ${props => props.theme.borderRadiusMedium}px;
   background-color: white;
-  padding: 30px;
+  padding: 32px;
   box-shadow: ${props => props.theme.shadow};
   display: flex;
   flex-direction: column;

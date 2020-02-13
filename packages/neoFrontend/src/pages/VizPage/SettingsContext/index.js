@@ -1,11 +1,21 @@
 import React, { createContext, useContext } from 'react';
+import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
+import { AuthContext } from '../../../authentication/AuthContext';
+import { showPrivacySettings } from '../../../featureFlags';
+import { HorizontalRule } from '../styles';
 import { useSettings } from './useSettings';
 import { RadioButton } from './RadioButton';
 import { SetHeight } from './SetHeight';
-import { Dialog, SectionTitle, SectionDescription } from './styles';
-import { AuthContext } from '../../../authentication/AuthContext';
-import { showPrivacySettings } from '../../../featureFlags';
+import {
+  Dialog,
+  DialogTitle,
+  DialogButtons,
+  Section,
+  SectionTitle,
+  SectionDescription,
+  Spacer
+} from './styles';
 
 export const SettingsContext = createContext();
 
@@ -32,27 +42,45 @@ export const SettingsProvider = ({ children }) => {
           closeButtonClassName="test-settings-dialog-close"
         >
           <Dialog>
-            <SectionTitle>Settings</SectionTitle>
+            <DialogTitle>Settings</DialogTitle>
             {showPrivacySettings(me, vizInfo) ? (
               <>
-                <SectionDescription>Visibility</SectionDescription>
-                <RadioButton.Group
-                  onChange={setVizPrivacy}
-                  currentValue={vizPrivacy}
-                >
-                  <RadioButton
-                    value="public"
-                    className="test-settings-dialog-radio-public"
-                  />
-                  <RadioButton
-                    value="private"
-                    className="test-settings-dialog-radio-private"
-                  />
-                </RadioButton.Group>
+                <Section>
+                  <SectionTitle>Visibility</SectionTitle>
+                  <SectionDescription>
+                    Who can see your visualization.
+                  </SectionDescription>
+                  <RadioButton.Group
+                    onChange={setVizPrivacy}
+                    currentValue={vizPrivacy}
+                  >
+                    <RadioButton
+                      value="public"
+                      className="test-settings-dialog-radio-public"
+                    />
+                    <RadioButton
+                      value="private"
+                      className="test-settings-dialog-radio-private"
+                    />
+                  </RadioButton.Group>
+                </Section>
+                <Spacer />
+                <HorizontalRule />
               </>
             ) : null}
-            <SectionDescription>Height</SectionDescription>
-            <SetHeight height={vizHeight} setHeight={setVizHeight} />
+            <Section>
+              <SectionTitle>Height</SectionTitle>
+              <SectionDescription>
+                Set visualization height to control the aspect ratio (width is
+                fixed at 960 pixels).
+              </SectionDescription>
+              <SetHeight height={vizHeight} setHeight={setVizHeight} />
+            </Section>
+            <DialogButtons>
+              <Button isFilled onClick={hideSettingsModal}>
+                Done
+              </Button>
+            </DialogButtons>
           </Dialog>
         </Modal>
       ) : null}
