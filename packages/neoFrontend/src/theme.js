@@ -52,6 +52,7 @@ export const theme = {
   editorEntryIndentation: 10,
   editorEntryLeftBorderSize: 5,
   borderRadiusSmall: 3,
+  borderRadiusMedium: 4,
   borderRadiusLarge: 6,
   veryLightPink: '#c0c0c0',
   blue: 'rgba(56, 102, 233)', // New blue from Sam / Figma
