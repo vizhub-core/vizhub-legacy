@@ -3,7 +3,7 @@ import { Modal } from '../../../Modal';
 import { useSettings } from './useSettings';
 import { RadioButton } from './RadioButton';
 import { SetHeight } from './SetHeight';
-import { Dialog, SectionTitle, SectionDescription } from './styles';
+import { Dialog, DialogTitle, SectionTitle, SectionDescription } from './styles';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
 
@@ -32,10 +32,11 @@ export const SettingsProvider = ({ children }) => {
           closeButtonClassName="test-settings-dialog-close"
         >
           <Dialog>
-            <SectionTitle>Settings</SectionTitle>
+            <DialogTitle>Settings</DialogTitle>
             {showPrivacySettings(me, vizInfo) ? (
               <>
-                <SectionDescription>Visibility</SectionDescription>
+                <SectionTitle>Visibility</SectionTitle>
+                <SectionDescription>Who can see your visualization.</SectionDescription>
                 <RadioButton.Group
                   onChange={setVizPrivacy}
                   currentValue={vizPrivacy}
@@ -51,7 +52,8 @@ export const SettingsProvider = ({ children }) => {
                 </RadioButton.Group>
               </>
             ) : null}
-            <SectionDescription>Height</SectionDescription>
+            <SectionTitle>Height</SectionTitle>
+            <SectionDescription>Set visualization height to control the aspect ratio (width is fixed at 960 pixels).</SectionDescription>
             <SetHeight height={vizHeight} setHeight={setVizHeight} />
           </Dialog>
         </Modal>
