@@ -25,6 +25,17 @@ export const DevsOnly = styled.div`
   color: ${props => props.theme.attentionGrabber};
 `;
 
+const buttonColor = props => (props.isRed ? props.theme.red : props.theme.blue);
+
+const hoverButtonColorOutline = props =>
+  props.isRed ? props.theme.redHover : props.theme.blueHover;
+const hoverButtonColorFilled = props =>
+  props.isRed ? props.theme.redHoverFilled : props.theme.blueHoverFilled;
+const hoverButtonColor = props =>
+  props.isFilled
+    ? hoverButtonColorFilled(props)
+    : hoverButtonColorOutline(props);
+
 export const Button = styled.div`
   display: flex;
   justify-content: center;
@@ -33,16 +44,16 @@ export const Button = styled.div`
   width: 232px;
   height: 48px;
   border-radius: 6px;
-  border: solid 1px
-    ${props => (props.isRed ? props.theme.red : props.theme.blue)};
+  border: solid 1px ${buttonColor};
   font-size: 16px;
   font-weight: 500;
-  color: ${props => props.theme.dark};
+  color: ${props => (props.isFilled ? '#ffffff' : props.theme.dark)};
+  background-color: ${props =>
+    props.isFilled ? buttonColor(props) : 'transparent'};
   text-decoration: none;
 
   :hover {
-    background-color: ${props =>
-      props.isRed ? props.theme.redHover : props.theme.blueHover};
+    background-color: ${hoverButtonColor};
   }
 
   cursor: pointer;
