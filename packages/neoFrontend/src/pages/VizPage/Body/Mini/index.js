@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useCallback } from 'react';
+import React, { useRef, useContext, useCallback, useEffect } from 'react';
 import { SplitSVG, FullSVG } from '../../../../svg';
 import { vizWidth, getVizHeight } from 'vizhub-presenters';
 import {
@@ -6,10 +6,11 @@ import {
   exitMiniModeTooltip
 } from '../../../../constants';
 import { theme } from '../../../../theme';
+import { useValue } from '../../../../useValue';
 import { LargeIcon } from '../../../styles';
 import { FrameFooter, FrameFooterRight } from '../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
-import { VizPageDataContext } from '../../VizPageDataContext';
+import { VizContext } from '../../VizContext';
 import { URLStateContext } from '../../URLStateContext';
 import { PlayPauseControl } from '../PlayPauseControl';
 import { useDimensions } from '../useDimensions';
@@ -24,8 +25,8 @@ export const Mini = () => {
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
   const { enterFullScreen, exitMini } = useContext(URLStateContext);
 
-  const { visualization } = useContext(VizPageDataContext);
-  const vizHeight = getVizHeight(visualization);
+  const { viz$ } = useContext(VizContext);
+  const vizHeight = useValue(viz$, getVizHeight);
 
   const setDomRect = useCallback(
     ({ x, y }) => {
@@ -34,7 +35,12 @@ export const Mini = () => {
     [setVizRunnerTransform]
   );
 
-  useDimensions({ wrapperRef, setDomRect, globalResize: true });
+  const measure = useDimensions({ wrapperRef, setDomRect, globalResize: true });
+
+  // Measure when height changes, otherwise height gets out of sync.
+  useEffect(() => {
+    measure();
+  }, [measure, vizHeight]);
 
   return (
     <Wrapper ref={wrapperRef} className="test-mini">
