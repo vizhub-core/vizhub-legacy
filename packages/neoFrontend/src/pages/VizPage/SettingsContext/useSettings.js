@@ -2,7 +2,6 @@ import { useState, useContext, useCallback } from 'react';
 import {
   getVizPrivacy,
   privacyChangeOp,
-  getVizHeight,
   heightChangeOp,
   getVizInfo
 } from 'vizhub-presenters';
@@ -38,7 +37,13 @@ export const useSettings = () => {
     [submitVizInfoOp, realtimeModules, viz$]
   );
 
-  const vizHeight = useValue(viz$, getVizHeight);
+  const vizInfo = useValue(viz$, getVizInfo);
+
+  // Not using getVizHeight here because in this case,
+  // we don't want the default value appearing in the form field
+  // as the user is typing (e.g. if the value is 0 or empty string).
+  const vizHeight = vizInfo.height;
+
   const setVizHeight = useCallback(
     newVizHeight => {
       submitVizInfoOp(
@@ -51,8 +56,6 @@ export const useSettings = () => {
     },
     [submitVizInfoOp, realtimeModules, viz$]
   );
-
-  const vizInfo = useValue(viz$, getVizInfo);
 
   return {
     showSettingsModal,
