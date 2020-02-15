@@ -39,4 +39,6 @@ export const useDimensions = ({
   // Measure the dimensions on window resize
   // if globalResize flag enabled (defaults to false).
   useListener('resize', measure, globalResize && window);
+
+  return measure;
 };
