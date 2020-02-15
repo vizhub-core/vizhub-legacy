@@ -63,8 +63,8 @@ export const usePrettier = () => {
   }, [activeFile, viz$, realtimeModules, submitVizContentOp]);
 
   useEffect(() => {
-    const onKeyDown = e => {
-      if (e.altKey && e.code === 'KeyP') {
+    const onKeyDown = event => {
+      if (event.altKey && event.code === 'KeyP') {
         prettify();
       }
     };
