@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useCallback } from 'react';
+import React, { useRef, useContext, useCallback, useEffect } from 'react';
 import { getVizHeight, vizWidth } from 'vizhub-presenters';
 import { FullExitSVG } from '../../../../svg';
 import { MiniOrMicroSVG } from '../../../../mobileMods';
@@ -6,10 +6,11 @@ import {
   exitFullScreenTooltip,
   enterMiniModeTooltip
 } from '../../../../constants';
+import { useValue } from '../../../../useValue';
 import { LargeIcon } from '../../../styles';
 import { VizRunnerContext } from '../../VizRunnerContext';
 import { URLStateContext } from '../../URLStateContext';
-import { VizPageDataContext } from '../../VizPageDataContext';
+import { VizContext } from '../../VizContext';
 import { useDimensions } from '../useDimensions';
 import { Wrapper, FullScreenFooter, Backdrop } from './styles';
 
@@ -17,11 +18,10 @@ export const FullScreen = () => {
   const wrapperRef = useRef();
   const { setVizRunnerTransform } = useContext(VizRunnerContext);
 
-  const { visualization } = useContext(VizPageDataContext);
-
   const { exitFullScreen, enterMini } = useContext(URLStateContext);
 
-  const vizHeight = getVizHeight(visualization);
+  const { viz$ } = useContext(VizContext);
+  const vizHeight = useValue(viz$, getVizHeight);
 
   // Shrink and grow to fill available width and height.
   const setDomRect = useCallback(
@@ -43,7 +43,12 @@ export const FullScreen = () => {
     [setVizRunnerTransform, vizHeight]
   );
 
-  useDimensions({ wrapperRef, setDomRect, globalResize: true });
+  const measure = useDimensions({ wrapperRef, setDomRect, globalResize: true });
+
+  // Measure when height changes, otherwise height gets out of sync.
+  useEffect(() => {
+    measure();
+  }, [measure, vizHeight]);
 
   return (
     <>
