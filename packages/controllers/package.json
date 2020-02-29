@@ -16,6 +16,7 @@
     "jsonwebtoken": "^8.5.1",
     "marked": "^0.8.0",
     "node-fetch": "^2.6.0",
+    "sanitize-html": "^1.22.0",
     "string-strip-html": "^4.3.12",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
