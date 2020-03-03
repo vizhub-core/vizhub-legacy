@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
 import { useShare } from './useShare';
@@ -15,19 +15,35 @@ import { Tabs, Tab } from './Tabs';
 export const ShareContext = createContext();
 const defaultActiveTab = 'link';
 
+const LinkBody = () => (
+  <SectionDescription>
+    Sharing this link on social media will automatically create a preview of
+    your visualization.
+  </SectionDescription>
+);
+
+const EmbedBody = () => (
+  <SectionDescription>Embed Preview Image</SectionDescription>
+);
+
+const CollaboratorsBody = () => (
+  <SectionDescription>
+    Start typing to search available collaborators for this visualization.
+  </SectionDescription>
+);
+
+const TabBody = ({ activeTab }) =>
+  activeTab === 'link' ? (
+    <LinkBody />
+  ) : activeTab === 'embed' ? (
+    <EmbedBody />
+  ) : (
+    <CollaboratorsBody />
+  );
+
 export const ShareProvider = ({ children }) => {
   const { showShareModal, isShowingShareModal, hideShareModal } = useShare();
   const [activeTab, setActiveTab] = useState(defaultActiveTab);
-
-  // Make it so hitting Enter in a text input
-  // closes the modal (equivalent to hitting the "Done" button.
-  const onSubmit = useCallback(
-    event => {
-      hideShareModal();
-      event.preventDefault();
-    },
-    [hideShareModal]
-  );
 
   return (
     <ShareContext.Provider value={showShareModal}>
@@ -38,7 +54,7 @@ export const ShareProvider = ({ children }) => {
           closeButtonClassName="test-share-dialog-close"
         >
           <Dialog>
-            <form onSubmit={onSubmit}>
+            <form>
               <DialogTitle>Share</DialogTitle>
               <Section>
                 <SectionTitle>SHARE WITH</SectionTitle>
@@ -47,10 +63,7 @@ export const ShareProvider = ({ children }) => {
                   <Tab id="embed">Embed</Tab>
                   <Tab id="collaborators">Collaborators</Tab>
                 </Tabs>
-                <SectionDescription>
-                  Set visualization height to control the aspect ratio (width is
-                  fixed at 960 pixels).
-                </SectionDescription>
+                <TabBody activeTab={activeTab} />
               </Section>
               <DialogButtons>
                 <Button isFilled onClick={hideShareModal}>
