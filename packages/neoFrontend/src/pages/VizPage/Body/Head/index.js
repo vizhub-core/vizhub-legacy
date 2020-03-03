@@ -38,6 +38,11 @@ export const Head = ({ showRight }) => {
       {warning ? <Center>{warning}</Center> : null}
       {showRight ? (
         <Right>
+          {showHeadShare ? (
+            <HeadIcon title="Share this viz">
+              <ShareSVG />
+            </HeadIcon>
+          ) : null}
           {showHeadSettings ? (
             <HeadIcon
               title="Settings"
@@ -66,11 +71,6 @@ export const Head = ({ showRight }) => {
               onClick={onDeleteViz}
               iconComponent={HeadIcon}
             />
-          ) : null}
-          {showHeadShare ? (
-            <HeadIcon title="Share this viz">
-              <ShareSVG />
-            </HeadIcon>
           ) : null}
         </Right>
       ) : null}
