@@ -31,7 +31,7 @@ export const Section = styled.div`
 
 export const SectionTitle = styled.div`
   font-size: 16px;
-  color: #797979;
+  color: ${props => props.theme.lightText};
   padding-top: 32px;
   padding-bottom: 8px;
 `;
@@ -39,7 +39,7 @@ export const SectionTitle = styled.div`
 export const SectionDescription = styled.div`
   font-size: 14px;
   padding-bottom: 24px;
-  color: ${props => props.theme.dark};
+  color: ${props => props.theme.lightText};
 `;
 
 export const Spacer = styled.div`
