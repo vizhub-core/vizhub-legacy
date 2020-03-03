@@ -1,4 +1,4 @@
-import React, { createContext, useCallback } from 'react';
+import React, { createContext, useCallback, useState } from 'react';
 import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
 import { useShare } from './useShare';
@@ -9,12 +9,15 @@ import {
   Section,
   SectionTitle,
   SectionDescription
-} from './styles';
+} from '../styles';
+import { Tabs, Tab } from './Tabs';
 
 export const ShareContext = createContext();
+const defaultActiveTab = 'link';
 
 export const ShareProvider = ({ children }) => {
   const { showShareModal, isShowingShareModal, hideShareModal } = useShare();
+  const [activeTab, setActiveTab] = useState(defaultActiveTab);
 
   // Make it so hitting Enter in a text input
   // closes the modal (equivalent to hitting the "Done" button.
@@ -38,7 +41,12 @@ export const ShareProvider = ({ children }) => {
             <form onSubmit={onSubmit}>
               <DialogTitle>Share</DialogTitle>
               <Section>
-                <SectionTitle>Share with</SectionTitle>
+                <SectionTitle>SHARE WITH</SectionTitle>
+                <Tabs activeTab={activeTab} onSelect={setActiveTab}>
+                  <Tab id="link" title="Link" />
+                  <Tab id="embed" title="Embed" />
+                  <Tab id="collaborators" title="Collaborators" />
+                </Tabs>
                 <SectionDescription>
                   Set visualization height to control the aspect ratio (width is
                   fixed at 960 pixels).
