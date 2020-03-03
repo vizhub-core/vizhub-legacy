@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const RadioButtonSVG = ({ height = 20, isActive }) => (
-  <svg height={height} viewBox={`0 0 20 20`}>
+  <svg height={height} viewBox={'0 0 20 20'}>
     <rect
       x="0.5"
       y="0.5"

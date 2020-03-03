@@ -2,7 +2,7 @@ import React from 'react';
 
 const margin = 95;
 
-export const PrettierSVG = ({ height = 16, fill = 'currentcolor' }) => (
+export const PrettierSVG = ({ height = 16 }) => (
   <svg
     height={height}
     viewBox={`${margin} ${margin} ${400 - margin * 2} ${400 - margin * 2}`}

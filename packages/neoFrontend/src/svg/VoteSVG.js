@@ -23,7 +23,7 @@ export const VoteSVG = withTheme(
     didVote = false,
     theme
   }) => (
-    <SVG height={height} viewBox={`0 0 20 20`}>
+    <SVG height={height} viewBox="0 0 20 20">
       <g
         fill={fill}
         transform={`translate(10,10) rotate(${
