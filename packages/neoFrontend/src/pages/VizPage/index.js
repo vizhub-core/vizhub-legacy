@@ -6,6 +6,7 @@ import { VizPageDataProvider } from './VizPageDataContext';
 import { ForkingProvider } from './ForkingContext';
 import { DeleteVizProvider } from './DeleteVizContext';
 import { SettingsProvider } from './SettingsContext';
+import { ShareProvider } from './ShareContext';
 import { URLStateProvider } from './URLStateContext';
 import { VizRunnerProvider } from './VizRunnerContext';
 import { VizProvider } from './VizContext';
@@ -29,21 +30,23 @@ export const VizPage = () => (
                 <PrettierProvider>
                   <RunProvider>
                     <SettingsProvider>
-                      <DeleteVizProvider
-                        fallback={<LoadingScreen message="Deleting..." />}
-                      >
-                        <ForkingProvider
-                          fallback={<LoadingScreen message="Forking..." />}
+                      <ShareProvider>
+                        <DeleteVizProvider
+                          fallback={<LoadingScreen message="Deleting..." />}
                         >
-                          <ThemeProvider theme={darkNavbarTheme}>
-                            <SplitPaneResizeProvider>
-                              <VizRunnerProvider>
-                                <Body />
-                              </VizRunnerProvider>
-                            </SplitPaneResizeProvider>
-                          </ThemeProvider>
-                        </ForkingProvider>
-                      </DeleteVizProvider>
+                          <ForkingProvider
+                            fallback={<LoadingScreen message="Forking..." />}
+                          >
+                            <ThemeProvider theme={darkNavbarTheme}>
+                              <SplitPaneResizeProvider>
+                                <VizRunnerProvider>
+                                  <Body />
+                                </VizRunnerProvider>
+                              </SplitPaneResizeProvider>
+                            </ThemeProvider>
+                          </ForkingProvider>
+                        </DeleteVizProvider>
+                      </ShareProvider>
                     </SettingsProvider>
                   </RunProvider>
                 </PrettierProvider>
