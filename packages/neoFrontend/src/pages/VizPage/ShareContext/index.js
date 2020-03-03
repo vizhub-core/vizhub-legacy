@@ -42,10 +42,10 @@ export const ShareProvider = ({ children }) => {
               <DialogTitle>Share</DialogTitle>
               <Section>
                 <SectionTitle>SHARE WITH</SectionTitle>
-                <Tabs activeTab={activeTab} onSelect={setActiveTab}>
-                  <Tab id="link" title="Link" />
-                  <Tab id="embed" title="Embed" />
-                  <Tab id="collaborators" title="Collaborators" />
+                <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
+                  <Tab id="link">Link</Tab>
+                  <Tab id="embed">Embed</Tab>
+                  <Tab id="collaborators">Collaborators</Tab>
                 </Tabs>
                 <SectionDescription>
                   Set visualization height to control the aspect ratio (width is
