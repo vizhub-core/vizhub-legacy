@@ -11,8 +11,8 @@ export const LinkBody = () => (
       Sharing this link on social media will automatically create a preview.
     </FormRow>
     <FormRow>
-      <Input value={window.location.href} size="grow" />
-      <Button shrink>Copy</Button>
+      <Input value={window.location.href} size="grow" autoSelect />
+      <Button>Copy</Button>
     </FormRow>
   </SectionDescription>
 );
