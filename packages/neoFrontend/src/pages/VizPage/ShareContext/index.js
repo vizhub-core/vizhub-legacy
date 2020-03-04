@@ -7,30 +7,15 @@ import {
   DialogTitle,
   DialogButtons,
   Section,
-  SectionTitle,
-  SectionDescription
+  SectionTitle
 } from '../styles';
 import { Tabs, Tab } from './Tabs';
+import { LinkBody } from './LinkBody';
+import { EmbedBody } from './EmbedBody';
+import { CollaboratorsBody } from './CollaboratorsBody';
 
 export const ShareContext = createContext();
 const defaultActiveTab = 'link';
-
-const LinkBody = () => (
-  <SectionDescription>
-    Sharing this link on social media will automatically create a preview of
-    your visualization.
-  </SectionDescription>
-);
-
-const EmbedBody = () => (
-  <SectionDescription>Embed Preview Image</SectionDescription>
-);
-
-const CollaboratorsBody = () => (
-  <SectionDescription>
-    Start typing to search available collaborators for this visualization.
-  </SectionDescription>
-);
 
 const TabBody = ({ activeTab }) =>
   activeTab === 'link' ? (
