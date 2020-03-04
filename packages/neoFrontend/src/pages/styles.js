@@ -25,14 +25,13 @@ export const DevsOnly = styled.div`
   color: ${props => props.theme.attentionGrabber};
 `;
 
+// Matrix (red, blue) X (normal, hover, active) X (outline, filled):
 const buttonColor = props => (props.isRed ? props.theme.red : props.theme.blue);
 
 const hoverButtonColorOutline = props =>
   props.isRed ? props.theme.redHover : props.theme.blueHover;
-
 const hoverButtonColorFilled = props =>
   props.isRed ? props.theme.redHoverFilled : props.theme.blueHoverFilled;
-
 const hoverButtonColor = props =>
   props.isFilled
     ? hoverButtonColorFilled(props)
@@ -40,10 +39,8 @@ const hoverButtonColor = props =>
 
 const activeButtonColorOutline = props =>
   props.isRed ? props.theme.redActive : props.theme.blueActive;
-
 const activeButtonColorFilled = props =>
   props.isRed ? props.theme.redActiveFilled : props.theme.blueActiveFilled;
-
 const activeButtonColor = props =>
   props.isFilled
     ? activeButtonColorFilled(props)
