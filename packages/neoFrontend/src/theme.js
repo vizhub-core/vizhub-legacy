@@ -59,9 +59,13 @@ export const theme = {
   blue: 'rgba(56, 102, 233)', // New blue from Sam / Figma
   blueHover: 'rgba(56, 102, 233, 0.2)',
   blueHoverFilled: '#022A9F',
+  blueActive: 'rgba(56, 102, 233, 0.4)',
+  blueActiveFilled: '#02217b',
   red: 'rgba(255, 0, 107)',
   redHover: 'rgba(255, 0, 107, 0.2)',
   redHoverFilled: '#BB004F',
+  redActive: 'rgba(255, 0, 107, 0.4)',
+  redActiveFilled: '#96003f',
   rule: 'rgba(0, 0, 0, 0.19)',
   interactive: '#3866E9'
 };
