@@ -45,3 +45,11 @@ export const SectionDescription = styled.div`
 export const Spacer = styled.div`
   margin-top: 32px;
 `;
+
+export const FormRow = styled.div`
+  display: flex;
+  height: 48px;
+  font-family: Inter;
+  font-size: 16px;
+  align-items: center;
+`;
