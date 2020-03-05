@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SubSectionDescription } from '../../styles';
+import { SubSectionDescription, Spacer } from '../../styles';
 import { RadioButton } from '../../RadioButton';
 import { TextCopier } from '../TextCopier';
 
@@ -24,6 +24,7 @@ export const EmbedBody = () => {
         <RadioButton value={WHITELABEL} />
         <RadioButton value={PREVIEW} />
       </RadioButton.Group>
+      <Spacer height={22} />
       <TextCopier text={html} />
     </>
   );
