@@ -19,3 +19,7 @@ export const UserPreview = styled(Clickable)`
   padding-left: 12px;
   padding-right: 12px;
 `;
+
+export const UserName = styled.div`
+  padding-left: 12px;
+`;
