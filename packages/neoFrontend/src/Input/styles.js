@@ -7,7 +7,7 @@ export const Wrapper = styled.input`
     props.size === 'large' ? 'width: 87px;' : ''}
   font-family: Inter;
   font-size: 16px;
-  border: 1px solid ${props => props.theme.rule};
+  border: 1px solid ${props => props.theme.lightBorder};
   border-radius: 4px;
   padding-left: 14px;
 `;
