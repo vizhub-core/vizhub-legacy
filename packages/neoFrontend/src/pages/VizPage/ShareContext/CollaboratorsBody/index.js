@@ -29,6 +29,7 @@ export const CollaboratorsBody = () => {
   const typedText$ = useMemo(() => new BehaviorSubject(), []);
   useEffect(() => {
     typedText$.next(typedText);
+    setResults([]);
   }, [typedText$, typedText]);
 
   const [results, setResults] = useState([]);
