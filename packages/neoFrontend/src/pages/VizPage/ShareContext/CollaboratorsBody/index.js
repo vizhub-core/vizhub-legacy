@@ -4,24 +4,36 @@ import { switchMap, debounceTime } from 'rxjs/operators';
 import { SubSectionDescription, Spacer } from '../../styles';
 import { Input } from '../../../../Input';
 import { FormRow } from '../../styles';
+import { fetchUserSearchResults } from './fetchUserSearchResults';
 
+// const fetchData = typedText => {
+//   console.log(typedText);
+//   const results = fetchUserSearchResults(typedText);
+//   console.log({results});
+//   return results;
+// }
 const fetchData = typedText => {
   if (!typedText) return Promise.resolve([]);
-  return new Promise(resolve => {
-    console.log('Fetching data for ' + typedText);
-    setTimeout(() => {
-      resolve([
-        {
-          id: '47895473289547832938754',
-          fullName: 'CI',
-          email: 'ci@testing.com',
-          userName: 'ci',
-          avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4'
-        }
-      ]);
-    }, Math.random() * 1000);
-  });
+  return fetchUserSearchResults(typedText);
 };
+
+//const fetchData = typedText => {
+//  if (!typedText) return Promise.resolve([]);
+//  return new Promise(resolve => {
+//    console.log('Fetching data for ' + typedText);
+//    setTimeout(() => {
+//      resolve([
+//        {
+//          id: '47895473289547832938754',
+//          fullName: 'CI',
+//          email: 'ci@testing.com',
+//          userName: 'ci',
+//          avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4'
+//        }
+//      ]);
+//    }, Math.random() * 1000);
+//  });
+//};
 
 const debounceTimeMS = 500;
 export const CollaboratorsBody = () => {
