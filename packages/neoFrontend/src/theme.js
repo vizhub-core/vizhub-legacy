@@ -21,6 +21,7 @@ export const theme = {
   background: '#f6eee3',
   dark: '#161514',
   lightText: '#797979',
+  lightBorder: '#E6E6E6',
   attentionGrabber: '#f0353d',
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   shadowLight: '0 1px 3px 0 rgba(0, 0, 0, 0.15)',
