@@ -5,35 +5,13 @@ import { SubSectionDescription, Spacer } from '../../styles';
 import { Input } from '../../../../Input';
 import { FormRow } from '../../styles';
 import { fetchUserSearchResults } from './fetchUserSearchResults';
+import { UserPreviewList, UserPreview } from './styles';
 
-// const fetchData = typedText => {
-//   console.log(typedText);
-//   const results = fetchUserSearchResults(typedText);
-//   console.log({results});
-//   return results;
-// }
-const fetchData = typedText => {
-  if (!typedText) return Promise.resolve([]);
-  return fetchUserSearchResults(typedText);
+const fetchData = async typedText => {
+  if (!typedText) return [];
+  const results = await fetchUserSearchResults(typedText);
+  return results.users; 
 };
-
-//const fetchData = typedText => {
-//  if (!typedText) return Promise.resolve([]);
-//  return new Promise(resolve => {
-//    console.log('Fetching data for ' + typedText);
-//    setTimeout(() => {
-//      resolve([
-//        {
-//          id: '47895473289547832938754',
-//          fullName: 'CI',
-//          email: 'ci@testing.com',
-//          userName: 'ci',
-//          avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4'
-//        }
-//      ]);
-//    }, Math.random() * 1000);
-//  });
-//};
 
 const debounceTimeMS = 500;
 export const CollaboratorsBody = () => {
@@ -49,7 +27,10 @@ export const CollaboratorsBody = () => {
     () => typedText$.pipe(debounceTime(debounceTimeMS), switchMap(fetchData)),
     [typedText$]
   );
-  useEffect(() => results$.subscribe(setResults).unsubscribe, [results$]);
+  useEffect(() => {
+    const subscription = results$.subscribe(setResults);
+    return () => subscription.unsubscribe();
+  }, [results$]);
 
   console.log(results);
 
@@ -61,6 +42,11 @@ export const CollaboratorsBody = () => {
       <Spacer height={22} />
       <FormRow>
         <Input value={typedText} onChange={setTypedText} size="grow" />
+        <UserPreviewList>
+          {results && results.map(user => (
+            <UserPreview key={user.userName}>{user.userName}</UserPreview>
+          ))}
+        </UserPreviewList>
       </FormRow>
     </>
   );
