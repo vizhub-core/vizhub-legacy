@@ -60,4 +60,5 @@ export const FormRow = styled.div`
   font-family: Inter;
   font-size: 16px;
   align-items: center;
+  position: relative;
 `;
