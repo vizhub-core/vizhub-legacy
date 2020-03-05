@@ -44,7 +44,7 @@ export const CollaboratorsBody = () => {
         <Input value={typedText} onChange={setTypedText} size="grow" />
         <UserPreviewList>
           {results && results.map(user => (
-            <UserPreview key={user.userName}>{user.userName}</UserPreview>
+            <UserPreview key={user.userName}>{user.fullName}</UserPreview>
           ))}
         </UserPreviewList>
       </FormRow>

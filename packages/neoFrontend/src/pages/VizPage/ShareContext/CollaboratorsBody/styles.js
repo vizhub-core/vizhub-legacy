@@ -1,14 +1,21 @@
 import styled from 'styled-components';
+import { Clickable } from '../../../../styles';
 
 export const UserPreviewList = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 39px;
+  left: 7px;
   display: flex;
   flex-direction: column;
-  width: 100px;
-  height: 100px;
-  background-color: red;
+  border: 1px solid ${props => props.theme.lightBorder};
+  border-radius: 4px;
+  background-color: white;
 `;
 
-export const UserPreview = styled.div``;
+export const UserPreview = styled(Clickable)`
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+`;
