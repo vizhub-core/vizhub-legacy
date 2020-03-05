@@ -3,14 +3,15 @@ import { BehaviorSubject } from 'rxjs';
 import { switchMap, debounceTime } from 'rxjs/operators';
 import { SubSectionDescription, Spacer } from '../../styles';
 import { Input } from '../../../../Input';
+import { Avatar } from '../../../../Avatar';
 import { FormRow } from '../../styles';
 import { fetchUserSearchResults } from './fetchUserSearchResults';
-import { UserPreviewList, UserPreview } from './styles';
+import { UserPreviewList, UserPreview, UserName } from './styles';
 
 const fetchData = async typedText => {
   if (!typedText) return [];
   const results = await fetchUserSearchResults(typedText);
-  return results.users; 
+  return results.users;
 };
 
 const debounceTimeMS = 500;
@@ -43,9 +44,13 @@ export const CollaboratorsBody = () => {
       <FormRow>
         <Input value={typedText} onChange={setTypedText} size="grow" />
         <UserPreviewList>
-          {results && results.map(user => (
-            <UserPreview key={user.userName}>{user.fullName}</UserPreview>
-          ))}
+          {results &&
+            results.map(user => (
+              <UserPreview key={user.userName}>
+                <Avatar size={28} user={user} />
+                <UserName>{user.fullName}</UserName>
+              </UserPreview>
+            ))}
         </UserPreviewList>
       </FormRow>
     </>
