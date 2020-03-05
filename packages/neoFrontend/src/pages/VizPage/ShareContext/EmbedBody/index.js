@@ -15,7 +15,11 @@ export const EmbedBody = () => {
     <>
       <SubSectionDescription>Embed Preview Image</SubSectionDescription>
       <SubSectionDescription>Embed Settings</SubSectionDescription>
-      <RadioButton.Group onChange={setEmbedType} currentValue={embedType}>
+      <RadioButton.Group
+        vertical
+        onChange={setEmbedType}
+        currentValue={embedType}
+      >
         <RadioButton value={VIZ} />
         <RadioButton value={WHITELABEL} />
         <RadioButton value={PREVIEW} />

@@ -38,13 +38,15 @@ export const SectionTitle = styled.div`
 
 export const SectionDescription = styled.div`
   font-size: 14px;
-  padding-bottom: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   color: ${props => props.theme.dark};
 `;
 
 export const SubSectionDescription = styled.div`
   font-size: 14px;
-  padding-bottom: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   color: ${props => props.theme.lightText};
 `;
 
