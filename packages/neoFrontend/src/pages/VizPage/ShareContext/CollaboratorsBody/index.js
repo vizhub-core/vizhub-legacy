@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap, debounceTime } from 'rxjs/operators';
 import { SubSectionDescription, Spacer } from '../../styles';
@@ -35,6 +35,12 @@ export const CollaboratorsBody = () => {
 
   console.log(results);
 
+  const addCollaborator = useCallback(userId => {
+    console.log('add collaborator ' + userId);
+    setTypedText('');
+    setResults([]);
+  }, []);
+
   return (
     <>
       <SubSectionDescription>
@@ -46,7 +52,10 @@ export const CollaboratorsBody = () => {
         <UserPreviewList>
           {results &&
             results.map(user => (
-              <UserPreview key={user.userName}>
+              <UserPreview
+                key={user.userName}
+                onClick={() => addCollaborator(user.id)}
+              >
                 <Avatar size={24} user={user} isDisabled={true} />
                 <UserName>{user.fullName}</UserName>
               </UserPreview>
