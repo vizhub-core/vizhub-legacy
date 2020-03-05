@@ -13,7 +13,7 @@ export const searchUsers = connection => async ({
   const mongoQuery = {
     $limit: pageSize,
     $skip: offset * pageSize,
-    $text: { $search: query },
+    userName: { $regex: `.*${query}.*` }
   };
   const results = await fetchShareDBQuery(
     USER,
