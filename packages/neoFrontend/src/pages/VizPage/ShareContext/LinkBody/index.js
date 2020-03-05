@@ -1,10 +1,8 @@
 import React, { useCallback } from 'react';
 import copy from 'copy-to-clipboard';
-
-import { SubSectionDescription } from '../../styles';
 import { Button } from '../../../styles';
 import { Input } from '../../../../Input';
-import { FormRow } from '../../styles';
+import { SubSectionDescription, FormRow } from '../../styles';
 
 export const LinkBody = () => {
   const url = window.location.href;
