@@ -51,7 +51,7 @@ export const SubSectionDescription = styled.div`
 `;
 
 export const Spacer = styled.div`
-  margin-top: ${props => props.height === undefined ? 32 : props.height}px;
+  margin-top: ${props => (props.height === undefined ? 32 : props.height)}px;
 `;
 
 export const FormRow = styled.div`
