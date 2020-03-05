@@ -23,12 +23,16 @@ export const Banner = styled.div`
   background-color: ${props => props.theme.bannerBackground};
 `;
 
+const hover = props =>
+  props.isDisabled ? 'transparent' : props.theme.hoverBackground;
+const active = props =>
+  props.isDisabled ? 'transparent' : props.theme.activeBackground;
 export const Clickable = styled.div`
   &:hover {
-    background-color: ${props => props.theme.hoverBackground};
+    background-color: ${hover};
   }
   &:active {
-    background-color: ${props => props.theme.activeBackground};
+    background-color: ${active};
   }
   cursor: pointer;
   user-select: none;

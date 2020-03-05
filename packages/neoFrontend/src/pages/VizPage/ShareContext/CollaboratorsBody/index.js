@@ -47,7 +47,7 @@ export const CollaboratorsBody = () => {
           {results &&
             results.map(user => (
               <UserPreview key={user.userName}>
-                <Avatar size={28} user={user} />
+                <Avatar size={28} user={user} isDisabled={true} />
                 <UserName>{user.fullName}</UserName>
               </UserPreview>
             ))}
