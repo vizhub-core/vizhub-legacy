@@ -15,6 +15,6 @@ export const Label = styled.div`
   font-family: Inter;
 `;
 
-export const Group = styled.div`
+export const GroupWrapper = styled.div`
   display: flex;
 `;
