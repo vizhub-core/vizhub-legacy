@@ -4,8 +4,8 @@ export const Wrapper = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: ${props => (props.vertical ? 12 : 5)}px;
+  padding-bottom: ${props => (props.vertical ? 12 : 5)}px;
   padding-right: 32px;
 `;
 
@@ -17,4 +17,7 @@ export const Label = styled.div`
 
 export const GroupWrapper = styled.div`
   display: flex;
+  ${props => (props.vertical ? 'flex-direction: column;' : '')}
 `;
+// padding-top: ${props => (props.vertical ? 12 : 0)}px;
+// padding-bottom: ${props => (props.vertical ? 12 : 0)}px;

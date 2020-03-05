@@ -5,7 +5,7 @@ import { Wrapper, GroupWrapper, Label } from './styles';
 const RadioButtonsContext = createContext();
 
 export const RadioButton = ({ value, className }) => {
-  const { onChange, currentValue } = useContext(RadioButtonsContext);
+  const { onChange, currentValue, vertical } = useContext(RadioButtonsContext);
 
   const onClick = useCallback(() => {
     onChange(value);
@@ -18,6 +18,7 @@ export const RadioButton = ({ value, className }) => {
       onClick={onClick}
       className={className}
       data-test-is-active={isActive}
+      vertical={vertical}
     >
       <RadioButtonSVG isActive={isActive} />
       <Label>{value}</Label>
@@ -25,9 +26,9 @@ export const RadioButton = ({ value, className }) => {
   );
 };
 
-const Group = ({ children, onChange, currentValue }) => (
-  <GroupWrapper>
-    <RadioButtonsContext.Provider value={{ onChange, currentValue }}>
+const Group = ({ children, onChange, currentValue, vertical }) => (
+  <GroupWrapper vertical={vertical}>
+    <RadioButtonsContext.Provider value={{ onChange, currentValue, vertical }}>
       {children}
     </RadioButtonsContext.Provider>
   </GroupWrapper>
