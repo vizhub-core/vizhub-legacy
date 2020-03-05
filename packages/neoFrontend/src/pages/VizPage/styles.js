@@ -42,6 +42,12 @@ export const SectionDescription = styled.div`
   color: ${props => props.theme.dark};
 `;
 
+export const SubSectionDescription = styled.div`
+  font-size: 14px;
+  padding-bottom: 24px;
+  color: ${props => props.theme.lightText};
+`;
+
 export const Spacer = styled.div`
   margin-top: 32px;
 `;

@@ -1,6 +1,9 @@
 import React from 'react';
-import { SectionDescription } from '../../styles';
+import { SubSectionDescription } from '../../styles';
 
 export const EmbedBody = () => (
-  <SectionDescription>Embed Preview Image</SectionDescription>
+  <>
+    <SubSectionDescription>Embed Preview Image</SubSectionDescription>
+    <SubSectionDescription>Embed Settings</SubSectionDescription>
+  </>
 );
