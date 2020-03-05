@@ -3,6 +3,7 @@ import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
+import { RadioButton } from '../RadioButton';
 import {
   HorizontalRule,
   Dialog,
@@ -14,7 +15,6 @@ import {
   Spacer
 } from '../styles';
 import { useSettings } from './useSettings';
-import { RadioButton } from './RadioButton';
 import { SetHeight } from './SetHeight';
 
 export const SettingsContext = createContext();
