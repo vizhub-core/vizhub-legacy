@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useCallback } from 'react';
-import { RadioButtonSVG } from '../../../../svg';
+import { RadioButtonSVG } from '../../../svg';
 import { Wrapper, GroupWrapper, Label } from './styles';
 
 const RadioButtonsContext = createContext();
