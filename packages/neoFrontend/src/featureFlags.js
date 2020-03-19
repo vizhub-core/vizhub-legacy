@@ -2,11 +2,13 @@ export const showUpvote = true;
 export const showDownvote = false;
 export const showCreatedDate = false;
 export const showHeadPullRequest = false;
-export const showHeadShare = false;
+export const showHeadShare = true;
 export const showVideoThumbnail = false;
 export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
+export const showEmbed = false;
+export const showCollaborators = false;
 
 // List of usernames who have access to
 // private viz feature.

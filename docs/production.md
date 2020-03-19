@@ -290,6 +290,8 @@ For search, you need to set up indices like this:
 ```
 use vizhub
 db.documentInfo.createIndex( { title: "text", description: "text" } )
+db.user.createIndex({ userName: 1 })
+db.user.createIndex({ fullName: 1 })
 ```
 
 

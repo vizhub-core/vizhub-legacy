@@ -9,6 +9,7 @@ import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
 import { VizContext } from '../../VizContext';
 import { SettingsContext } from '../../SettingsContext';
+import { ShareContext } from '../../ShareContext';
 
 import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
 import { EditorToggler } from './EditorToggler';
@@ -21,6 +22,7 @@ export const Head = ({ showRight }) => {
   const { me } = useContext(AuthContext);
   const { viz$ } = useContext(VizContext);
   const showSettingsModal = useContext(SettingsContext);
+  const showShareModal = useContext(ShareContext);
   const owner = useValue(viz$, getVizOwner);
 
   const showHeadTrash = me && me.id === owner;
@@ -30,6 +32,10 @@ export const Head = ({ showRight }) => {
     showSettingsModal();
   }, [showSettingsModal]);
 
+  const onShareClick = useCallback(() => {
+    showShareModal();
+  }, [showShareModal]);
+
   return (
     <Wrapper warning={warning}>
       <Left>
@@ -38,6 +44,11 @@ export const Head = ({ showRight }) => {
       {warning ? <Center>{warning}</Center> : null}
       {showRight ? (
         <Right>
+          {showHeadShare ? (
+            <HeadIcon title="Share this viz" onClick={onShareClick}>
+              <ShareSVG />
+            </HeadIcon>
+          ) : null}
           {showHeadSettings ? (
             <HeadIcon
               title="Settings"
@@ -66,11 +77,6 @@ export const Head = ({ showRight }) => {
               onClick={onDeleteViz}
               iconComponent={HeadIcon}
             />
-          ) : null}
-          {showHeadShare ? (
-            <HeadIcon title="Share this viz">
-              <ShareSVG />
-            </HeadIcon>
           ) : null}
         </Right>
       ) : null}

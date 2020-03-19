@@ -9,9 +9,15 @@ const avatarUrl = user => user.avatarUrl + '&s=180';
 // const avatarUrl = user =>
 //   'https://avatars0.githubusercontent.com/u/139208?s=180';
 
-export const Avatar = ({ user, onClick, size, borderColor }) => (
+export const Avatar = ({
+  user,
+  onClick,
+  size,
+  borderColor,
+  isDisabled = false
+}) => (
   <Wrapper onClick={onClick}>
-    <InnerBorder borderColor={borderColor} size={size}>
+    <InnerBorder borderColor={borderColor} size={size} isDisabled={isDisabled}>
       <Image
         size={size}
         className="test-avatar-me"

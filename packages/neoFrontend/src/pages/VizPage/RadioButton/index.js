@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useCallback } from 'react';
-import { RadioButtonSVG } from '../../../../svg';
-import { Wrapper, Group, Label } from './styles';
+import { RadioButtonSVG } from '../../../svg';
+import { Wrapper, GroupWrapper, Label } from './styles';
 
 const RadioButtonsContext = createContext();
 
 export const RadioButton = ({ value, className }) => {
-  const { onChange, currentValue } = useContext(RadioButtonsContext);
+  const { onChange, currentValue, vertical } = useContext(RadioButtonsContext);
 
   const onClick = useCallback(() => {
     onChange(value);
@@ -18,6 +18,7 @@ export const RadioButton = ({ value, className }) => {
       onClick={onClick}
       className={className}
       data-test-is-active={isActive}
+      vertical={vertical}
     >
       <RadioButtonSVG isActive={isActive} />
       <Label>{value}</Label>
@@ -25,10 +26,11 @@ export const RadioButton = ({ value, className }) => {
   );
 };
 
-RadioButton.Group = ({ children, onChange, currentValue }) => (
-  <Group>
-    <RadioButtonsContext.Provider value={{ onChange, currentValue }}>
+const Group = ({ children, onChange, currentValue, vertical }) => (
+  <GroupWrapper vertical={vertical}>
+    <RadioButtonsContext.Provider value={{ onChange, currentValue, vertical }}>
       {children}
     </RadioButtonsContext.Provider>
-  </Group>
+  </GroupWrapper>
 );
+RadioButton.Group = Group;

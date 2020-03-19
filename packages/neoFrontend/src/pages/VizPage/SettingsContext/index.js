@@ -3,11 +3,9 @@ import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
-import { HorizontalRule } from '../styles';
-import { useSettings } from './useSettings';
-import { RadioButton } from './RadioButton';
-import { SetHeight } from './SetHeight';
+import { RadioButton } from '../RadioButton';
 import {
+  HorizontalRule,
   Dialog,
   DialogTitle,
   DialogButtons,
@@ -15,7 +13,9 @@ import {
   SectionTitle,
   SectionDescription,
   Spacer
-} from './styles';
+} from '../styles';
+import { useSettings } from './useSettings';
+import { SetHeight } from './SetHeight';
 
 export const SettingsContext = createContext();
 
