@@ -5,7 +5,6 @@ import {
   Left,
   Right,
   Message,
-  MessageTinyText,
   MessageSmallText,
   MessageLargeText,
   MessageList,
@@ -36,6 +35,15 @@ export const Banner = () => (
           <MessageList>
             <li>
               <MessageLink
+                href="https://datavis.tech/coronavirus-dataviz-hackathon/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Coronavirus Dataviz Hackathon March 21
+              </MessageLink>
+            </li>
+            <li>
+              <MessageLink
                 href="https://datavis.tech/datavis-2020/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -49,15 +57,11 @@ export const Banner = () => (
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                VizHub User Forum
+                VizHub Discourse User Forum
               </MessageLink>
             </li>
           </MessageList>
         </MessageSmallText>
-        <MessageTinyText>
-          Problems with VizHub 2.0? Switch back to the{' '}
-          <MessageLink href="https://v1.vizhub.com">old version</MessageLink>.
-        </MessageTinyText>
       </Message>
     </Right>
   </Wrapper>

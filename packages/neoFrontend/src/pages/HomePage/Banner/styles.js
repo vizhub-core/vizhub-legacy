@@ -40,10 +40,10 @@ export const Message = styled.div`
   text-align: center;
 `;
 
-export const MessageTinyText = styled.div`
-  font-size: 10px;
-  font-weight: 500;
-`;
+//export const MessageTinyText = styled.div`
+//  font-size: 10px;
+//  font-weight: 500;
+//`;
 
 export const MessageSmallText = styled.div`
   font-size: 16.8px;
