@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { showEmbed, showCollaborators } from '../../../featureFlags';
 import { Button } from '../../styles';
 import { Modal } from '../../../Modal';
 import { useShare } from './useShare';
@@ -45,8 +46,10 @@ export const ShareProvider = ({ children }) => {
                 <SectionTitle>SHARE WITH</SectionTitle>
                 <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
                   <Tab id="link">Link</Tab>
-                  <Tab id="embed">Embed</Tab>
-                  <Tab id="collaborators">Collaborators</Tab>
+                  {showEmbed ? <Tab id="embed">Embed</Tab> : null}
+                  {showCollaborators ? (
+                    <Tab id="collaborators">Collaborators</Tab>
+                  ) : null}
                 </Tabs>
                 <TabBody activeTab={activeTab} />
               </Section>
