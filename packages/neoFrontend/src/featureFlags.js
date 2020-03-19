@@ -7,6 +7,8 @@ export const showVideoThumbnail = false;
 export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
+export const showEmbed = false;
+export const showCollaborators = false;
 
 // List of usernames who have access to
 // private viz feature.
