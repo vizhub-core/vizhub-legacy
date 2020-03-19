@@ -18,4 +18,8 @@ export class DatabaseUserGateway {
   async getUserByUserName(userName) {
     return await this.database.getUserByUserName(userName);
   }
+
+  async searchUsers(options) {
+    return await this.database.searchUsers(options);
+  }
 }

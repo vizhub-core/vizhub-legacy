@@ -1,4 +1,5 @@
 import React from 'react';
+import { cubehelix } from 'd3-color';
 import styled, { ThemeProvider } from 'styled-components';
 
 // Monospace system font stack used by GitHub, August 2019.
@@ -19,6 +20,8 @@ export const defaultCodingFontSize = '16px';
 export const theme = {
   background: '#f6eee3',
   dark: '#161514',
+  lightText: '#797979',
+  lightBorder: '#E6E6E6',
   attentionGrabber: '#f0353d',
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   shadowLight: '0 1px 3px 0 rgba(0, 0, 0, 0.15)',
@@ -55,16 +58,37 @@ export const theme = {
   borderRadiusMedium: 4,
   borderRadiusLarge: 6,
   veryLightPink: '#c0c0c0',
-  blue: 'rgba(56, 102, 233)', // New blue from Sam / Figma
-  blueHover: 'rgba(56, 102, 233, 0.2)',
-  blueHoverFilled: '#022A9F',
-  red: 'rgba(255, 0, 107)',
-  redHover: 'rgba(255, 0, 107, 0.2)',
-  redHoverFilled: '#BB004F',
-  rule: 'rgba(0, 0, 0, 0.19)'
+  rule: 'rgba(0, 0, 0, 0.19)',
+  interactive: '#3866E9'
 };
 theme.userMenuOverlayForeground = theme.dark;
 theme.bottomButtonBackground = theme.editorSectionActiveColor;
+
+const blue = cubehelix('#3866e9');
+theme.blue = blue.formatHex();
+
+blue.l -= 0.1;
+theme.blueHoverFilled = blue.formatHex();
+blue.l -= 0.1;
+theme.blueActiveFilled = blue.formatHex();
+
+blue.l = 0.95;
+theme.blueHover = blue.formatHex();
+blue.l = 0.9;
+theme.blueActive = blue.formatHex();
+
+const red = cubehelix('#ff006b');
+theme.red = red.formatHex();
+
+red.l -= 0.1;
+theme.redHoverFilled = red.formatHex();
+red.l -= 0.1;
+theme.redActiveFilled = red.formatHex();
+
+red.l = 0.95;
+theme.redHover = red.formatHex();
+red.l = 0.9;
+theme.redActive = red.formatHex();
 
 export const darkNavbarTheme = {
   ...theme,

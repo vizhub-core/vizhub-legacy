@@ -90,7 +90,7 @@ export const vizHub = rotation => {
 
   theme.matchingBracket = {
     color: theme.container.color,
-    borderBottom: `1px solid rgba(255,255,255,0.4)`
+    borderBottom: '1px solid rgba(255,255,255,0.4)'
   };
 
   return theme;

@@ -25,6 +25,7 @@ export const DevsOnly = styled.div`
   color: ${props => props.theme.attentionGrabber};
 `;
 
+// Matrix (red, blue) X (normal, hover, active) X (outline, filled):
 const buttonColor = props => (props.isRed ? props.theme.red : props.theme.blue);
 
 const hoverButtonColorOutline = props =>
@@ -36,12 +37,22 @@ const hoverButtonColor = props =>
     ? hoverButtonColorFilled(props)
     : hoverButtonColorOutline(props);
 
+const activeButtonColorOutline = props =>
+  props.isRed ? props.theme.redActive : props.theme.blueActive;
+const activeButtonColorFilled = props =>
+  props.isRed ? props.theme.redActiveFilled : props.theme.blueActiveFilled;
+const activeButtonColor = props =>
+  props.isFilled
+    ? activeButtonColorFilled(props)
+    : activeButtonColorOutline(props);
+
 export const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 232px;
+  padding-right: 16px;
+  padding-left: 16px;
   height: 48px;
   border-radius: 6px;
   border: solid 1px ${buttonColor};
@@ -56,7 +67,12 @@ export const Button = styled.div`
     background-color: ${hoverButtonColor};
   }
 
+  :active {
+    background-color: ${activeButtonColor};
+  }
+
   cursor: pointer;
+  user-select: none;
   margin-left: 8px;
   font-family: Inter;
 `;
