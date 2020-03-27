@@ -8,7 +8,9 @@ export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
 export const showEmbed = false;
-export const showCollaborators = false;
+export const showCollaborators = true;
+export const showCollaboratorsAnyoneCanEdit = true;
+export const showCollaboratorsManagement = false;
 
 // List of usernames who have access to
 // private viz feature.

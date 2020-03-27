@@ -78,12 +78,20 @@ const vizWriteAsync = async request => {
   const vizInfo = await getVizInfo(collection, snapshot);
 
   // Don't let people edit other people's stuff.
-  if (vizInfo.owner !== userId) {
+  // Unless `anyoneCanEdit` is true.
+  if (vizInfo.owner !== userId && !vizInfo.anyoneCanEdit) {
     throw new Error('This visualization is unforked. Fork to save edits.');
   }
 
   // Explicitly whitelist conditions for allowed ops.
+  //
+  // Allow owner to edit.
   if (vizInfo.owner === userId) {
+    return;
+  }
+
+  // Allow anyone to edit if `anyoneCanEdit` is true.
+  if (vizInfo.anyoneCanEdit) {
     return;
   }
 
