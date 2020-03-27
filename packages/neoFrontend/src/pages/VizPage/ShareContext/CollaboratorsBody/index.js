@@ -1,12 +1,16 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap, debounceTime } from 'rxjs/operators';
-import { SubSectionDescription, Spacer } from '../../styles';
+import {
+  showCollaboratorsAnyoneCanEdit,
+  showCollaboratorsManagement
+} from '../../../../featureFlags';
 import { Input } from '../../../../Input';
 import { Avatar } from '../../../../Avatar';
-import { FormRow } from '../../styles';
+import { SubSectionDescription, Spacer, FormRow } from '../../styles';
 import { fetchUserSearchResults } from './fetchUserSearchResults';
 import { UserPreviewList, UserPreview, UserName } from './styles';
+import { AnyoneCanEdit } from './AnyoneCanEdit';
 
 const fetchData = async typedText => {
   if (!typedText) return [];
@@ -33,8 +37,6 @@ export const CollaboratorsBody = () => {
     return () => subscription.unsubscribe();
   }, [results$]);
 
-  console.log(results);
-
   const addCollaborator = useCallback(userId => {
     console.log('add collaborator ' + userId);
     setTypedText('');
@@ -43,25 +45,31 @@ export const CollaboratorsBody = () => {
 
   return (
     <>
-      <SubSectionDescription>
-        Start typing to search available collaborators for this visualization.
-      </SubSectionDescription>
-      <Spacer height={22} />
-      <FormRow>
-        <Input value={typedText} onChange={setTypedText} size="grow" />
-        <UserPreviewList>
-          {results &&
-            results.map(user => (
-              <UserPreview
-                key={user.userName}
-                onClick={() => addCollaborator(user.id)}
-              >
-                <Avatar size={24} user={user} isDisabled={true} />
-                <UserName>{user.fullName}</UserName>
-              </UserPreview>
-            ))}
-        </UserPreviewList>
-      </FormRow>
+      {showCollaboratorsAnyoneCanEdit ? <AnyoneCanEdit /> : null}
+      {showCollaboratorsManagement ? (
+        <>
+          <SubSectionDescription>
+            Start typing to search available collaborators for this
+            visualization.
+          </SubSectionDescription>
+          <Spacer height={22} />
+          <FormRow>
+            <Input value={typedText} onChange={setTypedText} size="grow" />
+            <UserPreviewList>
+              {results &&
+                results.map(user => (
+                  <UserPreview
+                    key={user.userName}
+                    onClick={() => addCollaborator(user.id)}
+                  >
+                    <Avatar size={24} user={user} isDisabled={true} />
+                    <UserName>{user.fullName}</UserName>
+                  </UserPreview>
+                ))}
+            </UserPreviewList>
+          </FormRow>
+        </>
+      ) : null}
     </>
   );
 };

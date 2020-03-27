@@ -35,5 +35,8 @@ export class VisualizationInfo extends DocumentInfo {
     //  - "public" also means public visibility
     //  - "private" means visible only to collaborators
     this.privacy = data.privacy;
+
+    // Boolean, whether or not anyone who can see the document can edit it.
+    this.anyoneCanEdit = data.anyoneCanEdit;
   }
 }

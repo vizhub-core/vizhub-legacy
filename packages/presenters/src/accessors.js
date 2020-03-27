@@ -112,6 +112,18 @@ export const privacyChangeOp = (oldPrivacy, newPrivacy, realtimeModules) =>
         }
       ];
 
+const defaultVizAnyoneCanEdit = false;
+export const getVizAnyoneCanEdit = viz => viz.info.anyoneCanEdit || defaultVizAnyoneCanEdit;
+export const anyoneCanEditChangeOp = (oldAnyoneCanEdit, newAnyoneCanEdit, realtimeModules) =>
+  // Initialize the anyoneCanEdit field if needed.
+  [
+    {
+      p: ['anyoneCanEdit'],
+      oi: !!newAnyoneCanEdit, // Convert truthiness to boolean.
+      od: oldAnyoneCanEdit
+    }
+  ];
+
 export const heightChangeOp = (oldHeight, newHeight, realtimeModules) =>
   // Initialize the height field if needed.
   [
