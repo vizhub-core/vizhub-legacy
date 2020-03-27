@@ -1,16 +1,16 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import { BehaviorSubject } from 'rxjs';
+import { switchMap, debounceTime } from 'rxjs/operators';
 import {
   showCollaboratorsAnyoneCanEdit,
   showCollaboratorsManagement
 } from '../../../../featureFlags';
-import { BehaviorSubject } from 'rxjs';
-import { switchMap, debounceTime } from 'rxjs/operators';
-import { SubSectionDescription, Spacer } from '../../styles';
 import { Input } from '../../../../Input';
 import { Avatar } from '../../../../Avatar';
-import { FormRow } from '../../styles';
+import { SubSectionDescription, Spacer, FormRow } from '../../styles';
 import { fetchUserSearchResults } from './fetchUserSearchResults';
 import { UserPreviewList, UserPreview, UserName } from './styles';
+import { AnyoneCanEdit } from './AnyoneCanEdit';
 
 const fetchData = async typedText => {
   if (!typedText) return [];
@@ -45,7 +45,7 @@ export const CollaboratorsBody = () => {
 
   return (
     <>
-      {showCollaboratorsAnyoneCanEdit ? <div>Anyone can edit</div> : null}
+      {showCollaboratorsAnyoneCanEdit ? <AnyoneCanEdit /> : null}
       {showCollaboratorsManagement ? (
         <>
           <SubSectionDescription>
