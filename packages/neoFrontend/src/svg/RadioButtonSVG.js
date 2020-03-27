@@ -8,7 +8,7 @@ export const RadioButtonSVG = ({ height = 20, isActive }) => (
       width="19"
       height="19"
       rx="3.5"
-      stroke="#E6E6E6"
+      stroke="#969696"
       fill="none"
     />
     {isActive ? (
