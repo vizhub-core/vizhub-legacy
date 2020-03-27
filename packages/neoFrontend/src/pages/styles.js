@@ -41,6 +41,7 @@ const activeButtonColorOutline = props =>
   props.isRed ? props.theme.redActive : props.theme.blueActive;
 const activeButtonColorFilled = props =>
   props.isRed ? props.theme.redActiveFilled : props.theme.blueActiveFilled;
+
 const activeButtonColor = props =>
   props.isFilled
     ? activeButtonColorFilled(props)

@@ -72,4 +72,10 @@ export const MessageButton = styled(Button)`
   border: solid 1px ${props => props.theme.attentionGrabber};
   font-size: 15px;
   color: white;
+  :hover {
+    background-color: ${props => props.theme.hoverBackground};
+  }
+  :active {
+    background-color: ${props => props.theme.activeBackground};
+  }
 `;
