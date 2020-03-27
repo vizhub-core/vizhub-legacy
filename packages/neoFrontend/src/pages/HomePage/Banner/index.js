@@ -39,7 +39,7 @@ export const Banner = () => (
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Coronavirus Dataviz Hackathon March 21
+                Coronavirus Dataviz Hackathon
               </MessageLink>
             </li>
             <li>
