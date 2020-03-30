@@ -3,7 +3,7 @@ import { withTheme } from 'styled-components';
 import { LogoSVG } from '../svg';
 import { AuthContext, AUTH_PENDING } from '../authentication';
 import { Banner } from '../styles';
-import { SignIn, LogoLink, Right, PricingLink } from './styles';
+import { SignIn, LogoLink, LogoHREF, Right, PricingLink } from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 
@@ -22,7 +22,13 @@ export const NavBar = withTheme(
     return (
       <Banner>
         {isHomePage ? (
-          <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
+          <LogoHREF
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://datavis.tech/vizhub/"
+          >
+            <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
+          </LogoHREF>
         ) : (
           <LogoLink to="/" target="_blank" rel="noopener noreferrer">
             <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
