@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import marked from 'marked';
 import { toDate } from 'vizhub-entities';
 import {
   showCreatedDate,
@@ -19,6 +18,7 @@ import {
 } from './styles';
 import { Author } from '../../../../../Author';
 import { responsiveYouTube } from './responsiveYouTube';
+import { renderMarkdown } from './renderMarkdown';
 
 const formatTimestamp = timestamp =>
   toDate(timestamp).toLocaleString(undefined, {
@@ -45,7 +45,7 @@ export const DescriptionSection = ({
 
   const description = vizInfo.description;
   const descriptionHTML = useMemo(
-    () => responsiveYouTube(marked(description)),
+    () => responsiveYouTube(renderMarkdown(description)),
     [description]
   );
 
