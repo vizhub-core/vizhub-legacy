@@ -13,7 +13,7 @@ export const getPreviewController = (expressApp, gateways) => {
 
       res.writeHead(200, {
         'Content-Type': 'image/png',
-        'Content-Length': img.length
+        'Content-Length': img.length,
       });
 
       res.end(img);

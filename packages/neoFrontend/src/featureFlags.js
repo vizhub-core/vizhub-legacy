@@ -23,7 +23,7 @@ const stamen = [
   'swvogt',
   'loganwilliams',
   'colinsullivan',
-  'schroedermarc'
+  'schroedermarc',
 ];
 
 // 1 Year of VizHub Pro
@@ -39,14 +39,14 @@ const kickstarter = [
   'rdwong',
   'kirkdebaets',
   'tejbir-singh',
-  'mrwatson-de'
+  'mrwatson-de',
 ];
 
 // Backers who get 2 years of "VizHub Pro".
 const kickstarter2years = [
   'seemantk',
   'aarondake', // Did not select reward but gave $300
-  'mbsmrtic' // Did not select reward but gave $100
+  'mbsmrtic', // Did not select reward but gave $100
 ];
 
 //showPrivacySettings(me, vizInfo)

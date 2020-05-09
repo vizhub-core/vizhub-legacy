@@ -12,8 +12,8 @@ export const getDatasetController = (expressApp, gateways) => {
       // TODO unify error handling across the codebase.
       res.json({
         error: {
-          message: error.message
-        }
+          message: error.message,
+        },
       });
     }
   });
@@ -34,8 +34,8 @@ export const getDatasetController = (expressApp, gateways) => {
       // TODO unify error handling across the codebase.
       res.json({
         error: {
-          message: error.message
-        }
+          message: error.message,
+        },
       });
     }
   });

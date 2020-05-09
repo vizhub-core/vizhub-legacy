@@ -3,7 +3,7 @@ import diffMatchPatch from 'diff-match-patch';
 
 export const save = (doc, data) =>
   new Promise((resolve, reject) => {
-    const callback = error =>
+    const callback = (error) =>
       error ? reject(error) : resolve({ status: 'success' });
 
     if (!doc.type) {

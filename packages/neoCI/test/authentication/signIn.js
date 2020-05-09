@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { navigateToAuthPage } from './navigateToAuthPage';
 
-export const signIn = my => async () => {
+export const signIn = (my) => async () => {
   await navigateToAuthPage(my)();
 
   const { popup, page } = my;

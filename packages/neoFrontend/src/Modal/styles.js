@@ -18,10 +18,10 @@ export const Wrapper = styled.div`
 export const Box = styled.div`
   flex: 1;
   max-width: 570px;
-  border-radius: ${props => props.theme.borderRadiusMedium}px;
+  border-radius: ${(props) => props.theme.borderRadiusMedium}px;
   background-color: white;
   padding: 32px;
-  box-shadow: ${props => props.theme.shadow};
+  box-shadow: ${(props) => props.theme.shadow};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@ export const CloseIcon = styled(LargeIcon)`
   position: absolute;
   top: 0;
   right: 0;
-  border-top-right-radius: ${props => props.theme.borderRadiusLarge}px;
+  border-top-right-radius: ${(props) => props.theme.borderRadiusLarge}px;
 `;
 
 export const Message = styled.div`

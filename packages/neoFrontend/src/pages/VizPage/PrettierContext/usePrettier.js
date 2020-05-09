@@ -3,7 +3,7 @@ import {
   getVizFileIndex,
   getVizFile,
   getExtension,
-  fileChangeOp
+  fileChangeOp,
 } from 'vizhub-presenters';
 import { VizContext } from '../VizContext';
 import { URLStateContext } from '../URLStateContext';
@@ -14,7 +14,7 @@ const parsers = {
   '.css': 'css',
   '.html': 'html',
   '.md': 'markdown',
-  '.json': 'json'
+  '.json': 'json',
 };
 
 export const usePrettier = () => {
@@ -29,7 +29,7 @@ export const usePrettier = () => {
       return;
     }
     if (activeFile) {
-      import('./prettierModules').then(prettierModules => {
+      import('./prettierModules').then((prettierModules) => {
         const { prettier, plugins } = prettierModules;
 
         const viz = viz$.getValue();
@@ -50,7 +50,7 @@ export const usePrettier = () => {
           const newText = prettier.format(oldText, {
             parser,
             plugins,
-            singleQuote: true
+            singleQuote: true,
           });
 
           const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
@@ -63,7 +63,7 @@ export const usePrettier = () => {
   }, [activeFile, viz$, realtimeModules, submitVizContentOp]);
 
   useEffect(() => {
-    const onKeyDown = event => {
+    const onKeyDown = (event) => {
       if (event.altKey && event.code === 'KeyP') {
         prettify();
       }
@@ -76,6 +76,6 @@ export const usePrettier = () => {
 
   return {
     prettify,
-    prettierError
+    prettierError,
   };
 };

@@ -16,6 +16,6 @@ export const useEditorModules = () => {
 
   return {
     editorModules,
-    loadEditorModules
+    loadEditorModules,
   };
 };

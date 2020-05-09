@@ -46,7 +46,7 @@ export const GlobalScrollbarStyle = createGlobalStyle`
 
   .ps__thumb-y {
     background-color: #ffffff;
-    box-shadow: ${props => props.theme.shadow};
+    box-shadow: ${(props) => props.theme.shadow};
     border-radius: 10px;
     width: 4px;
     right: 3px;

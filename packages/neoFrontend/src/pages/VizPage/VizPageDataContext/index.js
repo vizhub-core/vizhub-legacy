@@ -11,7 +11,7 @@ export const VizPageDataProvider = ({ fallback, children }) => {
   if (vizPageData && vizPageData.error) {
     setError({
       message: 'Visualization not found.',
-      className: 'test-viz-not-found'
+      className: 'test-viz-not-found',
     });
     return null;
   }

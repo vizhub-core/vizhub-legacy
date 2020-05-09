@@ -1,13 +1,13 @@
 import { getVizInfo } from './getVizInfo';
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
 
-const vizWriteAsync = async request => {
+const vizWriteAsync = async (request) => {
   // Unpack the ShareDB request object.
   const {
     agent: { isServer, userId },
     op,
     collection,
-    snapshot
+    snapshot,
   } = request;
 
   // Only vet ops against viz info and content documents.
@@ -111,5 +111,5 @@ const vizWriteAsync = async request => {
 export const vizWrite = (request, callback) => {
   vizWriteAsync(request)
     .then(() => callback())
-    .catch(error => callback(error.message));
+    .catch((error) => callback(error.message));
 };

@@ -13,7 +13,7 @@ export class DeleteVisualization {
     }
 
     const visualization = await this.visualizationGateway.getVisualization({
-      id
+      id,
     });
 
     if (visualization.info.owner !== userId) {

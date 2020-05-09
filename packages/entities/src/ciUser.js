@@ -3,5 +3,5 @@ export const ciUser = {
   fullName: 'CI',
   email: 'ci@testing.com',
   userName: 'ci',
-  avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4'
+  avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4',
 };

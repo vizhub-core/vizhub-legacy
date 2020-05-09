@@ -2,12 +2,12 @@ import styled, { keyframes } from 'styled-components';
 
 export const LoadingScreenWrapper = styled.div`
   display: flex;
-  ${props => (props.isChild ? `height: 100%;` : `height: 100vh;`)}
+  ${(props) => (props.isChild ? `height: 100%;` : `height: 100vh;`)}
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: ${props => props.background};
+  background-color: ${(props) => props.background};
 `;
 
 const spin = keyframes`

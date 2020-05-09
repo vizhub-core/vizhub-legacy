@@ -7,13 +7,13 @@ export const useCreateNewFile = (
   files
 ) =>
   useCallback(
-    newName => {
+    (newName) => {
       setIsRenamingNewFile(false);
       if (newName !== '') {
         submitVizContentOp(
           fileCreateOp(files, {
             name: newName,
-            text: ''
+            text: '',
           })
         );
       }

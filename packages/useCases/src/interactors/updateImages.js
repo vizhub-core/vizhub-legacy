@@ -28,7 +28,7 @@ export class UpdateImages {
       const imagesUpdatedTimestamp = timestamp();
       const id = visualizationInfosNeedingThumbnails[0].id;
       const visualization = await this.visualizationGateway.getVisualization({
-        id
+        id,
       });
 
       console.log(
@@ -46,12 +46,12 @@ export class UpdateImages {
       return await Promise.all([
         this.imageStorageGateway.updateImages({
           id,
-          images
+          images,
         }),
         this.visualizationGateway.setImagesUpdatedTimestamp({
           id,
-          imagesUpdatedTimestamp
-        })
+          imagesUpdatedTimestamp,
+        }),
       ]);
     }
   }

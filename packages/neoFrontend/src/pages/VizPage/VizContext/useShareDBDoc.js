@@ -9,7 +9,7 @@ export const useShareDBDoc = (collection, id) => {
   const [vizContentDoc, setVizContentDoc] = useState(null);
 
   const onError = useCallback(
-    error => {
+    (error) => {
       setWarning(error.message);
     },
     [setWarning]
@@ -29,7 +29,7 @@ export const useShareDBDoc = (collection, id) => {
     // Wait until subscribe finishes before passing this out,
     // so that downstream code can assume data is present
     // and that submitOp will always work.
-    doc.subscribe(error => {
+    doc.subscribe((error) => {
       if (error) {
         onError(error);
       } else {

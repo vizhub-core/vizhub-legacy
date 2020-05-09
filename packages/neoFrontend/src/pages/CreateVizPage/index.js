@@ -18,7 +18,7 @@ const ownerUser = {
   website: 'https://datavis.tech',
   location: 'Remote',
   bio:
-    'Fascinated by visual presentation of data as a means to understand the world better and communicate that understanding to others.'
+    'Fascinated by visual presentation of data as a means to understand the world better and communicate that understanding to others.',
 };
 
 // Temporary setup for first pass at template listing.
@@ -28,7 +28,7 @@ const visualizationInfos = [
   { id: '118d7f70085246a58dc7a374fd957c20', title: 'Sized Points on a Map' },
   {
     id: '6ec4f3dd10ac4fcdb5f759d38e7ceefa',
-    title: 'Loading and Parsing CSV Data'
+    title: 'Loading and Parsing CSV Data',
   },
   { id: '677ffb85975648b6a92b1cdccf3a1964', title: 'Vega-Lite API Template' },
   { id: '32dfc8d2393844c6a5b9d199d9a35946', title: 'Stylized Bar Chart' },
@@ -36,9 +36,9 @@ const visualizationInfos = [
   { id: 'f1c25845b6324832957d3bac6f10ba69', title: 'Stylized Line Chart' },
   {
     id: 'e3f5f029b82f44a084d73806feafc577',
-    title: 'Polished Scatter Plot with Menus'
+    title: 'Polished Scatter Plot with Menus',
   },
-  { id: '8b699c4000704216a709adfeb38f2411', title: 'Interactive Color Legend' }
+  { id: '8b699c4000704216a709adfeb38f2411', title: 'Interactive Color Legend' },
 ];
 
 export const CreateVizPage = () => (
@@ -51,7 +51,7 @@ export const CreateVizPage = () => (
           Create a new visualization from a template or fork one from our users.
         </Subtitle>
         <VizPreviews>
-          {visualizationInfos.map(vizInfo => (
+          {visualizationInfos.map((vizInfo) => (
             <VizPreview
               key={vizInfo.id}
               vizInfo={vizInfo}

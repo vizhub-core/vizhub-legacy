@@ -8,7 +8,7 @@ export const LoadingScreen = ({
   message,
   color,
   background = 'transparent',
-  isChild = false
+  isChild = false,
 }) => {
   const [show, setShow] = useState(false);
 

@@ -3,17 +3,17 @@ import { Clickable } from '../../../../../styles';
 
 export const Wrapper = styled.div`
   margin-bottom: 1px;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.isActive ? props.theme.editorSectionActiveColor : 'transparent'};
 `;
 
 export const TitleEntry = styled.div`
   display: flex;
   align-items: center;
-  padding-left: ${props => props.theme.editorEntryHorizontalPadding}px;
-  height: ${props => props.theme.editorEntryHeight}px;
+  padding-left: ${(props) => props.theme.editorEntryHorizontalPadding}px;
+  height: ${(props) => props.theme.editorEntryHeight}px;
   border-left: 5px solid
-    ${props =>
+    ${(props) =>
       props.isActive ? 'transparent' : props.theme.editorSectionActiveColor};
   position: relative;
 `;

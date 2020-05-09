@@ -8,7 +8,7 @@ export const forkVisualizationController = (expressApp, gateways) => {
     try {
       const requestModel = {
         visualization: req.body.visualization,
-        owner: userIdFromReq(req)
+        owner: userIdFromReq(req),
       };
       const responseModel = await forkVisualization.execute(requestModel);
       res.json(responseModel);

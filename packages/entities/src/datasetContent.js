@@ -5,7 +5,7 @@ export class DatasetContent extends DocumentContent {
   constructor(data) {
     super({
       id: data.id,
-      documentType: DATASET_TYPE
+      documentType: DATASET_TYPE,
     });
 
     // The text content of this dataset.

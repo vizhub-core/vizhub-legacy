@@ -16,9 +16,9 @@ const modes = {
   '.html': 'htmlmixed',
   '.css': 'css',
   '.js': 'jsx',
-  '.md': 'markdown'
+  '.md': 'markdown',
 };
-const getMode = extension => modes[extension];
+const getMode = (extension) => modes[extension];
 
 const defaultKeyMap = 'sublime';
 
@@ -29,7 +29,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
   // Alt+V to toggle Vim mode.
   useEffect(() => {
-    const onKeyDown = e => {
+    const onKeyDown = (e) => {
       if (e.altKey && e.code === 'KeyV') {
         setKeyMap(keyMap === 'vim' ? defaultKeyMap : 'vim');
       }
@@ -47,7 +47,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     cancelRunTimer,
     isAutoRunEnabled,
     setIsAutoRunEnabled,
-    run
+    run,
   } = useContext(RunContext);
   const fileIndex = useFileIndex(viz$, activeFile);
   const path = usePath(fileIndex);
@@ -73,7 +73,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     setIsAutoRunEnabled,
     run,
     cancelRunTimer,
-    needsManualRun
+    needsManualRun,
   ]);
 
   // Request to load editor modules.
@@ -100,7 +100,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
     const { CodeMirror } = editorModules;
 
-    CodeMirror.commands.autocomplete = cm => {
+    CodeMirror.commands.autocomplete = (cm) => {
       cm.showHint({ hint: CodeMirror.hint.anyword });
     };
 
@@ -116,8 +116,8 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
           'Ctrl-Space': 'autocomplete',
           'Shift-Enter': () => {
             manualRunRef.current();
-          }
-        }
+          },
+        },
       })
     );
   }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
@@ -180,7 +180,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
       if (!submittingOp.current) {
         const doc = codeMirror.getDoc();
-        op.forEach(c => {
+        op.forEach((c) => {
           if (json0.canOpAffectPath(c, path)) {
             const i = c.p[c.p.length - 1];
             if (c.si) {

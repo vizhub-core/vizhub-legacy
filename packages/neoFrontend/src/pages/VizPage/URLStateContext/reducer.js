@@ -2,7 +2,7 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case 'setEdit':
       return Object.assign({}, state, {
-        edit: action.value
+        edit: action.value,
       });
 
     // Toggles the editor to show and hide.
@@ -19,14 +19,14 @@ export const reducer = (state, action) => {
         hidden:
           state.edit || state.edit === null
             ? Object.assign({}, state.hidden, { edit: state.edit })
-            : state.hidden
+            : state.hidden,
       });
 
     case 'enterMini':
       return Object.assign({}, state, {
         mode: 'mini',
         file: state.file ? state.file : 'index.html',
-        edit: state.file ? state.edit : 'files'
+        edit: state.file ? state.edit : 'files',
       });
 
     // Invoked when a file is selected (clicked on).
@@ -45,12 +45,12 @@ export const reducer = (state, action) => {
         mode:
           state.mode === 'mini' || state.mode === 'hide'
             ? undefined
-            : state.mode
+            : state.mode,
       });
 
     case 'setMode':
       return Object.assign({}, state, {
-        mode: action.mode === 'viewer' ? undefined : action.mode
+        mode: action.mode === 'viewer' ? undefined : action.mode,
       });
 
     case 'exitRecoveryMode':

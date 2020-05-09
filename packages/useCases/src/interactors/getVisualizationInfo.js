@@ -6,8 +6,8 @@ export class GetVisualizationInfo {
   async execute({ id }) {
     return {
       visualizationInfo: await this.visualizationGateway.getVisualizationInfo({
-        id
-      })
+        id,
+      }),
     };
   }
 }

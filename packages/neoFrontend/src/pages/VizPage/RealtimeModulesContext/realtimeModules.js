@@ -9,7 +9,7 @@ import produce from 'immer';
 // Spoof json0 name and URI to match existing documents from VizHub 1.0.
 Object.assign(json0, {
   name: 'json0',
-  uri: 'http://sharejs.org/types/JSONv0'
+  uri: 'http://sharejs.org/types/JSONv0',
 });
 
 // Register our custom OT type (that implements presence) as the default.
@@ -20,7 +20,7 @@ ShareDB.types.defaultType = json0;
 // Related: https://github.com/ottypes/json0/issues/26
 const originalApply = json0.apply;
 json0.apply = (snapshot, op) =>
-  produce(snapshot, draftSnapshot => {
+  produce(snapshot, (draftSnapshot) => {
     originalApply(draftSnapshot, op);
   });
 

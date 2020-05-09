@@ -20,14 +20,14 @@ export const Top = styled.div`
   bottom: ${bottomButtonHeight};
   font-family: Poppins;
   font-size: 12px;
-  color: ${props => props.theme.dark};
-  background-color: ${props => props.theme.editorBackground};
+  color: ${(props) => props.theme.dark};
+  background-color: ${(props) => props.theme.editorBackground};
 `;
 
 export const TopMessage = styled.div`
   display: flex;
   padding: 10px;
-  background-color: ${props => props.theme.bottomButtonBackgroundActive};
+  background-color: ${(props) => props.theme.bottomButtonBackgroundActive};
 `;
 
 export const TopOptions = styled.div`
@@ -40,22 +40,22 @@ export const TopOption = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.bottomButtonBackgroundActive};
-  margin: 1px ${props => (props.rightmost ? 0 : 1)}px 1px 0px;
+  background-color: ${(props) => props.theme.bottomButtonBackgroundActive};
+  margin: 1px ${(props) => (props.rightmost ? 0 : 1)}px 1px 0px;
   position: relative;
   font-weight: 600;
 `;
 
 export const TopList = styled.div`
   display: flex;
-  background-color: ${props => props.theme.bottomButtonBackgroundActive};
+  background-color: ${(props) => props.theme.bottomButtonBackgroundActive};
   flex-direction: column;
   padding: 7px 0 7px 0;
 `;
 
 export const TopListItem = styled(Clickable)`
   padding: 3px 10px 3px 10px;
-  color: ${props => props.theme.dark};
+  color: ${(props) => props.theme.dark};
 `;
 
 export const Bottom = styled.div`
@@ -65,11 +65,11 @@ export const Bottom = styled.div`
 export const BottomButton = styled.div`
   flex: 1;
   height: ${bottomButtonHeight};
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.isActive
       ? props.theme.bottomButtonBackgroundActive
       : props.theme.bottomButtonBackground};
-  color: ${props =>
+  color: ${(props) =>
     props.isActive ? props.activeColor || props.theme.dark : '#ffffff'};
   position: relative;
 `;
@@ -80,5 +80,5 @@ export const ClickableOverlay = styled(Icon)`
   right: 0;
   bottom: 0;
   left: 0;
-  color: ${props => props.color || 'currentColor'};
+  color: ${(props) => props.color || 'currentColor'};
 `;

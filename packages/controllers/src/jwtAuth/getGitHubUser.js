@@ -4,14 +4,14 @@ import fetch from 'node-fetch';
 // Documentation: https://developer.github.com/v3/users/#get-the-authenticated-user
 const gitHubUserURL = 'https://api.github.com/user';
 
-export const getGitHubUser = async accessToken => {
+export const getGitHubUser = async (accessToken) => {
   const fetchOptions = {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `token ${accessToken}`
-    }
+      Authorization: `token ${accessToken}`,
+    },
   };
 
   const response = await fetch(gitHubUserURL, fetchOptions);
@@ -21,7 +21,7 @@ export const getGitHubUser = async accessToken => {
     throw new VizHubAPIError({
       error: 'github_user_fetch_error',
       errorDescription: gitHubUser.message,
-      errorURL: gitHubUser.documentation_url
+      errorURL: gitHubUser.documentation_url,
     });
   }
 

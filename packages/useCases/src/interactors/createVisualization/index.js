@@ -20,7 +20,7 @@ export class CreateVisualization {
         owner: requestModel.owner,
         id: generateId(),
         createdTimestamp: nowTimestamp,
-        lastUpdatedTimestamp: nowTimestamp
+        lastUpdatedTimestamp: nowTimestamp,
       })
     );
   }

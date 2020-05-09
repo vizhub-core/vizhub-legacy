@@ -10,7 +10,7 @@ export const useStateLocalStorage = (property, defaultValue) => {
   }, [property]);
 
   const setValue = useCallback(
-    value => {
+    (value) => {
       localStorage.setItem(property, value);
       setState(value);
     },

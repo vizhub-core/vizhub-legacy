@@ -11,7 +11,7 @@ export const UserActionsMenu = withTheme(({ theme }) => {
   const {
     userMenuOverlayForeground,
     navbarAvatarBorderColor,
-    navbarHeight
+    navbarHeight,
   } = theme;
 
   const { me, signOut } = useContext(AuthContext);

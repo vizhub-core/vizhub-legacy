@@ -10,7 +10,7 @@ export const AnyoneCanEdit = () => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const vizAnyoneCanEdit = useValue(viz$, getVizAnyoneCanEdit);
   const setVizAnyoneCanEdit = useCallback(
-    newVizAnyoneCanEdit => {
+    (newVizAnyoneCanEdit) => {
       submitVizInfoOp(
         anyoneCanEditChangeOp(
           viz$.getValue().info.anyoneCanEdit,

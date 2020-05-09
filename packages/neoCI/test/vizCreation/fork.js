@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { navClick } from '../navClick';
 
-export const fork = my => async () => {
+export const fork = (my) => async () => {
   const { page } = my;
 
   await navClick(page, '.test-fork');

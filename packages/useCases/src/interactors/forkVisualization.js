@@ -21,8 +21,8 @@ export class ForkVisualization {
     const [
       { id },
       {
-        user: { userName }
-      }
+        user: { userName },
+      },
     ] = await Promise.all([
       this.visualizationGateway.createVisualization({
         owner,
@@ -35,9 +35,9 @@ export class ForkVisualization {
         forkedFrom: visualization.info.id,
         createdTimestamp: nowTimestamp,
         lastUpdatedTimestamp: nowTimestamp,
-        privacy: visualization.info.privacy
+        privacy: visualization.info.privacy,
       }),
-      this.getUser.execute({ id: owner })
+      this.getUser.execute({ id: owner }),
     ]);
 
     return { id, userName };

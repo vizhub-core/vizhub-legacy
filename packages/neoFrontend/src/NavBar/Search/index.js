@@ -15,15 +15,15 @@ export const Search = () => {
   }, [queryFromLocation]);
 
   const onSubmitQuery = useCallback(
-    event => {
+    (event) => {
       event.preventDefault();
       submit(true);
     },
     [submit]
   );
 
-  const onChangeQuery = useCallback(event => setQuery(event.target.value), [
-    setQuery
+  const onChangeQuery = useCallback((event) => setQuery(event.target.value), [
+    setQuery,
   ]);
 
   return (

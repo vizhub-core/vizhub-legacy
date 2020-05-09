@@ -13,14 +13,14 @@ import {
   ProfilePage,
   PricingPage,
   ErrorPage,
-  SearchResultsPage
+  SearchResultsPage,
 } from './pages';
 import { Themed } from './theme';
 
 export const App = () => (
   <Themed>
     <Router>
-      <ErrorProvider fallback={error => <ErrorPage error={error} />}>
+      <ErrorProvider fallback={(error) => <ErrorPage error={error} />}>
         <AlertDialogProvider>
           <AuthProvider>
             <Switch>

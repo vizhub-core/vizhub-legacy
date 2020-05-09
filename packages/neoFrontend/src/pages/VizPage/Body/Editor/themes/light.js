@@ -6,5 +6,5 @@ export const light = {
   foreground: 'black',
   background: 'white',
   textMain: '#121212',
-  textLight: '#636363'
+  textLight: '#636363',
 };

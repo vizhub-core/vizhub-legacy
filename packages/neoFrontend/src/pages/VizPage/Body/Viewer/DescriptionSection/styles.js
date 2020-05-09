@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   padding: 20px 0 20px 0;
   font-size: 10px;
-  flex-direction: ${props => (props.size === 'large' ? 'row' : 'column')};
+  flex-direction: ${(props) => (props.size === 'large' ? 'row' : 'column')};
 `;
 
 export const Left = styled.div`
@@ -16,7 +16,7 @@ export const Left = styled.div`
 
 export const Right = styled.div`
   padding-left: 50px;
-  ${props =>
+  ${(props) =>
     props.size === 'large'
       ? ''
       : `
@@ -31,14 +31,14 @@ export const Authorship = styled.div`
   display: flex;
   min-height: 40px;
   padding-bottom: 20px;
-  flex-direction: ${props => (props.size === 'small' ? 'column' : 'row')};
+  flex-direction: ${(props) => (props.size === 'small' ? 'column' : 'row')};
 `;
 
 export const AuthorshipMeta = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  ${props =>
+  ${(props) =>
     props.size === 'small'
       ? `
         align-items: flex-start;
@@ -57,14 +57,14 @@ export const Video = styled.div`
 export const VideoThumbnail = styled.div`
   width: 200px;
   height: 113px;
-  box-shadow: ${props => props.theme.shadowLight};
+  box-shadow: ${(props) => props.theme.shadowLight};
   background-color: #ffffff;
   margin-bottom: 4px;
 `;
 
 export const Description = styled.div`
   font-size: 12px;
-  margin-left: ${props => (props.size === 'large' ? 50 : 0)}px;
+  margin-left: ${(props) => (props.size === 'large' ? 50 : 0)}px;
   word-break: break-word;
 `;
 

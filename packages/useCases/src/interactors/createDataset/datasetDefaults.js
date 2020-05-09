@@ -3,5 +3,5 @@ export const datasetDefaults = {
   slug: undefined,
   description: 'No description',
   file: '',
-  format: 'csv'
+  format: 'csv',
 };

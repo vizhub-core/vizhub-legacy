@@ -12,11 +12,11 @@ export const File = ({
   isRenamingActiveFile,
   setIsRenamingActiveFile,
   renameActiveFile,
-  indent
+  indent,
 }) =>
   isRenamingActiveFile && file.name === activeFile ? (
     <EditableFileEntry
-      changeFileName={newName =>
+      changeFileName={(newName) =>
         renameActiveFile(
           renameFileWithoutPath ? addPath(newName, file.name) : newName
         )

@@ -16,7 +16,7 @@ export class ExportVisualization {
     }
 
     const visualization = await this.visualizationGateway.getVisualization({
-      id: requestModel.id
+      id: requestModel.id,
     });
 
     const files = visualization.content.files.concat([
@@ -30,7 +30,7 @@ export class ExportVisualization {
     "rollup": "latest",
     "@rollup/plugin-buble": "latest"
   }
-}`
+}`,
       },
       {
         name: 'rollup.config.js',
@@ -46,8 +46,8 @@ export class ExportVisualization {
     globals: ${globalsJSON}
   },
   plugins: [buble()]
-};`
-      }
+};`,
+      },
     ]);
 
     const zipFileBuffer = zipFiles(files);

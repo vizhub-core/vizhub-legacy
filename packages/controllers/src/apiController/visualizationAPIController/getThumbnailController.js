@@ -13,7 +13,7 @@ export const getThumbnailController = (expressApp, gateways) => {
 
       res.writeHead(200, {
         'Content-Type': 'image/png',
-        'Content-Length': img.length
+        'Content-Length': img.length,
         // TODO explore caching again carefully
         // const minutes = 60;
         //'Cache-Control': `max-age=${10 * minutes}`

@@ -7,7 +7,7 @@ import { waitForSpinner } from '../../../LoadingScreen';
 import { VizContext } from '../VizContext';
 import { fetchDeleteViz } from './fetchDeleteViz';
 
-export const useDeleteViz = history => {
+export const useDeleteViz = (history) => {
   const [isConfirmingDeleteViz, setIsConfirmingDeleteViz] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -36,14 +36,14 @@ export const useDeleteViz = history => {
     }
 
     waitForSpinner(dataLoaded, minSpinnerTime)
-      .then(data => {
+      .then((data) => {
         if (data.error) {
           return setError(new Error(data.error));
         }
         history.push(`/${me.userName}`);
         showAlertModal('The viz has been deleted.');
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, [me, setError, viz$, history, showAlertModal]);
@@ -53,6 +53,6 @@ export const useDeleteViz = history => {
     onDeleteVizCancel,
     isConfirmingDeleteViz,
     onDeleteVizConfirm,
-    isDeleting
+    isDeleting,
   };
 };

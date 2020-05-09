@@ -5,9 +5,9 @@ export const defaultVizHeight = 500;
 
 const microHeight = 40 + 30; // bannerHeight + headHeight;
 
-export const getMicroScale = vizHeight => microHeight / vizHeight;
+export const getMicroScale = (vizHeight) => microHeight / vizHeight;
 
-export const getMicroWidth = microScale => microScale * vizWidth;
+export const getMicroWidth = (microScale) => microScale * vizWidth;
 
 export const getFileIndex = (files, name) => {
   for (let i = 0; i < files.length; i++) {
@@ -25,31 +25,31 @@ export const getText = (files, name) => {
   return file ? file.text : '';
 };
 
-export const getVizHeight = viz => viz.info.height || defaultVizHeight;
+export const getVizHeight = (viz) => viz.info.height || defaultVizHeight;
 
-export const getVizFiles = viz => viz.content.files;
+export const getVizFiles = (viz) => viz.content.files;
 
-export const getVizFileIndex = name => viz =>
+export const getVizFileIndex = (name) => (viz) =>
   getFileIndex(getVizFiles(viz), name);
 
-export const getVizFile = fileIndex => viz => getVizFiles(viz)[fileIndex];
+export const getVizFile = (fileIndex) => (viz) => getVizFiles(viz)[fileIndex];
 
-export const getExtension = fileName =>
+export const getExtension = (fileName) =>
   fileName.substr(fileName.lastIndexOf('.'));
 
-export const getVizOwner = viz => viz.info.owner;
+export const getVizOwner = (viz) => viz.info.owner;
 
 export const deleteFileOp = (viz, fileName) => {
   const fileIndex = getVizFileIndex(fileName)(viz);
   return [
     {
       p: ['files', fileIndex],
-      ld: viz.content.files[fileIndex]
-    }
+      ld: viz.content.files[fileIndex],
+    },
   ];
 };
 
-export const extractTitle = html => {
+export const extractTitle = (html) => {
   if (html) {
     const titleMatch = html.match(/<title>(.*?)<\/title>/i);
     if (titleMatch) {
@@ -59,25 +59,25 @@ export const extractTitle = html => {
   return 'Untitled';
 };
 
-export const getVizUpvotes = viz => viz.info.upvotes;
+export const getVizUpvotes = (viz) => viz.info.upvotes;
 
-export const getUpvoteCount = upvotes => (upvotes ? upvotes.length : 0);
+export const getUpvoteCount = (upvotes) => (upvotes ? upvotes.length : 0);
 export const getDidVote = (upvotes, user) =>
-  upvotes && user ? upvotes.some(vote => vote.userId === user.id) : false;
+  upvotes && user ? upvotes.some((vote) => vote.userId === user.id) : false;
 
 // Pushes a new file entry onto the files array.
 // newFile is expected to be an object with "name" and "text" properties.
 export const fileCreateOp = (files, newFile) => [
   {
     p: ['files', files.length],
-    li: newFile
-  }
+    li: newFile,
+  },
 ];
 
 const textDiffOp = (oldText, newText, path, realtimeModules) => {
   const { diffMatchPatch, jsondiff } = realtimeModules;
   const op = jsondiff(oldText, newText, diffMatchPatch);
-  op.forEach(opComponent => {
+  op.forEach((opComponent) => {
     opComponent.p = path.concat(opComponent.p);
   });
   return op;
@@ -108,20 +108,25 @@ export const privacyChangeOp = (oldPrivacy, newPrivacy, realtimeModules) =>
     : [
         {
           p: ['privacy'],
-          oi: newPrivacy
-        }
+          oi: newPrivacy,
+        },
       ];
 
 const defaultVizAnyoneCanEdit = false;
-export const getVizAnyoneCanEdit = viz => viz.info.anyoneCanEdit || defaultVizAnyoneCanEdit;
-export const anyoneCanEditChangeOp = (oldAnyoneCanEdit, newAnyoneCanEdit, realtimeModules) =>
+export const getVizAnyoneCanEdit = (viz) =>
+  viz.info.anyoneCanEdit || defaultVizAnyoneCanEdit;
+export const anyoneCanEditChangeOp = (
+  oldAnyoneCanEdit,
+  newAnyoneCanEdit,
+  realtimeModules
+) =>
   // Initialize the anyoneCanEdit field if needed.
   [
     {
       p: ['anyoneCanEdit'],
       oi: !!newAnyoneCanEdit, // Convert truthiness to boolean.
-      od: oldAnyoneCanEdit
-    }
+      od: oldAnyoneCanEdit,
+    },
   ];
 
 export const heightChangeOp = (oldHeight, newHeight, realtimeModules) =>
@@ -130,8 +135,8 @@ export const heightChangeOp = (oldHeight, newHeight, realtimeModules) =>
     {
       p: ['height'],
       oi: +newHeight,
-      od: oldHeight
-    }
+      od: oldHeight,
+    },
   ];
 
 export const upvoteOp = (userId, upvotes) => {
@@ -141,7 +146,7 @@ export const upvoteOp = (userId, upvotes) => {
   if (!upvotes) {
     op.push({
       p: ['upvotes'],
-      oi: []
+      oi: [],
     });
   }
 
@@ -163,22 +168,23 @@ export const upvoteOp = (userId, upvotes) => {
       p: ['upvotes', 0],
       li: {
         userId,
-        timestamp: timestamp()
-      }
+        timestamp: timestamp(),
+      },
     });
   } else {
     // otherwise, remove the existing vote
     op.push({
       p: ['upvotes', voteIndex],
-      ld: upvote
+      ld: upvote,
     });
   }
   return op;
 };
 
-export const getUserName = user => user && user.userName;
-export const getUserFullName = user => user && (user.fullName || user.userName);
+export const getUserName = (user) => user && user.userName;
+export const getUserFullName = (user) =>
+  user && (user.fullName || user.userName);
 
 const defaultVizPrivacy = 'public';
-export const getVizPrivacy = viz => viz.info.privacy || defaultVizPrivacy;
-export const getVizInfo = viz => viz.info;
+export const getVizPrivacy = (viz) => viz.info.privacy || defaultVizPrivacy;
+export const getVizInfo = (viz) => viz.info;

@@ -3,7 +3,7 @@ import React, {
   useRef,
   useState,
   useCallback,
-  useEffect
+  useEffect,
 } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
 import {
@@ -11,7 +11,7 @@ import {
   getVizUpvotes,
   getUpvoteCount,
   getDidVote,
-  upvoteOp
+  upvoteOp,
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
@@ -31,13 +31,13 @@ export const Viewer = () => {
   const {
     ownerUser,
     forkedFromVisualizationInfo,
-    forkedFromVisualizationOwnerUserName
+    forkedFromVisualizationOwnerUserName,
   } = useContext(VizPageDataContext);
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);
   const { me } = useContext(AuthContext);
 
-  const vizInfo = useValue(viz$, viz => viz.info);
+  const vizInfo = useValue(viz$, (viz) => viz.info);
   const vizHeight = useValue(viz$, getVizHeight);
 
   const upvotes = useValue(viz$, getVizUpvotes);
@@ -74,7 +74,7 @@ export const Viewer = () => {
   // Breakpoints for responsive layout.
   const [size, setSize] = useState();
   const setWidth = useCallback(
-    width => {
+    (width) => {
       setSize(width < 500 ? 'small' : width < 700 ? 'medium' : 'large');
       updateScrollbar();
     },

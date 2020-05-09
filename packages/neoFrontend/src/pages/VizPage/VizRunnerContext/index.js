@@ -6,7 +6,7 @@ import {
   getVizHeight,
   vizWidth,
   getVizFiles,
-  computeSrcDoc
+  computeSrcDoc,
 } from 'vizhub-presenters';
 import { clearConsole } from '../../../constants';
 import { useValue } from '../../../useValue';

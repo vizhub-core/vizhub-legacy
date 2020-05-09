@@ -1,12 +1,12 @@
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
 import { getVizInfo } from './getVizInfo';
 
-const vizReadAsync = async request => {
+const vizReadAsync = async (request) => {
   // Unpack the ShareDB request object.
   const {
     agent: { isServer, userId },
     collection,
-    snapshots
+    snapshots,
   } = request;
 
   // Only vet ops against viz info and content documents.
@@ -21,7 +21,7 @@ const vizReadAsync = async request => {
   }
 
   return Promise.all(
-    snapshots.map(async snapshot => {
+    snapshots.map(async (snapshot) => {
       const vizInfo = await getVizInfo(collection, snapshot);
       if (vizInfo.privacy === 'private') {
         if (vizInfo.owner !== userId) {
@@ -35,5 +35,5 @@ const vizReadAsync = async request => {
 export const vizRead = (request, callback) => {
   vizReadAsync(request)
     .then(() => callback())
-    .catch(error => callback(error.message));
+    .catch((error) => callback(error.message));
 };

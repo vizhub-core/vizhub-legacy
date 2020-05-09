@@ -3,18 +3,18 @@ import { VizHubAPIError } from 'vizhub-entities';
 
 const secret = process.env.REACT_APP_VIZHUB_JWT_SECRET || 'hfdsjkalhfjklda';
 
-export const jwtSign = async userId => {
+export const jwtSign = async (userId) => {
   try {
     return jwt.sign({ userId }, secret, { expiresIn: '14 days' });
   } catch (error) {
     throw new VizHubAPIError({
       error: 'jwt_signing_error',
-      errorDescription: error.message
+      errorDescription: error.message,
     });
   }
 };
 
-export const getUserIDFromJWT = vizHubJWT => {
+export const getUserIDFromJWT = (vizHubJWT) => {
   try {
     const { userId } = jwt.verify(vizHubJWT, secret);
     return userId;

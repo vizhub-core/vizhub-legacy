@@ -15,7 +15,7 @@ export class DatabaseDatasetGateway {
       text,
       format,
       sourceName,
-      sourceUrl
+      sourceUrl,
     } = options;
 
     const dataset = new Dataset({
@@ -27,12 +27,12 @@ export class DatabaseDatasetGateway {
         description,
         format,
         sourceName,
-        sourceUrl
+        sourceUrl,
       }),
       datasetContent: new DatasetContent({
         id,
-        text
-      })
+        text,
+      }),
     });
 
     return await this.database.createDataset(dataset);

@@ -61,11 +61,11 @@ module.exports = function rollupPluginHypothetical(options) {
 
   var files = new Map();
   if (leaveIdsAlone) {
-    forEachInObjectOrMap(files0, files0AsMap, function(contents, f) {
+    forEachInObjectOrMap(files0, files0AsMap, function (contents, f) {
       files.set(f, contents);
     });
   } else {
-    forEachInObjectOrMap(files0, files0AsMap, function(contents, f) {
+    forEachInObjectOrMap(files0, files0AsMap, function (contents, f) {
       var unixStyleF = unixStylePath(f);
       var pathIsExternal = isExternal(unixStyleF);
       var p = path.normalize(unixStyleF);
@@ -95,7 +95,7 @@ module.exports = function rollupPluginHypothetical(options) {
 
   var resolveId = leaveIdsAlone
     ? basicResolve
-    : function(importee, importer) {
+    : function (importee, importer) {
         importee = unixStylePath(importee);
 
         // the entry file is never external.
@@ -178,14 +178,14 @@ module.exports = function rollupPluginHypothetical(options) {
 
   return {
     resolveId: resolveId,
-    load: function(id) {
+    load: function (id) {
       if (files.has(id)) {
         return files.get(id);
       } else {
         id = resolveId(id);
         return id && files.get(id);
       }
-    }
+    },
   };
 };
 

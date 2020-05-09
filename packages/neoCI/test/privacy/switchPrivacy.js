@@ -16,7 +16,7 @@ export const switchPrivacy = (
     `.test-settings-dialog-radio-${fromPrivacyValue}`
   );
   const fromRadioButtonIsActive = await my.page.evaluate(
-    el => el.getAttribute('data-test-is-active'),
+    (el) => el.getAttribute('data-test-is-active'),
     fromRadioButton
   );
   assert.equal(fromRadioButtonIsActive, 'true');
@@ -29,13 +29,13 @@ export const switchPrivacy = (
 
   // Assert that private radio button is now active.
   const toRadioButtonIsActive = await my.page.evaluate(
-    el => el.getAttribute('data-test-is-active'),
+    (el) => el.getAttribute('data-test-is-active'),
     toRadioButton
   );
   assert.equal(toRadioButtonIsActive, 'true');
 
   // Wait some time to ensure the change was passed to backend fia WebSocket.
-  await new Promise(resolve => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve, 300));
 
   // Close the modal.
   await (await my.page.waitFor('.test-settings-dialog-close')).click();

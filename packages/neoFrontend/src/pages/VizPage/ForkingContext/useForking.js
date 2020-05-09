@@ -6,7 +6,7 @@ import { minSpinnerTime } from '../../../constants';
 import { VizContext } from '../VizContext';
 import { fetchFork } from './fetchFork';
 
-export const useForking = history => {
+export const useForking = (history) => {
   const [isForking, setIsForking] = useState(false);
 
   const { viz$ } = useContext(VizContext);
@@ -22,7 +22,7 @@ export const useForking = history => {
     if (!me) {
       return setError(new Error('You must be signed in to fork.'));
     }
-    waitForSpinner(dataLoaded, minSpinnerTime).then(data => {
+    waitForSpinner(dataLoaded, minSpinnerTime).then((data) => {
       if (data.error) {
         return setError(new Error(data.error));
       }

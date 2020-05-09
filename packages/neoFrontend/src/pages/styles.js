@@ -22,27 +22,28 @@ export const DevsOnly = styled.div`
   margin-top: 40px;
   margin-bottom: 5px;
   font-size: 10px;
-  color: ${props => props.theme.attentionGrabber};
+  color: ${(props) => props.theme.attentionGrabber};
 `;
 
 // Matrix (red, blue) X (normal, hover, active) X (outline, filled):
-const buttonColor = props => (props.isRed ? props.theme.red : props.theme.blue);
+const buttonColor = (props) =>
+  props.isRed ? props.theme.red : props.theme.blue;
 
-const hoverButtonColorOutline = props =>
+const hoverButtonColorOutline = (props) =>
   props.isRed ? props.theme.redHover : props.theme.blueHover;
-const hoverButtonColorFilled = props =>
+const hoverButtonColorFilled = (props) =>
   props.isRed ? props.theme.redHoverFilled : props.theme.blueHoverFilled;
-const hoverButtonColor = props =>
+const hoverButtonColor = (props) =>
   props.isFilled
     ? hoverButtonColorFilled(props)
     : hoverButtonColorOutline(props);
 
-const activeButtonColorOutline = props =>
+const activeButtonColorOutline = (props) =>
   props.isRed ? props.theme.redActive : props.theme.blueActive;
-const activeButtonColorFilled = props =>
+const activeButtonColorFilled = (props) =>
   props.isRed ? props.theme.redActiveFilled : props.theme.blueActiveFilled;
 
-const activeButtonColor = props =>
+const activeButtonColor = (props) =>
   props.isFilled
     ? activeButtonColorFilled(props)
     : activeButtonColorOutline(props);
@@ -59,8 +60,8 @@ export const Button = styled.div`
   border: solid 1px ${buttonColor};
   font-size: 16px;
   font-weight: 500;
-  color: ${props => (props.isFilled ? '#ffffff' : props.theme.dark)};
-  background-color: ${props =>
+  color: ${(props) => (props.isFilled ? '#ffffff' : props.theme.dark)};
+  background-color: ${(props) =>
     props.isFilled ? buttonColor(props) : 'transparent'};
   text-decoration: none;
 
@@ -96,6 +97,6 @@ export const Icon = styled(Clickable)`
 
 export const LargeIcon = styled(Icon)`
   height: 40px;
-  padding-right: ${props => (props.rightmost ? 10 : 7)}px;
-  padding-left: ${props => (props.leftmost ? 10 : 7)}px;
+  padding-right: ${(props) => (props.rightmost ? 10 : 7)}px;
+  padding-left: ${(props) => (props.leftmost ? 10 : 7)}px;
 `;

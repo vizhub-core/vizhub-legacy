@@ -1,8 +1,8 @@
-export const fetchHomePageData = async offset => {
+export const fetchHomePageData = async (offset) => {
   const url = `/api/visualization/home?offset=${offset}`;
   const response = await fetch(url, {
     method: 'GET',
-    credentials: 'same-origin'
+    credentials: 'same-origin',
   });
   return await response.json();
 };

@@ -5,7 +5,7 @@ import {
   THUMBNAIL_IMAGES,
   PREVIEW_IMAGES,
   DOCUMENT_CONTENT,
-  DOCUMENT_INFO
+  DOCUMENT_INFO,
 } from 'vizhub-database';
 
 export const accessControlRead = (request, done) => {
@@ -15,7 +15,7 @@ export const accessControlRead = (request, done) => {
     owner,
     vizInfo,
     op,
-    collection
+    collection,
   } = request;
 
   if (collection === DOCUMENT_CONTENT || collection === DOCUMENT_INFO) {

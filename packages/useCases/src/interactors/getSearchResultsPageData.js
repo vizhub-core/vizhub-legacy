@@ -18,7 +18,7 @@ export class GetSearchResultsPageData {
 
     return {
       visualizationInfos,
-      ownerUsers
+      ownerUsers,
     };
   }
 }

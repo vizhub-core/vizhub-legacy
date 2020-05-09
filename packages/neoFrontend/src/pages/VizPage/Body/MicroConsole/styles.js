@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  height: ${props => props.theme.bannerHeight + props.theme.headHeight}px;
+  height: ${(props) => props.theme.bannerHeight + props.theme.headHeight}px;
   background-color: #ffffff;
   font-size: 6pt;
-  font-family: ${props => props.theme.defaultCodingFontFamily};
+  font-family: ${(props) => props.theme.defaultCodingFontFamily};
   position: relative;
 `;
 

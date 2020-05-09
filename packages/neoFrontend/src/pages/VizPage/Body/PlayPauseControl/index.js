@@ -3,7 +3,7 @@ import React, {
   useCallback,
   useContext,
   useState,
-  useEffect
+  useEffect,
 } from 'react';
 import { PlayPauseSVG } from '../../../../svg';
 import { LargeIcon } from '../../../styles';
@@ -16,7 +16,7 @@ export const PlayPauseControl = () => {
     isAutoRunEnabled,
     setIsAutoRunEnabled,
     needsManualRun,
-    run
+    run,
   } = useContext(RunContext);
   const { activeFile } = useContext(URLStateContext);
   const [runTimerProgress, setRunTimerProgress] = useState();

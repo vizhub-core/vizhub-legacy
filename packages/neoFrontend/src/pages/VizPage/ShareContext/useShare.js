@@ -14,6 +14,6 @@ export const useShare = () => {
   return {
     showShareModal,
     hideShareModal,
-    isShowingShareModal
+    isShowingShareModal,
   };
 };

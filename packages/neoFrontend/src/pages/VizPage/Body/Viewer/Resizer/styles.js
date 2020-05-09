@@ -20,9 +20,9 @@ export const Thumb = styled.div`
   bottom: 0;
   width: 10px;
   ${Wrapper}:hover & {
-    background-color: ${props => props.theme.hoverBackground};
+    background-color: ${(props) => props.theme.hoverBackground};
   }
   ${Wrapper}:active & {
-    background-color: ${props => props.theme.activeBackground};
+    background-color: ${(props) => props.theme.activeBackground};
   }
 `;

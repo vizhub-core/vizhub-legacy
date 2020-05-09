@@ -9,5 +9,5 @@ export const Wrapper = styled.div`
 `;
 
 export const LargeIconRightmost = styled(LargeIcon)`
-  border-bottom-right-radius: ${props => props.theme.borderRadiusSmall}px;
+  border-bottom-right-radius: ${(props) => props.theme.borderRadiusSmall}px;
 `;

@@ -5,7 +5,7 @@ export class GetAllVisualizationInfos {
 
   async execute() {
     return {
-      visualizationInfos: await this.visualizationGateway.getAllVisualizationInfos()
+      visualizationInfos: await this.visualizationGateway.getAllVisualizationInfos(),
     };
   }
 }

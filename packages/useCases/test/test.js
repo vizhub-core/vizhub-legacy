@@ -16,11 +16,11 @@ import {
   GetUserProfileData,
   GetAllVisualizationInfos,
   DeleteVisualization,
-  UpdateImages
+  UpdateImages,
 } from '../src/index';
 
 const visualizationGateway = {
-  createVisualization: async options => {
+  createVisualization: async (options) => {
     const { id } = options;
     options.info = options;
     options.content = options;
@@ -28,7 +28,7 @@ const visualizationGateway = {
     return { id };
   },
   getVisualization: async ({ id }) => visualizationGateway[id],
-  getVisualizationInfo: async ({ id }) => visualizationGateway[id].info
+  getVisualizationInfo: async ({ id }) => visualizationGateway[id].info,
 };
 
 const datasetGateway = {};
@@ -43,7 +43,7 @@ const fakeUser = {
   company: 'Schmoe INC',
   website: 'joeschmoe.com',
   location: 'Earth',
-  bio: 'Great guy'
+  bio: 'Great guy',
 };
 
 describe('Use Cases', () => {
@@ -51,18 +51,18 @@ describe('Use Cases', () => {
 
   describe('Create Visualization', () => {
     const createVisualization = new CreateVisualization({
-      visualizationGateway
+      visualizationGateway,
     });
-    it('should error if no owner specified.', done => {
+    it('should error if no owner specified.', (done) => {
       const requestModel = { owner: null };
-      createVisualization.execute(requestModel).catch(error => {
+      createVisualization.execute(requestModel).catch((error) => {
         assert.equal(error.message, i18n('errorNoOwner'));
         done();
       });
     });
     it('should return an id if success.', async () => {
       const requestModel = {
-        owner: testData.user.id
+        owner: testData.user.id,
       };
       const responseModel = await createVisualization.execute(requestModel);
       assert.equal(responseModel.id.length, 32);
@@ -71,20 +71,20 @@ describe('Use Cases', () => {
   });
 
   describe('Get Visualization', () => {
-    const userGateway = { getUser: async id => fakeUser };
+    const userGateway = { getUser: async (id) => fakeUser };
     const getVisualization = new GetVisualization({
       visualizationGateway,
-      userGateway
+      userGateway,
     });
-    it('should error if no id specified.', done => {
-      getVisualization.execute({ id: null }).catch(error => {
+    it('should error if no id specified.', (done) => {
+      getVisualization.execute({ id: null }).catch((error) => {
         assert.equal(error.message, i18n('errorNoId'));
         done();
       });
     });
     it('should return stored visualization if success.', async () => {
       const { visualization } = await getVisualization.execute({
-        id: visualizationId
+        id: visualizationId,
       });
       const { createdTimestamp, lastUpdatedTimestamp } = visualization;
 
@@ -93,13 +93,13 @@ describe('Use Cases', () => {
     });
     it('should return owner user.', async () => {
       const { ownerUser } = await getVisualization.execute({
-        id: visualizationId
+        id: visualizationId,
       });
       assert.deepEqual(ownerUser, fakeUser);
     });
     it('should return forked from visualizationInfo as undefined if none exist.', async () => {
       const { forkedFromVisualizationInfo } = await getVisualization.execute({
-        id: visualizationId
+        id: visualizationId,
       });
       assert.equal(forkedFromVisualizationInfo, undefined);
     });
@@ -113,7 +113,7 @@ describe('Use Cases', () => {
         vis = visualization;
         invocations++;
         return { status: 'success' };
-      }
+      },
     };
     const saveVisualization = new SaveVisualization({ visualizationGateway });
 
@@ -121,10 +121,10 @@ describe('Use Cases', () => {
       const requestModel = {
         visualization: {
           info: {
-            owner: '123'
-          }
+            owner: '123',
+          },
         },
-        userId: '123'
+        userId: '123',
       };
       const responseModel = await saveVisualization.execute(requestModel);
       assert.equal(invocations, 1);
@@ -132,17 +132,17 @@ describe('Use Cases', () => {
       assert.equal(responseModel.status, 'success');
     });
 
-    it('should error if user does not match owner.', done => {
+    it('should error if user does not match owner.', (done) => {
       invocations = 0;
       const requestModel = {
         visualization: {
           info: {
-            owner: '123'
-          }
+            owner: '123',
+          },
         },
-        userId: '234'
+        userId: '234',
       };
-      saveVisualization.execute(requestModel).catch(error => {
+      saveVisualization.execute(requestModel).catch((error) => {
         assert.equal(invocations, 0);
         assert.equal(error.message, i18n('errorNotOwnerCantSave'));
         done();
@@ -151,7 +151,7 @@ describe('Use Cases', () => {
   });
   describe('Create Dataset', () => {
     const createDataset = new CreateDataset({ datasetGateway });
-    it('should error if no owner specified.', done => {
+    it('should error if no owner specified.', (done) => {
       const requestModel = {
         owner: null,
         title: 'Foo',
@@ -159,12 +159,12 @@ describe('Use Cases', () => {
         description: 'Foo is cool',
         file: {
           name: 'foo',
-          text: 'foo'
+          text: 'foo',
         },
         sourceName: 'Flaring Central',
-        sourceUrl: 'https://flaring.central'
+        sourceUrl: 'https://flaring.central',
       };
-      createDataset.execute(requestModel).catch(error => {
+      createDataset.execute(requestModel).catch((error) => {
         assert.equal(error.message, i18n('errorNoOwner'));
         done();
       });
@@ -173,17 +173,17 @@ describe('Use Cases', () => {
   });
 
   describe('Get Dataset', () => {
-    const userGateway = { getUser: async id => fakeUser };
+    const userGateway = { getUser: async (id) => fakeUser };
     const getDataset = new GetDataset({
       datasetGateway,
-      userGateway
+      userGateway,
     });
-    it('should error if no slug specified.', done => {
+    it('should error if no slug specified.', (done) => {
       const requestModel = {
         userName: 'thomas',
-        slug: ''
+        slug: '',
       };
-      getDataset.execute(requestModel).catch(error => {
+      getDataset.execute(requestModel).catch((error) => {
         assert.equal(error.message, i18n('errorNoId'));
         done();
       });
@@ -197,40 +197,40 @@ describe('Use Cases', () => {
     let invocations = 0;
 
     const userGateway = {
-      getUser: async id => fakeUser
+      getUser: async (id) => fakeUser,
     };
 
     const visualizationGatewayProxy = {
-      createVisualization: async argument => {
+      createVisualization: async (argument) => {
         forkedViz = argument;
         invocations++;
         return await visualizationGateway.createVisualization(argument);
-      }
+      },
     };
 
     const getVisualization = new GetVisualization({
       visualizationGateway,
-      userGateway
+      userGateway,
     });
 
     const forkVisualization = new ForkVisualization({
       visualizationGateway: visualizationGatewayProxy,
-      userGateway
+      userGateway,
     });
 
     it('should return stored visualization to fork.', async () => {
       const { visualization } = await getVisualization.execute({
-        id: visualizationId
+        id: visualizationId,
       });
       visualizationToFork = visualization;
     });
 
-    it('should error if no owner specified.', done => {
+    it('should error if no owner specified.', (done) => {
       const requestModel = {
         visualization: visualizationToFork,
-        owner: null
+        owner: null,
       };
-      forkVisualization.execute(requestModel).catch(error => {
+      forkVisualization.execute(requestModel).catch((error) => {
         assert.equal(error.message, i18n('errorNoOwner'));
         assert.equal(invocations, 0);
         done();
@@ -240,7 +240,7 @@ describe('Use Cases', () => {
     it('should invoke gateway if owner specified.', async () => {
       const requestModel = {
         visualization: visualizationToFork,
-        owner: '456'
+        owner: '456',
       };
 
       const responseModel = await forkVisualization.execute(requestModel);
@@ -264,11 +264,11 @@ describe('Use Cases', () => {
     it('should include forkedFromVisualizationInfo.', async () => {
       const getVisualization = new GetVisualization({
         visualizationGateway,
-        userGateway: { getUser: () => {} }
+        userGateway: { getUser: () => {} },
       });
 
       const { forkedFromVisualizationInfo } = await getVisualization.execute({
-        id: forkedViz.id
+        id: forkedViz.id,
       });
 
       assert.deepEqual(forkedFromVisualizationInfo, visualizationToFork.info);
@@ -297,13 +297,13 @@ describe('Use Cases', () => {
         blog: 'joeschmoe.com',
         location: 'Earth',
         email: 'joe@datavis.tech',
-        bio: 'Great guy'
-      }
-    }
+        bio: 'Great guy',
+      },
+    },
   };
 
   describe('Create User', () => {
-    const userGateway = { createUser: async user => user };
+    const userGateway = { createUser: async (user) => user };
     const createUser = new CreateUser({ userGateway });
 
     it('should invoke gateway with user instance', async () => {
@@ -313,7 +313,7 @@ describe('Use Cases', () => {
   });
 
   describe('Get User', () => {
-    const userGateway = { getUser: async id => fakeUser };
+    const userGateway = { getUser: async (id) => fakeUser };
     const getUser = new GetUser({ userGateway });
 
     it('should invoke gateway with user instance', async () => {
@@ -336,10 +336,10 @@ describe('Use Cases', () => {
       let createCalled = false;
       const userGateway = {
         getUser: () => null,
-        createUser: async user => {
+        createUser: async (user) => {
           createCalled = true;
           return user;
-        }
+        },
       };
 
       const getOrCreateUser = new GetOrCreateUser({ userGateway });
@@ -355,10 +355,10 @@ describe('Use Cases', () => {
       let createCalled = false;
       const userGateway = {
         getUser: () => user,
-        createUser: async user => {
+        createUser: async (user) => {
           createCalled = true;
           return user;
-        }
+        },
       };
 
       const getOrCreateUser = new GetOrCreateUser({ userGateway });
@@ -373,22 +373,22 @@ describe('Use Cases', () => {
   describe('Get User Profile Data', () => {
     const fakeVisualizationInfos = [
       { owner: fakeUser.id, title: 'Foo', description: 'Foo is cool' },
-      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' }
+      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' },
     ];
     const fakeDatasetInfos = [
       { owner: fakeUser.id, title: 'Foo', description: 'Foo is cool' },
-      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' }
+      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' },
     ];
     const getUserProfileData = new GetUserProfileData({
       userGateway: {
-        getUserByUserName: async userName => fakeUser
+        getUserByUserName: async (userName) => fakeUser,
       },
       visualizationGateway: {
-        getVisualizationInfosByUserId: async userId => fakeVisualizationInfos
+        getVisualizationInfosByUserId: async (userId) => fakeVisualizationInfos,
       },
       datasetGateway: {
-        getDatasetInfosByUserId: async userId => fakeDatasetInfos
-      }
+        getDatasetInfosByUserId: async (userId) => fakeDatasetInfos,
+      },
     });
 
     it('should get user and visualization infos from gateways', async () => {
@@ -397,7 +397,7 @@ describe('Use Cases', () => {
       assert.deepEqual(responseModel, {
         user: fakeUser,
         visualizationInfos: fakeVisualizationInfos,
-        datasetInfos: fakeDatasetInfos
+        datasetInfos: fakeDatasetInfos,
       });
     });
 
@@ -407,25 +407,25 @@ describe('Use Cases', () => {
       assert.deepEqual(responseModel, {
         user: ciUser,
         visualizationInfos: fakeVisualizationInfos,
-        datasetInfos: fakeDatasetInfos
+        datasetInfos: fakeDatasetInfos,
       });
     });
   });
 
   describe('Export Visualization', () => {
     const exportVisualization = new ExportVisualization({
-      visualizationGateway
+      visualizationGateway,
     });
-    it('should error if no id specified.', done => {
+    it('should error if no id specified.', (done) => {
       const requestModel = { id: null };
-      exportVisualization.execute(requestModel).catch(error => {
+      exportVisualization.execute(requestModel).catch((error) => {
         assert.equal(error.message, i18n('errorNoId'));
         done();
       });
     });
     it('should return zipped stored object if success.', async () => {
       const requestModel = {
-        id: visualizationId
+        id: visualizationId,
       };
       const { zipFileBuffer, zipFileName } = await exportVisualization.execute(
         requestModel
@@ -439,19 +439,19 @@ describe('Use Cases', () => {
   describe('Get All Visualization Infos', () => {
     const fakeVisualizationInfos = [
       { owner: fakeUser.id, title: 'Foo', description: 'Foo is cool' },
-      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' }
+      { owner: fakeUser.id, title: 'Bar', description: 'Bar is great' },
     ];
 
     const getAllVisualizationInfos = new GetAllVisualizationInfos({
       visualizationGateway: {
-        getAllVisualizationInfos: async () => fakeVisualizationInfos
-      }
+        getAllVisualizationInfos: async () => fakeVisualizationInfos,
+      },
     });
 
     it('should get visualization infos from gateway', async () => {
       const responseModel = await getAllVisualizationInfos.execute();
       assert.deepEqual(responseModel, {
-        visualizationInfos: fakeVisualizationInfos
+        visualizationInfos: fakeVisualizationInfos,
       });
     });
   });
@@ -459,27 +459,27 @@ describe('Use Cases', () => {
   describe('Delete Visualization', () => {
     const visualizationGateway = {
       deleteVisualization: async ({ visualization }) => ({ status: 'success' }),
-      getVisualization: async ({ id }) => ({ info: { owner: '123' } })
+      getVisualization: async ({ id }) => ({ info: { owner: '123' } }),
     };
     const deleteVisualization = new DeleteVisualization({
-      visualizationGateway
+      visualizationGateway,
     });
 
     it('should invoke deleteVisualization in gateway.', async () => {
       const requestModel = {
         id: '47389',
-        userId: '123'
+        userId: '123',
       };
       const responseModel = await deleteVisualization.execute(requestModel);
       assert.equal(responseModel.status, 'success');
     });
 
-    it('should error if user does not match owner.', done => {
+    it('should error if user does not match owner.', (done) => {
       const requestModel = {
         id: '47389',
-        userId: '234'
+        userId: '234',
       };
-      deleteVisualization.execute(requestModel).catch(error => {
+      deleteVisualization.execute(requestModel).catch((error) => {
         assert.equal(error.message, i18n('errorNotOwnerCantDelete'));
         done();
       });
@@ -488,11 +488,11 @@ describe('Use Cases', () => {
 
   describe('Update Images', () => {
     const visualization = {
-      info: {}
+      info: {},
     };
     const images = {
       thumbnail: 'foo',
-      preview: 'bar'
+      preview: 'bar',
     };
     let updatedImages;
     const updateImages = new UpdateImages(
@@ -501,16 +501,16 @@ describe('Use Cases', () => {
           getVisualization: async ({ id }) => visualization,
           getAllVisualizationInfos: async () => [visualization],
           setImagesUpdatedTimestamp: async ({ id, imagesUpdatedTimestamp }) =>
-            'success'
+            'success',
         },
         imageGeneratorGateway: {
-          generateImages: async () => images
+          generateImages: async () => images,
         },
         imageStorageGateway: {
           updateImages: async ({ id, images }) => {
             updatedImages = images;
-          }
-        }
+          },
+        },
       },
       1000
     );

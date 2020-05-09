@@ -18,7 +18,7 @@ export const CodeAreaTextarea = ({ activeFile }) => {
   const realtimeModules = useContext(RealtimeModulesContext);
 
   const onTextChange = useCallback(
-    event => {
+    (event) => {
       const newText = event.target.value;
       const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
       submitVizContentOp(
@@ -51,7 +51,7 @@ export const CodeAreaTextarea = ({ activeFile }) => {
     const subscription = vizContentOp$.subscribe(
       ({ previous, next, op, originatedLocally }) => {
         if (!originatedLocally) {
-          op.forEach(c => {
+          op.forEach((c) => {
             if (json0.canOpAffectPath(c, path)) {
               const i = c.p[c.p.length - 1];
               if (c.si) {

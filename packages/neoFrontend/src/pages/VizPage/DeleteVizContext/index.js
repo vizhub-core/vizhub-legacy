@@ -13,7 +13,7 @@ export const DeleteVizProvider = withRouter(
       onDeleteVizCancel,
       isConfirmingDeleteViz,
       onDeleteVizConfirm,
-      isDeleting
+      isDeleting,
     } = useDeleteViz(history);
 
     return !isDeleting ? (

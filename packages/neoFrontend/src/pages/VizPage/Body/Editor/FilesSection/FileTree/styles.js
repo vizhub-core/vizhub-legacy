@@ -4,7 +4,7 @@ import { FileStyle } from '../styles';
 
 export const FileEntry = styled(Clickable)`
   ${FileStyle}
-  text-decoration: ${props => (props.isActive ? 'underline' : 'none')};
+  text-decoration: ${(props) => (props.isActive ? 'underline' : 'none')};
 `;
 
 export const DirectoryEntry = styled(Clickable)`

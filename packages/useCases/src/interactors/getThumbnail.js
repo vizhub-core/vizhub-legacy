@@ -11,7 +11,7 @@ export class GetThumbnail {
     }
 
     const thumbnail = await this.imageStorageGateway.getThumbnail({
-      id: requestModel.id
+      id: requestModel.id,
     });
 
     return { thumbnail };

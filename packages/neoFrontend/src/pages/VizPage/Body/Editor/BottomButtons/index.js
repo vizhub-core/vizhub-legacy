@@ -4,7 +4,7 @@ import { deleteFileOp } from 'vizhub-presenters';
 import { NewSVG, ExportSVG } from '../../../../../svg';
 import {
   sidebarNewTooltip,
-  sidebarExportTooltip
+  sidebarExportTooltip,
 } from '../../../../../constants';
 import { VizContext } from '../../../VizContext';
 import { URLStateContext } from '../../../URLStateContext';
@@ -27,7 +27,7 @@ export const BottomButtons = withTheme(
     const { closeActiveFile } = useContext(URLStateContext);
 
     const onButtonClick = useCallback(
-      buttonId => () => {
+      (buttonId) => () => {
         setActiveButton(activeButton === buttonId ? null : buttonId);
       },
       [setActiveButton, activeButton]
@@ -52,7 +52,7 @@ export const BottomButtons = withTheme(
       viz$,
       submitVizContentOp,
       closeActiveFile,
-      clearActiveButton
+      clearActiveButton,
     ]);
 
     return (

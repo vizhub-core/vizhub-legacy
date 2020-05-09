@@ -1,7 +1,7 @@
 import assert from 'assert';
 //import { convenience } from './convenience';
 
-export const saveAndRestoreChanges = my => async () => {
+export const saveAndRestoreChanges = (my) => async () => {
   //const page = my
   //// Open editor to index.html.
   //await navClick('.test-toggle-editor');

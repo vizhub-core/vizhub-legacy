@@ -5,9 +5,9 @@ import hypothetical from './hypothetical';
 
 const external = Object.keys(vizhubLibraries);
 
-const transformFilesToObject = files =>
+const transformFilesToObject = (files) =>
   files
-    .filter(file => file.name.endsWith('.js'))
+    .filter((file) => file.name.endsWith('.js'))
     .reduce((accumulator, file) => {
       accumulator['./' + file.name] = file.text;
       return accumulator;
@@ -17,23 +17,23 @@ const outputOptions = {
   format: 'iife',
   name: 'bundle',
   sourcemap: 'inline',
-  globals: vizhubLibraries
+  globals: vizhubLibraries,
 };
 
-export const bundle = async files => {
+export const bundle = async (files) => {
   const inputOptions = {
     input: './index.js',
     plugins: [
       hypothetical({
-        files: transformFilesToObject(files)
+        files: transformFilesToObject(files),
       }),
       bubleJSXOnly({
         target: {
-          chrome: 71
-        }
-      })
+          chrome: 71,
+        },
+      }),
     ],
-    external
+    external,
   };
 
   const rollupBundle = await rollup(inputOptions);
@@ -62,7 +62,7 @@ export const bundle = async files => {
   return [
     {
       name: 'bundle.js',
-      text: codeWithSourceMap
-    }
+      text: codeWithSourceMap,
+    },
   ];
 };

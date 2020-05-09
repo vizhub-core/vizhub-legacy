@@ -12,15 +12,15 @@ import { reducer } from './reducer';
 //
 // The difference exists so that we can omit the "mode" parameter from the
 // URL entirely when the user is viewing the "viewer", the default page state.
-const getMode = state => state.mode || 'viewer';
+const getMode = (state) => state.mode || 'viewer';
 
 // Higher order component exposing URL state accessors.
-export const useURLState = props => {
+export const useURLState = (props) => {
   const [state, dispatch] = useURLStateReducer(reducer, props);
   const { edit, file: activeFile } = state;
 
   const setEdit = useCallback(
-    value => {
+    (value) => {
       dispatch({ type: 'setEdit', value });
     },
     [dispatch]
@@ -35,7 +35,7 @@ export const useURLState = props => {
   }, [dispatch]);
 
   const setActiveFile = useCallback(
-    file => {
+    (file) => {
       dispatch({ type: 'setActiveFile', file });
     },
     [dispatch]
@@ -46,7 +46,7 @@ export const useURLState = props => {
   }, [dispatch]);
 
   const setMode = useCallback(
-    mode => {
+    (mode) => {
       dispatch({ type: 'setMode', mode });
     },
     [dispatch]
@@ -106,6 +106,6 @@ export const useURLState = props => {
     exitMini,
     showResizer,
     isRecoveryMode,
-    exitRecoveryMode
+    exitRecoveryMode,
   };
 };

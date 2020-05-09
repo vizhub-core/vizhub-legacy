@@ -18,7 +18,7 @@ export const userData = {
   company: 'Schmoe INC',
   website: 'joeschmoe.com',
   location: 'Earth',
-  bio: 'Great guy'
+  bio: 'Great guy',
 };
 
 export const user = new User(userData);
@@ -31,17 +31,17 @@ export const visualizationContentData = {
   files: [
     {
       name: 'index.html',
-      text: '<body><h1>Hello!</h1><script src="index.js"></body>'
+      text: '<body><h1>Hello!</h1><script src="index.js"></body>',
     },
     {
       name: 'index.js',
-      text: "import foo from './foo'; console.log(foo);"
+      text: "import foo from './foo'; console.log(foo);",
     },
     {
       name: 'foo.js',
-      text: "export default 'I am foo';"
-    }
-  ]
+      text: "export default 'I am foo';",
+    },
+  ],
 };
 
 export const documentInfoData = {
@@ -52,13 +52,13 @@ export const documentInfoData = {
   slug: 'foo',
   description: 'Foo the great',
   createdTimestamp: timestamp(),
-  lastUpdatedTimestamp: timestamp()
+  lastUpdatedTimestamp: timestamp(),
 };
 
 export const visualizationInfoData = Object.assign({}, documentInfoData, {
   forkedFrom: '012',
   height: 600,
-  imagesUpdatedTimestamp: 87432589
+  imagesUpdatedTimestamp: 87432589,
 });
 
 export const visualizationInfo = new VisualizationInfo(visualizationInfoData);
@@ -67,19 +67,19 @@ export const visualizationContent = new VisualizationContent(
 );
 export const visualization = new Visualization({
   visualizationInfo,
-  visualizationContent
+  visualizationContent,
 });
 
 export const datasetInfoData = Object.assign({}, documentInfoData, {
   id: datasetId,
   format: 'csv',
   sourceName: 'Flaring Central',
-  sourceUrl: 'https://flaring.central/'
+  sourceUrl: 'https://flaring.central/',
 });
 
 export const datasetContentData = {
   id: datasetId,
-  text: 'a,b,c\n1,2,3\n4,5,6'
+  text: 'a,b,c\n1,2,3\n4,5,6',
 };
 
 export const datasetInfo = new DatasetInfo(datasetInfoData);

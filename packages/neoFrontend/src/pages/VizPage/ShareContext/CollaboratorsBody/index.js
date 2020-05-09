@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { switchMap, debounceTime } from 'rxjs/operators';
 import {
   showCollaboratorsAnyoneCanEdit,
-  showCollaboratorsManagement
+  showCollaboratorsManagement,
 } from '../../../../featureFlags';
 import { Input } from '../../../../Input';
 import { Avatar } from '../../../../Avatar';
@@ -12,7 +12,7 @@ import { fetchUserSearchResults } from './fetchUserSearchResults';
 import { UserPreviewList, UserPreview, UserName } from './styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
 
-const fetchData = async typedText => {
+const fetchData = async (typedText) => {
   if (!typedText) return [];
   const results = await fetchUserSearchResults(typedText);
   return results.users;
@@ -37,7 +37,7 @@ export const CollaboratorsBody = () => {
     return () => subscription.unsubscribe();
   }, [results$]);
 
-  const addCollaborator = useCallback(userId => {
+  const addCollaborator = useCallback((userId) => {
     console.log('add collaborator ' + userId);
     setTypedText('');
     setResults([]);
@@ -57,7 +57,7 @@ export const CollaboratorsBody = () => {
             <Input value={typedText} onChange={setTypedText} size="grow" />
             <UserPreviewList>
               {results &&
-                results.map(user => (
+                results.map((user) => (
                   <UserPreview
                     key={user.userName}
                     onClick={() => addCollaborator(user.id)}

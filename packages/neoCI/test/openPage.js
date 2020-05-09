@@ -10,7 +10,7 @@ const puppeteerOptions = { args: ['--no-sandbox'] };
 //   headless: false
 // });
 
-export const openPage = my => async () => {
+export const openPage = (my) => async () => {
   const browser = await puppeteer.launch(puppeteerOptions);
   const page = await browser.newPage();
   const response = await retry(() => page.goto('http://localhost:3000'), 2000);

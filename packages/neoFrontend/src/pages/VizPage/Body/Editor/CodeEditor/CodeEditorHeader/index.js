@@ -3,7 +3,7 @@ import { FullSVG, CloseSVG, ArrowSVG } from '../../../../../../svg';
 import {
   codeEditorHeaderCloseTooltip,
   codeEditorHeaderEnterFullEditorTooltip,
-  codeEditorHeaderExitFullEditorTooltip
+  codeEditorHeaderExitFullEditorTooltip,
 } from '../../../../../../constants';
 import { isMobile } from '../../../../../../mobileMods';
 import { CodeEditorIcon } from '../styles';
@@ -22,7 +22,7 @@ export const CodeEditorHeader = ({
   onHideViz,
   closeActiveFile,
   showTop,
-  toggleShowTop
+  toggleShowTop,
 }) => (
   <Wrapper showEditor={showEditor}>
     <Text

@@ -18,7 +18,7 @@ export class GetHomePageData {
 
     return {
       visualizationInfos,
-      ownerUsers
+      ownerUsers,
     };
   }
 }

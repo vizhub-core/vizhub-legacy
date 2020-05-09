@@ -23,7 +23,7 @@ export const useUpdateURLOnRename = () => {
     const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
       const fileIndex = getFileIndex(previous.files, activeFile);
       const path = getPath(fileIndex, 'name');
-      op.forEach(c => {
+      op.forEach((c) => {
         if (affectsPath(path, c.p)) {
           const newName = next.files[fileIndex].name;
           setActiveFile(newName);

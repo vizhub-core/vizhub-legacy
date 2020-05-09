@@ -1,19 +1,19 @@
 import {
   Visualization,
   VisualizationInfo,
-  VisualizationContent
+  VisualizationContent,
 } from 'vizhub-entities';
 import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 
-export const getVisualization = connection => ({ id }) =>
+export const getVisualization = (connection) => ({ id }) =>
   Promise.all([
     fetchShareDBDoc(DOCUMENT_INFO, id, connection),
-    fetchShareDBDoc(DOCUMENT_CONTENT, id, connection)
+    fetchShareDBDoc(DOCUMENT_CONTENT, id, connection),
   ]).then(
     ([info, content]) =>
       new Visualization({
         visualizationInfo: new VisualizationInfo(info.data),
-        visualizationContent: new VisualizationContent(content.data)
+        visualizationContent: new VisualizationContent(content.data),
       })
   );

@@ -7,7 +7,7 @@ import { MiniSVG, MicroSVG } from './svg';
 export const isMobile = mobile();
 
 // The identity function.
-const identity = x => x;
+const identity = (x) => x;
 
 // On mobile, don't show viewer if editor is open.
 export const modShowViewer = isMobile
@@ -23,7 +23,7 @@ export const modMode = isMobile
 
 // On mobile, if editor is open, allow it to expand to full width.
 export const modExpandEditor = isMobile
-  ? showEditor => showEditor
+  ? (showEditor) => showEditor
   : () => false;
 
 // On mobile, don't show editor sidebar if a file is open.

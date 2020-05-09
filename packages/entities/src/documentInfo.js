@@ -4,7 +4,7 @@ export class DocumentInfo extends DocumentPart {
   constructor(data) {
     super({
       id: data.id,
-      documentType: data.documentType
+      documentType: data.documentType,
     });
 
     // The ID of the user that owns this document.

@@ -8,7 +8,7 @@ export const useDimensions = ({
   setDomRect,
   scrollerRef,
   onDimensionsChanged,
-  globalResize = false
+  globalResize = false,
 }) => {
   // Measures the current dimensions.
   const measure = useCallback(() => {

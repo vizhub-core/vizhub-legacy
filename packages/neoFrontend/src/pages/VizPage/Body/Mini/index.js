@@ -3,7 +3,7 @@ import { SplitSVG, FullSVG } from '../../../../svg';
 import { vizWidth, getVizHeight } from 'vizhub-presenters';
 import {
   enterFullScreenTooltip,
-  exitMiniModeTooltip
+  exitMiniModeTooltip,
 } from '../../../../constants';
 import { theme } from '../../../../theme';
 import { useValue } from '../../../../useValue';

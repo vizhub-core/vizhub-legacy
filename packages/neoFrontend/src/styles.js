@@ -13,19 +13,19 @@ export const Z_BELOW = -1;
 export const Z_NEW_STACKING_CONTEXT = 0;
 
 export const Banner = styled.div`
-  min-height: ${props =>
+  min-height: ${(props) =>
     isMobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
-  padding-left: ${props => props.theme.bannerPadding}px;
-  padding-right: ${props => props.theme.bannerPadding}px;
+  padding-left: ${(props) => props.theme.bannerPadding}px;
+  padding-right: ${(props) => props.theme.bannerPadding}px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${props => props.theme.bannerBackground};
+  background-color: ${(props) => props.theme.bannerBackground};
 `;
 
-const hover = props =>
+const hover = (props) =>
   props.isDisabled ? 'transparent' : props.theme.hoverBackground;
-const active = props =>
+const active = (props) =>
   props.isDisabled ? 'transparent' : props.theme.activeBackground;
 export const Clickable = styled.div`
   &:hover {
@@ -39,7 +39,7 @@ export const Clickable = styled.div`
 `;
 
 export const Footer = styled.div`
-  box-shadow: ${props => props.theme.shadow};
+  box-shadow: ${(props) => props.theme.shadow};
   height: 40px;
   display: flex;
   justify-content: flex-end;

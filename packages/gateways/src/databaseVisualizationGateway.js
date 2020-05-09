@@ -1,7 +1,7 @@
 import {
   Visualization,
   VisualizationInfo,
-  VisualizationContent
+  VisualizationContent,
 } from 'vizhub-entities';
 
 export class DatabaseVisualizationGateway {
@@ -21,7 +21,7 @@ export class DatabaseVisualizationGateway {
       height,
       createdTimestamp,
       lastUpdatedTimestamp,
-      privacy
+      privacy,
     } = options;
 
     const visualization = new Visualization({
@@ -41,12 +41,12 @@ export class DatabaseVisualizationGateway {
 
         createdTimestamp,
         lastUpdatedTimestamp,
-        privacy
+        privacy,
       }),
       visualizationContent: new VisualizationContent({
         id,
-        files
-      })
+        files,
+      }),
     });
 
     return await this.database.createVisualization(visualization);

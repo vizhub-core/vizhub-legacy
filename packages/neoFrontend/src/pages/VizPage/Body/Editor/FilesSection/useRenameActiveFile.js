@@ -9,7 +9,7 @@ export const useRenameActiveFile = (
   realtimeModules
 ) =>
   useCallback(
-    newName => {
+    (newName) => {
       setIsRenamingActiveFile(false);
       submitVizContentOp(
         fileChangeOp(
@@ -26,6 +26,6 @@ export const useRenameActiveFile = (
       setIsRenamingActiveFile,
       files,
       submitVizContentOp,
-      realtimeModules
+      realtimeModules,
     ]
   );

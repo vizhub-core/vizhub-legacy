@@ -8,7 +8,7 @@ export const TitleBar = ({
   upvoteCount,
   onUpvoteClick,
   canVote,
-  didVote
+  didVote,
 }) => (
   <Wrapper>
     <Title>{title}</Title>

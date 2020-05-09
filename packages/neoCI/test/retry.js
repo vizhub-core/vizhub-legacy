@@ -1,5 +1,5 @@
 export const retry = (fn, ms) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     fn()
       .then(resolve)
       .catch(() => {

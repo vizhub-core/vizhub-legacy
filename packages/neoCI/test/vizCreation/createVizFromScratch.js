@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { navClick } from '../navClick';
 
-export const createVizFromScratch = my => async () => {
+export const createVizFromScratch = (my) => async () => {
   const { page } = my;
 
   // Navigate to /creating-viz-from-scratch

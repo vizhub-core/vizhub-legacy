@@ -7,7 +7,7 @@ export const UserPreviewList = styled.div`
   left: 7px;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${props => props.theme.lightBorder};
+  border: 1px solid ${(props) => props.theme.lightBorder};
   border-radius: 4px;
   background-color: white;
 `;

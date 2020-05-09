@@ -4,7 +4,7 @@ export const DeleteTop = ({
   onNoClick,
   onDeleteConfirm,
   theme,
-  activeFile
+  activeFile,
 }) => (
   <>
     <TopMessage>

@@ -15,7 +15,7 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
     onHideViz,
     onShowViz,
     showViewer,
-    closeActiveFile
+    closeActiveFile,
   } = useContext(URLStateContext);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
@@ -32,7 +32,7 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
     if (!submitVizContentOp) {
       return;
     }
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', (e) => {
       if (e.altKey && e.code === 'KeyD') {
         console.log(
           "You've triggered the manual test for cursor transforms with ALT+D!"

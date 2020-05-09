@@ -11,7 +11,7 @@ export class VizHubAPIError extends Error {
   }
 }
 
-const validate = options => {
+const validate = (options) => {
   if (!options.error) {
     throw new Error(
       'The field "error" must be specified for an error response. It should be a name for the error, such as "redirect_uri_mismatch" or "invalid_operation".'
@@ -27,7 +27,7 @@ const validate = options => {
       [
         'errorURL not provided for error ',
         options.error,
-        '. Consider adding this to improve developer experience.'
+        '. Consider adding this to improve developer experience.',
       ].join('')
     );
   }

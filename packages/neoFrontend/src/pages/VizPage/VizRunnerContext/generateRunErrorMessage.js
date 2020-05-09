@@ -1,5 +1,5 @@
 // Inspired by https://github.com/rollup/rollup/blob/master/bin/src/logging.ts
-export const generateRunErrorMessage = error => {
+export const generateRunErrorMessage = (error) => {
   const lines = [];
 
   let message = error.message || error;

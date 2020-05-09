@@ -3,13 +3,13 @@ import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
-export const getVisualizationInfosByUserId = connection => async (
+export const getVisualizationInfosByUserId = (connection) => async (
   owner,
   authenticatedUser
 ) => {
   const mongoQuery = {
     owner,
-    documentType: VISUALIZATION_TYPE ,
+    documentType: VISUALIZATION_TYPE,
     $sort: { lastUpdatedTimestamp: -1 },
   };
 
@@ -24,6 +24,5 @@ export const getVisualizationInfosByUserId = connection => async (
     connection
   );
   // TODO pagination for profile page, like in home page
-  return results
-    .map(shareDBDoc => new VisualizationInfo(shareDBDoc.data));
+  return results.map((shareDBDoc) => new VisualizationInfo(shareDBDoc.data));
 };
