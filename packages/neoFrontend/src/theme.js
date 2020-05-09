@@ -77,6 +77,10 @@ theme.blueHover = blue.formatHex();
 blue.l = 0.9;
 theme.blueActive = blue.formatHex();
 
+// Old red from Alec's designs.
+//const red = cubehelix('#f0353d');
+
+// New red from Sam's designs.
 const red = cubehelix('#ff006b');
 theme.red = red.formatHex();
 
