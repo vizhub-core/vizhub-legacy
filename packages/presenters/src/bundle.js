@@ -35,7 +35,6 @@ export const bundle = async (files) => {
     ],
     external,
   };
-
   const rollupBundle = await rollup(inputOptions);
   const { output } = await rollupBundle.generate(outputOptions);
 
