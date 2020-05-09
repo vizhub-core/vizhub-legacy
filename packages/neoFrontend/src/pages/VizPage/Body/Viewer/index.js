@@ -86,6 +86,8 @@ export const Viewer = () => {
     document.title = vizInfo.title;
   }, [vizInfo.title]);
 
+  const isPrivate = vizInfo.privacy === 'private';
+
   return (
     <Wrapper className="test-viewer">
       <Resizer />
@@ -104,6 +106,7 @@ export const Viewer = () => {
               didVote={didVote}
               upvoteCount={upvoteCount}
               onUpvoteClick={handleUpvote}
+              isPrivate={isPrivate}
             />
             <HorizontalRule />
             <DescriptionSection

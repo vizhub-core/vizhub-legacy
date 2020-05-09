@@ -8,10 +8,13 @@ import {
   VizPreviewTitle,
 } from './styles';
 
+import { PrivacyNotice } from '../PrivacyNotice';
+
 export { VizPreviews } from './styles';
 
 export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
-  const { id, title } = vizInfo;
+  const { id, title, privacy } = vizInfo;
+  const isPrivate = privacy === 'private';
   const link = `/${getUserName(ownerUser)}/${id}${
     openEditor ? '?edit=files' : ''
   }`;
@@ -30,6 +33,7 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
         <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
         <Author ownerUser={ownerUser} isSmall={true} />
       </VizPreviewFooter>
+      {isPrivate ? <PrivacyNotice isVizPreview={true}/> : null}
     </Wrapper>
   );
 };
