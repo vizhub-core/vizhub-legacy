@@ -34,7 +34,8 @@ export class ForkVisualization {
         files: visualization.content.files,
         forkedFrom: visualization.info.id,
         createdTimestamp: nowTimestamp,
-        lastUpdatedTimestamp: nowTimestamp
+        lastUpdatedTimestamp: nowTimestamp,
+        privacy: visualization.info.privacy
       }),
       this.getUser.execute({ id: owner })
     ]);
