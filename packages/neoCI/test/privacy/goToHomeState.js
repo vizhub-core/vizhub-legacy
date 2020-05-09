@@ -3,7 +3,7 @@ import { signOut } from '../authentication';
 
 const HOME_URL = 'http://localhost:3000/';
 
-// Put the pate into its "home state":
+// Put the page into its "home state":
 //  - At the home page
 //  - Not authenticated
 export const goToHomeState = my => async () => {

@@ -23,6 +23,6 @@ export const fork = my => async () => {
   console.log(url + '?edit=files&file=index.html');
   console.log();
 
-  // Stash the URL for later mobile testing.
+  // Stash the URL for later testing.
   my.forkedVizURL = url;
 };
