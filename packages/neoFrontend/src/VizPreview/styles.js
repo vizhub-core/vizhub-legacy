@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin: 12px;
   color: ${(props) => props.theme.dark};
+  position: relative;
 `;
 
 // Inspired by https://vega.github.io/vega/
