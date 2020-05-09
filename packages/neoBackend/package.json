@@ -13,22 +13,22 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "esm": "^3.2.25",
-    "prettier": "^1.19.1"
+    "prettier": "^2.0.5"
   },
   "dependencies": {
     "@teamwork/websocket-json-stream": "^2.0.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
-    "cookie": "^0.4.0",
-    "cookie-parser": "^1.4.4",
+    "cookie": "^0.4.1",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "vizhub-controllers": "1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
-    "ws": "^7.2.1"
+    "ws": "^7.2.5"
   }
 }
