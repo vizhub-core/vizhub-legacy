@@ -5,6 +5,6 @@ import { LockSVG } from '../svg';
 export const PrivacyNotice = ({isVizPreview}) => (
   <Wrapper isVizPreview={isVizPreview}>
     <Label>PRIVATE</Label>
-    <LockSVG fill="white" />
+    <LockSVG height={20} fill="white" />
   </Wrapper>
 );
