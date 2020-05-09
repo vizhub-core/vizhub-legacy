@@ -2,6 +2,7 @@ import React from 'react';
 import { VoteSVG } from '../../../../../svg';
 import { showUpvote, showDownvote } from '../../../../../featureFlags';
 import { Wrapper, Title, Voter, VoteIcon } from './styles';
+import { PrivacyNotice } from './PrivacyNotice';
 
 export const TitleBar = ({
   title,
@@ -9,6 +10,7 @@ export const TitleBar = ({
   onUpvoteClick,
   canVote,
   didVote,
+  isPrivate,
 }) => (
   <Wrapper>
     <Title>{title}</Title>
@@ -40,6 +42,7 @@ export const TitleBar = ({
           6
         </>
       ) : null}
+      {isPrivate ? <PrivacyNotice /> : null}
     </Voter>
   </Wrapper>
 );
