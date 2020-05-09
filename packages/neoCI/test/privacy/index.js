@@ -2,6 +2,7 @@ import { signOut, signIn } from '../authentication';
 import { goToHomeState } from './goToHomeState';
 import { setupPrivateViz } from './setupPrivateViz';
 import { switchPrivacy } from './switchPrivacy';
+import { forkToPrivate } from './forkToPrivate';
 import { vizNotFound } from './vizNotFound';
 import { vizFound } from './vizFound';
 import { excludePrivateFromHomePage } from './excludePrivateFromHomePage';
@@ -62,6 +63,16 @@ export const privacy = my => () => {
     it(
       'should include private viz in profile page if owner is authenticated',
       includePrivateOnProfilePage(my)
+    );
+  });
+
+  describe('Forking', () => {
+    it('should return to home state', goToHomeState(my));
+    it('should sign in', signIn(my));
+    it('should navigate to private viz', vizFound(my));
+    it(
+      'should fork a private viz to a new private viz',
+      forkToPrivate(my)
     );
   });
 
