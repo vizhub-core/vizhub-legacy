@@ -1,4 +1,4 @@
-import devices from 'puppeteer/DeviceDescriptors';
+import * as devices from 'puppeteer/DeviceDescriptors';
 
 export const openMobilePage = my => async () => {
   const mobilePage = await my.browser.newPage();
