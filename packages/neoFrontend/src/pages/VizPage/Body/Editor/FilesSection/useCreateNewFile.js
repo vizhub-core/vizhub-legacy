@@ -18,10 +18,9 @@ export const useCreateNewFile = (
             text: '',
           })
         );
-        // Auto-open the file
+        // Auto-open newly created files.
         setActiveFile(newName);
-        // TODO Ensure newly opened file has focus:!a
       }
     },
-    [setIsRenamingNewFile, submitVizContentOp, files]
+    [setIsRenamingNewFile, submitVizContentOp, files, setActiveFile]
   );
