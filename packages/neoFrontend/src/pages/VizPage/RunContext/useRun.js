@@ -87,6 +87,7 @@ export const useRun = () => {
         setRunError(null);
         setRunId(generateRunId());
       } catch (error) {
+        console.error(error);
         setRunError(error);
       }
     } else if (jsChanged.current === 'remote') {
