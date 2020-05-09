@@ -1,4 +1,10 @@
 import React from 'react';
-import { Wrapper } from './styles';
+import { Wrapper, Label } from './styles';
+import { LockSVG } from '../../../../../../svg';
 
-export const PrivacyNotice = () => <Wrapper>PRIVATE</Wrapper>;
+export const PrivacyNotice = () => (
+  <Wrapper>
+    <Label>PRIVATE</Label>
+    <LockSVG fill="white" />
+  </Wrapper>
+);

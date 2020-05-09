@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: ${props => props.theme.red};
+  background-color: ${(props) => props.theme.red};
   height: 40px;
   border-radius: 40px;
   display: flex;
@@ -10,5 +10,9 @@ export const Wrapper = styled.div`
   font-weight: bold;
   font-size: 14px;
   color: white;
-  margin-left: 10px;
+  margin-left: 15px;
+`;
+
+export const Label = styled.div`
+  margin-right: 10px;
 `;
