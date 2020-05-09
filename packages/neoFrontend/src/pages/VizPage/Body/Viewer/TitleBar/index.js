@@ -2,7 +2,7 @@ import React from 'react';
 import { VoteSVG } from '../../../../../svg';
 import { showUpvote, showDownvote } from '../../../../../featureFlags';
 import { Wrapper, Title, Voter, VoteIcon } from './styles';
-import { PrivacyNotice } from './PrivacyNotice';
+import { PrivacyNotice } from '../../../../../PrivacyNotice';
 
 export const TitleBar = ({
   title,
