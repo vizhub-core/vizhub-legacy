@@ -35,8 +35,10 @@ export const bundle = async (files) => {
     ],
     external,
   };
+  console.log('heere');
 
   const rollupBundle = await rollup(inputOptions);
+  console.log('thheere');
   const { output } = await rollupBundle.generate(outputOptions);
 
   // Monkey patch magic-string internals
