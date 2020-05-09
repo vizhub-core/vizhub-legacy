@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrapper, Label } from './styles';
-import { LockSVG } from '../../../../../../svg';
+import { LockSVG } from '../svg';
 
 export const PrivacyNotice = () => (
   <Wrapper>
