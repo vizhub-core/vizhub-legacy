@@ -5,7 +5,7 @@ export const PrettierContext = createContext();
 
 // This context is responsible for loading and running Prettier
 // to auto-format the active file from within the editor.
-export const PrettierProvider = ({ fallback, children }) => (
+export const PrettierProvider = ({ children }) => (
   <PrettierContext.Provider value={usePrettier()}>
     {children}
   </PrettierContext.Provider>
