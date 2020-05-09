@@ -5,7 +5,7 @@ export class VisualizationContent extends DocumentContent {
   constructor(data) {
     super({
       id: data.id,
-      documentType: VISUALIZATION_TYPE
+      documentType: VISUALIZATION_TYPE,
     });
 
     // A representation of "files".

@@ -4,7 +4,7 @@ import { MiniOrMicroSVG } from '../../../../../mobileMods';
 import { vizWidth } from 'vizhub-presenters';
 import {
   enterFullScreenTooltip,
-  enterMiniModeTooltip
+  enterMiniModeTooltip,
 } from '../../../../../constants';
 import { LargeIcon } from '../../../../styles';
 import { URLStateContext } from '../../../URLStateContext';

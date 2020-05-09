@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogButtons,
   Section,
-  SectionTitle
+  SectionTitle,
 } from '../styles';
 import { Tabs, Tab } from './Tabs';
 import { LinkBody } from './LinkBody';

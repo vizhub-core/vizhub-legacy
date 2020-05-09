@@ -11,7 +11,7 @@ export const Centered = styled.div`
 
 export const AttentionGrabbingTitle = styled(Title)`
   font-weight: bold;
-  color: ${props => props.theme.attentionGrabber};
+  color: ${(props) => props.theme.attentionGrabber};
 `;
 
 export const Subtitle = styled.div`

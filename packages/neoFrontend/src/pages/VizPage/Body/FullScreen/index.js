@@ -4,7 +4,7 @@ import { FullExitSVG } from '../../../../svg';
 import { MiniOrMicroSVG } from '../../../../mobileMods';
 import {
   exitFullScreenTooltip,
-  enterMiniModeTooltip
+  enterMiniModeTooltip,
 } from '../../../../constants';
 import { useValue } from '../../../../useValue';
 import { LargeIcon } from '../../../styles';

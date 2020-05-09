@@ -5,7 +5,7 @@ import { useShareDBDoc } from './useShareDBDoc';
 import { useOpStream } from './useOpStream';
 import { useSubmitOp } from './useSubmitOp';
 
-export const useViz = initialViz => {
+export const useViz = (initialViz) => {
   const vizContentDoc = useShareDBDoc(DOCUMENT_CONTENT, initialViz.id);
   const vizInfoDoc = useShareDBDoc(DOCUMENT_INFO, initialViz.id);
 
@@ -24,7 +24,7 @@ export const useViz = initialViz => {
       if (previous !== next) {
         viz$.next({
           info: viz$.getValue().info,
-          content: next
+          content: next,
         });
       }
     });
@@ -37,7 +37,7 @@ export const useViz = initialViz => {
       if (previous !== next) {
         viz$.next({
           content: viz$.getValue().content,
-          info: next
+          info: next,
         });
       }
     });

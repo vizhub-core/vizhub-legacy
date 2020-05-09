@@ -4,9 +4,9 @@ import { CodeMirrorDialogCSS } from './CodeMirrorDialogCSS';
 import { CodeMirrorHintCSS } from './CodeMirrorHintCSS';
 
 // https://stackoverflow.com/questions/47836390/how-to-convert-a-camel-case-string-to-dashes-in-javascript
-const dashed = camel => camel.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
+const dashed = (camel) => camel.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
 
-const objectToCSS = object =>
+const objectToCSS = (object) =>
   object
     ? Object.entries(object)
         .map(([key, value]) => `${dashed(key)}:${value};`)
@@ -15,7 +15,7 @@ const objectToCSS = object =>
 
 const keys = {};
 //const css = key => props => objectToCSS(props.theme.editor[key]);
-const css = key => props => {
+const css = (key) => (props) => {
   keys[key] = true;
   let styleObject = props.theme.editor[key];
   if (!styleObject) {
@@ -27,7 +27,7 @@ const css = key => props => {
 
 window.showKeys = () => console.log(JSON.stringify(Object.keys(keys)));
 
-const fontVariantLigatures = props =>
+const fontVariantLigatures = (props) =>
   props.theme.editor.font.ligatures ? 'normal' : 'none';
 
 const codePadding = 4;
@@ -42,8 +42,8 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     left: 0;
     width: 100%;
     height: 100%;
-    font-family: ${props => props.theme.editor.font.family};
-    font-size: ${props => props.theme.editor.font.size};
+    font-family: ${(props) => props.theme.editor.font.family};
+    font-size: ${(props) => props.theme.editor.font.size};
     font-variant-ligatures: ${fontVariantLigatures};
     line-height: 1.4;
   }
@@ -55,7 +55,7 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .CodeMirror-linenumber { ${css('lineNumbers')} }
   .CodeMirror-matchingbracket { ${css('matchingBracket')} }
   .CodeMirror-cursor {
-    border-left: 1px solid ${props => props.theme.editor.caretColor};
+    border-left: 1px solid ${(props) => props.theme.editor.caretColor};
     border-right: none;
     width: 0;
   }
@@ -63,7 +63,7 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     'fatCursor'
   )} }
   .CodeMirror-selected  {
-    background-color: ${props =>
+    background-color: ${(props) =>
       props.theme.editor.selectionBackground} !important;
   }
   .cm-s-default .cm-tag { ${css('tag')} }

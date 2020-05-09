@@ -25,11 +25,11 @@ export {
   DOCUMENT_INFO,
   USER,
   THUMBNAIL_IMAGES,
-  PREVIEW_IMAGES
+  PREVIEW_IMAGES,
 } from './collectionName';
 export { fetchShareDBDoc } from './fetchShareDBDoc';
 
-export const Database = connection => ({
+export const Database = (connection) => ({
   createVisualization: createVisualization(connection),
   getVisualization: getVisualization(connection),
   getVisualizationInfo: getVisualizationInfo(connection),
@@ -50,5 +50,5 @@ export const Database = connection => ({
   updateImages: updateImages(connection),
   getThumbnail: getThumbnail(connection),
   getPreview: getPreview(connection),
-  setImagesUpdatedTimestamp: setImagesUpdatedTimestamp(connection)
+  setImagesUpdatedTimestamp: setImagesUpdatedTimestamp(connection),
 });

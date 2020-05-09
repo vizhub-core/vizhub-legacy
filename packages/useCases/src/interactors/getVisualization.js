@@ -7,7 +7,7 @@ export class GetVisualization {
     this.visualizationGateway = visualizationGateway;
     this.getUser = new GetUser({ userGateway });
     this.getVisualizationInfo = new GetVisualizationInfo({
-      visualizationGateway
+      visualizationGateway,
     });
   }
 
@@ -17,12 +17,14 @@ export class GetVisualization {
     }
 
     const visualization = await this.visualizationGateway.getVisualization({
-      id: requestModel.id
+      id: requestModel.id,
     });
 
-    const owner = (await this.getUser.execute({
-      id: visualization.info.owner
-    })).user;
+    const owner = (
+      await this.getUser.execute({
+        id: visualization.info.owner,
+      })
+    ).user;
 
     const userId = requestModel.user;
     const vizInfo = visualization.info;
@@ -39,7 +41,7 @@ export class GetVisualization {
     try {
       if (visualization.info.forkedFrom) {
         const response = await this.getVisualizationInfo.execute({
-          id: visualization.info.forkedFrom
+          id: visualization.info.forkedFrom,
         });
         const { visualizationInfo } = response;
 
@@ -51,7 +53,7 @@ export class GetVisualization {
         if (visualizationInfo.owner) {
           forkedFromVisualizationInfo = visualizationInfo;
           const { user } = await this.getUser.execute({
-            id: forkedFromVisualizationInfo.owner
+            id: forkedFromVisualizationInfo.owner,
           });
           forkedFromVisualizationOwnerUserName = user.userName;
         }
@@ -64,7 +66,7 @@ export class GetVisualization {
       visualization,
       ownerUser: owner,
       forkedFromVisualizationInfo,
-      forkedFromVisualizationOwnerUserName
+      forkedFromVisualizationOwnerUserName,
     };
   }
 }

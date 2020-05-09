@@ -5,7 +5,7 @@ const entries = [
   ['qualifier', 'builtin', 'header'],
   ['string', 'string2'],
   ['atom', 'number'],
-  ['link', 'attribute', 'property']
+  ['link', 'attribute', 'property'],
 ];
 
 const lightEntries = ['operator'];
@@ -35,11 +35,11 @@ const saturation = 70;
 export const light = hcl(0, 0, luminance).formatHex();
 const dark = hcl(sidebarDark.h, sidebarDark.c, 80).formatHex();
 
-export const vizHub = rotation => {
+export const vizHub = (rotation) => {
   const theme = {
     container: {
       color: light,
-      backgroundColor
+      backgroundColor,
     },
     headerBackgroundColor: hcl(
       sidebarDark.h,
@@ -57,7 +57,7 @@ export const vizHub = rotation => {
     //variable: { color: '#5bafef' },
     //number: { color: light },
     fatCursor: { backgroundColor: 'rgba(228, 232, 255, 0.3)' },
-    default: { color: light }
+    default: { color: light },
   };
 
   theme.searching = theme.fatCursor;
@@ -66,7 +66,7 @@ export const vizHub = rotation => {
     const t = ((i + 0) / entries.length + rotation) % 1;
     const color = hcl(t * 360, saturation, luminance).formatHex();
     const keys = typeof entry === 'string' ? [entry] : entry;
-    keys.forEach(key => {
+    keys.forEach((key) => {
       theme[key] = { color };
     });
     return color;
@@ -75,7 +75,7 @@ export const vizHub = rotation => {
   theme.link.textDecoration = 'none';
   theme.header.fontWeight = 'normal';
 
-  lightEntries.forEach(key => {
+  lightEntries.forEach((key) => {
     theme[key] = { color: light };
   });
 
@@ -85,12 +85,12 @@ export const vizHub = rotation => {
   theme.caretColor = 'white';
 
   theme.gutters = theme.gutter = Object.assign({}, theme.container, {
-    border: 'none'
+    border: 'none',
   });
 
   theme.matchingBracket = {
     color: theme.container.color,
-    borderBottom: '1px solid rgba(255,255,255,0.4)'
+    borderBottom: '1px solid rgba(255,255,255,0.4)',
   };
 
   return theme;

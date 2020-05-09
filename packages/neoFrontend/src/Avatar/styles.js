@@ -12,16 +12,16 @@ export const Wrapper = styled.div`
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
 export const InnerBorder = styled(Clickable)`
   display: flex;
-  box-shadow: ${props =>
+  box-shadow: ${(props) =>
     props.borderColor ? `inset 0 0 0 1px ${props.borderColor};` : 'none'};
   z-index: ${Z_ABOVE};
-  border-radius: ${props => props.size / 2}px;
+  border-radius: ${(props) => props.size / 2}px;
 `;
 
 export const Image = styled.img`
-  box-shadow: ${props => props.theme.shadow};
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
-  border-radius: ${props => props.size / 2}px;
+  box-shadow: ${(props) => props.theme.shadow};
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+  border-radius: ${(props) => props.size / 2}px;
   z-index: ${Z_BELOW};
 `;

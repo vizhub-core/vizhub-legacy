@@ -20,7 +20,7 @@ export class GetUserProfileData {
         user.id,
         authenticatedUser
       ),
-      this.datasetGateway.getDatasetInfosByUserId(user.id)
+      this.datasetGateway.getDatasetInfosByUserId(user.id),
     ]);
 
     return { user, visualizationInfos, datasetInfos };

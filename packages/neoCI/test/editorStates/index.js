@@ -9,7 +9,7 @@ import { openMobilePage } from './openMobilePage';
 import { closeMobilePage } from './closeMobilePage';
 import { restoreEditorSection } from './restoreEditorSection';
 
-export const editorStates = my => () => {
+export const editorStates = (my) => () => {
   describe('Desktop Editor States', () => {
     afterEach(verifyHomeState(my));
     it('should toggle editor', toggleEditor(my));

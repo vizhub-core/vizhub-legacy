@@ -4,7 +4,7 @@ export class DocumentContent extends DocumentPart {
   constructor(data) {
     super({
       id: data.id,
-      documentType: data.documentType
+      documentType: data.documentType,
     });
   }
 }

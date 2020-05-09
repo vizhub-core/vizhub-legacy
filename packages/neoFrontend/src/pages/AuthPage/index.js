@@ -7,7 +7,7 @@ import {
   Title,
   Button,
   DevsOnly,
-  Centering
+  Centering,
 } from '../styles';
 import { Box, Octocat, Terms } from './styles';
 import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';

@@ -10,8 +10,8 @@ export class CreateUser {
       oAuthProfile: {
         id,
         username,
-        _json: { name, avatar_url, company, blog, location, email, bio }
-      }
+        _json: { name, avatar_url, company, blog, location, email, bio },
+      },
     } = requestModel;
 
     const user = new User({
@@ -23,11 +23,11 @@ export class CreateUser {
       company,
       website: blog,
       location,
-      bio
+      bio,
     });
 
     return {
-      user: await this.userGateway.createUser(user)
+      user: await this.userGateway.createUser(user),
     };
   }
 }

@@ -14,8 +14,8 @@ export const getProfileDataController = (expressApp, gateways) => {
       res.json({
         error: {
           message: error.message,
-          statusCode: error.statusCode
-        }
+          statusCode: error.statusCode,
+        },
       });
     }
   });

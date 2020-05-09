@@ -1,6 +1,6 @@
 import {
   defaultCodingFontFamily,
-  defaultCodingFontSize
+  defaultCodingFontSize,
 } from '../../../../../../../theme';
 
 // Derived from node_modules/codemirror/addon/hint/show-hint.css

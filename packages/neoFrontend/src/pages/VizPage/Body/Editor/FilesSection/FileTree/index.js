@@ -13,7 +13,7 @@ export const FileTree = ({
   renameActiveFile,
   indent,
   openDirectories,
-  toggleDirectory
+  toggleDirectory,
 }) =>
   fileTree.children ? (
     <>

@@ -63,19 +63,19 @@ export const MessageList = styled.ul`
 `;
 
 export const MessageLink = styled.a`
-  color: ${props => (props.isRed ? props.theme.attentionGrabber : 'white')};
+  color: ${(props) => (props.isRed ? props.theme.attentionGrabber : 'white')};
   text-decoration: underline;
 `;
 
 export const MessageButton = styled(Button)`
   margin-top: 30px;
-  border: solid 1px ${props => props.theme.attentionGrabber};
+  border: solid 1px ${(props) => props.theme.attentionGrabber};
   font-size: 15px;
   color: white;
   :hover {
-    background-color: ${props => props.theme.hoverBackground};
+    background-color: ${(props) => props.theme.hoverBackground};
   }
   :active {
-    background-color: ${props => props.theme.activeBackground};
+    background-color: ${(props) => props.theme.activeBackground};
   }
 `;

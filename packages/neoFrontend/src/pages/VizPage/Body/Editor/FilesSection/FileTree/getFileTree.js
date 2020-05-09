@@ -1,6 +1,6 @@
-export const getFileTree = files => {
+export const getFileTree = (files) => {
   const tree = { name: 'files' };
-  files.forEach(file => {
+  files.forEach((file) => {
     const path = file.name.split('/');
     const n = path.length;
     let node = tree;
@@ -24,7 +24,7 @@ export const getFileTree = files => {
       if (!child) {
         child = {
           name: path[i],
-          path: path.slice(0, i + 1).join('/')
+          path: path.slice(0, i + 1).join('/'),
         };
         (node.children || (node.children = [])).push(child);
       }
@@ -34,7 +34,7 @@ export const getFileTree = files => {
 
     (node.children || (node.children = [])).push({
       name: path[n - 1],
-      file
+      file,
     });
   });
   return tree;

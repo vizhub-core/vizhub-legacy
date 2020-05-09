@@ -6,8 +6,8 @@ import { plainText } from './plainText';
 const unfurlPlaceholder = '<meta name="unfurl-all-that:shit" value="please"/>';
 //const unfurlPlaceholder = /<meta name="unfurl-all-that:shit" value="please"\/>/;
 
-const absolute = relative => 'https://vizhub.com' + relative;
-const previewUrl = id => `/api/visualization/preview/${id}.png`;
+const absolute = (relative) => 'https://vizhub.com' + relative;
+const previewUrl = (id) => `/api/visualization/preview/${id}.png`;
 export const visualizationRoute = ({ userName, id }) => `/${userName}/${id}`;
 
 const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) => `
@@ -36,9 +36,9 @@ export const serveVizPage = (gateways, indexHTML) => {
 
       const {
         visualization: {
-          info: { title, description }
+          info: { title, description },
         },
-        ownerUser: { userName }
+        ownerUser: { userName },
       } = responseModel;
 
       // TODO embed the escaped data into the page
@@ -47,7 +47,7 @@ export const serveVizPage = (gateways, indexHTML) => {
         title,
         descriptionPlainText: plainText(description),
         image: absolute(previewUrl(id)),
-        url: absolute(visualizationRoute({ userName, id }))
+        url: absolute(visualizationRoute({ userName, id })),
       });
 
       res.send(indexHTML.replace(unfurlPlaceholder, unfurlHTML));

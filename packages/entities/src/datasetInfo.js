@@ -11,7 +11,7 @@ export class DatasetInfo extends DocumentInfo {
       slug: data.slug,
       description: data.description,
       createdTimestamp: data.createdTimestamp,
-      lastUpdatedTimestamp: data.lastUpdatedTimestamp
+      lastUpdatedTimestamp: data.lastUpdatedTimestamp,
     });
 
     // The format of this dataset.

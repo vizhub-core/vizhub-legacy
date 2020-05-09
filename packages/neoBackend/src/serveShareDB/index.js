@@ -4,7 +4,7 @@ import { getShareDB } from 'vizhub-server-gateways';
 import { shareDBMiddleware } from './shareDBMiddleware';
 
 // Set up the ShareDB instance and WebSocket server.
-export const serveShareDB = server => {
+export const serveShareDB = (server) => {
   // Set up the WebSocket server.
   const webSocketServer = new WebSocket.Server({ server });
 
@@ -19,7 +19,7 @@ export const serveShareDB = server => {
     const stream = new JSONStream(ws);
 
     // Prevent server crashes on errors.
-    stream.on('error', error => {
+    stream.on('error', (error) => {
       console.log('WebSocket stream error: ' + error.message);
     });
 

@@ -22,7 +22,7 @@ export const Body = () => {
     showEditor,
     activeFile,
     isRecoveryMode,
-    exitRecoveryMode
+    exitRecoveryMode,
   } = useContext(URLStateContext);
 
   const mod = modMode(mode, showEditor, activeFile);
@@ -34,7 +34,7 @@ export const Body = () => {
   const [showTop, setShowTop] = useState(true);
   const toggleShowTop = useCallback(() => setShowTop(!showTop), [
     showTop,
-    setShowTop
+    setShowTop,
   ]);
 
   return isFullScreen ? (

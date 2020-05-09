@@ -13,7 +13,7 @@ export const Body = () => {
       <Content>
         <NavBar />
         <VizPreviews className="test-profile-page-viz-previews">
-          {visualizationInfos.map(vizInfo => (
+          {visualizationInfos.map((vizInfo) => (
             <VizPreview key={vizInfo.id} vizInfo={vizInfo} ownerUser={user} />
           ))}
         </VizPreviews>

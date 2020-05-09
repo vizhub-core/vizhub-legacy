@@ -1,4 +1,4 @@
-export const fetchFork = async visualization => {
+export const fetchFork = async (visualization) => {
   // TODO include pre-fork changes to files.
   // TODO add test for this case.
   // const visualization = Object.assign(
@@ -11,11 +11,11 @@ export const fetchFork = async visualization => {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      visualization
-    })
+      visualization,
+    }),
   });
 
   return await response.json();

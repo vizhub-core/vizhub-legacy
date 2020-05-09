@@ -1,4 +1,4 @@
-export const signOut = my => async () => {
+export const signOut = (my) => async () => {
   const { page } = my;
 
   // Pop open the menu, so the sign out button appears.

@@ -4,26 +4,26 @@ import { Wrapper, EditableFileInput } from './styles';
 export const EditableFileEntry = ({
   changeFileName,
   initialFileName,
-  indent
+  indent,
 }) => {
   const [fileName, setEditableFileNewName] = useState(initialFileName);
 
   const onEditableFileChange = useCallback(
-    event => {
+    (event) => {
       setEditableFileNewName(event.target.value);
     },
     [setEditableFileNewName]
   );
 
   const onEditableFileBlur = useCallback(
-    event => {
+    (event) => {
       changeFileName(event.target.value);
     },
     [changeFileName]
   );
 
   const onEditableFileKeyDown = useCallback(
-    event => {
+    (event) => {
       if (event.key === 'Enter') {
         changeFileName(event.target.value);
       }

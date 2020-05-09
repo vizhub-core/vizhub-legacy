@@ -3,7 +3,7 @@ import { Clickable } from '../../../../../styles';
 
 export const Wrapper = styled(Clickable)`
   width: 125px;
-  height: ${props => props.theme.headHeight}px;
+  height: ${(props) => props.theme.headHeight}px;
   display: flex;
   align-items: center;
   justify-content: center;

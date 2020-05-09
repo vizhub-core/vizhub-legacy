@@ -5,7 +5,7 @@ import {
   Wrapper,
   ImageLink,
   VizPreviewFooter,
-  VizPreviewTitle
+  VizPreviewTitle,
 } from './styles';
 
 export { VizPreviews } from './styles';
@@ -23,7 +23,7 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
         key={id}
         title={title}
         style={{
-          backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`
+          backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`,
         }}
       />
       <VizPreviewFooter borderRadiusLarge={true}>

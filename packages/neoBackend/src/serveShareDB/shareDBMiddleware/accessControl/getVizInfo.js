@@ -3,7 +3,7 @@ import { getConnection } from 'vizhub-server-gateways';
 import {
   DOCUMENT_CONTENT,
   DOCUMENT_INFO,
-  fetchShareDBDoc
+  fetchShareDBDoc,
 } from 'vizhub-database';
 
 // Gets the VisualitionInfo document
@@ -13,7 +13,7 @@ export const getVizInfo = async (collection, snapshot) => {
   if (collection === DOCUMENT_CONTENT) {
     // Query for corresponding info document
     return fetchShareDBDoc(DOCUMENT_INFO, snapshot.id, getConnection()).then(
-      infoDoc => new VisualizationInfo(infoDoc.data)
+      (infoDoc) => new VisualizationInfo(infoDoc.data)
     );
   }
 

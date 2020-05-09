@@ -25,7 +25,7 @@ export const Editor = ({ showTop, toggleShowTop }) => {
   // Easter egg.
   window.vizhub.enableColorRotation = () => {
     setRotationEnabled(true);
-    window.addEventListener('mousemove', event => {
+    window.addEventListener('mousemove', (event) => {
       setRotation(event.clientX / 1000);
     });
   };

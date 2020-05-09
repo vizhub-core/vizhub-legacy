@@ -11,7 +11,7 @@ export class VisualizationInfo extends DocumentInfo {
       slug: data.slug,
       description: data.description,
       createdTimestamp: data.createdTimestamp,
-      lastUpdatedTimestamp: data.lastUpdatedTimestamp
+      lastUpdatedTimestamp: data.lastUpdatedTimestamp,
     });
 
     // The visualization that this visualization was forked from.

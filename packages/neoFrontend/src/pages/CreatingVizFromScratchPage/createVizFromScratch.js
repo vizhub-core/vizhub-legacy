@@ -10,7 +10,7 @@ export const createVizFromScratch = async (me, history) => {
     console.log(error);
   } else {
     history.push({
-      pathname: `/${me.userName}/${id}`
+      pathname: `/${me.userName}/${id}`,
     });
   }
 };

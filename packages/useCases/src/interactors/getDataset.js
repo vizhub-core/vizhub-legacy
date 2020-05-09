@@ -20,7 +20,7 @@ export class GetDataset {
 
     return await this.datasetGateway.getDataset({
       owner: ownerUser.id,
-      slug
+      slug,
     });
   }
 }

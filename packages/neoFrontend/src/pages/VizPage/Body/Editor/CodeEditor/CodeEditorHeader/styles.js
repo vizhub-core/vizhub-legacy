@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
-  background-color: ${props => props.theme.editor.headerBackgroundColor};
+  background-color: ${(props) => props.theme.editor.headerBackgroundColor};
 `;
 
 export const Icons = styled.div`

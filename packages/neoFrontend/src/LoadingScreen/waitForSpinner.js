@@ -1,7 +1,7 @@
 import { animationDelay, blankScreenDelay } from './animationDelay';
 
 export const waitForSpinner = (dataLoaded, minSpinnerTime) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     let animationStarted = false;
 
     // If the optional argument minSpinnerTime is set,
@@ -21,7 +21,7 @@ export const waitForSpinner = (dataLoaded, minSpinnerTime) =>
         }, animationDelay);
       }, blankScreenDelay);
 
-      dataLoaded.then(data => {
+      dataLoaded.then((data) => {
         // If the dataLoaded promise resolves before blankScreenDelay ms elapsed,
         if (!animationStarted) {
           // then the spinner is never shown.

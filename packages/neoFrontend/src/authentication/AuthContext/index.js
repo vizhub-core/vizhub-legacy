@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     // See https://juliangaramendy.dev/use-promise-subscription/
     let subscribed = true;
 
-    fetchMe().then(me => {
+    fetchMe().then((me) => {
       if (subscribed) {
         setMe(me);
       }
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   const contextValue = {
     me,
     signIn: useCallback(signInFlow(setMe), [setMe]),
-    signOut: useCallback(signOutFlow(setMe), [setMe])
+    signOut: useCallback(signOutFlow(setMe), [setMe]),
   };
 
   return (

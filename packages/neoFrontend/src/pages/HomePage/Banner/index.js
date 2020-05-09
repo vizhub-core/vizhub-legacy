@@ -9,7 +9,7 @@ import {
   MessageLargeText,
   MessageList,
   MessageLink,
-  MessageButton
+  MessageButton,
 } from './styles';
 export const Banner = () => (
   <Wrapper>

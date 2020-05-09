@@ -1,16 +1,16 @@
 import { useState, useCallback } from 'react';
 import { initialOpenDirectories } from './initialOpenDirectories';
 
-export const useOpenDirectories = activeFile => {
+export const useOpenDirectories = (activeFile) => {
   const [openDirectories, setOpenDirectories] = useState(
     initialOpenDirectories(activeFile)
   );
 
   const toggleDirectory = useCallback(
-    directory => {
+    (directory) => {
       setOpenDirectories(
         Object.assign({}, openDirectories, {
-          [directory]: !openDirectories[directory]
+          [directory]: !openDirectories[directory],
         })
       );
     },

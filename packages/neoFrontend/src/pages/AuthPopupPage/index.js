@@ -20,7 +20,7 @@ export const AuthPopupPage = () => {
 
   // Get the JWT token from backend API.
   useEffect(() => {
-    getJWT(code).then(data => {
+    getJWT(code).then((data) => {
       if (data.error) {
         setError(new Error(data.errorDescription));
       } else {

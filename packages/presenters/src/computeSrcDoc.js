@@ -1,17 +1,17 @@
 import magicSandbox from './magicSandbox';
 import { getText } from './accessors';
 
-const template = files => getText(files, 'index.html');
+const template = (files) => getText(files, 'index.html');
 
-const transform = files =>
+const transform = (files) =>
   files
-    .filter(file => file.name !== 'index.html')
+    .filter((file) => file.name !== 'index.html')
     .reduce((accumulator, file) => {
       accumulator[file.name] = {
-        content: file.text
+        content: file.text,
       };
       return accumulator;
     }, {});
 
-export const computeSrcDoc = files =>
+export const computeSrcDoc = (files) =>
   magicSandbox(template(files), transform(files));

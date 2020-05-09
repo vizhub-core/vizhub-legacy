@@ -6,8 +6,8 @@ import { fetchPageData } from './fetchPageData';
 export const usePageData = () => {
   const query = useSearchQuery('query');
 
-  const fetchData = useCallback(offset => fetchPageData(query, offset), [
-    query
+  const fetchData = useCallback((offset) => fetchPageData(query, offset), [
+    query,
   ]);
 
   const {
@@ -15,7 +15,7 @@ export const usePageData = () => {
     paginate,
     usersById,
     isFetchingNextPage,
-    reset
+    reset,
   } = useVizzesGridPageData(fetchData);
 
   // reset page data if query was changed
@@ -25,6 +25,6 @@ export const usePageData = () => {
     visualizationInfos,
     paginate,
     usersById,
-    isFetchingNextPage
+    isFetchingNextPage,
   };
 };

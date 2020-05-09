@@ -1,6 +1,6 @@
 import { navClick } from '../navClick';
 
-export const setupRealtimeViz = my => async () => {
+export const setupRealtimeViz = (my) => async () => {
   // Make a fresh viz so we can mess around.
   const { page } = my;
 

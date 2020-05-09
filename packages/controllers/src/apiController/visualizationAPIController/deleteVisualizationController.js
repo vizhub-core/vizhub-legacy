@@ -8,13 +8,13 @@ export const deleteVisualizationController = (expressApp, gateways) => {
     try {
       const requestModel = {
         id: req.body.id,
-        userId: userIdFromReq(req)
+        userId: userIdFromReq(req),
       };
       const responseModel = await deleteVisualization.execute(requestModel);
       res.json(responseModel);
     } catch (error) {
       res.json({
-        error: error.message
+        error: error.message,
       });
     }
   });

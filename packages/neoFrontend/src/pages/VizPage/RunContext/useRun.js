@@ -4,7 +4,7 @@ import {
   useEffect,
   useContext,
   useState,
-  useRef
+  useRef,
 } from 'react';
 import { runDelay } from '../../../constants';
 import { Subject } from 'rxjs';
@@ -25,7 +25,7 @@ export const useRun = () => {
     viz$,
     submitVizContentOp,
     submitVizInfoOp,
-    vizContentOp$
+    vizContentOp$,
   } = useContext(VizContext);
   const [runId, setRunId] = useState(generateRunId());
   const [runError, setRunError] = useState(null);
@@ -61,7 +61,7 @@ export const useRun = () => {
   const setRunIdSoon = useCallback(
     (() => {
       let timeout;
-      return newRunId => {
+      return (newRunId) => {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
           setRunId(newRunId);
@@ -113,7 +113,7 @@ export const useRun = () => {
     realtimeModules,
     viz$,
     submitVizContentOp,
-    submitVizInfoOp
+    submitVizInfoOp,
   ]);
 
   // If the timer has been started, reset it.
@@ -211,6 +211,6 @@ export const useRun = () => {
     isAutoRunEnabled,
     setIsAutoRunEnabled,
     needsManualRun,
-    run
+    run,
   };
 };

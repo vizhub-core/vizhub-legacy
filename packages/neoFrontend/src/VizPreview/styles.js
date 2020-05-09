@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 12px;
-  color: ${props => props.theme.dark};
+  color: ${(props) => props.theme.dark};
 `;
 
 // Inspired by https://vega.github.io/vega/
@@ -24,17 +24,17 @@ export const ImageLink = styled(Link)`
   overflow: hidden;
   position: relative;
   transition: background-position 3s;
-  box-shadow: ${props => props.theme.shadow};
-  border-top-right-radius: ${props => props.theme.borderRadiusLarge}px;
-  border-top-left-radius: ${props => props.theme.borderRadiusLarge}px;
+  box-shadow: ${(props) => props.theme.shadow};
+  border-top-right-radius: ${(props) => props.theme.borderRadiusLarge}px;
+  border-top-left-radius: ${(props) => props.theme.borderRadiusLarge}px;
   &:hover {
     background-position: right bottom;
   }
 `;
 
 export const VizPreviewFooter = styled(Footer)`
-  border-bottom-right-radius: ${props => props.theme.borderRadiusLarge}px;
-  border-bottom-left-radius: ${props => props.theme.borderRadiusLarge}px;
+  border-bottom-right-radius: ${(props) => props.theme.borderRadiusLarge}px;
+  border-bottom-left-radius: ${(props) => props.theme.borderRadiusLarge}px;
   box-sizing: border-box;
   z-index: ${Z_WAY_ABOVE};
   padding-left: 6px;

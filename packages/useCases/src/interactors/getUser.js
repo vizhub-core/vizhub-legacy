@@ -8,7 +8,7 @@ export class GetUser {
   async execute(requestModel) {
     const { id } = requestModel;
     const responseModel = {
-      user: id === ciUser.id ? ciUser : await this.userGateway.getUser(id)
+      user: id === ciUser.id ? ciUser : await this.userGateway.getUser(id),
     };
     return responseModel;
   }

@@ -1,6 +1,6 @@
 import { CreateUser, GetUser } from 'vizhub-use-cases';
 
-export const userController = userGateway => {
+export const userController = (userGateway) => {
   const createUser = new CreateUser({ userGateway });
   const getUser = new GetUser({ userGateway });
   return {
@@ -13,6 +13,6 @@ export const userController = userGateway => {
       const requestModel = { id };
       const responseModel = await getUser.execute(requestModel);
       return responseModel.user;
-    }
+    },
   };
 };

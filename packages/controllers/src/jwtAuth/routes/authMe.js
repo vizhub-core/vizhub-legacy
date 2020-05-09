@@ -3,7 +3,7 @@ import { GetUser } from 'vizhub-use-cases';
 import { getUserIDFromJWT } from '../jwt';
 import { toErrorResponse } from '../../Error';
 
-export const authMe = userGateway => {
+export const authMe = (userGateway) => {
   const getUser = new GetUser({ userGateway });
   return asyncHandler(async (req, res) => {
     try {

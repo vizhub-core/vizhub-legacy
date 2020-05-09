@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { navClick } from '../navClick';
 
-export const navigateToCreateVizPage = my => async () => {
+export const navigateToCreateVizPage = (my) => async () => {
   const { page } = my;
 
   // Pop open the menu, so the "create visualization" button appears.

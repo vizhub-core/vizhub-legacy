@@ -3,7 +3,7 @@ import {
   getFileIndex,
   deleteFileOp,
   fileChangeOp,
-  fileCreateOp
+  fileCreateOp,
 } from 'vizhub-presenters';
 
 export const updateBundleIfNeeded = async (

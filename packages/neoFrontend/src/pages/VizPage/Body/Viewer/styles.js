@@ -22,6 +22,6 @@ export const ViewerContent = styled(Content)`
 export const ViewerFooter = styled.div`
   font-size: 10px;
   text-align: center;
-  color: ${props => props.theme.veryLightPink};
+  color: ${(props) => props.theme.veryLightPink};
   padding: 20px 0 20px 0;
 `;

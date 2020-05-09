@@ -11,7 +11,7 @@ export class GetPreview {
     }
 
     const preview = await this.imageStorageGateway.getPreview({
-      id: requestModel.id
+      id: requestModel.id,
     });
 
     return { preview };

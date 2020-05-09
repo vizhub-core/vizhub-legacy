@@ -2,7 +2,6 @@ import assert from 'assert';
 import { navClick } from '../navClick';
 
 export const forkToPrivate = (my) => async () => {
-
   // Open the privacy dialog.
   await navClick(my.page, '.test-toggle-editor');
   await my.page.waitFor('.test-editor');
@@ -14,7 +13,7 @@ export const forkToPrivate = (my) => async () => {
     `.test-settings-dialog-radio-${fromPrivacyValue}`
   );
   const fromRadioButtonIsActive = await my.page.evaluate(
-    el => el.getAttribute('data-test-is-active'),
+    (el) => el.getAttribute('data-test-is-active'),
     fromRadioButton
   );
   assert.equal(fromRadioButtonIsActive, 'true');
@@ -47,17 +46,14 @@ export const forkToPrivate = (my) => async () => {
     `.test-settings-dialog-radio-${forkedPrivacyValue}`
   );
   const forkedRadioButtonIsActive = await my.page.evaluate(
-    el => el.getAttribute('data-test-is-active'),
+    (el) => el.getAttribute('data-test-is-active'),
     forkedRadioButton
   );
   assert.equal(forkedRadioButtonIsActive, 'true');
 
-
-
   //// Stash the URL for later mobile testing.
   //my.privateVizURL = url;
   //my.privateVizId = id;
-
 
   //// Switch to desired privacy setting.
   //const toRadioButton = await my.page.waitFor(

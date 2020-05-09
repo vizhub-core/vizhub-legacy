@@ -3,12 +3,12 @@ import {
   defaultCodingFont,
   defaultCodingFontSize,
   defaultCodingLigatures,
-  fontFamily
+  fontFamily,
 } from '../../../../theme';
 //import * as themes from './themes';
 import { vizHub } from './themes';
 
-export const useEditorTheme = rotation => {
+export const useEditorTheme = (rotation) => {
   // TODO port PreferencesContext from vizhub2 repo
   //const { colorTheme, font, ligatures } = useContext(PreferencesContext);
   const font = defaultCodingFont;
@@ -21,8 +21,8 @@ export const useEditorTheme = rotation => {
         font: {
           family: fontFamily(font, ligatures),
           size: defaultCodingFontSize,
-          ligatures: ligatures !== 'none'
-        }
+          ligatures: ligatures !== 'none',
+        },
       }),
     [rotation, font, ligatures]
   );

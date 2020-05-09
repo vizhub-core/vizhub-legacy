@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HorizontalRule = styled.div`
   height: 1px;
-  background-color: ${props => props.theme.rule};
+  background-color: ${(props) => props.theme.rule};
 `;
 
 export const Dialog = styled.div`
@@ -31,7 +31,7 @@ export const Section = styled.div`
 
 export const SectionTitle = styled.div`
   font-size: 14px;
-  color: ${props => props.theme.lightText};
+  color: ${(props) => props.theme.lightText};
   padding-top: 32px;
   padding-bottom: 8px;
 `;
@@ -40,18 +40,18 @@ export const SectionDescription = styled.div`
   font-size: 14px;
   padding-top: 12px;
   padding-bottom: 12px;
-  color: ${props => props.theme.dark};
+  color: ${(props) => props.theme.dark};
 `;
 
 export const SubSectionDescription = styled.div`
   font-size: 14px;
   padding-top: 12px;
   padding-bottom: 12px;
-  color: ${props => props.theme.lightText};
+  color: ${(props) => props.theme.lightText};
 `;
 
 export const Spacer = styled.div`
-  margin-top: ${props => (props.height === undefined ? 32 : props.height)}px;
+  margin-top: ${(props) => (props.height === undefined ? 32 : props.height)}px;
 `;
 
 export const FormRow = styled.div`

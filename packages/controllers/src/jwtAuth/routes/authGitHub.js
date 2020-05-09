@@ -5,7 +5,7 @@ import { getAccessToken } from '../getAccessToken';
 import { getGitHubUser } from '../getGitHubUser';
 import { jwtSign } from '../jwt';
 
-export const authGitHub = userGateway => {
+export const authGitHub = (userGateway) => {
   const getOrCreateUser = new GetOrCreateUser({ userGateway });
   return asyncHandler(async (req, res) => {
     try {
@@ -15,7 +15,7 @@ export const authGitHub = userGateway => {
       const oAuthProfile = {
         id: '' + gitHubUser.id,
         username: gitHubUser.login,
-        _json: gitHubUser
+        _json: gitHubUser,
       };
 
       const responseModel = await getOrCreateUser.execute({ oAuthProfile });

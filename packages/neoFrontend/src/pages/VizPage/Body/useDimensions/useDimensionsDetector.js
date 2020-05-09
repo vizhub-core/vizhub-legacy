@@ -19,7 +19,7 @@ export const useDimensionsDetector = (containerRef, onDimensionsChanged) => {
         top: 0,
         width: '100%',
         height: '100%',
-        'pointer-events': 'none'
+        'pointer-events': 'none',
       });
 
       const container = containerRef.current;

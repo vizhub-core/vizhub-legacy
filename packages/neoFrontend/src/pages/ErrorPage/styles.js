@@ -7,7 +7,7 @@ export const Message = styled.div`
   justify-content: center;
   font-size: 20px;
   font-weight: bold;
-  color: ${props => props.theme.attentionGrabber};
+  color: ${(props) => props.theme.attentionGrabber};
   padding: 10px;
   box-sizing: border-box;
   text-align: center;

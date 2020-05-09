@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   position: fixed;
   right: 25px;
   bottom: 10px;
-  width: ${props => props.theme.miniWidth}px;
+  width: ${(props) => props.theme.miniWidth}px;
 
   display: flex;
   flex-direction: column;

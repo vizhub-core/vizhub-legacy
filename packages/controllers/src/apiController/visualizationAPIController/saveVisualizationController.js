@@ -8,7 +8,7 @@ export const saveVisualizationController = (expressApp, gateways) => {
     try {
       const requestModel = {
         visualization: req.body.visualization,
-        userId: userIdFromReq(req)
+        userId: userIdFromReq(req),
       };
       const responseModel = await saveVisualization.execute(requestModel);
       res.json(responseModel);

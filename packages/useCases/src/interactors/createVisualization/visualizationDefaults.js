@@ -14,7 +14,7 @@ const files = [
     <div id="message"></div>
     <script src="bundle.js"></script>
   </body>
-</html>`
+</html>`,
   },
 
   {
@@ -23,25 +23,25 @@ const files = [
   background-color: red;
   margin 0px;
   font-size: 8em;
-}`
+}`,
   },
 
   {
     name: 'index.js',
     text: `import { select } from 'd3';
 import { message } from './message';
-select('#message').text(message);`
+select('#message').text(message);`,
   },
 
   {
     name: 'message.js',
-    text: 'export const message = "D3 and ES6 imports are working !"'
+    text: 'export const message = "D3 and ES6 imports are working !"',
   },
 
   {
     name: 'README.md',
-    text: 'This is a cool [dataviz](https://twitter.com/search?q=%23dataviz)!'
-  }
+    text: 'This is a cool [dataviz](https://twitter.com/search?q=%23dataviz)!',
+  },
 ];
 
 export const visualizationDefaults = {
@@ -50,5 +50,5 @@ export const visualizationDefaults = {
   description: 'No description',
   files,
   forkedFrom: undefined,
-  height: undefined
+  height: undefined,
 };

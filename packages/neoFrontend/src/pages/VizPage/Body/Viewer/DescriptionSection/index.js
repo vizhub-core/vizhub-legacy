@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { toDate } from 'vizhub-entities';
 import {
   showCreatedDate,
-  showVideoThumbnail
+  showVideoThumbnail,
 } from '../../../../../featureFlags';
 import {
   Wrapper,
@@ -14,17 +14,17 @@ import {
   VideoThumbnail,
   Description,
   SemiBold,
-  VizLink
+  VizLink,
 } from './styles';
 import { Author } from '../../../../../Author';
 import { responsiveYouTube } from './responsiveYouTube';
 import { renderMarkdown } from './renderMarkdown';
 
-const formatTimestamp = timestamp =>
+const formatTimestamp = (timestamp) =>
   toDate(timestamp).toLocaleString(undefined, {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   });
 
 export const DescriptionSection = ({
@@ -32,10 +32,10 @@ export const DescriptionSection = ({
   ownerUser,
   forkedFromVisualizationInfo,
   forkedFromVisualizationOwnerUserName,
-  size
+  size,
 }) => {
   const created = useMemo(() => formatTimestamp(vizInfo.createdTimestamp), [
-    vizInfo.createdTimestamp
+    vizInfo.createdTimestamp,
   ]);
 
   const lastUpdated = useMemo(

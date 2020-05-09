@@ -7,7 +7,7 @@ export const getVisualizationController = (expressApp, gateways) => {
     try {
       const requestModel = {
         id: req.params.id,
-        user: userIdFromReq(req)
+        user: userIdFromReq(req),
       };
       const responseModel = await getVisualization.execute(requestModel);
       res.json(responseModel);

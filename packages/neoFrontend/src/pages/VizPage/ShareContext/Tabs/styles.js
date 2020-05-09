@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 export const TabWrapper = styled(Clickable)`
   font-size: 16px;
   font-weight: 500;
-  border-bottom: ${props =>
+  border-bottom: ${(props) =>
     props.isActive ? `4px solid ${props.theme.interactive}` : 'none'};
   margin-right: 12px;
   padding: 4px;

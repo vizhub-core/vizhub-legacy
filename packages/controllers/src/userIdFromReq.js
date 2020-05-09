@@ -1,5 +1,5 @@
 import { getUserIDFromJWT } from './jwtAuth';
-export const userIdFromReq = req => {
+export const userIdFromReq = (req) => {
   // Handle VizHub 1.0 sessions.
   if (req.user) {
     return req.user.id;

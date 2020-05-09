@@ -33,7 +33,7 @@ export class CreateDataset {
         sourceName,
         sourceUrl,
         createdTimestamp: nowTimestamp,
-        lastUpdatedTimestamp: nowTimestamp
+        lastUpdatedTimestamp: nowTimestamp,
       })
     );
   }

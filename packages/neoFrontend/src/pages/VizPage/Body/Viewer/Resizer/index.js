@@ -11,7 +11,7 @@ export const Resizer = () => {
   const previousClientX = useRef();
 
   const onMouseDown = useCallback(
-    event => {
+    (event) => {
       event.preventDefault();
       previousClientX.current = event.clientX;
       setIsDragging(true);
@@ -21,7 +21,7 @@ export const Resizer = () => {
   );
 
   const onMouseMove = useCallback(
-    event => {
+    (event) => {
       event.preventDefault();
       const movementClientX = event.clientX - previousClientX.current;
       previousClientX.current = event.clientX;

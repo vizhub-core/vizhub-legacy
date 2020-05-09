@@ -28,8 +28,8 @@ export const Bottom = styled.div`
 `;
 
 export const FrameFooter = styled(Footer)`
-  border-bottom-right-radius: ${props => props.theme.borderRadiusSmall}px;
-  border-bottom-left-radius: ${props => props.theme.borderRadiusSmall}px;
+  border-bottom-right-radius: ${(props) => props.theme.borderRadiusSmall}px;
+  border-bottom-left-radius: ${(props) => props.theme.borderRadiusSmall}px;
   position: relative;
   z-index: ${Z_WAY_ABOVE};
   justify-content: space-between;

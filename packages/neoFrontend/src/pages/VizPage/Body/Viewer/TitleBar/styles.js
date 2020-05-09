@@ -23,8 +23,8 @@ export const Voter = styled.div`
 `;
 
 export const VoteIcon = styled.div`
-  margin-left: ${props => (props.leftmost ? '4px' : '13px')};
+  margin-left: ${(props) => (props.leftmost ? '4px' : '13px')};
   margin-right: 4px;
   line-height: 1;
-  cursor: ${props => (props.canVote ? 'pointer' : 'not-allowed')};
+  cursor: ${(props) => (props.canVote ? 'pointer' : 'not-allowed')};
 `;

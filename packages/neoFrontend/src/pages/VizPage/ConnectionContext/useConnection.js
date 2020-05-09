@@ -18,7 +18,7 @@ export const useConnection = () => {
   }, []);
 
   const onClose = useCallback(
-    event => {
+    (event) => {
       if (!event.wasClean) {
         reconnectAttemptCount.current++;
         let countdown = 5;
@@ -52,7 +52,7 @@ export const useConnection = () => {
     [setWarning]
   );
 
-  const onError = useCallback(error => {
+  const onError = useCallback((error) => {
     console.log('WebSocket error:');
     console.error(error);
   }, []);
@@ -78,7 +78,7 @@ export const useConnection = () => {
 
       // If the user is not authenticated,
       // or is trying to edit a viz that belongs to someone else,
-      newConnection.on('error', error => {
+      newConnection.on('error', (error) => {
         // show them the error,
         setWarning(error.message);
 

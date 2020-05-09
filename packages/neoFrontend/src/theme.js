@@ -59,7 +59,7 @@ export const theme = {
   borderRadiusLarge: 6,
   veryLightPink: '#c0c0c0',
   rule: 'rgba(0, 0, 0, 0.19)',
-  interactive: '#3866E9'
+  interactive: '#3866E9',
 };
 theme.userMenuOverlayForeground = theme.dark;
 theme.bottomButtonBackground = theme.editorSectionActiveColor;
@@ -102,12 +102,12 @@ export const darkNavbarTheme = {
   userMenuOverlayBackground: 'rgba(0, 0, 0, 0.5)',
   userMenuOverlayBackgroundHover: 'rgba(0, 0, 0, 0.4)',
   userMenuOverlayBackgroundActive: 'rgba(0, 0, 0, 0.3)',
-  userMenuOverlayForeground: '#ffffff'
+  userMenuOverlayForeground: '#ffffff',
   //editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
 };
 
 const Wrapper = styled.div`
-  color: ${props => props.theme.dark};
+  color: ${(props) => props.theme.dark};
 `;
 
 export const Themed = ({ children }) => (

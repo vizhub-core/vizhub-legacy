@@ -12,7 +12,7 @@ export default function buble(options) {
   return {
     name: 'buble',
 
-    transform: function(code, id) {
+    transform: function (code, id) {
       if (!filter(id)) return null;
 
       try {
@@ -24,6 +24,6 @@ export default function buble(options) {
         e.frame = e.snippet;
         throw e;
       }
-    }
+    },
   };
 }

@@ -10,7 +10,7 @@ import { excludePrivateFromProfilePage } from './excludePrivateFromProfilePage';
 import { includePrivateOnProfilePage } from './includePrivateOnProfilePage';
 import { shareDBBlockReads } from './shareDBBlockReads';
 
-export const privacy = my => () => {
+export const privacy = (my) => () => {
   before(setupPrivateViz(my));
 
   //d3.cross(['public','private'], ['owner', 'non-owner', 'collaborator','anonymous']).forEach(x => console.log(x.join('\t')))
@@ -70,10 +70,7 @@ export const privacy = my => () => {
     it('should return to home state', goToHomeState(my));
     it('should sign in', signIn(my));
     it('should navigate to private viz', vizFound(my));
-    it(
-      'should fork a private viz to a new private viz',
-      forkToPrivate(my)
-    );
+    it('should fork a private viz to a new private viz', forkToPrivate(my));
   });
 
   //describe('ShareDB Middleware Access Control', () => {

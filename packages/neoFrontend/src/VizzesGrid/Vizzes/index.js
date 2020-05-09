@@ -11,7 +11,7 @@ export const Vizzes = ({
   paginate,
   usersById,
   isFetchingNextPage,
-  className
+  className,
 }) => {
   useEffect(() => {
     const onScroll = () => {
@@ -25,13 +25,13 @@ export const Vizzes = ({
     return () => window.removeEventListener('scroll', onScroll);
   }, [paginate]);
 
-  const getUser = useCallback(id => usersById[id], [usersById]);
+  const getUser = useCallback((id) => usersById[id], [usersById]);
 
   return (
     <Wrapper>
       {visualizationInfos.length !== 0 ? (
-        <VizPreviews className={className} >
-          {visualizationInfos.map(vizInfo => (
+        <VizPreviews className={className}>
+          {visualizationInfos.map((vizInfo) => (
             <VizPreview
               key={vizInfo.id}
               vizInfo={vizInfo}

@@ -2,17 +2,17 @@ import {
   Dataset,
   DatasetInfo,
   DatasetContent,
-  DATASET_TYPE
+  DATASET_TYPE,
 } from 'vizhub-entities';
 import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
-export const getDataset = connection => async ({ owner, slug }) => {
+export const getDataset = (connection) => async ({ owner, slug }) => {
   const mongoQuery = {
     documentType: DATASET_TYPE,
     slug,
-    owner
+    owner,
   };
   const results = await fetchShareDBQuery(
     DOCUMENT_INFO,
@@ -26,7 +26,7 @@ export const getDataset = connection => async ({ owner, slug }) => {
   return {
     dataset: new Dataset({
       datasetInfo: new DatasetInfo(info.data),
-      datasetContent: new DatasetContent(content.data)
-    })
+      datasetContent: new DatasetContent(content.data),
+    }),
   };
 };

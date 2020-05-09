@@ -8,18 +8,18 @@ import queryString from 'query-string';
 let hiddenURLState = {
   // Until the visual editor is ready,
   // open it to the files section automatically.
-  edit: 'files'
+  edit: 'files',
 };
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
   const state = useMemo(() => queryString.parse(location.search), [
-    location.search
+    location.search,
   ]);
 
   state.hidden = hiddenURLState;
 
   const dispatch = useCallback(
-    action => {
+    (action) => {
       const nextState = reducer(state, action);
       hiddenURLState = nextState.hidden;
 
@@ -31,7 +31,7 @@ export const useURLStateReducer = (reducer, { history, match, location }) => {
       history.push({
         pathname: match.url,
         search: queryString.stringify(nextState),
-        hash: window.location.hash
+        hash: window.location.hash,
       });
     },
     [reducer, state, history, match.url]

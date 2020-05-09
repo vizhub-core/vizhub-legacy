@@ -1,7 +1,7 @@
 import { AUTH_PENDING } from '../constants';
 import { fetchSignOut } from './fetchSignOut';
 
-export const signOutFlow = setMe => () => {
+export const signOutFlow = (setMe) => () => {
   setMe(AUTH_PENDING);
   fetchSignOut().then(({ ok }) => {
     if (ok) {

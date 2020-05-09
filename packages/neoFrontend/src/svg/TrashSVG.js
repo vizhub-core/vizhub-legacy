@@ -11,7 +11,7 @@ const Path = styled.path`
 export const TrashSVG = ({
   height = 15,
   fill = 'currentcolor',
-  isRed = false
+  isRed = false,
 }) => (
   <svg height={height} viewBox="0 0 12 15">
     <Path

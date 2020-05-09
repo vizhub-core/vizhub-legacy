@@ -12,7 +12,7 @@ import {
   Section,
   SectionTitle,
   SectionDescription,
-  Spacer
+  Spacer,
 } from '../styles';
 import { useSettings } from './useSettings';
 import { SetHeight } from './SetHeight';
@@ -28,7 +28,7 @@ export const SettingsProvider = ({ children }) => {
     setVizPrivacy,
     vizHeight,
     setVizHeight,
-    vizInfo
+    vizInfo,
   } = useSettings();
 
   const { me } = useContext(AuthContext);
@@ -36,7 +36,7 @@ export const SettingsProvider = ({ children }) => {
   // Make it so hitting Enter in a text input
   // closes the modal (equivalent to hitting the "Done" button.
   const onSubmit = useCallback(
-    event => {
+    (event) => {
       hideSettingsModal();
       event.preventDefault();
     },

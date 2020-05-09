@@ -5,10 +5,10 @@ const SVG = styled.svg``;
 
 const Circle = styled.circle`
   ${SVG}:hover & {
-    fill: ${props => props.hoverBackground};
+    fill: ${(props) => props.hoverBackground};
   }
   ${SVG}:active & {
-    fill: ${props => props.activeBackground};
+    fill: ${(props) => props.activeBackground};
   }
 `;
 const cx = 10;
@@ -21,7 +21,7 @@ export const VoteSVG = withTheme(
     height = 20,
     fill = 'currentcolor',
     didVote = false,
-    theme
+    theme,
   }) => (
     <SVG height={height} viewBox="0 0 20 20">
       <g

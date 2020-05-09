@@ -3,7 +3,7 @@ import {
   getVizPrivacy,
   privacyChangeOp,
   heightChangeOp,
-  getVizInfo
+  getVizInfo,
 } from 'vizhub-presenters';
 import { useValue } from '../../../useValue';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
@@ -25,7 +25,7 @@ export const useSettings = () => {
 
   const vizPrivacy = useValue(viz$, getVizPrivacy);
   const setVizPrivacy = useCallback(
-    newVizPrivacy => {
+    (newVizPrivacy) => {
       submitVizInfoOp(
         privacyChangeOp(
           viz$.getValue().info.privacy,
@@ -45,7 +45,7 @@ export const useSettings = () => {
   const vizHeight = vizInfo.height;
 
   const setVizHeight = useCallback(
-    newVizHeight => {
+    (newVizHeight) => {
       submitVizInfoOp(
         heightChangeOp(
           viz$.getValue().info.height,
@@ -65,6 +65,6 @@ export const useSettings = () => {
     setVizPrivacy,
     vizHeight,
     setVizHeight,
-    vizInfo
+    vizInfo,
   };
 };

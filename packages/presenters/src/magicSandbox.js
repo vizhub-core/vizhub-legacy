@@ -7,7 +7,7 @@
 //  - Erik Hazzard (@erikhazzard)
 //  - Curran Kelleher (@curran)
 //  - Micah Stubbs (@micahstubbs)
-export default function(template, files) {
+export default function (template, files) {
   // We parse the user's code to handle some cases where people expect
   // to be able to use relative urls to load files associated with the block
   // (things like external script files, style files or using XHR to grab data)
@@ -23,7 +23,7 @@ export default function(template, files) {
   var re = new RegExp(find, 'g');
   var matches = template.match(re);
   if (matches) {
-    matches.forEach(function(match, i) {
+    matches.forEach(function (match, i) {
       var proto = match.replace('//', 'https://');
       template = template.replace(match, proto);
     });
@@ -32,7 +32,7 @@ export default function(template, files) {
   re = new RegExp(find, 'g');
   matches = template.match(re);
   if (matches) {
-    matches.forEach(function(match, i) {
+    matches.forEach(function (match, i) {
       var proto = match.replace('//', 'https://');
       template = template.replace(match, proto);
     });
@@ -40,7 +40,7 @@ export default function(template, files) {
 
   var referencedFiles = {};
   var fileNames = Object.keys(files);
-  fileNames.forEach(function(file) {
+  fileNames.forEach(function (file) {
     if (!files[file] || !files[file].content) return;
     if (file === 'index.html') return;
     if (file === 'thumbnail.png') return; // lets ignore the thumbnail if its there
