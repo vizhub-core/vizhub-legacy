@@ -80,7 +80,7 @@ export const useViz = (initialViz) => {
     submitVizContentOp,
     submitVizInfoOp,
     vizContentOp$,
-    //vizContentPresence$,
-    //submitVizContentPresence
+    vizContentPresence$,
+    submitVizContentPresence
   };
 };
