@@ -68,7 +68,7 @@ describe('Presenters', () => {
       ];
       assert.deepEqual(removeSourceMap(await bundle(files)), [{
         name: 'bundle.js',
-        text: "(function (React) {\n\t'use strict';\n\n\tReact = React && React.hasOwnProperty('default') ? React['default'] : React;\n\n\tconsole.log(React);\n\n}(React));\n"
+        text:"(function (React) {\n\t'use strict';\n\n\tReact = React && Object.prototype.hasOwnProperty.call(React, 'default') ? React['default'] : React;\n\n\tconsole.log(React);\n\n}(React));\n"
       }]);
     });
 
