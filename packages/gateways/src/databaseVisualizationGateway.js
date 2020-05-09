@@ -20,7 +20,8 @@ export class DatabaseVisualizationGateway {
       forkedFrom,
       height,
       createdTimestamp,
-      lastUpdatedTimestamp
+      lastUpdatedTimestamp,
+      privacy
     } = options;
 
     const visualization = new Visualization({
@@ -39,7 +40,8 @@ export class DatabaseVisualizationGateway {
         height,
 
         createdTimestamp,
-        lastUpdatedTimestamp
+        lastUpdatedTimestamp,
+        privacy
       }),
       visualizationContent: new VisualizationContent({
         id,
