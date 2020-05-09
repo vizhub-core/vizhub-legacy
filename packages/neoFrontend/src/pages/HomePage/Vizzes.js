@@ -3,5 +3,5 @@ import { Vizzes as VizzesPresentation } from '../../VizzesGrid/Vizzes';
 import { HomePageDataContext } from './HomePageDataContext';
 
 export const Vizzes = () => (
-  <VizzesPresentation {...useContext(HomePageDataContext)} />
+  <VizzesPresentation className="test-home-page-viz-previews" {...useContext(HomePageDataContext)} />
 );

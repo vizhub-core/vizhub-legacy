@@ -1,2 +1,2 @@
-import uuidV4 from 'uuid/v4';
+import { v4 as uuidV4 } from 'uuid';
 export const generateId = () => uuidV4().replace(/-/g, '');

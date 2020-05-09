@@ -10,7 +10,8 @@ export const Vizzes = ({
   visualizationInfos,
   paginate,
   usersById,
-  isFetchingNextPage
+  isFetchingNextPage,
+  className
 }) => {
   useEffect(() => {
     const onScroll = () => {
@@ -29,7 +30,7 @@ export const Vizzes = ({
   return (
     <Wrapper>
       {visualizationInfos.length !== 0 ? (
-        <VizPreviews className="test-page-viz-previews">
+        <VizPreviews className={className} >
           {visualizationInfos.map(vizInfo => (
             <VizPreview
               key={vizInfo.id}
