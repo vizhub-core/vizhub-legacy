@@ -44,18 +44,5 @@ export const useShareDBDoc = (collection, id) => {
     };
   }, [connection, collection, id, onError]);
 
-  // Manage presence.
-  //useEffect(() => {
-  //  if (!connection) return;
-
-  //  const presence = connection.getDocPresence(collection, id);
-  //  presence.subscribe(function(error) {
-  //    if (error) throw error;
-  //  });
-  //  const localPresence = presence.create();
-
-
-  //}, [connection, collection, id, onError]);
-
   return shareDBDoc;
 };
