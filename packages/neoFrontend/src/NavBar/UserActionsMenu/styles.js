@@ -55,14 +55,14 @@ export const Item = styled(Clickable)`
     10px
     ${props.bottommost ? 7 : 4}px
     10px
-  `}
+  `};
 
   border-radius: ${(props) => `
     ${props.topmost ? borderRadius : 0}
     ${props.topmost ? borderRadius : 0}
     ${props.bottommost ? borderRadius : 0}
     ${props.bottommost ? borderRadius : 0}
-  `}
+  `};
 `;
 
 export const HorizontalRule = styled.div`
