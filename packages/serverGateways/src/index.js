@@ -16,6 +16,6 @@ export const serverGateways = () => {
     visualizationGateway: new DatabaseVisualizationGateway(database),
     datasetGateway: new DatabaseDatasetGateway(database),
     userGateway: new DatabaseUserGateway(database),
-    imageStorageGateway: new DatabaseImageStorageGateway(database),
+    imageStorageGateway: new DatabaseImageStorageGateway(database)
   };
 };
