@@ -33,6 +33,7 @@ export const FilesSection = ({ isRenamingNewFile, setIsRenamingNewFile }) => {
   const createNewFile = useCreateNewFile(
     setIsRenamingNewFile,
     submitVizContentOp,
+    setActiveFile,
     files
   );
 

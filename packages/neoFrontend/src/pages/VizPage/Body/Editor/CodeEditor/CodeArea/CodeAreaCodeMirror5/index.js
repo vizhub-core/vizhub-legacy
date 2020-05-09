@@ -144,6 +144,12 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     codeMirror.setOption('keyMap', keyMap === 'vim' ? 'vim' : defaultKeyMap);
   }, [codeMirror, keyMap]);
 
+  // Ensure newly opened file has focus.
+  useEffect(() => {
+    if (!codeMirror) return;
+    codeMirror.focus();
+  }, [codeMirror, activeFile]);
+
   // Respond to changes in text.
   // Submit ops for local user-generated changes.
   // Ignore other types of changes (remote op, initialization using setValue).
@@ -177,7 +183,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     }
     const { json0 } = realtimeModules;
 
-    const subscription = vizContentOp$.subscribe(({ previous, next, op }) => {
+    const subscription = vizContentOp$.subscribe(({ op }) => {
       if (!submittingOp.current) {
         const doc = codeMirror.getDoc();
         op.forEach((c) => {
