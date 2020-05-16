@@ -257,8 +257,16 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       submitVizContentPresence(presenceObject);
     };
     codeMirror.on('cursorActivity', handleCursorActivity);
+
+    // Remove presence on blur.
+    const handleBlur = () => {
+      submitVizContentPresence(null);
+    };
+    codeMirror.on('blur', handleBlur);
+
     return () => {
       codeMirror.off('cursorActivity', handleCursorActivity);
+      codeMirror.off('blur', handleBlur);
     };
   }, [codeMirror, submitVizContentPresence, path, me]);
 
@@ -271,14 +279,28 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const markers = {};
     const selectionMarkers = {};
     const subscription = vizContentPresence$.subscribe(
-      ({ presenceId, presenceObject, userId }) => {
-        // TODO handle the case of disconnecting clients.
-        if (!presenceObject) return;
+      ({ presenceId, presenceObject }) => {
+        // Clear old cursor marker.
+        const oldMarker = markers[presenceId];
+        if (oldMarker) {
+          oldMarker.clear();
+        }
+
+        // Clear old selection marker.
+        const oldSelectionMarker = selectionMarkers[presenceId];
+        if (oldSelectionMarker) {
+          oldSelectionMarker.clear();
+        }
+
+        // Handle the case of disconnecting clients.
+        if (!presenceObject) {
+          return;
+        }
 
         // Ignore presence changes in files that are not open.
         if (fileIndex !== fileIndexOfPath(presenceObject.path)) return;
 
-        const { index, length } = presenceObject;
+        const { index, length, userId } = presenceObject;
 
         const cursorPos = doc.posFromIndex(index);
         const cursorPosEnd = doc.posFromIndex(index + length);
@@ -302,19 +324,11 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
           widgets[presenceId] = widget;
         }
 
-        // Handle cursor markers.
-        const oldMarker = markers[presenceId];
-        if (oldMarker) {
-          oldMarker.clear();
-        }
+        // Create new cursor marker.
         const newMarker = codeMirror.setBookmark(cursorPos, { widget });
         markers[presenceId] = newMarker;
 
-        // Handle selection markers.
-        const oldSelectionMarker = selectionMarkers[presenceId];
-        if (oldSelectionMarker) {
-          oldSelectionMarker.clear();
-        }
+        // Create new selection marker.
         const newSelectionMarker = codeMirror.markText(
           cursorPos,
           cursorPosEnd,
