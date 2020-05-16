@@ -267,10 +267,12 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
     const widgets = {};
     const markers = {};
+    const selectionMarkers = {};
     const subscription = vizContentPresence$.subscribe(
       ({ presenceId, presenceObject, userId }) => {
         const { index, length } = presenceObject;
         const cursorPos = doc.posFromIndex(index);
+        const cursorPosEnd = doc.posFromIndex(index + length);
 
         const cursorCoords = codeMirror.cursorCoords(cursorPos);
 
@@ -291,6 +293,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
           widgets[presenceId] = widget;
         }
 
+        // Handle cursor markers.
         const oldMarker = markers[presenceId];
         if (oldMarker) {
           oldMarker.clear();
@@ -298,11 +301,20 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         const newMarker = codeMirror.setBookmark(cursorPos, { widget });
         markers[presenceId] = newMarker;
 
+        // Handle selection markers.
+        const oldSelectionMarker = selectionMarkers[presenceId];
+        if (oldSelectionMarker) {
+          oldSelectionMarker.clear();
+        }
+        const newSelectionMarker = codeMirror.markText(
+          cursorPos,
+          cursorPosEnd,
+          {
+            css: `background-color: ${userColor}55`,
+          }
+        );
 
-        console.log(presenceObject);
-        const cursorPosEnd = doc.posFromIndex(index + length);
-        codeMirror.markText(cursorPos, cursorPosEnd, {css: 'background-color: ' + userColor});
-
+        selectionMarkers[presenceId] = newSelectionMarker;
       }
     );
 
