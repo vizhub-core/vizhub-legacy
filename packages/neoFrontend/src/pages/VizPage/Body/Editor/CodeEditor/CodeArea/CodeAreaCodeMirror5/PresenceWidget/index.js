@@ -1,7 +1,8 @@
 import React from 'react';
-import { Wrapper } from './styles';
+import { Wrapper, PresenceAvatar } from './styles';
 
-export const PresenceWidget = ({ charWidth, userColor, height }) => {
+export const PresenceWidget = ({ charWidth, userColor, height, userId }) => {
+  console.log(userId);
   return (
     <Wrapper
       style={{
@@ -9,6 +10,10 @@ export const PresenceWidget = ({ charWidth, userColor, height }) => {
         borderRightColor: userColor,
         height: `${height}px`,
       }}
-    ></Wrapper>
+    >
+      <PresenceAvatar
+        src={`https://avatars0.githubusercontent.com/u/${userId}?v=4&s=32`}
+      />
+    </Wrapper>
   );
 };

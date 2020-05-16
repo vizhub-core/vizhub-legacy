@@ -262,7 +262,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
     // Remove presence on blur.
     const handleBlur = () => {
-      submitVizContentPresence(null);
+      //submitVizContentPresence(null);
     };
     codeMirror.on('blur', handleBlur);
 
@@ -320,6 +320,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
             <PresenceWidget
               charWidth={charWidth}
               userColor={userColor}
+              userId={userId}
               height={cursorCoords.bottom - cursorCoords.top}
             />,
             widget
