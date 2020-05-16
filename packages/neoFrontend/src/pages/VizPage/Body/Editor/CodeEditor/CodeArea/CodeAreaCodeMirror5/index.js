@@ -268,13 +268,13 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const widgets = {};
     const markers = {};
     const subscription = vizContentPresence$.subscribe(
-      ({ presenceId, presenceObject }) => {
-        console.log('got presenceObject');
-        console.log(presenceId);
-        console.log(presenceObject);
-        const cursorPos = doc.posFromIndex(presenceObject.index);
+      ({ presenceId, presenceObject, userId }) => {
+        const { index, length } = presenceObject;
+        const cursorPos = doc.posFromIndex(index);
 
         const cursorCoords = codeMirror.cursorCoords(cursorPos);
+
+        const userColor = colorHash.hex(userId);
 
         let widget = widgets[presenceId];
         if (!widget) {
@@ -285,7 +285,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
           widget.style.marginRight = '-2px';
           widget.style.padding = 0;
           widget.style.zIndex = 0;
-          widget.style.borderLeftColor = colorHash.hex(presenceObject.userId);
+          widget.style.borderLeftColor = userColor;
           widget.style.height = `${cursorCoords.bottom - cursorCoords.top}px`;
 
           widgets[presenceId] = widget;
@@ -297,6 +297,12 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         }
         const newMarker = codeMirror.setBookmark(cursorPos, { widget });
         markers[presenceId] = newMarker;
+
+
+        console.log(presenceObject);
+        const cursorPosEnd = doc.posFromIndex(index + length);
+        codeMirror.markText(cursorPos, cursorPosEnd, {css: 'background-color: ' + userColor});
+
       }
     );
 
