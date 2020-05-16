@@ -46,6 +46,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     submitVizContentOp,
     vizContentOp$,
     submitVizContentPresence,
+    vizContentPresence$,
   } = useContext(VizContext);
   const {
     resetRunTimer,
@@ -236,10 +237,15 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const handleCursorActivity = () => {
       const from = codeMirror.getCursor(true);
       const to = codeMirror.getCursor(false);
+
+      const doc = codeMirror.getDoc();
+      const fromIndex = doc.indexFromPos(from);
+      const toIndex = doc.indexFromPos(to);
+
       const presenceObject = {
         path,
-        index: from,
-        length: to - from,
+        index: fromIndex,
+        length: toIndex - fromIndex,
         userId: me.id,
       };
 
@@ -250,6 +256,39 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       codeMirror.off('cursorActivity', handleCursorActivity);
     };
   }, [codeMirror, submitVizContentPresence, path, me]);
+
+  // Render remote presence(s).
+  useEffect(() => {
+    if(!codeMirror) return;
+    const doc = codeMirror.getDoc();
+
+    // From https://dev.to/yoheiseki/how-to-display-the-position-of-the-cursor-caret-of-another-client-with-codemirror-6p8
+    const widget = document.createElement('span');
+    widget.style.borderLeftStyle = 'solid';
+    widget.style.borderLeftWidth = '2px';
+    widget.style.borderLeftColor = '#ff0000';
+    widget.style.marginRight = '-2px';
+    widget.style.padding = 0;
+    widget.style.zIndex = 0;
+
+    let marker;
+    const subscription = vizContentPresence$.subscribe((presenceObject) => {
+      console.log('got presenceObject');
+      const cursorPos = doc.posFromIndex(presenceObject.index);
+
+      const cursorCoords = codeMirror.cursorCoords(cursorPos);
+      widget.style.height = `${cursorCoords.bottom - cursorCoords.top}px`;
+
+      if(marker){
+        marker.clear();
+      }
+      marker = codeMirror.setBookmark(cursorPos, { widget });
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [vizContentPresence$, codeMirror]);
 
   return (
     <>

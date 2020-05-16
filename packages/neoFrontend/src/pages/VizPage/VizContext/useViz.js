@@ -59,15 +59,6 @@ export const useViz = (initialViz) => {
   const vizContentPresence$ = usePresenceStream(vizContentPresence);
   const submitVizContentPresence = useSubmitPresence(vizContentPresence);
 
-  // TODO pass this into CodeMirror for rendering.
-  useEffect(() => {
-    const subscription = vizContentPresence$.subscribe((presenceObject) => {
-      console.log('got presenceObject');
-      console.log(presenceObject);
-    });
-    return () => subscription.unsubscribe();
-  }, [vizContentPresence$]);
-
   return {
     viz$,
     submitVizContentOp,
