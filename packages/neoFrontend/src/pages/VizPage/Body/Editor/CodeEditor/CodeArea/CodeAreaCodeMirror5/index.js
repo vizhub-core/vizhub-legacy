@@ -270,6 +270,10 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const selectionMarkers = {};
     const subscription = vizContentPresence$.subscribe(
       ({ presenceId, presenceObject, userId }) => {
+
+        // TODO handle the case of disconnecting clients.
+        if(!presenceObject) return;
+
         const { index, length } = presenceObject;
         const cursorPos = doc.posFromIndex(index);
         const cursorPosEnd = doc.posFromIndex(index + length);
