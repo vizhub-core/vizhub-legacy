@@ -14,8 +14,8 @@ export const usePresenceStream = (presence) => {
     });
 
     // Update on each change.
-    const handleReceive = (id, presenceObject) => {
-      presence$.next(presenceObject);
+    const handleReceive = (presenceId, presenceObject) => {
+      presence$.next({ presenceId, presenceObject });
     };
 
     presence.on('receive', handleReceive);
