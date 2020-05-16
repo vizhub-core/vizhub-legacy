@@ -59,28 +59,7 @@ export const useViz = (initialViz) => {
   const vizContentPresence$ = usePresenceStream(vizContentPresence);
   const submitVizContentPresence = useSubmitPresence(vizContentPresence);
 
-  //presence.on('receive', function(id, range) {
-  //  colors[id] = colors[id] || tinycolor.random().toHexString();
-  //  var name = (range && range.name) || 'Anonymous';
-  //  cursors.createCursor(id, name, colors[id]);
-  //  cursors.moveCursor(id, range);
-  //});
-  useEffect(() => {
-    setTimeout(() => {
-      // TODO run locally ShareDB example and see structure here.
-      const path = ['files', 'foo.js'];
-      const userId = 'shafjkda';
-      const presenceObject = {
-        path,
-        index: 11,
-        length: 0,
-        userId,
-      };
-
-      submitVizContentPresence(presenceObject);
-    }, 1000);
-  }, [submitVizContentPresence]);
-
+  // TODO pass this into CodeMirror for rendering.
   useEffect(() => {
     const subscription = vizContentPresence$.subscribe((presenceObject) => {
       console.log('got presenceObject');
