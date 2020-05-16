@@ -13,7 +13,9 @@ export const PresenceAvatar = styled.img`
   width: ${presenceAvatarSize}px;
   height: ${presenceAvatarSize}px;
   position: absolute;
-  top: -${presenceAvatarSize - verticalOffset}px;
+  ${(props) => (props.isFirstLine ? 'bottom' : 'top')}: -${
+  presenceAvatarSize - verticalOffset
+}px;
   left: -${presenceAvatarSize / 4}px;
   border-radius: ${presenceAvatarSize}px;
 `;

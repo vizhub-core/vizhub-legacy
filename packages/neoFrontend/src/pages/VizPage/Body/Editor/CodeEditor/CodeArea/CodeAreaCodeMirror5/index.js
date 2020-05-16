@@ -316,17 +316,19 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         if (!widget) {
           widget = document.createElement('span');
           widget.style.position = 'relative';
-          ReactDOM.render(
-            <PresenceWidget
-              charWidth={charWidth}
-              userColor={userColor}
-              userId={userId}
-              height={cursorCoords.bottom - cursorCoords.top}
-            />,
-            widget
-          );
           widgets[presenceId] = widget;
         }
+        console.log(cursorPos);
+        ReactDOM.render(
+          <PresenceWidget
+            charWidth={charWidth}
+            userColor={userColor}
+            userId={userId}
+            height={cursorCoords.bottom - cursorCoords.top}
+            isFirstLine={cursorPos.line === 0}
+          />,
+          widget
+        );
 
         // Create new cursor marker.
         const newMarker = codeMirror.setBookmark(cursorPos, { widget });
