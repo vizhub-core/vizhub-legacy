@@ -33,7 +33,7 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
         <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
         <Author ownerUser={ownerUser} isSmall={true} />
       </VizPreviewFooter>
-      {isPrivate ? <PrivacyNotice isVizPreview={true}/> : null}
+      {isPrivate ? <PrivacyNotice isVizPreview={true} /> : null}
     </Wrapper>
   );
 };

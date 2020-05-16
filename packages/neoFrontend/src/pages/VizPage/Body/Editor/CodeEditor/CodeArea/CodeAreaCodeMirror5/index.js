@@ -1,8 +1,10 @@
 import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
+import ColorHash from 'color-hash';
 import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';
+import { AuthContext } from '../../../../../../../authentication';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
 import { EditorModulesContext } from '../../../../../EditorModulesContext';
 import { light } from '../../../themes/vizHub';
@@ -11,6 +13,8 @@ import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 import { useStateLocalStorage } from './useStateLocalStorage';
+
+const colorHash = new ColorHash();
 
 const modes = {
   '.html': 'htmlmixed',
@@ -40,7 +44,13 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     };
   }, [keyMap, setKeyMap]);
 
-  const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
+  const {
+    viz$,
+    submitVizContentOp,
+    vizContentOp$,
+    submitVizContentPresence,
+    vizContentPresence$,
+  } = useContext(VizContext);
   const {
     resetRunTimer,
     needsManualRun,
@@ -53,6 +63,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const path = usePath(fileIndex);
   const realtimeModules = useContext(RealtimeModulesContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
+  const { me } = useContext(AuthContext);
 
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
@@ -222,6 +233,95 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       codeMirror.off('cursorActivity', resetRunTimer);
     };
   }, [codeMirror, resetRunTimer]);
+
+  // Submit presence
+  useEffect(() => {
+    if (!codeMirror || !me) return;
+    const handleCursorActivity = () => {
+      const from = codeMirror.getCursor(true);
+      const to = codeMirror.getCursor(false);
+
+      const doc = codeMirror.getDoc();
+      const fromIndex = doc.indexFromPos(from);
+      const toIndex = doc.indexFromPos(to);
+
+      const presenceObject = {
+        path,
+        index: fromIndex,
+        length: toIndex - fromIndex,
+        userId: me.id,
+      };
+
+      submitVizContentPresence(presenceObject);
+    };
+    codeMirror.on('cursorActivity', handleCursorActivity);
+    return () => {
+      codeMirror.off('cursorActivity', handleCursorActivity);
+    };
+  }, [codeMirror, submitVizContentPresence, path, me]);
+
+  // Render remote presence(s).
+  useEffect(() => {
+    if (!codeMirror) return;
+    const doc = codeMirror.getDoc();
+
+    const widgets = {};
+    const markers = {};
+    const selectionMarkers = {};
+    const subscription = vizContentPresence$.subscribe(
+      ({ presenceId, presenceObject, userId }) => {
+        const { index, length } = presenceObject;
+        const cursorPos = doc.posFromIndex(index);
+        const cursorPosEnd = doc.posFromIndex(index + length);
+
+        const cursorCoords = codeMirror.cursorCoords(cursorPos);
+
+        const userColor = colorHash.hex(userId);
+
+        let widget = widgets[presenceId];
+        if (!widget) {
+          widget = document.createElement('span');
+          // From https://dev.to/yoheiseki/how-to-display-the-position-of-the-cursor-caret-of-another-client-with-codemirror-6p8
+          widget.style.borderLeftStyle = 'solid';
+          widget.style.borderLeftWidth = '2px';
+          widget.style.marginRight = '-2px';
+          widget.style.padding = 0;
+          widget.style.zIndex = 0;
+          widget.style.borderLeftColor = userColor;
+          widget.style.height = `${cursorCoords.bottom - cursorCoords.top}px`;
+
+          widgets[presenceId] = widget;
+        }
+
+        // Handle cursor markers.
+        const oldMarker = markers[presenceId];
+        if (oldMarker) {
+          oldMarker.clear();
+        }
+        const newMarker = codeMirror.setBookmark(cursorPos, { widget });
+        markers[presenceId] = newMarker;
+
+        // Handle selection markers.
+        const oldSelectionMarker = selectionMarkers[presenceId];
+        if (oldSelectionMarker) {
+          oldSelectionMarker.clear();
+        }
+        const newSelectionMarker = codeMirror.markText(
+          cursorPos,
+          cursorPosEnd,
+          {
+            css: `background-color: ${userColor}55`,
+          }
+        );
+
+        selectionMarkers[presenceId] = newSelectionMarker;
+      }
+    );
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [vizContentPresence$, codeMirror]);
 
   return (
     <>

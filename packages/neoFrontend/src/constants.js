@@ -13,7 +13,7 @@ export const minSpinnerTime = isProd ? 2000 : 0;
 export const useTransitions = isProd;
 //export const useTransitions = true;
 
-export const clearConsole = true;//isProd;
+export const clearConsole = true; //isProd;
 
 export const enterFullScreenTooltip = 'Full Screen Mode';
 export const enterMiniModeTooltip = 'Mini Mode';
