@@ -3,6 +3,7 @@ import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';
+import { AuthContext } from '../../../../../../../authentication';
 import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
 import { EditorModulesContext } from '../../../../../EditorModulesContext';
 import { light } from '../../../themes/vizHub';
@@ -40,7 +41,12 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     };
   }, [keyMap, setKeyMap]);
 
-  const { viz$, submitVizContentOp, vizContentOp$ } = useContext(VizContext);
+  const {
+    viz$,
+    submitVizContentOp,
+    vizContentOp$,
+    submitVizContentPresence,
+  } = useContext(VizContext);
   const {
     resetRunTimer,
     needsManualRun,
@@ -53,6 +59,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const path = usePath(fileIndex);
   const realtimeModules = useContext(RealtimeModulesContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
+  const { me } = useContext(AuthContext);
 
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
@@ -222,6 +229,27 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       codeMirror.off('cursorActivity', resetRunTimer);
     };
   }, [codeMirror, resetRunTimer]);
+
+  // Submit presence
+  useEffect(() => {
+    if (!codeMirror || !me) return;
+    const handleCursorActivity = () => {
+      const from = codeMirror.getCursor(true);
+      const to = codeMirror.getCursor(false);
+      const presenceObject = {
+        path,
+        index: from,
+        length: to - from,
+        userId: me.id,
+      };
+
+      submitVizContentPresence(presenceObject);
+    };
+    codeMirror.on('cursorActivity', handleCursorActivity);
+    return () => {
+      codeMirror.off('cursorActivity', handleCursorActivity);
+    };
+  }, [codeMirror, submitVizContentPresence, path, me]);
 
   return (
     <>
