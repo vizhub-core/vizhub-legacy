@@ -6,7 +6,7 @@ export const useShareDBDoc = (collection, id) => {
   const connection = useContext(ConnectionContext);
   const { setWarning } = useContext(WarningContext);
 
-  const [vizContentDoc, setVizContentDoc] = useState(null);
+  const [shareDBDoc, setShareDBDoc] = useState(null);
 
   const onError = useCallback(
     (error) => {
@@ -15,12 +15,13 @@ export const useShareDBDoc = (collection, id) => {
     [setWarning]
   );
 
+  // Manage doc subscription.
   useEffect(() => {
     if (!connection) return;
 
     // Clear out old doc in case id changed.
     // (don't want the user to see stale stuff).
-    setVizContentDoc(null);
+    setShareDBDoc(null);
 
     const doc = connection.get(collection, id);
 
@@ -33,7 +34,7 @@ export const useShareDBDoc = (collection, id) => {
       if (error) {
         onError(error);
       } else {
-        setVizContentDoc(doc);
+        setShareDBDoc(doc);
       }
     });
 
@@ -43,5 +44,5 @@ export const useShareDBDoc = (collection, id) => {
     };
   }, [connection, collection, id, onError]);
 
-  return vizContentDoc;
+  return shareDBDoc;
 };

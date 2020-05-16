@@ -4,7 +4,7 @@ import { useRealtimeModules } from './useRealtimeModules';
 export const RealtimeModulesContext = createContext();
 
 // Lazy load realtime-related modules.
-export const RealtimeModulesProvider = ({ fallback, children }) => (
+export const RealtimeModulesProvider = ({ children }) => (
   <RealtimeModulesContext.Provider value={useRealtimeModules()}>
     {children}
   </RealtimeModulesContext.Provider>

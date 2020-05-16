@@ -13,7 +13,7 @@ In another terminal:
 
 ```
 cd ../packages/neoFrontend
-npm start # Leave this open, it's create-react-app dev server on port 3000
+npm start # Leave this open, it's a `create-react-app` dev server on port 3000
 ```
 
 To run the end-to-end tests (in another terminal):
