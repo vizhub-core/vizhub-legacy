@@ -35,7 +35,8 @@
     "styled-components": "^5.1.0",
     "vizhub-database": "1",
     "vizhub-entities": "1",
-    "vizhub-presenters": "1"
+    "vizhub-presenters": "1",
+    "json0-with-presence": "1"
   },
   "browserslist": [
     ">0.2%",

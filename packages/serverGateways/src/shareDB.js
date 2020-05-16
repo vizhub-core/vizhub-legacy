@@ -1,7 +1,7 @@
 import ShareDB from 'sharedb';
 import ShareDBMingoMemory from 'sharedb-mingo-memory';
 import ShareDBMongo from 'sharedb-mongo';
-import { json0 } from './json0';
+import { type as json0 } from 'json0-with-presence';
 
 // Use our custom json0 that implements presence.
 ShareDB.types.register(json0);
