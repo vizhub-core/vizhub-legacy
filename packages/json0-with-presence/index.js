@@ -5,7 +5,7 @@ type.transformPresence = function(presence, op, isOwnOp) {
     return null;
   }
 
-  console.log('TODO transform presence.');
+  //console.log('TODO transform presence.');
   // Draw from https://github.com/datavis-tech/json0/tree/master/lib
   //
   //var start = presence.index;
