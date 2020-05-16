@@ -21,4 +21,4 @@ type.transformPresence = function(presence, op, isOwnOp) {
   return presence;
 };
 
-export const json0 = type;
+export { type };
