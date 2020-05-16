@@ -1,7 +1,7 @@
 // These modules required for real-time features
 // are split out into a separate chunk and loaded dynamically.
 import ShareDB, { Connection } from 'sharedb/lib/client';
-import { type as json0 } from 'json0-with-presence'; 
+import { type as json0 } from 'json0-with-presence';
 import jsondiff from 'json0-ot-diff';
 import diffMatchPatch from 'diff-match-patch';
 import produce from 'immer';

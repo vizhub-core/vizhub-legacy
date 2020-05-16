@@ -3,14 +3,13 @@ import { useMemo, useCallback } from 'react';
 export const useSubmitPresence = (presence) => {
   const localPresence = useMemo(() => {
     if (!presence) return;
-    // TODO continue working on presence from here.
-    //return presence.create();
+    return presence.create();
   }, [presence]);
 
   return useCallback(
-    (range) => {
+    (presenceObject) => {
       if (!localPresence) return;
-      localPresence.submit(range, (error) => {
+      localPresence.submit(presenceObject, (error) => {
         if (error) throw error;
       });
     },

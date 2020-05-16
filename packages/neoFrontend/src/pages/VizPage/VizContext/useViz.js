@@ -65,15 +65,29 @@ export const useViz = (initialViz) => {
   //  cursors.createCursor(id, name, colors[id]);
   //  cursors.moveCursor(id, range);
   //});
+  useEffect(() => {
+    setTimeout(() => {
+      // TODO run locally ShareDB example and see structure here.
+      const path = ['files', 'foo.js'];
+      const userId = 'shafjkda';
+      const presenceObject = {
+        path,
+        index: 11,
+        length: 0,
+        userId,
+      };
 
-  //presence.on('receive', function(id, range) {
-  //  colors[id] = colors[id] || tinycolor.random().toHexString();
-  //  var name = (range && range.name) || 'Anonymous';
-  //  cursors.createCursor(id, name, colors[id]);
-  //  cursors.moveCursor(id, range);
-  //});
+      submitVizContentPresence(presenceObject);
+    }, 1000);
+  }, [submitVizContentPresence]);
 
-  //}, [connection, collection, id, onError]);
+  useEffect(() => {
+    const subscription = vizContentPresence$.subscribe((presenceObject) => {
+      console.log('got presenceObject');
+      console.log(presenceObject);
+    });
+    return () => subscription.unsubscribe();
+  }, [vizContentPresence$]);
 
   return {
     viz$,
@@ -81,6 +95,6 @@ export const useViz = (initialViz) => {
     submitVizInfoOp,
     vizContentOp$,
     vizContentPresence$,
-    submitVizContentPresence
+    submitVizContentPresence,
   };
 };
