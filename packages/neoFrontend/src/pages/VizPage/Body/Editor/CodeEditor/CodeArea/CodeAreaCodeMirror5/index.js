@@ -26,6 +26,8 @@ const getMode = (extension) => modes[extension];
 
 const defaultKeyMap = 'sublime';
 
+const fileIndexOfPath = (path) => path[1];
+
 export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
@@ -270,11 +272,19 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const selectionMarkers = {};
     const subscription = vizContentPresence$.subscribe(
       ({ presenceId, presenceObject, userId }) => {
+        // TODO handle the case of disconnecting clients.
+        if (!presenceObject) return;
+
+        // Ignore presence changes in files that are not open.
+        if (fileIndex !== fileIndexOfPath(presenceObject.path)) return;
+
         const { index, length } = presenceObject;
+
         const cursorPos = doc.posFromIndex(index);
         const cursorPosEnd = doc.posFromIndex(index + length);
 
         const cursorCoords = codeMirror.cursorCoords(cursorPos);
+        const charWidth = codeMirror.defaultCharWidth();
 
         const userColor = colorHash.hex(userId);
 
@@ -282,13 +292,12 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         if (!widget) {
           widget = document.createElement('span');
           // From https://dev.to/yoheiseki/how-to-display-the-position-of-the-cursor-caret-of-another-client-with-codemirror-6p8
-          widget.style.borderLeftStyle = 'solid';
-          widget.style.borderLeftWidth = '2px';
-          widget.style.marginRight = '-2px';
-          widget.style.padding = 0;
-          widget.style.zIndex = 0;
-          widget.style.borderLeftColor = userColor;
+          widget.style.borderRightStyle = 'solid';
+          widget.style.borderRightWidth = charWidth + 'px';
+          widget.style.borderRightColor = userColor;
+          widget.style.marginRight = '-' + charWidth + 'px';
           widget.style.height = `${cursorCoords.bottom - cursorCoords.top}px`;
+          widget.style.mixBlendMode = 'difference';
 
           widgets[presenceId] = widget;
         }
@@ -310,7 +319,9 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
           cursorPos,
           cursorPosEnd,
           {
-            css: `background-color: ${userColor}55`,
+            css: `
+              background-color: ${userColor}40;
+            `,
           }
         );
 
@@ -321,7 +332,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     return () => {
       subscription.unsubscribe();
     };
-  }, [vizContentPresence$, codeMirror]);
+  }, [vizContentPresence$, codeMirror, fileIndex]);
 
   return (
     <>
