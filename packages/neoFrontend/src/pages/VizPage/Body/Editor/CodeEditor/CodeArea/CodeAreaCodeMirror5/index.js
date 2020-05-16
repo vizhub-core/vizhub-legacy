@@ -1,4 +1,5 @@
 import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 import ColorHash from 'color-hash';
 import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
@@ -13,6 +14,7 @@ import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 import { useStateLocalStorage } from './useStateLocalStorage';
+import { PresenceWidget } from './PresenceWidget';
 
 const colorHash = new ColorHash();
 
@@ -260,7 +262,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
     // Remove presence on blur.
     const handleBlur = () => {
-      submitVizContentPresence(null);
+      //submitVizContentPresence(null);
     };
     codeMirror.on('blur', handleBlur);
 
@@ -313,16 +315,20 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         let widget = widgets[presenceId];
         if (!widget) {
           widget = document.createElement('span');
-          // From https://dev.to/yoheiseki/how-to-display-the-position-of-the-cursor-caret-of-another-client-with-codemirror-6p8
-          widget.style.borderRightStyle = 'solid';
-          widget.style.borderRightWidth = charWidth + 'px';
-          widget.style.borderRightColor = userColor;
-          widget.style.marginRight = '-' + charWidth + 'px';
-          widget.style.height = `${cursorCoords.bottom - cursorCoords.top}px`;
-          widget.style.mixBlendMode = 'difference';
-
+          widget.style.position = 'relative';
           widgets[presenceId] = widget;
         }
+        console.log(cursorPos);
+        ReactDOM.render(
+          <PresenceWidget
+            charWidth={charWidth}
+            userColor={userColor}
+            userId={userId}
+            height={cursorCoords.bottom - cursorCoords.top}
+            isFirstLine={cursorPos.line === 0}
+          />,
+          widget
+        );
 
         // Create new cursor marker.
         const newMarker = codeMirror.setBookmark(cursorPos, { widget });
@@ -332,11 +338,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
         const newSelectionMarker = codeMirror.markText(
           cursorPos,
           cursorPosEnd,
-          {
-            css: `
-              background-color: ${userColor}40;
-            `,
-          }
+          { css: `background-color: ${userColor}40` }
         );
 
         selectionMarkers[presenceId] = newSelectionMarker;
