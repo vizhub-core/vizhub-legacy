@@ -271,14 +271,14 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const markers = {};
     const selectionMarkers = {};
     const subscription = vizContentPresence$.subscribe(
-      ({ presenceId, presenceObject, userId }) => {
+      ({ presenceId, presenceObject }) => {
         // TODO handle the case of disconnecting clients.
         if (!presenceObject) return;
 
         // Ignore presence changes in files that are not open.
         if (fileIndex !== fileIndexOfPath(presenceObject.path)) return;
 
-        const { index, length } = presenceObject;
+        const { index, length, userId } = presenceObject;
 
         const cursorPos = doc.posFromIndex(index);
         const cursorPosEnd = doc.posFromIndex(index + length);
