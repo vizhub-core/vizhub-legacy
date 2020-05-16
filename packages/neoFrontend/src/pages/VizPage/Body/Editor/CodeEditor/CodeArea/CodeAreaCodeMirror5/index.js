@@ -1,4 +1,5 @@
 import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
+import ColorHash from 'color-hash';
 import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
@@ -12,6 +13,8 @@ import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 import { useStateLocalStorage } from './useStateLocalStorage';
+
+const colorHash = new ColorHash();
 
 const modes = {
   '.html': 'htmlmixed',
@@ -259,31 +262,43 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
 
   // Render remote presence(s).
   useEffect(() => {
-    if(!codeMirror) return;
+    if (!codeMirror) return;
     const doc = codeMirror.getDoc();
 
-    // From https://dev.to/yoheiseki/how-to-display-the-position-of-the-cursor-caret-of-another-client-with-codemirror-6p8
-    const widget = document.createElement('span');
-    widget.style.borderLeftStyle = 'solid';
-    widget.style.borderLeftWidth = '2px';
-    widget.style.borderLeftColor = '#ff0000';
-    widget.style.marginRight = '-2px';
-    widget.style.padding = 0;
-    widget.style.zIndex = 0;
+    const widgets = {};
+    const markers = {};
+    const subscription = vizContentPresence$.subscribe(
+      ({ presenceId, presenceObject }) => {
+        console.log('got presenceObject');
+        console.log(presenceId);
+        console.log(presenceObject);
+        const cursorPos = doc.posFromIndex(presenceObject.index);
 
-    let marker;
-    const subscription = vizContentPresence$.subscribe((presenceObject) => {
-      console.log('got presenceObject');
-      const cursorPos = doc.posFromIndex(presenceObject.index);
+        const cursorCoords = codeMirror.cursorCoords(cursorPos);
 
-      const cursorCoords = codeMirror.cursorCoords(cursorPos);
-      widget.style.height = `${cursorCoords.bottom - cursorCoords.top}px`;
+        let widget = widgets[presenceId];
+        if (!widget) {
+          widget = document.createElement('span');
+          // From https://dev.to/yoheiseki/how-to-display-the-position-of-the-cursor-caret-of-another-client-with-codemirror-6p8
+          widget.style.borderLeftStyle = 'solid';
+          widget.style.borderLeftWidth = '2px';
+          widget.style.marginRight = '-2px';
+          widget.style.padding = 0;
+          widget.style.zIndex = 0;
+          widget.style.borderLeftColor = colorHash.hex(presenceObject.userId);
+          widget.style.height = `${cursorCoords.bottom - cursorCoords.top}px`;
 
-      if(marker){
-        marker.clear();
+          widgets[presenceId] = widget;
+        }
+
+        const oldMarker = markers[presenceId];
+        if (oldMarker) {
+          oldMarker.clear();
+        }
+        const newMarker = codeMirror.setBookmark(cursorPos, { widget });
+        markers[presenceId] = newMarker;
       }
-      marker = codeMirror.setBookmark(cursorPos, { widget });
-    });
+    );
 
     return () => {
       subscription.unsubscribe();
