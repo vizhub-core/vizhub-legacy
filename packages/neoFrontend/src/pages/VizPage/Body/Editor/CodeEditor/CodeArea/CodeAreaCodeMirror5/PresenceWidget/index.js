@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, PresenceAvatar } from './styles';
+import { Wrapper, PresenceAvatar, PresenceAvatarContainer } from './styles';
 
 export const PresenceWidget = ({
   charWidth,
@@ -16,10 +16,12 @@ export const PresenceWidget = ({
         height: `${height}px`,
       }}
     >
-      <PresenceAvatar
-        isFirstLine={isFirstLine}
-        src={`https://avatars0.githubusercontent.com/u/${userId}?v=4&s=32`}
-      />
+      <PresenceAvatarContainer isFirstLine={isFirstLine}>
+        <PresenceAvatar
+          userColor={userColor}
+          src={`https://avatars0.githubusercontent.com/u/${userId}?v=4&s=32`}
+        />
+      </PresenceAvatarContainer>
     </Wrapper>
   );
 };
