@@ -257,8 +257,16 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       submitVizContentPresence(presenceObject);
     };
     codeMirror.on('cursorActivity', handleCursorActivity);
+
+    // Remove presence on blur.
+    const handleBlur = () => {
+      submitVizContentPresence(null);
+    };
+    codeMirror.on('blur', handleBlur);
+
     return () => {
       codeMirror.off('cursorActivity', handleCursorActivity);
+      codeMirror.off('blur', handleBlur);
     };
   }, [codeMirror, submitVizContentPresence, path, me]);
 
