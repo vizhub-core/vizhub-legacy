@@ -272,8 +272,22 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     const selectionMarkers = {};
     const subscription = vizContentPresence$.subscribe(
       ({ presenceId, presenceObject }) => {
-        // TODO handle the case of disconnecting clients.
-        if (!presenceObject) return;
+        // Clear old cursor marker.
+        const oldMarker = markers[presenceId];
+        if (oldMarker) {
+          oldMarker.clear();
+        }
+
+        // Clear old selection marker.
+        const oldSelectionMarker = selectionMarkers[presenceId];
+        if (oldSelectionMarker) {
+          oldSelectionMarker.clear();
+        }
+
+        // Handle the case of disconnecting clients.
+        if (!presenceObject) {
+          return;
+        }
 
         // Ignore presence changes in files that are not open.
         if (fileIndex !== fileIndexOfPath(presenceObject.path)) return;
@@ -302,19 +316,11 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
           widgets[presenceId] = widget;
         }
 
-        // Handle cursor markers.
-        const oldMarker = markers[presenceId];
-        if (oldMarker) {
-          oldMarker.clear();
-        }
+        // Create new cursor marker.
         const newMarker = codeMirror.setBookmark(cursorPos, { widget });
         markers[presenceId] = newMarker;
 
-        // Handle selection markers.
-        const oldSelectionMarker = selectionMarkers[presenceId];
-        if (oldSelectionMarker) {
-          oldSelectionMarker.clear();
-        }
+        // Create new selection marker.
         const newSelectionMarker = codeMirror.markText(
           cursorPos,
           cursorPosEnd,
