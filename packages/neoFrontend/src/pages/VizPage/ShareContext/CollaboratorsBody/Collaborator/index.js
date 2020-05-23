@@ -3,7 +3,7 @@ import { Avatar } from '../../../../../Avatar';
 import { fetchUser } from '../fetchUser';
 import { useCache } from './useCache';
 import { UserName } from '../styles';
-import { Wrapper, LoadingText } from './styles';
+import { Wrapper, LoadingText, UserWrapper } from './styles';
 
 export const Collaborator = ({ collaborator }) => {
   const { userId } = collaborator;
@@ -17,10 +17,10 @@ export const Collaborator = ({ collaborator }) => {
   return (
     <Wrapper>
       {user ? (
-        <>
+        <UserWrapper>
           <Avatar size={24} user={user} isDisabled={true} />
           <UserName>{user.fullName}</UserName>
-        </>
+        </UserWrapper>
       ) : (
         <LoadingText>Loading...</LoadingText>
       )}
