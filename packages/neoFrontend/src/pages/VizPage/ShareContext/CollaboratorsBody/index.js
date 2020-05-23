@@ -7,7 +7,7 @@ import {
 } from '../../../../featureFlags';
 import { Input } from '../../../../Input';
 import { Avatar } from '../../../../Avatar';
-import { SubSectionDescription, Spacer, FormRow } from '../../styles';
+import { SubSectionDescription, FormRow } from '../../styles';
 import { fetchUserSearchResults } from './fetchUserSearchResults';
 import { UserPreviewList, UserPreview, UserName } from './styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
@@ -63,24 +63,13 @@ export const CollaboratorsBody = () => {
 
   return (
     <>
-      {showCollaboratorsAnyoneCanEdit ? (
-        <>
-          <SubSectionDescription>
-            If you check this box, anyone with the link can edit this viz.
-          </SubSectionDescription>
-          <AnyoneCanEdit />
-        </>
-      ) : null}
-
       {showCollaboratorsManagement ? (
         <>
           {collaborators && <CollaboratorList collaborators={collaborators} />}
           <form onSubmit={handleFormSubmit}>
-            <Spacer height={22} />
             <SubSectionDescription>
               Start typing to search for collaborators to add.
             </SubSectionDescription>
-            <Spacer height={22} />
             <FormRow>
               <Input value={typedText} onChange={setTypedText} size="grow" />
               <UserPreviewList>
@@ -97,6 +86,14 @@ export const CollaboratorsBody = () => {
               </UserPreviewList>
             </FormRow>
           </form>
+        </>
+      ) : null}
+      {showCollaboratorsAnyoneCanEdit ? (
+        <>
+          <SubSectionDescription>
+            If you check this box, anyone with the link can edit this viz.
+          </SubSectionDescription>
+          <AnyoneCanEdit />
         </>
       ) : null}
     </>
