@@ -38,5 +38,9 @@ export class VisualizationInfo extends DocumentInfo {
 
     // Boolean, whether or not anyone who can see the document can edit it.
     this.anyoneCanEdit = data.anyoneCanEdit;
+
+    // The array of collaborators.
+    // Each collaborator object has a userId field.
+    this.collaborators = data.collaborators;
   }
 }

@@ -1,6 +1,6 @@
 import { type } from 'ot-json0';
 
-type.transformPresence = function(presence, op, isOwnOp) {
+type.transformPresence = function (presence, op, isOwnOp) {
   if (!presence) {
     return null;
   }

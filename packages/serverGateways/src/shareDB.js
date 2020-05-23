@@ -16,12 +16,12 @@ export const getShareDB = () => {
     if (process.env.MONGO_URI) {
       shareDB = ShareDB({
         db: new ShareDBMongo(process.env.MONGO_URI),
-        presence: true
+        presence: true,
       });
     } else {
       shareDB = ShareDB({
         db: new ShareDBMingoMemory(),
-        presence: true
+        presence: true,
       });
     }
   }
