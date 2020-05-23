@@ -23,11 +23,3 @@ export const UserPreview = styled(Clickable)`
 export const UserName = styled.div`
   padding-left: 12px;
 `;
-
-export const CollaboratorWrapper = styled.div`
-  height: 48px;
-  display: flex;
-  align-items: center;
-  padding-left: 12px;
-  padding-right: 12px;
-`;
