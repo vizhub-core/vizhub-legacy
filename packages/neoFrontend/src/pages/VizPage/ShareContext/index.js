@@ -40,25 +40,23 @@ export const ShareProvider = ({ children }) => {
           closeButtonClassName="test-share-dialog-close"
         >
           <Dialog>
-            <form>
-              <DialogTitle>Share</DialogTitle>
-              <Section>
-                <SectionTitle>SHARE WITH</SectionTitle>
-                <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
-                  <Tab id="link">Link</Tab>
-                  {showEmbed ? <Tab id="embed">Embed</Tab> : null}
-                  {showCollaborators ? (
-                    <Tab id="collaborators">Collaborators</Tab>
-                  ) : null}
-                </Tabs>
-                <TabBody activeTab={activeTab} />
-              </Section>
-              <DialogButtons>
-                <Button isFilled onClick={hideShareModal}>
-                  Done
-                </Button>
-              </DialogButtons>
-            </form>
+            <DialogTitle>Share</DialogTitle>
+            <Section>
+              <SectionTitle>SHARE WITH</SectionTitle>
+              <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
+                <Tab id="link">Link</Tab>
+                {showEmbed ? <Tab id="embed">Embed</Tab> : null}
+                {showCollaborators ? (
+                  <Tab id="collaborators">Collaborators</Tab>
+                ) : null}
+              </Tabs>
+              <TabBody activeTab={activeTab} />
+            </Section>
+            <DialogButtons>
+              <Button isFilled onClick={hideShareModal}>
+                Done
+              </Button>
+            </DialogButtons>
           </Dialog>
         </Modal>
       ) : null}

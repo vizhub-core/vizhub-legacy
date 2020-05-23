@@ -49,11 +49,22 @@ export const CollaboratorsBody = () => {
     [addCollaborator]
   );
 
+  // Support hitting the enter key to select first result.
+  const handleFormSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (results && results.length > 0) {
+        handleAddCollaboratorClick(results[0].id);
+      }
+    },
+    [results, handleAddCollaboratorClick]
+  );
+
   return (
     <>
       {showCollaboratorsAnyoneCanEdit ? <AnyoneCanEdit /> : null}
       {showCollaboratorsManagement ? (
-        <>
+        <form onSubmit={handleFormSubmit}>
           <Spacer height={22} />
           <SubSectionDescription>
             Start typing to search available collaborators for this
@@ -75,7 +86,7 @@ export const CollaboratorsBody = () => {
                 ))}
             </UserPreviewList>
           </FormRow>
-        </>
+        </form>
       ) : null}
     </>
   );
