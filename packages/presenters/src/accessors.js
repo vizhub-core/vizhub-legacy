@@ -244,3 +244,37 @@ export const addCollaboratorOp = ({
 
   return op;
 };
+
+export const removeCollaboratorOp = ({
+  collaborators,
+  collaborator,
+  realtimeModules,
+}) => {
+  const op = [];
+
+  // Is this user already a existingCollaborator here?
+  let existingCollaboratorIndex = -1;
+  let existingCollaborator;
+
+  // Linear search for this user id in existingCollaborators array.
+  for (let i = 0; i < getCollaboratorCount(collaborators); i++) {
+    existingCollaborator = collaborators[i];
+    if (existingCollaborator.userId === collaborator.userId) {
+      existingCollaboratorIndex = i;
+      break;
+    }
+  }
+
+  // If this user was not a collaborator, do nothing.
+  // (should never happen)
+  if (existingCollaboratorIndex === -1) {
+    return null;
+  } else {
+    // otherwise, remove the existing collaborator.
+    op.push({
+      p: ['collaborators', existingCollaboratorIndex],
+      ld: existingCollaborator,
+    });
+  }
+  return op;
+};

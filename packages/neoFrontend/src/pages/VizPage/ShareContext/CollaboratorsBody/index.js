@@ -39,7 +39,11 @@ export const CollaboratorsBody = () => {
     return () => subscription.unsubscribe();
   }, [results$]);
 
-  const { collaborators, addCollaborator } = useCollaborators();
+  const {
+    collaborators,
+    addCollaborator,
+    removeCollaborator,
+  } = useCollaborators();
 
   const handleAddCollaboratorClick = useCallback(
     (userId) => {
@@ -65,7 +69,12 @@ export const CollaboratorsBody = () => {
     <>
       {showCollaboratorsManagement ? (
         <>
-          {collaborators && <CollaboratorList collaborators={collaborators} />}
+          {collaborators && (
+            <CollaboratorList
+              collaborators={collaborators}
+              removeCollaborator={removeCollaborator}
+            />
+          )}
           <form onSubmit={handleFormSubmit}>
             <SubSectionDescription>
               Start typing to search for collaborators to add.
