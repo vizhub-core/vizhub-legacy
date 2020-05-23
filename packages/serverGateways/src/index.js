@@ -2,7 +2,7 @@ import {
   DatabaseVisualizationGateway,
   DatabaseDatasetGateway,
   DatabaseUserGateway,
-  DatabaseImageStorageGateway
+  DatabaseImageStorageGateway,
 } from 'vizhub-gateways';
 import { Database } from 'vizhub-database';
 import { getConnection } from './shareDB';
@@ -16,6 +16,6 @@ export const serverGateways = () => {
     visualizationGateway: new DatabaseVisualizationGateway(database),
     datasetGateway: new DatabaseDatasetGateway(database),
     userGateway: new DatabaseUserGateway(database),
-    imageStorageGateway: new DatabaseImageStorageGateway(database)
+    imageStorageGateway: new DatabaseImageStorageGateway(database),
   };
 };

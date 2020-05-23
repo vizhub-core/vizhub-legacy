@@ -188,3 +188,59 @@ export const getUserFullName = (user) =>
 const defaultVizPrivacy = 'public';
 export const getVizPrivacy = (viz) => viz.info.privacy || defaultVizPrivacy;
 export const getVizInfo = (viz) => viz.info;
+
+const getCollaboratorCount = (collaborators) =>
+  collaborators ? collaborators.length : 0;
+export const getVizCollaborators = (viz) => viz.info.collaborators;
+export const addCollaboratorOp = ({
+  collaborators,
+  collaborator,
+  realtimeModules,
+}) => {
+  if (!collaborator || !collaborator.userId) {
+    throw new Error(
+      'The "collaborator" argument is expected to be an object with a userId field.'
+    );
+  }
+
+  const op = [];
+
+  // Initialize the collaborator field if needed.
+  // The initial value is an empty array.
+  if (!collaborators) {
+    op.push({
+      p: ['collaborators'],
+      oi: [],
+    });
+  }
+
+  // Is this user already a existingCollaborator here?
+  let existingCollaboratorIndex = -1;
+  let existingCollaborator;
+
+  // Linear search for this user id in existingCollaborators array.
+  for (let i = 0; i < getCollaboratorCount(collaborators); i++) {
+    existingCollaborator = collaborators[i];
+    if (existingCollaborator.userId === collaborator.userId) {
+      existingCollaboratorIndex = i;
+      break;
+    }
+  }
+
+  // If this user did not collaborator here,
+  if (existingCollaboratorIndex === -1) {
+    // Then add the collaborator.
+    op.push({
+      p: ['collaborators', 0],
+
+      // collaborator here is expected to be an object
+      // with a userId field.
+      li: collaborator,
+    });
+  } else {
+    // Otherwise, do nothing.
+    // Meaning, don't add the same collaborator twice.
+  }
+
+  return op;
+};
