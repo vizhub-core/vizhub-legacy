@@ -7,10 +7,12 @@ import {
 } from '../../../../featureFlags';
 import { Input } from '../../../../Input';
 import { Avatar } from '../../../../Avatar';
-import { SubSectionDescription, Spacer, FormRow } from '../../styles';
+import { SubSectionDescription, FormRow } from '../../styles';
 import { fetchUserSearchResults } from './fetchUserSearchResults';
 import { UserPreviewList, UserPreview, UserName } from './styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
+import { useCollaborators } from './useCollaborators';
+import { CollaboratorList } from './CollaboratorList';
 
 const fetchData = async (typedText) => {
   if (!typedText) return [];
@@ -37,37 +39,68 @@ export const CollaboratorsBody = () => {
     return () => subscription.unsubscribe();
   }, [results$]);
 
-  const addCollaborator = useCallback((userId) => {
-    console.log('add collaborator ' + userId);
-    setTypedText('');
-    setResults([]);
-  }, []);
+  const {
+    collaborators,
+    addCollaborator,
+    removeCollaborator,
+  } = useCollaborators();
+
+  const handleAddCollaboratorClick = useCallback(
+    (userId) => {
+      addCollaborator(userId);
+      setTypedText('');
+      setResults([]);
+    },
+    [addCollaborator]
+  );
+
+  // Support hitting the enter key to select first result.
+  const handleFormSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (results && results.length > 0) {
+        handleAddCollaboratorClick(results[0].id);
+      }
+    },
+    [results, handleAddCollaboratorClick]
+  );
 
   return (
     <>
-      {showCollaboratorsAnyoneCanEdit ? <AnyoneCanEdit /> : null}
       {showCollaboratorsManagement ? (
         <>
+          <CollaboratorList
+            collaborators={collaborators}
+            removeCollaborator={removeCollaborator}
+          />
+          <form onSubmit={handleFormSubmit}>
+            <SubSectionDescription>
+              Start typing to search for collaborators to add.
+            </SubSectionDescription>
+            <FormRow>
+              <Input value={typedText} onChange={setTypedText} size="grow" />
+              <UserPreviewList>
+                {results &&
+                  results.map((user) => (
+                    <UserPreview
+                      key={user.userName}
+                      onClick={() => handleAddCollaboratorClick(user.id)}
+                    >
+                      <Avatar size={24} user={user} isDisabled={true} />
+                      <UserName>{user.fullName}</UserName>
+                    </UserPreview>
+                  ))}
+              </UserPreviewList>
+            </FormRow>
+          </form>
+        </>
+      ) : null}
+      {showCollaboratorsAnyoneCanEdit ? (
+        <>
           <SubSectionDescription>
-            Start typing to search available collaborators for this
-            visualization.
+            If you check this box, anyone with the link can edit this viz.
           </SubSectionDescription>
-          <Spacer height={22} />
-          <FormRow>
-            <Input value={typedText} onChange={setTypedText} size="grow" />
-            <UserPreviewList>
-              {results &&
-                results.map((user) => (
-                  <UserPreview
-                    key={user.userName}
-                    onClick={() => addCollaborator(user.id)}
-                  >
-                    <Avatar size={24} user={user} isDisabled={true} />
-                    <UserName>{user.fullName}</UserName>
-                  </UserPreview>
-                ))}
-            </UserPreviewList>
-          </FormRow>
+          <AnyoneCanEdit />
         </>
       ) : null}
     </>

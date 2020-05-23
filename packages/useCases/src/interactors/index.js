@@ -7,6 +7,7 @@ export { GetDataset } from './getDataset';
 export { ForkVisualization } from './forkVisualization';
 export { CreateUser } from './createUser';
 export { GetUser } from './getUser';
+export { GetUsers } from './getUsers';
 export { GetOrCreateUser } from './getOrCreateUser';
 export { GetUserProfileData } from './getUserProfileData';
 export { GetAllVisualizationInfos } from './getAllVisualizationInfos';
