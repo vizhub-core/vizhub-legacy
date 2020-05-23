@@ -9,7 +9,7 @@ export const useCollaborators = () => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const collaborators = useValue(viz$, getVizCollaborators);
 
-  const addVizCollaborator = useCallback(
+  const addCollaborator = useCallback(
     (userId) => {
       const collaborator = { userId };
       submitVizInfoOp(
@@ -23,7 +23,5 @@ export const useCollaborators = () => {
     [submitVizInfoOp, realtimeModules, collaborators]
   );
 
-  return {
-    addCollaborator: addVizCollaborator,
-  };
+  return { addCollaborator, collaborators };
 };
