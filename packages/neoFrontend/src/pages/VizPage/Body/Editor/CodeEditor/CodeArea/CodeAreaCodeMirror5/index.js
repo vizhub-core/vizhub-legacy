@@ -318,7 +318,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
           widget.style.position = 'relative';
           widgets[presenceId] = widget;
         }
-        console.log(cursorPos);
         ReactDOM.render(
           <PresenceWidget
             charWidth={charWidth}
