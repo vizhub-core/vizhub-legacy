@@ -7,3 +7,8 @@ export const Wrapper = styled.div`
   padding-left: 12px;
   padding-right: 12px;
 `;
+
+export const LoadingText = styled.div`
+  font-size: 14px;
+  color: ${(props) => props.theme.lightText};
+`;
