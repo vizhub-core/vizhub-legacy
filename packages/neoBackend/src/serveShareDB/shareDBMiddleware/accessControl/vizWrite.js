@@ -1,5 +1,6 @@
 import { getVizInfo } from './getVizInfo';
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
+import { allowWrite } from 'vizhub-use-cases';
 
 const vizWriteAsync = async (request) => {
   // Unpack the ShareDB request object.
@@ -77,35 +78,9 @@ const vizWriteAsync = async (request) => {
 
   const vizInfo = await getVizInfo(collection, snapshot);
 
-  // Don't let people edit other people's stuff.
-  // Unless `anyoneCanEdit` is true.
-  if (vizInfo.owner !== userId && !vizInfo.anyoneCanEdit) {
+  if (!allowWrite(vizInfo, userId)) {
     throw new Error('This visualization is unforked. Fork to save edits.');
   }
-
-  // Explicitly whitelist conditions for allowed ops.
-  //
-  // Allow owner to edit.
-  if (vizInfo.owner === userId) {
-    return;
-  }
-
-  // Allow anyone to edit if `anyoneCanEdit` is true.
-  if (vizInfo.anyoneCanEdit) {
-    return;
-  }
-
-  throw new Error('Case not handled');
-
-  // TODO this might be useful when we add collaborators in future.
-  //// Check that the user is either the owner or a collaborator.
-  //if (owner !== userId) {
-  //  const ids = (collaborators || []).map(({id}) => id)
-  //  const isCollaborator = ids.filter(id => id === userId).length
-  //  if (!isCollaborator) {
-  //    throw new Error('You must be the owner of this document or a collaborator in order to edit it.')
-  //  }
-  //}
 };
 
 export const vizWrite = (request, callback) => {

@@ -1,16 +1,17 @@
 export const showUpvote = true;
+export const showHeadShare = true;
+export const showCollaborators = true;
+export const showCollaboratorsAnyoneCanEdit = true;
+export const showCollaboratorsManagement = true;
+
 export const showDownvote = false;
 export const showCreatedDate = false;
 export const showHeadPullRequest = false;
-export const showHeadShare = true;
 export const showVideoThumbnail = false;
 export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
 export const showEmbed = false;
-export const showCollaborators = true;
-export const showCollaboratorsAnyoneCanEdit = true;
-export const showCollaboratorsManagement = false;
 
 // List of usernames who have access to
 // private viz feature.

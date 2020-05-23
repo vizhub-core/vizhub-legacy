@@ -1,5 +1,6 @@
 import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
 import { getVizInfo } from './getVizInfo';
+import { allowRead } from 'vizhub-use-cases';
 
 const vizReadAsync = async (request) => {
   // Unpack the ShareDB request object.
@@ -23,10 +24,8 @@ const vizReadAsync = async (request) => {
   return Promise.all(
     snapshots.map(async (snapshot) => {
       const vizInfo = await getVizInfo(collection, snapshot);
-      if (vizInfo.privacy === 'private') {
-        if (vizInfo.owner !== userId) {
-          throw new Error('This visualization is private.');
-        }
+      if (!allowRead(vizInfo, userId)) {
+        throw new Error('This visualization is private.');
       }
     })
   );

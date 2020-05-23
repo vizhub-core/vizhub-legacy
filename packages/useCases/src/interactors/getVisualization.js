@@ -1,6 +1,7 @@
 import { i18n } from 'vizhub-i18n';
 import { GetUser } from './getUser';
 import { GetVisualizationInfo } from './getVisualizationInfo';
+import { allowRead } from '../accessControl/allowRead';
 
 export class GetVisualization {
   constructor({ visualizationGateway, userGateway }) {
@@ -29,11 +30,8 @@ export class GetVisualization {
     const userId = requestModel.user;
     const vizInfo = visualization.info;
 
-    // Only allow owners to get private documents.
-    if (vizInfo.privacy === 'private') {
-      if (vizInfo.owner !== userId) {
-        throw new Error('This visualization is private.');
-      }
+    if (!allowRead(vizInfo, userId)) {
+      throw new Error('This visualization is private.');
     }
 
     let forkedFromVisualizationInfo;

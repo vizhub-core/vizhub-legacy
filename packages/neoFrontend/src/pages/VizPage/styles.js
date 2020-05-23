@@ -33,20 +33,19 @@ export const SectionTitle = styled.div`
   font-size: 14px;
   color: ${(props) => props.theme.lightText};
   padding-top: 32px;
-  padding-bottom: 8px;
 `;
 
 export const SectionDescription = styled.div`
   font-size: 14px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 24px;
   color: ${(props) => props.theme.dark};
 `;
 
 export const SubSectionDescription = styled.div`
   font-size: 14px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 32px;
+  padding-bottom: 24px;
   color: ${(props) => props.theme.lightText};
 `;
 

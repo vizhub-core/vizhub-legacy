@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "mocha -r esm test/test.js",
-    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+    "prettier": "prettier --single-quote --write '*.js'"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
