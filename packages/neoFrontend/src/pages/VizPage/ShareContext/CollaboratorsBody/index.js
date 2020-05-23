@@ -69,12 +69,10 @@ export const CollaboratorsBody = () => {
     <>
       {showCollaboratorsManagement ? (
         <>
-          {collaborators && (
-            <CollaboratorList
-              collaborators={collaborators}
-              removeCollaborator={removeCollaborator}
-            />
-          )}
+          <CollaboratorList
+            collaborators={collaborators}
+            removeCollaborator={removeCollaborator}
+          />
           <form onSubmit={handleFormSubmit}>
             <SubSectionDescription>
               Start typing to search for collaborators to add.

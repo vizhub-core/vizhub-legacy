@@ -3,7 +3,6 @@ import { Clickable } from '../../../../styles';
 export const Wrapper = styled.div`
   display: flex;
   padding-top: 8px;
-  padding-bottom: 32px;
 `;
 
 export const TabWrapper = styled(Clickable)`
