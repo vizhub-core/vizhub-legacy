@@ -11,6 +11,7 @@ import { SubSectionDescription, Spacer, FormRow } from '../../styles';
 import { fetchUserSearchResults } from './fetchUserSearchResults';
 import { UserPreviewList, UserPreview, UserName } from './styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
+import { useCollaborators } from './useCollaborators';
 
 const fetchData = async (typedText) => {
   if (!typedText) return [];
@@ -37,17 +38,23 @@ export const CollaboratorsBody = () => {
     return () => subscription.unsubscribe();
   }, [results$]);
 
-  const addCollaborator = useCallback((userId) => {
-    console.log('add collaborator ' + userId);
-    setTypedText('');
-    setResults([]);
-  }, []);
+  const { addCollaborator } = useCollaborators();
+
+  const handleAddCollaboratorClick = useCallback(
+    (userId) => {
+      addCollaborator(userId);
+      setTypedText('');
+      setResults([]);
+    },
+    [addCollaborator]
+  );
 
   return (
     <>
       {showCollaboratorsAnyoneCanEdit ? <AnyoneCanEdit /> : null}
       {showCollaboratorsManagement ? (
         <>
+          <Spacer height={22} />
           <SubSectionDescription>
             Start typing to search available collaborators for this
             visualization.
@@ -60,7 +67,7 @@ export const CollaboratorsBody = () => {
                 results.map((user) => (
                   <UserPreview
                     key={user.userName}
-                    onClick={() => addCollaborator(user.id)}
+                    onClick={() => handleAddCollaboratorClick(user.id)}
                   >
                     <Avatar size={24} user={user} isDisabled={true} />
                     <UserName>{user.fullName}</UserName>
