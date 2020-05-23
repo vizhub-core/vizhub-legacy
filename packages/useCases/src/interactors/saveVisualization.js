@@ -7,11 +7,12 @@ export class SaveVisualization {
   }
 
   async execute(requestModel) {
-    const { visualization, userId } = requestModel;
-    if (visualization.info.owner !== userId) {
-      throw new Error(i18n('errorNotOwnerCantSave'));
-    }
-    visualization.info.lastUpdatedTimestamp = timestamp();
-    return await this.visualizationGateway.saveVisualization(requestModel);
+    throw new Error('DEPRECATED');
+    //const { visualization, userId } = requestModel;
+    //if (visualization.info.owner !== userId) {
+    //  throw new Error(i18n('errorNotOwnerCantSave'));
+    //}
+    //visualization.info.lastUpdatedTimestamp = timestamp();
+    //return await this.visualizationGateway.saveVisualization(requestModel);
   }
 }
