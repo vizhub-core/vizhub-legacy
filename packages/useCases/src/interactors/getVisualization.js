@@ -1,7 +1,7 @@
 import { i18n } from 'vizhub-i18n';
 import { GetUser } from './getUser';
 import { GetVisualizationInfo } from './getVisualizationInfo';
-import { allowRead } from '../allowRead';
+import { allowRead } from '../accessControl/allowRead';
 
 export class GetVisualization {
   constructor({ visualizationGateway, userGateway }) {
