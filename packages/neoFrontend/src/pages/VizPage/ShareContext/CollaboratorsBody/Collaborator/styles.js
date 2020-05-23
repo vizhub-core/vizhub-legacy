@@ -4,8 +4,17 @@ export const Wrapper = styled.div`
   height: 48px;
   display: flex;
   align-items: center;
+`;
+
+export const UserWrapper = styled.div`
+  border: 1px solid ${(props) => props.theme.lightBorder};
+  border-radius: 4px;
   padding-left: 12px;
   padding-right: 12px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex: 1;
 `;
 
 export const LoadingText = styled.div`
