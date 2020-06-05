@@ -25,6 +25,7 @@ const stamen = [
   'loganwilliams',
   'colinsullivan',
   'schroedermarc',
+  'aaamira'
 ];
 
 // 1 Year of VizHub Pro
