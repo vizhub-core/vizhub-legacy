@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { showPricing } from '../featureFlags';
 import { withTheme } from 'styled-components';
 import { LogoSVG } from '../svg';
 import { AuthContext, AUTH_PENDING } from '../authentication';
@@ -12,7 +13,6 @@ export const NavBar = withTheme(
     theme,
     showSearch = false,
     showRight = true,
-    showPricing = false,
     isHomePage = false,
     isAuthPage = false,
   }) => {

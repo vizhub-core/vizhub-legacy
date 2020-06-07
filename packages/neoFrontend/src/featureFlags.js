@@ -1,3 +1,4 @@
+export const showPricing = true;
 export const showUpvote = true;
 export const showHeadShare = true;
 export const showCollaborators = true;
@@ -25,7 +26,7 @@ const stamen = [
   'loganwilliams',
   'colinsullivan',
   'schroedermarc',
-  'aaamira'
+  'aaamira',
 ];
 
 // 1 Year of VizHub Pro
