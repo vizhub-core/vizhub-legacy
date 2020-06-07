@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, Centering, Text } from '../styles';
-import { Table, Row } from './styles';
+import { Wrapper, Content}  from '../styles';
+import { Table, Row, Left, Right } from './styles';
 
 export const PricingPage = () => (
   <Wrapper>
     <Content>
       <NavBar />
       <Table>
-        <Row>Row</Row>
+        <Row><Left>Left</Left><Right>Right</Right></Row>
         <Row>Row</Row>
         <Row>Row</Row>
       </Table>
