@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
 import { LogoSVG } from '../svg';
 import { AuthContext, AUTH_PENDING } from '../authentication';
-import { Banner } from '../styles';
-import { SignIn, LogoLink, LogoHREF, Right, PricingLink } from './styles';
+import { SignIn, LogoLink, LogoHREF, Right, PricingLink, Banner} from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
+
+const NON_WRAPPABLE_SPACE = '&nbsp';
+const SIGN_IN_LABEL = `Sign${NON_WRAPPABLE_SPACE}up${NON_WRAPPABLE_SPACE}/ Sign${NON_WRAPPABLE_SPACE}in`;
 
 export const NavBar = withTheme(
   ({
@@ -48,9 +50,11 @@ export const NavBar = withTheme(
             {me === AUTH_PENDING || !showRight ? null : me ? (
               <UserActionsMenu />
             ) : (
-              <SignIn className="test-sign-in" onClick={signIn}>
-                Sign up / Sign in
-              </SignIn>
+              <SignIn
+                className="test-sign-in"
+                onClick={signIn}
+                dangerouslySetInnerHTML={{__html: SIGN_IN_LABEL}}
+              />
             )}
           </Right>
         )}
