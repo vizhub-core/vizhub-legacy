@@ -10,9 +10,17 @@ export const Table = styled.div`
 export const Row = styled.div`
   display: flex;
 `;
+
 export const Left = styled.div`
   flex: 1;
 `;
+
 export const Right = styled.div`
   flex: 1;
 `;
+
+export const FeatureTitle = styled.div`
+  font-weight: 500;
+`;
+
+export const FeatureDescription = styled.div``;
