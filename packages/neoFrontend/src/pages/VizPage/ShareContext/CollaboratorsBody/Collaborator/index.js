@@ -6,7 +6,7 @@ import { Button } from '../../../../styles';
 import { UserName } from '../styles';
 import { Wrapper, LoadingText, UserWrapper } from './styles';
 
-export const Collaborator = ({ collaborator, removeCollaborator }) => {
+export const Collaborator = ({ collaborator, removeCollaborator, isLast }) => {
   const { userId } = collaborator;
   const { requestData } = useCache();
 
@@ -20,7 +20,7 @@ export const Collaborator = ({ collaborator, removeCollaborator }) => {
   }, [userId, removeCollaborator]);
 
   return (
-    <Wrapper>
+    <Wrapper isLast={isLast}>
       {user ? (
         <>
           <UserWrapper>

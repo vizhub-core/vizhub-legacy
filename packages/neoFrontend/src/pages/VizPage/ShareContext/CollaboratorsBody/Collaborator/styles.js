@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   height: 48px;
   display: flex;
   align-items: center;
+  margin-bottom: ${(props) => (props.isLast ? 0 : 16)}px;
 `;
 
 export const UserWrapper = styled.div`
