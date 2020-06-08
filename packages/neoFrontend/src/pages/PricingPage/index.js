@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content}  from '../styles';
+import { Wrapper, Content } from '../styles';
 import { Table, Row, Left, Right } from './styles';
 
 export const PricingPage = () => (
@@ -8,7 +8,10 @@ export const PricingPage = () => (
     <Content>
       <NavBar />
       <Table>
-        <Row><Left>Left</Left><Right>Right</Right></Row>
+        <Row>
+          <Left>Left</Left>
+          <Right>Right</Right>
+        </Row>
         <Row>Row</Row>
         <Row>Row</Row>
       </Table>
