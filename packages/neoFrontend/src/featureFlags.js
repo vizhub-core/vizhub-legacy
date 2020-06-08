@@ -1,9 +1,10 @@
-export const showPricing = true;
 export const showUpvote = true;
 export const showHeadShare = true;
 export const showCollaborators = true;
 export const showCollaboratorsAnyoneCanEdit = true;
 export const showCollaboratorsManagement = true;
+
+export const showPricing = false;
 
 export const showDownvote = false;
 export const showCreatedDate = false;

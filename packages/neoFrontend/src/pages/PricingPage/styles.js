@@ -35,3 +35,7 @@ export const PlanLabel = FeatureTitle;
 export const FeatureDescription = styled.div`
   color: ${(props) => props.theme.lightText};
 `;
+
+export const EmptySpace = styled.div`
+  width: 100px;
+`;

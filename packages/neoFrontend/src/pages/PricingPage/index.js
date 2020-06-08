@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, HorizontalRule } from '../styles';
+import { Wrapper, Content, HorizontalRule, Button } from '../styles';
 import {
   Table,
   Row,
@@ -9,9 +9,10 @@ import {
   FeatureTitle,
   FeatureDescription,
   PlanLabel,
+  EmptySpace,
 } from './styles';
 
-import { features, plans } from './featuresAndPlans';
+import { features, plans, FREE } from './featuresAndPlans';
 import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 
 export const PricingPage = () => (
@@ -20,7 +21,7 @@ export const PricingPage = () => (
       <NavBar />
       <Table>
         <Row>
-          <Left> </Left>
+          <Left />
           <Right>
             {plans.map((plan) => (
               <PlanLabel key={plan.id}>{plan.label}</PlanLabel>
@@ -47,6 +48,14 @@ export const PricingPage = () => (
             {i < features.length - 1 ? <HorizontalRule /> : null}
           </>
         ))}
+        <Row>
+          <Left />
+          <Right>
+            {plans.map((plan) =>
+              plan.id === FREE ? <EmptySpace /> : <Button>Upgrade</Button>
+            )}
+          </Right>
+        </Row>
       </Table>
     </Content>
   </Wrapper>
