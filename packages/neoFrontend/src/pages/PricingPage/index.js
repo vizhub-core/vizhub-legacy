@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content } from '../styles';
+import { Wrapper, Content, HorizontalRule } from '../styles';
 import {
   Table,
   Row,
@@ -8,6 +8,7 @@ import {
   Right,
   FeatureTitle,
   FeatureDescription,
+  PlanLabel,
 } from './styles';
 
 import { features, plans } from './featuresAndPlans';
@@ -18,22 +19,33 @@ export const PricingPage = () => (
     <Content>
       <NavBar />
       <Table>
-        {features.map((feature) => (
-          <Row key={feature.title}>
-            <Left>
-              <FeatureTitle>{feature.title}</FeatureTitle>
-              <FeatureDescription>{feature.description}</FeatureDescription>
-            </Left>
-            <Right>
-              {plans.map((plan) =>
-                feature.plans[plan.id] ? (
-                  <PlanIncludedSVG />
-                ) : (
-                  <PlanExcludedSVG />
-                )
-              )}
-            </Right>
-          </Row>
+        <Row>
+          <Left> </Left>
+          <Right>
+            {plans.map((plan) => (
+              <PlanLabel key={plan.id}>{plan.label}</PlanLabel>
+            ))}
+          </Right>
+        </Row>
+        {features.map((feature, i) => (
+          <>
+            <Row key={feature.title}>
+              <Left>
+                <FeatureTitle>{feature.title}</FeatureTitle>
+                <FeatureDescription>{feature.description}</FeatureDescription>
+              </Left>
+              <Right>
+                {plans.map((plan) =>
+                  feature.plans[plan.id] ? (
+                    <PlanIncludedSVG />
+                  ) : (
+                    <PlanExcludedSVG />
+                  )
+                )}
+              </Right>
+            </Row>
+            {i < features.length - 1 ? <HorizontalRule /> : null}
+          </>
         ))}
       </Table>
     </Content>

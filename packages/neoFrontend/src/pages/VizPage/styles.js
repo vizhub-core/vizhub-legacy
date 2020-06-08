@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const HorizontalRule = styled.div`
-  height: 1px;
-  background-color: ${(props) => props.theme.rule};
-`;
-
 export const Dialog = styled.div`
   display: flex;
   flex-direction: column;
