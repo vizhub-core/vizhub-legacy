@@ -15,11 +15,10 @@ import {
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
-import { Centering } from '../../../styles';
+import { Centering, HorizontalRule } from '../../../styles';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { VizContext } from '../../VizContext';
 import { useListener } from '../useListener';
-import { HorizontalRule } from '../../styles';
 import { Wrapper, Scroller, ViewerContent, ViewerFooter } from './styles';
 import { VizFrame } from './VizFrame';
 import { TitleBar } from './TitleBar';

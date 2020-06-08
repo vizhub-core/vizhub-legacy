@@ -1,29 +1,62 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, Centering, Text } from '../styles';
+import { Wrapper, Content, HorizontalRule, Button } from '../styles';
+import {
+  Table,
+  Row,
+  Left,
+  Right,
+  FeatureTitle,
+  FeatureDescription,
+  PlanLabel,
+  EmptySpace,
+} from './styles';
+
+import { features, plans, FREE } from './featuresAndPlans';
+import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 
 export const PricingPage = () => (
   <Wrapper>
     <Content>
       <NavBar />
-      <Centering>
-        <Text>
-          <h1>Pricing</h1>
-          <p>Paid plans are in the works, but not available quite yet.</p>
-          <p>
-            To be one of the first to access paid features, consider backing our{' '}
-            <a
-              href="https://www.kickstarter.com/projects/curran/vizhub-launch"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {' '}
-              VizHub Launch Kickstarter{'.'}
-            </a>
-          </p>
-          <p>To contact the site owner, email curran@datavis.tech.</p>
-        </Text>
-      </Centering>
+      <Table>
+        <Row>
+          <Left />
+          <Right>
+            {plans.map((plan) => (
+              <PlanLabel key={plan.id}>{plan.label}</PlanLabel>
+            ))}
+          </Right>
+        </Row>
+        {features.map((feature, i) => (
+          <>
+            <Row key={feature.title}>
+              <Left>
+                <FeatureTitle>{feature.title}</FeatureTitle>
+                <FeatureDescription>{feature.description}</FeatureDescription>
+              </Left>
+              <Right>
+                {plans.map((plan) =>
+                  feature.plans[plan.id] ? (
+                    <PlanIncludedSVG />
+                  ) : (
+                    <PlanExcludedSVG />
+                  )
+                )}
+              </Right>
+            </Row>
+            {i < features.length - 1 ? <HorizontalRule /> : null}
+          </>
+        ))}
+        <Row>
+          <Left />
+          <Right>
+            {plans.map((plan) =>
+              plan.id === FREE ? <EmptySpace /> : <Button>Upgrade</Button>
+            )}
+          </Right>
+        </Row>
+      </Table>
     </Content>
   </Wrapper>
 );

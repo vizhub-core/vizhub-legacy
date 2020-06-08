@@ -4,6 +4,8 @@ export const showCollaborators = true;
 export const showCollaboratorsAnyoneCanEdit = true;
 export const showCollaboratorsManagement = true;
 
+export const showPricing = false;
+
 export const showDownvote = false;
 export const showCreatedDate = false;
 export const showHeadPullRequest = false;
@@ -25,7 +27,7 @@ const stamen = [
   'loganwilliams',
   'colinsullivan',
   'schroedermarc',
-  'aaamira'
+  'aaamira',
 ];
 
 // 1 Year of VizHub Pro

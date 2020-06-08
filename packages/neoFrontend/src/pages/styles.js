@@ -100,3 +100,8 @@ export const LargeIcon = styled(Icon)`
   padding-right: ${(props) => (props.rightmost ? 10 : 7)}px;
   padding-left: ${(props) => (props.leftmost ? 10 : 7)}px;
 `;
+
+export const HorizontalRule = styled.div`
+  height: 1px;
+  background-color: ${(props) => props.theme.rule};
+`;

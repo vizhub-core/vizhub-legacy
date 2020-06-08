@@ -58,7 +58,7 @@ export const theme = {
   borderRadiusMedium: 4,
   borderRadiusLarge: 6,
   veryLightPink: '#c0c0c0',
-  rule: 'rgba(0, 0, 0, 0.14)',
+  rule: 'rgba(0, 0, 0, 0.12)',
   interactive: '#3866E9',
 };
 theme.userMenuOverlayForeground = theme.dark;
