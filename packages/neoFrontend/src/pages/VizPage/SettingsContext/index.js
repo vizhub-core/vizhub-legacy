@@ -4,8 +4,8 @@ import { Modal } from '../../../Modal';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
 import { RadioButton } from '../RadioButton';
+import { HorizontalRule } from '../../styles';
 import {
-  HorizontalRule,
   Dialog,
   DialogTitle,
   DialogButtons,
