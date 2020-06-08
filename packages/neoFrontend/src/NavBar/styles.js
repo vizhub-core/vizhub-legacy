@@ -27,3 +27,14 @@ export const Right = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const Banner = styled.div`
+  display: flex;
+  min-height: ${(props) => props.theme.bannerHeight}px;
+  padding-left: ${(props) => props.theme.bannerPadding}px;
+  padding-right: ${(props) => props.theme.bannerPadding}px;
+  padding-top: ${(props) => props.theme.bannerPadding}px;
+  align-items: center;
+  background-color: ${(props) => props.theme.bannerBackground};
+  justify-content: space-between;
+`;
