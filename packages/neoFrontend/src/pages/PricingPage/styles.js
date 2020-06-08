@@ -6,6 +6,7 @@ export const Table = styled.div`
   box-shadow: ${(props) => props.theme.shadow};
   border-radius: ${(props) => props.theme.borderRadiusMedium}px;
   padding: 84px;
+  font-size: 16px;
 `;
 
 export const Row = styled.div`
@@ -21,12 +22,15 @@ export const Right = styled.div`
   flex: 1;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   max-width: 300px;
 `;
 
 export const FeatureTitle = styled.div`
   font-weight: 500;
 `;
+
+export const PlanLabel = FeatureTitle;
 
 export const FeatureDescription = styled.div`
   color: ${(props) => props.theme.lightText};
