@@ -10,6 +10,7 @@ import {
   FeatureDescription,
 } from './styles';
 
+import { features, plans } from './featuresAndPlans';
 import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 
 export const PricingPage = () => (
@@ -17,20 +18,23 @@ export const PricingPage = () => (
     <Content>
       <NavBar />
       <Table>
-        <Row>
-          <Left>
-            <FeatureTitle>Public Visualizations</FeatureTitle>
-            <FeatureDescription>
-              Visualizations publicly accessible for viewing and forking.
-            </FeatureDescription>
-          </Left>
-          <Right>
-            <PlanIncludedSVG />
-            <PlanExcludedSVG />
-          </Right>
-        </Row>
-        <Row>Row</Row>
-        <Row>Row</Row>
+        {features.map((feature) => (
+          <Row key={feature.title}>
+            <Left>
+              <FeatureTitle>{feature.title}</FeatureTitle>
+              <FeatureDescription>{feature.description}</FeatureDescription>
+            </Left>
+            <Right>
+              {plans.map((plan) =>
+                feature.plans[plan.id] ? (
+                  <PlanIncludedSVG />
+                ) : (
+                  <PlanExcludedSVG />
+                )
+              )}
+            </Right>
+          </Row>
+        ))}
       </Table>
     </Content>
   </Wrapper>
