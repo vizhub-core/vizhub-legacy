@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const SearchInput = styled.input`
-  height: 42px;
   width: 100%;
+  height: 40px;
   box-sizing : border-box;
   font-family: Poppins;
   font-size: 14px;
