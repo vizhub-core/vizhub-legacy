@@ -5,9 +5,6 @@ import { HomePageDataProvider } from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
 import { Vizzes } from './Vizzes';
 
-//import { Banner } from './Banner';
-//        <Banner />
-
 export const HomePage = () => (
   <HomePageDataProvider fallback={<LoadingScreen />}>
     <Wrapper>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
 import { useSearchQuery } from '../../useSearchQuery';
-import { SearchInput } from './styles';
+import { SearchInput, Form } from './styles';
 
 export const Search = () => {
   const queryFromLocation = useSearchQuery('query');
@@ -27,13 +27,13 @@ export const Search = () => {
   ]);
 
   return (
-    <form onSubmit={onSubmitQuery}>
+    <Form onSubmit={onSubmitQuery}>
       <SearchInput
         value={query}
         placeholder="Search"
         onChange={onChangeQuery}
       />
       {submitted && <Redirect push to={`/search?query=${query}`} />}
-    </form>
+    </Form>
   );
 };
