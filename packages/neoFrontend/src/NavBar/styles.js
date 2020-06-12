@@ -30,7 +30,10 @@ export const Right = styled.div`
 
 export const Banner = styled.div`
   display: flex;
-  min-height: ${(props) => props.theme.bannerHeight}px;
+  min-height: ${(props) =>
+    props.isMobile
+      ? props.theme.bannerHeightMobile
+      : props.theme.bannerHeight}px;
   padding-left: ${(props) => props.theme.bannerPadding}px;
   padding-right: ${(props) => props.theme.bannerPadding}px;
   align-items: center;
