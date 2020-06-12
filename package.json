@@ -12,12 +12,12 @@
     "prettier": "cd packages/neoFrontend && npm run prettier && cd ../neoBackend && npm run prettier"
   },
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-react": "^7.14.2",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.20.0",
     "esm": "^3.2.25",
-    "lerna": "^3.15.0"
+    "lerna": "^3.22.1"
   }
 }
