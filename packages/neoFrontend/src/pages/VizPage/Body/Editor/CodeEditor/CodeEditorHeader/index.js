@@ -33,13 +33,15 @@ export const CodeEditorHeader = ({
       {activeFile}
     </Text>
     <Icons>
-      <CodeEditorIcon
-        onClick={toggleShowTop}
-        leftmost={true}
-        title={showTop ? 'Hide top bar' : 'Show top bar'}
-      >
-        <ArrowSVG height={svgHeight} up={showTop} down={!showTop} />
-      </CodeEditorIcon>
+      {!isMobile ? (
+        <CodeEditorIcon
+          onClick={toggleShowTop}
+          leftmost={true}
+          title={showTop ? 'Hide top bar' : 'Show top bar'}
+        >
+          <ArrowSVG height={svgHeight} up={showTop} down={!showTop} />
+        </CodeEditorIcon>
+      ) : null}
       {viewer ? (
         <>
           <CodeEditorIcon
