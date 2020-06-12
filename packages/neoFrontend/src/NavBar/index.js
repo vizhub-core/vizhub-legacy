@@ -20,7 +20,7 @@ export const NavBar = withTheme(
     const { me, signIn } = useContext(AuthContext);
 
     return (
-      <div>
+      <>
         <Banner>
           {isHomePage ? (
             <LogoHREF
@@ -57,7 +57,7 @@ export const NavBar = withTheme(
           )}
         </Banner>
         {showSearch && isMobile && <Search />}
-      </div>
+      </>
     );
   }
 );
