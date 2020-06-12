@@ -4,7 +4,14 @@ import { withTheme } from 'styled-components';
 import { LogoSVG } from '../svg';
 import { isMobile } from '../mobileMods';
 import { AuthContext, AUTH_PENDING } from '../authentication';
-import { SignIn, LogoLink, LogoHREF, Right, PricingLink, Banner} from './styles';
+import {
+  SignIn,
+  LogoLink,
+  LogoHREF,
+  Right,
+  PricingLink,
+  Banner,
+} from './styles';
 import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 
@@ -21,7 +28,7 @@ export const NavBar = withTheme(
 
     return (
       <>
-        <Banner>
+        <Banner isMobile={isMobile}>
           {isHomePage ? (
             <LogoHREF
               target="_blank"
