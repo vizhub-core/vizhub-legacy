@@ -9,7 +9,7 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install -g learna
+            - run: npm install learna
             - run: lerna install
             - run: npm test
 workflows:
