@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavBar } from '../../NavBar';
 import { Wrapper, Content, HorizontalRule, Button } from '../styles';
 import {
@@ -33,35 +33,41 @@ export const PricingPage = () => {
             </Right>
           </Row>
           {features.map((feature, i) => (
-            <>
-              <Row key={feature.title}>
+            <Fragment key={feature.title}>
+              <Row>
                 <Left>
                   <FeatureTitle>{feature.title}</FeatureTitle>
                   <FeatureDescription>{feature.description}</FeatureDescription>
                 </Left>
                 <Right>
-                  {plans.map((plan) =>
-                    feature.plans[plan.id] ? (
-                      <PlanIncludedSVG />
-                    ) : (
-                      <PlanExcludedSVG />
-                    )
-                  )}
+                  {plans.map((plan) => (
+                    <Fragment key={plan.id}>
+                      {feature.plans[plan.id] ? (
+                        <PlanIncludedSVG />
+                      ) : (
+                        <PlanExcludedSVG />
+                      )}
+                    </Fragment>
+                  ))}
                 </Right>
               </Row>
               {i < features.length - 1 ? <HorizontalRule /> : null}
-            </>
+            </Fragment>
           ))}
           <Row>
             <Left />
             <Right>
-              {plans.map((plan) =>
-                plan.id === FREE ? (
-                  <EmptySpace />
-                ) : (
-                  <Button onClick={handleUpgradeClick}>Upgrade</Button>
-                )
-              )}
+              {plans.map((plan) => (
+                <Fragment key={plan.id}>
+                  {plan.id === FREE ? (
+                    <EmptySpace key={plan.id} />
+                  ) : (
+                    <Button key={plan.id} onClick={handleUpgradeClick}>
+                      Upgrade
+                    </Button>
+                  )}
+                </Fragment>
+              ))}
             </Right>
           </Row>
         </Table>
