@@ -15,10 +15,9 @@ import {
 import { features, plans, FREE } from './featuresAndPlans';
 import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 
+import { handleUpgradeClick } from './stripe';
+
 export const PricingPage = () => {
-  const handleUpgradeClick = () => {
-    console.log('here');
-  };
   return (
     <Wrapper>
       <Content>
