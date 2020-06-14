@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import { modShowViewer } from '../../../../../mobileMods';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
@@ -46,6 +46,13 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
     });
   }, [submitVizContentOp]);
 
+  const handleGutterClick = useCallback(
+    (line) => {
+      setActiveLine(line === activeLine ? null : line);
+    },
+    [activeLine, setActiveLine]
+  );
+
   return (
     <Wrapper
       showLeftBorder={showEditor}
@@ -67,7 +74,7 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
         activeFile={activeFile}
         closeActiveFile={closeActiveFile}
         activeLine={activeLine}
-        onGutterClick={setActiveLine}
+        onGutterClick={handleGutterClick}
       />
     </Wrapper>
   );
