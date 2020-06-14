@@ -195,6 +195,7 @@ export const CodeAreaCodeMirror5 = ({
       'wrap',
       'CodeMirror-activeline-background'
     );
+
     codeMirror.scrollIntoView({ line: updatedActiveDocLineNumber });
 
     activeDocLineNumberRef.current = updatedActiveDocLineNumber;
