@@ -34,7 +34,7 @@ export const reducer = (state, action) => {
     case 'setActiveFile':
       return action.file === state.file
         ? state
-        : Object.assign({}, state, { file: action.file });
+        : Object.assign({}, state, { file: action.file, line: null });
 
     // Closes whatever file is open.
     // On mobile, if the mode is 'mini' or 'hidden' and we close the active file,
