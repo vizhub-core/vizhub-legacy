@@ -174,12 +174,9 @@ export const CodeAreaCodeMirror5 = ({
 
   // Respond to change of active line
   useEffect(() => {
-    if (!codeMirror || !activeLine) return;
+    if (!codeMirror) return;
 
     const doc = codeMirror.getDoc();
-
-    // codemiror line count starts from 0, users count lines from 1
-    const updatedActiveDocLineNumber = activeLine - 1;
 
     // need to reset previous line (if any)
     if (activeDocLineNumberRef.current !== null) {
@@ -190,11 +187,17 @@ export const CodeAreaCodeMirror5 = ({
       );
     }
 
+    if (!activeLine) return;
+
+    // codemiror line count starts from 0, users count lines from 1
+    const updatedActiveDocLineNumber = activeLine - 1;
+
     doc.addLineClass(
       updatedActiveDocLineNumber,
       'wrap',
       'CodeMirror-activeline-background'
     );
+
     codeMirror.scrollIntoView({ line: updatedActiveDocLineNumber });
 
     activeDocLineNumberRef.current = updatedActiveDocLineNumber;
