@@ -26,6 +26,10 @@ const modes = {
 };
 const getMode = (extension) => modes[extension];
 
+// Disable wrapping for JS code.
+// Enable wrapping for everything else.
+const getLineWrapping = (extension) => extension !== '.js';
+
 const defaultKeyMap = 'sublime';
 
 const fileIndexOfPath = (path) => path[1];
@@ -127,7 +131,6 @@ export const CodeAreaCodeMirror5 = ({
       new CodeMirror(ref.current, {
         value: file.text,
         lineNumbers: true,
-        lineWrapping: true,
         tabSize: 2,
         matchBrackets: true,
         closeOnBlur: false,
@@ -148,6 +151,7 @@ export const CodeAreaCodeMirror5 = ({
   useEffect(() => {
     if (!codeMirror) return;
     codeMirror.setOption('mode', getMode(extension));
+    codeMirror.setOption('lineWrapping', getLineWrapping(extension));
   }, [codeMirror, extension]);
 
   // Don't allow editing of bundle.js.
