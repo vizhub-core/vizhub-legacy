@@ -67,8 +67,7 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
       props.theme.editor.selectionBackground} !important;
   }
   .CodeMirror-activeline-background {
-    background: #f6eee3 !important;
-    color: #161514 !important;
+    background: #3d4b65;
   }
   .cm-s-default .cm-tag { ${css('tag')} }
   .cm-s-default .cm-link { ${css('link')} }
