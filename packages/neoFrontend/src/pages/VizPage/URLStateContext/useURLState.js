@@ -17,7 +17,7 @@ const getMode = (state) => state.mode || 'viewer';
 // Higher order component exposing URL state accessors.
 export const useURLState = (props) => {
   const [state, dispatch] = useURLStateReducer(reducer, props);
-  const { edit, file: activeFile } = state;
+  const { edit, file: activeFile, line: activeLine } = state;
 
   const setEdit = useCallback(
     (value) => {
@@ -44,6 +44,13 @@ export const useURLState = (props) => {
   const closeActiveFile = useCallback(() => {
     dispatch({ type: 'closeActiveFile' });
   }, [dispatch]);
+
+  const setActiveLine = useCallback(
+    (line) => {
+      dispatch({ type: 'setActiveLine', line });
+    },
+    [dispatch]
+  );
 
   const setMode = useCallback(
     (mode) => {
@@ -89,6 +96,8 @@ export const useURLState = (props) => {
     activeFile,
     setActiveFile,
     closeActiveFile,
+    activeLine,
+    setActiveLine,
     showEditor,
     toggleEditor,
     activeSection,

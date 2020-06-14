@@ -11,12 +11,17 @@ let hiddenURLState = {
   edit: 'files',
 };
 
-export const useURLStateReducer = (reducer, { history, match, location }) => {
-  const state = useMemo(() => queryString.parse(location.search), [
-    location.search,
-  ]);
+const parseLine = (hash) => {
+  const found = hash.match(/\d+/g);
+  return found ? found[0] : found;
+};
 
-  state.hidden = hiddenURLState;
+export const useURLStateReducer = (reducer, { history, match, location }) => {
+  const state = useMemo(() => ({
+    ...queryString.parse(location.search),
+    line: parseLine(location.hash),
+    hidden: hiddenURLState
+  }) , [location.search, location.hash]);
 
   const dispatch = useCallback(
     (action) => {
@@ -28,10 +33,12 @@ export const useURLStateReducer = (reducer, { history, match, location }) => {
 
       delete nextState.hidden;
 
+      const { line, ...searchParams} = nextState;
+
       history.push({
         pathname: match.url,
-        search: queryString.stringify(nextState),
-        hash: window.location.hash,
+        search: queryString.stringify(searchParams),
+        hash: line ? `#L${line}` : ''
       });
     },
     [reducer, state, history, match.url]
