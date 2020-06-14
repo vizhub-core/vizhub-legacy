@@ -17,11 +17,14 @@ const parseLine = (hash) => {
 };
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
-  const state = useMemo(() => ({
-    ...queryString.parse(location.search),
-    line: parseLine(location.hash),
-    hidden: hiddenURLState
-  }) , [location.search, location.hash]);
+  const state = useMemo(
+    () => ({
+      ...queryString.parse(location.search),
+      line: parseLine(location.hash),
+      hidden: hiddenURLState,
+    }),
+    [location.search, location.hash]
+  );
 
   const dispatch = useCallback(
     (action) => {
@@ -33,12 +36,12 @@ export const useURLStateReducer = (reducer, { history, match, location }) => {
 
       delete nextState.hidden;
 
-      const { line, ...searchParams} = nextState;
+      const { line, ...searchParams } = nextState;
 
       history.push({
         pathname: match.url,
         search: queryString.stringify(searchParams),
-        hash: line ? `#L${line}` : ''
+        hash: line ? `#L${line}` : '',
       });
     },
     [reducer, state, history, match.url]

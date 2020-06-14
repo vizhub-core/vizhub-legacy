@@ -30,7 +30,11 @@ const defaultKeyMap = 'sublime';
 
 const fileIndexOfPath = (path) => path[1];
 
-export const CodeAreaCodeMirror5 = ({ activeFile, activeLine, onGutterClick }) => {
+export const CodeAreaCodeMirror5 = ({
+  activeFile,
+  activeLine,
+  onGutterClick,
+}) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
   const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', defaultKeyMap);
@@ -179,15 +183,22 @@ export const CodeAreaCodeMirror5 = ({ activeFile, activeLine, onGutterClick }) =
 
     // need to reset previous line (if any)
     if (activeDocLineNumberRef.current !== null) {
-      doc.removeLineClass(activeDocLineNumberRef.current, 'wrap', 'CodeMirror-activeline-background');
+      doc.removeLineClass(
+        activeDocLineNumberRef.current,
+        'wrap',
+        'CodeMirror-activeline-background'
+      );
     }
 
-    doc.addLineClass(updatedActiveDocLineNumber, 'wrap', 'CodeMirror-activeline-background');
+    doc.addLineClass(
+      updatedActiveDocLineNumber,
+      'wrap',
+      'CodeMirror-activeline-background'
+    );
     codeMirror.scrollIntoView({ line: updatedActiveDocLineNumber });
 
     activeDocLineNumberRef.current = updatedActiveDocLineNumber;
   }, [codeMirror, activeLine]);
-
 
   // Respond to gutter click
   useEffect(() => {
