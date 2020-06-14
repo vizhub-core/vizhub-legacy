@@ -13,7 +13,7 @@ let hiddenURLState = {
 
 const parseLine = (hash) => {
   const found = hash.match(/\d+/g);
-  return found ? found[0] : found;
+  return found ? +found[0] : null;
 };
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
