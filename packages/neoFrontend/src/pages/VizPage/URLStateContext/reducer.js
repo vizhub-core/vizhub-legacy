@@ -46,6 +46,7 @@ export const reducer = (state, action) => {
           state.mode === 'mini' || state.mode === 'hide'
             ? undefined
             : state.mode,
+        line: null,
       });
 
     // Invoked when a line is selected (clicked on).
