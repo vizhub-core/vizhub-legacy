@@ -4,7 +4,7 @@ executors:
     docker:
       - image: 'circleci/node:latest'
 jobs:
-  test:
+  build:
     executor: node_exec
     steps:
       - checkout
