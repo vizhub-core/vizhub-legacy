@@ -1,0 +1,14 @@
+version: 2.1
+executors:
+  node_exec:
+    docker:
+      - image: 'circleci/node:latest'
+jobs:
+  test:
+    executor: node_exec
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run test
+
+
