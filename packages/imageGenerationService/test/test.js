@@ -10,7 +10,7 @@ import { SaveVisualization } from 'vizhub-use-cases';
 
 const { visualization } = testData;
 
-describe.skip('Thumbnails Service', () => {
+describe('Thumbnails Service', () => {
   describe('computeImageDimensions', () => {
     it('should compute correct thumbnail dimensions for same aspect ratio', () => {
       const { width, height } = computeImageDimensions({

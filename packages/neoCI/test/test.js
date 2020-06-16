@@ -9,8 +9,7 @@ import { privacy } from './privacy';
 //
 // Convention: All class names that are only used in tests are prefixed with "test-".
 
-// TODO bring this back in CI.
-describe.skip('VizHub End to End Tests', () => {
+describe('VizHub End to End Tests', () => {
 
   // This object allows tests to be split into multiple files.
   // It contains properties that mutate as the tests flow.
