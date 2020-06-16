@@ -4,7 +4,6 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
-    "test": "",
     "prettier": "prettier --single-quote --write '*.js'"
   },
   "author": "Curran Kelleher",
