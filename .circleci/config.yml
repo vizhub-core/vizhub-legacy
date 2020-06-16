@@ -1,14 +1,27 @@
 version: 2.1
+
 executors:
   node_exec:
     docker:
       - image: 'circleci/node:latest'
+
 jobs:
   build:
     executor: node_exec
     steps:
       - checkout
       - run: npm i
-      - run: npm run test
+      - run: npm run lerna:bootstrap
+  test:
+    executor: node_exec
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run lerna:bootstrap
+      - run: npm run lerna:test
 
-
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
