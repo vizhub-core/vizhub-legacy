@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
-    "test": "mocha -r esm test/test.js",
+    "test": "",
     "prettier": "prettier --single-quote --write '*.js'"
   },
   "author": "Curran Kelleher",
