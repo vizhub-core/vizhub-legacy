@@ -11,6 +11,7 @@ import {
   MessageLink,
   MessageButton,
 } from './styles';
+
 export const Banner = () => (
   <Wrapper>
     <Bar></Bar>
@@ -35,15 +36,6 @@ export const Banner = () => (
           <MessageList>
             <li>
               <MessageLink
-                href="https://datavis.tech/coronavirus-dataviz-hackathon/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Coronavirus Dataviz Hackathon
-              </MessageLink>
-            </li>
-            <li>
-              <MessageLink
                 href="https://datavis.tech/datavis-2020/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -53,11 +45,29 @@ export const Banner = () => (
             </li>
             <li>
               <MessageLink
-                href="https://discourse.vizhub.com/t/welcome-to-the-vizhub-user-forum/7"
+                href="https://curran.github.io/dataviz-course-2018/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                VizHub Discourse User Forum
+                Data Visualization Course 2018
+              </MessageLink>
+            </li>
+            <li>
+              <MessageLink
+                href="https://github.com/datavis-tech/vizhub-issue-tracker/projects/2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VizHub Roadmap Kanban
+              </MessageLink>
+            </li>
+            <li>
+              <MessageLink
+                href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Report a bug or idea!
               </MessageLink>
             </li>
           </MessageList>
