@@ -59,6 +59,10 @@ export const visualizationInfoData = Object.assign({}, documentInfoData, {
   forkedFrom: '012',
   height: 600,
   imagesUpdatedTimestamp: 87432589,
+  upvotes: [{ userId: '47895473289547832938754', timestamp: 1592344481 }],
+  privacy: 'public',
+  collaborators: [{ userId: '47895473289547832938754' }],
+  anyoneCanEdit: false,
 });
 
 export const visualizationInfo = new VisualizationInfo(visualizationInfoData);

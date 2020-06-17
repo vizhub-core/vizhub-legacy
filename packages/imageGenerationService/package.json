@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node -r esm src/index.js",
     "dev": "NODE_ENV=development node -r esm src/index.js",
-    "test": "mocha -r esm test/test.js"
+    "test-no-ci": "mocha -r esm test/test.js"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
