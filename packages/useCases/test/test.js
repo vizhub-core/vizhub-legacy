@@ -105,50 +105,6 @@ describe('Use Cases', () => {
     });
   });
 
-  describe('Save Visualization', () => {
-    let invocations = 0;
-    let vis;
-    const visualizationGateway = {
-      saveVisualization: async ({ visualization }) => {
-        vis = visualization;
-        invocations++;
-        return { status: 'success' };
-      },
-    };
-    const saveVisualization = new SaveVisualization({ visualizationGateway });
-
-    it('should invoke saveVisualization with updated timestamp in gateway.', async () => {
-      const requestModel = {
-        visualization: {
-          info: {
-            owner: '123',
-          },
-        },
-        userId: '123',
-      };
-      const responseModel = await saveVisualization.execute(requestModel);
-      assert.equal(invocations, 1);
-      assert(timestamp() - vis.info.lastUpdatedTimestamp < 1);
-      assert.equal(responseModel.status, 'success');
-    });
-
-    it('should error if user does not match owner.', (done) => {
-      invocations = 0;
-      const requestModel = {
-        visualization: {
-          info: {
-            owner: '123',
-          },
-        },
-        userId: '234',
-      };
-      saveVisualization.execute(requestModel).catch((error) => {
-        assert.equal(invocations, 0);
-        assert.equal(error.message, i18n('errorNotOwnerCantSave'));
-        done();
-      });
-    });
-  });
   describe('Create Dataset', () => {
     const createDataset = new CreateDataset({ datasetGateway });
     it('should error if no owner specified.', (done) => {

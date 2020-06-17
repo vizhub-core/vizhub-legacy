@@ -8,8 +8,7 @@
     "start": "NODE_ENV=production node -r esm src/index.js",
     "dev": "NODE_ENV=development node -r esm src/index.js",
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
-    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix",
-		"test": ""
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
   },
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",

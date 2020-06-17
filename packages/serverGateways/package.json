@@ -4,8 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "prettier": "prettier --single-quote --write 'src/**/*.js'",
-		"test": ""
+    "prettier": "prettier --single-quote --write 'src/**/*.js'"
   },
   "author": "",
   "license": "UNLICENSED",
