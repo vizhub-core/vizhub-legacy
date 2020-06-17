@@ -66,6 +66,9 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     background-color: ${(props) =>
       props.theme.editor.selectionBackground} !important;
   }
+  .CodeMirror-activeline-background, .CodeMirror-linenumber:hover {
+    background: ${(props) => props.theme.editorActiveLineBackground};
+  }
   .cm-s-default .cm-tag { ${css('tag')} }
   .cm-s-default .cm-link { ${css('link')} }
   .cm-s-default .cm-string { ${css('string')} }

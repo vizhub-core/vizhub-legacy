@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import { modShowViewer } from '../../../../../mobileMods';
 import { URLStateContext } from '../../../URLStateContext';
 import { SplitPaneResizeContext } from '../../../SplitPaneResizeContext';
@@ -11,11 +11,13 @@ import { useUpdateURLOnRename } from './useUpdateURLOnRename';
 export const CodeEditor = ({ showTop, toggleShowTop }) => {
   const {
     activeFile,
+    activeLine,
     showEditor,
     onHideViz,
     onShowViz,
     showViewer,
     closeActiveFile,
+    setActiveLine,
   } = useContext(URLStateContext);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
@@ -44,6 +46,13 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
     });
   }, [submitVizContentOp]);
 
+  const handleGutterClick = useCallback(
+    (line) => {
+      setActiveLine(line === activeLine ? null : line);
+    },
+    [activeLine, setActiveLine]
+  );
+
   return (
     <Wrapper
       showLeftBorder={showEditor}
@@ -64,6 +73,8 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
         key={activeFile}
         activeFile={activeFile}
         closeActiveFile={closeActiveFile}
+        activeLine={activeLine}
+        onGutterClick={handleGutterClick}
       />
     </Wrapper>
   );

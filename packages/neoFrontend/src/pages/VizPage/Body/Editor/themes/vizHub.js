@@ -47,7 +47,10 @@ export const vizHub = (rotation) => {
       (backgroundLuminance + sidebarDark.l) / 2
     ).formatHex(),
     selectionBackground: '#000',
-    lineNumbers: { color: 'rgba(255,255,255,0.2)' },
+    lineNumbers: {
+      color: 'rgba(255,255,255,0.2)',
+      cursor: 'pointer',
+    },
     //keyword: { color: '#c679de' },
     //atom: { color: '#98c379' },
     //property: { color: '#61afef' },

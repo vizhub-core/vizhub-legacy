@@ -26,11 +26,19 @@ const modes = {
 };
 const getMode = (extension) => modes[extension];
 
+// Disable wrapping for JS code.
+// Enable wrapping for everything else.
+const getLineWrapping = (extension) => extension !== '.js';
+
 const defaultKeyMap = 'sublime';
 
 const fileIndexOfPath = (path) => path[1];
 
-export const CodeAreaCodeMirror5 = ({ activeFile }) => {
+export const CodeAreaCodeMirror5 = ({
+  activeFile,
+  activeLine,
+  onGutterClick,
+}) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
   const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', defaultKeyMap);
@@ -123,7 +131,6 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
       new CodeMirror(ref.current, {
         value: file.text,
         lineNumbers: true,
-        lineWrapping: true,
         tabSize: 2,
         matchBrackets: true,
         closeOnBlur: false,
@@ -144,6 +151,7 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
   useEffect(() => {
     if (!codeMirror) return;
     codeMirror.setOption('mode', getMode(extension));
+    codeMirror.setOption('lineWrapping', getLineWrapping(extension));
   }, [codeMirror, extension]);
 
   // Don't allow editing of bundle.js.
@@ -164,6 +172,54 @@ export const CodeAreaCodeMirror5 = ({ activeFile }) => {
     if (!codeMirror) return;
     codeMirror.focus();
   }, [codeMirror, activeFile]);
+
+  // keep track of active doc line
+  const activeDocLineNumberRef = useRef(null);
+
+  // Respond to change of active line
+  useEffect(() => {
+    if (!codeMirror) return;
+
+    const doc = codeMirror.getDoc();
+
+    // need to reset previous line (if any)
+    if (activeDocLineNumberRef.current !== null) {
+      doc.removeLineClass(
+        activeDocLineNumberRef.current,
+        'wrap',
+        'CodeMirror-activeline-background'
+      );
+    }
+
+    if (!activeLine) return;
+
+    // codemiror line count starts from 0, users count lines from 1
+    const updatedActiveDocLineNumber = activeLine - 1;
+
+    doc.addLineClass(
+      updatedActiveDocLineNumber,
+      'wrap',
+      'CodeMirror-activeline-background'
+    );
+
+    codeMirror.scrollIntoView({ line: updatedActiveDocLineNumber });
+
+    activeDocLineNumberRef.current = updatedActiveDocLineNumber;
+  }, [codeMirror, activeLine]);
+
+  // Respond to gutter click
+  useEffect(() => {
+    if (!codeMirror) return;
+
+    const handler = (_, docLineNumber) => {
+      onGutterClick(docLineNumber + 1);
+    };
+
+    codeMirror.on('gutterClick', handler);
+    return () => {
+      codeMirror.off('gutterClick', handler);
+    };
+  }, [codeMirror, onGutterClick]);
 
   // Respond to changes in text.
   // Submit ops for local user-generated changes.

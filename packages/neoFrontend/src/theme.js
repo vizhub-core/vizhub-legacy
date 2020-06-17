@@ -54,6 +54,7 @@ export const theme = {
   editorEntryHorizontalPadding: 15,
   editorEntryIndentation: 10,
   editorEntryLeftBorderSize: 5,
+  editorActiveLineBackground: 'rgba(222,234,255,0.15)',
   borderRadiusSmall: 3,
   borderRadiusMedium: 4,
   borderRadiusLarge: 6,
