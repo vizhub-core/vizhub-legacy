@@ -5,7 +5,6 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" "
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED"
