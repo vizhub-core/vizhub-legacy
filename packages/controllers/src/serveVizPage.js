@@ -1,29 +1,9 @@
-import path from 'path';
 import { GetVisualization } from 'vizhub-use-cases';
+import { servePage } from './servePage';
 import { userIdFromReq } from './userIdFromReq';
-import { plainText } from './plainText';
 
-const unfurlPlaceholder = '<meta name="unfurl-all-that:shit" value="please"/>';
-//const unfurlPlaceholder = /<meta name="unfurl-all-that:shit" value="please"\/>/;
-
-const absolute = (relative) => 'https://vizhub.com' + relative;
 const previewUrl = (id) => `/api/visualization/preview/${id}.png`;
 export const visualizationRoute = ({ userName, id }) => `/${userName}/${id}`;
-
-const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) => `
-  <meta name="twitter:url" value="${url}" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" value="@datavis_tech" />
-  <meta name="twitter:title" value="${title}" />
-  <meta name="twitter:description" value="${descriptionPlainText}" />
-  <meta name="twitter:image" content="${image}" />
-  <meta name="twitter:domain" value="vizhub.com" />
-  <meta property="og:url" content="${url}"/>
-  <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${descriptionPlainText}" />
-  <meta property="og:image" content="${image}" />
-  <meta property="og:site_name" content="VizHub" />
-`;
 
 export const serveVizPage = (gateways, indexHTML) => {
   const getVisualization = new GetVisualization(gateways);
@@ -41,16 +21,15 @@ export const serveVizPage = (gateways, indexHTML) => {
         ownerUser: { userName },
       } = responseModel;
 
-      // TODO embed the escaped data into the page
-      // TODO find and parse that data in client-side code
-      const unfurlHTML = generateUnfurlHTML({
+      const meta = {
         title,
-        descriptionPlainText: plainText(description),
-        image: absolute(previewUrl(id)),
-        url: absolute(visualizationRoute({ userName, id })),
-      });
+        description,
+        image: previewUrl(id),
+        url: visualizationRoute({ userName, id })
+      };
+      const servePageMiddleware = servePage(indexHTML, meta)
 
-      res.send(indexHTML.replace(unfurlPlaceholder, unfurlHTML));
+      return servePageMiddleware(req, res)
     } catch (error) {
       console.error(error.message);
       // In error case, simply serve static index.html with no unfurl metadata.

@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import { serveVizPage } from 'vizhub-controllers';
+import { serveHomePage } from 'vizhub-controllers';
 
 const buildPath = path.join(__dirname, '..', 'build');
 const indexHTMLPath = path.join(buildPath, 'index.html');
@@ -19,7 +20,7 @@ try {
 // Assumes that `npm run build` has been run in the frontend.
 export const serveFrontend = (app, gateways) => {
   app.use(
-    express.static(buildPath)
+    express.static(buildPath, {index: false})
     // TODO explore caching again carefully
     //express.static(path.join(__dirname, '..', 'build'), {
     //  maxAge: '2 days'
@@ -28,8 +29,5 @@ export const serveFrontend = (app, gateways) => {
 
   app.get('/:userName/:vizId', serveVizPage(gateways, indexHTML));
 
-  // Always serve index.html, let React Router take care of the rest.
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
-  });
+  app.get('*', serveHomePage(indexHTML));
 };
