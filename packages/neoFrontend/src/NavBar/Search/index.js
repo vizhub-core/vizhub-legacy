@@ -26,16 +26,19 @@ export const Search = () => {
   );
 
   const onUserSelected = useCallback(
-    ({userName}) => {
+    ({ userName }) => {
       setRedirectTo(`/${userName}`);
     },
     [setRedirectTo]
   );
 
-  const onChangeQuery = useCallback((event) => {
-    setQuery(event.target.value);
-    setIsInputPristine(false);
-  }, [setQuery]);
+  const onChangeQuery = useCallback(
+    (event) => {
+      setQuery(event.target.value);
+      setIsInputPristine(false);
+    },
+    [setQuery]
+  );
 
   return (
     <Form onSubmit={onSubmitQuery}>
