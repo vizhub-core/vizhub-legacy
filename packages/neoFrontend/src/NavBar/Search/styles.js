@@ -3,9 +3,8 @@ import { isMobile } from '../../mobileMods';
 
 export const SearchInput = styled.input`
   width: 100%;
-  height: 48px;
+  height: ${(props) => props.theme.buttonHeight};
   box-sizing: border-box;
-  font-family: Poppins;
   font-size: 14px;
   border-radius: 6px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);

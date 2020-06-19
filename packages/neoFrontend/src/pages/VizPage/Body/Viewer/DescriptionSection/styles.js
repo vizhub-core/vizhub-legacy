@@ -68,10 +68,6 @@ export const Description = styled.div`
   word-break: break-word;
 `;
 
-export const SemiBold = styled.span`
-  font-weight: 600;
-`;
-
 export const VizLink = styled(Link)`
   font-style: italic;
 `;
