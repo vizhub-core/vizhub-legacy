@@ -12,10 +12,7 @@ import { CollaboratorList } from './CollaboratorList';
 
 export const CollaboratorsBody = () => {
   const [typedText, setTypedText] = useState('');
-  const [
-    suggestedCollaborators,
-    setSuggestedCollaborators
-  ] = useState([]);
+  const [suggestedCollaborators, setSuggestedCollaborators] = useState([]);
 
   const {
     collaborators,

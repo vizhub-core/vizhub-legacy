@@ -8,7 +8,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${props => props.theme.lightBorder};
+  border: 1px solid ${(props) => props.theme.lightBorder};
   border-radius: 4px;
   background-color: white;
   z-index: 999;
