@@ -10,7 +10,7 @@
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
     "test": "react-scripts test"
   },
-  "proxy": "http://localhost:4000/",
+  "proxy": "https://vizhub.com/",
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "dependencies": {
