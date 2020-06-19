@@ -14,32 +14,30 @@ const fetchData = async (typedText) => {
 const debounceTimeMS = 500;
 
 export const UserPreviewList = ({
-  query, onBeforeShowSuggestions, onSelect
+  query,
+  onBeforeShowSuggestions,
+  onSelect,
 }) => {
   const typedText$ = useMemo(() => new BehaviorSubject(), []);
   useEffect(() => {
-    if(query) {
+    if (query) {
       typedText$.next(query);
       setResults([]);
     }
   }, [typedText$, query]);
 
   const [results, setResults] = useState([]);
-  const results$ = useMemo(
-    () => {
-      const operators = [debounceTime(debounceTimeMS), switchMap(fetchData)];
-      if (onBeforeShowSuggestions) {
-        operators.push(tap(onBeforeShowSuggestions));
-      }
-      return typedText$.pipe(...operators);
-    },
-    [onBeforeShowSuggestions, typedText$]
-  );
+  const results$ = useMemo(() => {
+    const operators = [debounceTime(debounceTimeMS), switchMap(fetchData)];
+    if (onBeforeShowSuggestions) {
+      operators.push(tap(onBeforeShowSuggestions));
+    }
+    return typedText$.pipe(...operators);
+  }, [onBeforeShowSuggestions, typedText$]);
   useEffect(() => {
     const subscription = results$.subscribe(setResults);
     return () => subscription.unsubscribe();
   }, [results$]);
-
 
   const handleClick = useCallback(
     (user) => {
@@ -53,10 +51,7 @@ export const UserPreviewList = ({
     <Container>
       {results &&
         results.map((user) => (
-          <UserPreview
-            key={user.userName}
-            onClick={() => handleClick(user)}
-          >
+          <UserPreview key={user.userName} onClick={() => handleClick(user)}>
             <Avatar size={24} user={user} isDisabled={true} />
             <UserName>{user.fullName}</UserName>
           </UserPreview>

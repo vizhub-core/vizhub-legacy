@@ -51,7 +51,6 @@ export const MessageSmallText = styled.div`
 `;
 
 export const MessageLargeText = styled.div`
-  font-family: Poppins;
   font-size: 28.8px;
   font-weight: 300;
   margin-top: 5px;

@@ -76,7 +76,6 @@ export const Button = styled.div`
   cursor: pointer;
   user-select: none;
   margin-left: 8px;
-  font-family: Inter;
 `;
 
 export const Centering = styled.div`

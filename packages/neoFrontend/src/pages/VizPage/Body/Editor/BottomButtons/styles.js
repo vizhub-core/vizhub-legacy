@@ -18,7 +18,6 @@ export const Top = styled.div`
   left: 0;
   right: 0;
   bottom: ${bottomButtonHeight};
-  font-family: Poppins;
   font-size: 12px;
   color: ${(props) => props.theme.dark};
   background-color: ${(props) => props.theme.editorBackground};
