@@ -20,7 +20,7 @@ try {
 // Assumes that `npm run build` has been run in the frontend.
 export const serveFrontend = (app, gateways) => {
   app.use(
-    express.static(buildPath, {index: false})
+    express.static(buildPath, { index: false })
     // TODO explore caching again carefully
     //express.static(path.join(__dirname, '..', 'build'), {
     //  maxAge: '2 days'
