@@ -14,6 +14,7 @@ export const defaultCodingFontFamily =
 export const defaultCodingFontSize = '16px';
 
 export const theme = {
+  buttonHeight: '40px',
   background: '#f6eee3',
   dark: '#161514',
   lightText: '#797979',
