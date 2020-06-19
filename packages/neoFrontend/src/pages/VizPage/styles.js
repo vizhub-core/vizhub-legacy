@@ -49,7 +49,7 @@ export const Spacer = styled.div`
 
 export const FormRow = styled.div`
   display: flex;
-  height: 48px;
+  height: ${(props) => props.theme.buttonHeight};
   font-size: 16px;
   align-items: center;
   position: relative;
