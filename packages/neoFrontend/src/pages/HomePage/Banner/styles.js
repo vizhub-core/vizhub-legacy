@@ -46,13 +46,11 @@ export const Message = styled.div`
 //`;
 
 export const MessageSmallText = styled.div`
-  font-size: 16.8px;
-  font-weight: 600;
+  font-size: 18px;
 `;
 
 export const MessageLargeText = styled.div`
-  font-size: 28.8px;
-  font-weight: 300;
+  font-size: 32px;
   margin-top: 5px;
   margin-bottom: 5px;
 `;
