@@ -1,30 +1,41 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
 import { useSearchQuery } from '../../useSearchQuery';
+import { UserPreviewList } from '../../UserPreviewList';
 import { SearchInput, Form } from './styles';
 
 export const Search = () => {
   const queryFromLocation = useSearchQuery('query');
 
   const [query, setQuery] = useState(queryFromLocation);
-  const [submitted, submit] = useState(false);
+  const [redirectTo, setRedirectTo] = useState(null);
+
+  const [isInputPristine, setIsInputPristine] = useState(true);
 
   // reset submit on location change
   useEffect(() => {
-    submit(false);
+    setRedirectTo(null);
   }, [queryFromLocation]);
 
   const onSubmitQuery = useCallback(
     (event) => {
       event.preventDefault();
-      submit(true);
+      setRedirectTo(`/search?query=${query}`);
     },
-    [submit]
+    [setRedirectTo, query]
   );
 
-  const onChangeQuery = useCallback((event) => setQuery(event.target.value), [
-    setQuery,
-  ]);
+  const onUserSelected = useCallback(
+    ({userName}) => {
+      setRedirectTo(`/${userName}`);
+    },
+    [setRedirectTo]
+  );
+
+  const onChangeQuery = useCallback((event) => {
+    setQuery(event.target.value);
+    setIsInputPristine(false);
+  }, [setQuery]);
 
   return (
     <Form onSubmit={onSubmitQuery}>
@@ -33,7 +44,11 @@ export const Search = () => {
         placeholder="Search"
         onChange={onChangeQuery}
       />
-      {submitted && <Redirect push to={`/search?query=${query}`} />}
+      <UserPreviewList
+        query={!isInputPristine && query}
+        onSelect={onUserSelected}
+      />
+      {redirectTo && <Redirect push to={redirectTo} />}
     </Form>
   );
 };
