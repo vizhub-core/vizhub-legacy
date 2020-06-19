@@ -7,7 +7,7 @@ import {
 } from '../../../../../../constants';
 import { isMobile } from '../../../../../../mobileMods';
 import { CodeEditorIcon } from '../styles';
-import { Wrapper, Icons, Text } from './styles';
+import { Wrapper, Icons } from './styles';
 
 const svgHeight = 15;
 
@@ -25,13 +25,13 @@ export const CodeEditorHeader = ({
   toggleShowTop,
 }) => (
   <Wrapper showEditor={showEditor}>
-    <Text
+    <div
       className="test-code-editor-file-name"
       title={activeFile === 'bundle.js' ? bundleJSInfo : undefined}
       style={{ opacity: activeFile === 'bundle.js' ? 0.5 : 1 }}
     >
       {activeFile}
-    </Text>
+    </div>
     <Icons>
       {!isMobile ? (
         <CodeEditorIcon
