@@ -55,7 +55,7 @@ export const Button = styled.div`
 
   padding-right: 16px;
   padding-left: 16px;
-  height: 48px;
+  height: ${(props) => props.theme.buttonHeight};
   border-radius: 6px;
   border: solid 1px ${buttonColor};
   font-size: 16px;
