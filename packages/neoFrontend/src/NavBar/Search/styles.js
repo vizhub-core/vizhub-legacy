@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { isMobile } from '../../mobileMods';
 
 export const SearchInput = styled.input`
   width: 100%;
-  height: 40px;
+  height: 48px;
   box-sizing: border-box;
   font-family: Poppins;
   font-size: 14px;
@@ -14,6 +15,8 @@ export const SearchInput = styled.input`
 `;
 
 export const Form = styled.form`
-  padding-left: ${(props) => props.theme.bannerPadding}px;
-  padding-right: ${(props) => props.theme.bannerPadding}px;
+  position: relative;
+  margin-left: ${(props) => props.theme.bannerPadding}px;
+  margin-right: ${(props) => props.theme.bannerPadding}px;
+  ${isMobile ? '' : 'max-width: 300px'};
 `;
