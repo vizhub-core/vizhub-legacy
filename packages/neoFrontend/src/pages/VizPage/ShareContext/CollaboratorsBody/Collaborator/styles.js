@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  height: 48px;
+  height: ${(props) => props.theme.buttonHeight};
   display: flex;
   align-items: center;
   margin-bottom: ${(props) => (props.isLast ? 0 : 16)}px;

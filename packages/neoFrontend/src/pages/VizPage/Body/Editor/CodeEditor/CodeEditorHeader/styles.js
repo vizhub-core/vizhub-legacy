@@ -11,8 +11,3 @@ export const Wrapper = styled.div`
 export const Icons = styled.div`
   display: flex;
 `;
-
-//border-bottom: solid 1px ${backgroundColor};
-export const Text = styled.div`
-  margin-bottom: 1px;
-`;

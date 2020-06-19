@@ -19,7 +19,7 @@ export const Container = styled.div`
 `;
 
 export const UserPreview = styled(Clickable)`
-  height: 48px;
+  height: ${(props) => props.theme.buttonHeight};
   display: flex;
   align-items: center;
   padding-left: 12px;
