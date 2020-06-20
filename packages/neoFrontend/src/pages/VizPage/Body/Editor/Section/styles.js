@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Clickable } from '../../../../../styles';
 
 export const Wrapper = styled.div`
-  margin-bottom: 1px;
   background-color: ${(props) =>
     props.isActive ? props.theme.editorSectionActiveColor : 'transparent'};
 `;

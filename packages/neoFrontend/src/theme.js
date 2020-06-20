@@ -9,15 +9,12 @@ const systemMonospaceStack =
 export const fontFamily = (font, ligatures) =>
   font + (ligatures !== 'all' ? ' Arrowized' : '') + ',' + systemMonospaceStack;
 
-export const defaultCodingFont = 'Ubuntu Mono';
-export const defaultCodingLigatures = 'arrows';
-export const defaultCodingFontFamily = fontFamily(
-  defaultCodingFont,
-  defaultCodingLigatures
-);
+export const defaultCodingFontFamily =
+  'Ubuntu Mono,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace';
 export const defaultCodingFontSize = '16px';
 
 export const theme = {
+  buttonHeight: '40px',
   background: '#f6eee3',
   dark: '#161514',
   lightText: '#797979',

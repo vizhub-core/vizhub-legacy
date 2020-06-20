@@ -2,9 +2,7 @@ import { User } from 'vizhub-entities';
 import { USER } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
-// The number of vizzes shown in a page of content.
-// Infinite scroll pagination fetches the next page.
-const pageSize = 100;
+const pageSize = 10;
 
 export const searchUsers = (connection) => async ({ query, offset }) => {
   const mongoQuery = {

@@ -4,12 +4,14 @@ import { Wrapper, Content, Centering } from '../styles';
 import { HomePageDataProvider } from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
 import { Vizzes } from './Vizzes';
+import { Banner } from './Banner';
 
 export const HomePage = () => (
   <HomePageDataProvider fallback={<LoadingScreen />}>
     <Wrapper>
       <Content>
         <NavBar isHomePage={true} showSearch />
+        <Banner />
         <Centering>
           <Vizzes />
         </Centering>

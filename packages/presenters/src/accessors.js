@@ -182,6 +182,9 @@ export const upvoteOp = (userId, upvotes) => {
 };
 
 export const getUserName = (user) => user && user.userName;
+
+// Return the full name of the user, for labeling.
+// Falls back to userName if fullName not present.
 export const getUserFullName = (user) =>
   user && (user.fullName || user.userName);
 
