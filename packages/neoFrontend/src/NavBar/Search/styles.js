@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { isMobile } from '../../mobileMods';
 
 export const SearchInput = styled.input`
   width: 100%;
@@ -17,5 +16,4 @@ export const Form = styled.form`
   position: relative;
   margin-left: ${(props) => props.theme.bannerPadding}px;
   margin-right: ${(props) => props.theme.bannerPadding}px;
-  ${isMobile ? '' : 'max-width: 300px'};
 `;
