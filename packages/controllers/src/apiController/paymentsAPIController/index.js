@@ -9,6 +9,9 @@ import Stripe from 'stripe';
 const stripe = Stripe(process.env.VIZHUB_STRIPE_SECRET_KEY);
 const domainURL = process.env.VIZHUB_STRIPE_DOMAIN;
 
+console.log('domainURL');
+console.log(domainURL);
+
 //app.use(
 //  express.json({
 //    // We need the raw body to verify webhook signatures.
