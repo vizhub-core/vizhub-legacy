@@ -1,8 +1,6 @@
 import { resolve } from 'path';
 import Stripe from 'stripe';
 
-// Draws from:
-// https://github.com/stripe-samples/checkout-single-subscription/tree/master/client-and-server
 
 // Note: the following environment variables are required:
 //  * STRIPE_SECRET_KEY
