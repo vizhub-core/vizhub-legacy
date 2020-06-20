@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import Stripe from 'stripe';
 
-
 // Note: the following environment variables are required:
 //  * STRIPE_SECRET_KEY
 //  * STRIPE_DOMAIN
