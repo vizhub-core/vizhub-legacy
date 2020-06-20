@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import { getUserName, getUserFullName } from 'vizhub-presenters';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap, debounceTime, tap } from 'rxjs/operators';
 import { Avatar } from '../Avatar';
@@ -19,6 +20,7 @@ export const UserPreviewList = ({
   onSelect,
 }) => {
   const typedText$ = useMemo(() => new BehaviorSubject(), []);
+
   useEffect(() => {
     if (query) {
       typedText$.next(query);
@@ -27,6 +29,7 @@ export const UserPreviewList = ({
   }, [typedText$, query]);
 
   const [results, setResults] = useState([]);
+
   const results$ = useMemo(() => {
     const operators = [debounceTime(debounceTimeMS), switchMap(fetchData)];
     if (onBeforeShowSuggestions) {
@@ -34,6 +37,7 @@ export const UserPreviewList = ({
     }
     return typedText$.pipe(...operators);
   }, [onBeforeShowSuggestions, typedText$]);
+
   useEffect(() => {
     const subscription = results$.subscribe(setResults);
     return () => subscription.unsubscribe();
@@ -51,9 +55,9 @@ export const UserPreviewList = ({
     <Container>
       {results &&
         results.map((user) => (
-          <UserPreview key={user.userName} onClick={() => handleClick(user)}>
+          <UserPreview key={getUserName(user)} onClick={() => handleClick(user)}>
             <Avatar size={24} user={user} isDisabled={true} />
-            <UserName>{user.fullName}</UserName>
+            <UserName>{getUserFullName(user)}</UserName>
           </UserPreview>
         ))}
     </Container>
