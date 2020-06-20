@@ -30,3 +30,21 @@ If you're ever in NPM hell with `package-lock` madness, try [this](https://gist.
 ```
 find . -name "node_modules" -exec rm -rf '{}' +; find . -name "package-lock.json" -exec rm -rf '{}' +; 
 ```
+
+# Environment Variables
+
+In your beloved `.bashrc`:
+
+```
+export REACT_APP_VIZHUB_JWT_SECRET=fakefaksdashfjkdsahjfkdjakdhfjdk7
+export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=fakefdsahjkfhdasjkh3
+export REACT_APP_VIZHUB_GITHUB_CLIENT_SECRET=fakefhdjksalhffjkdslahfjkdlsafhdjksahdhf
+export REACT_APP_VIZHUB_STRIPE_BASIC_PRICE_ID=price_fakehfdjkashfdjksahjkhdu
+export REACT_APP_VIZHUB_STRIPE_PRO_PRICE_ID=price_fakehfdjksahjfkdhjskurd8
+export REACT_APP_VIZHUB_STRIPE_PUBLISHABLE_KEY=pk_test_fakeskahfdjksahjkfdhjhjd
+export VIZHUB_STRIPE_SECRET_KEY=sk_test_fakehdjksfhafjkhsdjkfhdj
+export VIZHUB_STRIPE_WEBHOOK_SECRET=whsec_faked
+export VIZHUB_STRIPE_DOMAIN=http://localhost:3000
+```
+
+Don't forget to `source ~/.bashrc`!
