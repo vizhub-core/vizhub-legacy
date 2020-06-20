@@ -6,8 +6,8 @@ import Stripe from 'stripe';
 //  * STRIPE_DOMAIN
 //  * STRIPE_WEBHOOK_SECRET
 //
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-const domainURL = process.env.STRIPE_DOMAIN;
+const stripe = Stripe(process.env.VIZHUB_STRIPE_SECRET_KEY);
+const domainURL = process.env.VIZHUB_STRIPE_DOMAIN;
 
 //app.use(
 //  express.json({
@@ -28,7 +28,8 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
   //  res.send(session);
   //});
 
-  expressApp.post('payments/create-checkout-session', async (req, res) => {
+  console.log('heeere');
+  expressApp.post('/api/payments/create-checkout-session', async (req, res) => {
     const { priceId } = req.body;
 
     // Create new Checkout Session for the order
@@ -47,7 +48,7 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
         },
       ],
       // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-      success_url: `${domainURL}/success.html?session_id=${CHECKOUT_SESSION_ID}`,
+      success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${domainURL}/canceled.html`,
     });
 
