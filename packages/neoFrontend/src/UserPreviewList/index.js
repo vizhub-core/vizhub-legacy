@@ -12,6 +12,7 @@ const fetchData = async (typedText) => {
 };
 
 const debounceTimeMS = 500;
+const listSize = 8;
 
 export const UserPreviewList = ({
   query,
@@ -49,13 +50,19 @@ export const UserPreviewList = ({
 
   return (
     <Container>
-      {results &&
-        results.map((user) => (
-          <UserPreview key={user.userName} onClick={() => handleClick(user)}>
-            <Avatar size={24} user={user} isDisabled={true} />
-            <UserName>{user.fullName}</UserName>
+      {results && results.slice(0, listSize).map((user) => (
+        <UserPreview key={user.userName} onClick={() => handleClick(user)}>
+          <Avatar size={24} user={user} isDisabled={true} />
+          <UserName>{user.fullName}</UserName>
+        </UserPreview>
+      ))}
+      {
+        results && results.length > listSize && (
+          <UserPreview>
+            +{results.length - listSize} users
           </UserPreview>
-        ))}
+        )
+      }
     </Container>
   );
 };

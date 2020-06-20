@@ -26,7 +26,8 @@ export const Search = () => {
   );
 
   const onUserSelected = useCallback(
-    ({ userName }) => {
+    ({ userName, fullName }) => {
+      setQuery(fullName);
       setRedirectTo(`/${userName}`);
     },
     [setRedirectTo]
@@ -44,7 +45,7 @@ export const Search = () => {
     <Form onSubmit={onSubmitQuery}>
       <SearchInput
         value={query}
-        placeholder="Search"
+        placeholder="Search by user, keyword..."
         onChange={onChangeQuery}
       />
       <UserPreviewList
