@@ -17,6 +17,8 @@ export class VisualizationInfo extends DocumentInfo {
     // The visualization that this visualization was forked from.
     this.forkedFrom = data.forkedFrom;
 
+    this.forksCount = data.forksCount;
+
     this.height = data.height;
 
     // The Unix timestamp at which the thumbnail and preview
