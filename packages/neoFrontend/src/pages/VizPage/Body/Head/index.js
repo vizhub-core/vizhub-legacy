@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import { getVizOwner } from 'vizhub-presenters';
+import { getVizOwner, getVizForksCount } from 'vizhub-presenters';
 import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
 import { showHeadPullRequest, showHeadShare } from '../../../../featureFlags';
 import { useValue } from '../../../../useValue';
@@ -11,7 +11,7 @@ import { VizContext } from '../../VizContext';
 import { SettingsContext } from '../../SettingsContext';
 import { ShareContext } from '../../ShareContext';
 
-import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
+import { Wrapper, Left, Center, Right, HeadIcon, Counter } from './styles';
 import { EditorToggler } from './EditorToggler';
 import { TrashIcon } from '../TrashIcon';
 
@@ -24,6 +24,7 @@ export const Head = ({ showRight }) => {
   const showSettingsModal = useContext(SettingsContext);
   const showShareModal = useContext(ShareContext);
   const owner = useValue(viz$, getVizOwner);
+  const forksCount = useValue(viz$, getVizForksCount);
 
   const showHeadTrash = me && me.id === owner;
   const showHeadSettings = showHeadTrash;
@@ -70,6 +71,7 @@ export const Head = ({ showRight }) => {
             rightmost={!showHeadTrash}
           >
             <ForkSVG />
+            {forksCount > 0 && <Counter>{forksCount}</Counter> }
           </HeadIcon>
           {showHeadTrash ? (
             <TrashIcon

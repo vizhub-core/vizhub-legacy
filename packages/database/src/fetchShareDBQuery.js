@@ -1,8 +1,6 @@
-import { i18n } from 'vizhub-i18n';
-
 export const fetchShareDBQuery = (collection, mongoQuery, connection) =>
   new Promise((resolve, reject) => {
-    const query = connection.createFetchQuery(
+    connection.createFetchQuery(
       collection,
       mongoQuery,
       {},

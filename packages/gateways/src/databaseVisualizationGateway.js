@@ -79,6 +79,10 @@ export class DatabaseVisualizationGateway {
     return await this.database.searchVisualizationInfos(options);
   }
 
+  async getForks(options) {
+    return await this.database.getForks(options);
+  }
+
   async getHomePageVisualizationInfos(offset) {
     return await this.database.getHomePageVisualizationInfos(offset);
   }
