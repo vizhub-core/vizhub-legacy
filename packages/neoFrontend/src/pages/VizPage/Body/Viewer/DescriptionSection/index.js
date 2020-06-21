@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { format } from 'd3-format';
 import { toDate } from 'vizhub-entities';
+import { VizPageDataContext } from '../../../VizPageDataContext';
 import {
   showCreatedDate,
   showVideoThumbnail,
@@ -40,7 +41,12 @@ export const DescriptionSection = ({
     vizInfo.createdTimestamp,
   ]);
 
-  const forksCount = vizInfo.forksCount;
+  // Forks count is only present in the initial payload from the API.
+  // The field is not present in the ShareDB document,
+  // so we need to access it like this.
+  const vizPageData = useContext(VizPageDataContext);
+  const forksCount = vizPageData.visualization.info.forksCount;
+
   const forksCountFormatted = useMemo(() => formatForksCount(forksCount), [
     forksCount,
   ]);
