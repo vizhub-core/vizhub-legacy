@@ -13,6 +13,7 @@ import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
 import { getHomePageVisualizationInfos } from './getHomePageVisualizationInfos';
 import { searchVisualizationInfos } from './searchVisualizationInfos';
+import { getForks } from './getForks';
 import { searchUsers } from './searchUsers';
 import { getDatasetInfosByUserId } from './getDatasetInfosByUserId';
 import { updateImages } from './updateImages';
@@ -45,6 +46,7 @@ export const Database = (connection) => ({
   getAllVisualizationInfos: getAllVisualizationInfos(connection),
   getHomePageVisualizationInfos: getHomePageVisualizationInfos(connection),
   searchVisualizationInfos: searchVisualizationInfos(connection),
+  getForks: getForks(connection),
   searchUsers: searchUsers(connection),
   getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
   updateImages: updateImages(connection),

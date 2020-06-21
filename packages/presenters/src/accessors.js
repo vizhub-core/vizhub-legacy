@@ -39,6 +39,8 @@ export const getExtension = (fileName) =>
 
 export const getVizOwner = (viz) => viz.info.owner;
 
+export const getVizForksCount = (viz) => viz.info.forksCount;
+
 export const deleteFileOp = (viz, fileName) => {
   const fileIndex = getVizFileIndex(fileName)(viz);
   return [
