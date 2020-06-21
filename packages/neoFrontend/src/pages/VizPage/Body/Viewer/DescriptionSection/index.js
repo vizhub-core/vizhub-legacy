@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { format } from 'd3-format';
 import { toDate } from 'vizhub-entities';
 import {
   showCreatedDate,
@@ -26,6 +27,8 @@ const formatTimestamp = (timestamp) =>
     day: 'numeric',
   });
 
+const formatForksCount = format(',');
+
 export const DescriptionSection = ({
   vizInfo,
   ownerUser,
@@ -35,6 +38,11 @@ export const DescriptionSection = ({
 }) => {
   const created = useMemo(() => formatTimestamp(vizInfo.createdTimestamp), [
     vizInfo.createdTimestamp,
+  ]);
+
+  const forksCount = vizInfo.forksCount;
+  const forksCountFormatted = useMemo(() => formatForksCount(forksCount), [
+    forksCount,
   ]);
 
   const lastUpdated = useMemo(
@@ -66,6 +74,9 @@ export const DescriptionSection = ({
                 {showCreatedDate ? <> {created}</> : null}
               </div>
             ) : null}
+            <div>
+              {forksCountFormatted} fork{forksCount === 1 ? '' : 's'}
+            </div>
           </AuthorshipMeta>
         </Authorship>
         <Description

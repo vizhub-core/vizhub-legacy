@@ -35,8 +35,3 @@ export const HeadIcon = styled(Icon)`
   width: 35px;
   margin-right: ${(props) => (props.rightmost ? 9 : 0)}px;
 `;
-
-export const Counter = styled.span`
-  padding-left: 3px;
-  font-size: 20px;
-`;
