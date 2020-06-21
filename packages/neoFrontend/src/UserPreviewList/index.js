@@ -55,7 +55,10 @@ export const UserPreviewList = ({
     <Container>
       {results &&
         results.map((user) => (
-          <UserPreview key={getUserName(user)} onClick={() => handleClick(user)}>
+          <UserPreview
+            key={getUserName(user)}
+            onClick={() => handleClick(user)}
+          >
             <Avatar size={24} user={user} isDisabled={true} />
             <UserName>{getUserFullName(user)}</UserName>
           </UserPreview>

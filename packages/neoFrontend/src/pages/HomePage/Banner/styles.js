@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   color: white;
-  margin: ${isMobile ? '6px 6px 30px 6px' : 0}
+  margin: ${isMobile ? '6px 6px 30px 6px' : 0};
 `;
 
 export const Bar = styled.div`
