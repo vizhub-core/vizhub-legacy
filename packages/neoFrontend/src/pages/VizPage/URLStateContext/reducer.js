@@ -22,7 +22,7 @@ export const reducer = (state, action) => {
           state.edit || state.edit === null
             ? Object.assign({}, state.hidden, { edit: state.edit })
             : state.hidden,
-        file: isMobile ? null : state.file
+        file: isMobile ? null : state.file,
       });
 
     case 'enterMini':
