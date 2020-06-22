@@ -17,6 +17,7 @@ export const Sort = ({ value, onChange }) => {
         <Select value={value} onChange={handleChange}>
           <option value="lastUpdatedTimestamp">recently updated</option>
           <option value="upvotes"> most upvoted</option>
+          <option value="forksCount"> most forked</option>
         </Select>
       </Form>
     </Container>
