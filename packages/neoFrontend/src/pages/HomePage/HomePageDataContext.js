@@ -3,8 +3,8 @@ import { useHomePageData } from './useHomePageData';
 
 export const HomePageDataContext = createContext();
 
-export const HomePageDataProvider = ({ fallback, children }) => {
-  const homePageData = useHomePageData();
+export const HomePageDataProvider = ({ sort, fallback, children }) => {
+  const homePageData = useHomePageData({ sort });
 
   return homePageData ? (
     <HomePageDataContext.Provider value={homePageData}>
