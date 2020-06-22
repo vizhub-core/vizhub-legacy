@@ -18,6 +18,8 @@ export class ForkVisualization {
 
     const nowTimestamp = timestamp();
 
+    const { forksCount = 0 } = visualization.info;
+
     const [
       { id },
       {
@@ -33,12 +35,23 @@ export class ForkVisualization {
         height: visualization.info.height,
         files: visualization.content.files,
         forkedFrom: visualization.info.id,
+        forksCount: 0,
         createdTimestamp: nowTimestamp,
         lastUpdatedTimestamp: nowTimestamp,
         privacy: visualization.info.privacy,
       }),
-      this.getUser.execute({ id: owner }),
+      this.getUser.execute({ id: owner })
     ]);
+
+  await this.visualizationGateway.saveVisualization({
+    visualization: {
+      ...visualization,
+      info: {
+        ...visualization.info,
+        forksCount: forksCount + 1,
+      }
+    }
+  })
 
     return { id, userName };
   }
