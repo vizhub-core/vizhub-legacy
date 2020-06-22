@@ -17,13 +17,7 @@ export class VisualizationInfo extends DocumentInfo {
     // The visualization that this visualization was forked from.
     this.forkedFrom = data.forkedFrom;
 
-    // Note: this is only present when presenting visualizations
-    // via packages/database/src/getVisualization.js
-    // It is not stored in the database documents,
-    // but rather is computed on the fly,
-    // and this will not generally be present on all
-    // places where VisualizationInfo entities exist.
-    this.forksCount = data.forksCount;
+    this.forksCount = data.forksCount || 0;
 
     this.height = data.height;
 
