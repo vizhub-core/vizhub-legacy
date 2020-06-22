@@ -15,7 +15,7 @@ export const getShareDB = () => {
   if (!shareDB) {
     if (process.env.MONGO_URI) {
       shareDB = ShareDB({
-        db: new ShareDBMongo(process.env.MONGO_URI, { allowAggregateQueries: true }),
+        db: new ShareDBMongo(process.env.MONGO_URI),
         presence: true,
       });
     } else {
