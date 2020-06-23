@@ -6,6 +6,7 @@ export const getForksController = (expressApp, gateways) => {
     try {
       const requestModel = {
         forkedFrom: req.params.id,
+        offset: req.query.offset,
       };
 
       const data = await getForks.execute(requestModel);
