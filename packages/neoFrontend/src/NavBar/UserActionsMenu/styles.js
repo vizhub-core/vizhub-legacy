@@ -39,7 +39,7 @@ export const Menu = styled.div`
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
   background-color: #ffffff;
 
-  font-size: 14px;
+  font-size: 13px;
   text-align: right;
   z-index: ${Z_ABOVE};
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchInput = styled.input`
-  width: 100%;
+  width: 120%;
   height: ${(props) => props.theme.buttonHeight};
   box-sizing: border-box;
   font-size: 14px;
