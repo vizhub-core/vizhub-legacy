@@ -1,4 +1,3 @@
-
 import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
@@ -7,9 +6,12 @@ import { fetchShareDBQuery } from './fetchShareDBQuery';
 // Infinite scroll pagination fetches the next page.
 const pageSize = 100;
 
-const allowedSort = ['lastUpdatedTimestamp', 'upvotes', 'forksCount']
+const allowedSort = ['lastUpdatedTimestamp', 'upvotes', 'forksCount'];
 
-export const getHomePageVisualizationInfos = (connection) => async ({ offset, sort }) => {
+export const getHomePageVisualizationInfos = (connection) => async ({
+  offset,
+  sort,
+}) => {
   const sortField = allowedSort.includes(sort) ? sort : 'lastUpdatedTimestamp';
 
   const mongoQuery = {

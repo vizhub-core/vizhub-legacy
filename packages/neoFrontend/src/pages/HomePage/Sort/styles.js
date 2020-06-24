@@ -39,7 +39,7 @@ export const Header = styled.div`
 
 export const Select = styled.select`
   display: block;
-  appearance:none;
+  appearance: none;
   padding: 12px 14px 12px 14px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -51,7 +51,7 @@ export const Select = styled.select`
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-background-image: url(${selectArrow});
+  background-image: url(${selectArrow});
   background-repeat: no-repeat;
   background-position-x: 228px;
   background-position-y: 10px;

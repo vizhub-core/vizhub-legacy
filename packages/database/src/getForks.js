@@ -7,11 +7,13 @@ import { fetchShareDBQuery } from './fetchShareDBQuery';
 const pageSize = 100;
 
 export const getForks = (connection) => async ({
-  forkedFrom, includePrivate, offset
+  forkedFrom,
+  includePrivate,
+  offset,
 }) => {
   const mongoQuery = {
     forkedFrom,
-    documentType: VISUALIZATION_TYPE
+    documentType: VISUALIZATION_TYPE,
   };
 
   if (!includePrivate) {
@@ -22,7 +24,7 @@ export const getForks = (connection) => async ({
     Object.assign(mongoQuery, {
       $limit: pageSize,
       $skip: offset * pageSize,
-    })
+    });
   }
 
   const results = await fetchShareDBQuery(

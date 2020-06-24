@@ -19,11 +19,9 @@ const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) => `
   <meta property="og:site_name" content="VizHub" />
 `;
 
-export const servePage = (indexHTML, { title, description, image, url}) => {
-
+export const servePage = (indexHTML, { title, description, image, url }) => {
   return async (_, res) => {
     try {
-
       // TODO embed the escaped data into the page
       // TODO find and parse that data in client-side code
       const unfurlHTML = generateUnfurlHTML({

@@ -6,7 +6,9 @@ import { fetchPageData } from './fetchPageData';
 export const usePageData = () => {
   let { vizId } = useParams();
 
-  const fetchData = useCallback((offset) => fetchPageData(vizId, offset), [vizId]);
+  const fetchData = useCallback((offset) => fetchPageData(vizId, offset), [
+    vizId,
+  ]);
 
   return useVizzesGridPageData(fetchData);
 };

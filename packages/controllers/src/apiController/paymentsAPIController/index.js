@@ -9,9 +9,6 @@ import Stripe from 'stripe';
 const stripe = Stripe(process.env.VIZHUB_STRIPE_SECRET_KEY);
 const domainURL = process.env.VIZHUB_STRIPE_DOMAIN;
 
-console.log('domainURL');
-console.log(domainURL);
-
 //app.use(
 //  express.json({
 //    // We need the raw body to verify webhook signatures.
@@ -31,7 +28,6 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
   //  res.send(session);
   //});
 
-  console.log('heeere');
   expressApp.post('/api/payments/create-checkout-session', async (req, res) => {
     const { priceId } = req.body;
 
