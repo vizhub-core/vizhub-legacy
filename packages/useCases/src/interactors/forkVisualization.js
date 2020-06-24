@@ -43,15 +43,7 @@ export class ForkVisualization {
       this.getUser.execute({ id: owner }),
     ]);
 
-    await this.visualizationGateway.saveVisualization({
-      visualization: {
-        ...visualization,
-        info: {
-          ...visualization.info,
-          forksCount: forksCount + 1,
-        },
-      },
-    });
+    await this.visualizationGateway.incrementForksCount({ id: visualization.id });
 
     return { id, userName };
   }

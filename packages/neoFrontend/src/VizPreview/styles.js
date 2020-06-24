@@ -39,9 +39,7 @@ export const VizPreviewFooter = styled(Footer)`
   box-sizing: border-box;
   z-index: ${Z_WAY_ABOVE};
   padding-left: 6px;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
+  padding-right: 6px;
   padding-top: 2px;
   padding-bottom: 6px;
   height: 50px;
@@ -54,7 +52,6 @@ export const VizPreviewTitle = styled(Link)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;
   text-align: left;
   color: currentcolor;
 `;
