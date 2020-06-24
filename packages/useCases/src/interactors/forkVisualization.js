@@ -40,18 +40,18 @@ export class ForkVisualization {
         lastUpdatedTimestamp: nowTimestamp,
         privacy: visualization.info.privacy,
       }),
-      this.getUser.execute({ id: owner })
+      this.getUser.execute({ id: owner }),
     ]);
 
-  await this.visualizationGateway.saveVisualization({
-    visualization: {
-      ...visualization,
-      info: {
-        ...visualization.info,
-        forksCount: forksCount + 1,
-      }
-    }
-  })
+    await this.visualizationGateway.saveVisualization({
+      visualization: {
+        ...visualization,
+        info: {
+          ...visualization.info,
+          forksCount: forksCount + 1,
+        },
+      },
+    });
 
     return { id, userName };
   }

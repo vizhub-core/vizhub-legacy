@@ -5,7 +5,6 @@ import { NavBar } from '../../NavBar';
 import { Vizzes } from '../../VizzesGrid/Vizzes';
 import { usePageData } from './usePageData';
 
-
 export const ForksPage = () => {
   const pageData = usePageData();
 
@@ -14,9 +13,11 @@ export const ForksPage = () => {
       <Content>
         <NavBar />
         <Centering>
-          <Vizzes {...pageData}/>
+          <Vizzes {...pageData} />
         </Centering>
       </Content>
     </Wrapper>
-  ) : <LoadingScreen />;
+  ) : (
+    <LoadingScreen />
+  );
 };

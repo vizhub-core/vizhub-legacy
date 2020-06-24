@@ -6,7 +6,6 @@ import { VizLink } from './styles';
 const formatForksCount = format(',');
 
 export const Forks = ({ ownerUser }) => {
-
   // Forks count is only present in the initial payload from the API.
   // The field is not present in the ShareDB document,
   // so we need to access it like this.
@@ -19,21 +18,11 @@ export const Forks = ({ ownerUser }) => {
     const text = `${forksCountFormatted} fork${forksCount === 1 ? '' : 's'}`;
 
     return forksCount > 0 ? (
-      <VizLink
-        to={`/${ownerUser.username}/${id}/forks`}
-      >
-        {text}
-      </VizLink>
-    ) : text;
-  }, [
-    id,
-    ownerUser,
-    forksCount,
-  ]);
+      <VizLink to={`/${ownerUser.username}/${id}/forks`}>{text}</VizLink>
+    ) : (
+      text
+    );
+  }, [id, ownerUser, forksCount]);
 
-  return (
-    <div>
-      {forksCounterElement}
-    </div>
-  );
+  return <div>{forksCounterElement}</div>;
 };

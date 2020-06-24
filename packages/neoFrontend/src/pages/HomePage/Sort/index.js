@@ -2,9 +2,12 @@ import React, { useCallback } from 'react';
 import { Container, Header, Form, Select } from './styles';
 
 export const Sort = ({ value, onChange }) => {
-  const handleChange = useCallback((event) => {
-    onChange(event.target.value);
-  }, [onChange]);
+  const handleChange = useCallback(
+    (event) => {
+      onChange(event.target.value);
+    },
+    [onChange]
+  );
 
   return (
     <Container>

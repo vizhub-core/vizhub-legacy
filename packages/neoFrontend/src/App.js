@@ -14,7 +14,7 @@ import {
   PricingPage,
   ErrorPage,
   SearchResultsPage,
-  ForksPage
+  ForksPage,
 } from './pages';
 import { Themed } from './theme';
 

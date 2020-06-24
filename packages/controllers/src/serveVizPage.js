@@ -25,11 +25,11 @@ export const serveVizPage = (gateways, indexHTML) => {
         title,
         description,
         image: previewUrl(id),
-        url: visualizationRoute({ userName, id })
+        url: visualizationRoute({ userName, id }),
       };
-      const servePageMiddleware = servePage(indexHTML, meta)
+      const servePageMiddleware = servePage(indexHTML, meta);
 
-      return servePageMiddleware(req, res)
+      return servePageMiddleware(req, res);
     } catch (error) {
       console.error(error.message);
       // In error case, simply serve static index.html with no unfurl metadata.
