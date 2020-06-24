@@ -131,7 +131,7 @@ export const anyoneCanEditChangeOp = (
     },
   ];
 
-export const heightChangeOp = (oldHeight, newHeight, realtimeModules) =>
+export const heightChangeOp = (oldHeight, newHeight) =>
   // Initialize the height field if needed.
   [
     {
