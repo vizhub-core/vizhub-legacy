@@ -67,7 +67,7 @@ export const DescriptionSection = ({
                 {showCreatedDate ? <> {created}</> : null}
               </div>
             ) : null}
-            <Forks ownerUser={ownerUser} />
+            {showForksCount ? <Forks ownerUser={ownerUser} /> : null}
           </AuthorshipMeta>
         </Authorship>
         <Description
