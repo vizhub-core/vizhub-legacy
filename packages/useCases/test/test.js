@@ -162,7 +162,8 @@ describe('Use Cases', () => {
         invocations++;
         return await visualizationGateway.createVisualization(argument);
       },
-      saveVisualization: () => {}
+      saveVisualization: () => {},
+      incrementForksCount: () => {}
     };
 
     const getVisualization = new GetVisualization({

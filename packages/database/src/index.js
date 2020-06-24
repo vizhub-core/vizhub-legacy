@@ -20,6 +20,7 @@ import { updateImages } from './updateImages';
 import { getThumbnail } from './getThumbnail';
 import { getPreview } from './getPreview';
 import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
+import { incrementForksCount } from './incrementForksCount';
 
 export {
   DOCUMENT_CONTENT,
@@ -53,4 +54,5 @@ export const Database = (connection) => ({
   getThumbnail: getThumbnail(connection),
   getPreview: getPreview(connection),
   setImagesUpdatedTimestamp: setImagesUpdatedTimestamp(connection),
+  incrementForksCount: incrementForksCount(connection),
 });
