@@ -94,4 +94,8 @@ export class DatabaseVisualizationGateway {
   async setImagesUpdatedTimestamp(options) {
     return await this.database.setImagesUpdatedTimestamp(options);
   }
+
+  async incrementForksCount({ id }) {
+    return await this.database.incrementForksCount({ id });
+  }
 }
