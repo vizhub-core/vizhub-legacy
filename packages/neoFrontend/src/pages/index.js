@@ -8,3 +8,4 @@ export { ProfilePage } from './ProfilePage';
 export { ErrorPage } from './ErrorPage';
 export { PricingPage } from './PricingPage';
 export { SearchResultsPage } from './SearchResultsPage';
+export { ForksPage } from './ForksPage';
