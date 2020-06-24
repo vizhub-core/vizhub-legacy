@@ -3,6 +3,7 @@ import { toDate } from 'vizhub-entities';
 import {
   showCreatedDate,
   showVideoThumbnail,
+  showForksCount,
 } from '../../../../../featureFlags';
 import {
   Wrapper,
