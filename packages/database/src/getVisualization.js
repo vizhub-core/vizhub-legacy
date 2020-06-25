@@ -6,7 +6,9 @@ import {
 import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 
-export const getVisualization = (connection) => ({ id }) =>
+export const getVisualization = (connection) => ({ id }) => {
+  console.log('id');
+  console.log(id);
   Promise.all([
     fetchShareDBDoc(DOCUMENT_INFO, id, connection),
     fetchShareDBDoc(DOCUMENT_CONTENT, id, connection),
@@ -17,3 +19,4 @@ export const getVisualization = (connection) => ({ id }) =>
         visualizationContent: new VisualizationContent(content.data),
       })
   );
+}
