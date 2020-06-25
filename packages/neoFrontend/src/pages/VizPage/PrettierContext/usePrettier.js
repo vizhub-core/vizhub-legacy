@@ -5,9 +5,9 @@ import {
   getExtension,
   fileChangeOp,
 } from 'vizhub-presenters';
+import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../VizContext';
 import { URLStateContext } from '../URLStateContext';
-import { RealtimeModulesContext } from '../RealtimeModulesContext';
 
 const parsers = {
   '.js': 'babel',
