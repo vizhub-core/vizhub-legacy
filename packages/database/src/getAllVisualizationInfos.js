@@ -11,5 +11,12 @@ export const getAllVisualizationInfos = (connection) => async () => {
     mongoQuery,
     connection
   );
-  return results.map((shareDBDoc) => new VisualizationInfo(shareDBDoc.data));
+  return results
+
+    // Guard against oddly shaped documents of mysterious origin
+  // that are present in the production database, for example:
+  // data: { imagesUpdatedTimestamp: 1593086383 }
+    .filter(shareDBDoc => shareDBDoc.data && shareDBDoc.data.id)
+
+    .map((shareDBDoc) => new VisualizationInfo(shareDBDoc.data));
 };
