@@ -24,13 +24,13 @@ export class UpdateImages {
       }
     );
 
-    if (visualizationInfosNeedingThumbnails.length > 0) {
+    const n = visualizationInfosNeedingThumbnails.length;
+    if (n > 0) {
       const imagesUpdatedTimestamp = timestamp();
 
-      console.log('visualizationInfosNeedingThumbnails[0]')
-      console.log(visualizationInfosNeedingThumbnails[0])
+      const vizToUpdate = visualizationInfosNeedingThumbnails[n - 1]
 
-      const id = visualizationInfosNeedingThumbnails[0].id;
+      const id = vizToUpdate.id;
       const visualization = await this.visualizationGateway.getVisualization({
         id,
       });
