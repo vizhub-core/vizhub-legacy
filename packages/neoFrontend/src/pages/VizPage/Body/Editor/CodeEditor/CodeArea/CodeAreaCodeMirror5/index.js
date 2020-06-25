@@ -6,7 +6,7 @@ import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { RunContext } from '../../../../../RunContext';
 import { AuthContext } from '../../../../../../../authentication';
-import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
+import { RealtimeModulesContext } from '../../../../../../../RealtimeModulesContext';
 import { EditorModulesContext } from '../../../../../EditorModulesContext';
 import { light } from '../../../themes/vizHub';
 import { useFileIndex } from '../../useFileIndex';
