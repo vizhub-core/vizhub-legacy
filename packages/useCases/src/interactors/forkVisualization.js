@@ -3,6 +3,9 @@ import { i18n } from 'vizhub-i18n';
 import { generateId } from '../utils/generateId';
 import { GetUser } from './getUser';
 
+// Feature flag.
+const incrementForksCount = false;
+
 export class ForkVisualization {
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
@@ -43,7 +46,11 @@ export class ForkVisualization {
       this.getUser.execute({ id: owner }),
     ]);
 
-    await this.visualizationGateway.incrementForksCount({ id: visualization.id });
+    if (incrementForksCount) {
+      await this.visualizationGateway.incrementForksCount({
+        id: visualization.id,
+      });
+    }
 
     return { id, userName };
   }

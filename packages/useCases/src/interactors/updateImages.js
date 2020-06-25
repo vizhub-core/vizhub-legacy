@@ -26,9 +26,9 @@ export class UpdateImages {
 
     if (visualizationInfosNeedingThumbnails.length > 0) {
       const imagesUpdatedTimestamp = timestamp();
-      if(! 'id' in visualizationInfosNeedingThumbnails[0]){
-        console.log('id is missing for')
-        console.log(visualizationInfosNeedingThumbnails[0])
+      if (!'id' in visualizationInfosNeedingThumbnails[0]) {
+        console.log('id is missing for');
+        console.log(visualizationInfosNeedingThumbnails[0]);
         return [];
       }
       const id = visualizationInfosNeedingThumbnails[0].id;

@@ -20,6 +20,10 @@ const submitChangeForksCountOp = (doc, oldForksCount, newForksCount) =>
   });
 
 export const incrementForksCount = (connection) => ({ id }) =>
-  fetchShareDBDoc(DOCUMENT_INFO, id, connection).then(
-    info => submitChangeForksCountOp(info, info.data.forksCount, info.data.forksCount + 1)
+  fetchShareDBDoc(DOCUMENT_INFO, id, connection).then((info) =>
+    submitChangeForksCountOp(
+      info,
+      info.data.forksCount,
+      info.data.forksCount + 1
+    )
   );

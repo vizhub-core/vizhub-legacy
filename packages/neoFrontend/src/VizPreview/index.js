@@ -37,7 +37,7 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
       <VizPreviewFooter borderRadiusLarge={true}>
         <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
         <Author ownerUser={ownerUser} isSmall={true} />
-        <Voter 
+        <Voter
           canVote={false}
           didVote={noop}
           upvoteCount={upvoteCount}
