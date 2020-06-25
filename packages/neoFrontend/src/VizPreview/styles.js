@@ -48,6 +48,7 @@ export const VizPreviewFooter = styled.div`
 `;
 
 export const VizPreviewTitle = styled(Link)`
+  width: 100%;
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
