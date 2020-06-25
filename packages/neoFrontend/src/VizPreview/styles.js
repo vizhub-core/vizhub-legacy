@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Footer, Z_WAY_ABOVE } from '../styles';
+import { Z_WAY_ABOVE } from '../styles';
 
 export const VizPreviews = styled.div`
   display: flex;
@@ -33,25 +33,30 @@ export const ImageLink = styled(Link)`
   }
 `;
 
-export const VizPreviewFooter = styled(Footer)`
+export const VizPreviewFooter = styled.div`
+  box-shadow: ${(props) => props.theme.shadow};
+  background-color: #ffffff;
   border-bottom-right-radius: ${(props) => props.theme.borderRadiusLarge}px;
   border-bottom-left-radius: ${(props) => props.theme.borderRadiusLarge}px;
   box-sizing: border-box;
   z-index: ${Z_WAY_ABOVE};
-  padding-left: 6px;
-  padding-right: 6px;
-  padding-top: 2px;
-  padding-bottom: 6px;
-  height: 50px;
   width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2px 5px 5px 5px;
 `;
 
 export const VizPreviewTitle = styled(Link)`
   font-size: 14px;
-  padding-bottom: 4px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: left;
   color: currentcolor;
+`;
+
+export const Bottom = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
