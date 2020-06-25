@@ -28,16 +28,12 @@ export class UpdateImages {
     if (n > 0) {
       const imagesUpdatedTimestamp = timestamp();
 
-      const vizToUpdate = visualizationInfosNeedingThumbnails[n - 1]
+      const vizToUpdate = visualizationInfosNeedingThumbnails[n - 1];
 
       const id = vizToUpdate.id;
       const visualization = await this.visualizationGateway.getVisualization({
         id,
       });
-
-      console.log('visualization')
-      console.log(visualization)
-
 
       console.log(
         'Generating images for ' +
