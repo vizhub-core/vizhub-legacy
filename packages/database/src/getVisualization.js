@@ -6,22 +6,20 @@ import {
 import { DOCUMENT_INFO, DOCUMENT_CONTENT } from './collectionName';
 import { fetchShareDBDoc } from './fetchShareDBDoc';
 
-export const getVisualization = (connection) => ({ id }) => {
+export const getVisualization = (connection) => async ({ id }) => {
   console.log('id');
   console.log(id);
-  Promise.all([
+  const [info, content] = await Promise.all([
     fetchShareDBDoc(DOCUMENT_INFO, id, connection),
     fetchShareDBDoc(DOCUMENT_CONTENT, id, connection),
-  ]).then(
-    ([info, content]) => {
-      console.log('info');
-      console.log(info);
-      console.log('content');
-      console.log(content);
-      return new Visualization({
-        visualizationInfo: new VisualizationInfo(info.data),
-        visualizationContent: new VisualizationContent(content.data),
-      });
-    }
-  );
+  ]);
+  console.log('info.data');
+  console.log(info.data);
+  console.log('content.data');
+  console.log(content.data);
+  console.log('returning new viz')
+  return new Visualization({
+    visualizationInfo: new VisualizationInfo(info.data),
+    visualizationContent: new VisualizationContent(content.data),
+  });
 }
