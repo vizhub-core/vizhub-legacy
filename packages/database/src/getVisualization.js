@@ -13,10 +13,10 @@ export const getVisualization = (connection) => async ({ id }) => {
     fetchShareDBDoc(DOCUMENT_INFO, id, connection),
     fetchShareDBDoc(DOCUMENT_CONTENT, id, connection),
   ]);
-  console.log('info.data');
-  console.log(info.data);
-  console.log('content.data');
-  console.log(content.data);
+  console.log('info');
+  console.log(info);
+  //console.log('content.data');
+  //console.log(content.data);
   console.log('returning new viz')
   return new Visualization({
     visualizationInfo: new VisualizationInfo(info.data),
