@@ -14,6 +14,10 @@ export const getVisualization = (connection) => ({ id }) => {
     fetchShareDBDoc(DOCUMENT_CONTENT, id, connection),
   ]).then(
     ([info, content]) =>
+      console.log('info');
+      console.log(info);
+      console.log('content');
+      console.log(content);
       new Visualization({
         visualizationInfo: new VisualizationInfo(info.data),
         visualizationContent: new VisualizationContent(content.data),
