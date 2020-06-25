@@ -35,6 +35,10 @@ export class UpdateImages {
         id,
       });
 
+      console.log('visualization')
+      console.log(visualization)
+
+
       console.log(
         'Generating images for ' +
           visualization.info.title +
