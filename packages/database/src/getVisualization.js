@@ -13,14 +13,15 @@ export const getVisualization = (connection) => ({ id }) => {
     fetchShareDBDoc(DOCUMENT_INFO, id, connection),
     fetchShareDBDoc(DOCUMENT_CONTENT, id, connection),
   ]).then(
-    ([info, content]) =>
+    ([info, content]) => {
       console.log('info');
       console.log(info);
       console.log('content');
       console.log(content);
-      new Visualization({
+      return new Visualization({
         visualizationInfo: new VisualizationInfo(info.data),
         visualizationContent: new VisualizationContent(content.data),
-      })
+      });
+    }
   );
 }
