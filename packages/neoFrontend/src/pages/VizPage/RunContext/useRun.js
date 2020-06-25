@@ -6,11 +6,11 @@ import {
   useState,
   useRef,
 } from 'react';
-import { runDelay } from '../../../constants';
 import { Subject } from 'rxjs';
+import { runDelay } from '../../../constants';
+import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../VizContext';
 import { EditorModulesContext } from '../EditorModulesContext';
-import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { updateBundleIfNeeded } from './updateBundleIfNeeded';
 import { updateTitleIfNeeded } from './updateTitleIfNeeded';
 import { updateDescriptionIfNeeded } from './updateDescriptionIfNeeded';

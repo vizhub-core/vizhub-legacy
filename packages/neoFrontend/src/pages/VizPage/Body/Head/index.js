@@ -4,7 +4,7 @@ import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
 import { showHeadPullRequest, showHeadShare } from '../../../../featureFlags';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication/AuthContext';
-import { WarningContext } from '../../WarningContext';
+import { WarningContext } from '../../../../WarningContext';
 import { ForkingContext } from '../../ForkingContext';
 import { DeleteVizContext } from '../../DeleteVizContext';
 import { VizContext } from '../../VizContext';

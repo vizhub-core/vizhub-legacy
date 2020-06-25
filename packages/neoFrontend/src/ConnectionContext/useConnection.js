@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef, useCallback } from 'react';
-import { AuthContext, AUTH_PENDING } from '../../../authentication';
+import { AuthContext, AUTH_PENDING } from '../authentication';
 import { WarningContext } from '../WarningContext';
 import { RealtimeModulesContext } from '../RealtimeModulesContext';
 import { createWebSocket } from './createWebSocket';
