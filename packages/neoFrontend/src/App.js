@@ -41,7 +41,10 @@ export const App = () => (
                       path="/creating-viz-from-scratch"
                       component={CreatingVizFromScratchPage}
                     />
-                    <Route path="/:userName/:vizId/forks" component={ForksPage} />
+                    <Route
+                      path="/:userName/:vizId/forks"
+                      component={ForksPage}
+                    />
                     <Route path="/:userName/:vizId" component={VizPage} />
                     <Route path="/:userName" component={ProfilePage} />
                   </Switch>

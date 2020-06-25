@@ -10,6 +10,7 @@ export const Voter = ({
   canVote,
   didVote,
   isPrivate,
+  whyCantUpvote = 'Sign in to upvote.',
 }) => (
   <Container>
     {showUpvote ? (
@@ -19,11 +20,7 @@ export const Voter = ({
           onClick={onUpvoteClick}
           canVote={canVote}
           title={
-            canVote
-              ? didVote
-                ? 'Remove upvote'
-                : 'Upvote'
-              : 'Sign in to upvote.'
+            canVote ? (didVote ? 'Remove upvote' : 'Upvote') : whyCantUpvote
           }
         >
           <VoteSVG didVote={didVote} />
