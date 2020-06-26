@@ -60,5 +60,10 @@ export const useVizInfos = (vizInitialInfosToTrack = []) => {
     };
   }, [vizInfos$, vizInfoOps$]);
 
-  return useSameRef({ vizInfos$ });
+  // TODO result would content also submitOp fn in future
+  const result = useMemo(() => {
+    return { vizInfos$ };
+  }, [vizInfos$]);
+
+  return result;
 };
