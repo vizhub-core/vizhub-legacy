@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useValue } from '../useValue';
-import { VizPreview } from '.';
+import { VizPreview } from './VizPreview';
 
 export const LiveVizPreview = ({ vizInfo$, getUser }) => {
   const getOwner = useCallback(info => info.owner, []);

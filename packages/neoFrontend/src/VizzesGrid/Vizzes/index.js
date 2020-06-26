@@ -30,8 +30,6 @@ export const Vizzes = ({
 
   const { vizInfos$ } = useVizInfos(visualizationInfos);
 
-  console.log(vizInfos$);
-
   const liveVizInfoEntries = useMemo(() => Object.entries(vizInfos$), [vizInfos$]);
 
   return (
