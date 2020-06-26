@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
+import { useViz } from '../../../vizRealTimeHooks/useViz';
 import { VizPageDataContext } from '../VizPageDataContext';
-import { useViz } from './useViz';
 
 export const VizContext = createContext();
 
