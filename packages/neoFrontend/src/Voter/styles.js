@@ -5,7 +5,6 @@ export const Container = styled.div`
   align-items: center;
   font-size: 10px;
   user-select: none;
-  flex: 1;
   justify-content: flex-end;
 `;
 

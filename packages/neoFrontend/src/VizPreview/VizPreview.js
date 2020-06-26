@@ -7,6 +7,7 @@ import {
   ImageLink,
   VizPreviewFooter,
   VizPreviewTitle,
+  Bottom,
 } from './styles';
 
 import { PrivacyNotice } from '../PrivacyNotice';
@@ -34,14 +35,17 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
       />
       <VizPreviewFooter borderRadiusLarge={true}>
         <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
-        <Author ownerUser={ownerUser} isSmall={true} />
-        <Voter
-          canVote={false}
-          didVote={noop}
-          upvoteCount={upvoteCount}
-          onUpvoteClick={noop}
-          isPrivate={isPrivate}
-        />
+        <Bottom>
+          <Author ownerUser={ownerUser} isSmall={true} />
+          <Voter
+            canVote={false}
+            didVote={false}
+            upvoteCount={upvoteCount}
+            onUpvoteClick={noop}
+            isPrivate={isPrivate}
+            whyCantUpvote="Upvoting from previews is not supported yet."
+          />
+        </Bottom>
       </VizPreviewFooter>
       {isPrivate ? <PrivacyNotice isVizPreview={true} /> : null}
     </Wrapper>
