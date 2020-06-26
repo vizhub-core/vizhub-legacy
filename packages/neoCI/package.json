@@ -2,7 +2,7 @@
   "name": "vizhub-ci",
   "private": true,
   "scripts": {
-    "test-no-ci": "mocha -r esm --timeout 10000",
+    "test:e2e": "mocha -r esm --timeout 1",
     "prettier": "prettier --single-quote --write 'test/**/*.js'",
     "lint": "eslint test -c ./.eslintrc.js --no-eslintrc --fix"
   },
