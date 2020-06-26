@@ -27,8 +27,6 @@ export const useMultiOpStreams = (shareDBDocsToTrack = [], getPrevious) => {
         const previous = getPrevious(id);
         const next = shareDBDoc.data;
 
-        console.log('use multi ops', id, next);
-
         op$.next({ previous, next, op, originatedLocally });
       };
 
