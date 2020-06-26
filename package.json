@@ -1,13 +1,12 @@
 {
   "scripts": {
-		"lerna:bootstrap": "lerna bootstrap --hoist",
+    "lerna:bootstrap": "lerna bootstrap --hoist",
     "lerna:test": "lerna run test",
+    "lerna:start:ci": "lerna run start:ci",
+    "start:ci": "cd packages/neoFrontend && npm run start:ci",
+    "lerna:test:e2e": "lerna run test:e2e",
     "lint": "eslint . --fix",
-    "test": "cd packages/entities && npm test && cd ../useCases && npm test && cd ../gateways && npm test && cd ../presenters && npm test && cd ../controllers && npm test && cd ../database && npm test && echo 'All tests pass!'",
     "testAll": "npm run test && cd packages/web && npm test",
-    "startServer": "cd packages/web; npm run --silent dev &",
-    "stopServer": "kill $(lsof -t -i:3000)",
-    "ci": "lerna bootstrap && npm run startServer && npm run testAll && npm run stopServer",
     "updateDeps": "ncu -u; cd packages/entities && ncu -u && cd ../useCases && ncu -u cd ../gateways && ncu -u && cd ../presenters && ncu -u && cd ../controllers && ncu -u && cd ../database && ncu -u && cd ../web && ncu -u && cd ../ui && ncu -u && echo 'All dependencies upgraded!'",
     "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete",
     "prettier": "cd packages/neoFrontend && npm run prettier && cd ../neoBackend && npm run prettier"
