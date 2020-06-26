@@ -4,10 +4,10 @@ export const useSubmitOp = (shareDBDoc) =>
     () =>
       shareDBDoc
         ? (op) => {
-            if (op.length > 0) {
-              shareDBDoc.submitOp(op);
-            }
+          if (op.length > 0) {
+            shareDBDoc.submitOp(op);
           }
+        }
         : undefined,
     [shareDBDoc]
   );
