@@ -1,6 +1,7 @@
-import React, { useEffect, useCallback } from 'react';
-import { VizPreviews, VizPreview } from '../../VizPreview';
+import React, { useEffect, useCallback, useMemo } from 'react';
+import { VizPreviews, LiveVizPreview } from '../../VizPreview';
 import { LoadingScreen } from '../../LoadingScreen';
+import { useVizInfos } from '../../vizRealTimeHooks';
 import { Wrapper } from './styles';
 
 // Trigger infinite scroll when the user gets 100px away from the bottom.
@@ -11,7 +12,7 @@ export const Vizzes = ({
   paginate,
   usersById,
   isFetchingNextPage,
-  className,
+  className
 }) => {
   useEffect(() => {
     const onScroll = () => {
@@ -25,19 +26,27 @@ export const Vizzes = ({
     return () => window.removeEventListener('scroll', onScroll);
   }, [paginate]);
 
-  const getUser = useCallback((id) => usersById[id], [usersById]);
+  const getUser = useCallback(id => usersById[id], [usersById]);
+
+  const { vizInfos$ } = useVizInfos(visualizationInfos);
+
+  console.log(vizInfos$);
+
+  const liveVizInfoEntries = useMemo(() => Object.entries(vizInfos$), [vizInfos$]);
 
   return (
     <Wrapper>
-      {visualizationInfos.length !== 0 ? (
+      {liveVizInfoEntries.length !== 0 ? (
         <VizPreviews className={className}>
-          {visualizationInfos.map((vizInfo) => (
-            <VizPreview
-              key={vizInfo.id}
-              vizInfo={vizInfo}
-              ownerUser={getUser(vizInfo.owner)}
-            />
-          ))}
+          {liveVizInfoEntries.map(
+            ([id, vizInfo$]) => (
+              <LiveVizPreview
+                key={id}
+                vizInfo$={vizInfo$}
+                getUser={getUser}
+              />
+            )
+          )}
         </VizPreviews>
       ) : null}
       {isFetchingNextPage ? <LoadingScreen isChild={true} /> : null}

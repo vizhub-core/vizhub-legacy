@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext, useCallback } from 'react';
-import { ConnectionContext } from '../../../ConnectionContext';
-import { WarningContext } from '../../../WarningContext';
+import { ConnectionContext } from '../ConnectionContext';
+import { WarningContext } from '../WarningContext';
 
 export const useShareDBDoc = (collection, id) => {
   const connection = useContext(ConnectionContext);
