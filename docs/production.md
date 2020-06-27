@@ -13,10 +13,10 @@ sudo apt update
 sudo apt install python build-essential -y
 ```
 
-Install dependencies of [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md):
+Install dependencies of [Puppeteer](https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#chrome-headless-doesnt-launch-on-unix):
 
 ```
-sudo apt install gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils -y
+sudo apt install ca-certificates fonts-liberation gconf-service libappindicator1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils -y
 ```
 
 Install Node.js using [NVM](https://github.com/creationix/nvm)
@@ -241,7 +241,7 @@ The above command sets up PM2 to mimic a CRON job that restarts the image genera
 
 ```
 export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=1a25f9b4693754964a7f
-export REACT_APP_VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954327ff
+export VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954327ff
 export REACT_APP_VIZHUB_JWT_SECRET=fdsahjuyufidysyu4i3243sald89saf78
 export REACT_APP_VIZHUB_WEBSOCKET_URL=wss://beta.vizhub.com
 export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
