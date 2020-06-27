@@ -12,7 +12,7 @@ export const Vizzes = ({
   paginate,
   usersById,
   isFetchingNextPage,
-  className
+  className,
 }) => {
   useEffect(() => {
     const onScroll = () => {
@@ -26,25 +26,21 @@ export const Vizzes = ({
     return () => window.removeEventListener('scroll', onScroll);
   }, [paginate]);
 
-  const getUser = useCallback(id => usersById[id], [usersById]);
+  const getUser = useCallback((id) => usersById[id], [usersById]);
 
   const { vizInfos$ } = useVizInfos(visualizationInfos);
 
-  const liveVizInfoEntries = useMemo(() => Object.entries(vizInfos$), [vizInfos$]);
+  const liveVizInfoEntries = useMemo(() => Object.entries(vizInfos$), [
+    vizInfos$,
+  ]);
 
   return (
     <Wrapper>
       {liveVizInfoEntries.length !== 0 ? (
         <VizPreviews className={className}>
-          {liveVizInfoEntries.map(
-            ([id, vizInfo$]) => (
-              <LiveVizPreview
-                key={id}
-                vizInfo$={vizInfo$}
-                getUser={getUser}
-              />
-            )
-          )}
+          {liveVizInfoEntries.map(([id, vizInfo$]) => (
+            <LiveVizPreview key={id} vizInfo$={vizInfo$} getUser={getUser} />
+          ))}
         </VizPreviews>
       ) : null}
       {isFetchingNextPage ? <LoadingScreen isChild={true} /> : null}

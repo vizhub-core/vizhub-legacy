@@ -38,7 +38,7 @@ In your beloved `.bashrc`:
 ```
 export REACT_APP_VIZHUB_JWT_SECRET=fakefaksdashfjkdsahjfkdjakdhfjdk7
 export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=fakefdsahjkfhdasjkh3
-export REACT_APP_VIZHUB_GITHUB_CLIENT_SECRET=fakefhdjksalhffjkdslahfjkdlsafhdjksahdhf
+export VIZHUB_GITHUB_CLIENT_SECRET=fakefhdjksalhffjkdslahfjkdlsafhdjksahdhf
 export REACT_APP_VIZHUB_STRIPE_BASIC_PRICE_ID=price_fakehfdjkashfdjksahjkhdu
 export REACT_APP_VIZHUB_STRIPE_PRO_PRICE_ID=price_fakehfdjksahjfkdhjskurd8
 export REACT_APP_VIZHUB_STRIPE_PUBLISHABLE_KEY=pk_test_fakeskahfdjksahjkfdhjhjd
@@ -48,3 +48,24 @@ export VIZHUB_STRIPE_DOMAIN=http://localhost:3000
 ```
 
 Don't forget to `source ~/.bashrc`!
+
+# Codebase Maintenance
+
+Run Prettier on all files:
+
+`lerna run prettier`
+
+Run Pretter within a package directory (e.g. `neoFrontend`):
+
+`npm run prettier`
+
+Upgrade all dependencies:
+
+```
+npm install -g npm-check-updates
+lerna exec -- ncu -u
+```
+
+Update all `package-lock.json` files (necessary for CI):
+
+`lerna exec -- npm i`
