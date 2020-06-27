@@ -15,7 +15,7 @@ export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
 export const showEmbed = false;
 export const showSortOptions = false;
-export const showForksCount = false;
+export const showForksCount = true;
 
 // List of usernames who have access to
 // private viz feature.
