@@ -22,7 +22,7 @@ sudo apt install ca-certificates fonts-liberation gconf-service libappindicator1
 Install Node.js using [NVM](https://github.com/creationix/nvm)
 
 ```
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source .bashrc
 nvm install node
 ```
@@ -218,14 +218,6 @@ Install PM2
 npm install -g pm2
 ```
 
-Build and start the Web server
-
-```
-cd packages/web/
-npm run build
-pm2 start --name app npm -- start
-```
-
 Start image generation service
 
 ```
@@ -240,19 +232,18 @@ The above command sets up PM2 to mimic a CRON job that restarts the image genera
 `~/.bashrc`
 
 ```
-export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=1a25f9b4693754964a7f
 export VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954327ff
+export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
+export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=1a25f9b4693754964a7f
 export REACT_APP_VIZHUB_JWT_SECRET=fdsahjuyufidysyu4i3243sald89saf78
 export REACT_APP_VIZHUB_WEBSOCKET_URL=wss://beta.vizhub.com
-export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
 ```
-
 
 Build and start the Web server
 
 ```
 cd packages/neoBackend/
-pm2 start --name app npm -- start
+pm2 start --name VizHubAppServer npm -- start
 ```
 
 Start image generation service
@@ -333,3 +324,4 @@ export SERVER_URL=https://vizhub.com
 VizHub 2.0:
 
 `https://beta.vizhub.com/authenticated`
+
