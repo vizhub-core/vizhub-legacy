@@ -188,7 +188,7 @@ sudo chown mongodb /data/mongodb -R
 ## Set Up VizHub
 
 ```
-git clone git@github.com:datavis-tech/vizhub.git
+git clone git@github.com:curran/vizhub.git
 ```
 
 Set up the [vizhub-ui](https://github.com/datavis-tech/vizhub-ui) submodule

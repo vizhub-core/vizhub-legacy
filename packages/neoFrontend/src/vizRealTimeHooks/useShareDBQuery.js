@@ -29,10 +29,15 @@ export const useShareDBQuery = (collection, idsToTrack = []) => {
     // Clear out old doc in case ids changed.
     // (don't want the user to see stale stuff).
     setShareDBDocs(RESET_DOCS);
-    
-    query = connection.createSubscribeQuery(collection, {id: { $in: ids}}, null, (err, docs) => {
-      setShareDBDocs(docs);
-    });
+
+    query = connection.createSubscribeQuery(
+      collection,
+      { id: { $in: ids } },
+      null,
+      (err, docs) => {
+        setShareDBDocs(docs);
+      }
+    );
 
     query.on('error', onError);
 
