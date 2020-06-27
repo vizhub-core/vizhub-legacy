@@ -12,7 +12,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^7.0.0",
+    "eslint": "^7.3.1",
     "esm": "^3.2.25",
     "prettier": "^2.0.5"
   },
@@ -22,8 +22,8 @@
     "vizhub-entities": "1",
     "vizhub-gateways": "1",
     "vizhub-i18n": "1",
-    "diff-match-patch": "^1.0.4",
+    "diff-match-patch": "^1.0.5",
     "json0-ot-diff": "^1.0.5",
-    "mocha": "^7.1.2"
+    "mocha": "^8.0.1"
   }
 }
