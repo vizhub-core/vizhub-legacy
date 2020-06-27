@@ -42,7 +42,7 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
             didVote={false}
             upvoteCount={upvoteCount}
             onUpvoteClick={noop}
-            isPrivate={isPrivate}
+            isPrivate={false}
             whyCantUpvote="Upvoting from previews is not supported yet."
           />
         </Bottom>
