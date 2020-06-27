@@ -65,3 +65,7 @@ Upgrade all dependencies:
 npm install -g npm-check-updates
 lerna exec -- ncu -u
 ```
+
+Update all `package-lock.json` files (necessary for CI):
+
+`lerna exec -- npm i`
