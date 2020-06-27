@@ -2,4 +2,4 @@
 git pull
 lerna bootstrap
 sh ./buildFrontend.sh
-pm2 restart all
+pm2 restart all --update-env
