@@ -4,8 +4,7 @@
   "private": true,
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "Curran Kelleher",
   "license": "UNLICENSED"
 }
