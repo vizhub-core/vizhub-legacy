@@ -48,3 +48,20 @@ export VIZHUB_STRIPE_DOMAIN=http://localhost:3000
 ```
 
 Don't forget to `source ~/.bashrc`!
+
+# Codebase Maintenance
+
+Run Prettier on all files:
+
+`lerna run prettier`
+
+Run Pretter within a package directory (e.g. `neoFrontend`):
+
+`npm run prettier`
+
+Upgrade all dependencies:
+
+```
+npm install -g npm-check-updates
+lerna exec -- ncu -u
+```
