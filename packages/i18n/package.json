@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
   },
   "author": "Curran Kelleher",
