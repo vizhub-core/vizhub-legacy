@@ -18,7 +18,7 @@ export const Forks = ({ ownerUser }) => {
     const text = `${forksCountFormatted} fork${forksCount === 1 ? '' : 's'}`;
 
     return forksCount > 0 ? (
-      <VizLink to={`/${ownerUser.username}/${id}/forks`}>{text}</VizLink>
+      <VizLink to={`/${ownerUser.userName}/${id}/forks`}>{text}</VizLink>
     ) : (
       text
     );
