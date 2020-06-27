@@ -4,7 +4,7 @@ import { generateId } from '../utils/generateId';
 import { GetUser } from './getUser';
 
 // Feature flag.
-const incrementForksCount = false;
+const incrementForksCount = true;
 
 export class ForkVisualization {
   constructor({ visualizationGateway, userGateway }) {
