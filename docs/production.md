@@ -145,7 +145,7 @@ Configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/se
 ```
 GITHUB_ID=1937fa078932032536f9
 GITHUB_SECRET=97892345784932b789a78f9d89c789c7890c2143
-MONGO_URI=mongodb://localhost:27017/vizhub
+VIZHUB_VIZHUB_MONGO_URI=mongodb://localhost:27017/vizhub
 ```
 
 Using Elastic Block Store
@@ -233,7 +233,7 @@ The above command sets up PM2 to mimic a CRON job that restarts the image genera
 
 ```
 export VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954327ff
-export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
+export VIZHUB_MONGO_URI=mongodb://171.31.13.217:27017/vizhub
 export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=1a25f9b4693754964a7f
 export REACT_APP_VIZHUB_JWT_SECRET=fdsahjuyufidysyu4i3243sald89saf78
 export REACT_APP_VIZHUB_WEBSOCKET_URL=wss://beta.vizhub.com
@@ -274,7 +274,7 @@ net:
 #  bindIp: 127.0.0.1  <- comment out this line
 ```
 
-In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
+In the Web app server `~/.bashrc`, set `export VIZHUB_MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
 
 For search, you need to set up indices like this:
 
@@ -315,7 +315,7 @@ Env vars in `.bashrc`:
 ```
 export GITHUB_ID=197238095748390275843
 export GITHUB_SECRET=3c89ee6797589043728590432890542389c3c393
-export MONGO_URI=mongodb://172.47.91.462:27017/vizhub
+export VIZHUB_MONGO_URI=mongodb://172.47.91.462:27017/vizhub
 export SERVER_URL=https://vizhub.com
 ```
 
@@ -325,3 +325,49 @@ VizHub 2.0:
 
 `https://beta.vizhub.com/authenticated`
 
+## Redis
+
+[Install Redis](https://redis.io/topics/quickstart)
+
+Enagble use of [https://github.com/share/sharedb-redis-pubsub](https://github.com/share/sharedb-redis-pubsub) for horizontal scaling by setting the following environment variable:
+
+```
+VIZHUB_REDIS_HOST=123.45.67.8
+```
+
+On the Redis server (from [Redis Quick Start](https://redis.io/topics/quickstart)):
+
+```
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+sudo apt-get update
+sudo apt install build-essential -y
+make
+sudo make install
+redis-server --daemonize yes
+redis-cli ping
+redis-cli
+redis-cli shutdown
+redis-cli ping
+sudo mkdir /etc/redis
+sudo mkdir /var/redis
+sudo cp utils/redis_init_script /etc/init.d/redis_6379
+sudo cp redis.conf /etc/redis/6379.conf
+sudo mkdir /var/redis/6379
+sudo vim /etc/redis/6379.conf
+sudo update-rc.d redis_6379 defaults
+sudo /etc/init.d/redis_6379 start
+```
+
+
+## Stripe
+
+```
+export REACT_APP_VIZHUB_STRIPE_BASIC_PRICE_ID=price_fakehfdjkashfdjksahjkhdu
+export REACT_APP_VIZHUB_STRIPE_PRO_PRICE_ID=price_fakehfdjksahjfkdhjskurd8
+export REACT_APP_VIZHUB_STRIPE_PUBLISHABLE_KEY=pk_test_fakeskahfdjksahjkfdhjhjd
+export VIZHUB_STRIPE_SECRET_KEY=sk_test_fakehdjksfhafjkhsdjkfhdj
+export VIZHUB_STRIPE_WEBHOOK_SECRET=whsec_faked
+export VIZHUB_STRIPE_DOMAIN=http://localhost:3000
+```

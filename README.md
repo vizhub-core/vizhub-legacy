@@ -33,18 +33,12 @@ find . -name "node_modules" -exec rm -rf '{}' +; find . -name "package-lock.json
 
 # Environment Variables
 
-In your beloved `.bashrc`:
+In your beloved `.bashrc` or any source for environment variables:
 
 ```
 export REACT_APP_VIZHUB_JWT_SECRET=fakefaksdashfjkdsahjfkdjakdhfjdk7
 export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=fakefdsahjkfhdasjkh3
 export VIZHUB_GITHUB_CLIENT_SECRET=fakefhdjksalhffjkdslahfjkdlsafhdjksahdhf
-export REACT_APP_VIZHUB_STRIPE_BASIC_PRICE_ID=price_fakehfdjkashfdjksahjkhdu
-export REACT_APP_VIZHUB_STRIPE_PRO_PRICE_ID=price_fakehfdjksahjfkdhjskurd8
-export REACT_APP_VIZHUB_STRIPE_PUBLISHABLE_KEY=pk_test_fakeskahfdjksahjkfdhjhjd
-export VIZHUB_STRIPE_SECRET_KEY=sk_test_fakehdjksfhafjkhsdjkfhdj
-export VIZHUB_STRIPE_WEBHOOK_SECRET=whsec_faked
-export VIZHUB_STRIPE_DOMAIN=http://localhost:3000
 ```
 
 Don't forget to `source ~/.bashrc`!
@@ -69,3 +63,13 @@ lerna exec -- ncu -u
 Update all `package-lock.json` files (necessary for CI):
 
 `lerna exec -- npm i`
+
+# Using MongoDB in Development
+
+For a more persistent experience during development, you can opt into using MongoDB.
+
+Just set this environment variable:
+
+```
+VIZHUB_MONGO_URI=mongodb://localhost:27017/vizhub
+```
