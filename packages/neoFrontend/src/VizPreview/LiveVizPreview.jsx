@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useValue } from '../useValue';
 import { VizPreview } from './VizPreview';
 
-export const LiveVizPreview = ({ vizInfo$, getUser }) => {
-  const getOwner = useCallback(info => info.owner, []);
+const getOwner = info => info.owner;
 
+export const LiveVizPreview = ({ vizInfo$, getUser }) => {
   const vizInfo = useValue(vizInfo$);
   const owner = useValue(vizInfo$, getOwner);
 
