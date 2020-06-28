@@ -15,8 +15,8 @@
     "buble-jsx-only": "^0.19.8",
     "mocha": "^8.0.1",
     "path-posix": "^1.0.0",
-    "rollup": "1.30.0",
-    "rollup-pluginutils": "2.8.2",
+    "rollup": "^1.30.0",
+    "rollup-pluginutils": "^2.8.2",
     "vizhub-entities": "1",
     "vizhub-use-cases": "1"
   },
