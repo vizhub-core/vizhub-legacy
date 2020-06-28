@@ -1,5 +1,9 @@
 import React from 'react';
-import { getUserName, getUpvoteCount } from 'vizhub-presenters';
+import {
+  getUserName,
+  getUpvoteCount,
+  isVizInfoPrivate
+} from 'vizhub-presenters';
 import { Author } from '../Author';
 import { Voter } from '../Voter';
 import {
@@ -14,7 +18,14 @@ import { PrivacyNotice } from '../PrivacyNotice';
 
 const noop = () => {};
 
-export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
+export const VizPreview = ({
+  vizInfo,
+  ownerUser,
+  canVote = false,
+  didVote = false,
+  openEditor = false,
+  onUpvoteClick = noop
+}) => {
   const { id, title, privacy, upvotes } = vizInfo;
   const isPrivate = privacy === 'private';
   const link = `/${getUserName(ownerUser)}/${id}${
@@ -38,11 +49,11 @@ export const VizPreview = ({ vizInfo, ownerUser, openEditor = false }) => {
         <Bottom>
           <Author ownerUser={ownerUser} isSmall={true} />
           <Voter
-            canVote={false}
-            didVote={false}
+            canVote={canVote}
+            didVote={didVote}
             upvoteCount={upvoteCount}
-            onUpvoteClick={noop}
-            isPrivate={false}
+            onUpvoteClick={onUpvoteClick}
+            isPrivate={isVizInfoPrivate(vizInfo)}
             whyCantUpvote="Upvoting from previews is not supported yet."
           />
         </Bottom>
