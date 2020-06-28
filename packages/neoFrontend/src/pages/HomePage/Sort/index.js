@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Container, Header, Form, Select } from './styles';
+import { Container, Header, Form, Select, SelectLabel } from './styles';
 
 export const Sort = ({ value, onChange }) => {
   const handleChange = useCallback(
@@ -16,11 +16,11 @@ export const Sort = ({ value, onChange }) => {
         {/* <h4>lorem ipsum</h4> */}
       </Header>
       <Form>
-        Sort By
+        <SelectLabel>Sort By</SelectLabel>
         <Select value={value} onChange={handleChange}>
-          <option value="lastUpdatedTimestamp">recently updated</option>
-          <option value="upvotes"> most upvoted</option>
-          <option value="forksCount"> most forked</option>
+          <option value="lastUpdatedTimestamp">Most recent</option>
+          {/* <option value="upvotes"> Most upvoted</option> */}
+          <option value="forksCount"> Most forked</option>
         </Select>
       </Form>
     </Container>

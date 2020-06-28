@@ -39,7 +39,7 @@ export const useMultiOpStreams = (shareDBDocsToTrack = [], getPrevious) => {
 
     return () => {
       opHandlers.forEach(([doc, handleOp]) => {
-        doc.on('op', handleOp);
+        doc.off('op', handleOp);
       });
     };
   }, [shareDBDocs, ops$, getPrevious]);
