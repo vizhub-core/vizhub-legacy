@@ -14,7 +14,7 @@ export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
 export const showEmbed = false;
-export const showSortOptions = false;
+export const showSortOptions = true;
 export const showForksCount = true;
 
 // List of usernames who have access to
