@@ -25,7 +25,7 @@ export const useMultiOpStreams = (shareDBDocsToTrack = [], getPrevious) => {
       // Update on each change.
       const handleOp = (op, originatedLocally) => {
         const previous = getPrevious(id);
-        const next = shareDBDoc.data;
+        const next = { id, ...shareDBDoc.data };
 
         op$.next({ previous, next, op, originatedLocally });
       };

@@ -26,26 +26,28 @@ export const useViz = (initialViz) => {
     const subscription = vizContentOp$.subscribe(({ previous, next }) => {
       if (previous !== next) {
         viz$.next({
+          id: initialViz.id,
           info: viz$.getValue().info,
           content: next,
         });
       }
     });
     return () => subscription.unsubscribe();
-  }, [viz$, vizContentOp$]);
+  }, [viz$, vizContentOp$, initialViz.id]);
 
   // Update viz$ info.
   useEffect(() => {
     const subscription = vizInfoOp$.subscribe(({ previous, next }) => {
       if (previous !== next) {
         viz$.next({
+          id: initialViz.id,
           content: viz$.getValue().content,
           info: next,
         });
       }
     });
     return () => subscription.unsubscribe();
-  }, [viz$, vizInfoOp$]);
+  }, [viz$, vizInfoOp$, initialViz.id]);
 
   const submitVizContentOp = useSubmitOp(vizContentDoc);
   const submitVizInfoOp = useSubmitOp(vizInfoDoc);
