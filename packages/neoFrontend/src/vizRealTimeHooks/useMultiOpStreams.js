@@ -1,11 +1,11 @@
 import { useMemo, useEffect } from 'react';
 import { Subject } from 'rxjs';
-import { useSameRef } from '../useSameRef';
+import { useSameArray } from '../useSameArray';
 
 // Subscribes to a ShareDB document for ops,
 // returns an RxJS Subject that emits values for each op.
 export const useMultiOpStreams = (shareDBDocsToTrack = [], getPrevious) => {
-  const shareDBDocs = useSameRef(shareDBDocsToTrack);
+  const shareDBDocs = useSameArray(shareDBDocsToTrack);
 
   const ops$ = useMemo(() => {
     return shareDBDocs.map(({ id }) => [id, new Subject()]);
