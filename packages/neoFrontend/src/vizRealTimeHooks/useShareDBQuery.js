@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext, useCallback } from 'react';
-import { useSameRef } from '../useSameRef';
+import { useSameArray } from '../useSameArray';
 import { ConnectionContext } from '../ConnectionContext';
 import { WarningContext } from '../WarningContext';
 
 const RESET_DOCS = [];
 
 export const useShareDBQuery = (collection, idsToTrack = []) => {
-  const ids = useSameRef(idsToTrack);
+  const ids = useSameArray(idsToTrack);
 
   const connection = useContext(ConnectionContext);
   const { setWarning } = useContext(WarningContext);

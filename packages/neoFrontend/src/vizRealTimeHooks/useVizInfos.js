@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useCallback, useRef } from 'react';
 import { BehaviorSubject } from 'rxjs';
-import { useSameRef } from '../useSameRef';
+import { useSameArray } from '../useSameArray';
 import { DOCUMENT_INFO } from 'vizhub-database';
 import { useShareDBQuery } from './useShareDBQuery';
 import { useMultiOpStreams } from './useMultiOpStreams';
+import { useSubmitOp } from './useSubmitOp';
 
 export const useVizInfos = (vizInitialInfosToTrack = []) => {
   // if hook called with same array of infos, than it should use same ref in order not do redundant work
-  const vizInitialInfos = useSameRef(vizInitialInfosToTrack);
+  const vizInitialInfos = useSameArray(vizInitialInfosToTrack);
 
   // retrieve ids which desired to keep track on
   const vizInfosIds = useMemo(() => vizInitialInfos.map(({ id }) => id), [
@@ -68,10 +69,15 @@ export const useVizInfos = (vizInitialInfosToTrack = []) => {
     };
   }, [vizInfos$, vizInfoOps$]);
 
-  // TODO result would content also submitOp fn in future
+  const getVizInfoDoc = useCallback(({ id: target }) => {
+    return vizInfoDocs.find(({id}) => id === target);
+  }, [vizInfoDocs]);
+
+  const submitVizInfoOp = useSubmitOp(getVizInfoDoc);
+
   const result = useMemo(() => {
-    return { vizInfos$ };
-  }, [vizInfos$]);
+    return { vizInfos$, submitVizInfoOp };
+  }, [vizInfos$, submitVizInfoOp]);
 
   return result;
 };

@@ -1,4 +1,11 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, {
+  useEffect,
+  useCallback,
+  useMemo,
+  useContext
+} from 'react';
+import { getVizInfoUpvotes, upvoteOp } from 'vizhub-presenters';
+import { AuthContext } from '../../authentication';
 import { VizPreviews, LiveVizPreview } from '../../VizPreview';
 import { LoadingScreen } from '../../LoadingScreen';
 import { useVizInfos } from '../../vizRealTimeHooks';
@@ -28,18 +35,32 @@ export const Vizzes = ({
 
   const getUser = useCallback((id) => usersById[id], [usersById]);
 
-  const { vizInfos$ } = useVizInfos(visualizationInfos);
+  const { vizInfos$, submitVizInfoOp } = useVizInfos(visualizationInfos);
 
   const liveVizInfoEntries = useMemo(() => Object.entries(vizInfos$), [
     vizInfos$,
   ]);
+
+  const { me } = useContext(AuthContext);
+
+  const handleUpvote = useCallback((vizInfo) => {
+    if (me) {
+      submitVizInfoOp(upvoteOp(me.id, getVizInfoUpvotes(vizInfo)), vizInfo);
+    }
+  }, [submitVizInfoOp, me]);
 
   return (
     <Wrapper>
       {liveVizInfoEntries.length !== 0 ? (
         <VizPreviews className={className}>
           {liveVizInfoEntries.map(([id, vizInfo$]) => (
-            <LiveVizPreview key={id} vizInfo$={vizInfo$} getUser={getUser} />
+            <LiveVizPreview
+              key={id}
+              me={me}
+              vizInfo$={vizInfo$}
+              getUser={getUser}
+              onUpvoteClick={handleUpvote}
+            />
           ))}
         </VizPreviews>
       ) : null}
