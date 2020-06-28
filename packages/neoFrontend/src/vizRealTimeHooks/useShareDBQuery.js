@@ -28,6 +28,7 @@ export const useShareDBQuery = (collection, idsToTrack = []) => {
 
     // Clear out old doc in case ids changed.
     // (don't want the user to see stale stuff).
+    query && query.destroy();
     setShareDBDocs(RESET_DOCS);
 
     query = connection.createSubscribeQuery(
