@@ -7,15 +7,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Form = styled.div`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  color: #000000;
-
-  opacity: 0.6;
-`;
+export const Form = styled.div``;
 
 export const Header = styled.div`
   h1 {
@@ -37,10 +29,21 @@ export const Header = styled.div`
   }
 `;
 
+export const SelectLabel = styled.label`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #000000;
+
+  opacity: 0.6;
+`;
+
 export const Select = styled.select`
   display: block;
   appearance: none;
-  padding: 12px 14px 12px 14px;
+  margin-top: 6px;
+  padding: 13px 14px 12px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-radius: 4px;

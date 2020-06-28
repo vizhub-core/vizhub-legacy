@@ -5,13 +5,13 @@ import { DOCUMENT_INFO } from 'vizhub-database';
 import { useShareDBQuery } from './useShareDBQuery';
 import { useMultiOpStreams } from './useMultiOpStreams';
 
-export const useVizInfos = (vizInitialInfosToTrack = []) => {
+export const useVizInfos = (vizInfosToTrack = []) => {
   // if hook called with same array of infos, than it should use same ref in order not do redundant work
-  const vizInitialInfos = useSameRef(vizInitialInfosToTrack);
+  const vizInfos = useSameRef(vizInfosToTrack);
 
   // retrieve ids which desired to keep track on
-  const vizInfosIds = useMemo(() => vizInitialInfos.map(({ id }) => id), [
-    vizInitialInfos,
+  const vizInfosIds = useMemo(() => vizInfos.map(({ id }) => id), [
+    vizInfos,
   ]);
 
   // get share db docs for interested viz infos
@@ -25,26 +25,26 @@ export const useVizInfos = (vizInitialInfosToTrack = []) => {
 
   // map that keeps viz info subjects by ids, so that it would be possible to find related subject if needed
   const vizInfos$ = useMemo(() => {
-    const alreadyInitialized = Object.keys(hookLifetimeVizInfosByIdRef.current);
+    return vizInfos.reduce((vizInfos$ById, vizInfo) => {
+      const vizInfo$ = (
+        hookLifetimeVizInfosByIdRef.current[vizInfo.id]
+          ? hookLifetimeVizInfosByIdRef.current[vizInfo.id]
+          : new BehaviorSubject(vizInfo)
+      );
 
-    const addedVizInfosById = vizInitialInfos
-      .filter(({ id }) => !alreadyInitialized.includes(id))
-      .reduce((vizInfosById, initialInfo) => {
-        vizInfosById[initialInfo.id] = new BehaviorSubject(initialInfo);
+      vizInfos$ById[vizInfo.id] = vizInfo$;
 
-        return vizInfosById;
-      }, {});
+      return vizInfos$ById;
+    }, {});
+  }, [vizInfos]);
 
-    return Object.assign(
-      {},
-      hookLifetimeVizInfosByIdRef.current,
-      addedVizInfosById
-    );
-  }, [vizInitialInfos]);
-
-  // need to update initialized infos subjects when subjects are recalculated
+  // drop unused streams
   useEffect(() => {
-    hookLifetimeVizInfosByIdRef.current = vizInfos$;
+    Object.keys(hookLifetimeVizInfosByIdRef.current).forEach(id => {
+      if (!vizInfos$[id]) {
+        delete hookLifetimeVizInfosByIdRef.current[id];
+      }
+    });
   }, [vizInfos$]);
 
   const getPrevious = useCallback((id) => vizInfos$[id].getValue(), [
