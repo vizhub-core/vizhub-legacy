@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "start:ci": "react-scripts start",
+    "start:ci": "node scripts/server.js",
     "build": "react-scripts build",
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
     "test-no-ci": "react-scripts test"

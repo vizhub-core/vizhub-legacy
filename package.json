@@ -4,6 +4,7 @@
     "lerna:test": "lerna run test",
     "lerna:start:ci": "lerna run start:ci",
     "start:ci": "cd packages/neoFrontend && npm run start:ci",
+    "test:e2e": "cd packages/neoCI && npm run test:e2e",
     "lerna:test:e2e": "lerna run test:e2e",
     "lint": "eslint . --fix",
     "testAll": "npm run test && cd packages/web && npm test",

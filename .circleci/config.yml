@@ -8,6 +8,11 @@ executors:
   node_browsers:
     docker:
       - image: 'circleci/node:latest-browsers'
+    environment:
+      NODE_ENV: development
+
+orbs:
+  puppeteer: threetreeslight/puppeteer@0.1.2
 
 jobs:
   build:
@@ -28,13 +33,16 @@ jobs:
     executor: node_browsers
     steps:
       - checkout
-      - run: npm i
+      - puppeteer/install
+      - run: npm i lerna
+      - run: npm install wait-on
       - run: npm run lerna:bootstrap
       - run:
           name: Start Server
           command: npm run start:ci
           background: true
-      - run: npm run lerna:test:e2e
+      - run: npx wait-on http://localhost:3000
+      - run: npm run test:e2e
 
 workflows:
   build_and_test:
