@@ -11,9 +11,6 @@ executors:
     environment:
       NODE_ENV: development
 
-orbs:
-  puppeteer: threetreeslight/puppeteer@0.1.2
-
 jobs:
   build:
     executor: node_exec
@@ -33,7 +30,6 @@ jobs:
     executor: node_browsers
     steps:
       - checkout
-      - puppeteer/install
       - run: npm i lerna
       - run: npm install wait-on
       - run: npm run lerna:bootstrap
