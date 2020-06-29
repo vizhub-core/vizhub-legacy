@@ -140,14 +140,6 @@ sudo apt-get install mongodb-org -y
 sudo service mongod start
 ```
 
-Configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) and MongoDB URL following in `packages/web/.env`. Here's a sample of what the `.env` file should look like:
-
-```
-GITHUB_ID=1937fa078932032536f9
-GITHUB_SECRET=97892345784932b789a78f9d89c789c7890c2143
-VIZHUB_VIZHUB_MONGO_URI=mongodb://localhost:27017/vizhub
-```
-
 Using Elastic Block Store
 
 We use [Amazon Elastic Block Store](https://aws.amazon.com/ebs/) for permanent storage of the MongoDB database content.
@@ -307,21 +299,6 @@ db.o_thumbnailImages.drop()
 
 
 # GitHub Authorization callback URL
-
-VizHub 1.0:
-
-Env vars in `.bashrc`:
-
-```
-export GITHUB_ID=197238095748390275843
-export GITHUB_SECRET=3c89ee6797589043728590432890542389c3c393
-export VIZHUB_MONGO_URI=mongodb://172.47.91.462:27017/vizhub
-export SERVER_URL=https://vizhub.com
-```
-
-`https://vizhub.com/auth/oauth/github/callback`
-
-VizHub 2.0:
 
 `https://beta.vizhub.com/authenticated`
 
