@@ -4,8 +4,6 @@ import { getUserName, getUserFullName } from 'vizhub-presenters';
 import { Avatar } from '../../../Avatar';
 
 export const ProfilePane = ({user, isSmall = false}) => {
-  console.log("User in profilePane", user)
-
   return user ? (
     <Wrapper>
       <AuthorAvatar isSmall={isSmall}>
