@@ -20,7 +20,6 @@ export const AuthorInfo = styled.div`
   color: currentcolor;
 `;
 
-
 export const AuthorName = styled.div`
   font-size: ${(props) => (props.isSmall ? 22 : 24)}px;
   font-weight: 600;

@@ -11,9 +11,7 @@ export const useVizInfos = (vizInfosToTrack = []) => {
   const vizInfos = useSameArray(vizInfosToTrack);
 
   // retrieve ids which desired to keep track on
-  const vizInfosIds = useMemo(() => vizInfos.map(({ id }) => id), [
-    vizInfos,
-  ]);
+  const vizInfosIds = useMemo(() => vizInfos.map(({ id }) => id), [vizInfos]);
 
   // get share db docs for interested viz infos
   const vizInfoDocs = useShareDBQuery(DOCUMENT_INFO, vizInfosIds);
@@ -27,11 +25,9 @@ export const useVizInfos = (vizInfosToTrack = []) => {
   // map that keeps viz info subjects by ids, so that it would be possible to find related subject if needed
   const vizInfos$ = useMemo(() => {
     return vizInfos.reduce((vizInfos$ById, vizInfo) => {
-      const vizInfo$ = (
-        hookLifetimeVizInfosByIdRef.current[vizInfo.id]
-          ? hookLifetimeVizInfosByIdRef.current[vizInfo.id]
-          : new BehaviorSubject(vizInfo)
-      );
+      const vizInfo$ = hookLifetimeVizInfosByIdRef.current[vizInfo.id]
+        ? hookLifetimeVizInfosByIdRef.current[vizInfo.id]
+        : new BehaviorSubject(vizInfo);
 
       vizInfos$ById[vizInfo.id] = vizInfo$;
 
@@ -41,7 +37,7 @@ export const useVizInfos = (vizInfosToTrack = []) => {
 
   // drop unused streams
   useEffect(() => {
-    Object.keys(hookLifetimeVizInfosByIdRef.current).forEach(id => {
+    Object.keys(hookLifetimeVizInfosByIdRef.current).forEach((id) => {
       if (!vizInfos$[id]) {
         delete hookLifetimeVizInfosByIdRef.current[id];
       }
@@ -69,9 +65,12 @@ export const useVizInfos = (vizInfosToTrack = []) => {
     };
   }, [vizInfos$, vizInfoOps$]);
 
-  const getVizInfoDoc = useCallback(({ id: target }) => {
-    return vizInfoDocs.find(({id}) => id === target);
-  }, [vizInfoDocs]);
+  const getVizInfoDoc = useCallback(
+    ({ id: target }) => {
+      return vizInfoDocs.find(({ id }) => id === target);
+    },
+    [vizInfoDocs]
+  );
 
   const submitVizInfoOp = useSubmitOp(getVizInfoDoc);
 
