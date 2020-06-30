@@ -12,7 +12,7 @@ import {
   getUpvoteCount,
   getDidVote,
   upvoteOp,
-  isVizInfoPrivate
+  isVizInfoPrivate,
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';

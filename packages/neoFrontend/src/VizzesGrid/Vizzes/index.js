@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useCallback,
-  useMemo,
-  useContext
-} from 'react';
+import React, { useEffect, useCallback, useMemo, useContext } from 'react';
 import { getVizInfoUpvotes, upvoteOp } from 'vizhub-presenters';
 import { AuthContext } from '../../authentication';
 import { VizPreviews, LiveVizPreview } from '../../VizPreview';
@@ -43,11 +38,14 @@ export const Vizzes = ({
 
   const { me } = useContext(AuthContext);
 
-  const handleUpvote = useCallback((vizInfo) => {
-    if (me) {
-      submitVizInfoOp(upvoteOp(me.id, getVizInfoUpvotes(vizInfo)), vizInfo);
-    }
-  }, [submitVizInfoOp, me]);
+  const handleUpvote = useCallback(
+    (vizInfo) => {
+      if (me) {
+        submitVizInfoOp(upvoteOp(me.id, getVizInfoUpvotes(vizInfo)), vizInfo);
+      }
+    },
+    [submitVizInfoOp, me]
+  );
 
   return (
     <Wrapper>

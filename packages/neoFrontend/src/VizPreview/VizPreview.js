@@ -2,7 +2,7 @@ import React from 'react';
 import {
   getUserName,
   getUpvoteCount,
-  isVizInfoPrivate
+  isVizInfoPrivate,
 } from 'vizhub-presenters';
 import { Author } from '../Author';
 import { Voter } from '../Voter';
@@ -24,7 +24,7 @@ export const VizPreview = ({
   canVote = false,
   didVote = false,
   openEditor = false,
-  onUpvoteClick = noop
+  onUpvoteClick = noop,
 }) => {
   const { id, title, privacy, upvotes } = vizInfo;
   const isPrivate = privacy === 'private';
