@@ -21,8 +21,6 @@ export class ForkVisualization {
 
     const nowTimestamp = timestamp();
 
-    const { forksCount = 0 } = visualization.info;
-
     const [
       { id },
       {
