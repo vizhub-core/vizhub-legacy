@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "lerna": "lerna bootstrap",
     "lerna:bootstrap": "lerna bootstrap --hoist",
     "lerna:test": "lerna run test",
     "lerna:start:ci": "lerna run start:ci",
@@ -10,7 +11,8 @@
     "testAll": "npm run test && cd packages/web && npm test",
     "updateDeps": "ncu -u; cd packages/entities && ncu -u && cd ../useCases && ncu -u cd ../gateways && ncu -u && cd ../presenters && ncu -u && cd ../controllers && ncu -u && cd ../database && ncu -u && cd ../web && ncu -u && cd ../ui && ncu -u && echo 'All dependencies upgraded!'",
     "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete",
-    "prettier": "cd packages/neoFrontend && npm run prettier && cd ../neoBackend && npm run prettier"
+    "prettier": "cd packages/neoFrontend && npm run prettier && cd ../neoBackend && npm run prettier",
+    "deploy:staging": "pm2 deploy staging"
   },
   "devDependencies": {
     "eslint": "^6.0.1",

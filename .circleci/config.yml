@@ -39,6 +39,12 @@ jobs:
           background: true
       - run: npx wait-on http://localhost:3000
       - run: npm run test:e2e
+  staging_deploy:
+    executor: node_exec
+    steps:
+      - checkout
+      - run: npm i pm2
+      - run: npm run deploy:staging
 
 workflows:
   build_and_test:
@@ -48,3 +54,9 @@ workflows:
   e2e:
     jobs:
       - e2e
+  deploy_staging:
+    jobs:
+      - staging_deploy:
+        filters:
+          branches:
+            only: master
