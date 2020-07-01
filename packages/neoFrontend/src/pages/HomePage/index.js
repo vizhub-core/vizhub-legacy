@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
-import { Wrapper, Content, Centering } from '../styles';
+import { Wrapper, Content } from '../styles';
 import { HomePageDataProvider } from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
 import { Vizzes } from './Vizzes';
@@ -18,9 +18,7 @@ export const HomePage = () => {
           <NavBar isHomePage={true} showSearch />
           <Banner />
           {showSortOptions ? <Sort value={sort} onChange={setSort} /> : null}
-          <Centering>
-            <Vizzes />
-          </Centering>
+          <Vizzes />
         </Content>
       </Wrapper>
     </HomePageDataProvider>
