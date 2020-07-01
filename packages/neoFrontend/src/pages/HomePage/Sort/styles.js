@@ -5,28 +5,15 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 10px 6px 12px 6px;
 `;
 
 export const Form = styled.div``;
 
 export const Header = styled.div`
-  h1 {
-    margin: 0 0 8px 0;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 42px;
-    color: #353433;
-  }
-
-  h4 {
-    margin: 0;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    color: #797979;
-  }
+  font-weight: 600;
+  font-size: 28px;
+  color: #353433;
 `;
 
 export const SelectLabel = styled.label`

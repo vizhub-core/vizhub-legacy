@@ -12,8 +12,7 @@ export const Sort = ({ value, onChange }) => {
   return (
     <Container>
       <Header>
-        <h1>VizHub Community</h1>
-        {/* <h4>lorem ipsum</h4> */}
+        VizHub Community
       </Header>
       <Form>
         <SelectLabel>Sort By</SelectLabel>
