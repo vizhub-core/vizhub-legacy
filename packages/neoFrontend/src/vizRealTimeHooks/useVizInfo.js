@@ -9,9 +9,13 @@ export const useVizInfo = (initialVizInfo) => {
   const vizInfoDoc = useShareDBDoc(DOCUMENT_INFO, initialVizInfo.id);
 
   // Display initial viz until realtime connection has been established.
-  const vizInfo$ = useMemo(() => new BehaviorSubject(initialVizInfo), [initialVizInfo]);
+  const vizInfo$ = useMemo(() => new BehaviorSubject(initialVizInfo), [
+    initialVizInfo,
+  ]);
 
-  const getPreviousInfo = useCallback(() => vizInfo$.getValue().info, [vizInfo$]);
+  const getPreviousInfo = useCallback(() => vizInfo$.getValue().info, [
+    vizInfo$,
+  ]);
   const vizInfoOp$ = useOpStream(vizInfoDoc, getPreviousInfo);
 
   // Update viz$ info.
