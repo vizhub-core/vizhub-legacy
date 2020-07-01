@@ -5,7 +5,7 @@ import { Z_WAY_ABOVE } from '../styles';
 export const VizPreviews = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export const Wrapper = styled.div`
