@@ -1,16 +1,18 @@
 import { useEffect, useMemo, useCallback } from 'react';
 import { BehaviorSubject } from 'rxjs';
-import { DOCUMENT_CONTENT, DOCUMENT_INFO } from 'vizhub-database';
+import { DOCUMENT_CONTENT } from 'vizhub-database';
 import { useShareDBDoc } from './useShareDBDoc';
 import { useOpStream } from './useOpStream';
 import { usePresence } from './usePresence';
 import { usePresenceStream } from './usePresenceStream';
 import { useSubmitOp } from './useSubmitOp';
 import { useSubmitPresence } from './useSubmitPresence';
+import { useVizInfo } from './useVizInfo';
 
 export const useViz = (initialViz) => {
+  const { vizInfo$, submitVizInfoOp } = useVizInfo(initialViz.info);
+
   const vizContentDoc = useShareDBDoc(DOCUMENT_CONTENT, initialViz.id);
-  const vizInfoDoc = useShareDBDoc(DOCUMENT_INFO, initialViz.id);
 
   // Display initial viz until realtime connection has been established.
   const viz$ = useMemo(() => new BehaviorSubject(initialViz), [initialViz]);
@@ -18,8 +20,17 @@ export const useViz = (initialViz) => {
   const getPreviousContent = useCallback(() => viz$.getValue().content, [viz$]);
   const vizContentOp$ = useOpStream(vizContentDoc, getPreviousContent);
 
-  const getPreviousInfo = useCallback(() => viz$.getValue().info, [viz$]);
-  const vizInfoOp$ = useOpStream(vizInfoDoc, getPreviousInfo);
+  // Update viz$ info.
+  useEffect(() => {
+    const subscription = vizInfo$.subscribe((vizInfo) => {
+      viz$.next({
+        id: initialViz.id,
+        content: viz$.getValue().content,
+        info: vizInfo,
+      });
+    });
+    return () => subscription.unsubscribe();
+  }, [viz$, vizInfo$, initialViz.id]);
 
   // Update viz$ content.
   useEffect(() => {
@@ -27,30 +38,15 @@ export const useViz = (initialViz) => {
       if (previous !== next) {
         viz$.next({
           id: initialViz.id,
-          info: viz$.getValue().info,
+          info: vizInfo$.getValue(),
           content: next,
         });
       }
     });
     return () => subscription.unsubscribe();
-  }, [viz$, vizContentOp$, initialViz.id]);
-
-  // Update viz$ info.
-  useEffect(() => {
-    const subscription = vizInfoOp$.subscribe(({ previous, next }) => {
-      if (previous !== next) {
-        viz$.next({
-          id: initialViz.id,
-          content: viz$.getValue().content,
-          info: next,
-        });
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [viz$, vizInfoOp$, initialViz.id]);
+  }, [viz$, vizInfo$, vizContentOp$, initialViz.id]);
 
   const submitVizContentOp = useSubmitOp(vizContentDoc);
-  const submitVizInfoOp = useSubmitOp(vizInfoDoc);
 
   // Manage presence.
   const vizContentPresence = usePresence(
