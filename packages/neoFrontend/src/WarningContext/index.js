@@ -7,9 +7,11 @@ export const WarningProvider = ({ children }) => {
   const [warning, setWarning] = useState(null);
   const contextValue = { warning, setWarning };
 
+  const location = useLocation();
+
   useEffect(() => {
     setWarning(null);
-  }, [useLocation()]);
+  }, [location]);
 
   return (
     <WarningContext.Provider value={contextValue}>
