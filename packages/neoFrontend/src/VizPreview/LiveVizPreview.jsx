@@ -1,33 +1,40 @@
 import React, { useCallback } from 'react';
 import {
+  getDidVote,
   getVizInfoOwner,
   getVizInfoUpvotes,
-  getDidVote
+  upvoteOp
 } from 'vizhub-presenters';
 import { useValue } from '../useValue';
+import { useVizInfo } from '../vizRealTimeHooks';
 import { VizPreview } from './VizPreview';
 
 export const LiveVizPreview = ({
   me,
-  vizInfo$,
+  vizInfo,
   getUser,
-  onUpvoteClick
 }) => {
-  const owner = useValue(vizInfo$, getVizInfoOwner);
+  const { vizInfo$, submitVizInfoOp } = useVizInfo(vizInfo);
 
-  const vizInfo = useValue(vizInfo$);
+  const owner = useValue(vizInfo$, getVizInfoOwner);
+  const freshVizInfo = useValue(vizInfo$);
   const upvotes = useValue(vizInfo$, getVizInfoUpvotes);
+
   const didVote = getDidVote(upvotes, me);
 
   const handleUpvote = useCallback(() => {
-    onUpvoteClick(vizInfo);
-  }, [vizInfo, onUpvoteClick]);
+    if (me) {
+      submitVizInfoOp(upvoteOp(me.id, upvotes));
+    }
+  }, [submitVizInfoOp, me, upvotes]);
+
+  console.log(freshVizInfo);
 
   return (
     <VizPreview
-      canVote={!!me && !!onUpvoteClick}
+      canVote={!!me}
       didVote={didVote}
-      vizInfo={vizInfo}
+      vizInfo={freshVizInfo}
       ownerUser={getUser(owner)}
       onUpvoteClick={handleUpvote}
     />

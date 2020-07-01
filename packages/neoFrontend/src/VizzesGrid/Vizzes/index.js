@@ -1,9 +1,7 @@
-import React, { useEffect, useCallback, useMemo, useContext } from 'react';
-import { getVizInfoUpvotes, upvoteOp } from 'vizhub-presenters';
+import React, { useEffect, useCallback, useContext } from 'react';
 import { AuthContext } from '../../authentication';
 import { VizPreviews, LiveVizPreview } from '../../VizPreview';
 import { LoadingScreen } from '../../LoadingScreen';
-import { useVizInfos } from '../../vizRealTimeHooks';
 import { Wrapper } from './styles';
 
 // Trigger infinite scroll when the user gets 100px away from the bottom.
@@ -30,34 +28,18 @@ export const Vizzes = ({
 
   const getUser = useCallback((id) => usersById[id], [usersById]);
 
-  const { vizInfos$, submitVizInfoOp } = useVizInfos(visualizationInfos);
-
-  const liveVizInfoEntries = useMemo(() => Object.entries(vizInfos$), [
-    vizInfos$,
-  ]);
-
   const { me } = useContext(AuthContext);
-
-  const handleUpvote = useCallback(
-    (vizInfo) => {
-      if (me) {
-        submitVizInfoOp(upvoteOp(me.id, getVizInfoUpvotes(vizInfo)), vizInfo);
-      }
-    },
-    [submitVizInfoOp, me]
-  );
 
   return (
     <Wrapper>
-      {liveVizInfoEntries.length !== 0 ? (
+      {visualizationInfos.length !== 0 ? (
         <VizPreviews className={className}>
-          {liveVizInfoEntries.map(([id, vizInfo$]) => (
+          {visualizationInfos.map((vizInfo) => (
             <LiveVizPreview
-              key={id}
+              key={vizInfo.id}
               me={me}
-              vizInfo$={vizInfo$}
+              vizInfo={vizInfo}
               getUser={getUser}
-              onUpvoteClick={handleUpvote}
             />
           ))}
         </VizPreviews>
