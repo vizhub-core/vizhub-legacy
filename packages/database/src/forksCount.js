@@ -27,3 +27,14 @@ export const incrementForksCount = (connection) => ({ id }) =>
       info.data.forksCount + 1
     )
   );
+
+export const decrementForksCount = (connection) => ({ id }) =>
+  fetchShareDBDoc(DOCUMENT_INFO, id, connection).then((info) =>{
+    if (info.data.forksCount === 0 || info.data.forksCount == null) return;
+
+    submitChangeForksCountOp(
+      info,
+      info.data.forksCount,
+      info.data.forksCount - 1
+    )
+  });
