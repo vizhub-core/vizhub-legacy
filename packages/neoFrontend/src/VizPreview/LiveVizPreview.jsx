@@ -28,8 +28,6 @@ export const LiveVizPreview = ({
     }
   }, [submitVizInfoOp, me, upvotes]);
 
-  console.log(freshVizInfo);
-
   return (
     <VizPreview
       canVote={!!me}
