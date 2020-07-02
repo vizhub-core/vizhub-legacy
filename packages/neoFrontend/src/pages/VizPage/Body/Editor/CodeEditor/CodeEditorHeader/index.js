@@ -1,5 +1,5 @@
 import React from 'react';
-import { FullSVG, CloseSVG, ArrowSVG } from '../../../../../../svg';
+import { FullSVG, CloseSVG, ArrowSVG, VimSVG } from '../../../../../../svg';
 import {
   codeEditorHeaderCloseTooltip,
   codeEditorHeaderEnterFullEditorTooltip,
@@ -23,6 +23,7 @@ export const CodeEditorHeader = ({
   closeActiveFile,
   showTop,
   toggleShowTop,
+  toggleVimMode,
 }) => (
   <Wrapper showEditor={showEditor}>
     <div
@@ -34,13 +35,21 @@ export const CodeEditorHeader = ({
     </div>
     <Icons>
       {!isMobile ? (
-        <CodeEditorIcon
-          onClick={toggleShowTop}
-          leftmost={true}
-          title={showTop ? 'Hide top bar' : 'Show top bar'}
-        >
-          <ArrowSVG height={svgHeight} up={showTop} down={!showTop} />
-        </CodeEditorIcon>
+        <>
+          <CodeEditorIcon
+            leftmost={true}
+            onClick={toggleVimMode}
+            title={'Toggle Vim mode'}
+          >
+            <VimSVG height={20} />
+          </CodeEditorIcon>
+          <CodeEditorIcon
+            onClick={toggleShowTop}
+            title={showTop ? 'Hide top bar' : 'Show top bar'}
+          >
+            <ArrowSVG height={svgHeight} up={showTop} down={!showTop} />
+          </CodeEditorIcon>
+        </>
       ) : null}
       {viewer ? (
         <>
