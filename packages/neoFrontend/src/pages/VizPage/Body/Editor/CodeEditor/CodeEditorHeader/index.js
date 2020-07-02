@@ -1,5 +1,11 @@
 import React, { useContext } from 'react';
-import { FullSVG, CloseSVG, ArrowSVG, VimSVG } from '../../../../../../svg';
+import {
+  FullSVG,
+  CloseSVG,
+  ArrowSVG,
+  VimSVG,
+  PrettierSVG,
+} from '../../../../../../svg';
 import {
   codeEditorHeaderCloseTooltip,
   codeEditorHeaderEnterFullEditorTooltip,
@@ -22,24 +28,34 @@ export const CodeEditorHeader = ({
   onShowViz,
   onHideViz,
   closeActiveFile,
+  prettify,
   showTop,
   toggleShowTop,
 }) => {
   const { isVimMode, toggleVimMode } = useContext(VimModeContext);
+  const isBundle = activeFile === 'bundle.js';
   return (
     <Wrapper showEditor={showEditor}>
       <div
         className="test-code-editor-file-name"
-        title={activeFile === 'bundle.js' ? bundleJSInfo : undefined}
-        style={{ opacity: activeFile === 'bundle.js' ? 0.5 : 1 }}
+        title={isBundle ? bundleJSInfo : undefined}
+        style={{ opacity: isBundle ? 0.5 : 1 }}
       >
         {activeFile}
       </div>
       <Icons>
+        {!isBundle ? (
+          <CodeEditorIcon
+            onClick={prettify}
+            leftmost={true}
+            title="Auto-format code with Prettier\nKeyboard shortcut: Alt + p"
+          >
+            <PrettierSVG height={svgHeight} />
+          </CodeEditorIcon>
+        ) : null}
         {!isMobile ? (
           <>
             <CodeEditorIcon
-              leftmost={true}
               onClick={toggleVimMode}
               title={`Toggle Vim mode\n(currently ${isVimMode ? 'on' : 'off'})`}
               style={{ opacity: isVimMode ? 1 : 0.2 }}
