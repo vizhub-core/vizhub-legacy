@@ -1,5 +1,6 @@
 import { i18n } from 'vizhub-i18n';
 import { GetUser } from './getUser';
+import { GetUsers } from './getUsers';
 import { GetVisualizationInfo } from './getVisualizationInfo';
 import { allowRead } from '../accessControl/allowRead';
 
@@ -7,6 +8,7 @@ export class GetVisualization {
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
     this.getUser = new GetUser({ userGateway });
+    this.getUsers = new GetUsers({ userGateway });
     this.getVisualizationInfo = new GetVisualizationInfo({
       visualizationGateway,
     });
@@ -60,11 +62,18 @@ export class GetVisualization {
       console.error(error);
     }
 
+    const usersWhoUpvoted = vizInfo.upvotes && vizInfo.upvotes.length ? (
+      await this.getUsers.execute({
+        ids: vizInfo.upvotes.map(({userId}) => userId)
+      })
+    ).users.map(({userName}) => userName) : [];
+
     return {
       visualization,
       ownerUser: owner,
       forkedFromVisualizationInfo,
       forkedFromVisualizationOwnerUserName,
+      usersWhoUpvoted
     };
   }
 }
