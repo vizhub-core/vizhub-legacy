@@ -30,7 +30,12 @@ export const incrementForksCount = (connection) => ({ id }) =>
 
 export const decrementForksCount = (connection) => ({ id }) =>
   fetchShareDBDoc(DOCUMENT_INFO, id, connection).then((info) => {
-    if (info.data.forksCount === 0 || info.data.forksCount == null) return;
+    // Handle the case that the forked from viz was deleted.
+    if (!info.data) return;
+
+    // Handle the case of zero or uninitialized forksCount.
+    // (should not happen, but better to be defensive)
+    if (!info.data.forksCount) return;
 
     submitChangeForksCountOp(
       info,
