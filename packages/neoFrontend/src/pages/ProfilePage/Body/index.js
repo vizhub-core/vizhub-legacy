@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { ProfilePane } from '../ProfilePane';
 import { NavBar } from '../../../NavBar';
@@ -9,6 +9,10 @@ export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
   const { user, visualizationInfos } = profilePageData;
 
+  const vizzesUsersMap = useMemo(() => {
+    return {[user.id]: user};
+  }, [user]);
+
   return (
     <Wrapper>
       <Content>
@@ -17,7 +21,7 @@ export const Body = () => {
         <Vizzes
           className="test-profile-page-viz-previews"
           visualizationInfos={visualizationInfos}
-          usersById={{[user.id]: user}}
+          usersById={vizzesUsersMap}
         />
       </Content>
     </Wrapper>
