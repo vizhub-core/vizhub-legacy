@@ -49,7 +49,12 @@ export const VizPreview = ({
         <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
         <Bottom>
           <Author ownerUser={ownerUser} isSmall={true} />
-          <ForksLink vizId={id} forksCount={forksCount} ownerUser={ownerUser} />
+          <ForksLink
+            isSmall
+            vizId={id}
+            forksCount={forksCount}
+            ownerUser={ownerUser}
+          />
           <Voter
             canVote={canVote}
             didVote={didVote}
