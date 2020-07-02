@@ -9,14 +9,14 @@ import {
 import { getUserName, getUserFullName } from 'vizhub-presenters';
 import { Avatar } from '../../../Avatar';
 
-export const ProfilePane = ({ user, isSmall = false }) => {
+export const ProfilePane = ({ user }) => {
   return user ? (
     <Wrapper>
-      <AuthorAvatar isSmall={isSmall}>
-        <Avatar size={isSmall ? 80 : 120} user={user} />
+      <AuthorAvatar>
+        <Avatar size={80} user={user} />
       </AuthorAvatar>
       <AuthorInfo>
-        <AuthorName isSmall={isSmall}>{getUserFullName(user)}</AuthorName>
+        <AuthorName>{getUserFullName(user)}</AuthorName>
         <AuthorUserName>{getUserName(user)}</AuthorUserName>
       </AuthorInfo>
     </Wrapper>

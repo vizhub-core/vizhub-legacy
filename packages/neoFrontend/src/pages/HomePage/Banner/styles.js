@@ -16,8 +16,8 @@ export const Wrapper = styled.div`
 
 export const Bar = styled.div`
   position: absolute;
-  top: ${isMobile ? 0 : 30}px;
-  bottom: ${isMobile ? 0 : 30}px;
+  top: ${isMobile ? 0 : 10}px;
+  bottom: ${isMobile ? 0 : 10}px;
   right: 0;
   left: 0;
   border-radius: 3px;
