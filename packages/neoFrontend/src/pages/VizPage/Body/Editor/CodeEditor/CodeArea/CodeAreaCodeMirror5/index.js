@@ -1,4 +1,11 @@
-import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
+import React, {
+  useState,
+  useContext,
+  useRef,
+  useEffect,
+  useMemo,
+  useCallback,
+} from 'react';
 import ReactDOM from 'react-dom';
 import ColorHash from 'color-hash';
 import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
@@ -13,7 +20,6 @@ import { useFileIndex } from '../../useFileIndex';
 import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
-import { useStateLocalStorage } from './useStateLocalStorage';
 import { PresenceWidget } from './PresenceWidget';
 
 const colorHash = new ColorHash();
@@ -41,20 +47,24 @@ export const CodeAreaCodeMirror5 = ({
 }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
-  const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', defaultKeyMap);
+  const [keyMap, setKeyMap] = useState(defaultKeyMap);
+
+  const toggleVimMode = useCallback(() => {
+    setKeyMap(keyMap === 'vim' ? defaultKeyMap : 'vim');
+  }, [setKeyMap, keyMap]);
 
   // Alt+V to toggle Vim mode.
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.altKey && e.code === 'KeyV') {
-        setKeyMap(keyMap === 'vim' ? defaultKeyMap : 'vim');
+        toggleVimMode();
       }
     };
     document.addEventListener('keydown', onKeyDown);
     return () => {
       document.removeEventListener('keydown', onKeyDown);
     };
-  }, [keyMap, setKeyMap]);
+  }, [toggleVimMode]);
 
   const {
     viz$,
