@@ -4,7 +4,9 @@ import { useSearchQuery } from '../../useSearchQuery';
 import { UserPreviewList } from '../../UserPreviewList';
 import { SearchInput, Form } from './styles';
 
-export const Search = () => {
+export const Search = ({
+  redirectPath = '/search'
+}) => {
   const queryFromLocation = useSearchQuery('query');
 
   const [query, setQuery] = useState(queryFromLocation);
@@ -20,9 +22,9 @@ export const Search = () => {
   const onSubmitQuery = useCallback(
     (event) => {
       event.preventDefault();
-      setRedirectTo(`/search?query=${query}`);
+      setRedirectTo(`${redirectPath}?query=${query}`);
     },
-    [setRedirectTo, query]
+    [redirectPath, setRedirectTo, query]
   );
 
   const onUserSelected = useCallback(

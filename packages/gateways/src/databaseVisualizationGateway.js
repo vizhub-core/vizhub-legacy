@@ -64,10 +64,11 @@ export class DatabaseVisualizationGateway {
     return await this.database.saveVisualization({ visualization });
   }
 
-  async getVisualizationInfosByUserId(id, authenticatedUser) {
+  async getVisualizationInfosByUserId(id, authenticatedUser, query) {
     return await this.database.getVisualizationInfosByUserId(
       id,
-      authenticatedUser
+      authenticatedUser,
+      query
     );
   }
 
