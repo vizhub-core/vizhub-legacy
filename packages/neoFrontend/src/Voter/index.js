@@ -10,9 +10,10 @@ export const Voter = ({
   canVote,
   didVote,
   isPrivate,
+  usersWhoUpvoted,
   whyCantUpvote = 'Sign in to upvote.',
 }) => (
-  <Container>
+  <Container title={usersWhoUpvoted}>
     {showUpvote ? (
       <>
         <VoteIcon

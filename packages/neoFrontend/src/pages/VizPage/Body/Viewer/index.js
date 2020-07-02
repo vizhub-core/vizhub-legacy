@@ -32,6 +32,7 @@ export const Viewer = () => {
     ownerUser,
     forkedFromVisualizationInfo,
     forkedFromVisualizationOwnerUserName,
+    usersWhoUpvoted
   } = useContext(VizPageDataContext);
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);
@@ -107,6 +108,7 @@ export const Viewer = () => {
               upvoteCount={upvoteCount}
               onUpvoteClick={handleUpvote}
               isPrivate={isPrivate}
+              usersWhoUpvoted={usersWhoUpvoted}
             />
             <HorizontalRule />
             <DescriptionSection
