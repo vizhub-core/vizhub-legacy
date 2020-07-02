@@ -12,6 +12,7 @@ import { VizRunnerProvider } from './VizRunnerContext';
 import { VizProvider } from './VizContext';
 import { PrettierProvider } from './PrettierContext';
 import { RunProvider } from './RunContext';
+import { VimModeProvider } from './VimModeContext';
 import { EditorModulesProvider } from './EditorModulesContext';
 import { SplitPaneResizeProvider } from './SplitPaneResizeContext';
 import { Body } from './Body';
@@ -22,27 +23,29 @@ export const VizPage = () => (
       <EditorModulesProvider>
         <VizProvider>
           <PrettierProvider>
-            <RunProvider>
-              <SettingsProvider>
-                <ShareProvider>
-                  <DeleteVizProvider
-                    fallback={<LoadingScreen message="Deleting..." />}
-                  >
-                    <ForkingProvider
-                      fallback={<LoadingScreen message="Forking..." />}
+            <VimModeProvider>
+              <RunProvider>
+                <SettingsProvider>
+                  <ShareProvider>
+                    <DeleteVizProvider
+                      fallback={<LoadingScreen message="Deleting..." />}
                     >
-                      <ThemeProvider theme={darkNavbarTheme}>
-                        <SplitPaneResizeProvider>
-                          <VizRunnerProvider>
-                            <Body />
-                          </VizRunnerProvider>
-                        </SplitPaneResizeProvider>
-                      </ThemeProvider>
-                    </ForkingProvider>
-                  </DeleteVizProvider>
-                </ShareProvider>
-              </SettingsProvider>
-            </RunProvider>
+                      <ForkingProvider
+                        fallback={<LoadingScreen message="Forking..." />}
+                      >
+                        <ThemeProvider theme={darkNavbarTheme}>
+                          <SplitPaneResizeProvider>
+                            <VizRunnerProvider>
+                              <Body />
+                            </VizRunnerProvider>
+                          </SplitPaneResizeProvider>
+                        </ThemeProvider>
+                      </ForkingProvider>
+                    </DeleteVizProvider>
+                  </ShareProvider>
+                </SettingsProvider>
+              </RunProvider>
+            </VimModeProvider>
           </PrettierProvider>
         </VizProvider>
       </EditorModulesProvider>
