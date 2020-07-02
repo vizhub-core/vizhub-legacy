@@ -5,11 +5,11 @@ export const Wrapper = styled.div`
   flex: 1;
   align-items: center;
   color: currentcolor;
+  margin: 0 6px 30px 6px;
 `;
 
 export const AuthorAvatar = styled.div`
-  width: ${(props) => (props.isSmall ? 80 : 120)}px;
-  margin-right: ${(props) => (props.isSmall ? 20 : 40)}px;
+  margin-right: 20px;
 `;
 
 export const AuthorInfo = styled.div`
@@ -21,12 +21,11 @@ export const AuthorInfo = styled.div`
 `;
 
 export const AuthorName = styled.div`
-  font-size: ${(props) => (props.isSmall ? 22 : 24)}px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: bold;
 `;
 
 export const AuthorUserName = styled.div`
   color: ${(props) => props.theme.lightText};
-  font-size: ${(props) => (props.isSmall ? 16 : 20)}px;
-  font-weight: 600;
+  font-size: 16px;
 `;
