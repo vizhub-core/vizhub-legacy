@@ -10,11 +10,5 @@ export const Forks = ({ ownerUser }) => {
   const id = vizPageData.visualization.id;
   const forksCount = vizPageData.visualization.info.forksCount;
 
-  return (
-    <ForksLink 
-      vizId={id}
-      forksCount={forksCount}
-      ownerUser={ownerUser}
-    />
-  );
+  return <ForksLink vizId={id} forksCount={forksCount} ownerUser={ownerUser} />;
 };
