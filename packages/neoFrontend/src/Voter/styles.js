@@ -9,8 +9,8 @@ export const Container = styled.div`
 `;
 
 export const VoteIcon = styled.div`
-  margin-left: ${(props) => (props.leftmost ? '4px' : '13px')};
+  margin-left: ${(props) => (props.leftmost ? '5px' : '13px')};
   margin-right: 4px;
-  line-height: 1;
   cursor: ${(props) => (props.canVote ? 'pointer' : 'not-allowed')};
+  display: flex;
 `;
