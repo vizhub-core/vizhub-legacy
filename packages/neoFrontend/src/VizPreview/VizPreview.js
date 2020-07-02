@@ -6,6 +6,7 @@ import {
 } from 'vizhub-presenters';
 import { Author } from '../Author';
 import { Voter } from '../Voter';
+import { ForksLink } from '../ForksLink';
 import {
   Wrapper,
   ImageLink,
@@ -26,7 +27,7 @@ export const VizPreview = ({
   openEditor = false,
   onUpvoteClick = noop,
 }) => {
-  const { id, title, privacy, upvotes } = vizInfo;
+  const { id, title, privacy, upvotes, forksCount } = vizInfo;
   const isPrivate = privacy === 'private';
   const link = `/${getUserName(ownerUser)}/${id}${
     openEditor ? '?edit=files' : ''
@@ -48,6 +49,11 @@ export const VizPreview = ({
         <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
         <Bottom>
           <Author ownerUser={ownerUser} isSmall={true} />
+          <ForksLink 
+            vizId={id}
+            forksCount={forksCount}
+            ownerUser={ownerUser}
+          />
           <Voter
             canVote={canVote}
             didVote={didVote}

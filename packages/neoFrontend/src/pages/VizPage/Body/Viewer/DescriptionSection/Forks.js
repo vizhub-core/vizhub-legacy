@@ -1,9 +1,6 @@
-import React, { useMemo, useContext } from 'react';
-import { format } from 'd3-format';
+import React, { useContext } from 'react';
+import { ForksLink } from '../../../../../ForksLink';
 import { VizPageDataContext } from '../../../VizPageDataContext';
-import { VizLink } from './styles';
-
-const formatForksCount = format(',');
 
 export const Forks = ({ ownerUser }) => {
   // Forks count is only present in the initial payload from the API.
@@ -13,16 +10,11 @@ export const Forks = ({ ownerUser }) => {
   const id = vizPageData.visualization.id;
   const forksCount = vizPageData.visualization.info.forksCount;
 
-  const forksCounterElement = useMemo(() => {
-    const forksCountFormatted = formatForksCount(forksCount);
-    const text = `${forksCountFormatted} fork${forksCount === 1 ? '' : 's'}`;
-
-    return forksCount > 0 ? (
-      <VizLink to={`/${ownerUser.userName}/${id}/forks`}>{text}</VizLink>
-    ) : (
-      text
-    );
-  }, [id, ownerUser, forksCount]);
-
-  return <div>{forksCounterElement}</div>;
+  return (
+    <ForksLink 
+      vizId={id}
+      forksCount={forksCount}
+      ownerUser={ownerUser}
+    />
+  );
 };
