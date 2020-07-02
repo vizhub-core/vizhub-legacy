@@ -62,18 +62,21 @@ export class GetVisualization {
       console.error(error);
     }
 
-    const usersWhoUpvoted = vizInfo.upvotes && vizInfo.upvotes.length ? (
-      await this.getUsers.execute({
-        ids: vizInfo.upvotes.map(({userId}) => userId)
-      })
-    ).users.map(({userName}) => userName) : [];
+    const usersWhoUpvoted =
+      vizInfo.upvotes && vizInfo.upvotes.length
+        ? (
+            await this.getUsers.execute({
+              ids: vizInfo.upvotes.map(({ userId }) => userId),
+            })
+          ).users.map(({ userName }) => userName)
+        : [];
 
     return {
       visualization,
       ownerUser: owner,
       forkedFromVisualizationInfo,
       forkedFromVisualizationOwnerUserName,
-      usersWhoUpvoted
+      usersWhoUpvoted,
     };
   }
 }
