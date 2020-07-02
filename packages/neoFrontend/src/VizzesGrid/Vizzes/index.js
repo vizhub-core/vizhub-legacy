@@ -15,6 +15,8 @@ export const Vizzes = ({
   className,
 }) => {
   useEffect(() => {
+    if (!paginate) return;
+  
     const onScroll = () => {
       const distanceFromBottom =
         document.body.offsetHeight - (window.innerHeight + window.scrollY);
