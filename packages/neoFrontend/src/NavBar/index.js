@@ -18,6 +18,7 @@ import { Search } from './Search';
 export const NavBar = withTheme(
   ({
     theme,
+    searchProps = {},
     showSearch = false,
     showRight = true,
     isHomePage = false,
@@ -43,7 +44,7 @@ export const NavBar = withTheme(
             </LogoLink>
           )}
 
-          {showSearch && !isMobile && <Search />}
+          {showSearch && !isMobile && <Search {...searchProps}/>}
 
           {isAuthPage ? null : (
             <Right
