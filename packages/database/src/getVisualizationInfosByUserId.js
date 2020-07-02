@@ -5,13 +5,18 @@ import { fetchShareDBQuery } from './fetchShareDBQuery';
 
 export const getVisualizationInfosByUserId = (connection) => async (
   owner,
-  authenticatedUser
+  authenticatedUser,
+  query
 ) => {
   const mongoQuery = {
     owner,
     documentType: VISUALIZATION_TYPE,
     $sort: { lastUpdatedTimestamp: -1 },
   };
+
+  if (query) {
+    mongoQuery['$text'] = { $search: query };
+  }
 
   // Show private visualizations if profile owner is currently authenticated.
   if (owner !== authenticatedUser) {
