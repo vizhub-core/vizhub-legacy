@@ -11,7 +11,7 @@ export const VizPreviews = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 6px;
+  margin: 10px 6px 10px 6px;
   color: ${(props) => props.theme.dark};
   position: relative;
 `;
@@ -54,10 +54,20 @@ export const VizPreviewTitle = styled(Link)`
   overflow: hidden;
   text-overflow: ellipsis;
   color: currentcolor;
+  flex: 1;
+  margin-bottom: 2px;
 `;
 
 export const Bottom = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const Top = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
