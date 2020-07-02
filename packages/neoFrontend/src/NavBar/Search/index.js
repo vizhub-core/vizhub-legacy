@@ -4,9 +4,7 @@ import { useSearchQuery } from '../../useSearchQuery';
 import { UserPreviewList } from '../../UserPreviewList';
 import { SearchInput, Form } from './styles';
 
-export const Search = ({
-  redirectPath = '/search'
-}) => {
+export const Search = ({ redirectPath = '/search' }) => {
   const queryFromLocation = useSearchQuery('query');
 
   const [query, setQuery] = useState(queryFromLocation);

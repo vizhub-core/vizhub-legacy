@@ -44,7 +44,7 @@ export const NavBar = withTheme(
             </LogoLink>
           )}
 
-          {showSearch && !isMobile && <Search {...searchProps}/>}
+          {showSearch && !isMobile && <Search {...searchProps} />}
 
           {isAuthPage ? null : (
             <Right
