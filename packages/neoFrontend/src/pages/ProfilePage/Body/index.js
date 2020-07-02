@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { ProfilePane } from '../ProfilePane';
 import { NavBar } from '../../../NavBar';
-import { VizPreviews, VizPreview } from '../../../VizPreview';
+import { Vizzes } from '../../../VizzesGrid/Vizzes';
 import { Wrapper, Content } from '../../styles';
 
 export const Body = () => {
@@ -14,11 +14,11 @@ export const Body = () => {
       <Content>
         <NavBar />
         <ProfilePane user={user} />
-        <VizPreviews className="test-profile-page-viz-previews">
-          {visualizationInfos.map((vizInfo) => (
-            <VizPreview key={vizInfo.id} vizInfo={vizInfo} ownerUser={user} />
-          ))}
-        </VizPreviews>
+        <Vizzes
+          className="test-profile-page-viz-previews"
+          visualizationInfos={visualizationInfos}
+          usersById={{[user.id]: user}}
+        />
       </Content>
     </Wrapper>
   );
