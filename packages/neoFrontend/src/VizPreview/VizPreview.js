@@ -12,6 +12,7 @@ import {
   ImageLink,
   VizPreviewFooter,
   VizPreviewTitle,
+  Top,
   Bottom,
 } from './styles';
 
@@ -46,10 +47,19 @@ export const VizPreview = ({
         }}
       />
       <VizPreviewFooter borderRadiusLarge={true}>
-        <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
+        <Top>
+          <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
+          {forksCount > 0 ? (
+            <ForksLink
+              isSmall
+              vizId={id}
+              forksCount={forksCount}
+              ownerUser={ownerUser}
+            />
+          ) : null}
+        </Top>
         <Bottom>
           <Author ownerUser={ownerUser} isSmall={true} />
-          <ForksLink vizId={id} forksCount={forksCount} ownerUser={ownerUser} />
           <Voter
             canVote={canVote}
             didVote={didVote}
