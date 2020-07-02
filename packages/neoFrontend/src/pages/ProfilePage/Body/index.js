@@ -10,7 +10,7 @@ export const Body = () => {
   const { user, visualizationInfos } = profilePageData;
 
   const vizzesUsersMap = useMemo(() => {
-    return {[user.id]: user};
+    return { [user.id]: user };
   }, [user]);
 
   return (
