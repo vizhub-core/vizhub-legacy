@@ -32,7 +32,7 @@ export const Viewer = () => {
     ownerUser,
     forkedFromVisualizationInfo,
     forkedFromVisualizationOwnerUserName,
-    usersWhoUpvoted
+    usersWhoUpvoted,
   } = useContext(VizPageDataContext);
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);

@@ -14,13 +14,13 @@ export const Body = () => {
   }, [user]);
 
   const searchProps = useMemo(() => {
-    return {redirectPath: `/${user.userName}`};
+    return { redirectPath: `/${user.userName}` };
   }, [user.userName]);
 
   return (
     <Wrapper>
       <Content>
-        <NavBar showSearch searchProps={searchProps}/>
+        <NavBar showSearch searchProps={searchProps} />
         <ProfilePane user={user} />
         <Centering>
           <Vizzes

@@ -28,8 +28,8 @@ export const VizPreview = ({
   openEditor = false,
   onUpvoteClick = noop,
 }) => {
-  const { id, title, privacy, upvotes, forksCount } = vizInfo;
-  const isPrivate = privacy === 'private';
+  const { id, title, upvotes, forksCount } = vizInfo;
+  const isPrivate = isVizInfoPrivate(vizInfo);
   const link = `/${getUserName(ownerUser)}/${id}${
     openEditor ? '?edit=files' : ''
   }`;
@@ -65,7 +65,6 @@ export const VizPreview = ({
             didVote={didVote}
             upvoteCount={upvoteCount}
             onUpvoteClick={onUpvoteClick}
-            isPrivate={isVizInfoPrivate(vizInfo)}
             whyCantUpvote="Upvoting from previews is not supported yet."
           />
         </Bottom>

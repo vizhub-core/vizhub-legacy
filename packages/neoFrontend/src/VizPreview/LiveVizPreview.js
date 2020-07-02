@@ -3,17 +3,13 @@ import {
   getDidVote,
   getVizInfoOwner,
   getVizInfoUpvotes,
-  upvoteOp
+  upvoteOp,
 } from 'vizhub-presenters';
 import { useValue } from '../useValue';
 import { useVizInfo } from '../vizRealTimeHooks';
 import { VizPreview } from './VizPreview';
 
-export const LiveVizPreview = ({
-  me,
-  vizInfo,
-  getUser,
-}) => {
+export const LiveVizPreview = ({ me, vizInfo, getUser }) => {
   const { vizInfo$, submitVizInfoOp } = useVizInfo(vizInfo);
 
   const owner = useValue(vizInfo$, getVizInfoOwner);
