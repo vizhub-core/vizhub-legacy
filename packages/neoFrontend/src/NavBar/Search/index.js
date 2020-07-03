@@ -49,10 +49,7 @@ export const Search = ({ redirectPath = '/search' }) => {
         placeholder="Search"
         onChange={handleQueryChange}
       />
-      <UserPreviewList
-        users={users}
-        onSelect={handleUserSelected}
-      />
+      <UserPreviewList users={users} onSelect={handleUserSelected} />
       {redirectTo && <Redirect push to={redirectTo} />}
     </Form>
   );
