@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { isMobile } from '../../../mobileMods';
 
 export const Wrapper = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
   color: currentcolor;
-  margin: 0 6px 20px 6px;
+  margin: ${isMobile ? '10px 6px 0 6px' : '0 6px 20px 6px'};
 `;
 
 export const AuthorAvatar = styled.div`
