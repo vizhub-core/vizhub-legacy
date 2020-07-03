@@ -13,6 +13,7 @@ import {
 } from '../../../../../../constants';
 import { isMobile } from '../../../../../../mobileMods';
 import { VimModeContext } from '../../../../VimModeContext';
+import { PrettierContext } from '../../../../PrettierContext';
 import { CodeEditorIcon } from '../styles';
 import { Wrapper, Icons } from './styles';
 
@@ -28,11 +29,11 @@ export const CodeEditorHeader = ({
   onShowViz,
   onHideViz,
   closeActiveFile,
-  prettify,
   showTop,
   toggleShowTop,
 }) => {
   const { isVimMode, toggleVimMode } = useContext(VimModeContext);
+  const { prettify } = useContext(PrettierContext);
   const isBundle = activeFile === 'bundle.js';
   return (
     <Wrapper showEditor={showEditor}>
