@@ -4,7 +4,7 @@ import {
   showCollaboratorsManagement,
 } from '../../../../featureFlags';
 import { Input } from '../../../../Input';
-import { UserPreviewList } from '../../../../UserPreviewList';
+import { UserPreviewList, useUsers } from '../../../../UserPreviewList';
 import { SubSectionDescription, FormRow } from '../../styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
 import { useCollaborators } from './useCollaborators';
@@ -12,7 +12,8 @@ import { CollaboratorList } from './CollaboratorList';
 
 export const CollaboratorsBody = () => {
   const [typedText, setTypedText] = useState('');
-  const [suggestedCollaborators, setSuggestedCollaborators] = useState([]);
+
+  const users = useUsers(typedText);
 
   const {
     collaborators,
@@ -21,23 +22,11 @@ export const CollaboratorsBody = () => {
   } = useCollaborators();
 
   const handleAddCollaboratorClick = useCallback(
-    (user) => {
-      addCollaborator(user.id);
+    ({ id }) => {
+      addCollaborator(id);
       setTypedText('');
-      setSuggestedCollaborators([]);
     },
     [addCollaborator]
-  );
-
-  // Support hitting the enter key to select first result.
-  const handleFormSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
-      if (suggestedCollaborators.length > 0) {
-        handleAddCollaboratorClick(suggestedCollaborators[0]);
-      }
-    },
-    [suggestedCollaborators, handleAddCollaboratorClick]
   );
 
   return (
@@ -48,15 +37,14 @@ export const CollaboratorsBody = () => {
             collaborators={collaborators}
             removeCollaborator={removeCollaborator}
           />
-          <form onSubmit={handleFormSubmit}>
+          <form>
             <SubSectionDescription>
               Start typing to search for collaborators to add.
             </SubSectionDescription>
             <FormRow>
               <Input value={typedText} onChange={setTypedText} size="grow" />
               <UserPreviewList
-                query={typedText}
-                onBeforeShowSuggestions={setSuggestedCollaborators}
+                users={users}
                 onSelect={handleAddCollaboratorClick}
               />
             </FormRow>
