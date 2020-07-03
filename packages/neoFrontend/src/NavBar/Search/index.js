@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
 import { useSearchQuery } from '../../useSearchQuery';
-import { UserPreviewList } from '../../UserPreviewList';
+import { UserPreviewList, useUsers } from '../../UserPreviewList';
 import { SearchInput, Form } from './styles';
 
 export const Search = ({ redirectPath = '/search' }) => {
@@ -17,22 +17,7 @@ export const Search = ({ redirectPath = '/search' }) => {
     setRedirectTo(null);
   }, [queryFromLocation]);
 
-  const onSubmitQuery = useCallback(
-    (event) => {
-      event.preventDefault();
-      setRedirectTo(`${redirectPath}?query=${query}`);
-    },
-    [redirectPath, setRedirectTo, query]
-  );
-
-  const onUserSelected = useCallback(
-    ({ userName }) => {
-      setRedirectTo(`/${userName}`);
-    },
-    [setRedirectTo]
-  );
-
-  const onChangeQuery = useCallback(
+  const handleQueryChange = useCallback(
     (event) => {
       setQuery(event.target.value);
       setIsInputPristine(false);
@@ -40,16 +25,33 @@ export const Search = ({ redirectPath = '/search' }) => {
     [setQuery]
   );
 
+  const handleUserSelected = useCallback(
+    ({ userName }) => {
+      setRedirectTo(`/${userName}`);
+    },
+    [setRedirectTo]
+  );
+
+  const handleFormSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      setRedirectTo(`${redirectPath}?query=${query}`);
+    },
+    [redirectPath, setRedirectTo, query]
+  );
+
+  const users = useUsers(!isInputPristine && query);
+
   return (
-    <Form onSubmit={onSubmitQuery}>
+    <Form onSubmit={handleFormSubmit}>
       <SearchInput
         value={query}
         placeholder="Search"
-        onChange={onChangeQuery}
+        onChange={handleQueryChange}
       />
       <UserPreviewList
-        query={!isInputPristine && query}
-        onSelect={onUserSelected}
+        users={users}
+        onSelect={handleUserSelected}
       />
       {redirectTo && <Redirect push to={redirectTo} />}
     </Form>
