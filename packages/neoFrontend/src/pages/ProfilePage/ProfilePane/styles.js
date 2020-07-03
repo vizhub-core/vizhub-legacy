@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   flex: 1;
   align-items: center;
   color: currentcolor;
-  margin: 0 6px 30px 6px;
+  margin: 0 6px 20px 6px;
 `;
 
 export const AuthorAvatar = styled.div`
