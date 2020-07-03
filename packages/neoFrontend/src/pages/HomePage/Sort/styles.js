@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 10px 6px 12px 6px;
+  flex-wrap: wrap;
 `;
 
 export const Form = styled.div``;
