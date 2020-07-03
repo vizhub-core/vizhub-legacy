@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Z_WAY_ABOVE } from '../styles';
+import { isMobile } from '../mobileMods';
 
 export const VizPreviews = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: ${isMobile ? 'center' : 'space-between'};
 `;
 
 export const Wrapper = styled.div`
