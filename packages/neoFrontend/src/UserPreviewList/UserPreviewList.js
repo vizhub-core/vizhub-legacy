@@ -4,45 +4,39 @@ import { Avatar } from '../Avatar';
 import { Container, UserPreview, UserName } from './styles';
 
 export const UserPreviewList = ({ users, onSelect }) => {
-  const [activeIndex, setActiveIndex ] = useState(0);
-  
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const containerRef = useRef();
 
   useEffect(() => {
-    if(users.length) {
+    if (users.length) {
       containerRef.current.focus();
     }
   }, [users]);
 
-  const handleKeyDown = useCallback((event) => {
-    if (users.length === 0 ) return;
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (users.length === 0) return;
 
-    event.preventDefault();
+      event.preventDefault();
 
-    if (event.key === 'ArrowDown' && activeIndex < users.length - 1) {
-      setActiveIndex(activeIndex + 1);
-    }
+      if (event.key === 'ArrowDown' && activeIndex < users.length - 1) {
+        setActiveIndex(activeIndex + 1);
+      }
 
-    if (event.key === 'ArrowUp' && activeIndex > 0) {
-      setActiveIndex(activeIndex - 1);
-    }
+      if (event.key === 'ArrowUp' && activeIndex > 0) {
+        setActiveIndex(activeIndex - 1);
+      }
 
-    if (event.key === 'Enter') {
-      onSelect(users[activeIndex]);
-    }
-  }, [
-    users,
-    onSelect,
-    activeIndex,
-    setActiveIndex
-  ]);
+      if (event.key === 'Enter') {
+        onSelect(users[activeIndex]);
+      }
+    },
+    [users, onSelect, activeIndex, setActiveIndex]
+  );
 
   return (
-    <Container
-      ref={containerRef}
-      tabIndex="-1"
-      onKeyDown={handleKeyDown}
-    >
+    <Container ref={containerRef} tabIndex="-1" onKeyDown={handleKeyDown}>
       {users &&
         users.map((user, index) => (
           <UserPreview

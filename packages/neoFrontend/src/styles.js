@@ -22,10 +22,6 @@ export const Clickable = styled.div`
   &:active {
     background-color: ${active};
   }
-
-  &.active {
-    background-color: ${active};
-  }
   ${(props) => (props.isDisabled ? '' : 'cursor: pointer;')}
   user-select: none;
 `;
