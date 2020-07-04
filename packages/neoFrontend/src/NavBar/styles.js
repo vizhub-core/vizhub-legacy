@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Z_WAY_WAY_ABOVE } from '../styles';
 
-export const SignIn = styled.div`
-  color: ${(props) => props.theme.attentionGrabber};
-  font-weight: bold;
-  cursor: pointer;
-  user-select: none;
-`;
+export const NavLink = styled(Link)`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
 
-export const PricingLink = styled(Link)`
-  font-weight: bold;
-  margin-right: 50px;
+  color: #B5B5B5;
+  margin-left: ${(props) => props.theme.bannerPadding}px;
+  margin-right: ${(props) => props.theme.bannerPadding}px;
 `;
 
 export const LogoLink = styled(Link)`
@@ -23,20 +23,18 @@ export const LogoHREF = styled.a`
   color: currentcolor;
 `;
 
-export const Right = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 export const Banner = styled.div`
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: ${Z_WAY_WAY_ABOVE};
+    
   display: flex;
-  min-height: ${(props) =>
-    props.isMobile
-      ? props.theme.bannerHeightMobile
-      : props.theme.bannerHeight}px;
-  padding-left: ${(props) => props.theme.bannerPadding}px;
-  padding-right: ${(props) => props.theme.bannerPadding}px;
-  align-items: center;
+  height: ${(props) => props.theme.bannerHeight}px;
   background-color: ${(props) => props.theme.bannerBackground};
+  align-items: center;
+  padding-right: 24px;
+  padding-left: 24px;
+  box-sizing: border-box;
   justify-content: space-between;
 `;

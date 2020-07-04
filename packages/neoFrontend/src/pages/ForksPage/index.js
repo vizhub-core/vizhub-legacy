@@ -9,14 +9,16 @@ export const ForksPage = () => {
   const pageData = usePageData();
 
   return pageData ? (
-    <Wrapper>
-      <Content>
-        <NavBar />
-        <Centering>
-          <Vizzes {...pageData} />
-        </Centering>
-      </Content>
-    </Wrapper>
+    <>
+      <NavBar showAuth />
+      <Wrapper>
+        <Content>
+          <Centering>
+            <Vizzes {...pageData} />
+          </Centering>
+        </Content>
+      </Wrapper>
+    </>
   ) : (
     <LoadingScreen />
   );

@@ -13,9 +13,12 @@ export const HomePage = () => {
 
   return (
     <HomePageDataProvider sort={sort} fallback={<LoadingScreen />}>
+      <NavBar 
+        showSearch
+        showAuth
+      />
       <Wrapper>
         <Content>
-          <NavBar isHomePage={true} showSearch />
           <Banner />
           {showSortOptions ? <Sort value={sort} onChange={setSort} /> : null}
           <Vizzes />
