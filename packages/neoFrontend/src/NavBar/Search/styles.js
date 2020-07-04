@@ -1,15 +1,22 @@
 import styled from 'styled-components';
+import icon from './icon.svg';
 
 export const SearchInput = styled.input`
-  width: 100%;
-  height: ${(props) => props.theme.buttonHeight};
-  box-sizing: border-box;
-  font-size: 14px;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
-  background-color: rgba(255, 255, 255, 0.55);
+  width: ${(props) => props.mobile ? '100%' : '240px'};
+  height: 44px;
+  background: #494949;
+  border-radius: 4px;
   border: none;
-  padding-left: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #B5B5B5;
+  padding: 13px 5px 13px 45px;
+  box-sizing: border-box;
+  background-image: url(${icon});
+  background-repeat: no-repeat;
+  background-position-x: 15px;
+  background-position-y: 12px;
 `;
 
 export const Form = styled.form`

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Z_WAY_ABOVE } from '../styles';
+import { Z_ABOVE } from '../styles';
 import { isMobile } from '../mobileMods';
 
 export const VizPreviews = styled.div`
@@ -40,7 +40,7 @@ export const VizPreviewFooter = styled.div`
   border-bottom-right-radius: ${(props) => props.theme.borderRadiusLarge}px;
   border-bottom-left-radius: ${(props) => props.theme.borderRadiusLarge}px;
   box-sizing: border-box;
-  z-index: ${Z_WAY_ABOVE};
+  z-index: ${Z_ABOVE};
   width: 230px;
   display: flex;
   flex-direction: column;
