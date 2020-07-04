@@ -1,47 +1,37 @@
 import styled from 'styled-components';
-import { Clickable, Z_ABOVE } from '../../styles';
+import { Clickable, Z_WAY_WAY_ABOVE } from '../../styles';
+import arrowDown from './arrowDown.svg';
+
+const ARROW_WIDTH = 9;
+const PADDING_TO_ARROW = 6;
 
 export const Wrapper = styled.div`
-  position: relative;
   height: ${(props) => props.height}px;
+  width: ${(props) => props.height + ARROW_WIDTH + PADDING_TO_ARROW}px;
+
+  background-image: url(${arrowDown});
+  background-repeat: no-repeat;
+  background-position-x: ${(props) => props.height + PADDING_TO_ARROW}px;
+  background-position-y: ${(props) => Math.floor(props.height / 2)}px;
 `;
-
-export const AvatarOverlay = styled.div`
-  position: absolute;
-  top: 0px;
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 1px ${(props) => props.theme.userMenuOverlayForeground};
-  background-color: ${(props) => props.theme.userMenuOverlayBackground};
-  &:hover {
-    background-color: ${(props) => props.theme.userMenuOverlayBackgroundHover};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.userMenuOverlayBackgroundActive};
-  }
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-`;
-
-const borderRadius = '6px';
 
 export const Menu = styled.div`
   position: absolute;
-  top: ${(props) => props.height + 6}px;
-  right: 0;
+  top: ${(props) => props.theme.bannerHeight}px;
+  right: 18px;
 
-  border-radius: ${borderRadius};
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
-  background-color: #ffffff;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 0px 0px 4px 4px;
 
+  font-style: normal;
+  font-weight: 500;
   font-size: 14px;
-  text-align: right;
-  z-index: ${Z_ABOVE};
+  line-height: 17px;
+
+  color: #535353;
+  z-index: ${Z_WAY_WAY_ABOVE};
+  width: 264px;
 `;
 
 export const Item = styled(Clickable)`
@@ -49,20 +39,7 @@ export const Item = styled(Clickable)`
   cursor: pointer;
   user-select: none;
   color: ${(props) => props.theme.dark};
-
-  padding: ${(props) => `
-    ${props.topmost ? 8 : 4}px
-    10px
-    ${props.bottommost ? 7 : 4}px
-    10px
-  `};
-
-  border-radius: ${(props) => `
-    ${props.topmost ? borderRadius : 0}
-    ${props.topmost ? borderRadius : 0}
-    ${props.bottommost ? borderRadius : 0}
-    ${props.bottommost ? borderRadius : 0}
-  `};
+  padding: 20px
 `;
 
 export const HorizontalRule = styled.div`
