@@ -7,9 +7,12 @@ import { Vizzes } from './Vizzes';
 
 export const SearchResultsPage = () => (
   <PageDataProvider fallback={<LoadingScreen />}>
+    <NavBar
+      showAuth
+      showSearch
+    />
     <Wrapper>
       <Content>
-        <NavBar showSearch />
         <Centering>
           <Vizzes />
         </Centering>
