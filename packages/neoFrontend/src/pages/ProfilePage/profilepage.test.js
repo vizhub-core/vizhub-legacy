@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { AuthContext } from '../../authentication';
 
-import { Body } from './Body/index.js';
+import { ProfilePage } from './index.js';
 import { ProfilePageDataContext } from './ProfilePageDataContext';
 import { Themed } from '../../theme';
 
@@ -18,7 +18,7 @@ test('NameConsumer shows value from provider', () => {
     <Themed>
       <AuthContext.Provider value={me}>
         <ProfilePageDataContext.Provider value={profilePageData}>
-          <Body />
+          <ProfilePage />
         </ProfilePageDataContext.Provider>
       </AuthContext.Provider>
     </Themed>
