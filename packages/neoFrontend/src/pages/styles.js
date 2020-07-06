@@ -14,6 +14,13 @@ export const Content = styled.div`
   flex: 1;
 `;
 
+export const Sidebar = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  flex: 1;
+`;
+
 export const Title = styled.div`
   font-size: 22px;
 `;
