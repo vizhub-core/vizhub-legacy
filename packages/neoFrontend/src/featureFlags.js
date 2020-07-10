@@ -21,6 +21,8 @@ export const showForksCount = true;
 // private viz feature.
 const core = ['ci', 'curran', 'nitanagdeote'];
 
+const professors = ['Razpudding', 'sjengle'];
+
 const stamen = [
   'vinaydixit',
   'almccon',
@@ -57,6 +59,7 @@ const kickstarter2years = [
 
 //showPrivacySettings(me, vizInfo)
 const whitelist = core
+  .concat(professors)
   .concat(stamen)
   .concat(kickstarter)
   .concat(kickstarter2years);
