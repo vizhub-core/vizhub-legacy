@@ -5,7 +5,7 @@ import { NavBar as NeoNavBar } from './NeoNavBar';
 
 export const NavBar = (props) => {
   return showNeoNavBar ? (
-    <NeoNavBar 
+    <NeoNavBar
       searchProps={props.searchProps}
       showSearch={props.isHomePage || Boolean(props.searchProps)}
       showAuth={!props.isAuthPage}

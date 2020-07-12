@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import icon from './icon.svg';
 
 export const SearchInput = styled.input`
-  width: ${(props) => props.mobile ? '100%' : '240px'};
+  width: ${(props) => (props.mobile ? '100%' : '240px')};
   height: 44px;
   background: #494949;
   border-radius: 4px;
@@ -10,7 +10,7 @@ export const SearchInput = styled.input`
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  color: #B5B5B5;
+  color: #b5b5b5;
   padding: 13px 5px 13px 45px;
   box-sizing: border-box;
   background-image: url(${icon});
@@ -20,8 +20,6 @@ export const SearchInput = styled.input`
 `;
 
 export const Form = styled.form`
-  
-
   margin-left: ${(props) => props.theme.bannerPadding}px;
   margin-right: ${(props) => props.theme.bannerPadding}px;
 `;

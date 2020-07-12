@@ -1,6 +1,4 @@
-import { 
-  theme as defaultTheme,
-} from './defaulTheme';
+import { theme as defaultTheme } from './defaulTheme';
 
 export const theme = {
   ...defaultTheme,

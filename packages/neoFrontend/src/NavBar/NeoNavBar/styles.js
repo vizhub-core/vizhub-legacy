@@ -8,16 +8,16 @@ export const NavLink = styled(RouterNavLink)`
   font-size: 16px;
   line-height: 19px;
 
-  color: #B5B5B5;
+  color: #b5b5b5;
   margin-left: ${(props) => props.theme.bannerPadding}px;
   margin-right: ${(props) => props.theme.bannerPadding}px;
 
   &.active {
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &:hover {
-    color: #FFFFFF;
+    color: #ffffff;
   }
 `;
 
@@ -36,9 +36,10 @@ export const Banner = styled.div`
   top: 0;
   width: 100%;
   z-index: ${Z_WAY_WAY_ABOVE};
-    
+
   display: flex;
-  height: ${(props) => props.mobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
+  height: ${(props) =>
+    props.mobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
   background-color: ${(props) => props.theme.bannerBackground};
   align-items: center;
   padding-right: 24px;
