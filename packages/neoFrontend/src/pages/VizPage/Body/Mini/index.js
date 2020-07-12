@@ -5,7 +5,7 @@ import {
   enterFullScreenTooltip,
   exitMiniModeTooltip,
 } from '../../../../constants';
-import { theme } from '../../../../theme';
+import { theme } from '../../../../theme/defaulTheme';
 import { useValue } from '../../../../useValue';
 import { LargeIcon } from '../../../styles';
 import { FrameFooter, FrameFooterRight } from '../styles';

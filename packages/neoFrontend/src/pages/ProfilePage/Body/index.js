@@ -19,11 +19,7 @@ export const Body = () => {
 
   return (
     <>
-      <NavBar
-        showAuth
-        showSearch 
-        searchProps={searchProps} 
-      />
+      <NavBar showSearch searchProps={searchProps} />
       <Wrapper>
         <Content>
           <ProfilePane user={user} />

@@ -10,7 +10,7 @@ export const ForksPage = () => {
 
   return pageData ? (
     <>
-      <NavBar showAuth />
+      <NavBar />
       <Wrapper>
         <Content>
           <Centering>

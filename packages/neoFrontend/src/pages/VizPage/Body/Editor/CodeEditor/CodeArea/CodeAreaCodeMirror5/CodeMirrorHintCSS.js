@@ -1,7 +1,7 @@
 import {
   defaultCodingFontFamily,
   defaultCodingFontSize,
-} from '../../../../../../../theme';
+} from '../../../../../../../theme/defaulTheme';
 
 // Derived from node_modules/codemirror/addon/hint/show-hint.css
 export const CodeMirrorHintCSS = `

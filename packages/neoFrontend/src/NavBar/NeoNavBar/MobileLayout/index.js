@@ -1,27 +1,28 @@
 import React from 'react';
 import { Banner } from '../styles';
-import { Links } from './styles';
+import { SubBanner } from './styles';
 
 export const MobileLayout = ({
   Logo,
   Search,
-  HomeLink,
-  AboutLink,
-  PricingLink,
   AuthSection
 }) => {
   return (
     <>
-      <Banner>
+      <Banner mobile>
         {Logo}
-        {Search}
         {AuthSection}
       </Banner>
-      <Links>
+      <SubBanner>
+        {Search}
+      </SubBanner>
+      
+      {/* TODO: need to think how to enable links on mobile */}
+      {/* <Links>
         {HomeLink}
         {AboutLink}
         {PricingLink}
-      </Links>
+      </Links> */}
     </>
   );
 };
