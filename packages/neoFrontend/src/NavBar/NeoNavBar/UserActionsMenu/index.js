@@ -19,11 +19,7 @@ export const UserActionsMenu = withTheme(({ theme }) => {
 
   return (
     <Wrapper height={avatarHeight}>
-      <Avatar
-        size={avatarHeight}
-        user={me}
-        onClick={open}
-      />
+      <Avatar size={avatarHeight} user={me} onClick={open} />
       {isOpen && (
         <Menu height={avatarHeight}>
           <Link to="/create-viz">
