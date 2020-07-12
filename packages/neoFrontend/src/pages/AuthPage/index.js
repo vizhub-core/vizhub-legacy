@@ -21,7 +21,8 @@ export const AuthPage = () => {
           <Centering>
             <Box>
               <Title>Sign up or Sign in</Title>
-              If you don't have an account, one will be created when you sign in.
+              If you don't have an account, one will be created when you sign
+              in.
               <Octocat
                 width="120"
                 height="120"
@@ -42,7 +43,9 @@ export const AuthPage = () => {
                     <Title>For developers only</Title>
                   </DevsOnly>
                   <Link to={CI_AUTH_PATH}>
-                    <Button className="test-sign-in-as-ci">Sign in as CI</Button>
+                    <Button className="test-sign-in-as-ci">
+                      Sign in as CI
+                    </Button>
                   </Link>
                 </>
               ) : null}

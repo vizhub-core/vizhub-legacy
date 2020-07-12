@@ -31,7 +31,7 @@ export const Right = styled.div`
 export const Banner = styled.div`
   display: flex;
   flex: 1;
-  max-width: ${(props) => 
+  max-width: ${(props) =>
     Number.isInteger(props.theme.bannerMaxWidth)
       ? `${props.theme.bannerMaxWidth}px`
       : props.theme.bannerMaxWidth};
@@ -49,8 +49,5 @@ export const Banner = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  flex-direction: ${(props) =>
-    props.isMobile
-      ? 'column'
-      : 'row'};
+  flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
 `;

@@ -20,7 +20,7 @@ export const Menu = styled.div`
   top: ${(props) => props.theme.bannerHeight}px;
   right: 18px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
   border-radius: 0px 0px 4px 4px;
 
@@ -42,7 +42,12 @@ export const Item = styled(Clickable)`
   padding: 20px;
 
   &:hover {
-    background: rgb(56, 102, 233, 0.2); // same as background: #3866E9 with opacity: 0.2;
+    background: rgb(
+      56,
+      102,
+      233,
+      0.2
+    ); // same as background: #3866E9 with opacity: 0.2;
   }
 `;
 
