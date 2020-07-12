@@ -47,9 +47,12 @@ export const CreateVizPage = () => (
     <Wrapper>
       <Content>
         <Centered>
-          <AttentionGrabbingTitle>Create a Visualization!</AttentionGrabbingTitle>
+          <AttentionGrabbingTitle>
+            Create a Visualization!
+          </AttentionGrabbingTitle>
           <Subtitle>
-            Create a new visualization from a template or fork one from our users.
+            Create a new visualization from a template or fork one from our
+            users.
           </Subtitle>
           <VizPreviews>
             {visualizationInfos.map((vizInfo) => (
