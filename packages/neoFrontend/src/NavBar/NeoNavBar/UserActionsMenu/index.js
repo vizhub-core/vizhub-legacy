@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withTheme } from 'styled-components';
-import { AuthContext } from '../../authentication';
-import { Avatar } from '../../Avatar';
+import { AuthContext } from '../../../authentication';
+import { Avatar } from '../../../Avatar';
 import { Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
 export const UserActionsMenu = withTheme(({ theme }) => {
-  const { navbarHeight } = theme;
+  const { avatarHeight } = theme;
 
   const { me, signOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -18,22 +18,22 @@ export const UserActionsMenu = withTheme(({ theme }) => {
   useCloseOnGlobalClick(isOpen, close);
 
   return (
-    <Wrapper height={navbarHeight}>
+    <Wrapper height={avatarHeight}>
       <Avatar
-        size={navbarHeight}
+        size={avatarHeight}
         user={me}
         onClick={open}
       />
       {isOpen && (
-        <Menu height={navbarHeight}>
+        <Menu height={avatarHeight}>
           <Link to="/create-viz">
             <Item className="test-create-viz" topmost={true}>
-              Create Visualization
+              New Visualization
             </Item>
           </Link>
           <HorizontalRule />
           <Link to={`/${me.userName}`}>
-            <Item>Profile</Item>
+            <Item>Profile settings</Item>
           </Link>
           <HorizontalRule />
           <Item className="test-sign-out" onClick={signOut} bottommost={true}>

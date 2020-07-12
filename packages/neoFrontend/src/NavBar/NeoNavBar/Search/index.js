@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
-import { useSearchQuery } from '../../useSearchQuery';
-import { UserPreviewList, useUsers } from '../../UserPreviewList';
+import { useSearchQuery } from '../../../useSearchQuery';
+import { UserPreviewList, useUsers } from '../../../UserPreviewList';
 import { SearchInput, Form } from './styles';
 
 export const Search = ({ mobile, redirectPath = '/search' }) => {

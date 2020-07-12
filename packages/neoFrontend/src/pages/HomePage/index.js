@@ -13,10 +13,7 @@ export const HomePage = () => {
 
   return (
     <HomePageDataProvider sort={sort} fallback={<LoadingScreen />}>
-      <NavBar 
-        showSearch
-        showAuth
-      />
+      <NavBar isHomePage={true} showSearch />
       <Wrapper>
         <Content>
           <Banner />
