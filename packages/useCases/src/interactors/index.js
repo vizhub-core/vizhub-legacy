@@ -18,4 +18,4 @@ export { GetThumbnail } from './getThumbnail';
 export { GetPreview } from './getPreview';
 export { GetSearchResultsPageData } from './getSearchResultsPageData';
 export { GetUserSearchResultsData } from './getUserSearchResultsData';
-export { GetForks } from './getForks';
+export { GetForksPageData } from './getForksPageData';
