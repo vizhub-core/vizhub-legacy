@@ -33,5 +33,9 @@ export const getForks = (connection) => async ({
     connection
   );
 
-  return results.map((shareDBDoc) => new VisualizationInfo(shareDBDoc.data));
+  if (results) {
+    return results.map((shareDBDoc) => new VisualizationInfo(shareDBDoc.data));
+  } else {
+    return []
+  }
 };

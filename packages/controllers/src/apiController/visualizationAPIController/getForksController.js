@@ -1,15 +1,18 @@
-import { GetForks } from 'vizhub-use-cases';
+import { GetForksPageData } from 'vizhub-use-cases';
+import { userIdFromReq } from '../../userIdFromReq';
 
 export const getForksController = (expressApp, gateways) => {
-  const getForks = new GetForks(gateways);
+  const getForksPageData = new GetForksPageData(gateways);
+
   expressApp.get('/api/visualization/get/:id/forks', async (req, res) => {
     try {
       const requestModel = {
-        forkedFrom: req.params.id,
+        id: req.params.id,
         offset: req.query.offset,
+        owner: userIdFromReq(req)
       };
 
-      const data = await getForks.execute(requestModel);
+      const data = await getForksPageData.execute(requestModel);
       res.json(data);
     } catch (error) {
       console.log(error);
