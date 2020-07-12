@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { Z_WAY_WAY_ABOVE } from '../styles';
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
+import { Z_WAY_WAY_ABOVE } from '../../styles';
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(RouterNavLink)`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -11,6 +11,14 @@ export const NavLink = styled(Link)`
   color: #B5B5B5;
   margin-left: ${(props) => props.theme.bannerPadding}px;
   margin-right: ${(props) => props.theme.bannerPadding}px;
+
+  &.active {
+    color: #FFFFFF;
+  }
+
+  &:hover {
+    color: #FFFFFF;
+  }
 `;
 
 export const LogoLink = styled(Link)`
@@ -30,7 +38,7 @@ export const Banner = styled.div`
   z-index: ${Z_WAY_WAY_ABOVE};
     
   display: flex;
-  height: ${(props) => props.theme.bannerHeight}px;
+  height: ${(props) => props.mobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
   background-color: ${(props) => props.theme.bannerBackground};
   align-items: center;
   padding-right: 24px;

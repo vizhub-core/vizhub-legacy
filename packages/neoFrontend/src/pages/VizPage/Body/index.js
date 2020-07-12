@@ -50,7 +50,7 @@ export const Body = () => {
               {isRecoveryMode ? (
                 <RecoveryModeBanner exitRecoveryMode={exitRecoveryMode} />
               ) : (
-                <NavBar showAuth={showTopRight} />
+                <NavBar showRight={showTopRight} />
               )}
               <Head showRight={showTopRight} />
             </>

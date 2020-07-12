@@ -15,7 +15,7 @@ import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';
 export const AuthPage = () => {
   return (
     <>
-      <NavBar/>
+      <NavBar isAuthPage={true} />
       <Wrapper>
         <Content>
           <Centering>

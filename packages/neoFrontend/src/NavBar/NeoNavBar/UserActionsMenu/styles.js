@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Clickable, Z_WAY_WAY_ABOVE } from '../../styles';
+import { Clickable, Z_WAY_WAY_ABOVE } from '../../../styles';
 import arrowDown from './arrowDown.svg';
 
 const ARROW_WIDTH = 9;
@@ -31,7 +31,7 @@ export const Menu = styled.div`
 
   color: #535353;
   z-index: ${Z_WAY_WAY_ABOVE};
-  width: 264px;
+  width: 240px;
 `;
 
 export const Item = styled(Clickable)`
@@ -39,7 +39,11 @@ export const Item = styled(Clickable)`
   cursor: pointer;
   user-select: none;
   color: ${(props) => props.theme.dark};
-  padding: 20px
+  padding: 20px;
+
+  &:hover {
+    background: rgb(56, 102, 233, 0.2); // same as background: #3866E9 with opacity: 0.2;
+  }
 `;
 
 export const HorizontalRule = styled.div`

@@ -43,7 +43,7 @@ const visualizationInfos = [
 
 export const CreateVizPage = () => (
   <>
-    <NavBar showAuth />
+    <NavBar />
     <Wrapper>
       <Content>
         <Centered>
