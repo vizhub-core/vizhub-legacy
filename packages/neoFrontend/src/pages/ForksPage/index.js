@@ -9,6 +9,9 @@ import { ErrorContext } from '../../ErrorContext';
 import { usePageData } from './usePageData';
 import { Text } from './styles';
 
+// We may want to bring this back.
+const showForkedFromViz = false;
+
 export const ForksPage = () => {
   const pageData = usePageData();
   const { setError } = useContext(ErrorContext);
@@ -31,23 +34,27 @@ export const ForksPage = () => {
       <Wrapper>
         <Content>
           <NavBar />
-          <Centering>
-            <Title>Visualization Home</Title>
-          </Centering>
-          <Centering>
-            <LiveVizPreview
-              key={pageData.visualizationInfo.id}
-              me={me}
-              vizInfo={pageData.visualizationInfo}
-              getUser={getUser}
-            />
-          </Centering>
-          <Centering>
-            <Title>Description</Title>
-          </Centering>
-          <Centering>
-            <Text>{pageData.visualizationInfo.description}</Text>
-          </Centering>
+          {showForkedFromViz ? (
+            <>
+              <Centering>
+                <Title>Visualization Home</Title>
+              </Centering>
+              <Centering>
+                <LiveVizPreview
+                  key={pageData.visualizationInfo.id}
+                  me={me}
+                  vizInfo={pageData.visualizationInfo}
+                  getUser={getUser}
+                />
+              </Centering>
+              <Centering>
+                <Title>Description</Title>
+              </Centering>
+              <Centering>
+                <Text>{pageData.visualizationInfo.description}</Text>
+              </Centering>
+            </>
+          ) : null}
           <Centering>
             <Title>Forks of {pageData.visualizationInfo.title}</Title>
           </Centering>
