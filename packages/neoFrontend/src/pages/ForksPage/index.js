@@ -1,23 +1,63 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
-import { Wrapper, Content, Centering } from '../styles';
+import { Wrapper, Content, Centering, Title } from '../styles';
 import { NavBar } from '../../NavBar';
-import { Vizzes } from '../../VizzesGrid/Vizzes';
+import { Vizzes as VizzesPresentation } from '../../VizzesGrid/Vizzes';
+import { LiveVizPreview } from '../../VizPreview';
+import { AuthContext } from '../../authentication';
+import { ErrorContext } from '../../ErrorContext';
 import { usePageData } from './usePageData';
+import { Text } from './styles';
 
 export const ForksPage = () => {
   const pageData = usePageData();
+  const { setError } = useContext(ErrorContext);
+  const { me } = useContext(AuthContext);
 
-  return pageData ? (
-    <Wrapper>
-      <Content>
-        <NavBar />
-        <Centering>
-          <Vizzes {...pageData} />
-        </Centering>
-      </Content>
-    </Wrapper>
-  ) : (
-    <LoadingScreen />
-  );
+  const getUser = useCallback((id) => pageData.usersById[id], [
+    pageData.usersById,
+  ]);
+
+  if (pageData && pageData.error) {
+    setError({
+      message: 'Visualization not found.',
+      className: 'test-viz-not-found',
+    });
+    return null;
+  }
+
+  if (pageData && pageData.visualizationInfo) {
+    return (
+      <Wrapper>
+        <Content>
+          <NavBar />
+          <Centering>
+            <Title>Visualization Home</Title>
+          </Centering>
+          <Centering>
+            <LiveVizPreview
+              key={pageData.visualizationInfo.id}
+              me={me}
+              vizInfo={pageData.visualizationInfo}
+              getUser={getUser}
+            />
+          </Centering>
+          <Centering>
+            <Title>Description</Title>
+          </Centering>
+          <Centering>
+            <Text>{pageData.visualizationInfo.description}</Text>
+          </Centering>
+          <Centering>
+            <Title>Forks of {pageData.visualizationInfo.title}</Title>
+          </Centering>
+          <Centering>
+            <VizzesPresentation {...pageData} />
+          </Centering>
+        </Content>
+      </Wrapper>
+    );
+  } else {
+    return <LoadingScreen />;
+  }
 };
