@@ -1,4 +1,5 @@
 import React, { useCallback, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper, Content, Centering, Title } from '../styles';
 import { NavBar } from '../../NavBar';
@@ -8,6 +9,7 @@ import { AuthContext } from '../../authentication';
 import { ErrorContext } from '../../ErrorContext';
 import { usePageData } from './usePageData';
 import { Text } from './styles';
+import { getVizInfoOwner, getUserName } from 'vizhub-presenters';
 
 // We may want to bring this back.
 const showForkedFromViz = false;
@@ -30,6 +32,10 @@ export const ForksPage = () => {
   }
 
   if (pageData && pageData.visualizationInfo) {
+    const vizInfo = pageData.visualizationInfo;
+    const { id } = vizInfo;
+    const owner = getVizInfoOwner(pageData.visualizationInfo);
+    const ownerUser = getUser(owner);
     return (
       <Wrapper>
         <Content>
@@ -41,7 +47,6 @@ export const ForksPage = () => {
               </Centering>
               <Centering>
                 <LiveVizPreview
-                  key={pageData.visualizationInfo.id}
                   me={me}
                   vizInfo={pageData.visualizationInfo}
                   getUser={getUser}
@@ -56,7 +61,12 @@ export const ForksPage = () => {
             </>
           ) : null}
           <Centering>
-            <Title>Forks of {pageData.visualizationInfo.title}</Title>
+            <Title>
+              Forks of{' '}
+              <Link to={`/${getUserName(ownerUser)}/${id}`}>
+                {pageData.visualizationInfo.title}
+              </Link>
+            </Title>
           </Centering>
           <Centering>
             <VizzesPresentation {...pageData} />
