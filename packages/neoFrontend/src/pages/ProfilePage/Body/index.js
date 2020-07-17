@@ -18,18 +18,20 @@ export const Body = () => {
   }, [user.userName]);
 
   return (
-    <Wrapper>
-      <Content>
-        <NavBar showSearch searchProps={searchProps} />
-        <ProfilePane user={user} />
-        <Centering>
-          <Vizzes
-            className="test-profile-page-viz-previews"
-            visualizationInfos={visualizationInfos}
-            usersById={vizzesUsersMap}
-          />
-        </Centering>
-      </Content>
-    </Wrapper>
+    <>
+      <NavBar showSearch searchProps={searchProps} />
+      <Wrapper>
+        <Content>
+          <ProfilePane user={user} />
+          <Centering>
+            <Vizzes
+              className="test-profile-page-viz-previews"
+              visualizationInfos={visualizationInfos}
+              usersById={vizzesUsersMap}
+            />
+          </Centering>
+        </Content>
+      </Wrapper>
+    </>
   );
 };

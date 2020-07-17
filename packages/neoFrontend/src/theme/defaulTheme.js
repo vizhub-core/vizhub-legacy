@@ -1,13 +1,4 @@
-import React from 'react';
 import { cubehelix } from 'd3-color';
-import styled, { ThemeProvider } from 'styled-components';
-
-// Monospace system font stack used by GitHub, August 2019.
-const systemMonospaceStack =
-  'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace';
-
-export const fontFamily = (font, ligatures) =>
-  font + (ligatures !== 'all' ? ' Arrowized' : '') + ',' + systemMonospaceStack;
 
 export const defaultCodingFontFamily =
   'Ubuntu Mono,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace';
@@ -23,6 +14,7 @@ export const theme = {
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   shadowLight: '0 1px 3px 0 rgba(0, 0, 0, 0.15)',
   bannerBackground: 'transparent',
+  bannerMaxWidth: 1380,
   bannerHeight: 100,
   bannerHeightMobile: 52,
   bannerPadding: 6,
@@ -36,9 +28,7 @@ export const theme = {
   activeBackground: 'rgba(0, 0, 0, 0.1)',
   hoverBackgroundInverted: 'rgba(255,255,255, 0.12)',
   activeBackgroundInverted: 'rgba(255,255,255, 0.24)',
-  //bottomButtonBackgroundActive: 'rgba(216, 216, 216, 0.75)',
   bottomButtonBackgroundActive: '#b3b6bc',
-  //bottomButtonBackground: 'rgba(216, 216, 216, 0.22)',
 
   defaultCodingFontFamily,
   defaultCodingFontSize,
@@ -95,6 +85,7 @@ theme.redActive = red.formatHex();
 export const darkNavbarTheme = {
   ...theme,
   bannerBackground: theme.dark,
+  bannerMaxWidth: 'none',
   bannerHeight: 40,
   bannerHeightMobile: 40,
   bannerPadding: 20,
@@ -105,15 +96,4 @@ export const darkNavbarTheme = {
   userMenuOverlayBackgroundHover: 'rgba(0, 0, 0, 0.4)',
   userMenuOverlayBackgroundActive: 'rgba(0, 0, 0, 0.3)',
   userMenuOverlayForeground: '#ffffff',
-  //editorBorder: '1px solid rgba(255, 255, 255, 0.4)'
 };
-
-const Wrapper = styled.div`
-  color: ${(props) => props.theme.dark};
-`;
-
-export const Themed = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <Wrapper>{children}</Wrapper>
-  </ThemeProvider>
-);
