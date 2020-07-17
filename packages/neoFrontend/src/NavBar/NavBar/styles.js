@@ -30,6 +30,11 @@ export const Right = styled.div`
 
 export const Banner = styled.div`
   display: flex;
+  flex: 1;
+  max-width: ${(props) =>
+    Number.isInteger(props.theme.bannerMaxWidth)
+      ? `${props.theme.bannerMaxWidth}px`
+      : props.theme.bannerMaxWidth};
   min-height: ${(props) =>
     props.isMobile
       ? props.theme.bannerHeightMobile
@@ -39,4 +44,10 @@ export const Banner = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme.bannerBackground};
   justify-content: space-between;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
 `;

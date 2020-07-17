@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Clickable, Z_ABOVE } from '../../styles';
+import { Clickable, Z_ABOVE } from '../../../styles';
 
 export const Wrapper = styled.div`
   position: relative;
