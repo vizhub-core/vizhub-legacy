@@ -28,7 +28,7 @@
     "is-mobile": "^2.2.2",
     "json0-ot-diff": "^1.0.5",
     "json0-with-presence": "1",
-    "marked": "^1.1.0",
+    "marked": "^1.1.1",
     "perfect-scrollbar": "^1.5.0",
     "query-string": "^6.13.1",
     "react": "16.13.1",
