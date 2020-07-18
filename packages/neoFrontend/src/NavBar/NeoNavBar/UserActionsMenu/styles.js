@@ -17,7 +17,8 @@ export const Wrapper = styled.div`
 
 export const Menu = styled.div`
   position: absolute;
-  top: ${(props) => props.mobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
+  top: ${(props) =>
+    props.mobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
   right: 18px;
 
   background: #ffffff;

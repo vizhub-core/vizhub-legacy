@@ -9,7 +9,7 @@ export const getForksController = (expressApp, gateways) => {
       const requestModel = {
         id: req.params.id,
         offset: req.query.offset,
-        owner: userIdFromReq(req)
+        owner: userIdFromReq(req),
       };
 
       const data = await getForksPageData.execute(requestModel);
