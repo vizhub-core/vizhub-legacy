@@ -34,8 +34,13 @@ jobs:
       - run: npm install wait-on
       - run: npm run lerna:bootstrap
       - run:
-          name: Start Server
-          command: npm run start:ci
+          name: Start Backend Server
+          command: npm run start-neoBackend:ci
+          background: true
+      - run: npx wait-on http://localhost:4000
+      - run:
+          name: Start Frontend Server
+          command: npm run start-neoFrontend:ci
           background: true
       - run: npx wait-on http://localhost:3000
       - run: npm run test:e2e
