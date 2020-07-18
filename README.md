@@ -1,10 +1,8 @@
 # [VizHub](https://vizhub.com)
 
-In development the codebase uses React, Node, lerna, and an in-memory database.
+Built with React, Node, Lerna, and ShareDB.
 
 To set up your development environment:
-
-Export the environment variables below.
 
 ```
 cd vizhub
@@ -41,34 +39,30 @@ find . -name "node_modules" -exec rm -rf '{}' +; find . -name "package-lock.json
 
 # Environment Variables
 
-In your beloved `.bashrc` or any source for environment variables:
+Without setting any environment variables, the app should work in development using an in-memory database, without the ability to authenticate via GitHub.
 
-```
-export REACT_APP_VIZHUB_JWT_SECRET=fakefaksdashfjkdsahjfkdjakdhfjdk7
-export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=17ed8d9fa67e695f1118
-export VIZHUB_GITHUB_CLIENT_SECRET=b7673605d16aee3c66bb693578d4e1e2dac61baa
-export REACT_APP_VIZHUB_STRIPE_BASIC_PRICE_ID=price_fakehfdjkashfdjksahjkhdu
-export REACT_APP_VIZHUB_STRIPE_PRO_PRICE_ID=price_fakehfdjksahjfkdhjskurd8
-export REACT_APP_VIZHUB_STRIPE_PUBLISHABLE_KEY=pk_test_fakeskahfdjksahjkfdhjhjd
-export VIZHUB_STRIPE_SECRET_KEY=sk_test_fakehdjksfhafjkhsdjkfhdj
-export VIZHUB_STRIPE_WEBHOOK_SECRET=whsec_faked
-export VIZHUB_STRIPE_DOMAIN=http://localhost:3000
-```
+To set up the app to use MongoDB, export the following:
 
-If you have MongoDB installed and want to use it:
 ```
 export VIZHUB_MONGO_URI=mongodb://localhost:27017/vizhub
 ```
 
-Don't forget to `source ~/.bashrc`!
+To enable authentication via GitHub, export the following:
+
+```
+export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=17ed8d9fa67e695f1118
+export VIZHUB_GITHUB_CLIENT_SECRET=b7673605d16aee3c66bb693578d4e1e2dac61baa
+```
+
+Additional environment variables for use in production only are detailed in [Production Docs](docs/production.md).
 
 # Codebase Maintenance
 
-Run Prettier on all files:
+The codebase uses Prettier to auto-format code. Please run Prettier on all files after making changes:
 
 `lerna run prettier`
 
-Run Pretter within a package directory (e.g. `neoFrontend`):
+You can run Pretter within a single package directory (e.g. `neoFrontend`):
 
 `npm run prettier`
 
@@ -77,18 +71,4 @@ Upgrade all dependencies:
 ```
 npm install -g npm-check-updates
 lerna exec -- ncu -u
-```
-
-Update all `package-lock.json` files (necessary for CI):
-
-`lerna exec -- npm i`
-
-# Using MongoDB in Development
-
-For a more persistent experience during development, you can opt into using MongoDB.
-
-Just set this environment variable:
-
-```
-VIZHUB_MONGO_URI=mongodb://localhost:27017/vizhub
 ```
