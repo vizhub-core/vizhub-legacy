@@ -1,43 +1,54 @@
 {
-	"name": "vizhub-neo-frontend",
-	"private": true,
-	"version": "1.0.0",
-	"description": "VizHub 2.0 frontend package.",
-	"main": "index.js",
-	"proxy": "http://localhost:4000/",
-	"//proxy": "https://vizhub.com/",
-	"author": "Datavis Tech INC",
-	"license": "UNLICENSED",
-	"dependencies": {
-		"@datavis-tech/ot-json0": "^2.1.0",
-		"codemirror": "^5.55.0",
-		"color-hash": "^1.0.3",
-		"copy-to-clipboard": "^3.3.1",
-		"d3-color": "^1.4.1",
-		"d3-format": "^1.4.4",
-		"d3-shape": "^1.3.7",
-		"diff-match-patch": "^1.0.5",
-		"immer": "^7.0.5",
-		"is-mobile": "^2.2.2",
-		"json0-ot-diff": "^1.0.5",
-		"marked": "^1.1.1",
-		"perfect-scrollbar": "^1.5.0",
-		"query-string": "^6.13.1",
-		"react": "16.13.1",
-		"react-dom": "16.13.1",
-		"react-router": "^5.2.0",
-		"react-router-dom": "^5.2.0",
-		"react-scripts": "^3.4.1",
-		"sharedb": "^1.4.0",
-		"styled-components": "^5.1.1"
-	},
-	"browserslist": [
-		">0.2%",
-		"not dead",
-		"not ie <= 11",
-		"not op_mini all"
-	],
-	"devDependencies": {
-		"prettier": "^2.0.5"
-	}
+  "name": "vizhub-neo-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "VizHub 2.0 frontend package.",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "start:ci": "node scripts/server.js",
+    "build": "react-scripts build",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "test-no-ci": "react-scripts test"
+  },
+  "proxy": "http://localhost:4000/",
+  "//proxy": "https://vizhub.com/",
+  "author": "Datavis Tech INC",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@datavis-tech/ot-json0": "^2.1.0",
+    "codemirror": "^5.55.0",
+    "color-hash": "^1.0.3",
+    "copy-to-clipboard": "^3.3.1",
+    "d3-color": "^1.4.1",
+    "d3-format": "^1.4.4",
+    "d3-shape": "^1.3.7",
+    "diff-match-patch": "^1.0.5",
+    "immer": "^7.0.5",
+    "is-mobile": "^2.2.2",
+    "json0-ot-diff": "^1.0.5",
+    "json0-with-presence": "1",
+    "marked": "^1.1.1",
+    "perfect-scrollbar": "^1.5.0",
+    "query-string": "^6.13.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "sharedb": "^1.4.0",
+    "styled-components": "^5.1.1",
+    "vizhub-database": "1",
+    "vizhub-entities": "1",
+    "vizhub-presenters": "1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
 }
