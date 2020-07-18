@@ -65,7 +65,6 @@ export const VizPreview = ({
             didVote={didVote}
             upvoteCount={upvoteCount}
             onUpvoteClick={onUpvoteClick}
-            whyCantUpvote="Upvoting from previews is not supported yet."
           />
         </Bottom>
       </VizPreviewFooter>
