@@ -1,6 +1,30 @@
 import { DocumentInfo } from './documentInfo';
 import { VISUALIZATION_TYPE } from './documentTypes';
 
+// The options for sorting views of many visualizations.
+export const VIZ_INFO_SORT_OPTIONS = [
+  {
+    id: 'mostRecent', // Used in URL param
+    label: 'Most recent', // Used in UI
+    vizInfoProperty: 'lastUpdatedTimestamp', // Used in DB query
+    isDefault: true, // Used in URL logic
+  },
+  {
+    id: 'mostForked',
+    label: 'Most forked',
+    vizInfoProperty: 'forksCount',
+  },
+  //{
+  //  id: 'upvotes',
+  //  label: 'Most upvoted',
+  //  vizInfoProperty: 'upvotes',
+  //},
+];
+
+export const VIZ_INFO_DEFAULT_SORT_OPTION = VIZ_INFO_SORT_OPTIONS.find(
+  ({ isDefault }) => isDefault
+);
+
 export class VisualizationInfo extends DocumentInfo {
   constructor(data) {
     super({

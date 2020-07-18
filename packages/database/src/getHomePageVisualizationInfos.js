@@ -1,18 +1,27 @@
-import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
+import {
+  VisualizationInfo,
+  VISUALIZATION_TYPE,
+  VIZ_INFO_SORT_OPTIONS,
+  VIZ_INFO_DEFAULT_SORT_OPTION,
+} from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
+
+const defaultSort = VIZ_INFO_DEFAULT_SORT_OPTION.vizInfoProperty;
+const isAllowed = (sort) =>
+  !!VIZ_INFO_SORT_OPTIONS.find(
+    ({ vizInfoProperty }) => vizInfoProperty === sort
+  );
 
 // The number of vizzes shown in a page of content.
 // Infinite scroll pagination fetches the next page.
 const pageSize = 100;
 
-const allowedSort = ['lastUpdatedTimestamp', 'upvotes', 'forksCount'];
-
 export const getHomePageVisualizationInfos = (connection) => async ({
   offset,
-  sort,
+  sort, // corresponds to vizInfoProperty
 }) => {
-  const sortField = allowedSort.includes(sort) ? sort : 'lastUpdatedTimestamp';
+  const sortField = isAllowed(sort) ? sort : defaultSort;
 
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,

@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { VIZ_INFO_SORT_OPTIONS } from 'vizhub-entities';
 import { Container, Header, Form, Select, SelectLabel } from './styles';
 
 export const Sort = ({ value, onChange }) => {
@@ -15,9 +16,9 @@ export const Sort = ({ value, onChange }) => {
       <Form>
         <SelectLabel>Sort By</SelectLabel>
         <Select value={value} onChange={handleChange}>
-          <option value="lastUpdatedTimestamp">Most recent</option>
-          {/* <option value="upvotes"> Most upvoted</option> */}
-          <option value="forksCount"> Most forked</option>
+          {VIZ_INFO_SORT_OPTIONS.map(({ id, label }) => (
+            <option value={id}>{label}</option>
+          ))}
         </Select>
       </Form>
     </Container>
