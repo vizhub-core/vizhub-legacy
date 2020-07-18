@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { LoadingScreen } from '../../LoadingScreen';
-import { darkNavbarTheme } from '../../theme/defaulTheme';
+import { darkNavbarTheme } from '../../theme';
 import { VizPageDataProvider } from './VizPageDataContext';
 import { ForkingProvider } from './ForkingContext';
 import { DeleteVizProvider } from './DeleteVizContext';
