@@ -9,7 +9,7 @@ export const MobileLayout = ({ Logo, Search, AuthSection }) => {
         {Logo}
         {AuthSection}
       </Banner>
-      <SubBanner>{Search}</SubBanner>
+      {Search && <SubBanner>{Search}</SubBanner>}
 
       {/* TODO: need to think how to enable links on mobile */}
       {/* <Links>
