@@ -20,6 +20,7 @@ export const SearchInput = styled.input`
 `;
 
 export const Form = styled.form`
+  position: relative;
   margin-left: ${(props) => props.theme.bannerPadding}px;
   margin-right: ${(props) => props.theme.bannerPadding}px;
 `;
