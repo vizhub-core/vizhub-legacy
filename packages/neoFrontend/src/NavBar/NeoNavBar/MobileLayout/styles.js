@@ -17,7 +17,6 @@ export const SubBanner = styled.div`
   width: 100%;
   top: ${(props) => props.theme.bannerHeightMobile}px;
   z-index: ${Z_WAY_ABOVE};
-  padding-top: ${(props) => props.theme.bannerPadding}px;
   padding-bottom: ${(props) => props.theme.bannerPadding}px;
   background-color: ${(props) => props.theme.bannerBackground};
 `;
