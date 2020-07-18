@@ -16,7 +16,8 @@ export const renameFileWithoutPath = false;
 export const showEmbed = false;
 export const showSortOptions = true;
 export const showForksCount = true;
-export const showNeoNavBar = false;
+
+export const showNeoNavBar = process.env.REACT_APP_VIZHUB_NEO_NAVBAR === 'true';
 export const showAboutLink = false;
 
 // List of usernames who have access to
