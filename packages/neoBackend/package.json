@@ -1,23 +1,34 @@
 {
-	"name": "vizhub-neo-backend",
-	"private": true,
-	"version": "1.0.0",
-	"description": "VizHub 2.0 backend package.",
-	"main": "src/index.js",
-	"author": "Datavis Tech INC",
-	"license": "UNLICENSED",
-	"devDependencies": {
-		"eslint": "^7.3.1",
-		"esm": "^3.2.25",
-		"prettier": "^2.0.5"
-	},
-	"dependencies": {
-		"@teamwork/websocket-json-stream": "^2.0.0",
-		"body-parser": "^1.19.0",
-		"compression": "^1.7.4",
-		"cookie": "^0.4.1",
-		"cookie-parser": "^1.4.5",
-		"express": "^4.17.1",
-		"ws": "^7.3.0"
-	}
+  "name": "vizhub-neo-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "VizHub 2.0 backend package.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node -r esm src/index.js",
+    "dev": "NODE_ENV=development node -r esm src/index.js",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
+  },
+  "author": "Datavis Tech INC",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "eslint": "^7.3.1",
+    "esm": "^3.2.25",
+    "prettier": "^2.0.5"
+  },
+  "dependencies": {
+    "@teamwork/websocket-json-stream": "^2.0.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie": "^0.4.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "vizhub-controllers": "1",
+    "vizhub-database": "1",
+    "vizhub-entities": "1",
+    "vizhub-server-gateways": "1",
+    "vizhub-use-cases": "1",
+    "ws": "^7.3.0"
+  }
 }
