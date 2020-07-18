@@ -7,11 +7,9 @@ import {
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
-const defaultSort = VIZ_INFO_DEFAULT_SORT_OPTION.vizInfoProperty;
+const defaultSort = VIZ_INFO_DEFAULT_SORT_OPTION.id;
 const isAllowed = (sort) =>
-  !!VIZ_INFO_SORT_OPTIONS.find(
-    ({ vizInfoProperty }) => vizInfoProperty === sort
-  );
+  !!VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
 
 // The number of vizzes shown in a page of content.
 // Infinite scroll pagination fetches the next page.
@@ -19,9 +17,12 @@ const pageSize = 100;
 
 export const getHomePageVisualizationInfos = (connection) => async ({
   offset,
-  sort, // corresponds to vizInfoProperty
+  sort,
 }) => {
-  const sortField = isAllowed(sort) ? sort : defaultSort;
+  const sortId = isAllowed(sort) ? sort : defaultSort;
+
+  const sortField = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sortId)
+    .vizInfoProperty;
 
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
