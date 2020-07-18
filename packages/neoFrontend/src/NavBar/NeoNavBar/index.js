@@ -45,7 +45,9 @@ export const NavBar = withTheme(
         AuthSection={
           showAuth && (
             <>
-              {me && me !== AUTH_PENDING && <UserActionsMenu mobile={isMobile} />}
+              {me && me !== AUTH_PENDING && (
+                <UserActionsMenu mobile={isMobile} />
+              )}
               {!me && (
                 <NavLink className="test-sign-in" to="" onClick={signIn}>
                   Sign in

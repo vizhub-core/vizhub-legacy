@@ -5,7 +5,11 @@ export { DocumentPart } from './documentPart';
 export { DocumentInfo } from './documentInfo';
 export { DocumentContent } from './documentContent';
 
-export { VisualizationInfo } from './visualizationInfo';
+export {
+  VisualizationInfo,
+  VIZ_INFO_SORT_OPTIONS,
+  VIZ_INFO_DEFAULT_SORT_OPTION,
+} from './visualizationInfo';
 export { VisualizationContent } from './visualizationContent';
 export { Visualization } from './visualization';
 export { File } from './file';

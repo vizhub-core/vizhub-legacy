@@ -6,7 +6,7 @@ export class GetForksPageData {
     this.getVisualization = new GetVisualizationInfo({
       visualizationGateway,
     });
-    this.getForks = new GetForks({visualizationGateway, userGateway})
+    this.getForks = new GetForks({ visualizationGateway, userGateway });
   }
 
   async execute(requestModel) {
@@ -16,18 +16,15 @@ export class GetForksPageData {
       throw new Error(i18n('errorNoOwner'));
     }
 
-    const [
-      visualizationInfo,
-      forksData
-    ] = await Promise.all([
-      this.getVisualization.execute({id}),
+    const [visualizationInfo, forksData] = await Promise.all([
+      this.getVisualization.execute({ id }),
       this.getForks.execute({
         forkedFrom: id,
         offset,
-        includePrivate
-      })
+        includePrivate,
+      }),
     ]);
 
-    return {...forksData, ...visualizationInfo}
+    return { ...forksData, ...visualizationInfo };
   }
 }

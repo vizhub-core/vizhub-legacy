@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import {
+  VIZ_INFO_SORT_OPTIONS,
+  VIZ_INFO_DEFAULT_SORT_OPTION,
+} from 'vizhub-entities';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
+import { useSearchQuery } from '../../useSearchQuery';
 import { Wrapper, Content } from '../styles';
 import { HomePageDataProvider } from './HomePageDataContext';
 import { NavBar } from '../../NavBar';
@@ -8,8 +13,17 @@ import { Vizzes } from './Vizzes';
 import { Banner } from './Banner';
 import { Sort } from './Sort';
 
-export const HomePage = () => {
-  const [sort, setSort] = useState('lastUpdatedTimestamp');
+const isDefault = (sort) => VIZ_INFO_DEFAULT_SORT_OPTION.id === sort;
+
+export const HomePage = ({ history }) => {
+  const sort = useSearchQuery('sort');
+
+  const handleSortChange = useCallback(
+    (newSort) => {
+      history.push({ search: isDefault(newSort) ? '' : `?sort=${newSort}` });
+    },
+    [history]
+  );
 
   return (
     <HomePageDataProvider sort={sort} fallback={<LoadingScreen />}>
@@ -17,7 +31,9 @@ export const HomePage = () => {
       <Wrapper>
         <Content>
           <Banner />
-          {showSortOptions ? <Sort value={sort} onChange={setSort} /> : null}
+          {showSortOptions ? (
+            <Sort value={sort} onChange={handleSortChange} />
+          ) : null}
           <Vizzes />
         </Content>
       </Wrapper>
