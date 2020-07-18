@@ -54,6 +54,8 @@ export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=17ed8d9fa67e695f1118
 export VIZHUB_GITHUB_CLIENT_SECRET=b7673605d16aee3c66bb693578d4e1e2dac61baa
 ```
 
+Don't forget to `source ~/.bashrc`!
+
 Additional environment variables for use in production only are detailed in [Production Docs](docs/production.md).
 
 # Codebase Maintenance

@@ -7,6 +7,7 @@
   "scripts": {
     "start": "NODE_ENV=production node -r esm src/index.js",
     "dev": "NODE_ENV=development node -r esm src/index.js",
+    "start:ci": "npm run dev",
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
     "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
   },
