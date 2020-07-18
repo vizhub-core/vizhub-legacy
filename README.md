@@ -6,7 +6,7 @@ To set up your development environment:
 
 ```
 cd vizhub
-npm install -G lerna # one time only
+npm install -g lerna # one time only
 lerna bootstrap
 cd packages/neoBackend
 npm run dev # Leave this open in a console tab. Serves on port 4000

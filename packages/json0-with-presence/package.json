@@ -1,19 +1,16 @@
 {
-  "name": "json0-with-presence",
-  "version": "1.0.0",
-  "main": "src/index.js",
-  "private": true,
-  "scripts": {
-    "prettier": "prettier --single-quote --write '*.js'"
-  },
-  "author": "Curran Kelleher",
-  "license": "UNLICENSED",
-  "dependencies": {
-    "ot-json0": "^1.1.0"
-  },
-  "devDependencies": {
-    "esm": "^3.2.25",
-    "mocha": "^8.0.1",
-    "prettier": "^2.0.5"
-  }
+	"name": "json0-with-presence",
+	"version": "1.0.0",
+	"main": "src/index.js",
+	"private": true,
+	"author": "Curran Kelleher",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"ot-json0": "^1.1.0"
+	},
+	"devDependencies": {
+		"esm": "^3.2.25",
+		"mocha": "^8.0.1",
+		"prettier": "^2.0.5"
+	}
 }

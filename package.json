@@ -21,7 +21,7 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-react": "^7.14.2",
     "esm": "^3.2.25",
-    "lerna": "^3.15.0",
+    "lerna": "^3.22.1",
     "mocha": "^8.0.1"
   }
 }
