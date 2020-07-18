@@ -16,7 +16,7 @@ export const renameFileWithoutPath = false;
 export const showEmbed = false;
 export const showSortOptions = true;
 export const showForksCount = true;
-export const showNeoNavBar = false;
+export const showNeoNavBar = true;
 export const showAboutLink = false;
 
 // List of usernames who have access to

@@ -6,7 +6,7 @@ import { Avatar } from '../../../Avatar';
 import { Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
-export const UserActionsMenu = withTheme(({ theme }) => {
+export const UserActionsMenu = withTheme(({ theme, mobile }) => {
   const { avatarHeight } = theme;
 
   const { me, signOut } = useContext(AuthContext);
@@ -21,7 +21,7 @@ export const UserActionsMenu = withTheme(({ theme }) => {
     <Wrapper height={avatarHeight}>
       <Avatar size={avatarHeight} user={me} onClick={open} />
       {isOpen && (
-        <Menu height={avatarHeight}>
+        <Menu mobile={mobile} height={avatarHeight}>
           <Link to="/create-viz">
             <Item className="test-create-viz" topmost={true}>
               New Visualization
