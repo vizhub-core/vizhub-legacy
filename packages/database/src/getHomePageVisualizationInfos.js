@@ -1,4 +1,8 @@
-import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
+import { 
+  VisualizationInfo,
+  VISUALIZATION_TYPE,
+  VISUALIZATION_INFO_SORT_OPTIONS
+} from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
@@ -6,7 +10,7 @@ import { fetchShareDBQuery } from './fetchShareDBQuery';
 // Infinite scroll pagination fetches the next page.
 const pageSize = 100;
 
-const allowedSort = ['lastUpdatedTimestamp', 'upvotes', 'forksCount'];
+const allowedSort = Object.values(VISUALIZATION_INFO_SORT_OPTIONS);
 
 export const getHomePageVisualizationInfos = (connection) => async ({
   offset,

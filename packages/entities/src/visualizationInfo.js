@@ -1,6 +1,12 @@
 import { DocumentInfo } from './documentInfo';
 import { VISUALIZATION_TYPE } from './documentTypes';
 
+export const SORT_OPTIONS = {
+  mostRecent: 'lastUpdatedTimestamp',
+  mostUpvoted: 'upvotes',
+  mostForked: 'forksCount',
+};
+
 export class VisualizationInfo extends DocumentInfo {
   constructor(data) {
     super({
