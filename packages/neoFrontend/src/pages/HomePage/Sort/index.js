@@ -17,7 +17,9 @@ export const Sort = ({ value, onChange }) => {
         <SelectLabel>Sort By</SelectLabel>
         <Select value={value} onChange={handleChange}>
           {VIZ_INFO_SORT_OPTIONS.map(({ id, label }) => (
-            <option value={id}>{label}</option>
+            <option key={id} value={id}>
+              {label}
+            </option>
           ))}
         </Select>
       </Form>

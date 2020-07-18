@@ -1,8 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import {
-  VIZ_INFO_SORT_OPTIONS,
-  VIZ_INFO_DEFAULT_SORT_OPTION,
-} from 'vizhub-entities';
+import React, { useCallback } from 'react';
+import { VIZ_INFO_DEFAULT_SORT_OPTION } from 'vizhub-entities';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
 import { useSearchQuery } from '../../useSearchQuery';
