@@ -15,6 +15,7 @@ import {
   VizPage,
   ProfilePage,
   PricingPage,
+  ContactPage,
   ErrorPage,
   SearchResultsPage,
   ForksPage,
@@ -37,6 +38,7 @@ export const App = () => (
                     <Route path="/auth" component={AuthPage} />
                     <Route path="/pricing" component={PricingPage} />
                     <Route path="/terms" component={TermsPage} />
+                    <Route path="/contact" component={ContactPage} />
                     <Route path="/create-viz" component={CreateVizPage} />
                     <Route path="/search" component={SearchResultsPage} />
                     <Route
