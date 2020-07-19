@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
 import { useSearchQuery } from '../../../useSearchQuery';
-import { UserPreviewList, useUsers } from '../../../UserPreviewList';
+import {
+  UserPreviewList,
+  useUserPreviewController,
+  useUsers
+} from '../../../UserPreviewList';
 import { SearchInput, Form } from './styles';
 
 export const Search = ({ mobile, redirectPath = '/search' }) => {
@@ -11,6 +15,20 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   const [redirectTo, setRedirectTo] = useState(null);
 
   const [isInputPristine, setIsInputPristine] = useState(true);
+
+  const users = useUsers(!isInputPristine && query);
+  const {
+    activeUser,
+    selectedUser,
+    handleKeyDown,
+    handleUserSelect,
+  } = useUserPreviewController(users);
+
+  useEffect(() => {
+    if (selectedUser) {
+      setRedirectTo(`/${selectedUser.userName}`);
+    }
+  }, [selectedUser, setRedirectTo]);
 
   // reset submit on location change
   useEffect(() => {
@@ -25,13 +43,6 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
     [setQuery]
   );
 
-  const handleUserSelected = useCallback(
-    ({ userName }) => {
-      setRedirectTo(`/${userName}`);
-    },
-    [setRedirectTo]
-  );
-
   const handleFormSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -40,17 +51,21 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
     [redirectPath, setRedirectTo, query]
   );
 
-  const users = useUsers(!isInputPristine && query);
-
   return (
     <Form onSubmit={handleFormSubmit}>
-      <SearchInput
-        mobile={mobile}
-        value={query}
-        placeholder="Search"
-        onChange={handleQueryChange}
-      />
-      <UserPreviewList users={users} onSelect={handleUserSelected} />
+      <div tabIndex="-1" onKeyDown={handleKeyDown}>
+        <SearchInput
+          mobile={mobile}
+          value={query}
+          placeholder="Search"
+          onChange={handleQueryChange}
+        />
+        <UserPreviewList
+          user={activeUser}
+          users={users}
+          onSelect={handleUserSelect}
+        />
+      </div>
       {redirectTo && <Redirect push to={redirectTo} />}
     </Form>
   );
