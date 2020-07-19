@@ -21,8 +21,8 @@ export const AuthPage = () => {
           <Centering>
             <Box>
               <Title>Sign up or Sign in</Title>
-              If you don't have an account, one will be created when you sign
-              in.
+              If you don&apos;t have an account, one will be created when you
+              sign in.
               <Octocat
                 width="120"
                 height="120"
@@ -33,9 +33,7 @@ export const AuthPage = () => {
               </a>
               <Terms>
                 By signing in you agree to our{' '}
-                <a href="https://datavis.tech/static/legal/Terms%20of%20Use.pdf">
-                  terms of use.
-                </a>
+                <Link to="/terms">terms and conditions.</Link>
               </Terms>
               {process.env.NODE_ENV === 'development' ? (
                 <>
