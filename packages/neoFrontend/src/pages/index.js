@@ -9,3 +9,4 @@ export { ErrorPage } from './ErrorPage';
 export { PricingPage } from './PricingPage';
 export { SearchResultsPage } from './SearchResultsPage';
 export { ForksPage } from './ForksPage';
+export { TermsPage } from './TermsPage';
