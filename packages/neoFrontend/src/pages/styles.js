@@ -104,3 +104,12 @@ export const HorizontalRule = styled.div`
   height: 1px;
   background-color: ${(props) => props.theme.rule};
 `;
+
+export const CopyWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const Copy = styled.div`
+  max-width: 960px;
+`;
