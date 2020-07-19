@@ -1,10 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   showCollaboratorsAnyoneCanEdit,
   showCollaboratorsManagement,
 } from '../../../../featureFlags';
 import { Input } from '../../../../Input';
-import { UserPreviewList, useUsers } from '../../../../UserPreviewList';
+import {
+  UserPreviewList,
+  useUserPreviewController,
+  useUsers
+} from '../../../../UserPreviewList';
 import { SubSectionDescription, FormRow } from '../../styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
 import { useCollaborators } from './useCollaborators';
@@ -14,6 +18,12 @@ export const CollaboratorsBody = () => {
   const [typedText, setTypedText] = useState('');
 
   const users = useUsers(typedText);
+  const {
+    activeUser,
+    selectedUser,
+    handleKeyDown,
+    handleUserSelect,
+  } = useUserPreviewController(users);
 
   const {
     collaborators,
@@ -21,13 +31,12 @@ export const CollaboratorsBody = () => {
     removeCollaborator,
   } = useCollaborators();
 
-  const handleAddCollaboratorClick = useCallback(
-    ({ id }) => {
-      addCollaborator(id);
+  useEffect(() => {
+    if (selectedUser){
+      addCollaborator(selectedUser.id);
       setTypedText('');
-    },
-    [addCollaborator]
-  );
+    }
+  },[selectedUser, addCollaborator]);
 
   return (
     <>
@@ -41,11 +50,12 @@ export const CollaboratorsBody = () => {
             <SubSectionDescription>
               Start typing to search for collaborators to add.
             </SubSectionDescription>
-            <FormRow>
+            <FormRow tabIndex="-1" onKeyDown={handleKeyDown}>
               <Input value={typedText} onChange={setTypedText} size="grow" />
               <UserPreviewList
+                user={activeUser}
                 users={users}
-                onSelect={handleAddCollaboratorClick}
+                onSelect={handleUserSelect}
               />
             </FormRow>
           </form>
