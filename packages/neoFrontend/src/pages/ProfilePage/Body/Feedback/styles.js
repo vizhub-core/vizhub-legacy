@@ -1,9 +1,9 @@
 // Common styles used in multiple pages.
 import styled from 'styled-components';
-import { Z_WAY_ABOVE } from '../../../styles';
-import { Button } from '../../styles';
+import { Z_WAY_ABOVE } from '../../../../styles';
+import { Button } from '../../../styles';
 
-export const FeedbackWrapper = styled.div`
+export const Wrapper = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -14,7 +14,7 @@ export const FeedbackWrapper = styled.div`
   z-index: ${Z_WAY_ABOVE};
 `;
 
-export const Feedback = styled(Button)`
+export const FeedbackButton = styled(Button)`
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   width: 30px;
