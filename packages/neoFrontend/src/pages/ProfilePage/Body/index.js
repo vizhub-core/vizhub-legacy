@@ -1,4 +1,5 @@
 import React, { useContext, useMemo } from 'react';
+import { usersMatch } from 'vizhub-presenters';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { ProfilePane } from '../ProfilePane';
 import { AuthContext } from '../../../authentication';
@@ -12,7 +13,7 @@ export const Body = () => {
   const { user, visualizationInfos } = profilePageData;
   const { me } = useContext(AuthContext);
 
-  const isMyProfile = me.id === user.id;
+  const isMyProfile = usersMatch(me, user);
 
   const vizzesUsersMap = useMemo(() => {
     return { [user.id]: user };
