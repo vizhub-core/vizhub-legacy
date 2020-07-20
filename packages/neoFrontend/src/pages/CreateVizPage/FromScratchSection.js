@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Title, Button, DevsOnly } from '../styles';
+import { Button } from '../../Button';
+import { Title, DevsOnly } from '../styles';
 
 export const FromScratchSection = () =>
   process.env.NODE_ENV === 'development' ? (
