@@ -7,7 +7,7 @@ import { Input } from '../../../../Input';
 import {
   UserPreviewList,
   useUserPreviewController,
-  useUsers
+  useUsers,
 } from '../../../../UserPreviewList';
 import { SubSectionDescription, FormRow } from '../../styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
@@ -32,11 +32,11 @@ export const CollaboratorsBody = () => {
   } = useCollaborators();
 
   useEffect(() => {
-    if (selectedUser){
+    if (selectedUser) {
       addCollaborator(selectedUser.id);
       setTypedText('');
     }
-  },[selectedUser, addCollaborator]);
+  }, [selectedUser, addCollaborator]);
 
   return (
     <>

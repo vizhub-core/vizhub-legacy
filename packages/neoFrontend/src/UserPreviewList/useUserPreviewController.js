@@ -28,37 +28,33 @@ export const useUserPreviewController = (users = []) => {
         setSelectedIndex(activeIndex);
       }
     },
-    [
-      users,
-      activeIndex,
-      setActiveIndex,
-      setSelectedIndex
-    ]
+    [users, activeIndex, setActiveIndex, setSelectedIndex]
   );
 
-  const handleUserSelect = useCallback((selectedUser) => {
-    const index = users.findIndex((user) => {
-      return user === selectedUser;
-    });
-    setSelectedIndex(index);
-  }, [users, setSelectedIndex]);
+  const handleUserSelect = useCallback(
+    (selectedUser) => {
+      const index = users.findIndex((user) => {
+        return user === selectedUser;
+      });
+      setSelectedIndex(index);
+    },
+    [users, setSelectedIndex]
+  );
 
-  const activeUser = (
+  const activeUser =
     activeIndex === OUT_OF_USERS_INDEX || users.length === 0
       ? null
-      : users[activeIndex]
-  );
+      : users[activeIndex];
 
-  const selectedUser = (
+  const selectedUser =
     selectedIndex === OUT_OF_USERS_INDEX || users.length === 0
       ? null
-      : users[selectedIndex]
-  );
+      : users[selectedIndex];
 
   return {
     activeUser,
     selectedUser,
     handleKeyDown,
-    handleUserSelect
+    handleUserSelect,
   };
 };
