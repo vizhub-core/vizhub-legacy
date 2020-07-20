@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { ProfilePane } from '../ProfilePane';
+import { AuthContext } from '../../../authentication';
 import { NavBar } from '../../../NavBar';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
 import { Wrapper, Content, Centering } from '../../styles';
@@ -9,6 +10,9 @@ import { Feedback } from './styles';
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
   const { user, visualizationInfos } = profilePageData;
+  const { me } = useContext(AuthContext);
+
+  const isMyProfile = me.id === user.id;
 
   const vizzesUsersMap = useMemo(() => {
     return { [user.id]: user };
@@ -38,7 +42,7 @@ export const Body = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Feedback>Feedback</Feedback>
+        {isMyProfile ? <Feedback>Feedback</Feedback> : null}
       </a>
     </>
   );
