@@ -4,7 +4,6 @@ import { ProfilePane } from '../ProfilePane';
 import { NavBar } from '../../../NavBar';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
 import { Wrapper, Content, Centering } from '../../styles';
-import { Feedback } from './Feedback';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
@@ -33,7 +32,6 @@ export const Body = () => {
           </Centering>
         </Content>
       </Wrapper>
-      <Feedback />
     </>
   );
 };
