@@ -1,16 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavBar } from '../../NavBar';
-import {
-  Wrapper,
-  Content,
-  Title,
-  Button,
-  DevsOnly,
-  Centering,
-} from '../styles';
-import { Box, Octocat, Terms } from './styles';
+import { Button } from '../../Button';
 import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';
+import { Wrapper, Content, Title, DevsOnly, Centering } from '../styles';
+import { Box, Octocat, Terms } from './styles';
 
 export const AuthPage = () => {
   return (

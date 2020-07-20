@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { Button } from '../../../Button';
 import { isMobile } from '../../../mobileMods';
 import { Z_BELOW } from '../../../styles';
-import { Button } from '../../styles';
 
 export const Wrapper = styled.div`
   display: flex;

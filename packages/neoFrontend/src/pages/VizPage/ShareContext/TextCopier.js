@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import copy from 'copy-to-clipboard';
-import { Button } from '../../styles';
+import { Button } from '../../../Button';
 import { Input } from '../../../Input';
 import { FormRow } from '../styles';
 
