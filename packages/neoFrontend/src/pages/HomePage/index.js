@@ -25,7 +25,7 @@ export const HomePage = ({ history }) => {
 
   return (
     <>
-      <HtmlStylesOverride overflow={{'overflow-y': 'scroll'}}/>
+      <HtmlStylesOverride overflow={{ 'overflow-y': 'scroll' }} />
       <HomePageDataProvider sort={sort} fallback={<LoadingScreen />}>
         <NavBar isHomePage={true} showSearch />
         <Wrapper>

@@ -4,6 +4,7 @@ import { ProfilePane } from '../ProfilePane';
 import { NavBar } from '../../../NavBar';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
 import { Wrapper, Content, Centering } from '../../styles';
+import { Feedback } from './styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
@@ -32,6 +33,9 @@ export const Body = () => {
           </Centering>
         </Content>
       </Wrapper>
+      <a href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new">
+        <Feedback>Feedback</Feedback>
+      </a>
     </>
   );
 };

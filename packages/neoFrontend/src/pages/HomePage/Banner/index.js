@@ -54,20 +54,11 @@ export const Banner = () => (
             </li>
             <li>
               <MessageLink
-                href="https://github.com/datavis-tech/vizhub-issue-tracker/projects/2"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                VizHub Roadmap Kanban
-              </MessageLink>
-            </li>
-            <li>
-              <MessageLink
                 href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Report a bug or idea!
+                Send feedback
               </MessageLink>
             </li>
           </MessageList>

@@ -5,4 +5,3 @@ export const HtmlStylesOverride = createGlobalStyle`
     overflow-y: scroll;
   }
 `;
-

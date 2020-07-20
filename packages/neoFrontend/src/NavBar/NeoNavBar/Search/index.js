@@ -4,7 +4,7 @@ import { useSearchQuery } from '../../../useSearchQuery';
 import {
   UserPreviewList,
   useUserPreviewController,
-  useUsers
+  useUsers,
 } from '../../../UserPreviewList';
 import { SearchInput, Form } from './styles';
 
