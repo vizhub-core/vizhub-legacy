@@ -1,18 +1,17 @@
 // Common styles used in multiple pages.
 import styled from 'styled-components';
+import { Button } from '../../styles';
 
-export const Feedback = styled.div`
+export const Feedback = styled(Button)`
   position: fixed;
   top: 50%;
   right: 0px;
   writing-mode: vertical-lr;
   transform: rotate(180deg);
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border: solid 1px #3866e9;
   width: 30px;
-  display: flex;
-  align-items: center;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  height: unset;
+  padding: 16px 0 16px 0;
+  border-radius: 0 6px 6px 0;
+  border-left: none;
+  font-size: 14px;
 `;
