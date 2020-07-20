@@ -287,3 +287,6 @@ export const removeCollaboratorOp = ({
   }
   return op;
 };
+
+export const usersMatch = (userA, userB) =>
+  userA && userB && userA.id === userB.id;
