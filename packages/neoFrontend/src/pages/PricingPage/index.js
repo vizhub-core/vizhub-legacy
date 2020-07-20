@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, HorizontalRule, Button } from '../styles';
+import { Button } from '../../Button';
+import { Wrapper, Content, HorizontalRule } from '../styles';
 import {
   Table,
   Row,

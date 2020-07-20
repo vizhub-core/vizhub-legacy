@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useCallback } from 'react';
-import { Button } from '../../styles';
+import { Button } from '../../../Button';
 import { Modal } from '../../../Modal';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
-import { RadioButton } from '../RadioButton';
 import { HorizontalRule } from '../../styles';
 import {
   Dialog,
@@ -14,6 +13,7 @@ import {
   SectionDescription,
   Spacer,
 } from '../styles';
+import { RadioButton } from '../RadioButton';
 import { useSettings } from './useSettings';
 import { SetHeight } from './SetHeight';
 
