@@ -5,7 +5,7 @@ import { AuthContext } from '../../../authentication';
 import { NavBar } from '../../../NavBar';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
 import { Wrapper, Content, Centering } from '../../styles';
-import { Feedback } from './styles';
+import { Feedback, FeedbackWrapper } from './styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
@@ -37,13 +37,18 @@ export const Body = () => {
           </Centering>
         </Content>
       </Wrapper>
-      <a
-        href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {isMyProfile ? <Feedback>Feedback</Feedback> : null}
-      </a>
+
+      {isMyProfile ? (
+        <a
+          href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FeedbackWrapper>
+            <Feedback>Feedback</Feedback>
+          </FeedbackWrapper>
+        </a>
+      ) : null}
     </>
   );
 };
