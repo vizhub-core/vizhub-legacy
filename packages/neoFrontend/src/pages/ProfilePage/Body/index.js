@@ -33,7 +33,11 @@ export const Body = () => {
           </Centering>
         </Content>
       </Wrapper>
-      <a href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new">
+      <a
+        href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Feedback>Feedback</Feedback>
       </a>
     </>
