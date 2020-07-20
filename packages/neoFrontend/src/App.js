@@ -22,6 +22,7 @@ import {
   TermsPage,
 } from './pages';
 import { Themed } from './theme';
+import { Feedback } from './Feedback';
 
 export const App = () => (
   <Themed>
@@ -59,5 +60,6 @@ export const App = () => (
         </AlertDialogProvider>
       </ErrorProvider>
     </Router>
+    <Feedback />
   </Themed>
 );
