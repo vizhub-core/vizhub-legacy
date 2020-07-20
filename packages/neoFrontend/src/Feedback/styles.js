@@ -1,9 +1,7 @@
 // Common styles used in multiple pages.
 import styled from 'styled-components';
 import { Z_WAY_ABOVE } from '../styles';
-
-// TODO move this
-import { Button } from '../pages/styles';
+import { Button } from '../Button';
 
 export const Wrapper = styled.div`
   position: fixed;

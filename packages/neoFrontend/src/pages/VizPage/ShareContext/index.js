@@ -1,8 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { showEmbed, showCollaborators } from '../../../featureFlags';
-import { Button } from '../../styles';
+import { Button } from '../../../Button';
 import { Modal } from '../../../Modal';
-import { useShare } from './useShare';
 import {
   Dialog,
   DialogTitle,
@@ -10,6 +9,7 @@ import {
   Section,
   SectionTitle,
 } from '../styles';
+import { useShare } from './useShare';
 import { Tabs, Tab } from './Tabs';
 import { LinkBody } from './LinkBody';
 import { EmbedBody } from './EmbedBody';
