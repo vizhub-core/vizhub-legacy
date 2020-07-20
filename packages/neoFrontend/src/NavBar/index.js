@@ -1,7 +1,7 @@
 import React from 'react';
 import { showNeoNavBar } from '../featureFlags';
 import { NavBar as OldNavBar } from './NavBar';
-import { NavBar as NeoNavBar } from './NeoNavBar';
+import { NeoNavBar } from './NeoNavBar';
 
 export const NavBar = (props) => {
   return showNeoNavBar ? (
