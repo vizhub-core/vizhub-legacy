@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
-import { showPricing, showAboutLink } from '../../featureFlags';
+import { showAboutLink } from '../../featureFlags';
 import { LogoSVG } from '../../svg';
 import { isMobile } from '../../mobileMods';
 import { AuthContext, AUTH_PENDING } from '../../authentication';
@@ -10,7 +10,7 @@ import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
 import { NavLink, LogoHREF } from './styles';
 
-export const NavBar = withTheme(
+export const NeoNavBar = withTheme(
   ({ theme, searchProps = {}, showSearch = false, showAuth = false }) => {
     const { navbarHeight, navbarLogoColor } = theme;
     const { me, signIn } = useContext(AuthContext);
@@ -36,11 +36,9 @@ export const NavBar = withTheme(
         }
         AboutLink={showAboutLink && <NavLink exact>About</NavLink>}
         PricingLink={
-          showPricing && (
-            <NavLink exact to="/pricing">
-              Pricing
-            </NavLink>
-          )
+          <NavLink exact to="/pricing">
+            Pricing
+          </NavLink>
         }
         AuthSection={
           showAuth && (
