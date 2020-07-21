@@ -37,42 +37,44 @@ export const ForksPage = () => {
     const owner = getVizInfoOwner(pageData.visualizationInfo);
     const ownerUser = getUser(owner);
     return (
-      <Wrapper>
-        <Content>
-          <NavBar />
-          {showForkedFromViz ? (
-            <>
-              <Centering>
-                <Title>Visualization Home</Title>
-              </Centering>
-              <Centering>
-                <LiveVizPreview
-                  me={me}
-                  vizInfo={pageData.visualizationInfo}
-                  getUser={getUser}
-                />
-              </Centering>
-              <Centering>
-                <Title>Description</Title>
-              </Centering>
-              <Centering>
-                <Text>{pageData.visualizationInfo.description}</Text>
-              </Centering>
-            </>
-          ) : null}
-          <Centering>
-            <Title>
-              Forks of{' '}
-              <Link to={`/${getUserName(ownerUser)}/${id}`}>
-                {pageData.visualizationInfo.title}
-              </Link>
-            </Title>
-          </Centering>
-          <Centering>
-            <VizzesPresentation {...pageData} />
-          </Centering>
-        </Content>
-      </Wrapper>
+      <>
+        <NavBar />
+        <Wrapper>
+          <Content>
+            {showForkedFromViz ? (
+              <>
+                <Centering>
+                  <Title>Visualization Home</Title>
+                </Centering>
+                <Centering>
+                  <LiveVizPreview
+                    me={me}
+                    vizInfo={pageData.visualizationInfo}
+                    getUser={getUser}
+                  />
+                </Centering>
+                <Centering>
+                  <Title>Description</Title>
+                </Centering>
+                <Centering>
+                  <Text>{pageData.visualizationInfo.description}</Text>
+                </Centering>
+              </>
+            ) : null}
+            <Centering>
+              <Title>
+                Forks of{' '}
+                <Link to={`/${getUserName(ownerUser)}/${id}`}>
+                  {pageData.visualizationInfo.title}
+                </Link>
+              </Title>
+            </Centering>
+            <Centering>
+              <VizzesPresentation {...pageData} />
+            </Centering>
+          </Content>
+        </Wrapper>
+      </>
     );
   } else {
     return <LoadingScreen />;
