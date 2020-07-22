@@ -1,11 +1,10 @@
 import { getPageVisualizationInfos } from './getPageVisualizationInfos';
 
-
 export const getVisualizationInfosByUserId = (connection) => async ({
   owner,
   authenticatedUser,
   query,
-  sort
+  sort,
 }) => {
   return getPageVisualizationInfos(connection)({
     query,
@@ -14,6 +13,6 @@ export const getVisualizationInfosByUserId = (connection) => async ({
     offset: 0,
     // Show private visualizations if profile owner is currently authenticated.
     includePrivate: owner === authenticatedUser,
-    extraQueryParams: { owner }
+    extraQueryParams: { owner },
   });
 };

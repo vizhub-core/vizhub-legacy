@@ -1,19 +1,21 @@
 const omitUndefined = (object) => {
-  return Object
-    .keys(object)
-    .reduce((refinedObject, key) => {
-      if(object[key] !== undefined) {
-        refinedObject[key] = object[key];
-      }
+  return Object.keys(object).reduce((refinedObject, key) => {
+    if (object[key] !== undefined) {
+      refinedObject[key] = object[key];
+    }
 
-      return refinedObject;
-    }, {});
+    return refinedObject;
+  }, {});
 };
 
 export const fetchProfilePageData = async ({ userName, query, sort }) => {
-  const urlSearchParamsString = (new URLSearchParams(omitUndefined({ query, sort }))).toString();
+  const urlSearchParamsString = new URLSearchParams(
+    omitUndefined({ query, sort })
+  ).toString();
 
-  const url = `/api/user/getProfileData/${userName}${urlSearchParamsString && `?${urlSearchParamsString}`}`;
+  const url = `/api/user/getProfileData/${userName}${
+    urlSearchParamsString && `?${urlSearchParamsString}`
+  }`;
   const response = await fetch(url, {
     method: 'GET',
     credentials: 'same-origin',
