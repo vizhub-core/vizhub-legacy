@@ -1,28 +1,13 @@
-import React, { useCallback } from 'react';
-import { VIZ_INFO_SORT_OPTIONS } from 'vizhub-entities';
-import { Container, Header, Form, Select, SelectLabel } from './styles';
+import React from 'react';
+import { VizzesSortForm } from '../../../VizzesGrid/VizzesSortForm';
+import { Container, Header } from './styles';
 
-export const Sort = ({ value, onChange }) => {
-  const handleChange = useCallback(
-    (event) => {
-      onChange(event.target.value);
-    },
-    [onChange]
-  );
-
+export const Sort = (props) => {
   return (
+
     <Container>
       <Header>VizHub Community</Header>
-      <Form>
-        <SelectLabel>Sort By</SelectLabel>
-        <Select value={value} onChange={handleChange}>
-          {VIZ_INFO_SORT_OPTIONS.map(({ id, label }) => (
-            <option key={id} value={id}>
-              {label}
-            </option>
-          ))}
-        </Select>
-      </Form>
+      <VizzesSortForm {...props} />
     </Container>
   );
 };
