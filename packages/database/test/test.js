@@ -38,12 +38,12 @@ describe('Database', () => {
   });
 
   it('should create a user', async () => {
-    const userOut = await database.createUser(user)
+    const userOut = await database.createUser(user);
     assert.deepEqual(userOut, user);
   });
 
   it('should list visualizations by user', async () => {
-    const visualizationInfos = await database.getVisualizationInfosByUserId(user.id);
+    const visualizationInfos = await database.getVisualizationInfosByUserId({ owner: user.id });
     assert.deepEqual(visualizationInfos, [visualizationInfo]);
   });
 
