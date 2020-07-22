@@ -38,7 +38,9 @@ export const PricingPage = () => {
                 <Row>
                   <Left>
                     <FeatureTitle>{feature.title}</FeatureTitle>
-                    <FeatureDescription>{feature.description}</FeatureDescription>
+                    <FeatureDescription>
+                      {feature.description}
+                    </FeatureDescription>
                   </Left>
                   <Right>
                     {plans.map((plan) => (

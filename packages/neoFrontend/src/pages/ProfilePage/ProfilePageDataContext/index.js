@@ -1,27 +1,27 @@
 import React, { createContext, useContext } from 'react';
-import { withRouter } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { ErrorContext } from '../../../ErrorContext';
+import { useSearchQuery } from '../../../useSearchQuery';
 import { useProfilePageData } from './useProfilePageData';
-
 export const ProfilePageDataContext = createContext();
 
-export const ProfilePageDataProvider = withRouter(
-  ({ match, fallback, children }) => {
-    const { userName } = match.params;
-    const profilePageData = useProfilePageData(userName);
-    const { setError } = useContext(ErrorContext);
+export const ProfilePageDataProvider = ({ fallback, children }) => {
+  const { userName } = useParams();
+  const { query, sort } = useSearchQuery();
 
-    if (profilePageData && profilePageData.error) {
-      setError(new Error('User not found.'));
-      return null;
-    }
+  const profilePageData = useProfilePageData(userName, query, sort);
+  const { setError } = useContext(ErrorContext);
 
-    return profilePageData ? (
-      <ProfilePageDataContext.Provider value={profilePageData}>
-        {children}
-      </ProfilePageDataContext.Provider>
-    ) : (
-      fallback
-    );
+  if (profilePageData && profilePageData.error) {
+    setError(new Error('User not found.'));
+    return null;
   }
-);
+
+  return profilePageData ? (
+    <ProfilePageDataContext.Provider value={profilePageData}>
+      {children}
+    </ProfilePageDataContext.Provider>
+  ) : (
+    fallback
+  );
+};
