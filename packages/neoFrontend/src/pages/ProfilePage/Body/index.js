@@ -1,9 +1,15 @@
 import React, { useContext, useMemo } from 'react';
-import { ProfilePageDataContext } from '../ProfilePageDataContext';
-import { ProfilePane } from '../ProfilePane';
+import { showSortOptions } from '../../../featureFlags';
 import { NavBar } from '../../../NavBar';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
-import { Wrapper, Content, Centering } from '../../styles';
+import {
+  VizzesSortForm,
+  useVizzesSort,
+} from '../../../VizzesGrid/VizzesSortForm';
+
+import { ProfilePane } from '../ProfilePane';
+import { ProfilePageDataContext } from '../ProfilePageDataContext';
+import { Wrapper, Content, Centering, SpaceBetween } from '../../styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
@@ -17,12 +23,19 @@ export const Body = () => {
     return { redirectPath: `/${user.userName}` };
   }, [user.userName]);
 
+  const [sort, handleSortChange] = useVizzesSort();
+
   return (
     <>
       <NavBar showSearch searchProps={searchProps} />
       <Wrapper>
         <Content>
-          <ProfilePane user={user} />
+          <SpaceBetween>
+            <ProfilePane user={user} />
+            {showSortOptions ? (
+              <VizzesSortForm value={sort} onChange={handleSortChange} />
+            ) : null}
+          </SpaceBetween>
           <Centering>
             <Vizzes
               className="test-profile-page-viz-previews"
