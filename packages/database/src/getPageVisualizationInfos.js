@@ -35,7 +35,7 @@ export const getPageVisualizationInfos = (connection) => async ({
     ...extraQueryParams,
   };
 
-  if(!includePrivate) {
+  if (!includePrivate) {
     mongoQuery.privacy = { $ne: 'private' };
   }
 

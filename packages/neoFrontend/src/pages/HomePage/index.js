@@ -10,7 +10,6 @@ import { Banner } from './Banner';
 import { Sort } from './Sort';
 import { HtmlStylesOverride } from './styles';
 
-
 export const HomePage = () => {
   const [sort, handleSortChange] = useVizzesSort();
 

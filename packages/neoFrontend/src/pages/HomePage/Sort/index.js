@@ -4,7 +4,6 @@ import { Container, Header } from './styles';
 
 export const Sort = (props) => {
   return (
-
     <Container>
       <Header>VizHub Community</Header>
       <VizzesSortForm {...props} />

@@ -1,9 +1,10 @@
 import { useLocation } from 'react-router';
 
 const toObject = (searchParams) => {
-  return Array
-    .from(searchParams.entries())
-    .reduce((params, [key, value]) => (params[key] = value) && params, {});
+  return Array.from(searchParams.entries()).reduce(
+    (params, [key, value]) => (params[key] = value) && params,
+    {}
+  );
 };
 
 export const useSearchQuery = (key) => {

@@ -2,16 +2,14 @@ import React, { useContext, useMemo } from 'react';
 import { showSortOptions } from '../../../featureFlags';
 import { NavBar } from '../../../NavBar';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
-import { VizzesSortForm, useVizzesSort } from '../../../VizzesGrid/VizzesSortForm';
+import {
+  VizzesSortForm,
+  useVizzesSort,
+} from '../../../VizzesGrid/VizzesSortForm';
 
 import { ProfilePane } from '../ProfilePane';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
-import {
-  Wrapper,
-  Content,
-  Centering,
-  SpaceBetween
-} from '../../styles';
+import { Wrapper, Content, Centering, SpaceBetween } from '../../styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
