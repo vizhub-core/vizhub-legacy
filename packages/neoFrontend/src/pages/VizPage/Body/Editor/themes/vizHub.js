@@ -61,6 +61,9 @@ export const vizHub = (rotation) => {
     //number: { color: light },
     fatCursor: { backgroundColor: 'rgba(228, 232, 255, 0.3)' },
     default: { color: light },
+    link: {
+      cursor: 'pointer',
+    },
   };
 
   theme.searching = theme.fatCursor;
@@ -70,7 +73,7 @@ export const vizHub = (rotation) => {
     const color = hcl(t * 360, saturation, luminance).formatHex();
     const keys = typeof entry === 'string' ? [entry] : entry;
     keys.forEach((key) => {
-      theme[key] = { color };
+      theme[key] = Object.assign({}, theme[key], { color });
     });
     return color;
   });
