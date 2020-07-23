@@ -145,7 +145,15 @@ export const CodeAreaCodeMirror5 = ({
     cm.addOverlay(linkOverlay);
 
     setCodeMirror(cm);
-  }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror, extension]);
+  }, [
+    ref,
+    editorModules,
+    fileIndex,
+    realtimeModules,
+    viz$,
+    codeMirror,
+    extension,
+  ]);
 
   // Update language mode and wrapping when extension changes.
   useEffect(() => {
@@ -154,7 +162,6 @@ export const CodeAreaCodeMirror5 = ({
     codeMirror.setOption('lineWrapping', getLineWrapping(extension));
 
     codeMirror.performLint();
-
   }, [codeMirror, extension]);
 
   // Don't allow editing of bundle.js.
