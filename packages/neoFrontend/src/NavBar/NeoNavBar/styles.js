@@ -46,5 +46,5 @@ export const Banner = styled.div`
   padding-left: 24px;
   box-sizing: border-box;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: ${(props) => props.theme.bannerMarginBottom}px;
 `;

@@ -15,6 +15,7 @@ import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 import { PresenceWidget } from './PresenceWidget';
+import { linkOverlay } from './overlays';
 
 const colorHash = new ColorHash();
 
@@ -36,6 +37,7 @@ export const CodeAreaCodeMirror5 = ({
   activeFile,
   activeLine,
   onGutterClick,
+  onLinkClick,
 }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
@@ -120,26 +122,23 @@ export const CodeAreaCodeMirror5 = ({
     }
 
     const { CodeMirror } = editorModules;
-
-    CodeMirror.commands.autocomplete = (cm) => {
-      cm.showHint({ hint: CodeMirror.hint.anyword });
-    };
-
-    setCodeMirror(
-      new CodeMirror(ref.current, {
-        value: file.text,
-        lineNumbers: true,
-        tabSize: 2,
-        matchBrackets: true,
-        closeOnBlur: false,
-        extraKeys: {
-          'Ctrl-Space': 'autocomplete',
-          'Shift-Enter': () => {
-            manualRunRef.current();
-          },
+    const cm = new CodeMirror(ref.current, {
+      value: file.text,
+      lineNumbers: true,
+      tabSize: 2,
+      matchBrackets: true,
+      closeOnBlur: false,
+      extraKeys: {
+        'Ctrl-Space': 'autocomplete',
+        'Shift-Enter': () => {
+          manualRunRef.current();
         },
-      })
-    );
+      },
+    });
+
+    cm.addOverlay(linkOverlay);
+
+    setCodeMirror(cm);
   }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
 
   // Compute extension of active file (e.g. '.js', '.md').
@@ -217,6 +216,22 @@ export const CodeAreaCodeMirror5 = ({
       codeMirror.off('gutterClick', handler);
     };
   }, [codeMirror, onGutterClick]);
+
+  // Respond to link click
+  useEffect(() => {
+    if (!codeMirror) return;
+
+    const handler = (_, event) => {
+      if (event.target.classList.contains('cm-link')) {
+        onLinkClick(event.target.textContent);
+      }
+    };
+
+    codeMirror.on('mousedown', handler);
+    return () => {
+      codeMirror.off('mousedown', handler);
+    };
+  }, [codeMirror, onLinkClick]);
 
   // Respond to changes in text.
   // Submit ops for local user-generated changes.
