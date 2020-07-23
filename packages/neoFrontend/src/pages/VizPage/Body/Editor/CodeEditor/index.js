@@ -18,6 +18,7 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
     showViewer,
     closeActiveFile,
     setActiveLine,
+    openLink,
   } = useContext(URLStateContext);
 
   const { codeEditorWidth } = useContext(SplitPaneResizeContext);
@@ -75,6 +76,7 @@ export const CodeEditor = ({ showTop, toggleShowTop }) => {
         closeActiveFile={closeActiveFile}
         activeLine={activeLine}
         onGutterClick={handleGutterClick}
+        onLinkClick={openLink}
       />
     </Wrapper>
   );
