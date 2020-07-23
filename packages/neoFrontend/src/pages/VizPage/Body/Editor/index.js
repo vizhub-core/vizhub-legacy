@@ -59,7 +59,10 @@ export const Editor = ({ showTop, toggleShowTop }) => {
               />
               {rotationEnabled
                 ? editorTheme.colors.map((color) => (
-                    <div style={{ background: color, height: '20px' }} />
+                    <div
+                      key={color}
+                      style={{ background: color, height: '20px' }}
+                    />
                   ))
                 : null}
             </Top>
