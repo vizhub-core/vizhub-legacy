@@ -91,6 +91,10 @@ export const useURLState = (props) => {
     dispatch({ type: 'exitRecoveryMode' });
   }, [dispatch]);
 
+  const openLink = useCallback((link) => {
+    window.open(link, '_blank');
+  }, []);
+
   // Derived accessors for URL state, exposed to components.
   return {
     activeFile,
@@ -116,5 +120,6 @@ export const useURLState = (props) => {
     showResizer,
     isRecoveryMode,
     exitRecoveryMode,
+    openLink,
   };
 };
