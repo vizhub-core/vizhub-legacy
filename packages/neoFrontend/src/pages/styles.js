@@ -30,11 +30,6 @@ export const Centering = styled.div`
   justify-content: center;
 `;
 
-export const SpaceBetween = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const Text = styled.div`
   max-width: 960px;
   padding: 10px;
