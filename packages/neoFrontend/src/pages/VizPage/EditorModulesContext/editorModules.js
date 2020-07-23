@@ -11,15 +11,13 @@ import 'codemirror/addon/search/searchcursor';
 import 'codemirror/addon/search/search';
 import 'codemirror/addon/dialog/dialog';
 import 'codemirror/addon/edit/matchbrackets';
-//import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/comment/comment';
-//import 'codemirror/addon/wrap/hardwrap';
-//import 'codemirror/addon/fold/foldcode';
-//import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/keymap/sublime';
 
 import 'codemirror/addon/hint/show-hint';
 import 'codemirror/addon/hint/anyword-hint';
+import 'codemirror/addon/lint/lint';
+import './codemirrorAddons/lint/jsxLint';
 
 import { bundle } from 'vizhub-presenters';
 
