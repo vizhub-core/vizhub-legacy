@@ -1,13 +1,13 @@
 export const config = {
-  'parserOptions': {
-    'ecmaVersion': 6,
-    'sourceType': 'module',
-    'ecmaFeatures': {
-      'jsx': true,
-      'modules': true
-    }
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      modules: true,
+    },
   },
-  'rules': {
+  rules: {
     'accessor-pairs': 0,
     'array-bracket-newline': 0,
     'array-bracket-spacing': 0,
@@ -20,25 +20,25 @@ export const config = {
     'block-spacing': 0,
     'brace-style': 0,
     'callback-return': 0,
-    'camelcase': 0,
+    camelcase: 0,
     'capitalized-comments': 0,
     'class-methods-use-this': 0,
     'comma-dangle': 1,
     'comma-spacing': 0,
     'comma-style': 0,
-    'complexity': 1,
+    complexity: 1,
     'computed-property-spacing': 0,
     'consistent-return': 0,
     'consistent-this': 0,
     'constructor-super': 1,
-    'curly': 0,
+    curly: 0,
     'default-case': 1,
     'default-case-last': 1,
     'default-param-last': 1,
     'dot-location': 0,
     'dot-notation': 0,
     'eol-last': 1,
-    'eqeqeq': 1,
+    eqeqeq: 1,
     'for-direction': 0,
     'func-call-spacing': 0,
     'func-name-matching': 0,
@@ -56,7 +56,7 @@ export const config = {
     'id-length': 0,
     'id-match': 0,
     'implicit-arrow-linebreak': 0,
-    'indent': 0,
+    indent: 0,
     'indent-legacy': 0,
     'init-declarations': 0,
     'jsx-quotes': 0,
@@ -255,15 +255,15 @@ export const config = {
     'prefer-spread': 0,
     'prefer-template': 0,
     'quote-props': 0,
-    'quotes': 0,
-    'radix': 0,
+    quotes: 0,
+    radix: 0,
     'require-atomic-updates': 0,
     'require-await': 0,
     'require-jsdoc': 0,
     'require-unicode-regexp': 0,
     'require-yield': 0,
     'rest-spread-spacing': 0,
-    'semi': 1,
+    semi: 1,
     'semi-spacing': 0,
     'semi-style': 0,
     'sort-imports': 0,
@@ -275,7 +275,7 @@ export const config = {
     'space-infix-ops': 0,
     'space-unary-ops': 0,
     'spaced-comment': 0,
-    'strict': 1,
+    strict: 1,
     'switch-colon-spacing': 0,
     'symbol-description': 0,
     'template-curly-spacing': 0,
@@ -288,10 +288,10 @@ export const config = {
     'wrap-iife': 0,
     'wrap-regex': 0,
     'yield-star-spacing': 0,
-    'yoda': 0
+    yoda: 0,
   },
-  'env': {
-    'browser': true,
-    'es6': true
-  }
+  env: {
+    browser: true,
+    es6: true,
+  },
 };
