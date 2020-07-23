@@ -9,7 +9,8 @@ import {
 
 import { ProfilePane } from '../ProfilePane';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
-import { Wrapper, Content, Centering, SpaceBetween } from '../../styles';
+import { Wrapper, Content, Centering } from '../../styles';
+import { ProfileMenuBar } from './styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
@@ -30,12 +31,12 @@ export const Body = () => {
       <NavBar showSearch searchProps={searchProps} />
       <Wrapper>
         <Content>
-          <SpaceBetween>
+          <ProfileMenuBar>
             <ProfilePane user={user} />
             {showSortOptions ? (
               <VizzesSortForm value={sort} onChange={handleSortChange} />
             ) : null}
-          </SpaceBetween>
+          </ProfileMenuBar>
           <Centering>
             <Vizzes
               className="test-profile-page-viz-previews"
