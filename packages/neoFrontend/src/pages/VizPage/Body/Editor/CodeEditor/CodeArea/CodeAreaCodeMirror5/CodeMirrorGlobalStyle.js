@@ -15,7 +15,7 @@ const objectToCSS = (object) =>
     : '';
 
 const keys = {};
-//const css = key => props => objectToCSS(props.theme.editor[key]);
+
 const css = (key) => (props) => {
   keys[key] = true;
   let styleObject = props.theme.editor[key];
@@ -72,7 +72,6 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.editorActiveLineBackground};
   }
   .cm-s-default .cm-tag { ${css('tag')} }
-  .cm-s-default .cm-link { ${css('link')} }
   .cm-s-default .cm-string { ${css('string')} }
   .cm-s-default .cm-string-2 { ${css('string2')} }
   .cm-s-default .cm-attribute { ${css('attribute')} }
@@ -91,4 +90,5 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .cm-s-default .cm-builtin { ${css('builtin')} }
   .cm-s-default .cm-header { ${css('header')} }
   .cm-s-default .cm-searching { ${css('searching')} }
+  .cm-s-default .cm-link { ${css('link')} }
 `;
