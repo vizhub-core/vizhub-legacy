@@ -1,4 +1,4 @@
-/* The lint marker gutter */
+// Inspired by https://codemirror.net/demo/lint.html
 export const CodeMirrorLintCSS = `
   .CodeMirror-lint-markers {
     width: 16px;
