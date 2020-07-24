@@ -22,5 +22,6 @@ export { PlayPauseSVG } from './PlayPauseSVG';
 export { LockSVG } from './LockSVG';
 export { PlanIncludedSVG } from './PlanIncludedSVG';
 export { PlanExcludedSVG } from './PlanExcludedSVG';
+export { PeopleSVG } from './PeopleSVG';
 
 export { SVGGallery } from './svgGallery';

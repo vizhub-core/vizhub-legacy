@@ -1,6 +1,6 @@
 {
   "scripts": {
-		"lerna:bootstrap": "lerna bootstrap --hoist",
+    "lerna:bootstrap": "lerna bootstrap --hoist",
     "lerna:test": "lerna run test",
     "lint": "eslint . --fix",
     "test": "cd packages/entities && npm test && cd ../useCases && npm test && cd ../gateways && npm test && cd ../presenters && npm test && cd ../controllers && npm test && cd ../database && npm test && echo 'All tests pass!'",
@@ -13,6 +13,7 @@
     "prettier": "cd packages/neoFrontend && npm run prettier && cd ../neoBackend && npm run prettier"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.1",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.18.0",
