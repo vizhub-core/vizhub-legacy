@@ -5,7 +5,6 @@ import { Footer, Z_WAY_ABOVE } from '../styles';
 export const VizPreviews = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 
 export const Wrapper = styled.div`
