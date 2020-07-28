@@ -2,6 +2,7 @@ import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import ColorHash from 'color-hash';
 import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
+import { lintJs } from '../../../../../../../featureFlags';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { VimModeContext } from '../../../../../VimModeContext';
@@ -139,7 +140,7 @@ export const CodeAreaCodeMirror5 = ({
         },
       },
       gutters: ['CodeMirror-lint-markers'],
-      lint: true,
+      lint: lintJs,
     });
 
     cm.addOverlay(linkOverlay);

@@ -1,8 +1,4 @@
 import CodeMirror from 'codemirror';
-import Linter from 'eslint4b';
-import { config } from './eslintrc';
-
-const linter = new Linter();
 
 const parseErrors = (errors) => {
   return errors.map((error) => {
@@ -19,9 +15,21 @@ const parseErrors = (errors) => {
   });
 };
 
-const validator = (text) => {
-  const results = linter.verify(text, config);
-  return parseErrors(results);
+const validator = (text, callback) => {
+  const linterModulePromise = import('eslint4b');
+  const lintrcModulePromise = import('./eslintrc');
+
+  Promise.all([linterModulePromise, lintrcModulePromise]).then(
+    ([linterModule, lintrcModule]) => {
+      const Linter = linterModule.default;
+      const linter = new Linter();
+      const { config } = lintrcModule;
+      const results = linter.verify(text, config);
+      callback(parseErrors(results));
+    }
+  );
 };
+
+validator.async = true;
 
 CodeMirror.registerHelper('lint', 'javascript', validator);
