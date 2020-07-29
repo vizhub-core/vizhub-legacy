@@ -49,6 +49,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.2",
     "@testing-library/react": "^10.3.0",
     "prettier": "^2.0.5"
   }
