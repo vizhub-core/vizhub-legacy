@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import { withRouter } from 'react-router';
 import { Modal } from '../../../Modal';
-import { Button } from '../../styles';
+import { Button } from '../../../Button';
 import { useDeleteViz } from './useDeleteViz';
 
 export const DeleteVizContext = createContext();

@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from 'react';
 import { getVizAnyoneCanEdit, anyoneCanEditChangeOp } from 'vizhub-presenters';
 import { CheckBox } from '../../CheckBox';
 import { useValue } from '../../../../useValue';
-import { RealtimeModulesContext } from '../../RealtimeModulesContext';
+import { RealtimeModulesContext } from '../../../../RealtimeModulesContext';
 import { VizContext } from '../../VizContext';
 
 export const AnyoneCanEdit = () => {

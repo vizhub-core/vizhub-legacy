@@ -6,7 +6,7 @@ import {
   getVizInfo,
 } from 'vizhub-presenters';
 import { useValue } from '../../../useValue';
-import { RealtimeModulesContext } from '../RealtimeModulesContext';
+import { RealtimeModulesContext } from '../../../RealtimeModulesContext';
 import { VizContext } from '../VizContext';
 
 export const useSettings = () => {

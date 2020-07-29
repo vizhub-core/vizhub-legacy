@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme } from '../theme';
+import { theme } from '../theme/defaulTheme';
 import styled from 'styled-components';
 
 const red = theme.attentionGrabber;

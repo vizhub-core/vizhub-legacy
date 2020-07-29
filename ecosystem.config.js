@@ -36,8 +36,16 @@ module.exports = {
       }
     }
   ],
-  /*
   deploy : {
+    staging: {
+      user : 'node',
+      host : 'INSERT HOST HERE',
+      ref  : 'origin/master',
+      repo : 'git@github.com:curran/vizhub.git',
+      path : '/var/www/staging',
+      'post-deploy' : 'npm install lerna && npm run lerna && ./buildFrontend.sh && pm2 reload ecosystem.config.js --env production'
+    }
+  /*
     production : {
       user : 'node',
       host : '212.83.163.1',
@@ -46,6 +54,6 @@ module.exports = {
       path : '/var/www/production',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
-  }
   */
+  }
 };

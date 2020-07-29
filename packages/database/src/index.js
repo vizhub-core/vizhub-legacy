@@ -13,12 +13,14 @@ import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
 import { getHomePageVisualizationInfos } from './getHomePageVisualizationInfos';
 import { searchVisualizationInfos } from './searchVisualizationInfos';
+import { getForks } from './getForks';
 import { searchUsers } from './searchUsers';
 import { getDatasetInfosByUserId } from './getDatasetInfosByUserId';
 import { updateImages } from './updateImages';
 import { getThumbnail } from './getThumbnail';
 import { getPreview } from './getPreview';
 import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
+import { incrementForksCount, decrementForksCount } from './forksCount';
 
 export {
   DOCUMENT_CONTENT,
@@ -45,10 +47,13 @@ export const Database = (connection) => ({
   getAllVisualizationInfos: getAllVisualizationInfos(connection),
   getHomePageVisualizationInfos: getHomePageVisualizationInfos(connection),
   searchVisualizationInfos: searchVisualizationInfos(connection),
+  getForks: getForks(connection),
   searchUsers: searchUsers(connection),
   getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
   updateImages: updateImages(connection),
   getThumbnail: getThumbnail(connection),
   getPreview: getPreview(connection),
   setImagesUpdatedTimestamp: setImagesUpdatedTimestamp(connection),
+  incrementForksCount: incrementForksCount(connection),
+  decrementForksCount: decrementForksCount(connection),
 });

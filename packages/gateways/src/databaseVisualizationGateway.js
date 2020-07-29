@@ -64,11 +64,8 @@ export class DatabaseVisualizationGateway {
     return await this.database.saveVisualization({ visualization });
   }
 
-  async getVisualizationInfosByUserId(id, authenticatedUser) {
-    return await this.database.getVisualizationInfosByUserId(
-      id,
-      authenticatedUser
-    );
+  async getVisualizationInfosByUserId(options) {
+    return await this.database.getVisualizationInfosByUserId(options);
   }
 
   async getAllVisualizationInfos() {
@@ -77,6 +74,10 @@ export class DatabaseVisualizationGateway {
 
   async searchVisualizationInfos(options) {
     return await this.database.searchVisualizationInfos(options);
+  }
+
+  async getForks(options) {
+    return await this.database.getForks(options);
   }
 
   async getHomePageVisualizationInfos(offset) {
@@ -89,5 +90,13 @@ export class DatabaseVisualizationGateway {
 
   async setImagesUpdatedTimestamp(options) {
     return await this.database.setImagesUpdatedTimestamp(options);
+  }
+
+  async incrementForksCount({ id }) {
+    return await this.database.incrementForksCount({ id });
+  }
+
+  async decrementForksCount({ id }) {
+    return await this.database.decrementForksCount({ id });
   }
 }

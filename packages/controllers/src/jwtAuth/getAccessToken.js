@@ -3,7 +3,7 @@ import { VizHubAPIError } from 'vizhub-entities';
 
 const oAuthAccessTokenURL = 'https://github.com/login/oauth/access_token';
 const client_id = process.env.REACT_APP_VIZHUB_GITHUB_CLIENT_ID;
-const client_secret = process.env.REACT_APP_VIZHUB_GITHUB_CLIENT_SECRET;
+const client_secret = process.env.VIZHUB_GITHUB_CLIENT_SECRET;
 
 // Get an access token from GitHub's API.
 export const getAccessToken = async (code) => {

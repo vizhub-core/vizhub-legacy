@@ -42,26 +42,31 @@ const visualizationInfos = [
 ];
 
 export const CreateVizPage = () => (
-  <Wrapper>
-    <Content>
-      <NavBar />
-      <Centered>
-        <AttentionGrabbingTitle>Create a Visualization!</AttentionGrabbingTitle>
-        <Subtitle>
-          Create a new visualization from a template or fork one from our users.
-        </Subtitle>
-        <VizPreviews>
-          {visualizationInfos.map((vizInfo) => (
-            <VizPreview
-              key={vizInfo.id}
-              vizInfo={vizInfo}
-              ownerUser={ownerUser}
-              openEditor={true}
-            />
-          ))}
-        </VizPreviews>
-        <FromScratchSection />
-      </Centered>
-    </Content>
-  </Wrapper>
+  <>
+    <NavBar />
+    <Wrapper>
+      <Content>
+        <Centered>
+          <AttentionGrabbingTitle>
+            Create a Visualization!
+          </AttentionGrabbingTitle>
+          <Subtitle>
+            Create a new visualization from a template or fork one from our
+            users.
+          </Subtitle>
+          <VizPreviews>
+            {visualizationInfos.map((vizInfo) => (
+              <VizPreview
+                key={vizInfo.id}
+                vizInfo={vizInfo}
+                ownerUser={ownerUser}
+                openEditor={true}
+              />
+            ))}
+          </VizPreviews>
+          <FromScratchSection />
+        </Centered>
+      </Content>
+    </Wrapper>
+  </>
 );

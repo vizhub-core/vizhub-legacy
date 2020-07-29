@@ -3,6 +3,7 @@ import { toDate } from 'vizhub-entities';
 import {
   showCreatedDate,
   showVideoThumbnail,
+  showForksCount,
 } from '../../../../../featureFlags';
 import {
   Wrapper,
@@ -13,12 +14,12 @@ import {
   Video,
   VideoThumbnail,
   Description,
-  SemiBold,
   VizLink,
 } from './styles';
 import { Author } from '../../../../../Author';
 import { responsiveYouTube } from './responsiveYouTube';
 import { renderMarkdown } from './renderMarkdown';
+import { Forks } from './Forks';
 
 const formatTimestamp = (timestamp) =>
   toDate(timestamp).toLocaleString(undefined, {
@@ -55,9 +56,7 @@ export const DescriptionSection = ({
         <Authorship size={size}>
           <Author ownerUser={ownerUser} />
           <AuthorshipMeta size={size}>
-            <div>
-              Last Edited <SemiBold>{lastUpdated}</SemiBold>
-            </div>
+            <div>Last Edited {lastUpdated}</div>
             {forkedFromVisualizationInfo ? (
               <div>
                 Forked from{' '}
@@ -66,14 +65,10 @@ export const DescriptionSection = ({
                 >
                   {forkedFromVisualizationInfo.title}
                 </VizLink>
-                {showCreatedDate ? (
-                  <>
-                    {' '}
-                    <SemiBold>{created}</SemiBold>
-                  </>
-                ) : null}
+                {showCreatedDate ? <> {created}</> : null}
               </div>
             ) : null}
+            {showForksCount ? <Forks ownerUser={ownerUser} /> : null}
           </AuthorshipMeta>
         </Authorship>
         <Description

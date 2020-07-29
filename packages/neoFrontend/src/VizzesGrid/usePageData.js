@@ -56,6 +56,13 @@ export const usePageData = (fetchData) => {
     usersById,
   } = state;
 
+  const reset = useCallback(() => dispatch({ type: 'RESET' }), [dispatch]);
+
+  // change current page should not cause reset since current page stay untouched
+  useEffect(() => {
+    reset();
+  }, [fetchData, reset]);
+
   // Fetch the next page of visualizations.
   const fetchNextPage = useCallback(() => {
     dispatch({ type: 'FETCH_NEXT_PAGE_REQUEST' });
@@ -83,6 +90,6 @@ export const usePageData = (fetchData) => {
     paginate,
     usersById,
     isFetchingNextPage,
-    reset: useCallback(() => dispatch({ type: 'RESET' }), [dispatch]),
+    reset,
   };
 };

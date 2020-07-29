@@ -1,43 +1,29 @@
-import React, { useMemo, useState, useEffect, useCallback } from 'react';
-import { BehaviorSubject } from 'rxjs';
-import { switchMap, debounceTime } from 'rxjs/operators';
+import React, { useState, useEffect } from 'react';
 import {
   showCollaboratorsAnyoneCanEdit,
   showCollaboratorsManagement,
 } from '../../../../featureFlags';
 import { Input } from '../../../../Input';
-import { Avatar } from '../../../../Avatar';
+import {
+  UserPreviewList,
+  useUserPreviewController,
+  useUsers,
+} from '../../../../UserPreviewList';
 import { SubSectionDescription, FormRow } from '../../styles';
-import { fetchUserSearchResults } from './fetchUserSearchResults';
-import { UserPreviewList, UserPreview, UserName } from './styles';
 import { AnyoneCanEdit } from './AnyoneCanEdit';
 import { useCollaborators } from './useCollaborators';
 import { CollaboratorList } from './CollaboratorList';
 
-const fetchData = async (typedText) => {
-  if (!typedText) return [];
-  const results = await fetchUserSearchResults(typedText);
-  return results.users;
-};
-
-const debounceTimeMS = 500;
 export const CollaboratorsBody = () => {
   const [typedText, setTypedText] = useState('');
-  const typedText$ = useMemo(() => new BehaviorSubject(), []);
-  useEffect(() => {
-    typedText$.next(typedText);
-    setResults([]);
-  }, [typedText$, typedText]);
 
-  const [results, setResults] = useState([]);
-  const results$ = useMemo(
-    () => typedText$.pipe(debounceTime(debounceTimeMS), switchMap(fetchData)),
-    [typedText$]
-  );
-  useEffect(() => {
-    const subscription = results$.subscribe(setResults);
-    return () => subscription.unsubscribe();
-  }, [results$]);
+  const users = useUsers(typedText);
+  const {
+    activeUser,
+    selectedUser,
+    handleKeyDown,
+    handleUserSelect,
+  } = useUserPreviewController(users);
 
   const {
     collaborators,
@@ -45,25 +31,12 @@ export const CollaboratorsBody = () => {
     removeCollaborator,
   } = useCollaborators();
 
-  const handleAddCollaboratorClick = useCallback(
-    (userId) => {
-      addCollaborator(userId);
+  useEffect(() => {
+    if (selectedUser) {
+      addCollaborator(selectedUser.id);
       setTypedText('');
-      setResults([]);
-    },
-    [addCollaborator]
-  );
-
-  // Support hitting the enter key to select first result.
-  const handleFormSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
-      if (results && results.length > 0) {
-        handleAddCollaboratorClick(results[0].id);
-      }
-    },
-    [results, handleAddCollaboratorClick]
-  );
+    }
+  }, [selectedUser, addCollaborator]);
 
   return (
     <>
@@ -73,24 +46,17 @@ export const CollaboratorsBody = () => {
             collaborators={collaborators}
             removeCollaborator={removeCollaborator}
           />
-          <form onSubmit={handleFormSubmit}>
+          <form>
             <SubSectionDescription>
               Start typing to search for collaborators to add.
             </SubSectionDescription>
-            <FormRow>
+            <FormRow tabIndex="-1" onKeyDown={handleKeyDown}>
               <Input value={typedText} onChange={setTypedText} size="grow" />
-              <UserPreviewList>
-                {results &&
-                  results.map((user) => (
-                    <UserPreview
-                      key={user.userName}
-                      onClick={() => handleAddCollaboratorClick(user.id)}
-                    >
-                      <Avatar size={24} user={user} isDisabled={true} />
-                      <UserName>{user.fullName}</UserName>
-                    </UserPreview>
-                  ))}
-              </UserPreviewList>
+              <UserPreviewList
+                user={activeUser}
+                users={users}
+                onSelect={handleUserSelect}
+              />
             </FormRow>
           </form>
         </>

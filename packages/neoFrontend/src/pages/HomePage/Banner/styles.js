@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { Button } from '../../../Button';
 import { isMobile } from '../../../mobileMods';
 import { Z_BELOW } from '../../../styles';
-import { Button } from '../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -11,13 +11,13 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   color: white;
-  margin-bottom: ${isMobile ? 30 : 0}px;
+  margin: ${isMobile ? '6px 6px 30px 6px' : 0};
 `;
 
 export const Bar = styled.div`
   position: absolute;
-  top: ${isMobile ? 0 : 30}px;
-  bottom: ${isMobile ? 0 : 30}px;
+  top: ${isMobile ? 0 : 10}px;
+  bottom: ${isMobile ? 0 : 10}px;
   right: 0;
   left: 0;
   border-radius: 3px;
@@ -46,14 +46,11 @@ export const Message = styled.div`
 //`;
 
 export const MessageSmallText = styled.div`
-  font-size: 16.8px;
-  font-weight: 600;
+  font-size: 18px;
 `;
 
 export const MessageLargeText = styled.div`
-  font-family: Poppins;
-  font-size: 28.8px;
-  font-weight: 300;
+  font-size: 32px;
   margin-top: 5px;
   margin-bottom: 5px;
 `;

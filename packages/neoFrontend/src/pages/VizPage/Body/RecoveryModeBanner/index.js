@@ -1,6 +1,7 @@
 import React from 'react';
 import { Wrapper, Side, Message } from './styles';
-import { Button } from '../../../styles';
+import { Button } from '../../../../Button';
+
 export const RecoveryModeBanner = ({ exitRecoveryMode }) => (
   <Wrapper>
     <Side>

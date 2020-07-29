@@ -63,6 +63,7 @@ export const visualizationInfoData = Object.assign({}, documentInfoData, {
   privacy: 'public',
   collaborators: [{ userId: '47895473289547832938754' }],
   anyoneCanEdit: false,
+  forksCount: 2,
 });
 
 export const visualizationInfo = new VisualizationInfo(visualizationInfoData);

@@ -12,6 +12,7 @@ import {
   getUpvoteCount,
   getDidVote,
   upvoteOp,
+  isVizInfoPrivate,
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
@@ -31,6 +32,7 @@ export const Viewer = () => {
     ownerUser,
     forkedFromVisualizationInfo,
     forkedFromVisualizationOwnerUserName,
+    usersWhoUpvoted,
   } = useContext(VizPageDataContext);
 
   const { viz$, submitVizInfoOp } = useContext(VizContext);
@@ -85,7 +87,7 @@ export const Viewer = () => {
     document.title = vizInfo.title;
   }, [vizInfo.title]);
 
-  const isPrivate = vizInfo.privacy === 'private';
+  const isPrivate = isVizInfoPrivate(vizInfo);
 
   return (
     <Wrapper className="test-viewer">
@@ -106,6 +108,7 @@ export const Viewer = () => {
               upvoteCount={upvoteCount}
               onUpvoteClick={handleUpvote}
               isPrivate={isPrivate}
+              usersWhoUpvoted={usersWhoUpvoted}
             />
             <HorizontalRule />
             <DescriptionSection

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, HorizontalRule, Button } from '../styles';
+import { Button } from '../../Button';
+import { Wrapper, Content, HorizontalRule } from '../styles';
 import {
   Table,
   Row,
@@ -15,48 +16,66 @@ import {
 import { features, plans, FREE } from './featuresAndPlans';
 import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 
-export const PricingPage = () => (
-  <Wrapper>
-    <Content>
+import { handleUpgradeClick } from './stripe';
+
+export const PricingPage = () => {
+  return (
+    <>
       <NavBar />
-      <Table>
-        <Row>
-          <Left />
-          <Right>
-            {plans.map((plan) => (
-              <PlanLabel key={plan.id}>{plan.label}</PlanLabel>
-            ))}
-          </Right>
-        </Row>
-        {features.map((feature, i) => (
-          <>
-            <Row key={feature.title}>
-              <Left>
-                <FeatureTitle>{feature.title}</FeatureTitle>
-                <FeatureDescription>{feature.description}</FeatureDescription>
-              </Left>
+      <Wrapper>
+        <Content>
+          <Table>
+            <Row>
+              <Left />
               <Right>
-                {plans.map((plan) =>
-                  feature.plans[plan.id] ? (
-                    <PlanIncludedSVG />
-                  ) : (
-                    <PlanExcludedSVG />
-                  )
-                )}
+                {plans.map((plan) => (
+                  <PlanLabel key={plan.id}>{plan.label}</PlanLabel>
+                ))}
               </Right>
             </Row>
-            {i < features.length - 1 ? <HorizontalRule /> : null}
-          </>
-        ))}
-        <Row>
-          <Left />
-          <Right>
-            {plans.map((plan) =>
-              plan.id === FREE ? <EmptySpace /> : <Button>Upgrade</Button>
-            )}
-          </Right>
-        </Row>
-      </Table>
-    </Content>
-  </Wrapper>
-);
+            {features.map((feature, i) => (
+              <Fragment key={feature.title}>
+                <Row>
+                  <Left>
+                    <FeatureTitle>{feature.title}</FeatureTitle>
+                    <FeatureDescription>
+                      {feature.description}
+                    </FeatureDescription>
+                  </Left>
+                  <Right>
+                    {plans.map((plan) => (
+                      <Fragment key={plan.id}>
+                        {feature.plans[plan.id] ? (
+                          <PlanIncludedSVG />
+                        ) : (
+                          <PlanExcludedSVG />
+                        )}
+                      </Fragment>
+                    ))}
+                  </Right>
+                </Row>
+                {i < features.length - 1 ? <HorizontalRule /> : null}
+              </Fragment>
+            ))}
+            <Row>
+              <Left />
+              <Right>
+                {plans.map((plan) => (
+                  <Fragment key={plan.id}>
+                    {plan.id === FREE ? (
+                      <EmptySpace key={plan.id} />
+                    ) : (
+                      <Button key={plan.id} onClick={handleUpgradeClick}>
+                        Upgrade
+                      </Button>
+                    )}
+                  </Fragment>
+                ))}
+              </Right>
+            </Row>
+          </Table>
+        </Content>
+      </Wrapper>
+    </>
+  );
+};

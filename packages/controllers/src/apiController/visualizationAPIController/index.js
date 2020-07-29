@@ -9,6 +9,7 @@ import { getHomePageDataController } from './getHomePageDataController';
 import { getThumbnailController } from './getThumbnailController';
 import { getPreviewController } from './getPreviewController';
 import { getSearchResultsPageDataController } from './getSearchResultsPageData';
+import { getForksController } from './getForksController';
 
 export const visualizationAPIController = (expressApp, gateways) => {
   createVisualizationController(expressApp, gateways);
@@ -22,4 +23,5 @@ export const visualizationAPIController = (expressApp, gateways) => {
   getThumbnailController(expressApp, gateways);
   getPreviewController(expressApp, gateways);
   getSearchResultsPageDataController(expressApp, gateways);
+  getForksController(expressApp, gateways);
 };
