@@ -5,6 +5,12 @@ executors:
     docker:
       - image: 'circleci/node:latest'
 
+  node_browsers:
+    docker:
+      - image: 'circleci/node:latest-browsers'
+    environment:
+      NODE_ENV: development
+
 jobs:
   build:
     executor: node_exec
@@ -20,8 +26,42 @@ jobs:
       - run: npm run lerna:bootstrap
       - run: npm run lerna:test
 
+  e2e:
+    executor: node_browsers
+    steps:
+      - checkout
+      - run: npm i lerna
+      - run: npm install wait-on
+      - run: npm run lerna:bootstrap
+      - run:
+          name: Start Backend Server
+          command: npm run start-neoBackend:ci
+          background: true
+      - run: npx wait-on http://localhost:4000
+      - run:
+          name: Start Frontend Server
+          command: npm run start-neoFrontend:ci
+          background: true
+      - run: npx wait-on http://localhost:3000
+      - run: npm run test:e2e
+#  staging_deploy:
+#    executor: node_exec
+#    steps:
+#      - checkout
+#      - run: npm i pm2
+#      - run: npm run deploy:staging
+
 workflows:
   build_and_test:
     jobs:
       - build
       - test
+  e2e:
+    jobs:
+      - e2e
+#  deploy_staging:
+#    jobs:
+#      - staging_deploy:
+#        filters:
+#          branches:
+#            only: master

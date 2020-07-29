@@ -58,8 +58,11 @@ export const Editor = ({ showTop, toggleShowTop }) => {
                 setIsRenamingNewFile={setIsRenamingNewFile}
               />
               {rotationEnabled
-                ? editorTheme.colors.map((color, i) => (
-                    <div style={{ background: color, height: '20px' }} />
+                ? editorTheme.colors.map((color) => (
+                    <div
+                      key={color}
+                      style={{ background: color, height: '20px' }}
+                    />
                   ))
                 : null}
             </Top>

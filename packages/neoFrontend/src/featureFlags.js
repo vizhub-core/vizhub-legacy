@@ -14,10 +14,17 @@ export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
 export const showEmbed = false;
+export const showSortOptions = true;
+export const showForksCount = true;
+
+export const showNeoNavBar = process.env.REACT_APP_VIZHUB_NEO_NAVBAR === 'true';
+export const showAboutLink = false;
 
 // List of usernames who have access to
 // private viz feature.
 const core = ['ci', 'curran', 'nitanagdeote'];
+
+const professors = ['Razpudding', 'sjengle'];
 
 const stamen = [
   'vinaydixit',
@@ -55,6 +62,7 @@ const kickstarter2years = [
 
 //showPrivacySettings(me, vizInfo)
 const whitelist = core
+  .concat(professors)
   .concat(stamen)
   .concat(kickstarter)
   .concat(kickstarter2years);

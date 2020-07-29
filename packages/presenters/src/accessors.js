@@ -39,6 +39,8 @@ export const getExtension = (fileName) =>
 
 export const getVizOwner = (viz) => viz.info.owner;
 
+export const getVizForksCount = (viz) => viz.info.forksCount;
+
 export const deleteFileOp = (viz, fileName) => {
   const fileIndex = getVizFileIndex(fileName)(viz);
   return [
@@ -59,7 +61,11 @@ export const extractTitle = (html) => {
   return 'Untitled';
 };
 
-export const getVizUpvotes = (viz) => viz.info.upvotes;
+export const getVizInfoOwner = (vizInfo) => vizInfo.owner;
+export const isVizInfoPrivate = (vizInfo) => vizInfo.privacy === 'private';
+
+export const getVizInfoUpvotes = (vizInfo) => vizInfo.upvotes;
+export const getVizUpvotes = (viz) => getVizInfoUpvotes(viz.info);
 
 export const getUpvoteCount = (upvotes) => (upvotes ? upvotes.length : 0);
 export const getDidVote = (upvotes, user) =>
@@ -129,7 +135,7 @@ export const anyoneCanEditChangeOp = (
     },
   ];
 
-export const heightChangeOp = (oldHeight, newHeight, realtimeModules) =>
+export const heightChangeOp = (oldHeight, newHeight) =>
   // Initialize the height field if needed.
   [
     {
@@ -182,6 +188,9 @@ export const upvoteOp = (userId, upvotes) => {
 };
 
 export const getUserName = (user) => user && user.userName;
+
+// Return the full name of the user, for labeling.
+// Falls back to userName if fullName not present.
 export const getUserFullName = (user) =>
   user && (user.fullName || user.userName);
 
@@ -278,3 +287,6 @@ export const removeCollaboratorOp = ({
   }
   return op;
 };
+
+export const usersMatch = (userA, userB) =>
+  userA && userB && userA.id === userB.id;

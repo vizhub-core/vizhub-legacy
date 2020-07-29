@@ -12,9 +12,7 @@ import { VizRunnerProvider } from './VizRunnerContext';
 import { VizProvider } from './VizContext';
 import { PrettierProvider } from './PrettierContext';
 import { RunProvider } from './RunContext';
-import { WarningProvider } from './WarningContext';
-import { RealtimeModulesProvider } from './RealtimeModulesContext';
-import { ConnectionProvider } from './ConnectionContext';
+import { VimModeProvider } from './VimModeContext';
 import { EditorModulesProvider } from './EditorModulesContext';
 import { SplitPaneResizeProvider } from './SplitPaneResizeContext';
 import { Body } from './Body';
@@ -22,39 +20,35 @@ import { Body } from './Body';
 export const VizPage = () => (
   <URLStateProvider>
     <VizPageDataProvider fallback={<LoadingScreen />}>
-      <RealtimeModulesProvider>
-        <WarningProvider>
-          <ConnectionProvider>
-            <EditorModulesProvider>
-              <VizProvider>
-                <PrettierProvider>
-                  <RunProvider>
-                    <SettingsProvider>
-                      <ShareProvider>
-                        <DeleteVizProvider
-                          fallback={<LoadingScreen message="Deleting..." />}
-                        >
-                          <ForkingProvider
-                            fallback={<LoadingScreen message="Forking..." />}
-                          >
-                            <ThemeProvider theme={darkNavbarTheme}>
-                              <SplitPaneResizeProvider>
-                                <VizRunnerProvider>
-                                  <Body />
-                                </VizRunnerProvider>
-                              </SplitPaneResizeProvider>
-                            </ThemeProvider>
-                          </ForkingProvider>
-                        </DeleteVizProvider>
-                      </ShareProvider>
-                    </SettingsProvider>
-                  </RunProvider>
-                </PrettierProvider>
-              </VizProvider>
-            </EditorModulesProvider>
-          </ConnectionProvider>
-        </WarningProvider>
-      </RealtimeModulesProvider>
+      <EditorModulesProvider>
+        <VizProvider>
+          <PrettierProvider>
+            <VimModeProvider>
+              <RunProvider>
+                <SettingsProvider>
+                  <ShareProvider>
+                    <DeleteVizProvider
+                      fallback={<LoadingScreen message="Deleting..." />}
+                    >
+                      <ForkingProvider
+                        fallback={<LoadingScreen message="Forking..." />}
+                      >
+                        <ThemeProvider theme={darkNavbarTheme}>
+                          <SplitPaneResizeProvider>
+                            <VizRunnerProvider>
+                              <Body />
+                            </VizRunnerProvider>
+                          </SplitPaneResizeProvider>
+                        </ThemeProvider>
+                      </ForkingProvider>
+                    </DeleteVizProvider>
+                  </ShareProvider>
+                </SettingsProvider>
+              </RunProvider>
+            </VimModeProvider>
+          </PrettierProvider>
+        </VizProvider>
+      </EditorModulesProvider>
     </VizPageDataProvider>
   </URLStateProvider>
 );

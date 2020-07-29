@@ -1,11 +1,12 @@
 import {
   defaultCodingFontFamily,
   defaultCodingFontSize,
-} from '../../../../../../../theme';
+} from '../../../../../../../theme/defaulTheme';
 
 // Derived from node_modules/codemirror/addon/hint/show-hint.css
 export const CodeMirrorHintCSS = `
 .CodeMirror-hints {
+  background-color: #3d4b65;
   position: absolute;
   z-index: 10;
   overflow: hidden;

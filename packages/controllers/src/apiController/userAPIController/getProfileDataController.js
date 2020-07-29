@@ -7,7 +7,11 @@ export const getProfileDataController = (expressApp, gateways) => {
   expressApp.get('/api/user/getProfileData/:userName', async (req, res) => {
     try {
       const { userName } = req.params;
-      const requestModel = { userName, authenticatedUser: userIdFromReq(req) };
+      const requestModel = {
+        userName,
+        authenticatedUser: userIdFromReq(req),
+        ...req.query,
+      };
       const responseModel = await getUserProfileData.execute(requestModel);
       res.json(responseModel);
     } catch (error) {

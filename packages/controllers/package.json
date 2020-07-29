@@ -10,20 +10,21 @@
   "author": "Curran Kelleher",
   "license": "MIT",
   "dependencies": {
-    "diff-match-patch": "^1.0.4",
+    "diff-match-patch": "^1.0.5",
     "express-async-handler": "^1.1.4",
     "json0-ot-diff": "^1.0.5",
     "jsonwebtoken": "^8.5.1",
-    "marked": "^1.0.0",
+    "marked": "^1.1.0",
     "node-fetch": "^2.6.0",
-    "sanitize-html": "^1.23.0",
-    "string-strip-html": "^4.4.3",
+    "sanitize-html": "^1.27.0",
+    "string-strip-html": "^4.5.0",
+    "stripe": "^8.67.0",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-use-cases": "1"
   },
   "devDependencies": {
-    "eslint": "^7.0.0",
+    "eslint": "^7.3.1",
     "prettier": "^2.0.5"
   }
 }

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { Avatar } from '../../../../../Avatar';
+import { Button } from '../../../../../Button';
 import { fetchUser } from '../fetchUser';
-import { useCache } from './useCache';
-import { Button } from '../../../../styles';
 import { UserName } from '../styles';
+import { useCache } from './useCache';
 import { Wrapper, LoadingText, UserWrapper } from './styles';
 
 export const Collaborator = ({ collaborator, removeCollaborator, isLast }) => {

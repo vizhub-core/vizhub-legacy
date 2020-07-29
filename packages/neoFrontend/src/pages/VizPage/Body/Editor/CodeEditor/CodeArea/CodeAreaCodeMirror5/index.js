@@ -4,17 +4,18 @@ import ColorHash from 'color-hash';
 import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
+import { VimModeContext } from '../../../../../VimModeContext';
 import { RunContext } from '../../../../../RunContext';
 import { AuthContext } from '../../../../../../../authentication';
-import { RealtimeModulesContext } from '../../../../../RealtimeModulesContext';
+import { RealtimeModulesContext } from '../../../../../../../RealtimeModulesContext';
 import { EditorModulesContext } from '../../../../../EditorModulesContext';
 import { light } from '../../../themes/vizHub';
 import { useFileIndex } from '../../useFileIndex';
 import { usePath } from '../../usePath';
 import { Wrapper } from './styles';
 import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
-import { useStateLocalStorage } from './useStateLocalStorage';
 import { PresenceWidget } from './PresenceWidget';
+import { linkOverlay } from './overlays';
 
 const colorHash = new ColorHash();
 
@@ -30,31 +31,16 @@ const getMode = (extension) => modes[extension];
 // Enable wrapping for everything else.
 const getLineWrapping = (extension) => extension !== '.js';
 
-const defaultKeyMap = 'sublime';
-
 const fileIndexOfPath = (path) => path[1];
 
 export const CodeAreaCodeMirror5 = ({
   activeFile,
   activeLine,
   onGutterClick,
+  onLinkClick,
 }) => {
   const ref = useRef();
   const [codeMirror, setCodeMirror] = useState();
-  const [keyMap, setKeyMap] = useStateLocalStorage('keyMap', defaultKeyMap);
-
-  // Alt+V to toggle Vim mode.
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.altKey && e.code === 'KeyV') {
-        setKeyMap(keyMap === 'vim' ? defaultKeyMap : 'vim');
-      }
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-    };
-  }, [keyMap, setKeyMap]);
 
   const {
     viz$,
@@ -71,6 +57,7 @@ export const CodeAreaCodeMirror5 = ({
     setIsAutoRunEnabled,
     run,
   } = useContext(RunContext);
+  const { keyMap, toggleVimMode } = useContext(VimModeContext);
   const fileIndex = useFileIndex(viz$, activeFile);
   const path = usePath(fileIndex);
   const realtimeModules = useContext(RealtimeModulesContext);
@@ -79,6 +66,19 @@ export const CodeAreaCodeMirror5 = ({
 
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
+
+  // Alt+V to toggle Vim mode.
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.altKey && e.code === 'KeyV') {
+        toggleVimMode();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [toggleVimMode]);
 
   const manualRunRef = useRef(() => {});
   useEffect(() => {
@@ -122,26 +122,23 @@ export const CodeAreaCodeMirror5 = ({
     }
 
     const { CodeMirror } = editorModules;
-
-    CodeMirror.commands.autocomplete = (cm) => {
-      cm.showHint({ hint: CodeMirror.hint.anyword });
-    };
-
-    setCodeMirror(
-      new CodeMirror(ref.current, {
-        value: file.text,
-        lineNumbers: true,
-        tabSize: 2,
-        matchBrackets: true,
-        closeOnBlur: false,
-        extraKeys: {
-          'Ctrl-Space': 'autocomplete',
-          'Shift-Enter': () => {
-            manualRunRef.current();
-          },
+    const cm = new CodeMirror(ref.current, {
+      value: file.text,
+      lineNumbers: true,
+      tabSize: 2,
+      matchBrackets: true,
+      closeOnBlur: false,
+      extraKeys: {
+        'Ctrl-Space': 'autocomplete',
+        'Shift-Enter': () => {
+          manualRunRef.current();
         },
-      })
-    );
+      },
+    });
+
+    cm.addOverlay(linkOverlay);
+
+    setCodeMirror(cm);
   }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
 
   // Compute extension of active file (e.g. '.js', '.md').
@@ -163,8 +160,7 @@ export const CodeAreaCodeMirror5 = ({
   // Update keyMap.
   useEffect(() => {
     if (!codeMirror) return;
-    // Only support vim mode, or default keymap.
-    codeMirror.setOption('keyMap', keyMap === 'vim' ? 'vim' : defaultKeyMap);
+    codeMirror.setOption('keyMap', keyMap);
   }, [codeMirror, keyMap]);
 
   // Ensure newly opened file has focus.
@@ -220,6 +216,22 @@ export const CodeAreaCodeMirror5 = ({
       codeMirror.off('gutterClick', handler);
     };
   }, [codeMirror, onGutterClick]);
+
+  // Respond to link click
+  useEffect(() => {
+    if (!codeMirror) return;
+
+    const handler = (_, event) => {
+      if (event.target.classList.contains('cm-link')) {
+        onLinkClick(event.target.textContent);
+      }
+    };
+
+    codeMirror.on('mousedown', handler);
+    return () => {
+      codeMirror.off('mousedown', handler);
+    };
+  }, [codeMirror, onLinkClick]);
 
   // Respond to changes in text.
   // Submit ops for local user-generated changes.

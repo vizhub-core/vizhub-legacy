@@ -13,16 +13,16 @@ sudo apt update
 sudo apt install python build-essential -y
 ```
 
-Install dependencies of [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md):
+Install dependencies of [Puppeteer](https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#chrome-headless-doesnt-launch-on-unix):
 
 ```
-sudo apt install gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils -y
+sudo apt install ca-certificates fonts-liberation gconf-service libappindicator1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils -y
 ```
 
 Install Node.js using [NVM](https://github.com/creationix/nvm)
 
 ```
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source .bashrc
 nvm install node
 ```
@@ -140,14 +140,6 @@ sudo apt-get install mongodb-org -y
 sudo service mongod start
 ```
 
-Configure [GitHub OAuth Tokens](https://github.com/organizations/datavis-tech/settings/applications/813714) and MongoDB URL following in `packages/web/.env`. Here's a sample of what the `.env` file should look like:
-
-```
-GITHUB_ID=1937fa078932032536f9
-GITHUB_SECRET=97892345784932b789a78f9d89c789c7890c2143
-MONGO_URI=mongodb://localhost:27017/vizhub
-```
-
 Using Elastic Block Store
 
 We use [Amazon Elastic Block Store](https://aws.amazon.com/ebs/) for permanent storage of the MongoDB database content.
@@ -188,7 +180,7 @@ sudo chown mongodb /data/mongodb -R
 ## Set Up VizHub
 
 ```
-git clone git@github.com:datavis-tech/vizhub.git
+git clone git@github.com:curran/vizhub.git
 ```
 
 Set up the [vizhub-ui](https://github.com/datavis-tech/vizhub-ui) submodule
@@ -218,14 +210,6 @@ Install PM2
 npm install -g pm2
 ```
 
-Build and start the Web server
-
-```
-cd packages/web/
-npm run build
-pm2 start --name app npm -- start
-```
-
 Start image generation service
 
 ```
@@ -240,19 +224,18 @@ The above command sets up PM2 to mimic a CRON job that restarts the image genera
 `~/.bashrc`
 
 ```
+export VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954327ff
+export VIZHUB_MONGO_URI=mongodb://171.31.13.217:27017/vizhub
 export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=1a25f9b4693754964a7f
-export REACT_APP_VIZHUB_GITHUB_CLIENT_SECRET=07d5db1d45ec75478390278594032780954327ff
 export REACT_APP_VIZHUB_JWT_SECRET=fdsahjuyufidysyu4i3243sald89saf78
 export REACT_APP_VIZHUB_WEBSOCKET_URL=wss://beta.vizhub.com
-export MONGO_URI=mongodb://171.31.13.217:27017/vizhub
 ```
-
 
 Build and start the Web server
 
 ```
 cd packages/neoBackend/
-pm2 start --name app npm -- start
+pm2 start --name VizHubAppServer npm -- start
 ```
 
 Start image generation service
@@ -283,7 +266,7 @@ net:
 #  bindIp: 127.0.0.1  <- comment out this line
 ```
 
-In the Web app server `~/.bashrc`, set `export MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
+In the Web app server `~/.bashrc`, set `export VIZHUB_MONGO_URI=mongodb://171.31.13.217:27017/vizhub`, where the IP is the _internal_ ip of the database machine.
 
 For search, you need to set up indices like this:
 
@@ -317,19 +300,51 @@ db.o_thumbnailImages.drop()
 
 # GitHub Authorization callback URL
 
-VizHub 1.0:
-
-Env vars in `.bashrc`:
-
-```
-export GITHUB_ID=197238095748390275843
-export GITHUB_SECRET=3c89ee6797589043728590432890542389c3c393
-export MONGO_URI=mongodb://172.47.91.462:27017/vizhub
-export SERVER_URL=https://vizhub.com
-```
-
-`https://vizhub.com/auth/oauth/github/callback`
-
-VizHub 2.0:
-
 `https://beta.vizhub.com/authenticated`
+
+## Redis
+
+[Install Redis](https://redis.io/topics/quickstart)
+
+Enagble use of [https://github.com/share/sharedb-redis-pubsub](https://github.com/share/sharedb-redis-pubsub) for horizontal scaling by setting the following environment variable:
+
+```
+VIZHUB_REDIS_HOST=123.45.67.8
+```
+
+On the Redis server (from [Redis Quick Start](https://redis.io/topics/quickstart)):
+
+```
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+sudo apt-get update
+sudo apt install build-essential -y
+make
+sudo make install
+redis-server --daemonize yes
+redis-cli ping
+redis-cli
+redis-cli shutdown
+redis-cli ping
+sudo mkdir /etc/redis
+sudo mkdir /var/redis
+sudo cp utils/redis_init_script /etc/init.d/redis_6379
+sudo cp redis.conf /etc/redis/6379.conf
+sudo mkdir /var/redis/6379
+sudo vim /etc/redis/6379.conf
+sudo update-rc.d redis_6379 defaults
+sudo /etc/init.d/redis_6379 start
+```
+
+
+## Stripe
+
+```
+export REACT_APP_VIZHUB_STRIPE_BASIC_PRICE_ID=price_fakehfdjkashfdjksahjkhdu
+export REACT_APP_VIZHUB_STRIPE_PRO_PRICE_ID=price_fakehfdjksahjfkdhjskurd8
+export REACT_APP_VIZHUB_STRIPE_PUBLISHABLE_KEY=pk_test_fakeskahfdjksahjkfdhjhjd
+export VIZHUB_STRIPE_SECRET_KEY=sk_test_fakehdjksfhafjkhsdjkfhdj
+export VIZHUB_STRIPE_WEBHOOK_SECRET=whsec_faked
+export VIZHUB_STRIPE_DOMAIN=http://localhost:3000
+```

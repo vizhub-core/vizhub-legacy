@@ -1,4 +1,4 @@
-import { rollup } from 'rollup/dist/rollup.browser';
+import { rollup } from './rollup.browser';
 import vizhubLibraries from 'vizhub-libraries';
 import bubleJSXOnly from './bubleJSXOnly';
 import hypothetical from './hypothetical';

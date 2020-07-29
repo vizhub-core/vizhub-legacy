@@ -1,5 +1,3 @@
-import { ciUser } from 'vizhub-entities';
-
 // Gets multiple users at a time.
 //
 // When there are many users to fetch, prefer to use this instead of GetUser,

@@ -1,5 +1,6 @@
-import React, { useEffect, useCallback } from 'react';
-import { VizPreviews, VizPreview } from '../../VizPreview';
+import React, { useEffect, useCallback, useContext } from 'react';
+import { AuthContext } from '../../authentication';
+import { VizPreviews, LiveVizPreview } from '../../VizPreview';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Wrapper } from './styles';
 
@@ -14,6 +15,8 @@ export const Vizzes = ({
   className,
 }) => {
   useEffect(() => {
+    if (!paginate) return;
+
     const onScroll = () => {
       const distanceFromBottom =
         document.body.offsetHeight - (window.innerHeight + window.scrollY);
@@ -27,15 +30,18 @@ export const Vizzes = ({
 
   const getUser = useCallback((id) => usersById[id], [usersById]);
 
+  const { me } = useContext(AuthContext);
+
   return (
     <Wrapper>
       {visualizationInfos.length !== 0 ? (
         <VizPreviews className={className}>
           {visualizationInfos.map((vizInfo) => (
-            <VizPreview
+            <LiveVizPreview
               key={vizInfo.id}
+              me={me}
               vizInfo={vizInfo}
-              ownerUser={getUser(vizInfo.owner)}
+              getUser={getUser}
             />
           ))}
         </VizPreviews>

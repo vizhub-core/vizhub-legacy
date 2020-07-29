@@ -21,7 +21,6 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: Inter;
 `;
 
 export const SectionTitle = styled.div`
@@ -50,8 +49,7 @@ export const Spacer = styled.div`
 
 export const FormRow = styled.div`
   display: flex;
-  height: 48px;
-  font-family: Inter;
+  height: ${(props) => props.theme.buttonHeight};
   font-size: 16px;
   align-items: center;
   position: relative;
