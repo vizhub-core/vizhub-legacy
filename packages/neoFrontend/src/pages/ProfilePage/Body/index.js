@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { isVizInfoPrivate } from 'vizhub-presenters';
 
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
@@ -21,13 +21,18 @@ export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
   const { user, visualizationInfos } = profilePageData;
 
-  const [visualizations, setVisualizations] = useState(visualizationInfos);
+  const [privacy, setPrivacy] = useState('public');
 
-  function showPublic(e) {
-    setVisualizations(visualizationInfos.filter((d) => { return getVizPrivacy(d) !== "private"}));
+  const visualizations = useMemo(() => visualizationInfos.filter((d) => filterViz(privacy,d)), [visualizationInfos, privacy]);
+
+  function filterViz(privacy, d) {
+    return privacy === "private" ? isVizInfoPrivate(d) : !isVizInfoPrivate(d) ;
   }
-  function showPrivate(e) {
-    setVisualizations(visualizationInfos.filter((d) => { return getVizPrivacy(d) === "private"}));
+  function showPublic() {
+    setPrivacy("public")
+  }
+  function showPrivate() {
+    setPrivacy("private")
   }
 
   const vizzesUsersMap = useMemo(() => {
@@ -53,9 +58,8 @@ export const Body = () => {
           </ProfileMenuBar>
           <SidebarWrapper>
             <Sidebar>
-              <LinkWithIcon icon="PeopleSVG" onClick={showPublic}>Public</LinkWithIcon>
-              <LinkWithIcon icon="LockSVG" onClick={showPrivate}>Private</LinkWithIcon>
-
+              <LinkWithIcon active={privacy !== "private"} icon="PeopleSVG" onClick={showPublic}>Public</LinkWithIcon>
+              <LinkWithIcon active={privacy === "private"} icon="LockSVG" onClick={showPrivate}>Private</LinkWithIcon>
             </Sidebar>
             <Main>
               <Centering>
