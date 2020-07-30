@@ -2,6 +2,7 @@ import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import ColorHash from 'color-hash';
 import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
+import { lintJs } from '../../../../../../../featureFlags';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { VimModeContext } from '../../../../../VimModeContext';
@@ -105,6 +106,9 @@ export const CodeAreaCodeMirror5 = ({
   // This is a no-op if the modules are already loaded.
   loadEditorModules();
 
+  // Compute extension of active file (e.g. '.js', '.md').
+  const extension = useMemo(() => getExtension(activeFile), [activeFile]);
+
   // Initialize codeMirror instance.
   useEffect(() => {
     if (!editorModules) return;
@@ -123,6 +127,7 @@ export const CodeAreaCodeMirror5 = ({
 
     const { CodeMirror } = editorModules;
     const cm = new CodeMirror(ref.current, {
+      mode: getMode(extension),
       value: file.text,
       lineNumbers: true,
       tabSize: 2,
@@ -134,21 +139,30 @@ export const CodeAreaCodeMirror5 = ({
           manualRunRef.current();
         },
       },
+      gutters: ['CodeMirror-lint-markers'],
+      lint: lintJs,
     });
 
     cm.addOverlay(linkOverlay);
 
     setCodeMirror(cm);
-  }, [ref, editorModules, fileIndex, realtimeModules, viz$, codeMirror]);
-
-  // Compute extension of active file (e.g. '.js', '.md').
-  const extension = useMemo(() => getExtension(activeFile), [activeFile]);
+  }, [
+    ref,
+    editorModules,
+    fileIndex,
+    realtimeModules,
+    viz$,
+    codeMirror,
+    extension,
+  ]);
 
   // Update language mode and wrapping when extension changes.
   useEffect(() => {
     if (!codeMirror) return;
     codeMirror.setOption('mode', getMode(extension));
     codeMirror.setOption('lineWrapping', getLineWrapping(extension));
+
+    codeMirror.performLint();
   }, [codeMirror, extension]);
 
   // Don't allow editing of bundle.js.
