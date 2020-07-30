@@ -1,4 +1,4 @@
-import { defaultCodingFontFamily } from '../../../theme/defaulTheme';
+import { defaultCodingFontFamily } from '../../../theme/defaultTheme';
 
 export const generateErrorMessageSrcDoc = (errorMessage, includeBundleNote) => `
   <html>
