@@ -22,5 +22,3 @@ export const Sidebar = styled.div`
   margin-top: ${isMobile ? '10px' : '0'};
   padding: ${isMobile ? '0' : '0 6px'};
 `;
-
-
