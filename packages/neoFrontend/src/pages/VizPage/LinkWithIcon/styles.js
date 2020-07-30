@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   cursor: pointer;
   display: flex;
+  align-items: center;
   height: 40px;
   padding: 0px 12px;
   margin: 4px 0;
@@ -12,13 +13,8 @@ export const Wrapper = styled.div`
       : ''}
 `;
 
-export const LinkText = styled.span`
+export const LinkText = styled.div`
   margin-left: 15px;
-  font-size: 16px;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: 19px;
-  text-align: middle;
   color: #000000;
 `;
 
