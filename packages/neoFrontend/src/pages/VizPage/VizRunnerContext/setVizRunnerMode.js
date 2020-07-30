@@ -1,5 +1,5 @@
 import { Z_ABOVE, Z_WAY_ABOVE, Z_WAY_WAY_ABOVE } from '../../../styles';
-import { theme } from '../../../theme/defaulTheme';
+import { theme } from '../../../theme/defaultTheme';
 import { useTransitions } from '../../../constants';
 
 // The number of milliseconds to transition when

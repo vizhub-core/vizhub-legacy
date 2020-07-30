@@ -4,7 +4,7 @@ import { showNeoNavBar } from '../featureFlags';
 import {
   theme as defaultTheme,
   darkNavbarTheme as defaultDrkNavbarTheme,
-} from './defaulTheme';
+} from './defaultTheme';
 import {
   theme as neoTheme,
   darkNavbarTheme as neoDarkNavbarTheme,
