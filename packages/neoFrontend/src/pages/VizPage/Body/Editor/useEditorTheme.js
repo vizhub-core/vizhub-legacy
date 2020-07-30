@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import {
   defaultCodingFontFamily,
   defaultCodingFontSize,
-} from '../../../../theme/defaulTheme';
+} from '../../../../theme/defaultTheme';
 //import * as themes from './themes';
 import { vizHub } from './themes';
 
