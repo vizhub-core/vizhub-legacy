@@ -3,7 +3,7 @@ const multilineRegex = (tmpl) => {
   let [, source, flags] = tmpl
     .replace(/\s*(\/\/.*)?$\s*/gm, '') // remove comments and spaces at both ends of lines
     .match(/^\/?(.*?)(?:\/(\w+))?$/); // extracts source and flags
-  
+
   return new RegExp(source, flags);
 };
 

@@ -5,7 +5,7 @@ import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { NavBar } from '../../../NavBar';
 import { Wrapper, Content, Centering } from '../../styles';
 import { SidebarWrapper, Main, Sidebar } from '../styles';
-import { LinkWithIcon } from '../../VizPage/LinkWithIcon'
+import { LinkWithIcon } from '../../VizPage/LinkWithIcon';
 
 import { showSortOptions } from '../../../featureFlags';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
@@ -23,16 +23,19 @@ export const Body = () => {
 
   const [privacy, setPrivacy] = useState('public');
 
-  const visualizations = useMemo(() => visualizationInfos.filter((d) => filterViz(privacy,d)), [visualizationInfos, privacy]);
+  const visualizations = useMemo(
+    () => visualizationInfos.filter((d) => filterViz(privacy, d)),
+    [visualizationInfos, privacy]
+  );
 
   function filterViz(privacy, d) {
-    return privacy === "private" ? isVizInfoPrivate(d) : !isVizInfoPrivate(d) ;
+    return privacy === 'private' ? isVizInfoPrivate(d) : !isVizInfoPrivate(d);
   }
   function showPublic() {
-    setPrivacy("public")
+    setPrivacy('public');
   }
   function showPrivate() {
-    setPrivacy("private")
+    setPrivacy('private');
   }
 
   const vizzesUsersMap = useMemo(() => {
@@ -58,8 +61,20 @@ export const Body = () => {
           </ProfileMenuBar>
           <SidebarWrapper>
             <Sidebar>
-              <LinkWithIcon active={privacy !== "private"} icon="PeopleSVG" onClick={showPublic}>Public</LinkWithIcon>
-              <LinkWithIcon active={privacy === "private"} icon="LockSVG" onClick={showPrivate}>Private</LinkWithIcon>
+              <LinkWithIcon
+                active={privacy !== 'private'}
+                icon="PeopleSVG"
+                onClick={showPublic}
+              >
+                Public
+              </LinkWithIcon>
+              <LinkWithIcon
+                active={privacy === 'private'}
+                icon="LockSVG"
+                onClick={showPrivate}
+              >
+                Private
+              </LinkWithIcon>
             </Sidebar>
             <Main>
               <Centering>

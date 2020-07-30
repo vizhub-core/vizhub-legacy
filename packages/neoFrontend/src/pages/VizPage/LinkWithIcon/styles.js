@@ -6,7 +6,10 @@ export const Wrapper = styled.div`
   height: 40px;
   padding: 0px 12px;
   margin: 4px 0;
-  ${(props) => (props.active ? 'background: rgba(56, 102, 233, 0.15); border-radius: 1000px;' : '')}
+  ${(props) =>
+    props.active
+      ? 'background: rgba(56, 102, 233, 0.15); border-radius: 1000px;'
+      : ''}
 `;
 
 export const LinkText = styled.span`
