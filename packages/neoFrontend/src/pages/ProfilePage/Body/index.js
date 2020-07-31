@@ -1,21 +1,19 @@
 import React, { useState, useContext, useMemo, useCallback } from 'react';
 import { isVizInfoPrivate } from 'vizhub-presenters';
 
-import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { AuthContext } from '../../../authentication';
 import { NavBar } from '../../../NavBar';
-import { Wrapper, Content, Centering } from '../../styles';
-import { SidebarWrapper, Main, Sidebar } from '../styles';
-import { LinkWithIcon } from '../../VizPage/LinkWithIcon';
 import { showProfileSidebar } from '../../../featureFlags';
-
 import { showSortOptions } from '../../../featureFlags';
 import { Vizzes } from '../../../VizzesGrid/Vizzes';
 import {
   VizzesSortForm,
   useVizzesSort,
 } from '../../../VizzesGrid/VizzesSortForm';
-
+import { Wrapper, Content, Centering } from '../../styles';
+import { SidebarWrapper, Main, Sidebar } from '../styles';
+import { LinkWithIcon } from '../LinkWithIcon';
+import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { ProfilePane } from '../ProfilePane';
 import { ProfileMenuBar } from './styles';
 
