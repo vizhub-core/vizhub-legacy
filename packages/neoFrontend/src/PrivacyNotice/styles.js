@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const borderRadius = 30;
 
 export const Wrapper = styled.div`
-  font-size: ${props => props.theme.text.small};
+  font-size: ${(props) => props.theme.text.small};
   font-weight: bold;
   background-color: ${(props) => props.theme.red};
   height: 30px;
