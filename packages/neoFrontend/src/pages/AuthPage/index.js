@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Feedback } from '../../Feedback';
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
 import { GITHUB_OAUTH_URL, CI_AUTH_PATH } from '../../authentication';
@@ -45,6 +46,7 @@ export const AuthPage = () => {
           </Centering>
         </Content>
       </Wrapper>
+      <Feedback />
     </>
   );
 };

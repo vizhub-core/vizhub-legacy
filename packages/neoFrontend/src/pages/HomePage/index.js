@@ -2,6 +2,7 @@ import React from 'react';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
+import { Feedback } from '../../Feedback';
 import { useVizzesSort } from '../../VizzesGrid/VizzesSortForm';
 import { Wrapper, Content } from '../styles';
 import { HomePageDataProvider } from './HomePageDataContext';
@@ -28,6 +29,7 @@ export const HomePage = () => {
           </Content>
         </Wrapper>
       </HomePageDataProvider>
+      <Feedback />
     </>
   );
 };
