@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
+import { Feedback } from '../../Feedback';
 import { Wrapper, Content, HorizontalRule } from '../styles';
 import {
   Table,
@@ -76,6 +77,7 @@ export const PricingPage = () => {
           </Table>
         </Content>
       </Wrapper>
+      <Feedback />
     </>
   );
 };

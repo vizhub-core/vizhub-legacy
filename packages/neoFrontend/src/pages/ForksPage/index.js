@@ -1,15 +1,16 @@
 import React, { useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { getVizInfoOwner, getUserName } from 'vizhub-presenters';
 import { LoadingScreen } from '../../LoadingScreen';
-import { Wrapper, Content, Centering, Title } from '../styles';
+import { Feedback } from '../../Feedback';
 import { NavBar } from '../../NavBar';
 import { Vizzes as VizzesPresentation } from '../../VizzesGrid/Vizzes';
 import { LiveVizPreview } from '../../VizPreview';
 import { AuthContext } from '../../authentication';
 import { ErrorContext } from '../../ErrorContext';
+import { Wrapper, Content, Centering, Title } from '../styles';
 import { usePageData } from './usePageData';
 import { Text } from './styles';
-import { getVizInfoOwner, getUserName } from 'vizhub-presenters';
 
 // We may want to bring this back.
 const showForkedFromViz = false;
@@ -74,6 +75,7 @@ export const ForksPage = () => {
             </Centering>
           </Content>
         </Wrapper>
+        <Feedback />
       </>
     );
   } else {

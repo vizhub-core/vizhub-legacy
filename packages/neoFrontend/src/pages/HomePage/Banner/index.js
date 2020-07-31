@@ -40,7 +40,7 @@ export const Banner = () => (
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Datavis 2020 Free Online Course
+                Datavis 2020
               </MessageLink>
             </li>
             <li>
@@ -50,15 +50,6 @@ export const Banner = () => (
                 rel="noopener noreferrer"
               >
                 Data Visualization Course 2018
-              </MessageLink>
-            </li>
-            <li>
-              <MessageLink
-                href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Send feedback
               </MessageLink>
             </li>
           </MessageList>
