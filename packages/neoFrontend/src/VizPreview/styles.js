@@ -12,7 +12,7 @@ export const VizPreviews = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 6px 10px 6px;
+  margin: 0 6px 12px 6px;
   color: ${(props) => props.theme.dark};
   position: relative;
 `;

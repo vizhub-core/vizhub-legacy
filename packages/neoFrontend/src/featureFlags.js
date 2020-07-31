@@ -61,13 +61,21 @@ const kickstarter2years = [
   'mbsmrtic', // Did not select reward but gave $100
 ];
 
-//showPrivacySettings(me, vizInfo)
 const whitelist = core
   .concat(professors)
   .concat(stamen)
   .concat(kickstarter)
   .concat(kickstarter2years);
 
+const userCanHavePrivateViz = (user) =>
+  user && whitelist.includes(user.userName);
+
 // Gateway to the private viz feature.
-export const showPrivacySettings = (user, vizInfo) =>
-  user ? vizInfo.owner === user.id && whitelist.includes(user.userName) : false;
+export const showPrivacySettings = (me, vizInfo) =>
+  me ? vizInfo.owner === me.id && userCanHavePrivateViz(me) : false;
+
+// Only show the profile sidebar if:
+// * The logged in user has access to private viz feature, and
+// * The logged in user is viewing their own profile.
+export const showProfileSidebar = (profileUser, me) =>
+  me ? profileUser.id === me.id && userCanHavePrivateViz(me) : false;
