@@ -1,7 +1,8 @@
 import { cubehelix } from 'd3-color';
 import { text } from './text';
 
-export const defaultCodingFontFamily = 'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace';
+export const defaultCodingFontFamily =
+  'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace';
 export const defaultCodingFontSize = '16px';
 
 export const theme = {
