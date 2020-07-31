@@ -74,5 +74,8 @@ const userCanHavePrivateViz = (user) =>
 export const showPrivacySettings = (me, vizInfo) =>
   me ? vizInfo.owner === me.id && userCanHavePrivateViz(me) : false;
 
+// Only show the profile sidebar if:
+// * The logged in user has access to private viz feature, and
+// * The logged in user is viewing their own profile.
 export const showProfileSidebar = (profileUser, me) =>
   me ? profileUser.id === me.id && userCanHavePrivateViz(me) : false;
