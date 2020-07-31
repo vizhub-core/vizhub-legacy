@@ -17,11 +17,11 @@ export const Wrapper = styled.div`
 export const FeedbackButton = styled(Button)`
   writing-mode: vertical-lr;
   transform: rotate(180deg);
-  width: 30px;
+  width: 24px;
   height: unset;
-  padding: 16px 0 16px 0;
+  padding: 12px 0 12px 0;
   border-radius: 0 6px 6px 0;
   border-left: none;
-  font-size: 14px;
-  background-color: white;
+  font-size: 12px;
+  background-color: #E1E8F4;
 `;
