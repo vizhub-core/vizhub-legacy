@@ -12,7 +12,13 @@ import { NavLink } from './styles';
 import { NavHREF } from './styles';
 
 export const NeoNavBar = withTheme(
-  ({ theme, searchProps = {}, showSearch = false, showAuth = false }) => {
+  ({
+    theme,
+    searchProps = {},
+    showSearch = false,
+    showAuth = false,
+    isHomePage,
+  }) => {
     const { navbarHeight, navbarLogoColor } = theme;
     const { me, signIn } = useContext(AuthContext);
 
@@ -20,6 +26,7 @@ export const NeoNavBar = withTheme(
 
     return (
       <Layout
+        isHomePage={isHomePage}
         Logo={<LogoSVG height={navbarHeight} fill={navbarLogoColor} />}
         DashboardLink={
           me && me !== 'AUTH_PENDING' ? (

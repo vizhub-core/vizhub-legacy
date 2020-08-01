@@ -50,5 +50,5 @@ export const Banner = styled.div`
   box-sizing: border-box;
   justify-content: space-between;
   margin-bottom: ${(props) =>
-    props.mobile ? 0 : props.theme.bannerMarginBottom}px;
+    props.mobile ? 0 : props.isHomePage ? 0 : props.theme.bannerMarginBottom}px;
 `;
