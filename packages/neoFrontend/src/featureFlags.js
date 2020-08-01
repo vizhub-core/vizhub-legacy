@@ -18,7 +18,7 @@ export const showSortOptions = true;
 export const showForksCount = true;
 
 export const showNeoNavBar = process.env.REACT_APP_VIZHUB_NEO_NAVBAR === 'true';
-export const showAboutLink = false;
+export const showAboutLink = true;
 export const lintJs = false;
 
 // List of usernames who have access to

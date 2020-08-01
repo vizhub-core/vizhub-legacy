@@ -9,6 +9,7 @@ import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
 import { NavLink } from './styles';
+import { NavHREF } from './styles';
 
 export const NeoNavBar = withTheme(
   ({ theme, searchProps = {}, showSearch = false, showAuth = false }) => {
@@ -33,7 +34,17 @@ export const NeoNavBar = withTheme(
             Home
           </NavLink>
         }
-        AboutLink={showAboutLink && <NavLink exact>About</NavLink>}
+        AboutLink={
+          showAboutLink && (
+            <NavHREF
+              href="https://datavis.tech/vizhub/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              About
+            </NavHREF>
+          )
+        }
         PricingLink={
           <NavLink exact to="/pricing">
             Pricing
