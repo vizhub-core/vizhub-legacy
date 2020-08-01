@@ -23,16 +23,15 @@ export const Menu = styled.div`
 
   background: #ffffff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
-  border-radius: 0px 0px 4px 4px;
+  border-bottom-left-radius: ${(props) => props.theme.borderRadiusMedium}px;
+  border-bottom-right-radius: ${(props) => props.theme.borderRadiusMedium}px;
 
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: ${(props) => props.theme.text.small};
 
   color: #535353;
   z-index: ${Z_WAY_WAY_ABOVE};
-  width: 240px;
 `;
 
 export const Item = styled(Clickable)`
@@ -40,7 +39,15 @@ export const Item = styled(Clickable)`
   cursor: pointer;
   user-select: none;
   color: ${(props) => props.theme.dark};
-  padding: 20px;
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+
+  border-bottom-left-radius: ${(props) =>
+    props.bottommost ? props.theme.borderRadiusMedium : 0}px;
+  border-bottom-right-radius: ${(props) =>
+    props.bottommost ? props.theme.borderRadiusMedium : 0}px;
 
   &:hover {
     background: rgb(
