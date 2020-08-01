@@ -29,10 +29,21 @@ export const Right = styled.div`
 `;
 
 export const FeatureTitle = styled.div`
-  font-weight: 500;
+  font-size: ${(props) => props.theme.text.large};
+`;
+
+export const PlanWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 export const PlanLabel = FeatureTitle;
+
+export const PlanSubtext = styled.div`
+  font-size: ${(props) => props.theme.text.small};
+`;
 
 export const FeatureDescription = styled.div`
   color: ${(props) => props.theme.lightText};
