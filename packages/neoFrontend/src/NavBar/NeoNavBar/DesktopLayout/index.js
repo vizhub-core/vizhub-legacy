@@ -11,11 +11,12 @@ export const DesktopLayout = ({
   AboutLink,
   PricingLink,
   AuthSection,
+  isHomePage,
 }) => {
   const { me } = useContext(AuthContext);
 
   return (
-    <Banner>
+    <Banner isHomePage={isHomePage}>
       <Left>
         {Logo}
         {DashboardLink}
