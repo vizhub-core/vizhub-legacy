@@ -3,6 +3,14 @@ import styled from 'styled-components';
 export const Left = styled.div`
   display: flex;
   align-items: center;
+
+  > * {
+    margin-left: 28px;
+  }
+
+  > *:first-child {
+    margin-right: 0px;
+  }
 `;
 
 export const Right = styled.div`

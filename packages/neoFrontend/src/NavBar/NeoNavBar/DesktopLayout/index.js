@@ -5,6 +5,7 @@ import { Right, Left } from './styles';
 
 export const DesktopLayout = ({
   Logo,
+  DashboardLink,
   Search,
   HomeLink,
   AboutLink,
@@ -15,7 +16,10 @@ export const DesktopLayout = ({
 
   return (
     <Banner>
-      <Left>{Logo}</Left>
+      <Left>
+        {Logo}
+        {DashboardLink}
+      </Left>
       <Right
         className="test-user-navbar-section"
         data-test-is-authenticated={Boolean(me)}
