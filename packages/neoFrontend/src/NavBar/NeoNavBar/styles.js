@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { Z_WAY_WAY_ABOVE } from '../../styles';
 
-export const NavLink = styled(RouterNavLink)`
+const linkCSS = css`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -19,6 +19,14 @@ export const NavLink = styled(RouterNavLink)`
   &:hover {
     color: #ffffff;
   }
+`;
+
+export const NavLink = styled(RouterNavLink)`
+  ${linkCSS}
+`;
+
+export const NavHREF = styled.a`
+  ${linkCSS}
 `;
 
 export const LogoLink = styled(Link)`
