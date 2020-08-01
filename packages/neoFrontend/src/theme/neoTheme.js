@@ -7,7 +7,8 @@ export const theme = {
   bannerMarginBottom: 28,
   navbarLogoColor: '#ffffff',
   navbarHeight: 32,
-  avatarHeight: 45,
+  avatarHeight: 40,
+  navLinkFontSize: defaultTheme.text.medium,
 };
 
 export const darkNavbarTheme = {
@@ -18,4 +19,5 @@ export const darkNavbarTheme = {
   bannerMarginBottom: 0,
   navbarHeight: 20,
   avatarHeight: 20,
+  navLinkFontSize: defaultTheme.text.small,
 };
