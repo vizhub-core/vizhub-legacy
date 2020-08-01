@@ -16,7 +16,7 @@ export const darkNavbarTheme = {
   ...theme,
   bannerHeight: theme.bannerHeight / 2,
   bannerHeightMobile: 40,
-  bannerPadding: 10,
+  bannerPadding: 8,
   bannerMarginBottom: 0,
   navbarHeight: 20,
   avatarHeight: 20,
