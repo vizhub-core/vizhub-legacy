@@ -5,11 +5,11 @@ export const Left = styled.div`
   align-items: center;
 
   > * {
-    margin-left: 28px;
+    margin-left: ${(props) => props.theme.navLinkGapSize}px;
   }
 
   > *:first-child {
-    margin-right: 0px;
+    margin-left: 0px;
   }
 `;
 
@@ -20,7 +20,7 @@ export const Right = styled.div`
   margin-left: auto;
 
   > * {
-    margin-right: 28px;
+    margin-right: ${(props) => props.theme.navLinkGapSize}px;
   }
 
   > *:last-child {
