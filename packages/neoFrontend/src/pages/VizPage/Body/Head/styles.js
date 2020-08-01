@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 
   display: flex;
   justify-content: space-between;
+  font-size: ${(props) => props.theme.text.small};
 `;
 
 export const Left = styled.div`

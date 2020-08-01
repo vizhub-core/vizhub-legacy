@@ -5,7 +5,7 @@ import { Z_WAY_WAY_ABOVE } from '../../styles';
 const linkCSS = css`
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: ${(props) => props.theme.navLinkFontSize};
   line-height: 19px;
 
   color: #b5b5b5;
@@ -45,8 +45,7 @@ export const Banner = styled.div`
     props.mobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
   background-color: ${(props) => props.theme.bannerBackground};
   align-items: center;
-  padding-right: 24px;
-  padding-left: 24px;
+  padding: 0 20px;
   box-sizing: border-box;
   justify-content: space-between;
   margin-bottom: ${(props) =>

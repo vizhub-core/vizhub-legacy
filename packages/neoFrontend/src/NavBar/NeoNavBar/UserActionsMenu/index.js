@@ -24,12 +24,12 @@ export const UserActionsMenu = withTheme(({ theme, mobile }) => {
         <Menu mobile={mobile} height={avatarHeight}>
           <Link to="/create-viz">
             <Item className="test-create-viz" topmost={true}>
-              New Visualization
+              Create Viz
             </Item>
           </Link>
           <HorizontalRule />
           <Link to={`/${me.userName}`}>
-            <Item>Profile settings</Item>
+            <Item>Profile</Item>
           </Link>
           <HorizontalRule />
           <Item className="test-sign-out" onClick={signOut} bottommost={true}>
