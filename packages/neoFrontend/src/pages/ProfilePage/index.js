@@ -10,9 +10,11 @@ import { Body } from './Body';
 export const ProfilePage = () => {
   const { userName } = useParams();
 
-  const searchProps = useMemo(() => ({ redirectPath: `/${userName}` }), [userName]);
+  const searchProps = useMemo(() => ({ redirectPath: `/${userName}` }), [
+    userName,
+  ]);
 
-  return(
+  return (
     <>
       <NavBar showSearch searchProps={searchProps} />
       <Wrapper>
