@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
 import { Feedback } from '../../Feedback';
+import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
+import { AuthContext } from '../../authentication';
 import { Wrapper, Content, HorizontalRule } from '../styles';
 import {
   Table,
@@ -10,16 +12,19 @@ import {
   Right,
   FeatureTitle,
   FeatureDescription,
+  PlanWrapper,
   PlanLabel,
+  PlanSubtext,
   EmptySpace,
 } from './styles';
 
 import { features, plans, FREE } from './featuresAndPlans';
-import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 
 import { handleUpgradeClick } from './stripe';
 
 export const PricingPage = () => {
+  const { me } = useContext(AuthContext);
+
   return (
     <>
       <NavBar />
@@ -30,7 +35,14 @@ export const PricingPage = () => {
               <Left />
               <Right>
                 {plans.map((plan) => (
-                  <PlanLabel key={plan.id}>{plan.label}</PlanLabel>
+                  <PlanWrapper key={plan.id}>
+                    <PlanLabel>{plan.label}</PlanLabel>
+                    {plan.subtext
+                      ? plan.subtext.map((text) => (
+                          <PlanSubtext key={text}>{text}</PlanSubtext>
+                        ))
+                      : null}
+                  </PlanWrapper>
                 ))}
               </Right>
             </Row>
@@ -64,9 +76,13 @@ export const PricingPage = () => {
                 {plans.map((plan) => (
                   <Fragment key={plan.id}>
                     {plan.id === FREE ? (
-                      <EmptySpace key={plan.id} />
+                      <EmptySpace />
                     ) : (
-                      <Button key={plan.id} onClick={handleUpgradeClick}>
+                      <Button
+                        onClick={handleUpgradeClick(me.id)}
+                        disabled={!me}
+                        title={!me ? 'Please log in to upgrade.' : ''}
+                      >
                         Upgrade
                       </Button>
                     )}

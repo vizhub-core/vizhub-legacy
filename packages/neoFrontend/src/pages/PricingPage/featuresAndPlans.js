@@ -35,6 +35,10 @@ export const features = [
 ];
 
 export const plans = [
-  { id: FREE, label: 'Free Plan' },
-  { id: PRO, label: 'Pro Plan' },
+  { id: FREE, label: 'Free' },
+  {
+    id: PRO,
+    label: 'Pro',
+    subtext: ['$10 / month', '30 day free trial'],
+  },
 ];
