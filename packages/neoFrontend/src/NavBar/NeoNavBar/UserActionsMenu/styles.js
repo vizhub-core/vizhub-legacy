@@ -27,12 +27,10 @@ export const Menu = styled.div`
 
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: ${(props) => props.theme.text.medium};
 
   color: #535353;
   z-index: ${Z_WAY_WAY_ABOVE};
-  width: 240px;
 `;
 
 export const Item = styled(Clickable)`
@@ -40,7 +38,10 @@ export const Item = styled(Clickable)`
   cursor: pointer;
   user-select: none;
   color: ${(props) => props.theme.dark};
-  padding: 20px;
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
 
   &:hover {
     background: rgb(
