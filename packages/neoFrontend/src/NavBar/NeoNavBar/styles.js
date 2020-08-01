@@ -26,11 +26,6 @@ export const LogoLink = styled(Link)`
   color: currentcolor;
 `;
 
-export const LogoHREF = styled.a`
-  line-height: 0;
-  color: currentcolor;
-`;
-
 export const Banner = styled.div`
   position: sticky;
   top: 0;
