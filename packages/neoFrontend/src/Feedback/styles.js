@@ -23,5 +23,5 @@ export const FeedbackButton = styled(Button)`
   border-radius: 0 6px 6px 0;
   border-left: none;
   font-size: 12px;
-  background-color: #E1E8F4;
+  background-color: #e1e8f4;
 `;
