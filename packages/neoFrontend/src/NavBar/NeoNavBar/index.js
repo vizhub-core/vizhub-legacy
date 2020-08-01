@@ -8,7 +8,7 @@ import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
-import { NavLink, LogoHREF } from './styles';
+import { NavLink } from './styles';
 
 export const NeoNavBar = withTheme(
   ({ theme, searchProps = {}, showSearch = false, showAuth = false }) => {
@@ -19,15 +19,7 @@ export const NeoNavBar = withTheme(
 
     return (
       <Layout
-        Logo={
-          <LogoHREF
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://datavis.tech/vizhub/"
-          >
-            <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
-          </LogoHREF>
-        }
+        Logo={<LogoSVG height={navbarHeight} fill={navbarLogoColor} />}
         Search={showSearch && <Search mobile={isMobile} {...searchProps} />}
         HomeLink={
           <NavLink exact to="/">
