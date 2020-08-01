@@ -84,7 +84,13 @@ export const Viewer = () => {
 
   // Set title in browser tab.
   useEffect(() => {
+    const title = document.title;
+
     document.title = vizInfo.title;
+
+    return () => {
+      document.title = title;
+    };
   }, [vizInfo.title]);
 
   const isPrivate = isVizInfoPrivate(vizInfo);
