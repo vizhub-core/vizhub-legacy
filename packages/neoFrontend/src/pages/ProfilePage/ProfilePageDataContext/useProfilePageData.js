@@ -6,7 +6,6 @@ export const useProfilePageData = (userName, query, sort) => {
   const [data, setData] = useState(undefined);
 
   useEffect(() => {
-    setData(undefined);
     const dataLoaded = fetchProfilePageData({ userName, query, sort });
     waitForSpinner(dataLoaded).then(setData);
   }, [userName, query, sort]);
