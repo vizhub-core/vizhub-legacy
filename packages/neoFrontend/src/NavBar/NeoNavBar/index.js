@@ -20,6 +20,13 @@ export const NeoNavBar = withTheme(
     return (
       <Layout
         Logo={<LogoSVG height={navbarHeight} fill={navbarLogoColor} />}
+        DashboardLink={
+          me && me !== 'AUTH_PENDING' ? (
+            <NavLink exact to={`/${me.userName}`}>
+              Dashboard
+            </NavLink>
+          ) : null
+        }
         Search={showSearch && <Search mobile={isMobile} {...searchProps} />}
         HomeLink={
           <NavLink exact to="/">
