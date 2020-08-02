@@ -8,10 +8,17 @@ import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
-import { NavLink, LogoHREF } from './styles';
+import { NavLink } from './styles';
+import { NavHREF } from './styles';
 
 export const NeoNavBar = withTheme(
-  ({ theme, searchProps = {}, showSearch = false, showAuth = false }) => {
+  ({
+    theme,
+    searchProps = {},
+    showSearch = false,
+    showAuth = false,
+    isHomePage,
+  }) => {
     const { navbarHeight, navbarLogoColor } = theme;
     const { me, signIn } = useContext(AuthContext);
 
@@ -19,14 +26,14 @@ export const NeoNavBar = withTheme(
 
     return (
       <Layout
-        Logo={
-          <LogoHREF
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://datavis.tech/vizhub/"
-          >
-            <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
-          </LogoHREF>
+        isHomePage={isHomePage}
+        Logo={<LogoSVG height={navbarHeight} fill={navbarLogoColor} />}
+        DashboardLink={
+          me && me !== 'AUTH_PENDING' ? (
+            <NavLink exact to={`/${me.userName}`}>
+              Dashboard
+            </NavLink>
+          ) : null
         }
         Search={showSearch && <Search mobile={isMobile} {...searchProps} />}
         HomeLink={
@@ -34,7 +41,17 @@ export const NeoNavBar = withTheme(
             Home
           </NavLink>
         }
-        AboutLink={showAboutLink && <NavLink exact>About</NavLink>}
+        AboutLink={
+          showAboutLink && (
+            <NavHREF
+              href="https://datavis.tech/vizhub/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              About
+            </NavHREF>
+          )
+        }
         PricingLink={
           <NavLink exact to="/pricing">
             Pricing

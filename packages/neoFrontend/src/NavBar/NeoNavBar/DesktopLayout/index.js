@@ -5,17 +5,22 @@ import { Right, Left } from './styles';
 
 export const DesktopLayout = ({
   Logo,
+  DashboardLink,
   Search,
   HomeLink,
   AboutLink,
   PricingLink,
   AuthSection,
+  isHomePage,
 }) => {
   const { me } = useContext(AuthContext);
 
   return (
-    <Banner>
-      <Left>{Logo}</Left>
+    <Banner isHomePage={isHomePage}>
+      <Left>
+        {Logo}
+        {DashboardLink}
+      </Left>
       <Right
         className="test-user-navbar-section"
         data-test-is-authenticated={Boolean(me)}

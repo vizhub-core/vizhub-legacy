@@ -16,4 +16,9 @@ export const AttentionGrabbingTitle = styled(Title)`
 
 export const Subtitle = styled.div`
   margin-top: 0;
+  margin-bottom: 30px;
+`;
+
+export const LearnMoreLink = styled.a`
+  margin-bottom: 40px;
 `;

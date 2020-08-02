@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Wrapper,
   Bar,
@@ -20,13 +21,9 @@ export const Banner = () => (
         <MessageSmallText>Teach, learn, & practice</MessageSmallText>
         <MessageLargeText>Data Visualization</MessageLargeText>
         <MessageSmallText>using Web technologies.</MessageSmallText>
-        <a
-          href="https://datavis.tech/vizhub/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <MessageButton>Learn more</MessageButton>
-        </a>
+        <Link to="/create-viz">
+          <MessageButton>Get started</MessageButton>
+        </Link>
       </Message>
     </Left>
     <Right>

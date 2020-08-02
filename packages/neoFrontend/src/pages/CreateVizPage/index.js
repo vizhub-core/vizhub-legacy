@@ -1,9 +1,15 @@
 import React from 'react';
+import { Button } from '../../Button';
 import { NavBar } from '../../NavBar';
 import { VizPreviews, VizPreview } from '../../VizPreview';
 import { Wrapper, Content } from '../styles';
 import { FromScratchSection } from './FromScratchSection';
-import { AttentionGrabbingTitle, Centered, Subtitle } from './styles';
+import {
+  AttentionGrabbingTitle,
+  Centered,
+  Subtitle,
+  LearnMoreLink,
+} from './styles';
 
 // TODO make an API request here, for the list of template and popular vizzes.
 // TODO find a better solution - perhaps present the templates as a collection,
@@ -54,6 +60,14 @@ export const CreateVizPage = () => (
             Create a new visualization from a template or fork one from our
             users.
           </Subtitle>
+          <LearnMoreLink
+            href="https://datavis.tech/vizhub/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button>Learn more</Button>
+          </LearnMoreLink>
+
           <VizPreviews>
             {visualizationInfos.map((vizInfo) => (
               <VizPreview

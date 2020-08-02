@@ -8,6 +8,7 @@ import { reducer } from './reducer';
 //  * "full" = "full"
 //  * "mini" = "mini"
 //  * "hide" = "hide"
+//  * "embed" = "embed"
 //  * undefined = "viewer" <--- This is the only difference.
 //
 // The difference exists so that we can omit the "mode" parameter from the
@@ -77,6 +78,7 @@ export const useURLState = (props) => {
   const onShowViz = () => setMode('viewer');
 
   const isFullScreen = mode === 'full';
+  const isEmbed = mode === 'embed';
   const enterFullScreen = () => setMode('full');
   const exitFullScreen = onShowViz;
 
@@ -121,5 +123,6 @@ export const useURLState = (props) => {
     isRecoveryMode,
     exitRecoveryMode,
     openLink,
+    isEmbed,
   };
 };
