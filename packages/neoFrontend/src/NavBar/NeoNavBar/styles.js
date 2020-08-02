@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { Z_WAY_WAY_ABOVE } from '../../styles';
 
-export const NavLink = styled(RouterNavLink)`
+const linkCSS = css`
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: ${(props) => props.theme.navLinkFontSize};
   line-height: 19px;
 
   color: #b5b5b5;
@@ -21,12 +21,15 @@ export const NavLink = styled(RouterNavLink)`
   }
 `;
 
-export const LogoLink = styled(Link)`
-  line-height: 0;
-  color: currentcolor;
+export const NavLink = styled(RouterNavLink)`
+  ${linkCSS}
 `;
 
-export const LogoHREF = styled.a`
+export const NavHREF = styled.a`
+  ${linkCSS}
+`;
+
+export const LogoLink = styled(Link)`
   line-height: 0;
   color: currentcolor;
 `;
@@ -42,10 +45,9 @@ export const Banner = styled.div`
     props.mobile ? props.theme.bannerHeightMobile : props.theme.bannerHeight}px;
   background-color: ${(props) => props.theme.bannerBackground};
   align-items: center;
-  padding-right: 24px;
-  padding-left: 24px;
+  padding: 0 20px;
   box-sizing: border-box;
   justify-content: space-between;
   margin-bottom: ${(props) =>
-    props.mobile ? 0 : props.theme.bannerMarginBottom}px;
+    props.mobile ? 0 : props.isHomePage ? 0 : props.theme.bannerMarginBottom}px;
 `;

@@ -19,9 +19,9 @@ export const HomePage = () => {
       <HtmlStylesOverride />
       <HomePageDataProvider sort={sort} fallback={<LoadingScreen />}>
         <NavBar isHomePage={true} showSearch />
+        <Banner />
         <Wrapper>
           <Content>
-            <Banner />
             {showSortOptions ? (
               <Sort value={sort} onChange={handleSortChange} />
             ) : null}
