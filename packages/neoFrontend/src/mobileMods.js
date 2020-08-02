@@ -12,13 +12,13 @@ const identity = (x) => x;
 // On mobile, don't show viewer if editor is open.
 export const modShowViewer = isMobile
   ? (showViewer, showEditor, activeFile) =>
-    showEditor || activeFile ? false : showViewer
+      showEditor || activeFile ? false : showViewer
   : identity;
 
 // On mobile, don't show viz runner if editor is open.
 export const modMode = isMobile
   ? (mode, showEditor, activeFile) =>
-    showEditor || activeFile ? 'micro' : mode
+      showEditor || activeFile ? 'micro' : mode
   : identity;
 
 // On mobile, if editor is open, allow it to expand to full width.
