@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 // `;
 //   animation: ${fadeOut} 0.5s linear;
 
-export const FullScreenFooter = styled(Footer)`
+export const FullScreenFooterWrapper = styled(Footer)`
   position: fixed;
   right: 0;
   bottom: 0;

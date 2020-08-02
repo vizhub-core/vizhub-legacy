@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
 import {
+  getVizInfo,
   getVizHeight,
   getVizUpvotes,
   getUpvoteCount,
@@ -38,7 +39,7 @@ export const Viewer = () => {
   const { viz$, submitVizInfoOp } = useContext(VizContext);
   const { me } = useContext(AuthContext);
 
-  const vizInfo = useValue(viz$, (viz) => viz.info);
+  const vizInfo = useValue(viz$, getVizInfo);
   const vizHeight = useValue(viz$, getVizHeight);
 
   const upvotes = useValue(viz$, getVizUpvotes);
