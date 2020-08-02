@@ -6,13 +6,14 @@ import { modShowViewer, modMode } from '../../../mobileMods';
 import { Wrapper, Top, Bottom } from './styles';
 import { MicroConsole } from './MicroConsole';
 import { Head } from './Head';
-import { FullScreen } from './FullScreen';
+import { FullScreen, FullScreenFooter } from './FullScreen';
 import { Editor } from './Editor';
 import { Viewer } from './Viewer';
 import { Mini } from './Mini';
 import { RecoveryModeBanner } from './RecoveryModeBanner';
+import { EmbedFooter } from './EmbedFooter';
 
-const consoleOutput = `hello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2`;
+const consoleOutput = 'hello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2\nhello world\nn = 1\nn = 2';
 
 export const Body = () => {
   const {
@@ -23,6 +24,7 @@ export const Body = () => {
     activeFile,
     isRecoveryMode,
     exitRecoveryMode,
+    isEmbed,
   } = useContext(URLStateContext);
 
   const mod = modMode(mode, showEditor, activeFile);
@@ -37,9 +39,23 @@ export const Body = () => {
     setShowTop,
   ]);
 
-  return isFullScreen ? (
-    <FullScreen />
-  ) : (
+  if (isFullScreen) {
+    return (
+      <FullScreen>
+        <FullScreenFooter />
+      </FullScreen>
+    );
+  }
+
+  if (isEmbed) {
+    return (
+      <FullScreen>
+        <EmbedFooter />
+      </FullScreen>
+    );
+  } 
+
+  return (
     <Wrapper>
       {showTop || !activeFile ? (
         <Top>
