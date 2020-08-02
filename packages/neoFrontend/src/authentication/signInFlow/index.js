@@ -3,9 +3,9 @@ import { listenForMe } from './listenForMe';
 import { AUTH_PENDING } from '../constants';
 
 // Implements a popup-based OAuth sign in flow.
-export const signInFlow = (setMe) => () => {
+export const signInFlow = (setMe, scopes) => () => {
   setMe(AUTH_PENDING);
-  const popup = openPopup();
+  const popup = openPopup(scopes);
   // TODO make this a Promise
   listenForMe((me) => {
     popup.close();
