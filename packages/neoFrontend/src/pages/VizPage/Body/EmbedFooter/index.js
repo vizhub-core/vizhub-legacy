@@ -1,21 +1,11 @@
 import React, { useContext, useMemo } from 'react';
-import {
-  getVizInfo,
-  getUserFullName,
-  getUserName
-} from 'vizhub-presenters';
+import { getVizInfo, getUserFullName, getUserName } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { LogoSVG } from '../../../../svg';
 import { Avatar } from '../../../../Avatar';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { VizContext } from '../../VizContext';
-import {
-  AuthorName,
-  Authorship,
-  Title,
-  VizInfo,
-  Wrapper
-} from './styles';
+import { AuthorName, Authorship, Title, VizInfo, Wrapper } from './styles';
 
 export const EmbedFooter = () => {
   const { ownerUser } = useContext(VizPageDataContext);
@@ -24,22 +14,15 @@ export const EmbedFooter = () => {
 
   const href = useMemo(() => {
     return `https://vizhub.com/${getUserName(ownerUser)}/${vizInfo.id}`;
-  }, [
-    ownerUser,
-    vizInfo
-  ]);
+  }, [ownerUser, vizInfo]);
 
   return (
-    <Wrapper
-      target="_blank"
-      rel="noopener noreferrer"
-      href={href}
-    >
+    <Wrapper target="_blank" rel="noopener noreferrer" href={href}>
       <VizInfo>
         <Title>{vizInfo.title}</Title>
         <Authorship>
           <Avatar size={31} user={ownerUser} />
-          <AuthorName >{getUserFullName(ownerUser)}</AuthorName>
+          <AuthorName>{getUserFullName(ownerUser)}</AuthorName>
         </Authorship>
       </VizInfo>
       <LogoSVG height={26} />
