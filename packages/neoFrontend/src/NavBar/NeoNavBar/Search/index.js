@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
 import { useSearchQuery } from '../../../useSearchQuery';
+import { ExitableWrapper } from '../../../ExitableWrapper';
 import {
   UserPreviewList,
   useUserPreviewController,
@@ -51,9 +52,14 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
     [redirectPath, setRedirectTo, query]
   );
 
+  const handleExit = useCallback(() => {
+    setQuery(queryFromLocation);
+    setIsInputPristine(true);
+  }, [queryFromLocation]);
+
   return (
     <Form onSubmit={handleFormSubmit}>
-      <div tabIndex="-1" onKeyDown={handleKeyDown}>
+      <ExitableWrapper onKeyDown={handleKeyDown} onExit={handleExit}>
         <SearchInput
           mobile={mobile}
           value={query}
@@ -65,7 +71,7 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
           users={users}
           onSelect={handleUserSelect}
         />
-      </div>
+      </ExitableWrapper>
       {redirectTo && <Redirect push to={redirectTo} />}
     </Form>
   );
