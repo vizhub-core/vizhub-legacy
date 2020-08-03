@@ -31,4 +31,6 @@ export const sidebarExportTooltip = 'Export';
 // the program is run. Connected to the timer indicator.
 export const runDelay = 1200;
 
-export const domain = process.env.REACT_APP_VIZHUB_DOMAIN || isProd ? 'https://vizhub.com/' : 'http://localhost:3000';
+export const domain =
+  process.env.REACT_APP_VIZHUB_DOMAIN ||
+  (isProd ? 'https://vizhub.com' : 'http://localhost:3000');

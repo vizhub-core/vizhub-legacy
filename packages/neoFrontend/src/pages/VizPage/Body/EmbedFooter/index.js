@@ -14,9 +14,7 @@ export const EmbedFooter = () => {
   const vizInfo = useValue(viz$, getVizInfo);
 
   const href = useMemo(() => {
-    return `${domain}/${getUserName(ownerUser)}/${
-      vizInfo.id
-    }`;
+    return `${domain}/${getUserName(ownerUser)}/${vizInfo.id}`;
   }, [ownerUser, vizInfo]);
 
   return (
