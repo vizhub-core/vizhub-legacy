@@ -1,11 +1,16 @@
 import { resolve } from 'path';
 import Stripe from 'stripe';
 
+// This module handles all Stripe integration for subscriptions and payments.
+//
+// Draws from
+// https://github.com/stripe-samples/checkout-single-subscription/tree/master/client-and-server
+//
 // Note: the following environment variables are required:
 //  * STRIPE_SECRET_KEY
 //  * STRIPE_DOMAIN
 //  * STRIPE_WEBHOOK_SECRET
-//
+
 const stripe = Stripe(process.env.VIZHUB_STRIPE_SECRET_KEY);
 const domainURL = process.env.VIZHUB_STRIPE_DOMAIN;
 
