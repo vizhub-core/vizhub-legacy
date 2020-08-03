@@ -14,6 +14,8 @@ export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
 export const showEmbed = false;
+export const enableWhiteLabelEmbeding = false;
+export const enablePreviewEmbeding = false;
 export const showSortOptions = true;
 export const showForksCount = true;
 
