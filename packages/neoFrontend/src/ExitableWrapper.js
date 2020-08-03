@@ -1,6 +1,12 @@
 import React, { useRef, useCallback, useEffect } from 'react';
 
-export const ExitableWrapper = ({ className, children, onExit, onKeyDown, ...rest }) => {
+export const ExitableWrapper = ({
+  className,
+  children,
+  onExit,
+  onKeyDown,
+  ...rest
+}) => {
   const wrapperRef = useRef();
 
   useEffect(() => {
@@ -18,13 +24,16 @@ export const ExitableWrapper = ({ className, children, onExit, onKeyDown, ...res
     };
   }, [onExit]);
 
-  const handleKeyDown = useCallback((event) => {
-    if (onKeyDown) onKeyDown(event);
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (onKeyDown) onKeyDown(event);
 
-    if (event.key === 'Escape') {
-      onExit();
-    }
-  }, [onKeyDown, onExit]);
+      if (event.key === 'Escape') {
+        onExit();
+      }
+    },
+    [onKeyDown, onExit]
+  );
 
   return (
     <div
@@ -34,7 +43,7 @@ export const ExitableWrapper = ({ className, children, onExit, onKeyDown, ...res
       onKeyDown={handleKeyDown}
       {...rest}
     >
-      { children }
+      {children}
     </div>
   );
 };
