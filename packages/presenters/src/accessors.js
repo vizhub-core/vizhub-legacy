@@ -27,6 +27,8 @@ export const getText = (files, name) => {
 
 export const getVizHeight = (viz) => viz.info.height || defaultVizHeight;
 
+export const getVizTitle = (viz) => viz.info.title;
+
 export const getVizFiles = (viz) => viz.content.files;
 
 export const getVizFileIndex = (name) => (viz) =>
