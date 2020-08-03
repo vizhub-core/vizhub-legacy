@@ -17,6 +17,7 @@ export const SearchInput = styled.input`
   background-repeat: no-repeat;
   background-position-x: 15px;
   background-position-y: 12px;
+  cursor: pointer;
 `;
 
 export const Form = styled.form`
