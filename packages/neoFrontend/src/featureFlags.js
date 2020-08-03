@@ -13,7 +13,7 @@ export const showVideoThumbnail = false;
 export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
-export const showEmbed = false;
+export const showEmbed = process.env.REACT_APP_VIZHUB_EMBED === 'true';
 export const enableWhiteLabelEmbeding = false;
 export const enablePreviewEmbeding = false;
 export const showSortOptions = true;
