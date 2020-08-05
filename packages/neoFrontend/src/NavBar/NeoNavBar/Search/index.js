@@ -47,9 +47,12 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   const handleFormSubmit = useCallback(
     (event) => {
       event.preventDefault();
+
+      if (isInputPristine) return;
+
       setRedirectTo(`${redirectPath}?query=${query}`);
     },
-    [redirectPath, setRedirectTo, query]
+    [redirectPath, setRedirectTo, query, isInputPristine]
   );
 
   const handleExit = useCallback(() => {
@@ -64,6 +67,7 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
           mobile={mobile}
           value={query}
           placeholder="Search"
+          onClick={handleFormSubmit}
           onChange={handleQueryChange}
         />
         <UserPreviewList

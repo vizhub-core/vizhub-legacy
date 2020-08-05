@@ -61,7 +61,7 @@ export const CreateVizPage = () => (
             users.
           </Subtitle>
           <LearnMoreLink
-            href="https://datavis.tech/vizhub/"
+            href="https://datavis.tech/vizhub/#using-vizhub"
             target="_blank"
             rel="noopener noreferrer"
           >
