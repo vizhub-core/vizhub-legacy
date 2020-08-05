@@ -15,9 +15,16 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   const [query, setQuery] = useState(queryFromLocation);
   const [redirectTo, setRedirectTo] = useState(null);
 
-  const [isInputPristine, setIsInputPristine] = useState(true);
+  const [isInputPristine, setIsInputPristine] = useState(!!queryFromLocation);
 
-  const users = useUsers(!isInputPristine && query);
+  const matchedUsers = useUsers(!isInputPristine && query);
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    setUsers(matchedUsers);
+  }, [matchedUsers, setUsers]);
+
   const {
     activeUser,
     selectedUser,
@@ -56,9 +63,8 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   );
 
   const handleExit = useCallback(() => {
-    setQuery(queryFromLocation);
-    setIsInputPristine(true);
-  }, [queryFromLocation]);
+    setUsers([]);
+  }, []);
 
   return (
     <Form onSubmit={handleFormSubmit}>
