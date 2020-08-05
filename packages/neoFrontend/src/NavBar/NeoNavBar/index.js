@@ -31,7 +31,7 @@ export const NeoNavBar = withTheme(
         DashboardLink={
           me && me !== 'AUTH_PENDING' ? (
             <NavLink exact to={`/${me.userName}`}>
-              Dashboard
+              Profile
             </NavLink>
           ) : null
         }
