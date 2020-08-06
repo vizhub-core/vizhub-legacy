@@ -7,7 +7,7 @@ import {
   useUserPreviewController,
   useUsers,
 } from '../../../UserPreviewList';
-import { 
+import {
   Form,
   SearchInputWrapper,
   SearchInputIcon,
@@ -75,7 +75,7 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
     <Form onSubmit={handleFormSubmit}>
       <ExitableWrapper onKeyDown={handleKeyDown} onExit={handleExit}>
         <SearchInputWrapper mobile={mobile}>
-          <SearchInputIcon onClick={handleFormSubmit}/>
+          <SearchInputIcon onClick={handleFormSubmit} />
           <SearchInput
             value={query}
             placeholder="Search"
