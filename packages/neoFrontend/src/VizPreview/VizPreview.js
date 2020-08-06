@@ -48,7 +48,7 @@ export const VizPreview = ({
       />
       <VizPreviewFooter borderRadiusLarge={true}>
         <Top>
-          <VizPreviewTitle to={link}>{title}</VizPreviewTitle>
+          <VizPreviewTitle to={link} title={title}>{title}</VizPreviewTitle>
           {forksCount > 0 ? (
             <ForksLink
               isSmall
