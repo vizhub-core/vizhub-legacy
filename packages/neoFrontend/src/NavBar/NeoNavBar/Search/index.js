@@ -7,7 +7,12 @@ import {
   useUserPreviewController,
   useUsers,
 } from '../../../UserPreviewList';
-import { SearchInput, Form } from './styles';
+import { 
+  Form,
+  SearchInputWrapper,
+  SearchInputIcon,
+  SearchInput,
+} from './styles';
 
 export const Search = ({ mobile, redirectPath = '/search' }) => {
   const queryFromLocation = useSearchQuery('query');
@@ -69,13 +74,14 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   return (
     <Form onSubmit={handleFormSubmit}>
       <ExitableWrapper onKeyDown={handleKeyDown} onExit={handleExit}>
-        <SearchInput
-          mobile={mobile}
-          value={query}
-          placeholder="Search"
-          onClick={handleFormSubmit}
-          onChange={handleQueryChange}
-        />
+        <SearchInputWrapper mobile={mobile}>
+          <SearchInputIcon onClick={handleFormSubmit}/>
+          <SearchInput
+            value={query}
+            placeholder="Search"
+            onChange={handleQueryChange}
+          />
+        </SearchInputWrapper>
         <UserPreviewList
           user={activeUser}
           users={users}
