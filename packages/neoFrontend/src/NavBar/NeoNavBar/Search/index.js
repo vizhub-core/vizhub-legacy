@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
 import { useSearchQuery } from '../../../useSearchQuery';
+import { ExitableWrapper } from '../../../ExitableWrapper';
 import {
   UserPreviewList,
   useUserPreviewController,
@@ -19,9 +20,16 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   const [query, setQuery] = useState(queryFromLocation);
   const [redirectTo, setRedirectTo] = useState(null);
 
-  const [isInputPristine, setIsInputPristine] = useState(true);
+  const [isInputPristine, setIsInputPristine] = useState(!!queryFromLocation);
 
-  const users = useUsers(!isInputPristine && query);
+  const matchedUsers = useUsers(!isInputPristine && query);
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    setUsers(matchedUsers);
+  }, [matchedUsers, setUsers]);
+
   const {
     activeUser,
     selectedUser,
@@ -59,9 +67,13 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
     [redirectPath, setRedirectTo, query, isInputPristine]
   );
 
+  const handleExit = useCallback(() => {
+    setUsers([]);
+  }, []);
+
   return (
     <Form onSubmit={handleFormSubmit}>
-      <div tabIndex="-1" onKeyDown={handleKeyDown}>
+      <ExitableWrapper onKeyDown={handleKeyDown} onExit={handleExit}>
         <SearchInputWrapper mobile={mobile}>
           <SearchInputIcon onClick={handleFormSubmit}/>
           <SearchInput
@@ -75,7 +87,7 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
           users={users}
           onSelect={handleUserSelect}
         />
-      </div>
+      </ExitableWrapper>
       {redirectTo && <Redirect push to={redirectTo} />}
     </Form>
   );
