@@ -37,3 +37,8 @@ export const Footer = styled.div`
   align-items: center;
   background-color: #ffffff;
 `;
+
+export const HorizontalRule = styled.div`
+  height: 1px;
+  background-color: ${(props) => props.theme.rule};
+`;

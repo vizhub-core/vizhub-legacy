@@ -39,8 +39,14 @@ export const App = () => (
                     <Route exact path="/" component={HomePage} />
                     <Route path="/auth" component={AuthPage} />
                     <Route path="/pricing" component={PricingPage} />
-                    <Route path="/upgrade-success" component={UpgradeSuccessPage} />
-                    <Route path="/upgrade-canceled" component={UpgradeCanceledPage} />
+                    <Route
+                      path="/upgrade-success"
+                      component={UpgradeSuccessPage}
+                    />
+                    <Route
+                      path="/upgrade-canceled"
+                      component={UpgradeCanceledPage}
+                    />
                     <Route path="/terms" component={TermsPage} />
                     <Route path="/contact" component={ContactPage} />
                     <Route path="/create-viz" component={CreateVizPage} />

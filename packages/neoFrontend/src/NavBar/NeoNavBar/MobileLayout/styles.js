@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Z_WAY_ABOVE } from '../../../styles';
 
 export const Links = styled.div`
@@ -19,4 +20,9 @@ export const SubBanner = styled.div`
   z-index: ${Z_WAY_ABOVE};
   padding-bottom: ${(props) => props.theme.bannerPadding}px;
   background-color: ${(props) => props.theme.bannerBackground};
+`;
+
+export const LogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
 `;

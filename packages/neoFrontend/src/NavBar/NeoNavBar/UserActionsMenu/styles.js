@@ -58,8 +58,3 @@ export const Item = styled(Clickable)`
     ); // same as background: #3866E9 with opacity: 0.2;
   }
 `;
-
-export const HorizontalRule = styled.div`
-  height: 1px;
-  background-color: ${(props) => props.theme.rule};
-`;

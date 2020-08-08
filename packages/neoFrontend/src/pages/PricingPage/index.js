@@ -4,7 +4,8 @@ import { Button } from '../../Button';
 import { Feedback } from '../../Feedback';
 import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 import { AuthContext } from '../../authentication';
-import { Wrapper, Content, HorizontalRule } from '../styles';
+import { Wrapper, Content } from '../styles';
+import { HorizontalRule } from '../../styles';
 import {
   Table,
   Row,
