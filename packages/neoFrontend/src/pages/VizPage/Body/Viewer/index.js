@@ -17,7 +17,8 @@ import {
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
-import { Centering, HorizontalRule } from '../../../styles';
+import { Centering } from '../../../styles';
+import { HorizontalRule } from '../../../../styles';
 import { VizPageDataContext } from '../../VizPageDataContext';
 import { VizContext } from '../../VizContext';
 import { useListener } from '../useListener';
