@@ -89,6 +89,7 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
           user={activeUser}
           users={users}
           onSelect={handleUserSelect}
+          isNavSearch
         />
       </ExitableWrapper>
       {redirectTo && <Redirect push to={redirectTo} />}
