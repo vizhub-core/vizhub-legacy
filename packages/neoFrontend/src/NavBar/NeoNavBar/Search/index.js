@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
+import { SearchSVG } from '../../../svg';
 import { useSearchQuery } from '../../../useSearchQuery';
 import { ExitableWrapper } from '../../../ExitableWrapper';
 import {
@@ -75,7 +76,9 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
     <Form onSubmit={handleFormSubmit}>
       <ExitableWrapper onKeyDown={handleKeyDown} onExit={handleExit}>
         <SearchInputWrapper mobile={mobile}>
-          <SearchInputIcon onClick={handleFormSubmit} />
+          <SearchInputIcon onClick={handleFormSubmit}>
+            <SearchSVG fill="white" />
+          </SearchInputIcon>
           <SearchInput
             value={query}
             placeholder="Search"
