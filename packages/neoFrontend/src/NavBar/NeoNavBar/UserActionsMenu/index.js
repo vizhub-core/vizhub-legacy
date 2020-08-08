@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 import { AuthContext } from '../../../authentication';
 import { Avatar } from '../../../Avatar';
-import { Wrapper, Menu, Item, HorizontalRule } from './styles';
+import { HorizontalRule } from '../../../styles';
+import { Wrapper, Menu, Item } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 
 export const UserActionsMenu = withTheme(({ theme, mobile }) => {
