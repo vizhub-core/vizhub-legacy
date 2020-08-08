@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import icon from './icon.svg';
+import { Clickable } from '../../../styles';
 
 export const SearchInputWrapper = styled.div`
   display: flex;
@@ -7,17 +7,12 @@ export const SearchInputWrapper = styled.div`
   background: #494949;
   border-radius: 4px;
   border: none;
-  padding: 13px 5px 13px 13px;
   box-sizing: border-box;
 `;
 
-export const SearchInputIcon = styled.div`
-  height: 20px;
-  min-width: 20px;
-  background-image: url(${icon});
-  background-repeat: no-repeat;
-  margin-right: 9px;
+export const SearchInputIcon = styled(Clickable)`
   cursor: pointer;
+  padding: 13px 13px 13px 13px;
 `;
 
 export const SearchInput = styled.input`
@@ -28,6 +23,7 @@ export const SearchInput = styled.input`
   font-size: 16px;
   line-height: 19px;
   color: #b5b5b5;
+  padding-left: 6px;
 `;
 
 export const Form = styled.form`
