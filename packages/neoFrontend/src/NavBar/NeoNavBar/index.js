@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
-import { showAboutLink } from '../../featureFlags';
+import { showAboutLink, showPricing } from '../../featureFlags';
 import { LogoSVG } from '../../svg';
 import { isMobile } from '../../mobileMods';
 import { AuthContext, AUTH_PENDING } from '../../authentication';
@@ -53,9 +53,11 @@ export const NeoNavBar = withTheme(
           )
         }
         PricingLink={
-          <NavLink exact to="/pricing">
-            Pricing
-          </NavLink>
+          showPricing ? (
+            <NavLink exact to="/pricing">
+              Pricing
+            </NavLink>
+          ) : null
         }
         AuthSection={
           showAuth && (
