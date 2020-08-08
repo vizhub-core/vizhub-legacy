@@ -20,6 +20,10 @@ export const Container = styled.div`
 
 const entryCSS = css`
   height: ${(props) => props.theme.buttonHeight};
+  height: ${(props) =>
+    props.isSmall ? props.theme.buttonHeightSmall : props.theme.buttonHeight};
+  font-size: ${(props) =>
+    props.isSmall ? props.theme.text.small : props.theme.text.normal};
   display: flex;
   align-items: center;
   padding-left: 12px;
@@ -29,11 +33,9 @@ const entryCSS = css`
 export const Entry = styled.div`
   ${entryCSS}
   color: ${(props) => props.theme.lightText};
-  font-size: ${(props) =>
-    props.isSmall ? props.theme.text.small : props.theme.text.normal};
 `;
 
-export const UserPreview = styled(Clickable)`
+export const ClickableEntry = styled(Clickable)`
   ${entryCSS}
 `;
 
@@ -43,4 +45,12 @@ export const UserName = styled.div`
 
 export const CollaboratorListWrapper = styled.div`
   padding-top: 32px;
+`;
+
+export const SearchIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  width: 24px;
 `;

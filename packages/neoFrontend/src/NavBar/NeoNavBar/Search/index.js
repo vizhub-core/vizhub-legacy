@@ -80,6 +80,7 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
             <SearchSVG fill="white" />
           </SearchInputIcon>
           <SearchInput
+            mobile={mobile}
             value={query}
             placeholder="Search"
             onChange={handleQueryChange}
@@ -89,7 +90,7 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
           user={activeUser}
           users={users}
           onSelect={handleUserSelect}
-          isNavSearch
+          onVizSearch={handleFormSubmit}
         />
       </ExitableWrapper>
       {redirectTo && <Redirect push to={redirectTo} />}
