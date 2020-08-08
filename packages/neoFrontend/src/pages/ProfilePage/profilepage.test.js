@@ -11,6 +11,7 @@ import { ProfilePageDataContext } from './ProfilePageDataContext';
 import { Themed } from '../../theme';
 
 const warning = { setWarning: jest.fn() };
+const me = { id: 1, userName: 'ci' };
 
 test('shows public viz by default', () => {
   const profilePageData = {
@@ -23,13 +24,12 @@ test('shows public viz by default', () => {
         title: 'My small undefined public visualization',
       },
     ],
-    user: { id: 1 },
+    user: me,
   };
-  const me = {};
   const tree = (
     <Themed>
       <WarningContext.Provider value={warning}>
-        <AuthContext.Provider value={me}>
+        <AuthContext.Provider value={{ me }}>
           <ProfilePageDataContext.Provider value={profilePageData}>
             <ProfilePage />
           </ProfilePageDataContext.Provider>
@@ -51,13 +51,12 @@ test('clicking private shows private viz', () => {
         title: 'My small undefined public visualization',
       },
     ],
-    user: { id: 1 },
+    user: me,
   };
-  const me = {};
   const tree = (
     <Themed>
       <WarningContext.Provider value={warning}>
-        <AuthContext.Provider value={me}>
+        <AuthContext.Provider value={{ me }}>
           <ProfilePageDataContext.Provider value={profilePageData}>
             <ProfilePage />
           </ProfilePageDataContext.Provider>
@@ -74,6 +73,7 @@ test('clicking private shows private viz', () => {
     screen.queryByText('My big public visualization')
   ).not.toBeInTheDocument();
 });
+
 test('clicking public shows public viz', () => {
   const profilePageData = {
     visualizationInfos: [
@@ -85,13 +85,12 @@ test('clicking public shows public viz', () => {
         title: 'My small undefined public visualization',
       },
     ],
-    user: { id: 1 },
+    user: me,
   };
-  const me = {};
   const tree = (
     <Themed>
       <WarningContext.Provider value={warning}>
-        <AuthContext.Provider value={me}>
+        <AuthContext.Provider value={{ me }}>
           <ProfilePageDataContext.Provider value={profilePageData}>
             <ProfilePage />
           </ProfilePageDataContext.Provider>
