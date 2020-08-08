@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Clickable } from '../styles';
 
 export const Container = styled.div`
@@ -18,12 +18,25 @@ export const Container = styled.div`
   }
 `;
 
-export const UserPreview = styled(Clickable)`
+const entryCSS = css`
   height: ${(props) => props.theme.buttonHeight};
+  height: ${(props) =>
+    props.isSmall ? props.theme.buttonHeightSmall : props.theme.buttonHeight};
+  font-size: ${(props) =>
+    props.isSmall ? props.theme.text.small : props.theme.text.normal};
   display: flex;
   align-items: center;
   padding-left: 12px;
   padding-right: 12px;
+`;
+
+export const Entry = styled.div`
+  ${entryCSS}
+  color: ${(props) => props.theme.lightText};
+`;
+
+export const ClickableEntry = styled(Clickable)`
+  ${entryCSS}
 `;
 
 export const UserName = styled.div`
@@ -32,4 +45,12 @@ export const UserName = styled.div`
 
 export const CollaboratorListWrapper = styled.div`
   padding-top: 32px;
+`;
+
+export const SearchIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  width: 24px;
 `;

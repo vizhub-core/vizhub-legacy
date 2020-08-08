@@ -3,7 +3,7 @@ import { Button } from '../../../Button';
 import { Modal } from '../../../Modal';
 import { AuthContext } from '../../../authentication/AuthContext';
 import { showPrivacySettings } from '../../../featureFlags';
-import { HorizontalRule } from '../../styles';
+import { HorizontalRule } from '../../../styles';
 import {
   Dialog,
   DialogTitle,

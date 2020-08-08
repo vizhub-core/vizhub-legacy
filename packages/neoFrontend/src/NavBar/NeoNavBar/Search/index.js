@@ -1,12 +1,19 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router';
+import { SearchSVG } from '../../../svg';
 import { useSearchQuery } from '../../../useSearchQuery';
+import { ExitableWrapper } from '../../../ExitableWrapper';
 import {
   UserPreviewList,
   useUserPreviewController,
   useUsers,
 } from '../../../UserPreviewList';
-import { SearchInput, Form } from './styles';
+import {
+  Form,
+  SearchInputWrapper,
+  SearchInputIcon,
+  SearchInput,
+} from './styles';
 
 export const Search = ({ mobile, redirectPath = '/search' }) => {
   const queryFromLocation = useSearchQuery('query');
@@ -14,9 +21,16 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   const [query, setQuery] = useState(queryFromLocation);
   const [redirectTo, setRedirectTo] = useState(null);
 
-  const [isInputPristine, setIsInputPristine] = useState(true);
+  const [isInputPristine, setIsInputPristine] = useState(!!queryFromLocation);
 
-  const users = useUsers(!isInputPristine && query);
+  const matchedUsers = useUsers(!isInputPristine && query);
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    setUsers(matchedUsers);
+  }, [matchedUsers, setUsers]);
+
   const {
     activeUser,
     selectedUser,
@@ -46,26 +60,39 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
   const handleFormSubmit = useCallback(
     (event) => {
       event.preventDefault();
+
+      if (isInputPristine) return;
+
       setRedirectTo(`${redirectPath}?query=${query}`);
     },
-    [redirectPath, setRedirectTo, query]
+    [redirectPath, setRedirectTo, query, isInputPristine]
   );
+
+  const handleExit = useCallback(() => {
+    setUsers([]);
+  }, []);
 
   return (
     <Form onSubmit={handleFormSubmit}>
-      <div tabIndex="-1" onKeyDown={handleKeyDown}>
-        <SearchInput
-          mobile={mobile}
-          value={query}
-          placeholder="Search"
-          onChange={handleQueryChange}
-        />
+      <ExitableWrapper onKeyDown={handleKeyDown} onExit={handleExit}>
+        <SearchInputWrapper mobile={mobile}>
+          <SearchInputIcon onClick={handleFormSubmit}>
+            <SearchSVG fill="white" />
+          </SearchInputIcon>
+          <SearchInput
+            mobile={mobile}
+            value={query}
+            placeholder="Search"
+            onChange={handleQueryChange}
+          />
+        </SearchInputWrapper>
         <UserPreviewList
           user={activeUser}
           users={users}
           onSelect={handleUserSelect}
+          onVizSearch={handleFormSubmit}
         />
-      </div>
+      </ExitableWrapper>
       {redirectTo && <Redirect push to={redirectTo} />}
     </Form>
   );

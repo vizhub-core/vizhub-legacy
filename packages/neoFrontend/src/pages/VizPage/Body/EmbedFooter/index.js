@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { getVizInfo, getUserFullName, getUserName } from 'vizhub-presenters';
+import { domain } from '../../../../constants';
 import { useValue } from '../../../../useValue';
 import { LogoSVG } from '../../../../svg';
 import { Avatar } from '../../../../Avatar';
@@ -13,7 +14,7 @@ export const EmbedFooter = () => {
   const vizInfo = useValue(viz$, getVizInfo);
 
   const href = useMemo(() => {
-    return `https://vizhub.com/${getUserName(ownerUser)}/${vizInfo.id}`;
+    return `${domain}/${getUserName(ownerUser)}/${vizInfo.id}`;
   }, [ownerUser, vizInfo]);
 
   return (

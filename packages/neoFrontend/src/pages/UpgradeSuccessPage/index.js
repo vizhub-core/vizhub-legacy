@@ -1,7 +1,7 @@
-import React  from 'react';
+import React from 'react';
 import { NavBar } from '../../NavBar';
 import { Feedback } from '../../Feedback';
-import { Wrapper, Content} from '../styles';
+import { Wrapper, Content } from '../styles';
 
 export const UpgradeSuccessPage = () => {
   return (
