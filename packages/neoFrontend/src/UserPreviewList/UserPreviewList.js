@@ -1,29 +1,42 @@
 import React from 'react';
+import { SearchSVG } from '../svg';
 import { getUserName, getUserFullName } from 'vizhub-presenters';
 import { Avatar } from '../Avatar';
 import { HorizontalRule } from '../styles';
-import { Container, UserPreview, UserName, Entry } from './styles';
+import {
+  Container,
+  UserName,
+  Entry,
+  ClickableEntry,
+  SearchIcon,
+} from './styles';
 
-export const UserPreviewList = ({ user, users, onSelect, isNavSearch }) => {
+export const UserPreviewList = ({ user, users, onSelect, onVizSearch }) => {
   if (users.length === 0) return null;
   return (
     <Container>
-      {isNavSearch ? <Entry>Users</Entry> : null}
+      {onVizSearch ? <Entry isSmall>Users:</Entry> : null}
       {users &&
         users.map((userToRender) => (
-          <UserPreview
+          <ClickableEntry
             className={user === userToRender ? 'active' : ''}
             key={getUserName(userToRender)}
             onClick={() => onSelect(userToRender)}
           >
             <Avatar size={24} user={userToRender} isDisabled={true} />
             <UserName>{getUserFullName(userToRender)}</UserName>
-          </UserPreview>
+          </ClickableEntry>
         ))}
-      {isNavSearch ? (
+      {onVizSearch ? (
         <>
           <HorizontalRule />
-          <Entry isSmall>Hit enter to search vizzes.</Entry>
+          <Entry isSmall>Vizzes:</Entry>
+          <ClickableEntry onClick={onVizSearch}>
+            <SearchIcon>
+              <SearchSVG height="16" />
+            </SearchIcon>{' '}
+            Search for vizzes
+          </ClickableEntry>
         </>
       ) : null}
     </Container>

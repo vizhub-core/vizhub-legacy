@@ -8,6 +8,7 @@ export const defaultCodingFontSize = '16px';
 export const theme = {
   text,
   buttonHeight: '40px',
+  buttonHeightSmall: '30px',
   background: '#f6eee3',
   dark: '#161514',
   lightText: '#797979',
