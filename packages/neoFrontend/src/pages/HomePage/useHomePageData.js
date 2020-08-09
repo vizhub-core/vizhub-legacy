@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { usePageData } from '../../VizzesGrid/usePageData';
+import { usePaginatedVizzes } from '../../VizzesGrid/usePaginatedVizzes';
 import { fetchHomePageData } from './fetchHomePageData';
 
 export const useHomePageData = ({ sort }) => {
@@ -10,5 +10,5 @@ export const useHomePageData = ({ sort }) => {
     [sort]
   );
 
-  return usePageData(fetchData);
+  return usePaginatedVizzes(fetchData);
 };

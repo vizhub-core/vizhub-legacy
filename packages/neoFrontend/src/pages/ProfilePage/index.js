@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { LoadingScreen } from '../../LoadingScreen';
+import { ErrorContext } from '../../ErrorContext';
 import { Feedback } from '../../Feedback';
 import { NavBar } from '../../NavBar';
 import { Wrapper } from '../styles';
@@ -9,6 +10,7 @@ import { Body } from './Body';
 
 export const ProfilePage = () => {
   const { userName } = useParams();
+  const { setError: setGlobalError } = useContext(ErrorContext);
 
   const searchProps = useMemo(() => ({ redirectPath: `/${userName}` }), [
     userName,
@@ -18,7 +20,10 @@ export const ProfilePage = () => {
     <>
       <NavBar showSearch searchProps={searchProps} />
       <Wrapper>
-        <ProfilePageDataProvider fallback={<LoadingScreen />}>
+        <ProfilePageDataProvider
+          fallback={<LoadingScreen />}
+          onError={setGlobalError}
+        >
           <Body />
         </ProfilePageDataProvider>
       </Wrapper>

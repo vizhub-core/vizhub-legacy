@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { useSearchQuery } from '../../useSearchQuery';
-import { usePageData as useVizzesGridPageData } from '../../VizzesGrid/usePageData';
+import { usePaginatedVizzes } from '../../VizzesGrid/usePaginatedVizzes';
 import { fetchPageData } from './fetchPageData';
 
 export const usePageData = () => {
@@ -16,7 +16,7 @@ export const usePageData = () => {
     usersById,
     isFetchingNextPage,
     reset,
-  } = useVizzesGridPageData(fetchData);
+  } = usePaginatedVizzes(fetchData);
 
   // reset page data if query was changed
   useEffect(() => reset(), [query, reset]);
