@@ -47,48 +47,42 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
 
   // From https://stripe.com/docs/webhooks/signatures
   // Match the raw body to content type application/json
-  expressApp.post(
-    '/webhook',
-    bodyParser.raw({ type: 'application/json' }),
-    (request, response) => {
-      const sig = request.headers['stripe-signature'];
+  expressApp.post('/webhook', (request, response) => {
+    const sig = request.headers['stripe-signature'];
 
-      let event;
+    let event;
 
-      try {
-        console.log('request.body');
-        console.log(request.body);
-        event = stripe.webhooks.constructEvent(
-          request.body,
-          sig,
-          endpointSecret
-        );
-      } catch (err) {
-        console.error(err.message);
-        response.status(400).send(`Webhook Error: ${err.message}`);
-        return;
-      }
-
-      console.log(event);
-
-      // Handle the event
-      switch (event.type) {
-        case 'payment_intent.succeeded':
-          const paymentIntent = event.data.object;
-          console.log('PaymentIntent was successful!');
-          break;
-        case 'payment_method.attached':
-          const paymentMethod = event.data.object;
-          console.log('PaymentMethod was attached to a Customer!');
-          break;
-        // ... handle other event types
-        default:
-          // Unexpected event type
-          return response.status(400).end();
-      }
-
-      // Return a response to acknowledge receipt of the event
-      response.json({ received: true });
+    try {
+      event = stripe.webhooks.constructEvent(
+        request.rawBody,
+        sig,
+        endpointSecret
+      );
+    } catch (err) {
+      console.error(err.message);
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
     }
-  );
+
+    console.log(event);
+
+    // Handle the event
+    switch (event.type) {
+      case 'payment_intent.succeeded':
+        const paymentIntent = event.data.object;
+        console.log('PaymentIntent was successful!');
+        break;
+      case 'payment_method.attached':
+        const paymentMethod = event.data.object;
+        console.log('PaymentMethod was attached to a Customer!');
+        break;
+      // ... handle other event types
+      default:
+        // Unexpected event type
+        return response.status(400).end();
+    }
+
+    // Return a response to acknowledge receipt of the event
+    response.json({ received: true });
+  });
 };
