@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import bodyParser from 'body-parser';
 import Stripe from 'stripe';
+import { userIdFromReq } from '../../userIdFromReq';
 
 // This module handles all Stripe integration for subscriptions and payments.
 //
@@ -22,6 +23,16 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
   expressApp.post('/api/payments/create-checkout-session', async (req, res) => {
     const { priceId } = req.body;
 
+    const userId = userIdFromReq(req);
+    if (!userId) {
+      res.json({
+        error: {
+          message: 'Cannot upgrade without being logged in first',
+        },
+      });
+      return;
+    }
+
     // Create new Checkout Session for the order
     // Other optional params include:
     // [billing_address_collection] - to display billing address details on the page
@@ -29,6 +40,7 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
     // [customer_email] - lets you prefill the email input in the form
     // For full details see https://stripe.com/docs/api/checkout/sessions/create
     const session = await stripe.checkout.sessions.create({
+      client_reference_id: userId,
       mode: 'subscription',
       payment_method_types: ['card'],
       line_items: [
@@ -37,7 +49,6 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
           quantity: 1,
         },
       ],
-      // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
       success_url: `${domainURL}/upgrade-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${domainURL}/upgrade-canceled`,
     });
@@ -64,19 +75,15 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
       return;
     }
 
-    console.log(event);
+    //    console.log(event);
 
     // Handle the event
     switch (event.type) {
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object;
-        console.log('PaymentIntent was successful!');
+      case 'checkout.session.completed':
+        console.log(
+          'TODO upgrade user ' + event.data.object.client_reference_id
+        );
         break;
-      case 'payment_method.attached':
-        const paymentMethod = event.data.object;
-        console.log('PaymentMethod was attached to a Customer!');
-        break;
-      // ... handle other event types
       default:
         // Unexpected event type
         return response.status(400).end();
