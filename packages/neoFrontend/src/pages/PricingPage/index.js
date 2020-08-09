@@ -1,4 +1,5 @@
 import React, { Fragment, useContext } from 'react';
+
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
 import { Feedback } from '../../Feedback';
@@ -16,10 +17,9 @@ import {
   PlanWrapper,
   PlanLabel,
   PlanSubtext,
-  EmptySpace,
 } from './styles';
 
-import { features, plans, FREE } from './featuresAndPlans';
+import { features, plans, PRO } from './featuresAndPlans';
 
 import { handleUpgradeClick } from './stripe';
 
@@ -43,6 +43,15 @@ export const PricingPage = () => {
                           <PlanSubtext key={text}>{text}</PlanSubtext>
                         ))
                       : null}
+                    {plan.id === PRO ? (
+                      <Button
+                        onClick={handleUpgradeClick(me.id)}
+                        disabled={!me}
+                        title={!me ? 'Please log in to upgrade.' : ''}
+                      >
+                        Upgrade
+                      </Button>
+                    ) : null}
                   </PlanWrapper>
                 ))}
               </Right>
@@ -71,26 +80,6 @@ export const PricingPage = () => {
                 {i < features.length - 1 ? <HorizontalRule /> : null}
               </Fragment>
             ))}
-            <Row>
-              <Left />
-              <Right>
-                {plans.map((plan) => (
-                  <Fragment key={plan.id}>
-                    {plan.id === FREE ? (
-                      <EmptySpace />
-                    ) : (
-                      <Button
-                        onClick={handleUpgradeClick(me.id)}
-                        disabled={!me}
-                        title={!me ? 'Please log in to upgrade.' : ''}
-                      >
-                        Upgrade
-                      </Button>
-                    )}
-                  </Fragment>
-                ))}
-              </Right>
-            </Row>
           </Table>
         </Content>
       </Wrapper>

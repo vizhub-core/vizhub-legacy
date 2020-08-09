@@ -43,13 +43,10 @@ export const PlanLabel = FeatureTitle;
 
 export const PlanSubtext = styled.div`
   font-size: ${(props) => props.theme.text.small};
+  margin-bottom: 10px;
 `;
 
 export const FeatureDescription = styled.div`
   color: ${(props) => props.theme.lightText};
   display: ${isMobile ? 'none' : 'block'};
-`;
-
-export const EmptySpace = styled.div`
-  width: 100px;
 `;
