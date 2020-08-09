@@ -4,6 +4,7 @@ import { getVisualizationInfo } from './getVisualizationInfo';
 import { saveVisualization } from './saveVisualization';
 import { deleteVisualization } from './deleteVisualization';
 import { createUser } from './createUser';
+import { saveUser } from './saveUser';
 import { getUser } from './getUser';
 import { getUsers } from './getUsers';
 import { getUserByUserName } from './getUserByUserName';
@@ -35,6 +36,7 @@ export const Database = (connection) => ({
   saveVisualization: saveVisualization(connection),
   deleteVisualization: deleteVisualization(connection),
   createUser: createUser(connection),
+  saveUser: saveUser(connection),
   getUser: getUser(connection),
   getUsers: getUsers(connection),
   getUserByUserName: getUserByUserName(connection),

@@ -16,6 +16,7 @@ const createCheckoutSession = async (priceId) =>
 
 // Handle any errors returned from Checkout
 const handleResult = (result) => {
+  console.log('handleResult');
   console.log(result);
   if (result.error) {
     console.error('Stripe error:');
@@ -23,7 +24,9 @@ const handleResult = (result) => {
   }
 };
 
-export const handleUpgradeClick = () => {
+export const handleUpgradeClick = (userId) => () => {
+  console.log('here');
+  console.log(userId);
   const stripe = window.Stripe(publishableKey);
   createCheckoutSession(proPriceId).then(({ sessionId }) => {
     stripe.redirectToCheckout({ sessionId }).then(handleResult);

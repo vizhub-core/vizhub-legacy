@@ -7,6 +7,8 @@ export { VizPage } from './VizPage';
 export { ProfilePage } from './ProfilePage';
 export { ErrorPage } from './ErrorPage';
 export { PricingPage } from './PricingPage';
+export { UpgradeSuccessPage } from './UpgradeSuccessPage';
+export { UpgradeCanceledPage } from './UpgradeCanceledPage';
 export { SearchResultsPage } from './SearchResultsPage';
 export { ForksPage } from './ForksPage';
 export { TermsPage } from './TermsPage';

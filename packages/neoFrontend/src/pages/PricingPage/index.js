@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
+
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
 import { Feedback } from '../../Feedback';
-import { HorizontalRule } from '../../styles';
+import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
+import { AuthContext } from '../../authentication';
 import { Wrapper, Content } from '../styles';
+import { HorizontalRule } from '../../styles';
 import {
   Table,
   Row,
@@ -11,16 +14,18 @@ import {
   Right,
   FeatureTitle,
   FeatureDescription,
+  PlanWrapper,
   PlanLabel,
-  EmptySpace,
+  PlanSubtext,
 } from './styles';
 
-import { features, plans, FREE } from './featuresAndPlans';
-import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
+import { features, plans, PRO } from './featuresAndPlans';
 
 import { handleUpgradeClick } from './stripe';
 
 export const PricingPage = () => {
+  const { me } = useContext(AuthContext);
+
   return (
     <>
       <NavBar />
@@ -31,7 +36,23 @@ export const PricingPage = () => {
               <Left />
               <Right>
                 {plans.map((plan) => (
-                  <PlanLabel key={plan.id}>{plan.label}</PlanLabel>
+                  <PlanWrapper key={plan.id}>
+                    <PlanLabel>{plan.label}</PlanLabel>
+                    {plan.subtext
+                      ? plan.subtext.map((text) => (
+                          <PlanSubtext key={text}>{text}</PlanSubtext>
+                        ))
+                      : null}
+                    {plan.id === PRO ? (
+                      <Button
+                        onClick={handleUpgradeClick(me && me.id)}
+                        isDisabled={!me}
+                        title={!me ? 'Please sign in to upgrade.' : ''}
+                      >
+                        Upgrade
+                      </Button>
+                    ) : null}
+                  </PlanWrapper>
                 ))}
               </Right>
             </Row>
@@ -59,22 +80,6 @@ export const PricingPage = () => {
                 {i < features.length - 1 ? <HorizontalRule /> : null}
               </Fragment>
             ))}
-            <Row>
-              <Left />
-              <Right>
-                {plans.map((plan) => (
-                  <Fragment key={plan.id}>
-                    {plan.id === FREE ? (
-                      <EmptySpace key={plan.id} />
-                    ) : (
-                      <Button key={plan.id} onClick={handleUpgradeClick}>
-                        Upgrade
-                      </Button>
-                    )}
-                  </Fragment>
-                ))}
-              </Right>
-            </Row>
           </Table>
         </Content>
       </Wrapper>
