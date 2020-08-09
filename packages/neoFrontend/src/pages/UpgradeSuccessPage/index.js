@@ -15,11 +15,7 @@ export const UpgradeSuccessPage = () => {
       <NavBar />
       <Wrapper>
         <Content>
-          <p>
-            Upgrade successful! You are now on the VizHub Pro plan. The first 30
-            days are free. After that, your card will be automatically charged
-            $10 monthly.
-          </p>
+          <p>Upgrade successful! You are now on the VizHub Pro plan.</p>
           <p>
             You can now create and use private vizzes. To make a viz private,
             click the gear icon on the viz page. You now also have a new sidebar
