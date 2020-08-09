@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import bodyParser from 'body-parser';
 import Stripe from 'stripe';
 
 // This module handles all Stripe integration for subscriptions and payments.
@@ -7,24 +8,9 @@ import Stripe from 'stripe';
 // https://github.com/stripe-samples/checkout-single-subscription/tree/master/client-and-server
 //
 // Note: the following environment variables are required:
-//  * STRIPE_SECRET_KEY
-//  * STRIPE_DOMAIN
-//  * STRIPE_WEBHOOK_SECRET
-
 const stripe = Stripe(process.env.VIZHUB_STRIPE_SECRET_KEY);
 const domainURL = process.env.VIZHUB_STRIPE_DOMAIN;
-
-//app.use(
-//  express.json({
-//    // We need the raw body to verify webhook signatures.
-//    // Let's compute it only when hitting the Stripe webhook endpoint.
-//    verify: function (req, res, buf) {
-//      if (req.originalUrl.startsWith("/webhook")) {
-//        req.rawBody = buf.toString();
-//      }
-//    },
-//  })
-//);
+const endpointSecret = process.env.VIZHUB_STRIPE_WEBHOOK_SECRET;
 
 export const paymentsAPIController = (expressApp, paymentsGateway) => {
   expressApp.get('/api/payments/checkout-session', async (req, res) => {
@@ -59,39 +45,50 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
     res.send({ sessionId: session.id });
   });
 
-  // Webhook handler for asynchronous events.
-  expressApp.post('/webhook', async (req, res) => {
-    let eventType;
-    // Check if webhook signing is configured.
-    if (process.env.STRIPE_WEBHOOK_SECRET) {
-      // Retrieve the event by verifying the signature using the raw body and secret.
+  // From https://stripe.com/docs/webhooks/signatures
+  // Match the raw body to content type application/json
+  expressApp.post(
+    '/webhook',
+    bodyParser.raw({ type: 'application/json' }),
+    (request, response) => {
+      const sig = request.headers['stripe-signature'];
+
       let event;
-      let signature = req.headers['stripe-signature'];
 
       try {
+        console.log('request.body');
+        console.log(request.body);
         event = stripe.webhooks.constructEvent(
-          req.rawBody,
-          signature,
-          process.env.STRIPE_WEBHOOK_SECRET
+          request.body,
+          sig,
+          endpointSecret
         );
       } catch (err) {
-        console.log(`⚠️  Webhook signature verification failed.`);
-        return res.sendStatus(400);
+        console.error(err.message);
+        response.status(400).send(`Webhook Error: ${err.message}`);
+        return;
       }
-      // Extract the object from the event.
-      data = event.data;
-      eventType = event.type;
-    } else {
-      // Webhook signing is recommended, but if the secret is not configured in `config.js`,
-      // retrieve the event data directly from the request body.
-      data = req.body.data;
-      eventType = req.body.type;
-    }
 
-    if (eventType === 'checkout.session.completed') {
-      console.log(`🔔  Payment received!`);
-    }
+      console.log(event);
 
-    res.sendStatus(200);
-  });
+      // Handle the event
+      switch (event.type) {
+        case 'payment_intent.succeeded':
+          const paymentIntent = event.data.object;
+          console.log('PaymentIntent was successful!');
+          break;
+        case 'payment_method.attached':
+          const paymentMethod = event.data.object;
+          console.log('PaymentMethod was attached to a Customer!');
+          break;
+        // ... handle other event types
+        default:
+          // Unexpected event type
+          return response.status(400).end();
+      }
+
+      // Return a response to acknowledge receipt of the event
+      response.json({ received: true });
+    }
+  );
 };
