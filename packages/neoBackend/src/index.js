@@ -4,12 +4,20 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { serverGateways } from 'vizhub-server-gateways';
-import { apiController, jwtAuth } from 'vizhub-controllers';
+import {
+  apiController,
+  jwtAuth,
+  paymentsAPIController,
+} from 'vizhub-controllers';
 import { serveFrontend } from './serveFrontend';
 import { serveShareDB } from './serveShareDB';
 
 const expressApp = express();
-//expressApp.use(compression());
+const gateways = serverGateways();
+
+// This must come before bodyParser.json
+paymentsAPIController(expressApp, gateways);
+
 expressApp.use(bodyParser.json({ limit: '2mb' }));
 expressApp.use(cookieParser());
 
@@ -17,7 +25,6 @@ const server = http.createServer(expressApp);
 
 serveShareDB(server);
 
-const gateways = serverGateways();
 jwtAuth(expressApp, gateways.userGateway);
 apiController(expressApp, gateways);
 
