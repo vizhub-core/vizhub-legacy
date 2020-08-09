@@ -4,7 +4,9 @@ export const showCollaborators = true;
 export const showCollaboratorsAnyoneCanEdit = true;
 export const showCollaboratorsManagement = true;
 
-export const showPricing = false;
+export const showPricing = process.env.REACT_APP_VIZHUB_PRICING === 'true';
+export const showEmbed = process.env.REACT_APP_VIZHUB_EMBED === 'true';
+export const showNeoNavBar = process.env.REACT_APP_VIZHUB_NEO_NAVBAR === 'true';
 
 export const showDownvote = false;
 export const showCreatedDate = false;
@@ -13,13 +15,11 @@ export const showVideoThumbnail = false;
 export const showVisualEditor = false;
 export const showMobileConsole = false;
 export const renameFileWithoutPath = false;
-export const showEmbed = process.env.REACT_APP_VIZHUB_EMBED === 'true';
 export const enableWhiteLabelEmbeding = false;
 export const enablePreviewEmbeding = false;
 export const showSortOptions = true;
 export const showForksCount = true;
 
-export const showNeoNavBar = process.env.REACT_APP_VIZHUB_NEO_NAVBAR === 'true';
 export const showAboutLink = true;
 export const lintJs = false;
 
