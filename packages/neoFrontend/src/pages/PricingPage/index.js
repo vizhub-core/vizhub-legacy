@@ -45,9 +45,9 @@ export const PricingPage = () => {
                       : null}
                     {plan.id === PRO ? (
                       <Button
-                        onClick={handleUpgradeClick(me.id)}
-                        disabled={!me}
-                        title={!me ? 'Please log in to upgrade.' : ''}
+                        onClick={handleUpgradeClick(me && me.id)}
+                        isDisabled={!me}
+                        title={!me ? 'Please sign in to upgrade.' : ''}
                       >
                         Upgrade
                       </Button>

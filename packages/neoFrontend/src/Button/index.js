@@ -2,19 +2,29 @@ import styled from 'styled-components';
 
 // Matrix (red, blue) X (normal, hover, active) X (outline, filled):
 const buttonColor = (props) =>
-  props.isRed ? props.theme.red : props.theme.blue;
+  props.isDisabled
+    ? props.theme.lightBorder
+    : props.isRed
+    ? props.theme.red
+    : props.theme.blue;
 
 const hoverButtonColorOutline = (props) =>
   props.isRed ? props.theme.redHover : props.theme.blueHover;
 const hoverButtonColorFilled = (props) =>
   props.isRed ? props.theme.redHoverFilled : props.theme.blueHoverFilled;
 const hoverButtonColor = (props) =>
-  props.isFilled
+  props.isDisabled
+    ? props.theme.lightBorder
+    : props.isFilled
     ? hoverButtonColorFilled(props)
     : hoverButtonColorOutline(props);
 
 const activeButtonColorOutline = (props) =>
-  props.isRed ? props.theme.redActive : props.theme.blueActive;
+  props.isDisabled
+    ? props.theme.lightBorder
+    : props.isRed
+    ? props.theme.redActive
+    : props.theme.blueActive;
 const activeButtonColorFilled = (props) =>
   props.isRed ? props.theme.redActiveFilled : props.theme.blueActiveFilled;
 
@@ -35,7 +45,12 @@ export const Button = styled.div`
   border: solid 1px ${buttonColor};
   font-size: 16px;
   font-weight: 500;
-  color: ${(props) => (props.isFilled ? '#ffffff' : props.theme.dark)};
+  color: ${(props) =>
+    props.isDisabled
+      ? props.theme.lightText
+      : props.isFilled
+      ? '#ffffff'
+      : props.theme.dark};
   background-color: ${(props) =>
     props.isFilled ? buttonColor(props) : 'transparent'};
   text-decoration: none;
@@ -48,7 +63,8 @@ export const Button = styled.div`
     background-color: ${activeButtonColor};
   }
 
-  cursor: pointer;
   user-select: none;
   margin-left: 8px;
+
+  cursor: ${(props) => (props.isDisabled ? 'not-allowed' : 'pointer')};
 `;
