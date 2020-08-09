@@ -38,7 +38,6 @@ export const plans = [
   {
     id: PRO,
     label: 'Pro',
-    subtext: ['$10 / month'],
-    //, '30 day free trial'],
+    subtext: ['$10 / month', '30 day free trial'],
   },
 ];
