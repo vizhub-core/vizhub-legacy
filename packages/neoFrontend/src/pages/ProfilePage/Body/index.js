@@ -18,7 +18,14 @@ import { ProfileMenuBar } from './styles';
 
 export const Body = () => {
   const profilePageData = useContext(ProfilePageDataContext);
-  const { user, visualizationInfos } = profilePageData;
+  const {
+    user,
+    visualizationInfos,
+    paginate,
+    usersById,
+    isFetchingNextPage,
+  } = profilePageData;
+
   const { me } = useContext(AuthContext);
 
   const [privacy, setPrivacy] = useState('public');
@@ -38,8 +45,6 @@ export const Body = () => {
   const showPrivate = useCallback(() => {
     setPrivacy('private');
   }, []);
-
-  const vizzesUsersMap = useMemo(() => ({ [user.id]: user }), [user]);
 
   const [sort, handleSortChange] = useVizzesSort();
 
@@ -75,7 +80,9 @@ export const Body = () => {
             <Vizzes
               className="test-profile-page-viz-previews"
               visualizationInfos={visualizations}
-              usersById={vizzesUsersMap}
+              paginate={paginate}
+              usersById={usersById}
+              isFetchingNextPage={isFetchingNextPage}
             />
           </Centering>
         </Main>

@@ -12,12 +12,12 @@ export const ProfilePageDataProvider = ({ fallback, children }) => {
   const profilePageData = useProfilePageData(userName, query, sort);
   const { setError } = useContext(ErrorContext);
 
-  if (profilePageData && profilePageData.error) {
-    setError(new Error('User not found.'));
+  if (profilePageData.error) {
+    setError(new Error(profilePageData.error));
     return null;
   }
 
-  return profilePageData ? (
+  return profilePageData.user ? (
     <ProfilePageDataContext.Provider value={profilePageData}>
       {children}
     </ProfilePageDataContext.Provider>
