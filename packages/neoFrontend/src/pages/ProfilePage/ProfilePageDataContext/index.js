@@ -11,11 +11,11 @@ export const ProfilePageDataProvider = ({ fallback, children, onError }) => {
   const profilePageData = useProfilePageData(userName, query, sort);
 
   useEffect(() => {
-    if(profilePageData.error) {
+    if (profilePageData.error) {
       onError(profilePageData.error);
     }
   }, [onError, profilePageData.error]);
-  
+
   if (profilePageData.error) {
     return null;
   }
