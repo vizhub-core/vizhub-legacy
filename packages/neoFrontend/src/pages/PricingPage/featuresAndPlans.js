@@ -17,19 +17,18 @@ export const features = [
   {
     title: 'Real-time Collaboration',
     description:
-      'Manage collaborators who can edit with you in real time. Broadcast your changes live to all viewers.',
+      'Unlimited collaborators who can edit with you in real time. Broadcast your changes live to all viewers.',
     plans: { [FREE]: true, [PRO]: true },
   },
   {
     title: 'Unfurling',
     description:
-      'Share links with rich previews to your public work in social media (works great in Twitter, Facebook, Slack).',
+      'Share links with rich previews to your public work in social media. Works great in Twitter, Facebook, Slack and more.',
     plans: { [FREE]: true, [PRO]: true },
   },
   {
-    title: 'Private Visualizations',
-    description:
-      'Make your visualizations private to you and your collaborators only, with no licensing restrictions.',
+    title: 'Private Vizzes',
+    description: 'Make your vizs private to you and your collaborators only.',
     plans: { [FREE]: false, [PRO]: true },
   },
 ];
