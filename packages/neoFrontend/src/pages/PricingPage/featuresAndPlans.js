@@ -28,7 +28,7 @@ export const features = [
   },
   {
     title: 'Private Vizzes',
-    description: 'Make your vizs private to you and your collaborators only.',
+    description: 'Make your vizzes private to you and your collaborators only.',
     plans: { [FREE]: false, [PRO]: true },
   },
 ];
