@@ -25,7 +25,7 @@ export const lintJs = false;
 
 // List of usernames who have access to
 // private viz feature.
-const core = ['ci', 'curran', 'nitanagdeote'];
+const core = ['ci', 'nitanagdeote'];
 
 const professors = ['Razpudding', 'sjengle'];
 
@@ -70,7 +70,7 @@ const whitelist = core
   .concat(kickstarter2years);
 
 const userCanHavePrivateViz = (user) =>
-  user && whitelist.includes(user.userName);
+  user && (user.plan === 'pro' || whitelist.includes(user.userName));
 
 // Gateway to the private viz feature.
 export const showPrivacySettings = (me, vizInfo) =>

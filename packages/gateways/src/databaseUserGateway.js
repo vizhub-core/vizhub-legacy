@@ -7,6 +7,10 @@ export class DatabaseUserGateway {
     return await this.database.createUser(user);
   }
 
+  async saveUser(user) {
+    return await this.database.saveUser(user);
+  }
+
   async getUser(id) {
     return await this.database.getUser(id);
   }
