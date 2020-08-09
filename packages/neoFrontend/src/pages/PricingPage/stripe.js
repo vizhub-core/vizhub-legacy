@@ -16,6 +16,8 @@ const createCheckoutSession = async (priceId) =>
 
 // Handle any errors returned from Checkout
 const handleResult = (result) => {
+  console.log('handleResult');
+  console.log(result);
   if (result.error) {
     console.error('Stripe error:');
     console.error(result.error);
