@@ -3,8 +3,6 @@ import { getVisualization } from './getVisualization';
 import { getVisualizationInfo } from './getVisualizationInfo';
 import { saveVisualization } from './saveVisualization';
 import { deleteVisualization } from './deleteVisualization';
-import { createDataset } from './createDataset';
-import { getDataset } from './getDataset';
 import { createUser } from './createUser';
 import { getUser } from './getUser';
 import { getUsers } from './getUsers';
@@ -15,7 +13,6 @@ import { getHomePageVisualizationInfos } from './getHomePageVisualizationInfos';
 import { searchVisualizationInfos } from './searchVisualizationInfos';
 import { getForks } from './getForks';
 import { searchUsers } from './searchUsers';
-import { getDatasetInfosByUserId } from './getDatasetInfosByUserId';
 import { updateImages } from './updateImages';
 import { getThumbnail } from './getThumbnail';
 import { getPreview } from './getPreview';
@@ -37,8 +34,6 @@ export const Database = (connection) => ({
   getVisualizationInfo: getVisualizationInfo(connection),
   saveVisualization: saveVisualization(connection),
   deleteVisualization: deleteVisualization(connection),
-  createDataset: createDataset(connection),
-  getDataset: getDataset(connection),
   createUser: createUser(connection),
   getUser: getUser(connection),
   getUsers: getUsers(connection),
@@ -49,7 +44,6 @@ export const Database = (connection) => ({
   searchVisualizationInfos: searchVisualizationInfos(connection),
   getForks: getForks(connection),
   searchUsers: searchUsers(connection),
-  getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
   updateImages: updateImages(connection),
   getThumbnail: getThumbnail(connection),
   getPreview: getPreview(connection),
