@@ -14,10 +14,12 @@ export class GetUserProfileData {
         ? ciUser
         : await this.userGateway.getUserByUserName(userName);
 
-    const visualizationInfos = await this.visualizationGateway.getVisualizationInfosByUserId({
-      ...otherProfileOptions,
-      owner: user.id,
-    });
+    const visualizationInfos = await this.visualizationGateway.getVisualizationInfosByUserId(
+      {
+        ...otherProfileOptions,
+        owner: user.id,
+      }
+    );
 
     return { user, visualizationInfos };
   }
