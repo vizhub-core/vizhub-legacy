@@ -27,11 +27,11 @@ const domainURL = process.env.VIZHUB_STRIPE_DOMAIN;
 //);
 
 export const paymentsAPIController = (expressApp, paymentsGateway) => {
-  //expressApp.get("payments/checkout-session", async (req, res) => {
-  //  const { sessionId } = req.query;
-  //  const session = await stripe.checkout.sessions.retrieve(sessionId);
-  //  res.send(session);
-  //});
+  expressApp.get('/api/payments/checkout-session', async (req, res) => {
+    const { sessionId } = req.query;
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    res.send(session);
+  });
 
   expressApp.post('/api/payments/create-checkout-session', async (req, res) => {
     const { priceId } = req.body;

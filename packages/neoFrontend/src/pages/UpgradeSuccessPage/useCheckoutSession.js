@@ -11,7 +11,9 @@ export const useCheckoutSession = () => {
     const sessionId = urlParams.get('session_id');
 
     const process = async () => {
-      const result = await fetch('/checkout-session?sessionId=' + sessionId);
+      const result = await fetch(
+        'api/payments/checkout-session?sessionId=' + sessionId
+      );
       setCheckoutSession(await result.json());
     };
 
