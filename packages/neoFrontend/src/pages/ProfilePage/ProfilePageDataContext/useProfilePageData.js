@@ -1,14 +1,22 @@
-import { useState, useEffect } from 'react';
-import { waitForSpinner } from '../../../LoadingScreen';
+import { useCallback } from 'react';
+import { usePaginatedVizzes } from '../../../VizzesGrid/usePaginatedVizzes';
 import { fetchProfilePageData } from './fetchProfilePageData';
 
 export const useProfilePageData = (userName, query, sort) => {
-  const [data, setData] = useState(undefined);
+  const fetchData = useCallback(
+    (offset) => {
+      return fetchProfilePageData({ userName, query, sort, offset }).then(({ user, visualizationInfos }) => ({
+        ownerUsers: [user],
+        visualizationInfos,
+      }));
+    },
+    [sort, userName, query]
+  );
 
-  useEffect(() => {
-    const dataLoaded = fetchProfilePageData({ userName, query, sort });
-    waitForSpinner(dataLoaded).then(setData);
-  }, [userName, query, sort]);
+  const paginatedVizzes = usePaginatedVizzes(fetchData);
 
-  return data;
+  return {
+    ...paginatedVizzes,
+    user: Object.values(paginatedVizzes.usersById)[0],
+  };
 };
