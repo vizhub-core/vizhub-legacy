@@ -25,7 +25,7 @@ export const lintJs = false;
 
 // List of usernames who have access to
 // private viz feature.
-const core = ['ci', 'nitanagdeote'];
+const core = ['ci']; //, 'nitanagdeote'];
 
 const professors = ['Razpudding', 'sjengle'];
 
