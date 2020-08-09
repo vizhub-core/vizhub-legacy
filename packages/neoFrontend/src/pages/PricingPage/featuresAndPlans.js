@@ -3,6 +3,11 @@ export const PRO = 'pro';
 
 export const features = [
   {
+    title: 'Private Vizzes',
+    description: 'Make your vizzes private to you and your collaborators only.',
+    plans: { [FREE]: false, [PRO]: true },
+  },
+  {
     title: 'Public Visualizations',
     description:
       'Visualizations publicly accessible for viewing, forking and editing (all public content is MIT Licensed).',
@@ -25,11 +30,6 @@ export const features = [
     description:
       'Share links with rich previews to your public work in social media. Works great in Twitter, Facebook, Slack and more.',
     plans: { [FREE]: true, [PRO]: true },
-  },
-  {
-    title: 'Private Vizzes',
-    description: 'Make your vizzes private to you and your collaborators only.',
-    plans: { [FREE]: false, [PRO]: true },
   },
 ];
 
