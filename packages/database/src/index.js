@@ -6,6 +6,7 @@ import { deleteVisualization } from './deleteVisualization';
 import { createDataset } from './createDataset';
 import { getDataset } from './getDataset';
 import { createUser } from './createUser';
+import { saveUser } from './saveUser';
 import { getUser } from './getUser';
 import { getUsers } from './getUsers';
 import { getUserByUserName } from './getUserByUserName';
@@ -40,6 +41,7 @@ export const Database = (connection) => ({
   createDataset: createDataset(connection),
   getDataset: getDataset(connection),
   createUser: createUser(connection),
+  saveUser: saveUser(connection),
   getUser: getUser(connection),
   getUsers: getUsers(connection),
   getUserByUserName: getUserByUserName(connection),

@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import { UpgradeUser } from 'vizhub-use-cases';
 import bodyParser from 'body-parser';
 import Stripe from 'stripe';
 import { userIdFromReq } from '../../userIdFromReq';
@@ -13,7 +14,9 @@ const stripe = Stripe(process.env.VIZHUB_STRIPE_SECRET_KEY);
 const domainURL = process.env.VIZHUB_STRIPE_DOMAIN;
 const endpointSecret = process.env.VIZHUB_STRIPE_WEBHOOK_SECRET;
 
-export const paymentsAPIController = (expressApp, paymentsGateway) => {
+export const paymentsAPIController = (expressApp, gateways) => {
+  const upgradeUser = new UpgradeUser(gateways);
+
   expressApp.get('/api/payments/checkout-session', async (req, res) => {
     const { sessionId } = req.query;
     const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -75,14 +78,14 @@ export const paymentsAPIController = (expressApp, paymentsGateway) => {
       return;
     }
 
-    //    console.log(event);
-
     // Handle the event
     switch (event.type) {
       case 'checkout.session.completed':
-        console.log(
-          'TODO upgrade user ' + event.data.object.client_reference_id
-        );
+        const { client_reference_id, customer } = event.data.object;
+        upgradeUser.execute({
+          id: client_reference_id,
+          stripeCustomerId: customer,
+        });
         break;
       default:
         // Unexpected event type

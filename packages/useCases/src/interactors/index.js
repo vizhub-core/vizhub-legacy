@@ -6,6 +6,7 @@ export { CreateDataset } from './createDataset';
 export { GetDataset } from './getDataset';
 export { ForkVisualization } from './forkVisualization';
 export { CreateUser } from './createUser';
+export { UpgradeUser } from './upgradeUser';
 export { GetUser } from './getUser';
 export { GetUsers } from './getUsers';
 export { GetOrCreateUser } from './getOrCreateUser';
