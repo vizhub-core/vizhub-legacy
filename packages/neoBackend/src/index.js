@@ -9,6 +9,19 @@ import { serveFrontend } from './serveFrontend';
 import { serveShareDB } from './serveShareDB';
 
 const expressApp = express();
+
+// We need the raw body to verify webhook signatures.
+// Let's compute it only when hitting the Stripe webhook endpoint.
+// From https://github.com/stripe-samples/checkout-single-subscription/blob/master/client-and-server/server/node/server.js
+expressApp.use(
+  express.json({
+    verify: function (req, res, buf) {
+      if (req.originalUrl.startsWith('/webhook')) {
+        req.rawBody = buf.toString();
+      }
+    },
+  })
+);
 //expressApp.use(compression());
 expressApp.use(bodyParser.json({ limit: '2mb' }));
 expressApp.use(cookieParser());

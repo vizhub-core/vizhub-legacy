@@ -1,14 +1,23 @@
+import { ciUser } from 'vizhub-entities';
+
 export class GetVisualizationsOwners {
   constructor({ userGateway }) {
     this.userGateway = userGateway;
   }
 
   async execute(visualizationInfos) {
-    const ownerUserIds = Array.from(
-      new Set(visualizationInfos.map(({ owner }) => owner))
+    const ownerUserIdsSet = new Set(
+      visualizationInfos.map(({ owner }) => owner)
     );
+    const ownerUserIds = Array.from(ownerUserIdsSet);
 
-    const ownerUsers = await this.userGateway.getUsers(ownerUserIds);
+    let ownerUsers = await this.userGateway.getUsers(ownerUserIds);
+    if (ownerUsers === null) {
+      ownerUsers = [];
+    }
+    if (ownerUserIdsSet.has(ciUser.id)) {
+      ownerUsers.push(ciUser);
+    }
 
     return ownerUsers;
   }

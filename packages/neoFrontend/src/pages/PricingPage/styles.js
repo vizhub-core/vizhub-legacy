@@ -29,16 +29,24 @@ export const Right = styled.div`
 `;
 
 export const FeatureTitle = styled.div`
-  font-weight: 500;
+  font-size: ${(props) => props.theme.text.large};
+`;
+
+export const PlanWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 export const PlanLabel = FeatureTitle;
 
+export const PlanSubtext = styled.div`
+  font-size: ${(props) => props.theme.text.small};
+  margin-bottom: 10px;
+`;
+
 export const FeatureDescription = styled.div`
   color: ${(props) => props.theme.lightText};
   display: ${isMobile ? 'none' : 'block'};
-`;
-
-export const EmptySpace = styled.div`
-  width: 100px;
 `;

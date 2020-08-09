@@ -30,5 +30,14 @@ export class User {
 
     // Biography.
     this.bio = data.bio;
+
+    // The plan that the user is on.
+    // Possibly undefined (free plan) or "pro" (pro plan).
+    this.plan = data.plan;
+
+    // After a user upgrades to "pro" plan,
+    // this is the Stripd customer ID.
+    // Use: lookup the customer later when changing plans.
+    this.stripeCustomerId = data.stripeCustomerId;
   }
 }
