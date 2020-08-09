@@ -13,7 +13,7 @@ const isAllowed = (sort) =>
 
 // The number of vizzes shown in a page of content.
 // Infinite scroll pagination fetches the next page.
-const pageSize = 2;
+const pageSize = 100;
 
 export const getPageVisualizationInfos = (connection) => async ({
   query,
