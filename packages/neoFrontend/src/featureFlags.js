@@ -27,7 +27,7 @@ export const lintJs = false;
 // private viz feature.
 const core = ['ci']; //, 'nitanagdeote'];
 
-const professors = ['Razpudding', 'sjengle'];
+const professors = ['Razpudding', 'sjengle', 'nazareno'];
 
 const stamen = [
   'vinaydixit',
