@@ -1,10 +1,11 @@
-import { authGitHub, authMe, authCI, authSignOut } from './routes';
+import { authGitHub, authGoogle, authMe, authCI, authSignOut } from "./routes";
 
 export const jwtAuth = (app, userGateway) => {
-  app.post('/api/auth/github', authGitHub(userGateway));
-  app.get('/api/auth/me', authMe(userGateway));
-  app.post('/api/auth/ci', authCI);
-  app.get('/api/auth/signOut', authSignOut);
+  app.post("/api/auth/github", authGitHub(userGateway));
+  app.post("/api/auth/google", authGoogle(userGateway));
+  app.get("/api/auth/me", authMe(userGateway));
+  app.post("/api/auth/ci", authCI);
+  app.get("/api/auth/signOut", authSignOut);
 };
 
-export { getUserIDFromJWT } from './jwt';
+export { getUserIDFromJWT } from "./jwt";
