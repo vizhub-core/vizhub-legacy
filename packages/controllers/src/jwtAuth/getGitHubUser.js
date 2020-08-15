@@ -1,17 +1,17 @@
-import { VizHubAPIError } from 'vizhub-entities';
-import fetch from 'node-fetch';
+import { VizHubAPIError } from "vizhub-entities";
+import fetch from "node-fetch";
 
 // Documentation: https://developer.github.com/v3/users/#get-the-authenticated-user
-const gitHubUserURL = 'https://api.github.com/user';
+const gitHubUserURL = "https://api.github.com/user";
 
-export const getGitHubUser = async (accessToken) => {
+export const getGitHubUser = async accessToken => {
   const fetchOptions = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `token ${accessToken}`,
-    },
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `token ${accessToken}`
+    }
   };
 
   const response = await fetch(gitHubUserURL, fetchOptions);
@@ -19,9 +19,9 @@ export const getGitHubUser = async (accessToken) => {
 
   if (gitHubUser.message) {
     throw new VizHubAPIError({
-      error: 'github_user_fetch_error',
+      error: "github_user_fetch_error",
       errorDescription: gitHubUser.message,
-      errorURL: gitHubUser.documentation_url,
+      errorURL: gitHubUser.documentation_url
     });
   }
 
