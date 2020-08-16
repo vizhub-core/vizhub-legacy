@@ -1,18 +1,19 @@
-import { CI_USER_CODE } from './constants';
+import { CI_USER_CODE } from "./constants";
 
-const url = (code) => {
+const url = code => {
   const isCI = code === CI_USER_CODE;
-  return `/api/auth/${isCI ? 'ci' : 'github'}`;
+  let type = isCI ? "ci" : code.length > 20 ? `fb` : "github";
+  return `/api/auth/${type}`;
 };
 
-export const getJWT = async (code) => {
+export const getJWT = async code => {
   const response = await fetch(url(code), {
-    method: 'POST',
+    method: "POST",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ code }),
+    body: JSON.stringify({ code })
   });
   return await response.json();
 };

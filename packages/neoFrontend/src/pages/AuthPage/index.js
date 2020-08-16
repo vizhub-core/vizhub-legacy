@@ -6,29 +6,14 @@ import { Button } from "../../Button";
 import {
   GITHUB_OAUTH_URL,
   CI_AUTH_PATH,
-  getJWTForGoogle
+  // getJWTForGoogle,
+  GOOGLE_OAUTH_URL,
+  FACEBOOK_OAUTH_URL
 } from "../../authentication";
 import { Wrapper, Content, Title, DevsOnly, Centering } from "../styles";
 import { Box, Octocat, Terms } from "./styles";
-import { GoogleLogin } from "react-google-login";
-import { ErrorContext } from "../../ErrorContext";
 
 export const AuthPage = () => {
-  const { setError } = useContext(ErrorContext);
-  const responseSuccessGoogle = response => {
-    console.log(response);
-    getJWTForGoogle(response.tokenId).then(data => {
-      if (data.error) {
-        setError(new Error(data.errorDescription));
-      }
-    });
-  };
-
-  const responseFailureGoogle = response => {
-    setError(new Error(response.errorDescription));
-
-    // console.log(response);
-  };
   return (
     <>
       <NavBar isAuthPage={true} />
@@ -47,18 +32,20 @@ export const AuthPage = () => {
               <a href={GITHUB_OAUTH_URL}>
                 <Button>Sign in with GitHub</Button>
               </a>
+              <br />
+              <br />
+              <a href={GOOGLE_OAUTH_URL}>
+                <Button>Sign in with Google</Button>
+              </a>
+              <br />
+              <br />
+              <a href={FACEBOOK_OAUTH_URL}>
+                <Button>Sign in with FaceBook</Button>
+              </a>
               <Terms>
                 By signing in you agree to our{" "}
                 <Link to="/terms">terms and conditions.</Link>
               </Terms>
-              {/* Right now statically added to check what data return by google , changes needed after finalize */}
-              <GoogleLogin
-                clientId="1089209754756-iuvb60rkf8mheiqk186n3kk7lp6sb5kr.apps.googleusercontent.com"
-                buttonText="Login With Google"
-                onSuccess={responseSuccessGoogle}
-                onFailure={responseFailureGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
               {process.env.NODE_ENV === "development" ? (
                 <>
                   <DevsOnly>
