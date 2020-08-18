@@ -6,7 +6,6 @@ import { getGitHubUser } from '../getGitHubUser';
 import { jwtSign } from '../jwt';
 
 export const authGitHub = (userGateway) => {
-  console.log(req);
   const getOrCreateUser = new GetOrCreateUser({ userGateway });
   return asyncHandler(async (req, res) => {
     try {

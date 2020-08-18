@@ -54,6 +54,12 @@ export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=17ed8d9fa67e695f1118
 export VIZHUB_GITHUB_CLIENT_SECRET=b7673605d16aee3c66bb693578d4e1e2dac61baa
 ```
 
+To enable authentication via Google, export the following:
+
+```
+export REACT_APP_VIZHUB_GOOGLE_CLIENT_ID=1089209754756-iuvb60rkf8mheiqk186n3kk7lp6sb5kr.apps.googleusercontent.com
+```
+
 Don't forget to `source ~/.bashrc`!
 
 Additional environment variables for use in production only are detailed in [Production Docs](docs/production.md).

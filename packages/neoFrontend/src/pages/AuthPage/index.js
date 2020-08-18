@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Feedback } from '../../Feedback';
-import { NavBar } from '../../NavBar';
-import { Button } from '../../Button';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Feedback } from "../../Feedback";
+import { NavBar } from "../../NavBar";
+import { Button } from "../../Button";
 import {
   GITHUB_OAUTH_URL,
   CI_AUTH_PATH,
-  // getJWTForGoogle,
   GOOGLE_OAUTH_URL,
-  FACEBOOK_OAUTH_URL,
-} from '../../authentication';
-import { Wrapper, Content, Title, DevsOnly, Centering } from '../styles';
-import { Box, Octocat, Terms } from './styles';
+  FACEBOOK_OAUTH_URL
+} from "../../authentication";
+import { Wrapper, Content, Title, DevsOnly, Centering } from "../styles";
+import { Box, Octocat, Terms } from "./styles";
 
 export const AuthPage = () => {
   return (
@@ -32,8 +31,6 @@ export const AuthPage = () => {
               <a href={GITHUB_OAUTH_URL}>
                 <Button>Sign in with GitHub</Button>
               </a>
-              <br />
-              <br />
               <a href={GOOGLE_OAUTH_URL}>
                 <Button>Sign in with Google</Button>
               </a>
@@ -43,10 +40,10 @@ export const AuthPage = () => {
                 <Button>Sign in with FaceBook</Button>
               </a>
               <Terms>
-                By signing in you agree to our{' '}
+                By signing in you agree to our{" "}
                 <Link to="/terms">terms and conditions.</Link>
               </Terms>
-              {process.env.NODE_ENV === 'development' ? (
+              {process.env.NODE_ENV === "development" ? (
                 <>
                   <DevsOnly>
                     <Title>For developers only</Title>

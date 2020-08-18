@@ -24,7 +24,7 @@ export const getFBAccessToken = async (code) => {
   if (error) {
     if (error === 'Not Found') {
       console.log(
-        'Check that you have your GitHub OAuth environment variables set'
+        'Check that you have your Facebook OAuth environment variables set'
       );
     }
     throw new VizHubAPIError({
