@@ -1,11 +1,11 @@
-import asyncHandler from "express-async-handler";
-import { GetOrCreateUser } from "vizhub-use-cases";
-import { toErrorResponse } from "../../Error";
-import { getFBUser } from "../getFBUser";
-import { getFBAccessToken } from "../getFBAccessToken";
-import { jwtSign } from "../jwt";
+import asyncHandler from 'express-async-handler';
+import { GetOrCreateUser } from 'vizhub-use-cases';
+import { toErrorResponse } from '../../Error';
+import { getFBUser } from '../getFBUser';
+import { getFBAccessToken } from '../getFBAccessToken';
+import { jwtSign } from '../jwt';
 
-export const authFB = userGateway => {
+export const authFB = (userGateway) => {
   const getOrCreateUser = new GetOrCreateUser({ userGateway });
   return asyncHandler(async (req, res) => {
     try {
@@ -13,9 +13,9 @@ export const authFB = userGateway => {
       const fbUser = await getFBUser(accessToken);
 
       const oAuthProfile = {
-        id: "" + fbUser.id,
+        id: '' + fbUser.id,
         username: fbUser.name,
-        _json: fbUser
+        _json: fbUser,
       };
 
       const responseModel = await getOrCreateUser.execute({ oAuthProfile });
@@ -26,7 +26,7 @@ export const authFB = userGateway => {
 
       //   // Store the JWT securely in an httpOnly cookie.
       const days = 1000 * 60 * 60 * 24;
-      res.cookie("vizHubJWT", vizHubJWT, { httpOnly: true, maxAge: 14 * days });
+      res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true, maxAge: 14 * days });
 
       // Send the user data as the response (same response as authMe).
       res.send(user);

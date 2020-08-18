@@ -1,5 +1,5 @@
-import fetch from "node-fetch";
-import { VizHubAPIError } from "vizhub-entities";
+import fetch from 'node-fetch';
+import { VizHubAPIError } from 'vizhub-entities';
 
 // Documentation: https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/
 
@@ -10,27 +10,27 @@ const oAuthAccessTokenURL = `https://graph.facebook.com/v8.0/oauth/access_token?
 // const client_secret = process.env.VIZHUB_GITHUB_CLIENT_SECRET;
 
 // Get an access token from FB's API.
-export const getFBAccessToken = async code => {
+export const getFBAccessToken = async (code) => {
   const fetchOptions = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    }
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   };
 
   const response = await fetch(`${oAuthAccessTokenURL}${code}`, fetchOptions);
   const { error, access_token, type } = await response.json();
   if (error) {
-    if (error === "Not Found") {
+    if (error === 'Not Found') {
       console.log(
-        "Check that you have your GitHub OAuth environment variables set"
+        'Check that you have your GitHub OAuth environment variables set'
       );
     }
     throw new VizHubAPIError({
       error: error.message,
       errorDescription: error.type,
-      errorCode: data.error_subcode
+      errorCode: data.error_subcode,
     });
   }
 
