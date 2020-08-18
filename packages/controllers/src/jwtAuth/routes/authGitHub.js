@@ -1,11 +1,12 @@
-import asyncHandler from "express-async-handler";
-import { GetOrCreateUser } from "vizhub-use-cases";
-import { toErrorResponse } from "../../Error";
-import { getAccessToken } from "../getAccessToken";
-import { getGitHubUser } from "../getGitHubUser";
-import { jwtSign } from "../jwt";
+import asyncHandler from 'express-async-handler';
+import { GetOrCreateUser } from 'vizhub-use-cases';
+import { toErrorResponse } from '../../Error';
+import { getAccessToken } from '../getAccessToken';
+import { getGitHubUser } from '../getGitHubUser';
+import { jwtSign } from '../jwt';
 
-export const authGitHub = userGateway => {
+export const authGitHub = (userGateway) => {
+  console.log(req);
   const getOrCreateUser = new GetOrCreateUser({ userGateway });
   return asyncHandler(async (req, res) => {
     try {
@@ -13,9 +14,9 @@ export const authGitHub = userGateway => {
       const gitHubUser = await getGitHubUser(accessToken);
 
       const oAuthProfile = {
-        id: "" + gitHubUser.id,
+        id: '' + gitHubUser.id,
         username: gitHubUser.login,
-        _json: gitHubUser
+        _json: gitHubUser,
       };
 
       const responseModel = await getOrCreateUser.execute({ oAuthProfile });
@@ -26,7 +27,7 @@ export const authGitHub = userGateway => {
 
       // Store the JWT securely in an httpOnly cookie.
       const days = 1000 * 60 * 60 * 24;
-      res.cookie("vizHubJWT", vizHubJWT, { httpOnly: true, maxAge: 14 * days });
+      res.cookie('vizHubJWT', vizHubJWT, { httpOnly: true, maxAge: 14 * days });
 
       // Send the user data as the response (same response as authMe).
       res.send(user);

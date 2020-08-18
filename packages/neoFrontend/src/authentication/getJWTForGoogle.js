@@ -2,14 +2,14 @@
 //   return `/api/auth/google`;
 // };
 
-export const getJWTForGoogle = async code => {
+export const getJWTForGoogle = async (code) => {
   const response = await fetch(`/api/auth/google`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ code })
+    body: JSON.stringify({ code }),
   });
   return await response.json();
 };
