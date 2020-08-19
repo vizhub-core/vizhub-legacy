@@ -1,12 +1,12 @@
-import React, { useEffect, useContext } from "react";
-import queryString from "query-string";
-import { ErrorContext } from "../../ErrorContext";
+import React, { useEffect, useContext } from 'react';
+import queryString from 'query-string';
+import { ErrorContext } from '../../ErrorContext';
 import {
   getJWT,
   getJWTForGoogle,
-  postMessageToOpener
-} from "../../authentication";
-import { LoadingScreen } from "../../LoadingScreen";
+  postMessageToOpener,
+} from '../../authentication';
+import { LoadingScreen } from '../../LoadingScreen';
 
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to
@@ -25,24 +25,28 @@ export const AuthPopupPage = () => {
 
   // Get the JWT token from backend API.
   useEffect(() => {
-    getJWT(code).then(data => {
-      if (data.error) {
-        setError(new Error(data.errorDescription));
-      } else {
-        postMessageToOpener(data);
-      }
-    });
+    if (code) {
+      getJWT(code).then((data) => {
+        if (data.error) {
+          setError(new Error(data.errorDescription));
+        } else {
+          postMessageToOpener(data);
+        }
+      });
+    }
   }, [code, setError]);
 
   // Get the JWT token from backend API from google id_tokne.
   useEffect(() => {
-    getJWTForGoogle(id_token).then(data => {
-      if (data.error) {
-        setError(new Error(data.errorDescription));
-      } else {
-        postMessageToOpener(data);
-      }
-    });
+    if (id_token) {
+      getJWTForGoogle(id_token).then((data) => {
+        if (data.error) {
+          setError(new Error(data.errorDescription));
+        } else {
+          postMessageToOpener(data);
+        }
+      });
+    }
   }, [id_token, setError]);
 
   return <LoadingScreen message="Signing in..." />;

@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Feedback } from "../../Feedback";
-import { NavBar } from "../../NavBar";
-import { Button } from "../../Button";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Feedback } from '../../Feedback';
+import { NavBar } from '../../NavBar';
+import { Button } from '../../Button';
 import {
   GITHUB_OAUTH_URL,
   CI_AUTH_PATH,
   GOOGLE_OAUTH_URL,
-  FACEBOOK_OAUTH_URL
-} from "../../authentication";
-import { Wrapper, Content, Title, DevsOnly, Centering } from "../styles";
-import { Box, Octocat, Terms } from "./styles";
+  FACEBOOK_OAUTH_URL,
+} from '../../authentication';
+import { Wrapper, Content, Title, DevsOnly, Centering } from '../styles';
+import { Box, Octocat, Terms } from './styles';
 
 export const AuthPage = () => {
   return (
@@ -31,19 +31,17 @@ export const AuthPage = () => {
               <a href={GITHUB_OAUTH_URL}>
                 <Button>Sign in with GitHub</Button>
               </a>
-              <a href={GOOGLE_OAUTH_URL}>
+              <a href={GOOGLE_OAUTH_URL} style={{ paddingTop: '5%' }}>
                 <Button>Sign in with Google</Button>
               </a>
-              <br />
-              <br />
-              <a href={FACEBOOK_OAUTH_URL}>
-                <Button>Sign in with FaceBook</Button>
+              <a href={FACEBOOK_OAUTH_URL} style={{ paddingTop: '5%' }}>
+                <Button>Sign in with Facebook</Button>
               </a>
               <Terms>
-                By signing in you agree to our{" "}
+                By signing in you agree to our{' '}
                 <Link to="/terms">terms and conditions.</Link>
               </Terms>
-              {process.env.NODE_ENV === "development" ? (
+              {process.env.NODE_ENV === 'development' ? (
                 <>
                   <DevsOnly>
                     <Title>For developers only</Title>
