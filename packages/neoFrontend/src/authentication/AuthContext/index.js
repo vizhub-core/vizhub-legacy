@@ -38,12 +38,13 @@ export const AuthProvider = ({ children }) => {
     return () => (subscribed = false);
   }, []);
 
-  // TODO: How to upgrade this to pass scope?
-  // This works hardcoded:
-  //signIn: useCallback(signInFlow(setMe, ['repo']), [setMe]),
   const contextValue = {
     me,
     signIn: useCallback(signInFlow(setMe), [setMe]),
+    signInWithScopes: useCallback(
+      (scopes) => {
+        signInFlow(setMe, scopes)()
+    }, [setMe, signInFlow]),
     signOut: useCallback(signOutFlow(setMe), [setMe]),
   };
 

@@ -31,7 +31,7 @@ export const SettingsProvider = ({ children }) => {
     vizInfo,
   } = useSettings();
 
-  const { me } = useContext(AuthContext);
+  const { me, signInWithScopes} = useContext(AuthContext);
 
   // Make it so hitting Enter in a text input
   // closes the modal (equivalent to hitting the "Done" button.
@@ -41,6 +41,13 @@ export const SettingsProvider = ({ children }) => {
       event.preventDefault();
     },
     [hideSettingsModal]
+  );
+  const onSignIn = useCallback(
+    (event) => {
+      signInWithScopes(['repo']);
+      event.preventDefault();
+    },
+    [signInWithScopes]
   );
 
   return (
@@ -87,6 +94,7 @@ export const SettingsProvider = ({ children }) => {
                 </SectionDescription>
                 <SetHeight height={vizHeight} setHeight={setVizHeight} />
               </Section>
+              <Button onClick={onSignIn}>Sign in</Button>
               <DialogButtons>
                 <Button isFilled onClick={hideSettingsModal}>
                   Done
