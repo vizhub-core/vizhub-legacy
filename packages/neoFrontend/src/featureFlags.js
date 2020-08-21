@@ -4,9 +4,9 @@ export const showCollaborators = true;
 export const showCollaboratorsAnyoneCanEdit = true;
 export const showCollaboratorsManagement = true;
 
-export const showPricing = process.env.REACT_APP_VIZHUB_PRICING === 'true';
+export const showPricing = true;
 export const showEmbed = process.env.REACT_APP_VIZHUB_EMBED === 'true';
-export const showNeoNavBar = process.env.REACT_APP_VIZHUB_NEO_NAVBAR === 'true';
+export const showNeoNavBar = true;
 
 export const showDownvote = false;
 export const showCreatedDate = false;
@@ -25,7 +25,7 @@ export const lintJs = false;
 
 // List of usernames who have access to
 // private viz feature.
-const core = ['ci']; //, 'nitanagdeote'];
+const core = ['ci'];
 
 const professors = ['Razpudding', 'sjengle', 'nazareno'];
 
