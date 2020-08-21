@@ -8,8 +8,7 @@ import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
-import { NavLink } from './styles';
-import { NavHREF } from './styles';
+import { NavLink, NavHREF } from './styles';
 
 export const NeoNavBar = withTheme(
   ({
