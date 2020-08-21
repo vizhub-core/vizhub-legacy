@@ -17,6 +17,7 @@ let connection;
 // Environment variables.
 const mongoURI = process.env.VIZHUB_MONGO_URI;
 const redisHost = process.env.VIZHUB_REDIS_HOST;
+
 export const getShareDB = () => {
   if (!shareDB) {
     const options = {

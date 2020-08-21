@@ -10,7 +10,7 @@ import {
   FACEBOOK_OAUTH_URL,
 } from '../../authentication';
 import { Wrapper, Content, Title, DevsOnly, Centering } from '../styles';
-import { Box, Octocat, Terms } from './styles';
+import { Box, Octocat, Terms, SinginLink } from './styles';
 
 export const AuthPage = () => {
   return (
@@ -31,12 +31,12 @@ export const AuthPage = () => {
               <a href={GITHUB_OAUTH_URL}>
                 <Button>Sign in with GitHub</Button>
               </a>
-              <a href={GOOGLE_OAUTH_URL} style={{ paddingTop: '5%' }}>
+              <SinginLink href={GOOGLE_OAUTH_URL}>
                 <Button>Sign in with Google</Button>
-              </a>
-              <a href={FACEBOOK_OAUTH_URL} style={{ paddingTop: '5%' }}>
+              </SinginLink>
+              <SinginLink href={FACEBOOK_OAUTH_URL}>
                 <Button>Sign in with Facebook</Button>
-              </a>
+              </SinginLink>
               <Terms>
                 By signing in you agree to our{' '}
                 <Link to="/terms">terms and conditions.</Link>

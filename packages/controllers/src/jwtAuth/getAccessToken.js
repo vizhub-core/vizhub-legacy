@@ -1,28 +1,20 @@
 import fetch from 'node-fetch';
 import { VizHubAPIError } from 'vizhub-entities';
-import { config, errorObj } from './common';
+
+const oAuthAccessTokenURL = 'https://github.com/login/oauth/access_token';
+const client_id = process.env.REACT_APP_VIZHUB_GITHUB_CLIENT_ID;
+const client_secret = process.env.VIZHUB_GITHUB_CLIENT_SECRET;
 
 // Get an access token from GitHub's API.
-export const getAccessToken = async (type, code) => {
-  let client_id = config[`${type}`][`client_id`];
-  let client_secret = config[`${type}`][`client_secret`];
-
-  let oAuthAccessTokenURL =
-    type === 'github'
-      ? config[`${type}`]['oAuthAccessTokenURL']
-      : `${config[`${type}`]['oAuthAccessTokenURL']}${code}`;
+export const getAccessToken = async (code) => {
   const fetchOptions = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      body: JSON.stringify({ client_id, client_secret, code }),
     },
   };
-
-  if (type === 'github') {
-    fetchOptions.body = JSON.stringify({ client_id, client_secret, code });
-  }
-
   const response = await fetch(oAuthAccessTokenURL, fetchOptions);
   const data = await response.json();
   if (data.error) {
@@ -31,8 +23,11 @@ export const getAccessToken = async (type, code) => {
         'Check that you have your GitHub OAuth environment variables set'
       );
     }
-    let error = errorObj(type, data);
-    throw new VizHubAPIError(error);
+    throw new VizHubAPIError({
+      error: 'github_user_fetch_error',
+      errorDescription: data.error.error_description || data.error.error,
+      errorURL: data.error.documentation_url,
+    });
   }
 
   return data.access_token;
