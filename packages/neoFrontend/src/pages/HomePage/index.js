@@ -1,4 +1,5 @@
 import React from 'react';
+import { VIZ_INFO_SORT_OPTION_MOST_FORKED } from 'vizhub-entities';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
@@ -12,7 +13,9 @@ import { Sort } from './Sort';
 import { HtmlStylesOverride } from './styles';
 
 export const HomePage = () => {
-  const [sort, handleSortChange] = useVizzesSort();
+  const [sort, handleSortChange] = useVizzesSort(
+    VIZ_INFO_SORT_OPTION_MOST_FORKED.id
+  );
 
   return (
     <>

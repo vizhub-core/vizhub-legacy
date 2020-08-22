@@ -1,24 +1,28 @@
 import { DocumentInfo } from './documentInfo';
 import { VISUALIZATION_TYPE } from './documentTypes';
 
+export const VIZ_INFO_SORT_OPTION_MOST_RECENT = {
+  id: 'mostRecent', // Used in URL param
+  label: 'Most recent', // Used in UI
+  vizInfoProperty: 'lastUpdatedTimestamp', // Used in DB query
+  isDefault: true, // Used in URL logic
+};
+
+export const VIZ_INFO_SORT_OPTION_MOST_FORKED = {
+  id: 'mostForked',
+  label: 'Most forked',
+  vizInfoProperty: 'forksCount',
+};
+//{
+//  id: 'upvotes',
+//  label: 'Most upvoted',
+//  vizInfoProperty: 'upvotes',
+//},
+
 // The options for sorting views of many visualizations.
 export const VIZ_INFO_SORT_OPTIONS = [
-  {
-    id: 'mostRecent', // Used in URL param
-    label: 'Most recent', // Used in UI
-    vizInfoProperty: 'lastUpdatedTimestamp', // Used in DB query
-    isDefault: true, // Used in URL logic
-  },
-  {
-    id: 'mostForked',
-    label: 'Most forked',
-    vizInfoProperty: 'forksCount',
-  },
-  //{
-  //  id: 'upvotes',
-  //  label: 'Most upvoted',
-  //  vizInfoProperty: 'upvotes',
-  //},
+  VIZ_INFO_SORT_OPTION_MOST_RECENT,
+  VIZ_INFO_SORT_OPTION_MOST_FORKED,
 ];
 
 export const VIZ_INFO_DEFAULT_SORT_OPTION = VIZ_INFO_SORT_OPTIONS.find(

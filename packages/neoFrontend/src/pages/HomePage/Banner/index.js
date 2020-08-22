@@ -40,25 +40,25 @@ export const Banner = () => (
     ></iframe>
     <Right>
       <Message>
-        <MessageLargeText>Join Our Community</MessageLargeText>
+        <MessageLargeText>Learn</MessageLargeText>
         <MessageSmallText>
           <MessageList>
-            <li>
-              <MessageLink
-                href="https://datavis.tech/datavis-2020/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Datavis 2020
-              </MessageLink>
-            </li>
             <li>
               <MessageLink
                 href="https://curran.github.io/dataviz-course-2018/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Data Visualization Course 2018
+                Datavis 2018 (D3 Only)
+              </MessageLink>
+            </li>
+            <li>
+              <MessageLink
+                href="https://datavis.tech/datavis-2020/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Datavis 2020 (React & D3)
               </MessageLink>
             </li>
           </MessageList>
