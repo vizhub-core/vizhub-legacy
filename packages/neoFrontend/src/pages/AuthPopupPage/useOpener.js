@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import { postMessageToOpener } from '../../authentication';
+import { ErrorContext } from '../../ErrorContext';
+
 export const useOpener = (getTokenFn) => {
-  const [error, setError] = useState(null);
+  const { setError } = useContext(ErrorContext);
 
   useEffect(() => {
     getTokenFn().then((data) => {
       if (data.error) {
-        setError(new Error(data.errorDescription));
+        setError({ message: data.errorDescription });
       } else {
         postMessageToOpener(data);
       }
     });
   }, [getTokenFn, setError]);
-
-  return error;
 };
