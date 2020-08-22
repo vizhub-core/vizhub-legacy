@@ -8,7 +8,7 @@ import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
-import { NavLink, NavHREF } from './styles';
+import { NavLink, NavLinkDiv, NavHREF } from './styles';
 
 export const NeoNavBar = withTheme(
   ({
@@ -65,9 +65,9 @@ export const NeoNavBar = withTheme(
                 <UserActionsMenu mobile={isMobile} />
               )}
               {!me && (
-                <NavLink className="test-sign-in" to="" onClick={signIn}>
+                <NavLinkDiv className="test-sign-in" to="" onClick={signIn}>
                   Sign in
-                </NavLink>
+                </NavLinkDiv>
               )}
             </>
           )
