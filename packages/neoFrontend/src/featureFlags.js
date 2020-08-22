@@ -23,6 +23,9 @@ export const showForksCount = true;
 export const showAboutLink = true;
 export const lintJs = false;
 
+export const showFacebookLogin = false;
+export const showGoogleLogin = false;
+
 // List of usernames who have access to
 // private viz feature.
 const core = ['ci']; //, 'nitanagdeote'];
