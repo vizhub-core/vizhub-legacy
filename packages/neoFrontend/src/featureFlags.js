@@ -26,6 +26,9 @@ export const lintJs = false;
 export const showFacebookLogin = false;
 export const showGoogleLogin = false;
 
+export const showUserActionsMenuCreateViz = false;
+export const showUserActionsProfile = false;
+
 // List of usernames who have access to
 // private viz feature.
 const core = ['ci'];

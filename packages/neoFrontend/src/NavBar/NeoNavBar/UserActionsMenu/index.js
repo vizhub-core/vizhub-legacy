@@ -6,6 +6,10 @@ import { Avatar } from '../../../Avatar';
 import { HorizontalRule } from '../../../styles';
 import { Wrapper, Menu, Item } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
+import {
+  showUserActionsMenuCreateViz,
+  showUserActionsProfile,
+} from '../../../featureFlags';
 
 export const UserActionsMenu = withTheme(({ theme, mobile }) => {
   const { avatarHeight } = theme;
@@ -23,15 +27,21 @@ export const UserActionsMenu = withTheme(({ theme, mobile }) => {
       <Avatar size={avatarHeight} user={me} onClick={open} />
       {isOpen && (
         <Menu mobile={mobile} height={avatarHeight}>
-          <Link to="/create-viz">
-            <Item className="test-create-viz" topmost={true}>
-              Create Viz
-            </Item>
-          </Link>
-          <HorizontalRule />
-          <Link to={`/${me.userName}`}>
-            <Item>Profile</Item>
-          </Link>
+          {showUserActionsMenuCreateViz ? (
+            <>
+              <Link to="/create-viz">
+                <Item className="test-create-viz" topmost={true}>
+                  Create Viz
+                </Item>
+              </Link>
+              <HorizontalRule />
+            </>
+          ) : null}
+          {showUserActionsProfile ? (
+            <Link to={`/${me.userName}`}>
+              <Item>Profile</Item>
+            </Link>
+          ) : null}
           <HorizontalRule />
           <Item className="test-sign-out" onClick={signOut} bottommost={true}>
             Sign out
