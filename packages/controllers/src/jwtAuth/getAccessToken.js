@@ -12,8 +12,8 @@ export const getAccessToken = async (code) => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      body: JSON.stringify({ client_id, client_secret, code }),
     },
+    body: JSON.stringify({ client_id, client_secret, code }),
   };
   const response = await fetch(oAuthAccessTokenURL, fetchOptions);
   const data = await response.json();
