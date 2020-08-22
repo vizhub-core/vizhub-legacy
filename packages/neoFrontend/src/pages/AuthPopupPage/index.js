@@ -1,7 +1,7 @@
 import React from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
-import { useOpener } from './opner';
-import { useTokenGetter } from './tokenGetter';
+import { useOpener } from './useOpener';
+import { useTokenGetter } from './useTokenGetter';
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to
 // `${serverURL}/authenticated`.
