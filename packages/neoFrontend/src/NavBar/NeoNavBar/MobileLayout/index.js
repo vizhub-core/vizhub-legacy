@@ -11,9 +11,8 @@ export const MobileLayout = ({ Logo, Search, AuthSection }) => {
       </Banner>
       {Search && <SubBanner>{Search}</SubBanner>}
 
-      {/* TODO: need to think how to enable links on mobile */}
+      {/* TODO: enable links with hamburger menu on mobile */}
       {/* <Links>
-        {HomeLink}
         {AboutLink}
         {PricingLink}
       </Links> */}
