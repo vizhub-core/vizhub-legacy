@@ -6,6 +6,10 @@ import { CloseSVG } from '../../../svg';
 import { Avatar } from '../../../Avatar';
 import { AvatarOverlay, Wrapper, Menu, Item, HorizontalRule } from './styles';
 import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
+import {
+  showUserActionsMenuCreateViz,
+  showUserActionsProfile,
+} from '../../../featureFlags';
 
 export const UserActionsMenu = withTheme(({ theme }) => {
   const {
@@ -39,15 +43,21 @@ export const UserActionsMenu = withTheme(({ theme }) => {
             />
           </AvatarOverlay>
           <Menu height={navbarHeight}>
-            <Link to="/create-viz">
-              <Item className="test-create-viz" topmost={true}>
-                Create Visualization
-              </Item>
-            </Link>
-            <HorizontalRule />
-            <Link to={`/${me.userName}`}>
-              <Item>Profile</Item>
-            </Link>
+            {showUserActionsMenuCreateViz ? (
+              <>
+                <Link to="/create-viz">
+                  <Item className="test-create-viz" topmost={true}>
+                    Create Visualization
+                  </Item>
+                </Link>
+                <HorizontalRule />
+              </>
+            ) : null}
+            {showUserActionsProfile ? (
+              <Link to={`/${me.userName}`}>
+                <Item>Profile</Item>
+              </Link>
+            ) : null}
             <HorizontalRule />
             <Item className="test-sign-out" onClick={signOut} bottommost={true}>
               Sign out
