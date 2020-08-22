@@ -8,7 +8,7 @@ import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
-import { NavLink, NavLinkDiv, NavHREF, LogoLink } from './styles';
+import { NavLink, NavDiv, NavA, LogoLink } from './styles';
 
 export const NeoNavBar = withTheme(
   ({
@@ -41,13 +41,13 @@ export const NeoNavBar = withTheme(
         Search={showSearch && <Search mobile={isMobile} {...searchProps} />}
         AboutLink={
           showAboutLink && (
-            <NavHREF
+            <NavA
               href="https://datavis.tech/vizhub/"
               target="_blank"
               rel="noopener noreferrer"
             >
               About
-            </NavHREF>
+            </NavA>
           )
         }
         PricingLink={
@@ -64,9 +64,9 @@ export const NeoNavBar = withTheme(
                 <UserActionsMenu mobile={isMobile} />
               )}
               {!me && (
-                <NavLinkDiv className="test-sign-in" to="" onClick={signIn}>
+                <NavDiv className="test-sign-in" to="" onClick={signIn}>
                   Sign in
-                </NavLinkDiv>
+                </NavDiv>
               )}
             </>
           )
