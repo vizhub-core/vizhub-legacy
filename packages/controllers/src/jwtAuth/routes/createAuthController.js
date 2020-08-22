@@ -3,7 +3,6 @@ import { GetOrCreateUser } from 'vizhub-use-cases';
 import { toErrorResponse } from '../../Error';
 import { jwtSign } from '../jwt';
 
-// createAuthController looks like:
 export const createAuthController = (getUserFromRequest) => {
   return (userGateway) => {
     const getOrCreateUser = new GetOrCreateUser({ userGateway });
