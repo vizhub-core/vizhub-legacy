@@ -45,6 +45,7 @@ To set up the app to use MongoDB, export the following:
 
 ```
 export VIZHUB_MONGO_URI=mongodb://localhost:27017/vizhub
+export REACT_APP_VIZHUB_REDIRECT_URI=http://localhost:3000/authenticated
 ```
 
 To enable authentication via GitHub, export the following:
@@ -52,6 +53,19 @@ To enable authentication via GitHub, export the following:
 ```
 export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=17ed8d9fa67e695f1118
 export VIZHUB_GITHUB_CLIENT_SECRET=b7673605d16aee3c66bb693578d4e1e2dac61baa
+```
+
+To enable authentication via Google, export the following:
+
+```
+export REACT_APP_VIZHUB_GOOGLE_CLIENT_ID=1089209754756-iuvb60rkf8mheiqk186n3kk7lp6sb5kr.apps.googleusercontent.com
+```
+
+To enable authentication via Facebook, export the following:
+
+```
+export REACT_APP_VIZHUB_FACEBOOK_CLIENT_ID=39270402107636
+export VIZHUB_FACEBOOK_CLIENT_SECRET=13aedfb953666b2a425e5ba00deef3c1
 ```
 
 Don't forget to `source ~/.bashrc`!

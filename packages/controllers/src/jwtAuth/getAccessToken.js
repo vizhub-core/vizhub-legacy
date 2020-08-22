@@ -15,7 +15,6 @@ export const getAccessToken = async (code) => {
     },
     body: JSON.stringify({ client_id, client_secret, code }),
   };
-
   const response = await fetch(oAuthAccessTokenURL, fetchOptions);
   const data = await response.json();
   if (data.error) {
@@ -25,9 +24,9 @@ export const getAccessToken = async (code) => {
       );
     }
     throw new VizHubAPIError({
-      error: data.error,
-      errorDescription: data.error_description || data.error,
-      errorURL: data.error_uri,
+      error: 'github_user_fetch_error',
+      errorDescription: data.error.error_description || data.error.error,
+      errorURL: data.error.documentation_url,
     });
   }
 

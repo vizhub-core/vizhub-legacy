@@ -26,3 +26,6 @@ export const Terms = styled.div`
   margin-top: 22px;
   font-size: 10px;
 `;
+export const SinginLink = styled.a`
+  padding-top: 3%;
+`;
