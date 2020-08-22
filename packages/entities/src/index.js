@@ -10,7 +10,6 @@ export {
   VIZ_INFO_SORT_OPTION_MOST_FORKED,
   VIZ_INFO_SORT_OPTION_MOST_RECENT,
   VIZ_INFO_SORT_OPTIONS,
-  VIZ_INFO_DEFAULT_SORT_OPTION,
 } from './visualizationInfo';
 export { VisualizationContent } from './visualizationContent';
 export { Visualization } from './visualization';

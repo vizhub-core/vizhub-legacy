@@ -5,7 +5,6 @@ export const VIZ_INFO_SORT_OPTION_MOST_RECENT = {
   id: 'mostRecent', // Used in URL param
   label: 'Most recent', // Used in UI
   vizInfoProperty: 'lastUpdatedTimestamp', // Used in DB query
-  isDefault: true, // Used in URL logic
 };
 
 export const VIZ_INFO_SORT_OPTION_MOST_FORKED = {
@@ -24,10 +23,6 @@ export const VIZ_INFO_SORT_OPTIONS = [
   VIZ_INFO_SORT_OPTION_MOST_RECENT,
   VIZ_INFO_SORT_OPTION_MOST_FORKED,
 ];
-
-export const VIZ_INFO_DEFAULT_SORT_OPTION = VIZ_INFO_SORT_OPTIONS.find(
-  ({ isDefault }) => isDefault
-);
 
 export class VisualizationInfo extends DocumentInfo {
   constructor(data) {

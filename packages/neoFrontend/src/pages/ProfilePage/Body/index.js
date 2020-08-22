@@ -1,5 +1,6 @@
 import React, { useState, useContext, useMemo, useCallback } from 'react';
 import { isVizInfoPrivate } from 'vizhub-presenters';
+import { VIZ_INFO_SORT_OPTION_MOST_RECENT } from 'vizhub-entities';
 
 import { AuthContext } from '../../../authentication';
 import { showProfileSidebar } from '../../../featureFlags';
@@ -46,7 +47,9 @@ export const Body = () => {
     setPrivacy('private');
   }, []);
 
-  const [sort, handleSortChange] = useVizzesSort();
+  const [sort, handleSortChange] = useVizzesSort(
+    VIZ_INFO_SORT_OPTION_MOST_RECENT.id
+  );
 
   return (
     <Content>

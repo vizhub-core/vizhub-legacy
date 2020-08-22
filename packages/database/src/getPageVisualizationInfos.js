@@ -2,12 +2,10 @@ import {
   VisualizationInfo,
   VISUALIZATION_TYPE,
   VIZ_INFO_SORT_OPTIONS,
-  VIZ_INFO_DEFAULT_SORT_OPTION,
 } from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 
-const defaultSort = VIZ_INFO_DEFAULT_SORT_OPTION.id;
 const isAllowed = (sort) =>
   !!VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
 
