@@ -9,13 +9,15 @@ export const authMe = (userGateway) => {
     try {
       const { vizHubJWT } = req.cookies;
       const id = getUserIDFromJWT(vizHubJWT);
-      console.log(id);
+
       if (!id) {
         return res.send({ me: null });
       }
       const requestModel = { id };
+
       const responseModel = await getUser.execute(requestModel);
       const me = responseModel.user;
+
       res.send({ me });
     } catch (error) {
       res.send(toErrorResponse(error));

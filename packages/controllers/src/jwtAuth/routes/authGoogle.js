@@ -8,6 +8,7 @@ const getUserFromRequest = async (req) => {
   const user = {
     id: '' + googleUser.sub,
     username: googleUser.name,
+    email: googleUser.email,
     _json: googleUser,
   };
 

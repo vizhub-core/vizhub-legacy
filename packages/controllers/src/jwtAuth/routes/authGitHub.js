@@ -9,6 +9,7 @@ const getUserFromRequest = async (req) => {
   const user = {
     id: '' + gitHubUser.id,
     username: gitHubUser.login,
+    email: gitHubUser.email,
     _json: gitHubUser,
   };
 
