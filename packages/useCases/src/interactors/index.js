@@ -8,6 +8,7 @@ export { ForkVisualization } from './forkVisualization';
 export { CreateUser } from './createUser';
 export { UpgradeUser } from './upgradeUser';
 export { GetUser } from './getUser';
+export { GetUserByEmail } from './getUserByEmail';
 export { GetUsers } from './getUsers';
 export { GetOrCreateUser } from './getOrCreateUser';
 export { GetUserProfileData } from './getUserProfileData';

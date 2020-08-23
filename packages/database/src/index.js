@@ -7,6 +7,7 @@ import { createUser } from './createUser';
 import { saveUser } from './saveUser';
 import { getUser } from './getUser';
 import { getUsers } from './getUsers';
+import { getUserByEmail } from './getUserByEmail';
 import { getUserByUserName } from './getUserByUserName';
 import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
@@ -39,6 +40,7 @@ export const Database = (connection) => ({
   saveUser: saveUser(connection),
   getUser: getUser(connection),
   getUsers: getUsers(connection),
+  getUserByEmail: getUserByEmail(connection),
   getUserByUserName: getUserByUserName(connection),
   getVisualizationInfosByUserId: getVisualizationInfosByUserId(connection),
   getAllVisualizationInfos: getAllVisualizationInfos(connection),

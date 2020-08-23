@@ -23,6 +23,10 @@ export class DatabaseUserGateway {
     return await this.database.getUserByUserName(userName);
   }
 
+  async getUserByEmail(email) {
+    return await this.database.getUserByEmail(email);
+  }
+
   async searchUsers(options) {
     return await this.database.searchUsers(options);
   }

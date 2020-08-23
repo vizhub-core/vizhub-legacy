@@ -9,6 +9,7 @@ const getUserFromRequest = async (req) => {
   const user = {
     id: '' + fbUser.id,
     username: fbUser.name,
+    email: fbUser.email,
     _json: fbUser,
   };
 
