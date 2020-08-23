@@ -10,7 +10,9 @@ export class CreateUser {
       oAuthProfile: {
         id,
         username,
-        _json: { name, avatar_url, company, blog, location, email, bio },
+        email,
+        avatar_url,
+        _json: { name, company, blog, location, bio },
       },
     } = requestModel;
 
