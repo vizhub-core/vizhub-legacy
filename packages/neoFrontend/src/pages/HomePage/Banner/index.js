@@ -13,19 +13,31 @@ import {
   MessageButton,
 } from './styles';
 
+const iFrameScale = 0.75;
+
 export const Banner = () => (
   <Wrapper>
     <Bar></Bar>
     <Left>
       <Message>
-        <MessageSmallText>Teach, learn, & practice</MessageSmallText>
         <MessageLargeText>Data Visualization</MessageLargeText>
-        <MessageSmallText>using Web technologies.</MessageSmallText>
+        <MessageSmallText>is easier than you think.</MessageSmallText>
         <Link to="/create-viz">
-          <MessageButton>Get started</MessageButton>
+          <MessageButton>Create a Viz</MessageButton>
         </Link>
       </Message>
     </Left>
+    <iframe
+      src="https://vizhub.com/curran/77a2f42571494263931b8c4d38b7d63c?mode=embed"
+      title="Mountains on a Map"
+      width={960 * iFrameScale}
+      height={500 * iFrameScale}
+      style={{
+        border: 0,
+        backgroundColor: '#FFFFFF',
+        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 3px 0px',
+      }}
+    ></iframe>
     <Right>
       <Message>
         <MessageLargeText>Join Our Community</MessageLargeText>

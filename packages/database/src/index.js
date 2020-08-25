@@ -3,6 +3,7 @@ import { getVisualization } from './getVisualization';
 import { getVisualizationInfo } from './getVisualizationInfo';
 import { saveVisualization } from './saveVisualization';
 import { deleteVisualization } from './deleteVisualization';
+import { getDataset } from './getDataset';
 import { createUser } from './createUser';
 import { saveUser } from './saveUser';
 import { getUser } from './getUser';
@@ -15,6 +16,7 @@ import { getHomePageVisualizationInfos } from './getHomePageVisualizationInfos';
 import { searchVisualizationInfos } from './searchVisualizationInfos';
 import { getForks } from './getForks';
 import { searchUsers } from './searchUsers';
+import { getDatasetInfosByUserId } from './getDatasetInfosByUserId';
 import { updateImages } from './updateImages';
 import { getThumbnail } from './getThumbnail';
 import { getPreview } from './getPreview';
@@ -54,4 +56,10 @@ export const Database = (connection) => ({
   setImagesUpdatedTimestamp: setImagesUpdatedTimestamp(connection),
   incrementForksCount: incrementForksCount(connection),
   decrementForksCount: decrementForksCount(connection),
+
+  /**
+   * @deprecated database api
+   */
+  getDataset: getDataset(connection),
+  getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
 });

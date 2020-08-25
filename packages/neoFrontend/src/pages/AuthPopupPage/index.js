@@ -2,6 +2,7 @@ import React from 'react';
 import { LoadingScreen } from '../../LoadingScreen';
 import { useOpener } from './useOpener';
 import { useTokenGetter } from './useTokenGetter';
+
 // This page will open within the authentication popup,
 // triggered by the OAuth callback URL, which should be set to
 // `${serverURL}/authenticated`.
@@ -9,9 +10,8 @@ import { useTokenGetter } from './useTokenGetter';
 // When invoked via OAuth, it will have a code attached, like this:
 //
 // `${serverURL}/authenticated?code=fff33d3da4333abdr4fe`.
-//
+
 export const AuthPopupPage = () => {
-  const getTokenFn = useTokenGetter();
-  const error = useOpener(getTokenFn);
+  useOpener(useTokenGetter());
   return <LoadingScreen message="Signing in..." />;
 };
