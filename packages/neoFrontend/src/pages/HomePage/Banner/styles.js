@@ -75,3 +75,8 @@ export const MessageButton = styled(Button)`
     background-color: ${(props) => props.theme.activeBackground};
   }
 `;
+
+export const Iframe = styled.iframe`
+  border: none;
+  border-radius: 8px;
+`;
