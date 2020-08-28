@@ -8,62 +8,32 @@ import {
   Message,
   MessageSmallText,
   MessageLargeText,
-  MessageList,
-  MessageLink,
+  Iframe,
   MessageButton,
 } from './styles';
-
-const iFrameScale = 0.75;
 
 export const Banner = () => (
   <Wrapper>
     <Bar></Bar>
     <Left>
       <Message>
+        <MessageSmallText>Learn, practice & teach</MessageSmallText>
         <MessageLargeText>Data Visualization</MessageLargeText>
-        <MessageSmallText>is easier than you think.</MessageSmallText>
+        <MessageSmallText>with Web technologies.</MessageSmallText>
         <Link to="/create-viz">
-          <MessageButton>Create a Viz</MessageButton>
+          <MessageButton>Get started</MessageButton>
         </Link>
       </Message>
     </Left>
-    <iframe
-      src="https://vizhub.com/curran/77a2f42571494263931b8c4d38b7d63c?mode=embed"
-      title="Mountains on a Map"
-      width={960 * iFrameScale}
-      height={500 * iFrameScale}
-      style={{
-        border: 0,
-        backgroundColor: '#FFFFFF',
-        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 1px 3px 0px',
-      }}
-    ></iframe>
     <Right>
-      <Message>
-        <MessageLargeText>Join Our Community</MessageLargeText>
-        <MessageSmallText>
-          <MessageList>
-            <li>
-              <MessageLink
-                href="https://datavis.tech/datavis-2020/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Datavis 2020
-              </MessageLink>
-            </li>
-            <li>
-              <MessageLink
-                href="https://curran.github.io/dataviz-course-2018/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Data Visualization Course 2018
-              </MessageLink>
-            </li>
-          </MessageList>
-        </MessageSmallText>
-      </Message>
+      <Iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/Ia_DwVMXwgk"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></Iframe>
     </Right>
   </Wrapper>
 );
