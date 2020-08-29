@@ -2,7 +2,7 @@
 // https://github.com/stripe-samples/checkout-single-subscription/tree/master/client-and-server
 
 const publishableKey = process.env.REACT_APP_VIZHUB_STRIPE_PUBLISHABLE_KEY;
-const proPriceId = process.env.REACT_APP_VIZHUB_STRIPE_PRO_PRICE_ID;
+const proPriceId = process.env.REACT_APP_VIZHUB_STRIPE_BASIC_PRICE_ID;
 
 // Create a Checkout Session with the selected plan ID
 const createCheckoutSession = async (priceId) =>

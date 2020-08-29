@@ -19,7 +19,7 @@ import {
   PlanSubtext,
 } from './styles';
 
-import { features, plans, PRO } from './featuresAndPlans';
+import { features, plans, BASIC } from './featuresAndPlans';
 
 import { handleUpgradeClick } from './stripe';
 
@@ -43,7 +43,7 @@ export const PricingPage = () => {
                           <PlanSubtext key={text}>{text}</PlanSubtext>
                         ))
                       : null}
-                    {plan.id === PRO ? (
+                    {plan.id === BASIC ? (
                       <Button
                         onClick={handleUpgradeClick(me && me.id)}
                         isDisabled={!me}
