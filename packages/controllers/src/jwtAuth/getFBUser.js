@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 const fbGetUserInfoUrl = `https://graph.facebook.com/v8.0/me?fields=id,email,name,first_name,last_name,picture&access_token=`;
 
 export const getFBUser = async (accessToken) => {
-  let fetchOptions = {
+  const fetchOptions = {
     method: 'GET',
     headers: {
       Accept: 'application/json',

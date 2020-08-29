@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router';
 import { useMemo } from 'react';
 import { getJWT } from '../../authentication';
 import queryString from 'query-string';
@@ -8,7 +8,7 @@ export const useTokenGetter = () => {
   const { search, hash } = useLocation();
   const { code } = queryString.parse(search);
   const { id_token } = queryString.parse(hash);
-  console.log(provider, useParams());
+  
   return useMemo(() => {
     if (code) {
       return getJWT.bind(null, provider, code);
