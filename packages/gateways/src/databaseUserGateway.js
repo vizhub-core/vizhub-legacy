@@ -27,6 +27,10 @@ export class DatabaseUserGateway {
     return await this.database.getUserByEmail(email);
   }
 
+  async getUserByEmailOrId(email, id) {
+    return await this.database.getUserByEmailOrId(email, id);
+  }
+
   async searchUsers(options) {
     return await this.database.searchUsers(options);
   }
