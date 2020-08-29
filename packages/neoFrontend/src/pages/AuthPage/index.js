@@ -11,6 +11,7 @@ import {
 } from '../../authentication';
 import { Wrapper, Content, Title, DevsOnly, Centering } from '../styles';
 import { Box, Octocat, Terms, SinginLink } from './styles';
+import { showFacebookLogin, showGoogleLogin } from '../../featureFlags';
 
 export const AuthPage = () => {
   return (
@@ -31,12 +32,16 @@ export const AuthPage = () => {
               <a href={GITHUB_OAUTH_URL}>
                 <Button>Sign in with GitHub</Button>
               </a>
-              <SinginLink href={GOOGLE_OAUTH_URL}>
-                <Button>Sign in with Google</Button>
-              </SinginLink>
-              <SinginLink href={FACEBOOK_OAUTH_URL}>
-                <Button>Sign in with Facebook</Button>
-              </SinginLink>
+              {showGoogleLogin ? (
+                <SinginLink href={GOOGLE_OAUTH_URL}>
+                  <Button>Sign in with Google</Button>
+                </SinginLink>
+              ) : null}
+              {showFacebookLogin ? (
+                <SinginLink href={FACEBOOK_OAUTH_URL}>
+                  <Button>Sign in with Facebook</Button>
+                </SinginLink>
+              ) : null}
               <Terms>
                 By signing in you agree to our{' '}
                 <Link to="/terms">terms and conditions.</Link>

@@ -7,7 +7,6 @@ export const DesktopLayout = ({
   Logo,
   DashboardLink,
   Search,
-  HomeLink,
   AboutLink,
   PricingLink,
   AuthSection,
@@ -26,7 +25,6 @@ export const DesktopLayout = ({
         data-test-is-authenticated={Boolean(me)}
       >
         {Search}
-        {HomeLink}
         {AboutLink}
         {PricingLink}
         {AuthSection}

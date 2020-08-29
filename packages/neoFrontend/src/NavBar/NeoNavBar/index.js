@@ -8,8 +8,7 @@ import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
-import { NavLink } from './styles';
-import { NavHREF } from './styles';
+import { NavLink, NavLinkDiv, NavHREF, LogoLink } from './styles';
 
 export const NeoNavBar = withTheme(
   ({
@@ -27,7 +26,11 @@ export const NeoNavBar = withTheme(
     return (
       <Layout
         isHomePage={isHomePage}
-        Logo={<LogoSVG height={navbarHeight} fill={navbarLogoColor} />}
+        Logo={
+          <LogoLink to="/">
+            <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
+          </LogoLink>
+        }
         DashboardLink={
           me && me !== 'AUTH_PENDING' ? (
             <NavLink exact to={`/${me.userName}`}>
@@ -36,11 +39,6 @@ export const NeoNavBar = withTheme(
           ) : null
         }
         Search={showSearch && <Search mobile={isMobile} {...searchProps} />}
-        HomeLink={
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-        }
         AboutLink={
           showAboutLink && (
             <NavHREF
@@ -66,9 +64,9 @@ export const NeoNavBar = withTheme(
                 <UserActionsMenu mobile={isMobile} />
               )}
               {!me && (
-                <NavLink className="test-sign-in" to="" onClick={signIn}>
+                <NavLinkDiv className="test-sign-in" to="" onClick={signIn}>
                   Sign in
-                </NavLink>
+                </NavLinkDiv>
               )}
             </>
           )

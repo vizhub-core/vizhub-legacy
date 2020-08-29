@@ -25,6 +25,10 @@ export const NavLink = styled(RouterNavLink)`
   ${linkCSS}
 `;
 
+export const NavLinkDiv = styled.div`
+  ${linkCSS}
+`;
+
 export const NavHREF = styled.a`
   ${linkCSS}
 `;
