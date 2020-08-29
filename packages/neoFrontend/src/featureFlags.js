@@ -4,7 +4,7 @@ export const showCollaborators = true;
 export const showCollaboratorsAnyoneCanEdit = true;
 export const showCollaboratorsManagement = true;
 
-export const showPricing = true;
+export const showPricing = false;
 export const showEmbed = process.env.REACT_APP_VIZHUB_EMBED === 'true';
 export const showNeoNavBar = true;
 
