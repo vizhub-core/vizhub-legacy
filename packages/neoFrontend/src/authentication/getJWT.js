@@ -1,12 +1,12 @@
-import { stateDecoder } from './stateDecoder';
+import { CI_USER_CODE } from './constants';
 
-const url = (state) => {
-  const type = state ? stateDecoder(state) : 'ci';
+const url = (state, code) => {
+  const type = state ? state : code === CI_USER_CODE ? 'ci' : 'github';
   return `/api/auth/${type}`;
 };
 
 export const getJWT = async (parameter, code) => {
-  const response = await fetch(url(parameter), {
+  const response = await fetch(url(parameter, code), {
     method: 'POST',
     headers: {
       Accept: 'application/json',
