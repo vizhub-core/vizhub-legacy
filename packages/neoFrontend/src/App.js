@@ -35,6 +35,10 @@ export const App = () => (
               <WarningProvider>
                 <ConnectionProvider>
                   <Switch>
+                    <Route
+                      path="/authenticated/:provider"
+                      component={AuthPopupPage}
+                    />
                     <Route path="/authenticated" component={AuthPopupPage} />
                     <Route exact path="/" component={HomePage} />
                     <Route path="/auth" component={AuthPage} />

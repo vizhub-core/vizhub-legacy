@@ -1,6 +1,7 @@
 import { User } from 'vizhub-entities';
+import { GetUser } from './getUser';
 
-export class CreateUser {
+export class UpdateUser {
   constructor({ userGateway }) {
     this.userGateway = userGateway;
   }
@@ -16,7 +17,7 @@ export class CreateUser {
       },
     } = requestModel;
 
-    const user = new User({
+    const user = {
       id,
       userName: username,
       fullName: name,
@@ -26,10 +27,9 @@ export class CreateUser {
       website: blog,
       location,
       bio,
-    });
-
-    return {
-      user: await this.userGateway.createUser(user),
     };
+
+    await this.userGateway.saveUser(user);
+    return user;
   }
 }
