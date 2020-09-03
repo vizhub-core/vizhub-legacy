@@ -8,7 +8,7 @@ export const useTokenGetter = () => {
   const { search, hash } = useLocation();
   const { code } = queryString.parse(search);
   const { id_token } = queryString.parse(hash);
-  
+
   return useMemo(() => {
     if (code) {
       return getJWT.bind(null, provider, code);
