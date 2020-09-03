@@ -27,6 +27,7 @@ export const NavLink = styled(RouterNavLink)`
 
 export const NavLinkDiv = styled.div`
   ${linkCSS}
+  cursor: pointer;
 `;
 
 export const NavHREF = styled.a`

@@ -1,17 +1,11 @@
 import React from 'react';
-import { showNeoNavBar } from '../featureFlags';
-import { NavBar as OldNavBar } from './NavBar';
 import { NeoNavBar } from './NeoNavBar';
 
-export const NavBar = (props) => {
-  return showNeoNavBar ? (
-    <NeoNavBar
-      isHomePage={props.isHomePage}
-      searchProps={props.searchProps}
-      showSearch={props.isHomePage || Boolean(props.searchProps)}
-      showAuth={!props.isAuthPage}
-    />
-  ) : (
-    <OldNavBar {...props} />
-  );
-};
+export const NavBar = (props) => (
+  <NeoNavBar
+    isHomePage={props.isHomePage}
+    searchProps={props.searchProps}
+    showSearch={props.isHomePage || Boolean(props.searchProps)}
+    showAuth={!props.isAuthPage}
+  />
+);
