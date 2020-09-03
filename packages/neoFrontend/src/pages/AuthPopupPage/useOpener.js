@@ -4,7 +4,7 @@ import { ErrorContext } from '../../ErrorContext';
 
 export const useOpener = (getTokenFn) => {
   const { setError } = useContext(ErrorContext);
-  
+
   useEffect(() => {
     getTokenFn().then((data) => {
       if (data.error) {
