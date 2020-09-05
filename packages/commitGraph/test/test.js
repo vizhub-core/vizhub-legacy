@@ -1,8 +1,8 @@
 import * as assert from 'assert';
-import { square } from '../src/index';
+import { square } from '../lib/index';
 
 describe('Commit Graph', () => {
   it('should do a thing', () => {
-    assert.deepEqual(3, 3);
+    assert.deepEqual(square(3), 9);
   });
 });
