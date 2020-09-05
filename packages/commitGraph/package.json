@@ -12,7 +12,12 @@
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
-  "dependencies": {},
+  "dependencies": {
+    "diff-match-patch": "^1.0.5",
+    "json0-ot-diff": "^1.0.5",
+    "ot-json1": "^1.0.1",
+    "vizhub-entities": "1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
