@@ -16,6 +16,15 @@ export const getGitHubUser = async (accessToken) => {
   const response = await fetch(gitHubUserURL, fetchOptions);
   const gitHubUser = await response.json();
 
+  // fetch email even if user mark email as private(not to show)
+  if (!gitHubUser.email) {
+    let emailsRespone = await fetch(`${gitHubUserURL}/emails`, fetchOptions);
+    emailsRespone = await emailsRespone.json();
+
+    gitHubUser.email =
+      emailsRespone.find((v) => v.visibility === 'private').email || '';
+  }
+
   if (gitHubUser.message) {
     throw new VizHubAPIError({
       error: 'github_user_fetch_error',
