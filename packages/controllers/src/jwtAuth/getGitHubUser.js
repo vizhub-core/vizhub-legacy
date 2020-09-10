@@ -25,9 +25,11 @@ export const getGitHubUser = async (accessToken) => {
     // that is not actually the user's email ID.
     gitHubUser.email =
       emailsRespone.find((v) => v.visibility === 'private').email || '';
-    
-    if( gitHubUser.email === ''){
-      console.log('Unable to resolve email ID. This should never happen. GitHub user: ');
+
+    if (gitHubUser.email === '') {
+      console.log(
+        'Unable to resolve email ID. This should never happen. GitHub user: '
+      );
       console.log(JSON.stringify(gitHubUser, null, 2));
     }
   }
