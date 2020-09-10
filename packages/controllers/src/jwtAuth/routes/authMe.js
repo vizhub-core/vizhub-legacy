@@ -9,7 +9,7 @@ export const authMe = (userGateway) => {
     try {
       const { vizHubJWT } = req.cookies;
       const id = getUserIDFromJWT(vizHubJWT);
-      
+
       if (!id) {
         return res.send({ me: null });
       }
