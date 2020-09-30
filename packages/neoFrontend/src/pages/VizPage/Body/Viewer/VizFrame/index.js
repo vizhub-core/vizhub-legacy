@@ -1,11 +1,12 @@
 import React, { useRef, useContext, useCallback, useState } from 'react';
-import { FullSVG } from '../../../../../svg';
-import { MiniOrMicroSVG } from '../../../../../mobileMods';
 import { vizWidth } from 'vizhub-presenters';
 import {
   enterFullScreenTooltip,
   enterMiniModeTooltip,
 } from '../../../../../constants';
+import { FullSVG } from '../../../../../svg';
+import { MiniOrMicroSVG } from '../../../../../mobileMods';
+import { SavingIndicator } from '../../../../../SavingIndicator';
 import { LargeIcon } from '../../../../styles';
 import { URLStateContext } from '../../../URLStateContext';
 import { VizRunnerContext } from '../../../VizRunnerContext';
@@ -17,7 +18,7 @@ import { Wrapper, LargeIconRightmost } from './styles';
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
 
-  const { setVizRunnerTransform } = useContext(VizRunnerContext);
+  const { pending, setVizRunnerTransform } = useContext(VizRunnerContext);
   const { enterFullScreen, enterMini } = useContext(URLStateContext);
   const [scale, setScale] = useState();
 
@@ -48,6 +49,7 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
           <div style={{ height: vizHeight * scale }} />
           <FrameFooter>
             <PlayPauseControl />
+            <SavingIndicator saving={pending} />
             <FrameFooterRight>
               <LargeIcon
                 leftmost={true}
