@@ -8,6 +8,7 @@ import { usePresenceStream } from './usePresenceStream';
 import { useSubmitOp } from './useSubmitOp';
 import { useSubmitPresence } from './useSubmitPresence';
 import { useVizInfo } from './useVizInfo';
+import { usePending } from './usePending';
 
 export const useViz = (initialViz) => {
   const { vizInfo$, submitVizInfoOp } = useVizInfo(initialViz.info);
@@ -47,6 +48,7 @@ export const useViz = (initialViz) => {
   }, [viz$, vizInfo$, vizContentOp$, initialViz.id]);
 
   const submitVizContentOp = useSubmitOp(vizContentDoc);
+  const pending = usePending(vizContentDoc);
 
   // Manage presence.
   const vizContentPresence = usePresence(
@@ -59,6 +61,7 @@ export const useViz = (initialViz) => {
 
   return {
     viz$,
+    pending,
     submitVizContentOp,
     submitVizInfoOp,
     vizContentOp$,
