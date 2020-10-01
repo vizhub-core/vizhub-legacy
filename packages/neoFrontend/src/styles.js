@@ -1,6 +1,17 @@
 // Common styles used in multiple components and pages.
 import styled from 'styled-components';
 
+// https://stackoverflow.com/questions/47836390/how-to-convert-a-camel-case-string-to-dashes-in-javascript
+const dashed = (camel) => camel.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
+
+// TODO: make it shared
+const objectToCSS = (object) =>
+  object
+    ? Object.entries(object)
+        .map(([key, value]) => `${dashed(key)}:${value};`)
+        .join('')
+    : '';
+
 // Values used for z-index.
 export const Z_WAY_WAY_ABOVE = 3;
 export const Z_WAY_ABOVE = 2;
@@ -41,4 +52,13 @@ export const Footer = styled.div`
 export const HorizontalRule = styled.div`
   height: 1px;
   background-color: ${(props) => props.theme.rule};
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  ${(
+    // need to ignore children
+    // eslint-disable-next-line no-unused-vars
+    { children, theme, ...props }
+  ) => objectToCSS(props)}
 `;
