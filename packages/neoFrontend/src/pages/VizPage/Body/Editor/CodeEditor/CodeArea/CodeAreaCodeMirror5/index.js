@@ -236,7 +236,9 @@ export const CodeAreaCodeMirror5 = ({
     if (!codeMirror) return;
 
     const handler = (_, event) => {
-      if (event.target.classList.contains('cm-link')) {
+      if (event.ctrlKey && event.target.classList.contains('cm-link')) {
+        event.preventDefault();
+        event.stopPropagation();
         onLinkClick(event.target.textContent);
       }
     };
