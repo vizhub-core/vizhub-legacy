@@ -128,7 +128,6 @@ export const useRun = () => {
   }, [run, resetRunTimerProgress]);
 
   const cancelRunTimer = useCallback(() => {
-    console.log('here');
     if (timeoutId.current) {
       clearTimeout(timeoutId.current);
       runTimerStart.current = 0;
