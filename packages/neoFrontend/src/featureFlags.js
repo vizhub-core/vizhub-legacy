@@ -21,7 +21,7 @@ export const showSortOptions = true;
 export const showForksCount = true;
 
 export const showAboutLink = true;
-export const lintJs = false;
+export const lintJs = true;
 
 export const showFacebookLogin = false;
 export const showGoogleLogin = false;
