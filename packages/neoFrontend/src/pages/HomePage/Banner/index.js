@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { isMobile } from '../../../mobileMods';
 import {
   Wrapper,
   Bar,
@@ -27,7 +28,7 @@ export const Banner = () => (
     </Left>
     <Right>
       <Iframe
-        width="560"
+        width={isMobile ? '100%' : '560'}
         height="315"
         src="https://www.youtube.com/embed/Ia_DwVMXwgk"
         frameborder="0"
