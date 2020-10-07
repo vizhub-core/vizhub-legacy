@@ -13,13 +13,14 @@ const dependencies = files => {
 };
 
 const template = (files) => getText(files, 'index.html');
+const bundle = (files) => getText(files, 'bundle.js');
 
 const parser = new DOMParser();
 
-const injectBundleScript = (htmlTemplate) => {
+const injectBundleScript = (htmlTemplate, files) => {
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
 
-  if (!doc.querySelector('[src="bundle.js"]')) {
+  if (bundle(files) && !doc.querySelector('[src="bundle.js"]')) {
     const bundleScriptTag = doc.createElement('script');
     bundleScriptTag.src = 'bundle.js';
     doc.body.appendChild(bundleScriptTag);
@@ -29,11 +30,14 @@ const injectBundleScript = (htmlTemplate) => {
   }
 };
 
-const injectDependenciesScript = (htmlTemplate, files) => {
+const injectDependenciesScript = (htmlTemplate, files) => {  
+  const deps = Object.entries(dependencies(files));
+
+  if (deps.length === 0) return htmlTemplate;
+
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
-  
-  Object
-    .entries(dependencies(files))
+
+  deps
     .map(([pkg, version]) => `https://unpkg.com/${pkg}@${version}`) // unpkg uses file from unpkg or main field when no file specifid in url
     .forEach((url) => {
 
@@ -58,7 +62,8 @@ const transform = (files) =>
 
 export const computeSrcDoc = (files) => {
   const htmlTemplate = template(files);
-  const indexHtml = injectDependenciesScript(injectBundleScript(htmlTemplate), files);
+  const htmlWIthBundleScriptTemplate = injectBundleScript(htmlTemplate, files);
+  const indexHtml = injectDependenciesScript(htmlWIthBundleScriptTemplate, files);
 
   return magicSandbox(indexHtml, transform(files));
 };
