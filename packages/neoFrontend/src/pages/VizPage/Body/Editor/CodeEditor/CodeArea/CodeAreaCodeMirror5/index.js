@@ -7,6 +7,7 @@ import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { VimModeContext } from '../../../../../VimModeContext';
 import { RunContext } from '../../../../../RunContext';
+import { PrettierContext } from '../../../../../PrettierContext';
 import { AuthContext } from '../../../../../../../authentication';
 import { RealtimeModulesContext } from '../../../../../../../RealtimeModulesContext';
 import { EditorModulesContext } from '../../../../../EditorModulesContext';
@@ -64,6 +65,7 @@ export const CodeAreaCodeMirror5 = ({
   const realtimeModules = useContext(RealtimeModulesContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
   const { me } = useContext(AuthContext);
+  const { subscribe: subscribeOnPrettierSuccess } = useContext(PrettierContext);
 
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
@@ -155,6 +157,15 @@ export const CodeAreaCodeMirror5 = ({
     codeMirror,
     extension,
   ]);
+
+  useEffect(() => {
+    if (!codeMirror) return;
+
+    subscribeOnPrettierSuccess(() => {
+      codeMirror.focus();
+    });
+
+  }, [codeMirror, subscribeOnPrettierSuccess]);
 
   // Update language mode and wrapping when extension changes.
   useEffect(() => {
