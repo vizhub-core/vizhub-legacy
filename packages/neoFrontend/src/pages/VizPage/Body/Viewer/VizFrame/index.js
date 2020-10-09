@@ -18,7 +18,7 @@ import { Wrapper, LargeIconRightmost } from './styles';
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
 
-  const { pending, setVizRunnerTransform } = useContext(VizRunnerContext);
+  const { pending, hasLocalChanges, setVizRunnerTransform } = useContext(VizRunnerContext);
   const { enterFullScreen, enterMini } = useContext(URLStateContext);
   const [scale, setScale] = useState();
 
@@ -49,7 +49,7 @@ export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
           <div style={{ height: vizHeight * scale }} />
           <FrameFooter>
             <PlayPauseControl />
-            <SavingIndicator saving={pending} />
+            {hasLocalChanges && <SavingIndicator saving={pending} />}
             <FrameFooterRight>
               <LargeIcon
                 leftmost={true}
