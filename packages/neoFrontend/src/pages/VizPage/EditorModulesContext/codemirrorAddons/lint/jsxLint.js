@@ -15,19 +15,21 @@ const parseErrors = (errors) => {
   });
 };
 
-const validator = (text, callback) => {
-  const linterModulePromise = import('eslint4b');
-  const lintrcModulePromise = import('./eslintrc');
+const validator = async (text, callback) => {
+  const Linter = (await import('eslint4b')).default;
+  const { config } = await import('./eslintrc');
 
-  Promise.all([linterModulePromise, lintrcModulePromise]).then(
-    ([linterModule, lintrcModule]) => {
-      const Linter = linterModule.default;
-      const linter = new Linter();
-      const { config } = lintrcModule;
-      const results = linter.verify(text, config);
-      callback(parseErrors(results));
-    }
-  );
+  const jsxUsesReactRule = (await import('eslint-plugin-react/lib/rules/jsx-uses-react')).default;
+  const jsxUsesVarsRule = (await import('eslint-plugin-react/lib/rules/jsx-uses-vars')).default
+
+  const linter = new Linter();
+  
+  linter.defineRule('react/jsx-uses-react', jsxUsesReactRule)
+  linter.defineRule('react/jsx-uses-vars', jsxUsesVarsRule)
+  
+  const results = linter.verify(text, config);
+  
+  callback(parseErrors(results));
 };
 
 validator.async = true;
