@@ -22,11 +22,21 @@ export const usePrettier = () => {
   const realtimeModules = useContext(RealtimeModulesContext);
   const { activeFile } = useContext(URLStateContext);
   const [prettierError, setPrettierError] = useState(null);
-  const subscribersRef = useRef([]);
+  const subscribersRef = useRef(new Set());
 
-  const subscribe = useCallback((subscriber) => {
-    subscribersRef.current.push(subscriber);
-  }, [subscribersRef]);
+  const subscribe = useCallback(
+    (subscriber) => {
+      subscribersRef.current.add(subscriber);
+    },
+    [subscribersRef]
+  );
+
+  const unsubscribe = useCallback(
+    (subscriber) => {
+      subscribersRef.current.delete(subscriber);
+    },
+    [subscribersRef]
+  );
 
   const prettify = useCallback(() => {
     if (!realtimeModules) {
@@ -60,8 +70,7 @@ export const usePrettier = () => {
 
           const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
           submitVizContentOp(op);
-          subscribersRef.current.forEach(subscriber => subscriber());
-
+          subscribersRef.current.forEach((subscriber) => subscriber());
         } catch (error) {
           setPrettierError(error);
         }
@@ -84,6 +93,7 @@ export const usePrettier = () => {
   return {
     prettify,
     prettierError,
-    subscribe
+    subscribe,
+    unsubscribe,
   };
 };

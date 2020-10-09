@@ -65,7 +65,10 @@ export const CodeAreaCodeMirror5 = ({
   const realtimeModules = useContext(RealtimeModulesContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
   const { me } = useContext(AuthContext);
-  const { subscribe: subscribeOnPrettierSuccess } = useContext(PrettierContext);
+  const {
+    subscribe: subscribeOnPrettierSuccess,
+    unsubscribe: unsubscribeFromPrettier,
+  } = useContext(PrettierContext);
 
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
@@ -161,11 +164,14 @@ export const CodeAreaCodeMirror5 = ({
   useEffect(() => {
     if (!codeMirror) return;
 
-    subscribeOnPrettierSuccess(() => {
-      codeMirror.focus();
-    });
+    const subscriber = () => codeMirror.focus();
 
-  }, [codeMirror, subscribeOnPrettierSuccess]);
+    subscribeOnPrettierSuccess(subscriber);
+
+    return () => {
+      unsubscribeFromPrettier(subscriber);
+    };
+  }, [codeMirror, subscribeOnPrettierSuccess, unsubscribeFromPrettier]);
 
   // Update language mode and wrapping when extension changes.
   useEffect(() => {
