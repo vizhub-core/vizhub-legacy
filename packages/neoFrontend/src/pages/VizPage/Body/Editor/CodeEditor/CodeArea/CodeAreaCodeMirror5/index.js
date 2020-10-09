@@ -212,7 +212,9 @@ export const CodeAreaCodeMirror5 = ({
       'CodeMirror-activeline-background'
     );
 
-    codeMirror.scrollIntoView({ line: updatedActiveDocLineNumber });
+    const top = codeMirror.heightAtLine(updatedActiveDocLineNumber, 'local');
+
+    codeMirror.scrollTo(null, top);
 
     activeDocLineNumberRef.current = updatedActiveDocLineNumber;
   }, [codeMirror, activeLine]);
