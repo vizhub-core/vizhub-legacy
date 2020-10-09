@@ -9,6 +9,7 @@ import { useSubmitOp } from './useSubmitOp';
 import { useSubmitPresence } from './useSubmitPresence';
 import { useVizInfo } from './useVizInfo';
 import { usePending } from './usePending';
+import { useOpSourceTracker } from './useOpSourceTracker';
 
 export const useViz = (initialViz) => {
   const { vizInfo$, submitVizInfoOp } = useVizInfo(initialViz.info);
@@ -50,6 +51,8 @@ export const useViz = (initialViz) => {
   const submitVizContentOp = useSubmitOp(vizContentDoc);
   const pending = usePending(vizContentDoc);
 
+  const hasLocalChanges = useOpSourceTracker(vizContentDoc);
+
   // Manage presence.
   const vizContentPresence = usePresence(
     vizContentDoc,
@@ -62,6 +65,7 @@ export const useViz = (initialViz) => {
   return {
     viz$,
     pending,
+    hasLocalChanges,
     submitVizContentOp,
     submitVizInfoOp,
     vizContentOp$,
