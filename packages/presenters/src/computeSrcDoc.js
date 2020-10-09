@@ -1,12 +1,14 @@
 import magicSandbox from './magicSandbox';
 import { getText } from './accessors';
 
-const dependencies = files => {
+const dependencies = (files) => {
   const packageJsonText = getText(files, 'package.json');
   try {
-    const pkg = packageJsonText ? JSON.parse(packageJsonText) : {dependencies: {}};
+    const pkg = packageJsonText
+      ? JSON.parse(packageJsonText)
+      : { dependencies: {} };
     return pkg.dependencies || {};
-  } catch (error){
+  } catch (error) {
     console.log(error);
     return {};
   }
@@ -30,7 +32,7 @@ const injectBundleScript = (htmlTemplate, files) => {
   }
 };
 
-const injectDependenciesScript = (htmlTemplate, files) => {  
+const injectDependenciesScript = (htmlTemplate, files) => {
   const deps = Object.entries(dependencies(files));
 
   if (deps.length === 0) return htmlTemplate;
@@ -40,7 +42,6 @@ const injectDependenciesScript = (htmlTemplate, files) => {
   deps
     .map(([pkg, version]) => `https://unpkg.com/${pkg}@${version}`) // unpkg uses file from unpkg or main field when no file specifid in url
     .forEach((url) => {
-
       const scriptTag = doc.createElement('script');
       scriptTag.src = url;
 
@@ -63,7 +64,10 @@ const transform = (files) =>
 export const computeSrcDoc = (files) => {
   const htmlTemplate = template(files);
   const htmlWIthBundleScriptTemplate = injectBundleScript(htmlTemplate, files);
-  const indexHtml = injectDependenciesScript(htmlWIthBundleScriptTemplate, files);
+  const indexHtml = injectDependenciesScript(
+    htmlWIthBundleScriptTemplate,
+    files
+  );
 
   return magicSandbox(indexHtml, transform(files));
 };
