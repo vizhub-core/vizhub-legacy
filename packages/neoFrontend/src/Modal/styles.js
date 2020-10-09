@@ -14,6 +14,7 @@ export const Wrapper = styled(ExitableWrapper)`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 `;
 
 export const Box = styled.div`
@@ -27,6 +28,7 @@ export const Box = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  margin: auto;
 `;
 
 export const CloseIcon = styled(LargeIcon)`
