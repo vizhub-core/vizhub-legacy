@@ -55,13 +55,23 @@ export const CodeMirrorGlobalStyle = createGlobalStyle`
   .cm-fat-cursor .CodeMirror-cursor, .cm-animate-fat-cursor{ ${css(
     'fatCursor'
   )} }
+
   .CodeMirror-selected  {
     background-color: ${(props) =>
       props.theme.editor.selectionBackground} !important;
   }
-  .CodeMirror-activeline-background, .CodeMirror-linenumber:hover {
+
+  .CodeMirror-linenumber:hover {
     background: ${(props) => props.theme.editorActiveLineBackground};
   }
+
+  @keyframes blink { 50% { background: transparent; }  }
+  .CodeMirror-activeline-background {
+    animation: blink 1s;
+    animation-iteration-count: 3;
+    background: ${(props) => props.theme.editorActiveLineBackground};
+  }
+
   .cm-s-default .cm-tag { ${css('tag')} }
   .cm-s-default .cm-string { ${css('string')} }
   .cm-s-default .cm-string-2 { ${css('string2')} }
