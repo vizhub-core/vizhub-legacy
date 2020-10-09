@@ -23,6 +23,8 @@ export const config = {
     'no-useless-escape': 1,
     'no-useless-rename': 1,
     'no-useless-return': 1,
+    'react/jsx-uses-react': 2,
+    'react/jsx-uses-vars': 2,
   },
   env: {
     browser: true,
