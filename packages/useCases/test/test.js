@@ -44,6 +44,8 @@ const fakeUser = {
   website: 'joeschmoe.com',
   location: 'Earth',
   bio: 'Great guy',
+  plan: undefined,
+  stripeCustomerId: undefined
 };
 
 describe('Use Cases', () => {
@@ -206,13 +208,13 @@ describe('Use Cases', () => {
       id: '84752',
       displayName: 'Joe Schmoe',
       username: 'joe',
+      avatar_url: 'https://avatars3.githubusercontent.com/u/84752?v=4',
+      email: 'joe@datavis.tech',
       _json: {
-        avatar_url: 'https://avatars3.githubusercontent.com/u/84752?v=4',
         name: 'Joe Schmoe',
         company: 'Schmoe INC',
         blog: 'joeschmoe.com',
         location: 'Earth',
-        email: 'joe@datavis.tech',
         bio: 'Great guy',
       },
     },
