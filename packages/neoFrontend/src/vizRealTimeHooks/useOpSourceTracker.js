@@ -8,7 +8,7 @@ export const useOpSourceTracker = (shareDBDoc) => {
       return;
     }
     const listener = (_, source) => {
-      if(source) {
+      if (source) {
         setIsEditedLocally(true);
         shareDBDoc.removeListener('op', listener);
       }

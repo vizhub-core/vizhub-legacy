@@ -1832,8 +1832,8 @@
       while (
         ((char = code.original.charCodeAt(nextNodeStart)),
         char === 32 /*" "*/ ||
-        char === 9 /*"\t"*/ ||
-        char === 10 /*"\n"*/ ||
+          char === 9 /*"\t"*/ ||
+          char === 10 /*"\n"*/ ||
           char === 13) /*"\r"*/
       )
         nextNodeStart++;
