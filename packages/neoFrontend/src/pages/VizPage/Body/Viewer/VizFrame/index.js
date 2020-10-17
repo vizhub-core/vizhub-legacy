@@ -18,7 +18,9 @@ import { Wrapper, LargeIconRightmost } from './styles';
 export const VizFrame = ({ vizHeight, scrollerRef, setWidth }) => {
   const wrapperRef = useRef();
 
-  const { pending, hasLocalChanges, setVizRunnerTransform } = useContext(VizRunnerContext);
+  const { pending, hasLocalChanges, setVizRunnerTransform } = useContext(
+    VizRunnerContext
+  );
   const { enterFullScreen, enterMini } = useContext(URLStateContext);
   const [scale, setScale] = useState();
 
