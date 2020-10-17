@@ -105,48 +105,6 @@ describe('Use Cases', () => {
     });
   });
 
-  describe('Create Dataset', () => {
-    const createDataset = new CreateDataset({ datasetGateway });
-    it('should error if no owner specified.', (done) => {
-      const requestModel = {
-        owner: null,
-        title: 'Foo',
-        slug: 'foo',
-        description: 'Foo is cool',
-        file: {
-          name: 'foo',
-          text: 'foo',
-        },
-        sourceName: 'Flaring Central',
-        sourceUrl: 'https://flaring.central',
-      };
-      createDataset.execute(requestModel).catch((error) => {
-        assert.equal(error.message, i18n('errorNoOwner'));
-        done();
-      });
-    });
-    // TODO test success case
-  });
-
-  describe('Get Dataset', () => {
-    const userGateway = { getUser: async (id) => fakeUser };
-    const getDataset = new GetDataset({
-      datasetGateway,
-      userGateway,
-    });
-    it('should error if no slug specified.', (done) => {
-      const requestModel = {
-        userName: 'thomas',
-        slug: '',
-      };
-      getDataset.execute(requestModel).catch((error) => {
-        assert.equal(error.message, i18n('errorNoId'));
-        done();
-      });
-    });
-    // TODO test success case
-  });
-
   let visualizationToFork;
   let forkedViz;
   describe('Fork Visualization', () => {
