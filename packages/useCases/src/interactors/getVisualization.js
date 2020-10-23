@@ -53,7 +53,7 @@ export class GetVisualization {
         if (visualizationInfo.owner) {
           forkedFromVisualizationInfo = visualizationInfo;
 
-          if(forkedFromVisualizationInfo){
+          if (forkedFromVisualizationInfo) {
             const { user } = await this.getUser.execute({
               id: forkedFromVisualizationInfo.owner,
             });

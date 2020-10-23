@@ -20,7 +20,7 @@ export const userData = {
   location: 'Earth',
   bio: 'Great guy',
   plan: undefined,
-  stripeCustomerId: undefined
+  stripeCustomerId: undefined,
 };
 
 export const user = new User(userData);
