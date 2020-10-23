@@ -45,7 +45,7 @@ const fakeUser = {
   location: 'Earth',
   bio: 'Great guy',
   plan: undefined,
-  stripeCustomerId: undefined
+  stripeCustomerId: undefined,
 };
 
 describe('Use Cases', () => {
