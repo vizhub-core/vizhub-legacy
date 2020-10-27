@@ -69,11 +69,16 @@ const kickstarter2years = [
   'mbsmrtic', // Did not select reward but gave $100
 ];
 
+const friends = [
+  'ejfox' // Gifted lifetime paid account for birthday 10/27/2020
+];
+
 const whitelist = core
   .concat(professors)
   .concat(stamen)
   .concat(kickstarter)
-  .concat(kickstarter2years);
+  .concat(kickstarter2years)
+  .concat(friends);
 
 const userCanHavePrivateViz = (user) =>
   user && (user.plan === 'pro' || whitelist.includes(user.userName));
