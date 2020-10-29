@@ -70,7 +70,7 @@ const kickstarter2years = [
 ];
 
 const friends = [
-  'ejfox' // Gifted lifetime paid account for birthday 10/27/2020
+  'ejfox', // Gifted lifetime paid account for birthday 10/27/2020
 ];
 
 const whitelist = core
