@@ -1,4 +1,5 @@
 import { plainText } from './plainText';
+import { sanitize } from './sanitize';
 
 const titlePlaceholder = '<title>VizHub</title>';
 const unfurlPlaceholder = '<meta name="unfurl-all-that:shit" value="please"/>';
