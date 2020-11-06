@@ -22,7 +22,7 @@ const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) =>
 <meta property="og:site_name" content="VizHub"/>
 <meta property="og:type" content="article"/>
 `
-    .replace('\n', '')
+    .replace(/\n/g, '')
     .trim();
 
 export const servePage = (indexHTML, { title, description, image, url }) => {
