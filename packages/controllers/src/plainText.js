@@ -1,6 +1,5 @@
 import marked from 'marked';
-import stripHtml from 'string-strip-html';
-import sanitizeHTML from 'sanitize-html';
+import { sanitize } from './sanitize';
 
 // This renderer for Marked renders Markdown to
 // plain text with no line breaks.
@@ -29,8 +28,6 @@ const firstLine = (str) => (str ? str.split('\n')[0] : '');
 
 const truncate = (text, nChars) =>
   text.substr(0, nChars) + (text.length > nChars ? '…' : '');
-
-export const sanitize = (str) => sanitizeHTML(stripHtml(str));
 
 export const plainText = (markdown) =>
   truncate(sanitize(marked(markdown, { renderer: PlainTextRenderer })), 300);
