@@ -35,4 +35,4 @@ export const domain =
   process.env.REACT_APP_VIZHUB_DOMAIN ||
   (isProd ? 'https://vizhub.com' : 'http://localhost:3000');
 
-export  const entityTooLargeStatusCode = 413;
+export const entityTooLargeStatusCode = 413;
