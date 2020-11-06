@@ -6,8 +6,7 @@ const unfurlPlaceholder = '<meta name="unfurl-all-that:shit" value="please"/>';
 const absolute = (relative) => 'https://vizhub.com' + relative;
 
 const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) =>
-  `
-<meta name="description" content="${descriptionPlainText}"/>
+  `<meta name="description" content="${descriptionPlainText}"/>
 <meta name="twitter:url" content="${url}"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@datavis_tech"/>
@@ -20,10 +19,7 @@ const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) =>
 <meta property="og:description" content="${descriptionPlainText}"/>
 <meta property="og:image" content="${image}"/>
 <meta property="og:site_name" content="VizHub"/>
-<meta property="og:type" content="article"/>
-`
-    .replace(/\n/g, '')
-    .trim();
+<meta property="og:type" content="article"/>`.replace(/\n/g, '');
 
 export const servePage = (indexHTML, { title, description, image, url }) => {
   return async (_, res) => {
