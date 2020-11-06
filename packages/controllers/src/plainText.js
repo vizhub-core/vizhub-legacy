@@ -27,34 +27,10 @@ PlainTextRenderer.del = justText;
 
 const firstLine = (str) => (str ? str.split('\n')[0] : '');
 
-const maxCharacters = 80;
-const ellipsis = (line) =>
-  line.length > maxCharacters
-    ? line.substr(0, maxCharacters).trim() + '…'
-    : line;
-
 const truncate = (text, nChars) =>
-  text.substr(0, nChars) + (text.length > nChars ? '...' : '');
+  text.substr(0, nChars) + (text.length > nChars ? '…' : '');
+
+export const sanitize = (str) => sanitizeHTML(stripHtml(str));
 
 export const plainText = (markdown) =>
-  truncate(
-    sanitizeHTML(
-      stripHtml(
-        marked(markdown, {
-          renderer: PlainTextRenderer,
-        })
-      )
-    ),
-    300
-  );
-
-//const unescapeHTML = html => html
-//  .replace(/&amp;/, '&')
-//  .replace(/&lt;/g, '<')
-//  .replace(/&gt;/g, '>')
-//  .replace(/&quot;/g, '"')
-//  .replace(/&#39;/g, "'")
-//
-//const truncate = description => unescapeHTML(ellipsis(plainText(description)))
-//
-//export default truncate
+  truncate(sanitize(marked(markdown, { renderer: PlainTextRenderer })), 300);
