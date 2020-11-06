@@ -21,7 +21,7 @@ export const fetchFork = async (visualization) => {
   });
 
   if (response.status === entityTooLargeStatusCode) {
-    return {error: 'This viz is too large to fork'};
+    return {error: 'This viz is too large to fork.'};
   }
 
   return await response.json();
