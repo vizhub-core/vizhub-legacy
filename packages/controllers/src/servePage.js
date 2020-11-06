@@ -18,6 +18,7 @@ const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) => `
   <meta property="og:description" content="${descriptionPlainText}"/>
   <meta property="og:image" content="${image}"/>
   <meta property="og:site_name" content="VizHub"/>
+  <meta property="og:type" content="article"/>
 `;
 
 export const servePage = (indexHTML, { title, description, image, url }) => {
