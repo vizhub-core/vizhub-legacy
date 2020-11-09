@@ -1,3 +1,5 @@
+import { entityTooLargeStatusCode } from '../../../constants';
+
 export const fetchFork = async (visualization) => {
   // TODO include pre-fork changes to files.
   // TODO add test for this case.
@@ -7,7 +9,7 @@ export const fetchFork = async (visualization) => {
   //   { files: getFiles(state) }
   // );
 
-  const response = await fetch(`/api/visualization/fork`, {
+  const response = await fetch('/api/visualization/fork', {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
@@ -17,6 +19,10 @@ export const fetchFork = async (visualization) => {
       visualization,
     }),
   });
+
+  if (response.status === entityTooLargeStatusCode) {
+    return { error: 'This viz is too large to fork.' };
+  }
 
   return await response.json();
 };

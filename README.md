@@ -1,6 +1,6 @@
 # [VizHub](https://vizhub.com)
 
-Built with React, Node, Lerna, and ShareDB.
+Built with React, Node, Lerna, and ShareDB. Loosely based on [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 To set up your development environment:
 
@@ -18,7 +18,7 @@ cd ../packages/neoFrontend
 npm start # Leave this open, it's a `create-react-app` dev server on port 3000
 ```
 
-To login, we use the Github integration with the development credentials below.
+To login, we use the Github integration with the development credentials below. Or, in development you can log in as CI (Continuous Integration) User without any need to set up GitHub authentication.
 
 # Testing
 

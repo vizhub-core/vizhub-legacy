@@ -15,9 +15,11 @@ export class UpdateUser {
         avatar_url,
         _json: { name, company, blog, location, bio },
       },
+      user,
     } = requestModel;
 
-    const user = {
+    const updatedUser = {
+      ...user, // Preserve existing fields such as "plan".
       id,
       userName: username,
       fullName: name,
@@ -29,7 +31,7 @@ export class UpdateUser {
       bio,
     };
 
-    await this.userGateway.saveUser(user);
-    return user;
+    await this.userGateway.saveUser(updatedUser);
+    return updatedUser;
   }
 }

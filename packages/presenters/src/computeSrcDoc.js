@@ -1,6 +1,9 @@
 import magicSandbox from './magicSandbox';
 import { getText } from './accessors';
 
+// Feature flag.
+const packageJSON = false;
+
 const dependencies = (files) => {
   const packageJsonText = getText(files, 'package.json');
   try {
@@ -62,12 +65,18 @@ const transform = (files) =>
     }, {});
 
 export const computeSrcDoc = (files) => {
-  const htmlTemplate = template(files);
-  const htmlWIthBundleScriptTemplate = injectBundleScript(htmlTemplate, files);
-  const indexHtml = injectDependenciesScript(
-    htmlWIthBundleScriptTemplate,
-    files
-  );
-
-  return magicSandbox(indexHtml, transform(files));
+  if (packageJSON) {
+    const htmlTemplate = template(files);
+    const htmlWIthBundleScriptTemplate = injectBundleScript(
+      htmlTemplate,
+      files
+    );
+    const indexHtml = injectDependenciesScript(
+      htmlWIthBundleScriptTemplate,
+      files
+    );
+    return magicSandbox(indexHtml, transform(files));
+  } else {
+    return magicSandbox(template(files), transform(files));
+  }
 };
