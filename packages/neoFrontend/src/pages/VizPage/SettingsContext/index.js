@@ -79,7 +79,10 @@ export const SettingsProvider = ({ children }) => {
                     </Ad>
                   )}
                 </SectionDescription>
-                <RadioButton.Group onChange={handlePrivacyChange} currentValue={vizPrivacy}>
+                <RadioButton.Group
+                  onChange={handlePrivacyChange}
+                  currentValue={vizPrivacy}
+                >
                   <RadioButton
                     value="public"
                     className="test-settings-dialog-radio-public"
