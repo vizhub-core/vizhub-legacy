@@ -80,15 +80,11 @@ const whitelist = core
   .concat(kickstarter2years)
   .concat(friends);
 
-const userCanHavePrivateViz = (user) =>
+export const isPayingUser = (user) =>
   user && (user.plan === 'pro' || whitelist.includes(user.userName));
-
-// Gateway to the private viz feature.
-export const showPrivacySettings = (me, vizInfo) =>
-  me ? vizInfo.owner === me.id && userCanHavePrivateViz(me) : false;
 
 // Only show the profile sidebar if:
 // * The logged in user has access to private viz feature, and
 // * The logged in user is viewing their own profile.
 export const showProfileSidebar = (profileUser, me) =>
-  me ? profileUser.id === me.id && userCanHavePrivateViz(me) : false;
+  me ? profileUser.id === me.id && isPayingUser(me) : false;
