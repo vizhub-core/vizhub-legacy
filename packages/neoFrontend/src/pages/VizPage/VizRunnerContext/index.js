@@ -48,7 +48,7 @@ const setVizRunnerTransform = ({ x, y, scale }) => {
 };
 
 export const VizRunnerProvider = ({ children }) => {
-  const { viz$, pending } = useContext(VizContext);
+  const { viz$, pending, hasLocalChanges } = useContext(VizContext);
   const { mode, showEditor, activeFile, isRecoveryMode } = useContext(
     URLStateContext
   );
@@ -69,7 +69,7 @@ export const VizRunnerProvider = ({ children }) => {
     setVizRunnerTransform({ x, y, scale });
   }
 
-  const contextValue = { pending, setVizRunnerTransform };
+  const contextValue = { pending, hasLocalChanges, setVizRunnerTransform };
 
   useEffect(() => {
     if (runError) {

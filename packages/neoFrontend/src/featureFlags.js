@@ -21,7 +21,7 @@ export const showSortOptions = true;
 export const showForksCount = true;
 
 export const showAboutLink = true;
-export const lintJs = true;
+export const lintJs = false;
 
 export const showFacebookLogin = false;
 export const showGoogleLogin = false;
@@ -69,21 +69,22 @@ const kickstarter2years = [
   'mbsmrtic', // Did not select reward but gave $100
 ];
 
+const friends = [
+  'ejfox', // Gifted lifetime paid account for birthday 10/27/2020
+];
+
 const whitelist = core
   .concat(professors)
   .concat(stamen)
   .concat(kickstarter)
-  .concat(kickstarter2years);
+  .concat(kickstarter2years)
+  .concat(friends);
 
-const userCanHavePrivateViz = (user) =>
+export const isPayingUser = (user) =>
   user && (user.plan === 'pro' || whitelist.includes(user.userName));
-
-// Gateway to the private viz feature.
-export const showPrivacySettings = (me, vizInfo) =>
-  me ? vizInfo.owner === me.id && userCanHavePrivateViz(me) : false;
 
 // Only show the profile sidebar if:
 // * The logged in user has access to private viz feature, and
 // * The logged in user is viewing their own profile.
 export const showProfileSidebar = (profileUser, me) =>
-  me ? profileUser.id === me.id && userCanHavePrivateViz(me) : false;
+  me ? profileUser.id === me.id && isPayingUser(me) : false;

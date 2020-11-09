@@ -1,6 +1,6 @@
 export const config = {
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 8,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,

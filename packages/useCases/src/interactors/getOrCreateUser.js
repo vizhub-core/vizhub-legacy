@@ -18,8 +18,7 @@ export class GetOrCreateUser {
       oAuthProfile.id
     );
     if (user) {
-      // call to update user on each login
-      let updatedUser = await this.updateUser.execute({ oAuthProfile });
+      const updatedUser = await this.updateUser.execute({ oAuthProfile, user });
       return { user: updatedUser };
     } else {
       return await this.createUser.execute({ oAuthProfile });

@@ -52,10 +52,13 @@ export class GetVisualization {
         //  - reset it to be formed from the most similar past viz?
         if (visualizationInfo.owner) {
           forkedFromVisualizationInfo = visualizationInfo;
-          const { user } = await this.getUser.execute({
-            id: forkedFromVisualizationInfo.owner,
-          });
-          forkedFromVisualizationOwnerUserName = user.userName;
+
+          if (forkedFromVisualizationInfo) {
+            const { user } = await this.getUser.execute({
+              id: forkedFromVisualizationInfo.owner,
+            });
+            forkedFromVisualizationOwnerUserName = user.userName;
+          }
         }
       }
     } catch (error) {

@@ -35,16 +35,16 @@ export const PlayPauseSVG = ({
   needsManualRun,
   showButton,
 }) => (
-  <svg height={height} viewBox={`0 0 20 20`}>
+  <svg height={height} viewBox="0 0 20 20">
     <g transform="translate(10,10)" fill="currentcolor">
-      <path
-        fill={blue}
-        d={runTimerProgressArc({
-          endAngle: needsManualRun ? twoPI : runTimerProgress * twoPI,
-        })}
-      />
       {showButton ? (
         <>
+          <path
+            fill={blue}
+            d={runTimerProgressArc({
+              endAngle: needsManualRun ? twoPI : runTimerProgress * twoPI || 0,
+            })}
+          />
           <circle
             r={r}
             strokeWidth={strokeWidth}
