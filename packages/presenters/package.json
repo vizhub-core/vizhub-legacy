@@ -13,7 +13,7 @@
   "dependencies": {
     "vizhub-libraries": "^1.8.0",
     "buble-jsx-only": "^0.19.8",
-    "mocha": "^8.0.1",
+    "mocha": "^8.2.1",
     "path-posix": "^1.0.0",
     "rollup-pluginutils": "^2.8.2",
     "vizhub-entities": "1",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^8.0.1",
-    "prettier": "^2.0.5"
+    "mocha": "^8.2.1",
+    "prettier": "^2.1.2"
   }
 }
