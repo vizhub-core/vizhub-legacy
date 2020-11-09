@@ -10,19 +10,19 @@
     "lerna:test:e2e": "lerna run test:e2e",
     "lint": "eslint . --fix",
     "testAll": "npm run test && cd packages/web && npm test",
-    "updateDeps": "ncu -u; cd packages/entities && ncu -u && cd ../useCases && ncu -u cd ../gateways && ncu -u && cd ../presenters && ncu -u && cd ../controllers && ncu -u && cd ../database && ncu -u && cd ../web && ncu -u && cd ../ui && ncu -u && echo 'All dependencies upgraded!'",
+    "updateDeps": "ncu -u; cd packages/entities && ncu -u && cd ../useCases && ncu -u cd ../gateways && ncu -u && cd ../presenters && ncu -u && cd ../controllers && ncu -u && cd ../database && ncu -u && echo 'All dependencies upgraded!'",
     "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete",
     "prettier": "lerna run prettier",
     "deploy:staging": "pm2 deploy staging"
   },
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-react": "^7.14.2",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.21.5",
     "esm": "^3.2.25",
     "lerna": "^3.22.1",
-    "mocha": "^8.0.1"
+    "mocha": "^8.2.1"
   }
 }
