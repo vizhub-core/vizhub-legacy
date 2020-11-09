@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useCallback } from 'react';
+import React, { createContext, useContext, useCallback, useState } from 'react';
+import { PRIVACY } from 'vizhub-presenters';
 import { Button } from '../../../Button';
 import { Modal } from '../../../Modal';
 import { AuthContext } from '../../../authentication/AuthContext';
-import { showPrivacySettings } from '../../../featureFlags';
+import { isPayingUser } from '../../../featureFlags';
 import { HorizontalRule } from '../../../styles';
 import {
   Dialog,
@@ -16,6 +17,7 @@ import {
 import { RadioButton } from '../RadioButton';
 import { useSettings } from './useSettings';
 import { SetHeight } from './SetHeight';
+import { Ad } from './styles';
 
 export const SettingsContext = createContext();
 
@@ -28,10 +30,22 @@ export const SettingsProvider = ({ children }) => {
     setVizPrivacy,
     vizHeight,
     setVizHeight,
-    vizInfo,
   } = useSettings();
 
   const { me } = useContext(AuthContext);
+
+  const [showPrivacyAd, setShowPrivacyAd] = useState(false);
+
+  const handlePrivacyChange = useCallback(
+    (newVizPrivacy) => {
+      if (!isPayingUser(me) && newVizPrivacy === PRIVACY.private) {
+        setShowPrivacyAd(true);
+      } else {
+        setVizPrivacy(newVizPrivacy);
+      }
+    },
+    [me, setShowPrivacyAd, setVizPrivacy]
+  );
 
   // Make it so hitting Enter in a text input
   // closes the modal (equivalent to hitting the "Done" button.
@@ -54,31 +68,30 @@ export const SettingsProvider = ({ children }) => {
           <Dialog>
             <form onSubmit={onSubmit}>
               <DialogTitle>Settings</DialogTitle>
-              {showPrivacySettings(me, vizInfo) ? (
-                <>
-                  <Section>
-                    <SectionTitle>Visibility</SectionTitle>
-                    <SectionDescription>
-                      Who can see your visualization.
-                    </SectionDescription>
-                    <RadioButton.Group
-                      onChange={setVizPrivacy}
-                      currentValue={vizPrivacy}
-                    >
-                      <RadioButton
-                        value="public"
-                        className="test-settings-dialog-radio-public"
-                      />
-                      <RadioButton
-                        value="private"
-                        className="test-settings-dialog-radio-private"
-                      />
-                    </RadioButton.Group>
-                  </Section>
-                  <Spacer />
-                  <HorizontalRule />
-                </>
-              ) : null}
+              <Section>
+                <SectionTitle>Visibility</SectionTitle>
+                <SectionDescription>
+                  Who can see your visualization.
+                  {showPrivacyAd && (
+                    <Ad>
+                      Please <a href="/pricing">upgrade your plan</a> to make
+                      this viz private.
+                    </Ad>
+                  )}
+                </SectionDescription>
+                <RadioButton.Group onChange={handlePrivacyChange} currentValue={vizPrivacy}>
+                  <RadioButton
+                    value="public"
+                    className="test-settings-dialog-radio-public"
+                  />
+                  <RadioButton
+                    value="private"
+                    className="test-settings-dialog-radio-private"
+                  />
+                </RadioButton.Group>
+              </Section>
+              <Spacer />
+              <HorizontalRule />
               <Section>
                 <SectionTitle>Height</SectionTitle>
                 <SectionDescription>
