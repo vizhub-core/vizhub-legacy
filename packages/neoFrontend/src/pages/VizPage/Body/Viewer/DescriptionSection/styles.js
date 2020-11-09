@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Wrapper = styled.div`
   display: flex;
   padding: 20px 0 20px 0;
-  font-size: 10px;
+  font-size: ${(props) => props.theme.text.tiny};
   flex-direction: ${(props) => (props.size === 'large' ? 'row' : 'column')};
 `;
 
@@ -63,7 +63,7 @@ export const VideoThumbnail = styled.div`
 `;
 
 export const Description = styled.div`
-  font-size: 12px;
+  font-size: ${(props) => props.theme.text.small};
   margin-left: ${(props) => (props.size === 'large' ? 50 : 0)}px;
   word-break: break-word;
 `;
