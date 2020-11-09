@@ -13,15 +13,15 @@
   "license": "UNLICENSED",
   "dependencies": {
     "adm-zip": "https://github.com/cthackers/adm-zip/tarball/master",
-    "uuid": "^8.2.0",
+    "uuid": "^8.3.1",
     "vizhub-entities": "1",
     "vizhub-i18n": "1",
     "vizhub-libraries": "^1.8.0"
   },
   "devDependencies": {
-    "mocha": "^8.0.1",
-    "eslint": "^7.3.1",
+    "mocha": "^8.2.1",
+    "eslint": "^7.13.0",
     "esm": "^3.2.25",
-    "prettier": "^2.0.5"
+    "prettier": "^2.1.2"
   }
 }
