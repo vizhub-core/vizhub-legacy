@@ -64,7 +64,8 @@ export const extractTitle = (html) => {
 };
 
 export const getVizInfoOwner = (vizInfo) => vizInfo.owner;
-export const isVizInfoPrivate = (vizInfo) => vizInfo.privacy === PRIVACY.private;
+export const isVizInfoPrivate = (vizInfo) =>
+  vizInfo.privacy === PRIVACY.private;
 
 export const getVizInfoUpvotes = (vizInfo) => vizInfo.upvotes;
 export const getVizUpvotes = (viz) => getVizInfoUpvotes(viz.info);
