@@ -52,12 +52,12 @@ export const reducer = (state, action) => {
         line: null,
       });
 
-    // Invoked when a line is selected (clicked on).
+    // Invoked when a line(s) are selected.
     // If the currently active line is clicked on, nothing happens here.
-    case 'setActiveLine':
-      return action.line === state.line
+    case 'setSelectedLines':
+      return action.selectedLines === state.selectedLines
         ? state
-        : Object.assign({}, state, { line: action.line });
+        : Object.assign({}, state, { selectedLines: action.selectedLines });
 
     case 'setMode':
       return Object.assign({}, state, {
