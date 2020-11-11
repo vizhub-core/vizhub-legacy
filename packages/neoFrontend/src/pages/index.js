@@ -13,3 +13,4 @@ export { SearchResultsPage } from './SearchResultsPage';
 export { ForksPage } from './ForksPage';
 export { TermsPage } from './TermsPage';
 export { ContactPage } from './ContactPage';
+export { Datavis2020Page } from './Datavis2020Page';
