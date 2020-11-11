@@ -37,7 +37,7 @@ const fileIndexOfPath = (path) => path[1];
 
 export const CodeAreaCodeMirror5 = ({
   activeFile,
-  activeLine,
+  selectedLines,
   onGutterClick,
   onLinkClick,
 }) => {
@@ -201,7 +201,8 @@ export const CodeAreaCodeMirror5 = ({
   }, [codeMirror, activeFile]);
 
   // keep track of active doc line
-  const activeDocLineNumberRef = useRef(null);
+
+  const prevSelectedLinesRef = useRef(null);
 
   // Respond to change of active line
   useEffect(() => {
@@ -209,39 +210,26 @@ export const CodeAreaCodeMirror5 = ({
 
     const doc = codeMirror.getDoc();
 
-    // need to reset previous line (if any)
-    if (activeDocLineNumberRef.current !== null) {
-      doc.removeLineClass(
-        activeDocLineNumberRef.current,
-        'wrap',
-        'CodeMirror-activeline-background'
-      );
+    if (prevSelectedLinesRef.current) {
+      doc.unhighlightLines(prevSelectedLinesRef.current);
     }
 
-    if (!activeLine) return;
+    if (selectedLines) {
+      const [firstLine] = doc.highlightLines(selectedLines);
+      const top = codeMirror.heightAtLine(firstLine, 'local');
+      codeMirror.scrollTo(null, top);
+    }
 
-    // codemiror line count starts from 0, users count lines from 1
-    const updatedActiveDocLineNumber = activeLine - 1;
-
-    doc.addLineClass(
-      updatedActiveDocLineNumber,
-      'wrap',
-      'CodeMirror-activeline-background'
-    );
-
-    const top = codeMirror.heightAtLine(updatedActiveDocLineNumber, 'local');
-
-    codeMirror.scrollTo(null, top);
-
-    activeDocLineNumberRef.current = updatedActiveDocLineNumber;
-  }, [codeMirror, activeLine]);
+    prevSelectedLinesRef.current = selectedLines;
+  }, [codeMirror, selectedLines]);
 
   // Respond to gutter click
   useEffect(() => {
     if (!codeMirror) return;
 
     const handler = (_, docLineNumber) => {
-      onGutterClick(docLineNumber + 1);
+      // converting to line string pattern
+      onGutterClick(`${docLineNumber + 1}`);
     };
 
     codeMirror.on('gutterClick', handler);

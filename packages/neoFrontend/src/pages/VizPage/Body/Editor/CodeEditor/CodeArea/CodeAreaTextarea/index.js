@@ -30,13 +30,6 @@ export const CodeAreaTextarea = ({ activeFile }) => {
 
   const ref = useRef();
 
-  // TODO submit presence
-  // onSelect={updateSelection}
-  //const updateSelection = () => {
-  //  const { selectionStart, selectionEnd } = ref.current;
-  //  console.log({selectionStart, selectionEnd});
-  //};
-
   useEffect(() => {
     if (!realtimeModules) {
       return;
