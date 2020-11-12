@@ -2,15 +2,21 @@ import { range, xorSwap } from './array';
 
 //we check isFinite first since it will weed out most of the non-numbers
 //like mixed numbers and strings, which parseFloat happily accepts
-const isFiniteNumber = (n) => isFinite(n) && !isNaN(parseFloat(n));
+const isFiniteNumber = (n) => Boolean(isFinite(n) && !isNaN(parseFloat(n)));
 
-export const parseRangeBoundariesString = (rangeBoundariesString) => {
+export const isValidRangeBoundariesString = (rangeBoundariesString) => {
   const rangeBoundries = rangeBoundariesString.split('-');
 
   //check if what we split are both numbers, else return nothing
-  const isValid = isFiniteNumber(rangeBoundries[0]) && isFiniteNumber(rangeBoundries[1]);
+  return isFiniteNumber(rangeBoundries[0]) && isFiniteNumber(rangeBoundries[1]);
+};
 
-  return isValid ? xorSwap(rangeBoundries) : null;
+export const parseRangeBoundariesString = (rangeBoundariesString) => {
+  if (isValidRangeBoundariesString(rangeBoundariesString)) {
+    return xorSwap(rangeBoundariesString.split('-'));
+  }
+
+  return null;
 };
 
 // inspired by https://codereview.stackexchange.com/questions/26125/getting-all-number-from-a-string-like-this-1-2-5-9

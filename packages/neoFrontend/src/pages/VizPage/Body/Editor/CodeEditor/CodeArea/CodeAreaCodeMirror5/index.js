@@ -26,12 +26,6 @@ export const CodeAreaCodeMirror5 = ({
   onGutterClick,
   onLinkClick,
 }) => {
-  // const codeMirrorRef = useRef(null);
-
-  // const setCodeMirror = useCallback((codeMirror) => {
-  //   codeMirror = codeMirror;
-  // }, [codeMirrorRef]);
-
   const [codeMirror, setCodeMirror] = useState(null);
 
   const {

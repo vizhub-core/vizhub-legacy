@@ -6,6 +6,7 @@ export const showCollaboratorsManagement = true;
 
 export const showPricing = true;
 export const showEmbed = process.env.REACT_APP_VIZHUB_EMBED === 'true';
+export const showSnippet = process.env.REACT_APP_VIZHUB_SNIPPET === 'true';
 export const showNeoNavBar = true;
 
 export const showDownvote = false;

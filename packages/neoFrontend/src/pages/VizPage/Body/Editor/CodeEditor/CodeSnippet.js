@@ -1,5 +1,7 @@
 import React, { useContext, useMemo } from 'react';
+import { useLocation } from 'react-router';
 import { getVizFile } from 'vizhub-presenters';
+import { domain } from '../../../../../constants';
 import { parseRangeBoundariesString } from '../../../../../utils/number';
 import { LoadingScreen } from '../../../../../LoadingScreen';
 import { URLStateContext } from '../../../URLStateContext';
@@ -8,10 +10,11 @@ import { VizContext } from '../../../VizContext';
 import { light } from '../themes/vizHub';
 import { CodeMirrorReactBinding } from '../CodeEditor/CodeArea/CodeAreaCodeMirror5/CodeMirrorReactBinding';
 import { useFileIndex } from '../CodeEditor/useFileIndex';
-import { Wrapper } from './styles';
-// import { CodeEditorHeader } from './CodeEditorHeader';
+import { Header } from './CodeEditorHeader/Header';
+import { Wrapper, HeaderLink } from './styles';
 
-export const CodeSnippet = ({ showTop }) => {
+export const CodeSnippet = () => {
+  const { pathname } = useLocation();
   const { range: rangeString, selectedLines, activeFile, openLink } = useContext(URLStateContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
   const { viz$ } = useContext(VizContext);
@@ -25,6 +28,8 @@ export const CodeSnippet = ({ showTop }) => {
   const fileIndex = useFileIndex(viz$, activeFile);
 
   const range = useMemo(() => parseRangeBoundariesString(rangeString), [rangeString]);
+
+  const link = `${domain}${pathname}?file=${activeFile}#L${range[0]}`;
 
   const fileText = useMemo(() => {
     const file = getVizFile(fileIndex)(viz$.getValue());
@@ -49,16 +54,12 @@ export const CodeSnippet = ({ showTop }) => {
       showLeftBorder={true}
       style={{ flex: '1' }}
     >
-      {/* <CodeEditorHeader
-        showTop={showTop}
-        toggleShowTop={null}
-        showEditor={showEditor}
+      <Header
+        showEditor={false}
         activeFile={activeFile}
-        viewer={null}
-        onShowViz={onShowViz}
-        onHideViz={onHideViz}
-        closeActiveFile={closeActiveFile}
-      /> */}
+      >
+        <HeaderLink href={link}>Edit in vizhub</HeaderLink>
+      </Header>
       <>
         <CodeMirrorReactBinding
           readonly

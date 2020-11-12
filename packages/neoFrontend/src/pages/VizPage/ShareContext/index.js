@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { showEmbed, showCollaborators } from '../../../featureFlags';
+import { showEmbed, showSnippet, showCollaborators } from '../../../featureFlags';
 import { Button } from '../../../Button';
 import { Modal } from '../../../Modal';
 import {
@@ -13,6 +13,7 @@ import { useShare } from './useShare';
 import { Tabs, Tab } from './Tabs';
 import { LinkBody } from './LinkBody';
 import { EmbedBody } from './EmbedBody';
+import { SnippetBody } from './SnippetBody';
 import { CollaboratorsBody } from './CollaboratorsBody';
 
 export const ShareContext = createContext();
@@ -23,6 +24,8 @@ const TabBody = ({ activeTab }) =>
     <LinkBody />
   ) : activeTab === 'embed' ? (
     <EmbedBody />
+  ) : activeTab === 'snippet' ? (
+    <SnippetBody />
   ) : (
     <CollaboratorsBody />
   );
@@ -46,6 +49,7 @@ export const ShareProvider = ({ children }) => {
               <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
                 <Tab id="link">Link</Tab>
                 {showEmbed ? <Tab id="embed">Embed</Tab> : null}
+                {showSnippet ? <Tab id="snippet">Snippet</Tab> : null}
                 {showCollaborators ? (
                   <Tab id="collaborators">Collaborators</Tab>
                 ) : null}
