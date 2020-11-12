@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useURLStateReducer } from './useURLStateReducer';
 import { reducer } from './reducer';
+import { modes } from './modes';
 
 // This accessor converts between the raw value used with query-string
 // and the values expected in the code. The correspondence is as follows:
@@ -13,12 +14,12 @@ import { reducer } from './reducer';
 //
 // The difference exists so that we can omit the "mode" parameter from the
 // URL entirely when the user is viewing the "viewer", the default page state.
-const getMode = (state) => state.mode || 'viewer';
+const getMode = (state) => state.mode || modes.viewer;
 
 // Higher order component exposing URL state accessors.
 export const useURLState = (props) => {
   const [state, dispatch] = useURLStateReducer(reducer, props);
-  const { edit, file: activeFile, selectedLines } = state;
+  const { edit, file: activeFile, range, selectedLines } = state;
 
   const setEdit = useCallback(
     (value) => {
@@ -77,17 +78,15 @@ export const useURLState = (props) => {
   const vizId = props.match.params.vizId;
   const mode = getMode(state);
 
-  const onHideViz = () => setMode('hide');
-  const onShowViz = () => setMode('viewer');
+  const onHideViz = () => setMode(modes.hide);
+  const onShowViz = () => setMode(modes.viewer);
 
-  const isFullScreen = mode === 'full';
-  const isEmbed = mode === 'embed';
-  const enterFullScreen = () => setMode('full');
+  const enterFullScreen = () => setMode(modes.full);
   const exitFullScreen = onShowViz;
 
   const exitMini = onShowViz;
 
-  const showViewer = mode !== 'hide' && mode !== 'mini';
+  const showViewer = mode !== modes.hide && mode !== modes.mini;
 
   const showResizer = activeFile !== undefined;
 
@@ -113,10 +112,10 @@ export const useURLState = (props) => {
     setActiveSection,
     vizId,
     mode,
+    range,
     setMode,
     onHideViz,
     onShowViz,
-    isFullScreen,
     enterFullScreen,
     exitFullScreen,
     showViewer,
@@ -126,6 +125,5 @@ export const useURLState = (props) => {
     isRecoveryMode,
     exitRecoveryMode,
     openLink,
-    isEmbed,
   };
 };
