@@ -1,7 +1,6 @@
 import React from 'react';
 import { Wrapper } from './styles';
 
-
 const bundleJSInfo =
   'This file is generated automatically from "index.js".\n\nIt combines all modules imported by "index.js" into a single file. Each time any JavaScript changes, this file is regenerated. Editing this file manually does not make sense, so is not allowed by the editor.';
 

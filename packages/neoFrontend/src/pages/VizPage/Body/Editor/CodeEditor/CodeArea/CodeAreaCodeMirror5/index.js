@@ -1,4 +1,11 @@
-import React, { useContext, useRef, useEffect, useCallback, useMemo, useState } from 'react';
+import React, {
+  useContext,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import ReactDOM from 'react-dom';
 import ColorHash from 'color-hash';
 import { getVizFile, fileChangeOp } from 'vizhub-presenters';
@@ -109,14 +116,17 @@ export const CodeAreaCodeMirror5 = ({
   }, [codeMirror, subscribeOnPrettierSuccess, unsubscribeFromPrettier]);
 
   // Respond to changes in text.
-  const handleFileTextChange = useCallback((newText) => {
-    const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
-    const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
+  const handleFileTextChange = useCallback(
+    (newText) => {
+      const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
+      const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
 
-    submittingOp.current = true;
-    submitVizContentOp(op);
-    submittingOp.current = false;
-  }, [submitVizContentOp, fileIndex, realtimeModules, viz$]);
+      submittingOp.current = true;
+      submitVizContentOp(op);
+      submittingOp.current = false;
+    },
+    [submitVizContentOp, fileIndex, realtimeModules, viz$]
+  );
 
   // Initialize text and subscribe to changes.
   useEffect(() => {
@@ -153,19 +163,22 @@ export const CodeAreaCodeMirror5 = ({
   }, [viz$, vizContentOp$, realtimeModules, path, fileIndex, codeMirror]);
 
   // Submit presence
-  const handleCursorPositionChange = useCallback((presenceObject) => {
-    if (!me) return;
+  const handleCursorPositionChange = useCallback(
+    (presenceObject) => {
+      if (!me) return;
 
-    if (presenceObject) {
-      submitVizContentPresence({
-        path,
-        userId: me.id,
-        ...presenceObject,
-      });
-    } else {
-      submitVizContentPresence(null);
-    }
-  }, [submitVizContentPresence, path, me]);
+      if (presenceObject) {
+        submitVizContentPresence({
+          path,
+          userId: me.id,
+          ...presenceObject,
+        });
+      } else {
+        submitVizContentPresence(null);
+      }
+    },
+    [submitVizContentPresence, path, me]
+  );
 
   // Render remote presence(s).
   useEffect(() => {

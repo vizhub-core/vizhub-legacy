@@ -34,10 +34,7 @@ export const CodeEditorHeader = ({
   const { prettify } = useContext(PrettierContext);
   const isBundle = activeFile === 'bundle.js';
   return (
-    <Header
-      showEditor={showEditor}
-      activeFile={activeFile}
-    >
+    <Header showEditor={showEditor} activeFile={activeFile}>
       <Icons>
         {!isBundle ? (
           <CodeEditorIcon

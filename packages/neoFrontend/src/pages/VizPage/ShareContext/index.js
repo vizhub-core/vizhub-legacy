@@ -1,5 +1,9 @@
 import React, { createContext, useState } from 'react';
-import { showEmbed, showSnippet, showCollaborators } from '../../../featureFlags';
+import {
+  showEmbed,
+  showSnippet,
+  showCollaborators,
+} from '../../../featureFlags';
 import { Button } from '../../../Button';
 import { Modal } from '../../../Modal';
 import {

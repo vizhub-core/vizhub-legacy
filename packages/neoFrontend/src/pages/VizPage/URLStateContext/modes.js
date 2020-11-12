@@ -5,5 +5,5 @@ export const modes = {
   hide: 'hide',
   embed: 'embed',
   viewer: 'viewer',
-  snippet: 'snippet'
+  snippet: 'snippet',
 };
