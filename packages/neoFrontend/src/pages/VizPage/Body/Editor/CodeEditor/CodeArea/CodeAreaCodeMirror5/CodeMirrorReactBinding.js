@@ -22,6 +22,7 @@ const getLineWrapping = (extension) => extension !== '.js';
 export const CodeMirrorReactBinding = React.forwardRef(({
   fileText,
   fileName,
+  firstLineNumber = 1,
   selectedLines,
   readonly,
   keyMap,
@@ -42,6 +43,8 @@ export const CodeMirrorReactBinding = React.forwardRef(({
 
   // Alt+V to toggle Vim mode.
   useEffect(() => {
+    if (!onToggleVimMode) return;
+
     const onKeyDown = (e) => {
       if (e.altKey && e.code === 'KeyV') {
         onToggleVimMode();
@@ -72,12 +75,13 @@ export const CodeMirrorReactBinding = React.forwardRef(({
       value: fileText,
       mode: getMode(extension),
       lineNumbers: true,
+      firstLineNumber,
       tabSize: 2,
       matchBrackets: true,
       closeOnBlur: false,
       extraKeys: {
         'Ctrl-Space': 'autocomplete',
-        'Shift-Enter': onManualRun,
+        ...(onManualRun ? {'Shift-Enter': onManualRun} : {})
       },
       gutters: ['CodeMirror-lint-markers'],
       lint: lintJs,
@@ -87,7 +91,7 @@ export const CodeMirrorReactBinding = React.forwardRef(({
 
     setCodeMirror(cm);
 
-    ref(cm);
+    ref && ref(cm);
   }, [
     ref,
     wrapperRef,
@@ -95,6 +99,7 @@ export const CodeMirrorReactBinding = React.forwardRef(({
     codeMirror,
     fileText,
     extension,
+    firstLineNumber,
     onManualRun,
   ]);
 
@@ -115,7 +120,7 @@ export const CodeMirrorReactBinding = React.forwardRef(({
 
   // Update keyMap.
   useEffect(() => {
-    if (!codeMirror) return;
+    if (!codeMirror || !keyMap) return;
     codeMirror.setOption('keyMap', keyMap);
   }, [codeMirror, keyMap]);
 
@@ -135,21 +140,21 @@ export const CodeMirrorReactBinding = React.forwardRef(({
     const doc = codeMirror.getDoc();
 
     if (prevSelectedLinesRef.current) {
-      doc.unhighlightLines(prevSelectedLinesRef.current);
+      doc.unhighlightLines(prevSelectedLinesRef.current, firstLineNumber);
     }
 
     if (selectedLines) {
-      const [firstLine] = doc.highlightLines(selectedLines);
+      const [firstLine] = doc.highlightLines(selectedLines, firstLineNumber);
       const top = codeMirror.heightAtLine(firstLine, 'local');
       codeMirror.scrollTo(null, top);
     }
 
     prevSelectedLinesRef.current = selectedLines;
-  }, [codeMirror, selectedLines]);
+  }, [codeMirror, firstLineNumber, selectedLines]);
 
   // Respond to gutter click
   useEffect(() => {
-    if (!codeMirror) return;
+    if (!codeMirror || !onGutterClick) return;
 
     const handler = (_, docLineNumber) => {
       // converting to line string pattern
@@ -164,7 +169,7 @@ export const CodeMirrorReactBinding = React.forwardRef(({
 
   // Respond to link click
   useEffect(() => {
-    if (!codeMirror) return;
+    if (!codeMirror || !onLinkClick) return;
 
     const handler = (_, event) => {
       if (event.ctrlKey && event.target.classList.contains('cm-link')) {
@@ -184,7 +189,7 @@ export const CodeMirrorReactBinding = React.forwardRef(({
   // Submit ops for local user-generated changes.
   // Ignore other types of changes (remote op, initialization using setValue).
   useEffect(() => {
-    if (!codeMirror) return;
+    if (!codeMirror || !onFileTextChange) return;
 
     const handler = (instance, changes) => {
       if(readonly) return;
@@ -210,7 +215,7 @@ export const CodeMirrorReactBinding = React.forwardRef(({
   // and they don't want the run to happen soon,
   // so better reset the run timer on each cursor motion.
   useEffect(() => {
-    if (!codeMirror) return;
+    if (!codeMirror || !onCursorActivity) return;
     codeMirror.on('cursorActivity', onCursorActivity);
     return () => {
       codeMirror.off('cursorActivity', onCursorActivity);
@@ -219,7 +224,7 @@ export const CodeMirrorReactBinding = React.forwardRef(({
 
   // Submit presence
   useEffect(() => {
-    if (!codeMirror) return;
+    if (!codeMirror || !onCursorPositionChange) return;
     const handleCursorActivity = () => {
       const from = codeMirror.getCursor(true);
       const to = codeMirror.getCursor(false);

@@ -1,6 +1,7 @@
 import { Z_ABOVE, Z_WAY_ABOVE, Z_WAY_WAY_ABOVE } from '../../../styles';
 import { theme } from '../../../theme/defaultTheme';
 import { useTransitions } from '../../../constants';
+import { modes } from '../URLStateContext/modes'
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -15,10 +16,10 @@ let timeoutId;
 const setStyles = (iFrame, newMode) => {
   // If in "mini" or "micro" mode, set Z index high.
   iFrame.style['z-index'] =
-    newMode === 'mini' || newMode === 'micro' ? Z_WAY_WAY_ABOVE : Z_ABOVE;
+    newMode === modes.mini || newMode === modes.micro ? Z_WAY_WAY_ABOVE : Z_ABOVE;
 
   // If not in "fullscreen" newMode, set shadow.
-  iFrame.style['box-shadow'] = newMode === 'full' ? 'none' : theme.shadowLight;
+  iFrame.style['box-shadow'] = newMode === modes.full ? 'none' : theme.shadowLight;
 };
 
 // 'mode' here means the context in which the viz content is being viewed.
@@ -33,11 +34,18 @@ export const setVizRunnerMode = (iFrame, newMode) => {
     return;
   }
 
+  // iframe is not needed in snippet mode, hide and short circuit
+  if (newMode === modes.snippet) {
+    iFrame.style.display = 'none';
+    setStyles(iFrame, newMode);
+    return;
+  }
+
   // Are we transitioning into 'hide' mode?
-  const hiding = newMode === 'hide';
+  const hiding = newMode === modes.hide;
 
   // Are we transitioning out of 'hide' mode?
-  const showing = mode === 'hide' && modeChanged;
+  const showing = mode === modes.hide && modeChanged;
 
   // Did we just get our first mode of the day (page load)?
   const initializing = mode === undefined;

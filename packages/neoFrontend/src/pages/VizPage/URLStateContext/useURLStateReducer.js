@@ -16,12 +16,6 @@ const parseLine = (hash) => {
   return found ? found.groups.selectedLines : null;
 };
 
-// const aaa = (selectionStartLine, selectionEndLine) => {
-//   if (!selectionStartLine) return '';
-
-//   return `#L${selectionStartLine}${selectionEndLine ? `-${selectionEndLine}` : ''}`;
-// };
-
 export const useURLStateReducer = (reducer, { history, match, location }) => {
   const state = useMemo(
     () => ({

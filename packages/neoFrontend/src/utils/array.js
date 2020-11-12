@@ -1,7 +1,7 @@
-export const range = (possibleFrom, possibleTo) => {
+export const xorSwap = ([a,b]) => {
   //force both to be numbers
-  let from = +possibleFrom;
-  let to = +possibleTo;
+  let from = +a;
+  let to = +b;
 
   //since we are dealing with numbers, we could do an XOR swap
   //which is a swap that doesn't need a third variable
@@ -11,6 +11,12 @@ export const range = (possibleFrom, possibleTo) => {
     to = from ^ to;
     from = from ^ to;
   }
+
+  return [from, to];
+};
+
+export const range = (possibleFrom, possibleTo) => {
+  let [from, to] = xorSwap([possibleFrom, possibleTo]);
 
   return Array.from({ length: to - from + 1 })
     .fill(from)

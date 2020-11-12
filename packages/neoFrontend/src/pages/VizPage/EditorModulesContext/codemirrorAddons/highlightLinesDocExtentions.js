@@ -3,11 +3,11 @@ import { parseNumberSequenceString } from '../../../../utils/number';
 
 const codeMirrorActivelineClassName = 'CodeMirror-activeline-background';
 
-const getLinesFronSequenceString = (sequenceString) =>
-  parseNumberSequenceString(sequenceString).map((line) => line - 1);
+const getLinesFronSequenceString = (sequenceString, firstLineNumber) =>
+  parseNumberSequenceString(sequenceString).map((line) => line - firstLineNumber);
 
-CodeMirror.defineDocExtension('highlightLines', function (sequenceString) {
-  const lines = getLinesFronSequenceString(sequenceString);
+CodeMirror.defineDocExtension('highlightLines', function (sequenceString, firstLineNumber) {
+  const lines = getLinesFronSequenceString(sequenceString, firstLineNumber);
 
   lines.forEach((line) => {
     this.addLineClass(line, 'wrap', codeMirrorActivelineClassName);
@@ -16,8 +16,12 @@ CodeMirror.defineDocExtension('highlightLines', function (sequenceString) {
   return lines;
 });
 
-CodeMirror.defineDocExtension('unhighlightLines', function (sequenceString) {
-  getLinesFronSequenceString(sequenceString).forEach((line) => {
+CodeMirror.defineDocExtension('unhighlightLines', function (sequenceString, firstLineNumber) {
+  const lines = getLinesFronSequenceString(sequenceString, firstLineNumber);
+
+  lines.forEach((line) => {
     this.removeLineClass(line, 'wrap', codeMirrorActivelineClassName);
   });
+
+  return lines;
 });

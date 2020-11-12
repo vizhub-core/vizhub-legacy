@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_WAY_ABOVE } from '../../../../styles';
+import { Z_WAY_ABOVE } from '../../../../../styles';
 
 export const Authorship = styled.div`
   display: flex;
