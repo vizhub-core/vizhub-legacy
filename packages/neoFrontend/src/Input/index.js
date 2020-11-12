@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Wrapper } from './styles';
 
-export const Input = ({ value, onChange, id, size = 'large', autoSelect }) => {
+export const Input = ({ value, placeholder, onChange, id, size = 'large', autoSelect }) => {
   const handleChange = useCallback(({ target: { value } }) => onChange(value), [
     onChange,
   ]);
@@ -18,6 +18,7 @@ export const Input = ({ value, onChange, id, size = 'large', autoSelect }) => {
       onFocus={handleFocus}
       id={id}
       size={size}
+      placeholder={placeholder}
     />
   );
 };
