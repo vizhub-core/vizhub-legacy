@@ -1,4 +1,4 @@
-export const xorSwap = ([a,b]) => {
+export const xorSwap = ([a, b]) => {
   //force both to be numbers
   let from = +a;
   let to = +b;

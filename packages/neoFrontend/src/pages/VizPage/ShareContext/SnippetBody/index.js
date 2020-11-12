@@ -11,7 +11,6 @@ import { SubSectionDescription, Spacer, FormRow } from '../../styles';
 import { TextCopier } from '../TextCopier';
 import { Preview } from './styles';
 
-
 const iframeDefaultProps = {
   height: isMobile ? 162 : 300,
 };
@@ -32,7 +31,9 @@ export const SnippetBody = () => {
   const settingsAreValid = fileExists && isValidRange;
 
   const src = useMemo(() => {
-    return settingsAreValid ? `${domain}${pathname}?mode=snippet&file=${file}&range=${range}#L${highlight}` : '';
+    return settingsAreValid
+      ? `${domain}${pathname}?mode=snippet&file=${file}&range=${range}#L${highlight}`
+      : '';
   }, [pathname, file, range, highlight, settingsAreValid]);
 
   const html = useMemo(() => {
@@ -43,14 +44,9 @@ export const SnippetBody = () => {
     <>
       <Preview height={height} title={title} src={src} />
       <form>
-        <SubSectionDescription>
-          Snippet settings
-        </SubSectionDescription>
+        <SubSectionDescription>Snippet settings</SubSectionDescription>
 
-
-        <FormRow>
-          Choose which file to embed code from *(requried)
-        </FormRow>
+        <FormRow>Choose which file to embed code from *(requried)</FormRow>
         <FormRow>
           <Input value={file} onChange={setFile} size="grow" />
         </FormRow>
@@ -68,7 +64,8 @@ export const SnippetBody = () => {
         </FormRow>
 
         <FormRow>
-          Highlight specific lines of code (lines should be within selected range)
+          Highlight specific lines of code (lines should be within selected
+          range)
         </FormRow>
         <FormRow>
           <Input
@@ -79,15 +76,13 @@ export const SnippetBody = () => {
           />
         </FormRow>
 
-        <FormRow>
-          Control iframe height
-        </FormRow>
+        <FormRow>Control iframe height</FormRow>
         <FormRow>
           <Input value={height} onChange={setHeight} size="grow" />
         </FormRow>
       </form>
       <Spacer height={22} />
-      { settingsAreValid && <TextCopier text={html} /> }
+      {settingsAreValid && <TextCopier text={html} />}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { Z_ABOVE, Z_WAY_ABOVE, Z_WAY_WAY_ABOVE } from '../../../styles';
 import { theme } from '../../../theme/defaultTheme';
 import { useTransitions } from '../../../constants';
-import { modes } from '../URLStateContext/modes'
+import { modes } from '../URLStateContext/modes';
 
 // The number of milliseconds to transition when
 // moving the iframe whenever the mode changes.
@@ -16,10 +16,13 @@ let timeoutId;
 const setStyles = (iFrame, newMode) => {
   // If in "mini" or "micro" mode, set Z index high.
   iFrame.style['z-index'] =
-    newMode === modes.mini || newMode === modes.micro ? Z_WAY_WAY_ABOVE : Z_ABOVE;
+    newMode === modes.mini || newMode === modes.micro
+      ? Z_WAY_WAY_ABOVE
+      : Z_ABOVE;
 
   // If not in "fullscreen" newMode, set shadow.
-  iFrame.style['box-shadow'] = newMode === modes.full ? 'none' : theme.shadowLight;
+  iFrame.style['box-shadow'] =
+    newMode === modes.full ? 'none' : theme.shadowLight;
 };
 
 // 'mode' here means the context in which the viz content is being viewed.

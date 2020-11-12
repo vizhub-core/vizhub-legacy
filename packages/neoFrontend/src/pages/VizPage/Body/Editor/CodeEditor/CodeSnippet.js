@@ -15,7 +15,12 @@ import { Wrapper, HeaderLink } from './styles';
 
 export const CodeSnippet = () => {
   const { pathname } = useLocation();
-  const { range: rangeString, selectedLines, activeFile, openLink } = useContext(URLStateContext);
+  const {
+    range: rangeString,
+    selectedLines,
+    activeFile,
+    openLink,
+  } = useContext(URLStateContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
   const { viz$ } = useContext(VizContext);
 
@@ -27,7 +32,9 @@ export const CodeSnippet = () => {
 
   const fileIndex = useFileIndex(viz$, activeFile);
 
-  const range = useMemo(() => parseRangeBoundariesString(rangeString), [rangeString]);
+  const range = useMemo(() => parseRangeBoundariesString(rangeString), [
+    rangeString,
+  ]);
 
   const link = `${domain}${pathname}?file=${activeFile}#L${range[0]}`;
 
@@ -46,18 +53,11 @@ export const CodeSnippet = () => {
       .split('\n')
       .slice(...range)
       .join('\n');
-
   }, [viz$, fileIndex, range]);
 
   return (
-    <Wrapper
-      showLeftBorder={true}
-      style={{ flex: '1' }}
-    >
-      <Header
-        showEditor={false}
-        activeFile={activeFile}
-      >
+    <Wrapper showLeftBorder={true} style={{ flex: '1' }}>
+      <Header showEditor={false} activeFile={activeFile}>
         <HeaderLink href={link}>Edit in vizhub</HeaderLink>
       </Header>
       <>

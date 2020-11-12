@@ -4,9 +4,14 @@ import { parseNumberSequenceString } from '../../../../utils/number';
 const codeMirrorActivelineClassName = 'CodeMirror-activeline-background';
 
 const getLinesFronSequenceString = (sequenceString, firstLineNumber) =>
-  parseNumberSequenceString(sequenceString).map((line) => line - firstLineNumber);
+  parseNumberSequenceString(sequenceString).map(
+    (line) => line - firstLineNumber
+  );
 
-CodeMirror.defineDocExtension('highlightLines', function (sequenceString, firstLineNumber) {
+CodeMirror.defineDocExtension('highlightLines', function (
+  sequenceString,
+  firstLineNumber
+) {
   const lines = getLinesFronSequenceString(sequenceString, firstLineNumber);
 
   lines.forEach((line) => {
@@ -16,7 +21,10 @@ CodeMirror.defineDocExtension('highlightLines', function (sequenceString, firstL
   return lines;
 });
 
-CodeMirror.defineDocExtension('unhighlightLines', function (sequenceString, firstLineNumber) {
+CodeMirror.defineDocExtension('unhighlightLines', function (
+  sequenceString,
+  firstLineNumber
+) {
   const lines = getLinesFronSequenceString(sequenceString, firstLineNumber);
 
   lines.forEach((line) => {
