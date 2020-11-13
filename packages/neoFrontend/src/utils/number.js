@@ -13,6 +13,7 @@ export const isValidRangeBoundariesString = (rangeBoundariesString) => {
 
 export const parseRangeBoundariesString = (rangeBoundariesString) => {
   if (isValidRangeBoundariesString(rangeBoundariesString)) {
+    // xorSwap is smart reverse, if range is 10,20 (asc order) it returns 10,20(stays same), if range is 20,10 (desc order) it returns 10,20 (do reverse)
     return xorSwap(rangeBoundariesString.split('-'));
   }
 
