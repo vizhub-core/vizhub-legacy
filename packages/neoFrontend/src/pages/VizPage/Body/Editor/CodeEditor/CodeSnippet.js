@@ -33,18 +33,14 @@ export const CodeSnippet = () => {
     // we are accessing a URL that has a file "open" that doesn't exist,
     // either because it's been renamed or deleted.
     // In this case, we bail out to avoid a crash.
-    return file ? file.text : null; 
+    return file ? file.text : null;
   }, [viz$, fileIndex]);
 
   const vizLinkBuilder = useMemo(() => {
     return VizLinkBuilder(pathname);
   }, [pathname]);
 
-  const link = vizLinkBuilder
-    .setFile(activeFile)
-    .setLines(selectedLines)
-    .get();
-
+  const link = vizLinkBuilder.setFile(activeFile).setLines(selectedLines).get();
 
   return (
     <Wrapper showLeftBorder={true} style={{ flex: '1' }}>

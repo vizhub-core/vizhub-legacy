@@ -21,7 +21,7 @@ const getLineWrapping = (extension) => extension !== '.js';
 export const highlightScrollStrategy = {
   top: 'top',
   center: 'center',
-  none: 'none'
+  none: 'none',
 };
 
 export const CodeMirrorReactBinding = React.forwardRef(
@@ -150,7 +150,8 @@ export const CodeMirrorReactBinding = React.forwardRef(
         doc.unhighlightLines(prevSelectedLinesRef.current);
       }
 
-      if (selectedLines) doc.highlightLines(selectedLines, highlightScrollStrategy);
+      if (selectedLines)
+        doc.highlightLines(selectedLines, highlightScrollStrategy);
 
       prevSelectedLinesRef.current = selectedLines;
     }, [codeMirror, selectedLines, highlightScrollStrategy]);

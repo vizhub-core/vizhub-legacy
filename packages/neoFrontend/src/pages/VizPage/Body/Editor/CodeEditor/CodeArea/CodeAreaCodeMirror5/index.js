@@ -257,17 +257,19 @@ export const CodeAreaCodeMirror5 = ({
     };
   }, [vizContentPresence$, codeMirror, fileIndex]);
 
-
   const [highlightScrollStrategy, setHighlightScrollStrategy] = useState('top');
 
-  const handleGutterClick = useCallback((...args) => {
-    // Order metters, if setHighlightScrollStrategy called after setHighlightScrollStrategy
-    // in case when strategy changes from default one to none
-    // previous defult would be applied for current click.
-    // This order changes strategy for current click as well
-    setHighlightScrollStrategy('none');
-    onGutterClick(...args);
-  }, [onGutterClick]);
+  const handleGutterClick = useCallback(
+    (...args) => {
+      // Order metters, if setHighlightScrollStrategy called after setHighlightScrollStrategy
+      // in case when strategy changes from default one to none
+      // previous defult would be applied for current click.
+      // This order changes strategy for current click as well
+      setHighlightScrollStrategy('none');
+      onGutterClick(...args);
+    },
+    [onGutterClick]
+  );
 
   return (
     <>

@@ -24,6 +24,5 @@ export const range = (possibleFrom, possibleTo) => {
 };
 
 // inspired by https://stackoverflow.com/a/63156509
-export const median = (arr) => (
-  arr.slice().sort((a, b) => a - b)[Math.floor(arr.length / 2)]
-);
+export const median = (arr) =>
+  arr.slice().sort((a, b) => a - b)[Math.floor(arr.length / 2)];

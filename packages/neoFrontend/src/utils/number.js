@@ -20,20 +20,19 @@ const parseRangeBoundariesString = (rangeBoundariesString) => {
   return null;
 };
 
-
 // inspired by https://codereview.stackexchange.com/questions/26125/getting-all-number-from-a-string-like-this-1-2-5-9
 // and http://jsfiddle.net/mkhC3/1/
 export const isNumberSequenceString = (sequenceString) =>
-  sequenceString && !(
-    sequenceString
-      .split(',')
-      // in order short circuit loop and stop on first invalid value instead of
-      // going through all aray some with negative condition is used 
-      // (in this case, truthy some means invalid sequence)
-      .some(
-        entry => !(isFiniteNumber(entry) ? true : isValidRangeBoundariesString(entry))
-      )
-  );
+  sequenceString &&
+  !sequenceString
+    .split(',')
+    // in order short circuit loop and stop on first invalid value instead of
+    // going through all aray some with negative condition is used
+    // (in this case, truthy some means invalid sequence)
+    .some(
+      (entry) =>
+        !(isFiniteNumber(entry) ? true : isValidRangeBoundariesString(entry))
+    );
 
 // inspired by https://codereview.stackexchange.com/questions/26125/getting-all-number-from-a-string-like-this-1-2-5-9
 // and http://jsfiddle.net/mkhC3/1/

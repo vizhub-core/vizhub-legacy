@@ -9,7 +9,10 @@ const getLinesFronSequenceString = (sequenceString, firstLineNumber) =>
     (line) => line - firstLineNumber
   );
 
-CodeMirror.defineDocExtension('highlightLines', function (sequenceString, highlightScrollStrategy) {
+CodeMirror.defineDocExtension('highlightLines', function (
+  sequenceString,
+  highlightScrollStrategy
+) {
   // TODO: need to validate that mimimal sequence num not less than firstLineNumber
   // if it is less throw an error
   const firstLineNumber = this.cm.options.firstLineNumber;
@@ -20,9 +23,13 @@ CodeMirror.defineDocExtension('highlightLines', function (sequenceString, highli
   });
 
   if (highlightScrollStrategy !== 'none') {
-    const line = highlightScrollStrategy === 'center' ? median(lines) : lines[0];
+    const line =
+      highlightScrollStrategy === 'center' ? median(lines) : lines[0];
     const linePosition = this.cm.heightAtLine(line, 'local');
-    const topMargin = highlightScrollStrategy === 'center' ? this.cm.getScrollerElement().offsetHeight / 2 : 0;
+    const topMargin =
+      highlightScrollStrategy === 'center'
+        ? this.cm.getScrollerElement().offsetHeight / 2
+        : 0;
     this.cm.scrollTo(null, linePosition - topMargin);
   }
 
