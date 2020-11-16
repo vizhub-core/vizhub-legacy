@@ -50,6 +50,15 @@ export const NeoNavBar = withTheme(
             </NavHREF>
           )
         }
+        ForumLink={
+          <NavHREF
+            href="https://vizhub.com/forum/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Forum
+          </NavHREF>
+        }
         PricingLink={
           showPricing ? (
             <NavLink exact to="/pricing">
