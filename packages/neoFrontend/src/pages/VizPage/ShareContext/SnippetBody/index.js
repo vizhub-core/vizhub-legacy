@@ -1,10 +1,10 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo, useContext, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { getVizTitle, getVizFiles, getFile } from 'vizhub-presenters';
 import { VizLinkBuilder } from '../../../../utils/viz';
 import { isMobile } from '../../../../mobileMods';
 import { useValue } from '../../../../useValue';
-import { Input } from '../../../../Input';
+import { Input, Autocomplete } from '../../../../Input';
 import { VizContext } from '../../VizContext';
 import { URLStateContext } from '../../URLStateContext';
 import { modes } from '../../URLStateContext/modes';
@@ -24,17 +24,40 @@ export const SnippetBody = () => {
   const files = useValue(viz$, getVizFiles);
 
   const [file, setFile] = useState(activeFile);
+  const [suggestedFile, setSuggestedFile] = useState(activeFile);
+  const [fileSuggestions, setFileSuggestions] = useState([]);
+
+
+  const allPossibleFileSuggestions = useMemo(() => {
+    return files.map(file => ({id: file.name, value: file.name }));
+  }, [files]);
+
+  const handleFileSuggestionChange = useCallback((fileName) => {
+    setFileSuggestions(
+      allPossibleFileSuggestions.filter(
+        ({value: name}) => name.toLowerCase().includes(fileName.toLowerCase())
+      )
+    );
+    setSuggestedFile(fileName);
+  }, [allPossibleFileSuggestions, setFileSuggestions]);
+
+  const handleFileSelect =useCallback((fileName) => {
+    setFile(fileName);
+    setSuggestedFile(fileName);
+    setFileSuggestions([]);
+  }, [setFile, setSuggestedFile]);
+
   const [highlight, setHighlight] = useState(selectedLines);
   const [height, setHeight] = useState(iframeDefaultProps.height);
 
-  const fileExists = Boolean(getFile(files, file));
+  const fileExists = Boolean(getFile(files, suggestedFile));
 
   const vizLinkBuilder = useMemo(() => {
     return VizLinkBuilder(pathname);
   }, [pathname]);
 
   const src = useMemo(() => {
-    if (fileExists) {
+    if (file) {
       return vizLinkBuilder
         .setMode(modes.snippet)
         .setFile(file)
@@ -43,7 +66,7 @@ export const SnippetBody = () => {
     }
 
     return '';
-  }, [vizLinkBuilder, file, highlight, fileExists]);
+  }, [vizLinkBuilder, highlight, file]);
 
   const html = useMemo(() => {
     return `<iframe src="${src}" title="${title}" height="${height}"></iframe>`;
@@ -57,7 +80,13 @@ export const SnippetBody = () => {
 
         <FormRow>Choose which file to embed code from *(requried)</FormRow>
         <FormRow>
-          <Input value={file} onChange={setFile} size="grow" />
+          <Autocomplete 
+            value={suggestedFile}
+            items={fileSuggestions}
+            onChange={handleFileSuggestionChange}
+            onSelect={handleFileSelect}
+            size="grow"
+          />
         </FormRow>
 
         <FormRow>
