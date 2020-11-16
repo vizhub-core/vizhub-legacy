@@ -25,7 +25,7 @@ const parseRangeBoundariesString = (rangeBoundariesString) => {
 // and http://jsfiddle.net/mkhC3/1/
 export const isNumberSequenceString = (sequenceString) =>
   sequenceString && !(
-    String(sequenceString)
+    sequenceString
       .split(',')
       // in order short circuit loop and stop on first invalid value instead of
       // going through all aray some with negative condition is used 
