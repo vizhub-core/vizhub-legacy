@@ -8,6 +8,7 @@ export const DesktopLayout = ({
   DashboardLink,
   Search,
   AboutLink,
+  ForumLink,
   PricingLink,
   AuthSection,
   isHomePage,
@@ -26,6 +27,7 @@ export const DesktopLayout = ({
       >
         {Search}
         {AboutLink}
+        {ForumLink}
         {PricingLink}
         {AuthSection}
       </Right>
