@@ -19,4 +19,5 @@ export const CodeEditorIcon = styled(Icon)`
 
 export const HeaderLink = styled.a`
   color: #ffffff;
+  line-height: ${(props) => props.theme.editorEntryHeight + 1}px;
 `;

@@ -4,14 +4,14 @@ import { range, xorSwap } from './array';
 //like mixed numbers and strings, which parseFloat happily accepts
 const isFiniteNumber = (n) => Boolean(isFinite(n) && !isNaN(parseFloat(n)));
 
-export const isValidRangeBoundariesString = (rangeBoundariesString) => {
+const isValidRangeBoundariesString = (rangeBoundariesString) => {
   const rangeBoundries = rangeBoundariesString.split('-');
 
   //check if what we split are both numbers, else return nothing
   return isFiniteNumber(rangeBoundries[0]) && isFiniteNumber(rangeBoundries[1]);
 };
 
-export const parseRangeBoundariesString = (rangeBoundariesString) => {
+const parseRangeBoundariesString = (rangeBoundariesString) => {
   if (isValidRangeBoundariesString(rangeBoundariesString)) {
     // xorSwap is smart reverse, if range is 10,20 (asc order) it returns 10,20(stays same), if range is 20,10 (desc order) it returns 10,20 (do reverse)
     return xorSwap(rangeBoundariesString.split('-'));
@@ -19,6 +19,21 @@ export const parseRangeBoundariesString = (rangeBoundariesString) => {
 
   return null;
 };
+
+
+// inspired by https://codereview.stackexchange.com/questions/26125/getting-all-number-from-a-string-like-this-1-2-5-9
+// and http://jsfiddle.net/mkhC3/1/
+export const isNumberSequenceString = (sequenceString) =>
+  sequenceString && !(
+    String(sequenceString)
+      .split(',')
+      // in order short circuit loop and stop on first invalid value instead of
+      // going through all aray some with negative condition is used 
+      // (in this case, truthy some means invalid sequence)
+      .some(
+        entry => !(isFiniteNumber(entry) ? true : isValidRangeBoundariesString(entry))
+      )
+  );
 
 // inspired by https://codereview.stackexchange.com/questions/26125/getting-all-number-from-a-string-like-this-1-2-5-9
 // and http://jsfiddle.net/mkhC3/1/
