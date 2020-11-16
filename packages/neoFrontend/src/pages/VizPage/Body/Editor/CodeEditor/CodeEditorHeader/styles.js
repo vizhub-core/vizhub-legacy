@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
+  padding-right: 10px;
   background-color: ${(props) => props.theme.editor.headerBackgroundColor};
 `;
 

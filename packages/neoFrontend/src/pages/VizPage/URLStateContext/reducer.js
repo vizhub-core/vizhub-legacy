@@ -1,4 +1,5 @@
 import { isMobile } from '../../../mobileMods';
+import { modes } from './modes';
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -46,22 +47,22 @@ export const reducer = (state, action) => {
       return Object.assign({}, state, {
         file: undefined,
         mode:
-          state.mode === 'mini' || state.mode === 'hide'
+          state.mode === modes.mini || state.mode === modes.hide
             ? undefined
             : state.mode,
         line: null,
       });
 
-    // Invoked when a line is selected (clicked on).
+    // Invoked when a line(s) are selected.
     // If the currently active line is clicked on, nothing happens here.
-    case 'setActiveLine':
-      return action.line === state.line
+    case 'setSelectedLines':
+      return action.selectedLines === state.selectedLines
         ? state
-        : Object.assign({}, state, { line: action.line });
+        : Object.assign({}, state, { selectedLines: action.selectedLines });
 
     case 'setMode':
       return Object.assign({}, state, {
-        mode: action.mode === 'viewer' ? undefined : action.mode,
+        mode: action.mode === modes.viewer ? undefined : action.mode,
       });
 
     case 'exitRecoveryMode':
