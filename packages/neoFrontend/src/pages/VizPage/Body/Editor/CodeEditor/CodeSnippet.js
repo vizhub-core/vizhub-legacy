@@ -58,6 +58,7 @@ export const CodeSnippet = () => {
           fileName={activeFile}
           selectedLines={selectedLines}
           editorModules={editorModules}
+          highlightScrollStrategy="center"
           onLinkClick={openLink}
         />
         {!editorModules ? <LoadingScreen color={light} isChild={true} /> : null}

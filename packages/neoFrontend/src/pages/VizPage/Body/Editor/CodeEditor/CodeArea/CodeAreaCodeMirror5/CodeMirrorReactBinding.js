@@ -18,16 +18,22 @@ const getMode = (extension) => modes[extension];
 // Enable wrapping for everything else.
 const getLineWrapping = (extension) => extension !== '.js';
 
+export const highlightScrollStrategy = {
+  top: 'top',
+  center: 'center',
+  none: 'none'
+};
+
 export const CodeMirrorReactBinding = React.forwardRef(
   (
     {
       fileText,
       fileName,
-      firstLineNumber = 1,
       selectedLines,
       readonly,
       keyMap,
       editorModules,
+      highlightScrollStrategy,
       onGutterClick,
       onLinkClick,
       onManualRun,
@@ -78,7 +84,6 @@ export const CodeMirrorReactBinding = React.forwardRef(
         value: fileText,
         mode: getMode(extension),
         lineNumbers: true,
-        firstLineNumber,
         tabSize: 2,
         matchBrackets: true,
         closeOnBlur: false,
@@ -102,7 +107,6 @@ export const CodeMirrorReactBinding = React.forwardRef(
       codeMirror,
       fileText,
       extension,
-      firstLineNumber,
       onManualRun,
     ]);
 
@@ -143,25 +147,13 @@ export const CodeMirrorReactBinding = React.forwardRef(
       const doc = codeMirror.getDoc();
 
       if (prevSelectedLinesRef.current) {
-        doc.unhighlightLines(prevSelectedLinesRef.current, firstLineNumber);
+        doc.unhighlightLines(prevSelectedLinesRef.current);
       }
 
-      const highlightedLines = selectedLines && doc.highlightLines(selectedLines, firstLineNumber);
-
-      if (highlightedLines && highlightedLines.length > 0) {
-        const top = codeMirror.heightAtLine(highlightedLines[0], 'local');
-
-
-        // codeMirror.scrollTo(null, top);
-
-
-        // https://stackoverflow.com/a/23564408
-        var middleHeight = codeMirror.getScrollerElement().offsetHeight / 2; 
-        codeMirror.scrollTo(null, top - middleHeight - 5); 
-      }
+      if (selectedLines) doc.highlightLines(selectedLines, highlightScrollStrategy);
 
       prevSelectedLinesRef.current = selectedLines;
-    }, [codeMirror, firstLineNumber, selectedLines]);
+    }, [codeMirror, selectedLines, highlightScrollStrategy]);
 
     // Respond to gutter click
     useEffect(() => {
