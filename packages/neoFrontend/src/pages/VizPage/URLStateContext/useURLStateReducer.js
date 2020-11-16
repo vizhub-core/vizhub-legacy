@@ -12,15 +12,15 @@ let hiddenURLState = {
 };
 
 const parseLine = (hash) => {
-  const found = hash.match(/\d+/g);
-  return found ? +found[0] : null;
+  const found = hash.match(/^#L(?<selectedLines>[\d,-]+)/);
+  return found ? found.groups.selectedLines : null;
 };
 
 export const useURLStateReducer = (reducer, { history, match, location }) => {
   const state = useMemo(
     () => ({
       ...queryString.parse(location.search),
-      line: parseLine(location.hash),
+      selectedLines: parseLine(location.hash),
       hidden: hiddenURLState,
     }),
     [location.search, location.hash]
@@ -36,12 +36,12 @@ export const useURLStateReducer = (reducer, { history, match, location }) => {
 
       delete nextState.hidden;
 
-      const { line, ...searchParams } = nextState;
+      const { selectedLines, ...searchParams } = nextState;
 
       history.push({
         pathname: match.url,
         search: queryString.stringify(searchParams),
-        hash: line ? `#L${line}` : '',
+        hash: selectedLines ? `L${selectedLines}` : '',
       });
     },
     [reducer, state, history, match.url]

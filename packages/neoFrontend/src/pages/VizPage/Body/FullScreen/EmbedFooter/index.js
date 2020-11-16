@@ -1,11 +1,11 @@
 import React, { useContext, useMemo } from 'react';
 import { getVizInfo, getUserFullName, getUserName } from 'vizhub-presenters';
-import { domain } from '../../../../constants';
-import { useValue } from '../../../../useValue';
-import { LogoSVG } from '../../../../svg';
-import { Avatar } from '../../../../Avatar';
-import { VizPageDataContext } from '../../VizPageDataContext';
-import { VizContext } from '../../VizContext';
+import { domain } from '../../../../../constants';
+import { useValue } from '../../../../../useValue';
+import { LogoSVG } from '../../../../../svg';
+import { Avatar } from '../../../../../Avatar';
+import { VizPageDataContext } from '../../../VizPageDataContext';
+import { VizContext } from '../../../VizContext';
 import { AuthorName, Authorship, Title, VizInfo, Wrapper } from './styles';
 
 export const EmbedFooter = () => {
