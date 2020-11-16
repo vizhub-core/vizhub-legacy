@@ -19,7 +19,9 @@ const iframeDefaultProps = {
 export const SnippetBody = () => {
   const { pathname } = useLocation();
   const { viz$ } = useContext(VizContext);
-  const { activeFile = 'index.html', selectedLines } = useContext(URLStateContext);
+  const { activeFile = 'index.html', selectedLines } = useContext(
+    URLStateContext
+  );
   const title = useValue(viz$, getVizTitle);
   const files = useValue(viz$, getVizFiles);
 
@@ -27,25 +29,30 @@ export const SnippetBody = () => {
   const [suggestedFile, setSuggestedFile] = useState(activeFile);
   const [fileSuggestions, setFileSuggestions] = useState([]);
 
-
   const allPossibleFileSuggestions = useMemo(() => {
-    return files.map(file => ({id: file.name, value: file.name }));
+    return files.map((file) => ({ id: file.name, value: file.name }));
   }, [files]);
 
-  const handleFileSuggestionChange = useCallback((fileName) => {
-    setFileSuggestions(
-      allPossibleFileSuggestions.filter(
-        ({value: name}) => name.toLowerCase().includes(fileName.toLowerCase())
-      )
-    );
-    setSuggestedFile(fileName);
-  }, [allPossibleFileSuggestions, setFileSuggestions]);
+  const handleFileSuggestionChange = useCallback(
+    (fileName) => {
+      setFileSuggestions(
+        allPossibleFileSuggestions.filter(({ value: name }) =>
+          name.toLowerCase().includes(fileName.toLowerCase())
+        )
+      );
+      setSuggestedFile(fileName);
+    },
+    [allPossibleFileSuggestions, setFileSuggestions]
+  );
 
-  const handleFileSelect =useCallback((fileName) => {
-    setFile(fileName);
-    setSuggestedFile(fileName);
-    setFileSuggestions([]);
-  }, [setFile, setSuggestedFile]);
+  const handleFileSelect = useCallback(
+    (fileName) => {
+      setFile(fileName);
+      setSuggestedFile(fileName);
+      setFileSuggestions([]);
+    },
+    [setFile, setSuggestedFile]
+  );
 
   const [highlight, setHighlight] = useState(selectedLines);
   const [height, setHeight] = useState(iframeDefaultProps.height);
@@ -80,7 +87,7 @@ export const SnippetBody = () => {
 
         <FormRow>Choose which file to embed code from *(requried)</FormRow>
         <FormRow>
-          <Autocomplete 
+          <Autocomplete
             value={suggestedFile}
             items={fileSuggestions}
             onChange={handleFileSuggestionChange}
@@ -89,9 +96,7 @@ export const SnippetBody = () => {
           />
         </FormRow>
 
-        <FormRow>
-          Highlight specific lines of code
-        </FormRow>
+        <FormRow>Highlight specific lines of code</FormRow>
         <FormRow>
           <Input
             value={highlight}

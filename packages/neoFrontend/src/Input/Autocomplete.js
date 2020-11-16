@@ -4,8 +4,14 @@ import { PreviewList } from './PreviewList';
 import { usePreviewController } from './usePreviewController';
 import { FocusableFragment } from './styles';
 
-
-export const Autocomplete = ({ value, items, size, placeholder, onChange, onSelect }) => {
+export const Autocomplete = ({
+  value,
+  items,
+  size,
+  placeholder,
+  onChange,
+  onSelect,
+}) => {
   const {
     activeItem,
     selectedItem,
@@ -20,7 +26,7 @@ export const Autocomplete = ({ value, items, size, placeholder, onChange, onSele
   }, [selectedItem, onSelect]);
 
   return (
-    <FocusableFragment tabIndex="-1" onKeyDown={handleKeyDown} >
+    <FocusableFragment tabIndex="-1" onKeyDown={handleKeyDown}>
       <Input
         tabIndex="-1"
         value={value}

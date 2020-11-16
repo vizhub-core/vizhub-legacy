@@ -10,7 +10,6 @@ export const Wrapper = styled.input`
   padding-left: 14px;
 `;
 
-
 export const FocusableFragment = styled.div`
   height: 100%;
   display: flex;

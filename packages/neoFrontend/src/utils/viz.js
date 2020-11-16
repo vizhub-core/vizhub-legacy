@@ -6,7 +6,7 @@ export const VizLinkBuilder = (vizPath) => {
   let lines = '';
 
   const builder = {
-    setMode (mode) {
+    setMode(mode) {
       if (mode) searchParams.set('mode', mode);
 
       return builder;
@@ -28,9 +28,9 @@ export const VizLinkBuilder = (vizPath) => {
       return builder;
     },
 
-    get () {
+    get() {
       return `${domain}${vizPath}?${searchParams.toString()}#${lines}`;
-    }
+    },
   };
 
   return builder;
