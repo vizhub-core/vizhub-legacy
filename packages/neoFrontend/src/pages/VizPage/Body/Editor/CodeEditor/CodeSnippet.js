@@ -1,8 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { useLocation } from 'react-router';
 import { getVizFile } from 'vizhub-presenters';
-import { domain } from '../../../../../constants';
-import { parseRangeBoundariesString } from '../../../../../utils/number';
+import { VizLinkBuilder } from '../../../../../utils/viz';
 import { LoadingScreen } from '../../../../../LoadingScreen';
 import { URLStateContext } from '../../../URLStateContext';
 import { EditorModulesContext } from '../../../EditorModulesContext';
@@ -15,12 +14,7 @@ import { Wrapper, HeaderLink } from './styles';
 
 export const CodeSnippet = () => {
   const { pathname } = useLocation();
-  const {
-    range: rangeString,
-    selectedLines,
-    activeFile,
-    openLink,
-  } = useContext(URLStateContext);
+  const { selectedLines, activeFile, openLink } = useContext(URLStateContext);
   const { editorModules, loadEditorModules } = useContext(EditorModulesContext);
   const { viz$ } = useContext(VizContext);
 
@@ -32,12 +26,6 @@ export const CodeSnippet = () => {
 
   const fileIndex = useFileIndex(viz$, activeFile);
 
-  const range = useMemo(() => parseRangeBoundariesString(rangeString), [
-    rangeString,
-  ]);
-
-  const link = `${domain}${pathname}?file=${activeFile}#L${range[0]}`;
-
   const fileText = useMemo(() => {
     const file = getVizFile(fileIndex)(viz$.getValue());
 
@@ -45,15 +33,18 @@ export const CodeSnippet = () => {
     // we are accessing a URL that has a file "open" that doesn't exist,
     // either because it's been renamed or deleted.
     // In this case, we bail out to avoid a crash.
-    if (!file) {
-      return null;
-    }
+    return file ? file.text : null; 
+  }, [viz$, fileIndex]);
 
-    return file.text
-      .split('\n')
-      .slice(...range)
-      .join('\n');
-  }, [viz$, fileIndex, range]);
+  const vizLinkBuilder = useMemo(() => {
+    return VizLinkBuilder(pathname);
+  }, [pathname]);
+
+  const link = vizLinkBuilder
+    .setFile(activeFile)
+    .setLines(selectedLines)
+    .get();
+
 
   return (
     <Wrapper showLeftBorder={true} style={{ flex: '1' }}>
@@ -65,7 +56,6 @@ export const CodeSnippet = () => {
           readonly
           fileText={fileText}
           fileName={activeFile}
-          firstLineNumber={range[0]}
           selectedLines={selectedLines}
           editorModules={editorModules}
           onLinkClick={openLink}

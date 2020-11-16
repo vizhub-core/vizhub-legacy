@@ -146,10 +146,18 @@ export const CodeMirrorReactBinding = React.forwardRef(
         doc.unhighlightLines(prevSelectedLinesRef.current, firstLineNumber);
       }
 
-      if (selectedLines) {
-        const [firstLine] = doc.highlightLines(selectedLines, firstLineNumber);
-        const top = codeMirror.heightAtLine(firstLine, 'local');
-        codeMirror.scrollTo(null, top);
+      const highlightedLines = selectedLines && doc.highlightLines(selectedLines, firstLineNumber);
+
+      if (highlightedLines && highlightedLines.length > 0) {
+        const top = codeMirror.heightAtLine(highlightedLines[0], 'local');
+
+
+        // codeMirror.scrollTo(null, top);
+
+
+        // https://stackoverflow.com/a/23564408
+        var middleHeight = codeMirror.getScrollerElement().offsetHeight / 2; 
+        codeMirror.scrollTo(null, top - middleHeight - 5); 
       }
 
       prevSelectedLinesRef.current = selectedLines;
@@ -161,7 +169,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
 
       const handler = (_, docLineNumber) => {
         // converting to line string pattern
-        onGutterClick(convertToNumberSequence(docLineNumber + 1));
+        onGutterClick(convertToNumberSequence([docLineNumber + 1]));
       };
 
       codeMirror.on('gutterClick', handler);

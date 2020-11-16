@@ -1,12 +1,13 @@
 import React, { useState, useMemo, useContext } from 'react';
 import { useLocation } from 'react-router';
 import { getVizTitle, getVizFiles, getFile } from 'vizhub-presenters';
-import { domain } from '../../../../constants';
-import { isValidRangeBoundariesString } from '../../../../utils/number';
+import { VizLinkBuilder } from '../../../../utils/viz';
 import { isMobile } from '../../../../mobileMods';
 import { useValue } from '../../../../useValue';
 import { Input } from '../../../../Input';
 import { VizContext } from '../../VizContext';
+import { URLStateContext } from '../../URLStateContext';
+import { modes } from '../../URLStateContext/modes';
 import { SubSectionDescription, Spacer, FormRow } from '../../styles';
 import { TextCopier } from '../TextCopier';
 import { Preview } from './styles';
@@ -18,23 +19,31 @@ const iframeDefaultProps = {
 export const SnippetBody = () => {
   const { pathname } = useLocation();
   const { viz$ } = useContext(VizContext);
+  const { activeFile = 'index.html', selectedLines } = useContext(URLStateContext);
   const title = useValue(viz$, getVizTitle);
   const files = useValue(viz$, getVizFiles);
 
-  const [file, setFile] = useState('');
-  const [range, setRange] = useState('');
-  const [highlight, setHighlight] = useState('');
+  const [file, setFile] = useState(activeFile);
+  const [highlight, setHighlight] = useState(selectedLines);
   const [height, setHeight] = useState(iframeDefaultProps.height);
 
   const fileExists = Boolean(getFile(files, file));
-  const isValidRange = isValidRangeBoundariesString(range);
-  const settingsAreValid = fileExists && isValidRange;
+
+  const vizLinkBuilder = useMemo(() => {
+    return VizLinkBuilder(pathname);
+  }, [pathname]);
 
   const src = useMemo(() => {
-    return settingsAreValid
-      ? `${domain}${pathname}?mode=snippet&file=${file}&range=${range}#L${highlight}`
-      : '';
-  }, [pathname, file, range, highlight, settingsAreValid]);
+    if (fileExists) {
+      return vizLinkBuilder
+        .setMode(modes.snippet)
+        .setFile(file)
+        .setLines(highlight)
+        .get();
+    }
+
+    return '';
+  }, [vizLinkBuilder, file, highlight, fileExists]);
 
   const html = useMemo(() => {
     return `<iframe src="${src}" title="${title}" height="${height}"></iframe>`;
@@ -52,20 +61,7 @@ export const SnippetBody = () => {
         </FormRow>
 
         <FormRow>
-          Choose which lines to include into snippet *(requried)
-        </FormRow>
-        <FormRow>
-          <Input
-            value={range}
-            onChange={setRange}
-            size="grow"
-            placeholder="e.g '14' for a single line, 14,15,16, 14-16 or 14,15-17 for multiple"
-          />
-        </FormRow>
-
-        <FormRow>
-          Highlight specific lines of code (lines should be within selected
-          range)
+          Highlight specific lines of code
         </FormRow>
         <FormRow>
           <Input
@@ -82,7 +78,7 @@ export const SnippetBody = () => {
         </FormRow>
       </form>
       <Spacer height={22} />
-      {settingsAreValid && <TextCopier text={html} />}
+      {fileExists && <TextCopier text={html} />}
     </>
   );
 };
