@@ -22,3 +22,8 @@ export const range = (possibleFrom, possibleTo) => {
     .fill(from)
     .map((n, index) => n + index);
 };
+
+// inspired by https://stackoverflow.com/a/63156509
+export const median = (arr) => (
+  arr.slice().sort((a, b) => a - b)[Math.floor(arr.length / 2)]
+);
