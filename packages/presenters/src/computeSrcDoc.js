@@ -2,7 +2,7 @@ import magicSandbox from './magicSandbox';
 import { getText } from './accessors';
 
 // Feature flag.
-const packageJSON = false;
+const packageJSON = process.env.REACT_APP_VIZHUB_PACKAGE_JSON === 'true';
 
 const dependencies = (files) => {
   const packageJsonText = getText(files, 'package.json');
