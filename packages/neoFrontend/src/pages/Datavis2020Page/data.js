@@ -43,31 +43,28 @@ export const data = [
     title: 'Episode 4 – Introduction to Web Technologies',
   },
   {
+    title: 'Episode 5 – Let’s Make a Face Part I (HTML, CSS, SVG)',
     blogPostURL:
       'https://datavis.tech/datavis-2020-ep5-lets-make-a-face-part-i-html-css-svg/',
-    title: 'Episode 5 – Let’s Make a Face Part I (HTML, CSS, SVG)',
+    startingVizURL:
+      'https://vizhub.com/curran/e54aba86481147a482f339763d4fc598',
+    startingVizTitle: 'Hello HTML',
   },
   {
-    vizURL: 'https://vizhub.com/curran/e54aba86481147a482f339763d4fc598',
-    title: 'Hello HTML',
-  },
-  {
+    title: 'Episode 6 – Let’s Make a Face Part II (React)',
     blogPostURL:
       'https://datavis.tech/datavis-2020-ep6-lets-make-a-face-part-ii-with-react/',
-    title: 'Episode 6 – Let’s Make a Face Part II (React)',
-  },
-  {
-    vizURL: 'https://vizhub.com/curran/fbf0dfea4bcc41f898f3ab9f10c4a279',
-    title: ' Smiley Face Part I',
+    startingVizURL:
+      'https://vizhub.com/curran/fbf0dfea4bcc41f898f3ab9f10c4a279',
+    startingVizTitle: ' Smiley Face Part I',
   },
   {
     blogPostURL:
       'https://datavis.tech/datavis-2020-ep7-lets-make-a-face-part-iii-with-react-d3/',
     title: 'Episode 7 – Let’s Make a Face Part III (React &amp; D3)',
-  },
-  {
-    vizURL: 'https://vizhub.com/curran/3a00f5c877ac4e30b7269c17f29d2e4d',
-    title: ' Smiley Face Part II',
+    startingVizURL:
+      'https://vizhub.com/curran/3a00f5c877ac4e30b7269c17f29d2e4d',
+    startingVizTitle: ' Smiley Face Part II',
   },
   {
     blogPostURL:
