@@ -89,7 +89,9 @@ export const CodeMirrorReactBinding = React.forwardRef(
         closeOnBlur: false,
         extraKeys: {
           'Ctrl-Space': 'autocomplete',
-          ...(onManualRun ? { 'Shift-Enter': onManualRun } : {}),
+          'Shift-Enter': () => {
+            onManualRun();
+          }
         },
         gutters: ['CodeMirror-lint-markers'],
         lint: lintJs,
