@@ -71,14 +71,6 @@ export const CodeMirrorReactBinding = React.forwardRef(
 
       if (codeMirror) return;
 
-      // If the file does not exist at this point, it means that
-      // we are accessing a URL that has a file "open" that doesn't exist,
-      // either because it's been renamed or deleted.
-      // In this case, we bail out to avoid a crash.
-      if (!fileText) {
-        return;
-      }
-
       const { CodeMirror } = editorModules;
       const cm = new CodeMirror(wrapperRef.current, {
         value: fileText,
