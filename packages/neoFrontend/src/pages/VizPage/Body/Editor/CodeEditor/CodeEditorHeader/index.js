@@ -71,7 +71,7 @@ export const CodeEditorHeader = ({
             >
               <FullSVG height={svgHeight} />
             </CodeEditorIcon>
-            <CodeEditorIcon
+            <CodeEditorIcon 
               onClick={closeActiveFile}
               rightmost={true}
               className="test-close-code-editor"
