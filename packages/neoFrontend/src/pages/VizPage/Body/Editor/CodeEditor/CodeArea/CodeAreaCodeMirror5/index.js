@@ -92,6 +92,8 @@ export const CodeAreaCodeMirror5 = ({
   const fileText = useMemo(() => {
     const file = getVizFile(fileIndex)(viz$.getValue());
 
+    console.log(file);
+
     // If the file does not exist at this point, it means that
     // we are accessing a URL that has a file "open" that doesn't exist,
     // either because it's been renamed or deleted.
@@ -273,23 +275,25 @@ export const CodeAreaCodeMirror5 = ({
 
   return (
     <>
-      <CodeMirrorReactBinding
-        ref={setCodeMirror}
-        fileText={fileText}
-        fileName={activeFile}
-        selectedLines={selectedLines}
-        readonly={activeFile === 'bundle.js'}
-        keyMap={keyMap}
-        editorModules={editorModules}
-        highlightScrollStrategy={highlightScrollStrategy}
-        onGutterClick={handleGutterClick}
-        onLinkClick={onLinkClick}
-        onManualRun={manualRunRef.current}
-        onFileTextChange={handleFileTextChange}
-        onCursorActivity={resetRunTimer}
-        onCursorPositionChange={handleCursorPositionChange}
-        onToggleVimMode={toggleVimMode}
-      />
+      {fileText !== null && (
+        <CodeMirrorReactBinding
+          ref={setCodeMirror}
+          fileText={fileText}
+          fileName={activeFile}
+          selectedLines={selectedLines}
+          readonly={activeFile === 'bundle.js'}
+          keyMap={keyMap}
+          editorModules={editorModules}
+          highlightScrollStrategy={highlightScrollStrategy}
+          onGutterClick={handleGutterClick}
+          onLinkClick={onLinkClick}
+          onManualRun={manualRunRef.current}
+          onFileTextChange={handleFileTextChange}
+          onCursorActivity={resetRunTimer}
+          onCursorPositionChange={handleCursorPositionChange}
+          onToggleVimMode={toggleVimMode}
+        />
+      )}
       {!editorModules ? <LoadingScreen color={light} isChild={true} /> : null}
     </>
   );
