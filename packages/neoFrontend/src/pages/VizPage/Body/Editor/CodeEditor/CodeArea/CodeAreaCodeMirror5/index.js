@@ -273,23 +273,25 @@ export const CodeAreaCodeMirror5 = ({
 
   return (
     <>
-      <CodeMirrorReactBinding
-        ref={setCodeMirror}
-        fileText={fileText}
-        fileName={activeFile}
-        selectedLines={selectedLines}
-        readonly={activeFile === 'bundle.js'}
-        keyMap={keyMap}
-        editorModules={editorModules}
-        highlightScrollStrategy={highlightScrollStrategy}
-        onGutterClick={handleGutterClick}
-        onLinkClick={onLinkClick}
-        onManualRun={manualRunRef.current}
-        onFileTextChange={handleFileTextChange}
-        onCursorActivity={resetRunTimer}
-        onCursorPositionChange={handleCursorPositionChange}
-        onToggleVimMode={toggleVimMode}
-      />
+      {fileText !== null && (
+        <CodeMirrorReactBinding
+          ref={setCodeMirror}
+          fileText={fileText}
+          fileName={activeFile}
+          selectedLines={selectedLines}
+          readonly={activeFile === 'bundle.js'}
+          keyMap={keyMap}
+          editorModules={editorModules}
+          highlightScrollStrategy={highlightScrollStrategy}
+          onGutterClick={handleGutterClick}
+          onLinkClick={onLinkClick}
+          onManualRun={manualRunRef.current}
+          onFileTextChange={handleFileTextChange}
+          onCursorActivity={resetRunTimer}
+          onCursorPositionChange={handleCursorPositionChange}
+          onToggleVimMode={toggleVimMode}
+        />
+      )}
       {!editorModules ? <LoadingScreen color={light} isChild={true} /> : null}
     </>
   );
