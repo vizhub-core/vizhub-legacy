@@ -1,5 +1,6 @@
 export { CreateVisualization } from './createVisualization';
 export { GetVisualization } from './getVisualization';
+export { GetVisualizationInfo } from './getVisualizationInfo';
 export { ExportVisualization } from './exportVisualization';
 export { SaveVisualization } from './saveVisualization';
 export { CreateDataset } from './createDataset';
