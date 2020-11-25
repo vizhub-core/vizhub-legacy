@@ -1,19 +1,18 @@
 import * as assert from 'assert';
 import { Commit, Edge } from '../src/index';
 
-describe('Commits', () => {
-  describe('Constructor', () => {
+describe('Revision History', () => {
+  describe('Commit Constructor', () => {
     it('should expose expected fields', () => {
-      const data = { id: '1', viz: 'a' };
+      const data = { id: '1', viz: 'a', timestamp: 1606341594.852 };
       const commit = new Commit(data);
       assert.deepEqual(data.id, commit.id);
       assert.deepEqual(data.viz, commit.viz);
+      assert.deepEqual(data.timestamp, commit.timestamp);
     });
   });
-});
 
-describe('Edge', () => {
-  describe('Constructor', () => {
+  describe('Edge Constructor', () => {
     it('should expose expected fields', () => {
       const data = { source: '1', target: '2', ops: [] };
       const edge = new Edge(data);
