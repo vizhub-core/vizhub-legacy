@@ -25,3 +25,4 @@ export { GetSearchResultsPageData } from './getSearchResultsPageData';
 export { GetUserSearchResultsData } from './getUserSearchResultsData';
 export { GetForksPageData } from './getForksPageData';
 export { CreateCommit } from './createCommit';
+export { CreateEdge } from './createEdge';
