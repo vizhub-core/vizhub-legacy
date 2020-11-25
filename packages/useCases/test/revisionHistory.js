@@ -12,16 +12,21 @@ const revisionHistoryGateway = {
 };
 
 describe('Revision History Use Cases', () => {
+  const createCommit = new CreateCommit({ revisionHistoryGateway });
   describe('Create Commit', () => {
-    const createCommit = new CreateCommit({ revisionHistoryGateway });
     it('should return an id if success.', async () => {
-      const id = 'foo';
-      const viz = 'A';
+      const id = 'commit-1';
+      const viz = 'viz-a';
       const timestamp = 1606341594.852;
-      const requestModel = { id, viz, timestamp };
-      const responseModel = await createCommit.execute(requestModel);
-      const { commit } = responseModel;
+      const commit = await createCommit.execute({ id, viz, timestamp });
       assert.equal(commit.id, id);
+    });
+  });
+  describe('Create Edge', () => {
+    it('should return an id if success.', async () => {
+      const viz = 'viz-a';
+      const commit1 = await createCommit.execute({ id: 'commit-1', viz });
+      const commit2 = await createCommit.execute({ id: 'commit-2', viz });
     });
   });
 });
