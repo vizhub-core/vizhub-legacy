@@ -6,14 +6,6 @@ export class CreateCommit {
   }
 
   async execute(requestModel) {
-    const { id, viz, timestamp } = requestModel;
-    const responseModel = {
-      commit: await this.revisionHistoryGateway.createCommit({
-        id,
-        viz,
-        timestamp,
-      }),
-    };
-    return responseModel;
+    return await this.revisionHistoryGateway.createCommit(requestModel);
   }
 }
