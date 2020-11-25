@@ -1,5 +1,3 @@
-import { User } from 'vizhub-entities';
-
 export class CreateCommit {
   constructor({ revisionHistoryGateway }) {
     this.revisionHistoryGateway = revisionHistoryGateway;
