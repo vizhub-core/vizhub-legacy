@@ -253,7 +253,7 @@ describe('Use Cases', () => {
     it('should create user if not found', async () => {
       let createCalled = false;
       const userGateway = {
-        getUser: () => null,
+        getUserByEmailOrId: () => null,
         createUser: async (user) => {
           createCalled = true;
           return user;
@@ -271,10 +271,15 @@ describe('Use Cases', () => {
 
     it('should return user if found', async () => {
       let createCalled = false;
+      let saveCalled = false;
       const userGateway = {
-        getUser: () => user,
+        getUserByEmailOrId: () => user,
         createUser: async (user) => {
           createCalled = true;
+          return user;
+        },
+        saveUser: async (user) => {
+          saveCalled = true;
           return user;
         },
       };
@@ -283,8 +288,9 @@ describe('Use Cases', () => {
       const responseModel = await getOrCreateUser.execute(
         createUserRequestModel
       );
-      assert.equal(responseModel.user, user);
+      assert.deepEqual(responseModel.user, user);
       assert(!createCalled);
+      assert(saveCalled);
     });
   });
 
@@ -315,7 +321,6 @@ describe('Use Cases', () => {
       assert.deepEqual(responseModel, {
         user: fakeUser,
         visualizationInfos: fakeVisualizationInfos,
-        datasetInfos: fakeDatasetInfos,
       });
     });
 
@@ -325,7 +330,6 @@ describe('Use Cases', () => {
       assert.deepEqual(responseModel, {
         user: ciUser,
         visualizationInfos: fakeVisualizationInfos,
-        datasetInfos: fakeDatasetInfos,
       });
     });
   });
