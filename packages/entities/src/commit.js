@@ -1,3 +1,4 @@
+// A Commit represents a specific revision of a viz.
 export class Commit {
   constructor(data) {
     // Every commit has a unique ID.
