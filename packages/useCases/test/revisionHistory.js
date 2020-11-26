@@ -59,18 +59,27 @@ describe('Revision History Use Cases', () => {
     });
   });
   describe('Get Viz At Commit', () => {
-    it('should apply ops from root.', async () => {
-      const source = (await createCommit.execute({ id: '0', isRoot: true })).id;
-      const target = (await createCommit.execute({ id: '1' })).id;
-      const expectedViz = JSON.parse(JSON.stringify(testData.visualization));
-      const ops = computeEdgeOps({}, expectedViz);
-      const edge = await createEdge.execute({ source, target, ops });
-      assert.equal(edge.source, source);
-      assert.equal(edge.target, target);
-      assert.equal(edge.ops, ops);
+    const expectedVizV1 = JSON.parse(JSON.stringify(testData.visualization));
 
-      const actualViz = await getVizAtCommit.execute({ commit: target });
-      assert.deepEqual(actualViz, expectedViz);
+    const expectedVizV2 = JSON.parse(JSON.stringify(testData.visualization));
+    expectedVizV2.info.title = 'Bar';
+
+    console.log(expectedVizV2);
+    it('should apply ops from root.', async () => {
+      await createCommit.execute({ id: '0' });
+      await createCommit.execute({ id: '1' });
+      const ops = computeEdgeOps({}, expectedVizV1);
+      await createEdge.execute({ source: '0', target: '1', ops });
+      const actualVizV1 = await getVizAtCommit.execute({ commit: '1' });
+      assert.deepEqual(actualVizV1, expectedVizV1);
+    });
+
+    it('should apply ops combined from 2 edges.', async () => {
+      await createCommit.execute({ id: '2' });
+      const ops = computeEdgeOps(expectedVizV1, expectedVizV2);
+      await createEdge.execute({ source: '1', target: '2', ops });
+      const actualVizV2 = await getVizAtCommit.execute({ commit: '2' });
+      assert.deepEqual(actualVizV2, expectedVizV2);
     });
   });
 });
