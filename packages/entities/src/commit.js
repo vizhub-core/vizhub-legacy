@@ -8,7 +8,7 @@ export class Commit {
     // This field is the ID of the viz that this commit belongs to.
     this.viz = data.viz;
 
-    // This represents the time (Unix timestamp) at which this Commit was created.
+    // Unix timestamp at which this Commit was created.
     this.timestamp = data.timestamp;
   }
 }
