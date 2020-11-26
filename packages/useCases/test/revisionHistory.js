@@ -82,4 +82,12 @@ describe('Revision History Use Cases', () => {
       assert.deepEqual(actualVizV2, expectedVizV2);
     });
   });
+
+  describe('Commit Current Viz', () => {
+    // Get the viz at its head commit.
+    // Compute the ops by diffing the head commit snapshot with the current snapshot.
+    // Make a new commit.
+    // Make a new edge that links the head commit to the new commit.
+    // Set the head commit to be the new commit.
+  });
 });
