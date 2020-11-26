@@ -90,4 +90,23 @@ describe('Revision History Use Cases', () => {
     // Make a new edge that links the head commit to the new commit.
     // Set the head commit to be the new commit.
   });
+
+  // Sketch for idea: how to backfill commits from VizHub DB:
+  //
+  // For each 10 minute interval since VizHub was launched:
+  //   For each viz created within that interval
+  //     Create a new start commit for that viz
+  //     Create an edge
+  //       from the head commit of the forked from viz
+  //       to the new commit
+  //       with no ops
+  //     Set the head commit of that viz to the new commit
+  //   For any viz with any non-create ops in that interval:
+  //     Fetch its snapshot at the end of that interval (fetchSnapshotByTimestamp)
+  //     Fetch its snapshot at its current head commit
+  //     If the snapshots are any different:
+  //       Create a new commit for the difference
+  //       Add a new edge for this commit, with the diff ops
+  //       Set the current head commit to the new commit
+
 });
