@@ -1,6 +1,12 @@
 import React, { useContext, useCallback } from 'react';
 import { getVizOwner } from 'vizhub-presenters';
-import { ForkSVG, PullSVG, SettingsSVG, ShareSVG } from '../../../../svg';
+import {
+  ForkSVG,
+  PullSVG,
+  SettingsSVG,
+  ShareSVG,
+  ExportSVG,
+} from '../../../../svg';
 import { showHeadPullRequest, showHeadShare } from '../../../../featureFlags';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication/AuthContext';
@@ -10,8 +16,9 @@ import { DeleteVizContext } from '../../DeleteVizContext';
 import { VizContext } from '../../VizContext';
 import { SettingsContext } from '../../SettingsContext';
 import { ShareContext } from '../../ShareContext';
+import { URLStateContext } from '../../URLStateContext';
 
-import { Wrapper, Left, Center, Right, HeadIcon } from './styles';
+import { Wrapper, Left, Center, Right, HeadIcon, HeadLink } from './styles';
 import { EditorToggler } from './EditorToggler';
 import { TrashIcon } from '../TrashIcon';
 
@@ -23,6 +30,7 @@ export const Head = ({ showRight }) => {
   const { viz$ } = useContext(VizContext);
   const showSettingsModal = useContext(SettingsContext);
   const showShareModal = useContext(ShareContext);
+  const { vizId } = useContext(URLStateContext);
   const owner = useValue(viz$, getVizOwner);
 
   const showHeadTrash = me && me.id === owner;
@@ -44,6 +52,16 @@ export const Head = ({ showRight }) => {
       {warning ? <Center>{warning}</Center> : null}
       {showRight ? (
         <Right>
+          <HeadLink
+            href={`/api/visualization/export/${vizId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Export the code for this viz"
+          >
+            <HeadIcon title="Export">
+              <ExportSVG />
+            </HeadIcon>
+          </HeadLink>
           {showHeadShare ? (
             <HeadIcon title="Share this viz" onClick={onShareClick}>
               <ShareSVG />
