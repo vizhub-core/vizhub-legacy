@@ -11,13 +11,14 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "vizhub-libraries": "^1.8.0",
     "buble-jsx-only": "^0.19.8",
     "mocha": "^8.2.1",
     "path-posix": "^1.0.0",
     "rollup-pluginutils": "^2.8.2",
     "vizhub-entities": "1",
-    "vizhub-use-cases": "1"
+    "vizhub-libraries": "^1.8.0",
+    "vizhub-use-cases": "1",
+    "xmldom": "^0.4.0"
   },
   "devDependencies": {
     "esm": "^3.2.25",
