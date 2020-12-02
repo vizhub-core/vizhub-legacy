@@ -108,5 +108,4 @@ describe('Revision History Use Cases', () => {
   //       Create a new commit for the difference
   //       Add a new edge for this commit, with the diff ops
   //       Set the current head commit to the new commit
-
 });
