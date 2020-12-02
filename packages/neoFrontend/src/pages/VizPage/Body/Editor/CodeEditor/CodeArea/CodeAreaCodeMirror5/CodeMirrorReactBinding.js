@@ -83,7 +83,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
           'Ctrl-Space': 'autocomplete',
           'Shift-Enter': () => {
             onManualRun();
-          }
+          },
         },
         gutters: ['CodeMirror-lint-markers'],
         lint: lintJs,

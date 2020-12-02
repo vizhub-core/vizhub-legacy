@@ -22,13 +22,12 @@ const bundle = (files) => getText(files, 'bundle.js');
 
 // Dynamic require in a Node environment.
 let parser;
-if(typeof module !== 'undefined' && module.exports){
-  const { DOMParser } = require('xmldom')
+if (typeof module !== 'undefined' && module.exports) {
+  const { DOMParser } = require('xmldom');
   parser = new DOMParser();
 } else {
   parser = new DOMParser();
 }
-
 
 const injectBundleScript = (htmlTemplate, files) => {
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
