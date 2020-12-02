@@ -5,8 +5,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha -r esm test/test.js",
-    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "test": "mocha -r esm test/*.js",
+    "prettier": "prettier --single-quote --write '{src,test}/**/*.js'",
     "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
   },
   "author": "Curran Kelleher",
