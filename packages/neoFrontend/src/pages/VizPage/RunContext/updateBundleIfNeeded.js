@@ -16,7 +16,8 @@ export const updateBundleIfNeeded = async (
     const viz = viz$.getValue();
     const files = getVizFiles(viz);
     const indexJSExists = getFileIndex(files, 'index.js') !== -1;
-    if (indexJSExists) {
+    const appSvelteExists = getFileIndex(files, 'App.svelte') !== -1;
+    if (indexJSExists || appSvelteExists) {
       const output = await editorModules.bundle(files);
       if (output.length !== 1) {
         throw new Error('Expected Rollup output to contain exactly one file.');
