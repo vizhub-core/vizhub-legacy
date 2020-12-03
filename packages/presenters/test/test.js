@@ -112,4 +112,16 @@ describe('Presenters', () => {
       }]);
     });
   });
+  describe('Svelte', () => {
+    it('should bundle files using Rollup', async () => {
+      const files = [
+        { name: 'index.js', text: "import App from './App.svelte'; const app = new App({ target: document.body, }); export default app;" },
+        { name: 'App.svelte', text: '<script>console.log(foo);</script>' },
+      ];
+      assert.deepEqual(removeSourceMap(await bundle(files)), [{
+        name: 'bundle.js',
+        text: "(function () {\n\t'use strict';\n\n\tconst foo = \"bar\";\n\n\tconsole.log(foo);\n\n}());\n"
+      }]);
+    });
+  });
 });

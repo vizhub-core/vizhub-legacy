@@ -1,13 +1,14 @@
 import { rollup } from './rollup.browser';
 import vizhubLibraries from 'vizhub-libraries';
 import bubleJSXOnly from './bubleJSXOnly';
+import svelte from './svelte';
 import hypothetical from './hypothetical';
 
 const external = Object.keys(vizhubLibraries);
 
 const transformFilesToObject = (files) =>
   files
-    .filter((file) => file.name.endsWith('.js'))
+    .filter((file) => file.name.endsWith('.js') || file.name.endsWith('.svelte') )
     .reduce((accumulator, file) => {
       accumulator['./' + file.name] = file.text;
       return accumulator;
@@ -24,6 +25,7 @@ export const bundle = async (files) => {
   const inputOptions = {
     input: './index.js',
     plugins: [
+      svelte(),
       hypothetical({
         files: transformFilesToObject(files),
       }),
