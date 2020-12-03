@@ -1,8 +1,9 @@
 // Derived from https://github.com/rollup/rollup-plugin-buble/blob/master/src/index.js
 import { createFilter } from 'rollup-pluginutils';
-import { compile } from 'svelte/compiler';
 
-function transform(code, id) {
+async function transform(code, id) {
+
+  let {compile } = await import('svelte/compiler');
 
   const result = compile(code, Object.assign({
       generate: 'dom',
