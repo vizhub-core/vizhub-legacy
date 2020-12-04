@@ -8,7 +8,9 @@ const external = Object.keys(vizhubLibraries);
 
 const transformFilesToObject = (files) =>
   files
-    .filter((file) => file.name.endsWith('.js') || file.name.endsWith('.svelte') )
+    .filter(
+      (file) => file.name.endsWith('.js') || file.name.endsWith('.svelte')
+    )
     .reduce((accumulator, file) => {
       accumulator['./' + file.name] = file.text;
       return accumulator;

@@ -24,6 +24,7 @@
   "devDependencies": {
     "esm": "^3.2.25",
     "mocha": "^8.2.1",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "sinon": "^9"
   }
 }
