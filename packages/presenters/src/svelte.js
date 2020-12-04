@@ -4,50 +4,55 @@ import { createFilter } from 'rollup-pluginutils';
 const SVELTE_URL = 'https://unpkg.com/svelte';
 
 async function transform(code, id) {
+  const { compile } = await import('svelte/compiler');
 
-  let {compile } = await import('svelte/compiler');
+  const result = compile(
+    code,
+    Object.assign(
+      {
+        generate: 'dom',
+        format: 'esm',
+        dev: true,
+        filename: 'code.svelte',
+      },
+      {
+        loopGuardTimeout: 100,
+      }
+    )
+  );
 
-  const result = compile(code, Object.assign({
-      generate: 'dom',
-      format: 'esm',
-      dev: true,
-      filename: 'code.svelte'
-    }, {
-      loopGuardTimeout: 100
-    }));
-
-    return result.js;
+  return result.js;
 }
 
 const fetch_cache = new Map();
 function fetch_if_uncached(url) {
-	if (fetch_cache.has(url)) {
-		return fetch_cache.get(url);
-	}
+  if (fetch_cache.has(url)) {
+    return fetch_cache.get(url);
+  }
 
-	const promise = fetch(url)
-		.then(async r => {
-			if (r.ok) {
-				return {
-					url: r.url,
-					body: await r.text()
-				};
-			}
+  const promise = fetch(url)
+    .then(async (r) => {
+      if (r.ok) {
+        return {
+          url: r.url,
+          body: await r.text(),
+        };
+      }
 
-			throw new Error(await r.text());
-		})
-		.catch(err => {
-			fetch_cache.delete(url);
-			throw err;
-		});
+      throw new Error(await r.text());
+    })
+    .catch((err) => {
+      fetch_cache.delete(url);
+      throw err;
+    });
 
-	fetch_cache.set(url, promise);
-	return promise;
+  fetch_cache.set(url, promise);
+  return promise;
 }
 
 export default function sveltePlugin(options) {
   if (!options) options = {};
-  var filter = createFilter(options.include, options.exclude);
+  const filter = createFilter(options.include, options.exclude);
 
   if (!options.transforms) options.transforms = {};
   options.transforms.modules = false;
@@ -61,17 +66,17 @@ export default function sveltePlugin(options) {
         return `${SVELTE_URL}/${importee.slice(7)}/index.mjs`;
       }
       if (importer && importer.startsWith(SVELTE_URL)) {
-				const resolved = new URL(importee, importer).href;
-				if (resolved.endsWith('.mjs')) return resolved;
-				return `${resolved}/index.mjs`;
-			}
+        const resolved = new URL(importee, importer).href;
+        if (resolved.endsWith('.mjs')) return resolved;
+        return `${resolved}/index.mjs`;
+      }
     },
     async load(resolved) {
       if (resolved.startsWith(`https://`)) {
         const res = await fetch_if_uncached(resolved);
         return res.body;
       }
-		},
+    },
     transform: function (code, id) {
       if (!filter(id)) return null;
       if (!/\.svelte$/.test(id)) return null;
@@ -88,4 +93,3 @@ export default function sveltePlugin(options) {
     },
   };
 }
-
