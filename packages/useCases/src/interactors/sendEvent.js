@@ -19,10 +19,10 @@ export class SendEvent {
       {}
     );
 
-    const newRecords = eventIDs.map((id) =>
+    const newEventRecords = eventIDs.map((id) =>
       increment(recordsByID[id] || { id }, date, maxEntries)
     );
 
-    return await this.eventRecordsGateway.setEventRecords(newRecords);
+    return await this.eventRecordsGateway.setEventRecords(newEventRecords);
   }
 }
