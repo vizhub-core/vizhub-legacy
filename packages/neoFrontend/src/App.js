@@ -23,6 +23,7 @@ import {
   ForksPage,
   TermsPage,
   Datavis2020Page,
+  VizHubStatsPage,
 } from './pages';
 import { Themed } from './theme';
 
@@ -57,6 +58,7 @@ export const App = () => (
                     <Route path="/contact" component={ContactPage} />
                     <Route path="/create-viz" component={CreateVizPage} />
                     <Route path="/search" component={SearchResultsPage} />
+                    <Route path="/stats" component={VizHubStatsPage} />
                     <Route
                       path="/creating-viz-from-scratch"
                       component={CreatingVizFromScratchPage}
