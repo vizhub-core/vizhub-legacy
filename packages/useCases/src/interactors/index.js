@@ -27,3 +27,4 @@ export { GetForksPageData } from './getForksPageData';
 export { CreateCommit } from './createCommit';
 export { CreateEdge } from './createEdge';
 export { GetVizAtCommit } from './getVizAtCommit';
+export { SendEvent } from './sendEvent';
