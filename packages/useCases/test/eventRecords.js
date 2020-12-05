@@ -3,7 +3,8 @@ import { SendEvent, GetEventRecords } from '../src/index';
 
 const records = {};
 const eventRecordsGateway = {
-  getEventRecords: async (eventIDs) => eventIDs.map((id) => records[id]),
+  getEventRecords: async (eventIDs) =>
+    eventIDs.map((id) => records[id]).filter((d) => d),
   setEventRecords: async (newRecords) => {
     newRecords.forEach((newRecord) => {
       records[newRecord.id] = newRecord;
@@ -53,6 +54,7 @@ describe('Event Records', () => {
           months: { '2020-10': 1 },
           quarters: { '2020-Q4': 1 },
           years: { 2020: 1 },
+          all: { all: 1 },
         },
         {
           id: 'event.pageview',
@@ -63,6 +65,7 @@ describe('Event Records', () => {
           months: { '2020-10': 1 },
           quarters: { '2020-Q4': 1 },
           years: { 2020: 1 },
+          all: { all: 1 },
         },
         {
           id: 'event.pageview.viz',
@@ -73,6 +76,7 @@ describe('Event Records', () => {
           months: { '2020-10': 1 },
           quarters: { '2020-Q4': 1 },
           years: { 2020: 1 },
+          all: { all: 1 },
         },
         {
           id: 'event.pageview.viz.user:75849375',
@@ -83,6 +87,7 @@ describe('Event Records', () => {
           months: { '2020-10': 1 },
           quarters: { '2020-Q4': 1 },
           years: { 2020: 1 },
+          all: { all: 1 },
         },
         {
           id: 'event.pageview.viz.user:75849375.viz:475483',
@@ -93,6 +98,7 @@ describe('Event Records', () => {
           months: { '2020-10': 1 },
           quarters: { '2020-Q4': 1 },
           years: { 2020: 1 },
+          all: { all: 1 },
         },
       ]);
     });
