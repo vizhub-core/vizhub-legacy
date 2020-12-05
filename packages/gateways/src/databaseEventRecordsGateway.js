@@ -7,7 +7,7 @@ export class DatabaseEventRecordsGateway {
     return await this.database.getEventRecords(eventIDs);
   }
 
-  async setEventRecords(newRecords) {
-    return await this.database.setEventRecords(eventIDs);
+  async setEventRecords(newEventRecords) {
+    return await this.database.setEventRecords(newEventRecords);
   }
 }

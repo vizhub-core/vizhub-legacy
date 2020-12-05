@@ -5,8 +5,8 @@ const records = {};
 const eventRecordsGateway = {
   getEventRecords: async (eventIDs) =>
     eventIDs.map((id) => records[id]).filter((d) => d),
-  setEventRecords: async (newRecords) => {
-    newRecords.forEach((newRecord) => {
+  setEventRecords: async (newEventRecords) => {
+    newEventRecords.forEach((newRecord) => {
       records[newRecord.id] = newRecord;
     });
     return 'success';

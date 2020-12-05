@@ -2,19 +2,25 @@ import { EVENT_RECORDS } from './collectionName';
 
 export const getEventRecords = (mongoDatabase) => {
   const collection = mongoDatabase.collection(EVENT_RECORDS);
-  return (eventIDs) => {
+  return async (eventIDs) => {
     const mongoQuery = { id: { $in: eventIDs } };
-    console.log('here');
-    console.log(mongoQuery);
-    return new Promise((resolve, reject) => {
-      collection.find(mongoQuery).toArray((err, docs) => {
-        if (err) return reject(err);
-        console.log('Found the following records');
-        console.log(docs);
-        resolve(docs);
-      });
-    });
+    const docs = await collection.find(mongoQuery).toArray();
+    return docs;
   };
 };
 
-export const setEventRecords = getEventRecords;
+export const setEventRecords = (mongoDatabase) => {
+  const collection = mongoDatabase.collection(EVENT_RECORDS);
+  return async (newEventRecords) => {
+    await collection.bulkWrite(
+      newEventRecords.map((newRecord) => ({
+        replaceOne: {
+          filter: { id: newRecord.id },
+          replacement: newRecord,
+          upsert: true,
+        },
+      }))
+    );
+    return 'success';
+  };
+};
