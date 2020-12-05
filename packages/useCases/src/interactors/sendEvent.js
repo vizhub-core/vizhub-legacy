@@ -1,6 +1,4 @@
-import { User } from 'vizhub-entities';
 import { increment } from 'multiscale-timeseries';
-import { GetUser } from './getUser';
 
 const maxEntries = 1000;
 
@@ -12,9 +10,7 @@ export class SendEvent {
   }
 
   async execute(requestModel) {
-    const { eventIDs } = requestModel;
-
-    const date = new Date();
+    const { eventIDs, date } = requestModel;
 
     const records = await this.eventGateway.getRecords(eventIDs);
 
