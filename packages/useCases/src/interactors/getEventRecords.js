@@ -1,12 +1,12 @@
 import { increment } from 'multiscale-timeseries';
 
 export class GetEventRecords {
-  constructor({ eventGateway }) {
-    this.eventGateway = eventGateway;
+  constructor({ eventRecordsGateway }) {
+    this.eventRecordsGateway = eventRecordsGateway;
   }
 
   async execute(requestModel) {
     const { eventIDs } = requestModel;
-    return await this.eventGateway.getRecords(eventIDs);
+    return await this.eventRecordsGateway.getEventRecords(eventIDs);
   }
 }

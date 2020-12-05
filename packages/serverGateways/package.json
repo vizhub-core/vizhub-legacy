@@ -10,7 +10,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "json0-with-presence": "1",
-    "mongodb": "^3.5.9",
+    "mongodb": "^3.6.3",
     "redis": "^3.0.2",
     "sharedb": "^1.4.0",
     "sharedb-mingo-memory": "^1.1.2",

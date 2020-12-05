@@ -2,9 +2,9 @@ import assert from 'assert';
 import { SendEvent, GetEventRecords } from '../src/index';
 
 const records = {};
-const eventGateway = {
-  getRecords: async (eventIDs) => eventIDs.map((id) => records[id]),
-  setRecords: async (newRecords) => {
+const eventRecordsGateway = {
+  getEventRecords: async (eventIDs) => eventIDs.map((id) => records[id]),
+  setEventRecords: async (newRecords) => {
     newRecords.forEach((newRecord) => {
       records[newRecord.id] = newRecord;
     });
@@ -12,8 +12,8 @@ const eventGateway = {
   },
 };
 
-const sendEvent = new SendEvent({ eventGateway });
-const getEventRecords = new GetEventRecords({ eventGateway });
+const sendEvent = new SendEvent({ eventRecordsGateway });
+const getEventRecords = new GetEventRecords({ eventRecordsGateway });
 
 describe('Event Records', () => {
   describe('Send Event', () => {
