@@ -14,8 +14,13 @@ export class SendEvent {
 
     const records = await this.eventRecordsGateway.getEventRecords(eventIDs);
 
-    const newRecords = records.map((record, i) =>
-      increment(record || { id: eventIDs[i] }, date, maxEntries)
+    const recordsByID = records.reduce(
+      (accumulator, record) => ({ ...accumulator, [record.id]: record }),
+      {}
+    );
+
+    const newRecords = eventIDs.map((id) =>
+      increment(recordsByID[id] || { id }, date, maxEntries)
     );
 
     return await this.eventRecordsGateway.setEventRecords(newRecords);
