@@ -1,12 +1,21 @@
 import { MongoClient } from 'mongodb';
 import { mongoURI, mongoDatabaseName } from './constants';
 
-console.log('Using Mongo URI: ' + mongoURI);
+// Log this for server admins to see.
+// Support local development without MongoDB.
+const mongoURIDefined = mongoURI !== undefined;
 
-export const getMongoDatabase = () =>
-  new Promise((resolve, reject) => {
-    MongoClient.connect(mongoURI, (err, client) => {
-      if (err) return reject(err);
-      resolve(client.db(mongoDatabaseName));
-    });
-  });
+if (!mongoURIDefined) {
+  console.log('VIZHUB_MONGO_URI environment variable is not set.');
+  console.log(
+    'Disabling event record analytics (totally fine for local development).'
+  );
+  console.log(
+    'If this is a production instance, be sure VIZHUB_MONGO_URI is defined.\n'
+  );
+}
+
+export const getMongoDatabase = async () =>
+  mongoURIDefined
+    ? (await MongoClient.connect(mongoURI)).db(mongoDatabaseName)
+    : null;
