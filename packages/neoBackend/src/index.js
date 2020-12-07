@@ -30,13 +30,16 @@ const server = http.createServer(expressApp);
 
 serveShareDB(server);
 
-const gateways = serverGateways();
-jwtAuth(expressApp, gateways.userGateway);
-apiController(expressApp, gateways);
+const initGateways = async () => {
+  const gateways = await serverGateways();
+  jwtAuth(expressApp, gateways.userGateway);
+  apiController(expressApp, gateways);
 
-oembedController(expressApp, gateways);
-serveFrontend(expressApp, gateways);
+  oembedController(expressApp, gateways);
+  serveFrontend(expressApp, gateways);
 
-const port = 4000;
-server.listen(port);
-console.log(`Listening at http://localhost:${port}`);
+  const port = 4000;
+  server.listen(port);
+  console.log(`Listening at http://localhost:${port}`);
+};
+initGateways();
