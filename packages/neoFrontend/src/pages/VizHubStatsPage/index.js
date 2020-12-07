@@ -8,7 +8,11 @@ export const VizHubStatsPage = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const eventIDs = ['event.pageview'];
+      const eventIDs = [
+        'event.pageview',
+        'event.pageview.home',
+        'event.pageview.viz'
+      ];
       const response = await fetch('/api/event/get', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
