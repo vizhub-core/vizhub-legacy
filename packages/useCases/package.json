@@ -15,6 +15,7 @@
     "adm-zip": "https://github.com/cthackers/adm-zip/tarball/master",
     "diff-match-patch": "^1.0.5",
     "json0-ot-diff": "^1.0.5",
+    "multiscale-timeseries": "^1.2.0",
     "ot-json0": "^1.1.0",
     "uuid": "^8.3.1",
     "vizhub-entities": "1",
@@ -23,8 +24,8 @@
   },
   "devDependencies": {
     "mocha": "^8.2.1",
-    "eslint": "^7.13.0",
+    "eslint": "^7.15.0",
     "esm": "^3.2.25",
-    "prettier": "^2.1.2"
+    "prettier": "^2.2.1"
   }
 }

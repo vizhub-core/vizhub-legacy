@@ -23,6 +23,7 @@ import { getThumbnail } from './getThumbnail';
 import { getPreview } from './getPreview';
 import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
 import { incrementForksCount, decrementForksCount } from './forksCount';
+import { getEventRecords, setEventRecords } from './eventRecords';
 
 export {
   DOCUMENT_CONTENT,
@@ -33,7 +34,9 @@ export {
 } from './collectionName';
 export { fetchShareDBDoc } from './fetchShareDBDoc';
 
-export const Database = (connection) => ({
+// connection is the ShareDB connection.
+// mongoDatabase is the MongoDB driver database.
+export const Database = (connection, mongoDatabase) => ({
   createVisualization: createVisualization(connection),
   getVisualization: getVisualization(connection),
   getVisualizationInfo: getVisualizationInfo(connection),
@@ -64,4 +67,6 @@ export const Database = (connection) => ({
    */
   getDataset: getDataset(connection),
   getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
+  getEventRecords: getEventRecords(mongoDatabase),
+  setEventRecords: setEventRecords(mongoDatabase),
 });
