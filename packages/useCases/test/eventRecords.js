@@ -13,37 +13,30 @@ const eventRecordsGateway = {
   },
 };
 
-const sendEvent = new SendEvent({ eventRecordsGateway });
+const sendEvent = new SendEvent({ eventRecordsGateway, testing: true });
 const getEventRecords = new GetEventRecords({ eventRecordsGateway });
 
-describe('Event Records', () => {
+describe.only('Event Records', () => {
   describe('Send Event', () => {
     it('Should send an event.', async () => {
       const result = await sendEvent.execute({
-        eventIDs: [
-          'event',
-          'event.pageview',
-          'event.pageview.viz',
-          'event.pageview.viz.user:75849375',
-          'event.pageview.viz.user:75849375.viz:475483',
-        ],
+        eventIDs: ['event', 'event.pageview'],
         date: new Date('2020-10-05T14:32:40.441Z'),
       });
       assert.equal(result, 'success');
+
+      // Manually invoke this during testing only.
+      // In production, this would happen periodically.
+      sendEvent.processQueue();
     });
   });
 
   describe('Get Event Records', () => {
     it('Should get an event record.', async () => {
       const result = await getEventRecords.execute({
-        eventIDs: [
-          'event',
-          'event.pageview',
-          'event.pageview.viz',
-          'event.pageview.viz.user:75849375',
-          'event.pageview.viz.user:75849375.viz:475483',
-        ],
+        eventIDs: ['event', 'event.pageview'],
       });
+
       assert.deepEqual(result, [
         {
           id: 'event',
@@ -58,39 +51,6 @@ describe('Event Records', () => {
         },
         {
           id: 'event.pageview',
-          minutes: { '2020-10-05T10:32': 1 },
-          hours: { '2020-10-05T10': 1 },
-          days: { '2020-10-05': 1 },
-          weeks: { '2020-W41': 1 },
-          months: { '2020-10': 1 },
-          quarters: { '2020-Q4': 1 },
-          years: { 2020: 1 },
-          all: { all: 1 },
-        },
-        {
-          id: 'event.pageview.viz',
-          minutes: { '2020-10-05T10:32': 1 },
-          hours: { '2020-10-05T10': 1 },
-          days: { '2020-10-05': 1 },
-          weeks: { '2020-W41': 1 },
-          months: { '2020-10': 1 },
-          quarters: { '2020-Q4': 1 },
-          years: { 2020: 1 },
-          all: { all: 1 },
-        },
-        {
-          id: 'event.pageview.viz.user:75849375',
-          minutes: { '2020-10-05T10:32': 1 },
-          hours: { '2020-10-05T10': 1 },
-          days: { '2020-10-05': 1 },
-          weeks: { '2020-W41': 1 },
-          months: { '2020-10': 1 },
-          quarters: { '2020-Q4': 1 },
-          years: { 2020: 1 },
-          all: { all: 1 },
-        },
-        {
-          id: 'event.pageview.viz.user:75849375.viz:475483',
           minutes: { '2020-10-05T10:32': 1 },
           hours: { '2020-10-05T10': 1 },
           days: { '2020-10-05': 1 },
