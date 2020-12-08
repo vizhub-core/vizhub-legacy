@@ -1,33 +1,20 @@
 // Derived from https://github.com/rollup/rollup-plugin-buble/blob/master/src/index.js
 import { createFilter } from 'rollup-pluginutils';
 
-const SVELTE_URL = 'https://unpkg.com/svelte';
+const SVELTE_URL = 'https://unpkg.com/svelte@3.31.0';
 
 async function transform(code, id) {
   const { compile } = await import('svelte/compiler');
 
-  const result = compile(
-    code,
-    Object.assign(
-      {
-        generate: 'dom',
-        format: 'esm',
-        dev: true,
-        filename: 'code.svelte',
-      },
-      {
-        loopGuardTimeout: 100,
-      }
-    )
-  );
+  const result = compile(code, { filename: 'code.svelte' });
 
   return result.js;
 }
 
-const fetch_cache = new Map();
-function fetch_if_uncached(url) {
-  if (fetch_cache.has(url)) {
-    return fetch_cache.get(url);
+const fetchCache = new Map();
+function fetchIfUncached(url) {
+  if (fetchCache.has(url)) {
+    return fetchCache.get(url);
   }
 
   const promise = fetch(url)
@@ -42,11 +29,11 @@ function fetch_if_uncached(url) {
       throw new Error(await r.text());
     })
     .catch((err) => {
-      fetch_cache.delete(url);
+      fetchCache.delete(url);
       throw err;
     });
 
-  fetch_cache.set(url, promise);
+  fetchCache.set(url, promise);
   return promise;
 }
 
@@ -72,8 +59,8 @@ export default function sveltePlugin(options) {
       }
     },
     async load(resolved) {
-      if (resolved.startsWith(`https://`)) {
-        const res = await fetch_if_uncached(resolved);
+      if (resolved.startsWith(SVELTE_URL)) {
+        const res = await fetchIfUncached(resolved);
         return res.body;
       }
     },
