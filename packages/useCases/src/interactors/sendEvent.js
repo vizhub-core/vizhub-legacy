@@ -19,8 +19,11 @@ export class SendEvent {
       {}
     );
 
+    // Fall back to current date if no date was passed in.
+    const dateToUse = date || new Date();
+
     const newEventRecords = eventIDs.map((id) =>
-      increment(recordsByID[id] || { id }, date, maxEntries)
+      increment(recordsByID[id] || { id }, dateToUse, maxEntries)
     );
 
     return await this.eventRecordsGateway.setEventRecords(newEventRecords);
