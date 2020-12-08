@@ -14,7 +14,11 @@ const removeSourceMap = files => {
   return files;
 };
 
-global.fetch = sinon.fake.resolves({ ok: true, url: '', text: () => Promise.resolve("const globals={};const noop={};const dispatch_dev={};const validate_slots={};const SvelteComponentDev={};const init={};const safe_not_equal={}; export { globals, noop, dispatch_dev, validate_slots, SvelteComponentDev, init, safe_not_equal }") })
+global.fetch = sinon.fake.resolves(
+  { ok: true, url: '',
+    text: () => Promise.resolve(
+      "const globals={};const noop={};const dispatch_dev={};const validate_slots={};const SvelteComponentDev={};const init={};const safe_not_equal={}; export { globals, noop, dispatch_dev, validate_slots, SvelteComponentDev, init, safe_not_equal }")
+  })
 
 describe('Presenters', () => {
   describe('VisualizationViewModel', () => {
