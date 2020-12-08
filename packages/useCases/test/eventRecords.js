@@ -16,12 +16,12 @@ const eventRecordsGateway = {
 const sendEvent = new SendEvent({ eventRecordsGateway, testing: true });
 const getEventRecords = new GetEventRecords({ eventRecordsGateway });
 
-describe.only('Event Records', () => {
+describe('Event Records', () => {
   describe('Send Event', () => {
     it('Should send an event.', async () => {
       const result = await sendEvent.execute({
         eventIDs: ['event', 'event.pageview'],
-        date: new Date('2020-10-05T14:32:40.441Z'),
+        date: new Date(Date.UTC(2020, 10, 5)),
       });
       assert.equal(result, 'success');
 
@@ -40,22 +40,22 @@ describe.only('Event Records', () => {
       assert.deepEqual(result, [
         {
           id: 'event',
-          minutes: { '2020-10-05T10:32': 1 },
-          hours: { '2020-10-05T10': 1 },
-          days: { '2020-10-05': 1 },
-          weeks: { '2020-W41': 1 },
-          months: { '2020-10': 1 },
+          minutes: { '2020-11-04T19:00': 1 },
+          hours: { '2020-11-04T19': 1 },
+          days: { '2020-11-04': 1 },
+          weeks: { '2020-W45': 1 },
+          months: { '2020-11': 1 },
           quarters: { '2020-Q4': 1 },
           years: { 2020: 1 },
           all: { all: 1 },
         },
         {
           id: 'event.pageview',
-          minutes: { '2020-10-05T10:32': 1 },
-          hours: { '2020-10-05T10': 1 },
-          days: { '2020-10-05': 1 },
-          weeks: { '2020-W41': 1 },
-          months: { '2020-10': 1 },
+          minutes: { '2020-11-04T19:00': 1 },
+          hours: { '2020-11-04T19': 1 },
+          days: { '2020-11-04': 1 },
+          weeks: { '2020-W45': 1 },
+          months: { '2020-11': 1 },
           quarters: { '2020-Q4': 1 },
           years: { 2020: 1 },
           all: { all: 1 },

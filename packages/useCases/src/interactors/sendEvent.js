@@ -31,6 +31,7 @@ const initQueueProcessor = (eventRecordsGateway, testing) => {
       }, {})
     );
 
+    // This is intentional, to test that the system is working in production
     console.log('Incrementing event records:', allEventIDs);
 
     // TODO acquire distributed lock to handle multiple app servers.
@@ -67,11 +68,9 @@ const initQueueProcessor = (eventRecordsGateway, testing) => {
   };
 
   if (testing) {
-
     // If in a unit test environment, expose this function to tests.
     return processQueue;
   } else {
-
     // If in a production environment, execute this function each minute.
     setInterval(processQueue, everyMinute);
   }
