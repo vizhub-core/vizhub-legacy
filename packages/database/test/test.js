@@ -25,18 +25,6 @@ describe('Database', () => {
     createdVisualizationId = id;
   });
 
-  it('should create a dataset', async () => {
-    const { slug } = await database.createDataset(dataset);
-    assert.equal(slug, dataset.info.slug);
-  });
-
-  it('should get a dataset', async () => {
-    const fetched = await database.getDataset({
-      slug: dataset.info.slug
-    });
-    assert.deepEqual(fetched, { dataset });
-  });
-
   it('should create a user', async () => {
     const userOut = await database.createUser(user);
     assert.deepEqual(userOut, user);
