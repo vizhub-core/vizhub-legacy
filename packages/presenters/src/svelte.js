@@ -6,7 +6,7 @@ const SVELTE_URL = 'https://unpkg.com/svelte@3.31.0';
 async function transform(code, id) {
   const { compile } = await import('svelte/compiler');
 
-  const result = compile(code, { filename: 'code.svelte' });
+  const result = compile( code, { format: 'esm', dev: true, filename: 'code.svelte' });
 
   return result.js;
 }
