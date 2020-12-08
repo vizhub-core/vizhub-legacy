@@ -40,9 +40,9 @@ describe('Event Records', () => {
       assert.deepEqual(result, [
         {
           id: 'event',
-          minutes: { '2020-11-04T19:00': 1 },
-          hours: { '2020-11-04T19': 1 },
-          days: { '2020-11-04': 1 },
+          minutes: { '2020-11-05T00:00': 1 },
+          hours: { '2020-11-05T00': 1 },
+          days: { '2020-11-05': 1 },
           weeks: { '2020-W45': 1 },
           months: { '2020-11': 1 },
           quarters: { '2020-Q4': 1 },
@@ -51,9 +51,9 @@ describe('Event Records', () => {
         },
         {
           id: 'event.pageview',
-          minutes: { '2020-11-04T19:00': 1 },
-          hours: { '2020-11-04T19': 1 },
-          days: { '2020-11-04': 1 },
+          minutes: { '2020-11-05T00:00': 1 },
+          hours: { '2020-11-05T00': 1 },
+          days: { '2020-11-05': 1 },
           weeks: { '2020-W45': 1 },
           months: { '2020-11': 1 },
           quarters: { '2020-Q4': 1 },
