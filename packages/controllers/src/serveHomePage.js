@@ -14,7 +14,7 @@ export const serveHomePage = (gateways, indexHTML) => {
   const servePageMiddleware = servePage(indexHTML, meta);
   return async (req, res) => {
     sendEvent.execute({
-      eventIDs: ['event', 'event.pageview', 'event.pageview.home']
+      eventIDs: ['event', 'event.pageview', 'event.pageview.home'],
     });
     return servePageMiddleware(req, res);
   };

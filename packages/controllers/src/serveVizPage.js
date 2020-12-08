@@ -37,8 +37,8 @@ export const serveVizPage = (gateways, indexHTML) => {
           'event.pageview',
           'event.pageview.viz',
           `event.pageview.viz.author:${ownerUser.id}`,
-          `event.pageview.viz.viz:${id}`
-        ]
+          `event.pageview.viz.viz:${id}`,
+        ],
       });
 
       return servePageMiddleware(req, res);

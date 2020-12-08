@@ -11,7 +11,7 @@ export const VizHubStatsPage = () => {
       const eventIDs = [
         'event.pageview',
         'event.pageview.home',
-        'event.pageview.viz'
+        'event.pageview.viz',
       ];
       const response = await fetch('/api/event/get', {
         method: 'POST',
