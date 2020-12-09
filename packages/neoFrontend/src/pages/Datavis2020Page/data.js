@@ -14,19 +14,19 @@ export const data = [
   {
     blogPostURL:
       'https://datavis.tech/datavis-2020-ep1-what-is-data-visualization/',
-      youTubeURL: 'www.youtube.com/watch?v=Di5fjz9n0o8',
+    youTubeURL: 'www.youtube.com/watch?v=Di5fjz9n0o8',
     title: 'Episode 1 – What is Data Visualization',
   },
   {
     youTubeURL:
-    'https://www.youtube.com/watch?v=30lR5BlcO48&amp;list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV',
+      'https://www.youtube.com/watch?v=30lR5BlcO48&amp;list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV',
     blogPostURL: 'https://datavis.tech/datavis-2020-week-1/',
     title: 'Blog: Datavis 2020 Week 1',
   },
   // {
   //   vizURL: 'https://vizhub.com/curran/e3c6dd337cb2496a834920047972b6c2',
   //   title: 'Viz: Locations of Datavis 2020 Students',
-  // }, Thumbnail is not tracking on this, let's embed this in the prev. post. 
+  // }, Thumbnail is not tracking on this, let's embed this in the prev. post.
   {
     blogPostURL: 'https://datavis.tech/datavis-2020-ep2-week1-qa/',
     youTubeURL: 'https://www.youtube.com/watch?v=EpJllW-iHnU',
@@ -36,13 +36,13 @@ export const data = [
     blogPostURL:
       'https://datavis.tech/datavis-2020-ep3-finding-visualizations/',
     title: 'Episode 3 – Finding Visualizations',
-    youTubeURL: 'https://www.youtube.com/watch?v=l4ly6W8SL64'
+    youTubeURL: 'https://www.youtube.com/watch?v=l4ly6W8SL64',
   },
   {
     blogPostURL: 'https://datavis.tech/visualizations-of-current-events/',
     title: 'Blog: Visualizations of Current Events',
     youTubeURL:
-    'https://www.youtube.com/watch?v=30lR5BlcO48&amp;list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV'
+      'https://www.youtube.com/watch?v=30lR5BlcO48&amp;list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV',
   },
   {
     blogPostURL:
@@ -80,9 +80,8 @@ export const data = [
   {
     blogPostURL:
       'https://datavis.tech/datavis-2020-ep8-lets-make-a-face-part-iv-react-components-es6/',
-    title:
-      'Episode 8 – Let’s Make a Face Part IV (React Components & ES6)',
-      youTubeURL: 'https://www.youtube.com/watch?v=x1WwIKmnpjA&feature=emb_title',
+    title: 'Episode 8 – Let’s Make a Face Part IV (React Components & ES6)',
+    youTubeURL: 'https://www.youtube.com/watch?v=x1WwIKmnpjA&feature=emb_title',
   },
   // {
   //   vizURL: 'https://vizhub.com/curran/4297411eba0a4287a70f5da9dab5fd87',
@@ -93,7 +92,7 @@ export const data = [
       'https://datavis.tech/datavis-2020-ep9-lets-make-a-face-part-v-multiple-files-with-es6-modules/',
     title:
       'Episode 9 – Let’s Make a Face Part V multiple files with ES6 modules',
-      youTubeURL: 'https://www.youtube.com/watch?v=0AjwWMiVfv4&feature=emb_title'
+    youTubeURL: 'https://www.youtube.com/watch?v=0AjwWMiVfv4&feature=emb_title',
   },
   // {
   //   vizURL: 'https://vizhub.com/curran/4297411eba0a4287a70f5da9dab5fd87',
@@ -104,7 +103,7 @@ export const data = [
       'https://datavis.tech/datavis-2020-ep10-lets-make-a-face-part-vi-compartmentalizing-complexity/',
     title:
       'Episode 10 – Let’s Make a Face Part VI (Compartmentalizing Complexity)',
-      youTubeURL: 'https://www.youtube.com/watch?v=skiecpXhGxQ&feature=emb_title'
+    youTubeURL: 'https://www.youtube.com/watch?v=skiecpXhGxQ&feature=emb_title',
   },
   // {
   //   vizURL: 'https://vizhub.com/curran/be34ae5bb6ef438b9047b0c717d5315c',
@@ -114,7 +113,8 @@ export const data = [
     url: 'https://youtu.be/v5F9l-Pfsp4',
     title:
       'Episode 11 – Coronavirus Dataviz Hackathon Part I (Coronavirus Dataviz)',
-      youTubeURL: 'https://www.youtube.com/watch?v=v5F9l-Pfsp4&list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV&index=12'
+    youTubeURL:
+      'https://www.youtube.com/watch?v=v5F9l-Pfsp4&list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV&index=12',
   },
   {
     youTubeURL: 'https://www.youtube.com/watch?v=8tJV3jMHyEQ',
@@ -236,59 +236,45 @@ export const data = [
     title: 'Episode 35 – Interactive Color Legend',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=151T4hSrlSo&',
+    youTubeURL: 'https://www.youtube.com/watch?v=151T4hSrlSo&',
     title: 'Episode 36 - Points on a Map',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=bOmn1-hWCp4',
+    youTubeURL: 'https://www.youtube.com/watch?v=bOmn1-hWCp4',
     title: 'Episode 37 - Using Size with Points on a Map',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=E4nCWOx_1PM',
-    title: 'Episode 38 - Analyzing Missing Migrants Part 1: Loading and Visualizing the Data',
+    youTubeURL: 'https://www.youtube.com/watch?v=E4nCWOx_1PM',
+    title:
+      'Episode 38 - Analyzing Missing Migrants Part 1: Loading and Visualizing the Data',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=0Zm9drw02fw',
+    youTubeURL: 'https://www.youtube.com/watch?v=0Zm9drw02fw',
     title: 'Episode 39 - Missing Migrants Part II - Aggregation by Month',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=BkLy0mR6VyA',
+    youTubeURL: 'https://www.youtube.com/watch?v=BkLy0mR6VyA',
     title: 'Episode 40 - Missing Migrants Part III - On a Map',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=D4pShNSZen0',
+    youTubeURL: 'https://www.youtube.com/watch?v=D4pShNSZen0',
     title: 'Episode 41 - Missing Migrants Part III - Multiple Views',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=lyUgVPAAjjQ',
+    youTubeURL: 'https://www.youtube.com/watch?v=lyUgVPAAjjQ',
     title: 'Episode 42 - Why Use Modules',
   },
   {
-    youTubeURL:
-      'https://www.youtube.com/watch?v=AtTBFu-3Rlc&',
+    youTubeURL: 'https://www.youtube.com/watch?v=AtTBFu-3Rlc&',
     title: 'Episode 43 - Multiple Views Cleanup',
   },
   {
-    youTubeURL:
-    'https://www.youtube.com/watch?v=a-Ec2HR1U2g',
-    title: 'Episode 44 - Missing Migrants Part IV - Multiple Views with Brushing',
+    youTubeURL: 'https://www.youtube.com/watch?v=a-Ec2HR1U2g',
+    title:
+      'Episode 44 - Missing Migrants Part IV - Multiple Views with Brushing',
   },
   {
-    youTubeURL:
-    'https://www.youtube.com/watch?v=Gf40jrJTsQU',
+    youTubeURL: 'https://www.youtube.com/watch?v=Gf40jrJTsQU',
     title: 'Episode 45 - React Performance Optimization',
   },
-  
-
-  
-
-  
-
 ];
