@@ -19,3 +19,17 @@ export const Entry = styled.a`
 `;
 
 export const EntryTitle = styled.div``;
+
+export const PageTitle = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 3.5rem;
+`;
+
+export const PlayListTitle = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.5rem;
+`;

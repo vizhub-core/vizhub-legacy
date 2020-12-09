@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
 import { Wrapper, Content, CopyWrapper } from '../styles';
-import { Entries, Entry, EntryTitle, BlogLink, VizLink } from './styles';
+import { Entries, Entry, EntryTitle, PageTitle, PlayListTitle, BlogLink, VizLink } from './styles';
 import { data } from './data';
 
 const id = (youTubeURL) => {
@@ -16,7 +16,8 @@ export const Datavis2020Page = () => {
     <Wrapper>
       <Content>
         <NavBar />
-        <CopyWrapper>Datavis 2020</CopyWrapper>
+        <PageTitle>Datavis 2020</PageTitle>
+        <PlayListTitle>
         <p class="has-small-font-size">
           <a
             rel="noreferrer noopener"
@@ -33,9 +34,10 @@ export const Datavis2020Page = () => {
             Slides in Google Drive
           </a>
         </p>
+        </PlayListTitle>
         <Entries>
           {data.map(({ title, blogPostURL, startingVizURL, youTubeURL }) => (
-            <Entry href={blogPostURL}>
+            <Entry href={blogPostURL ? blogPostURL : youTubeURL}>
               <EntryTitle>{title}</EntryTitle>
               {youTubeURL ? (
                 <img width="100%" src={imgSrc(id(youTubeURL))} />
