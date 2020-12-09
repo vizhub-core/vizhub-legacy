@@ -64,7 +64,6 @@ describe('Revision History Use Cases', () => {
     const expectedVizV2 = JSON.parse(JSON.stringify(testData.visualization));
     expectedVizV2.info.title = 'Bar';
 
-    console.log(expectedVizV2);
     it('should apply ops from root.', async () => {
       await createCommit.execute({ id: '0' });
       await createCommit.execute({ id: '1' });
