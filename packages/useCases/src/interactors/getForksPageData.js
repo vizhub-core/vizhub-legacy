@@ -13,7 +13,7 @@ export class GetForksPageData {
     const { owner, id, offset, includePrivate } = requestModel;
 
     if (!owner) {
-      throw new Error(i18n('errorNoOwner'));
+      throw new Error("Error: no owner");
     }
 
     const [visualizationInfo, forksData] = await Promise.all([
