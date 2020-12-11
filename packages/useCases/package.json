@@ -7,7 +7,8 @@
   "scripts": {
     "test": "mocha -r esm test/*.js",
     "prettier": "prettier --single-quote --write './**/*.js'",
-    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix",
+    "updateDeps": "ncu -u"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",

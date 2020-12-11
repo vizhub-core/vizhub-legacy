@@ -4,7 +4,8 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
-    "prettier": "prettier --single-quote --write '*.js'"
+    "prettier": "prettier --single-quote --write '*.js'",
+    "updateDeps": "ncu -u"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
