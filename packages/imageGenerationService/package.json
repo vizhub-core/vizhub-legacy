@@ -6,7 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=production node -r esm src/index.js",
     "dev": "NODE_ENV=development node -r esm src/index.js",
-    "test-no-ci": "mocha -r esm test/test.js"
+    "test-no-ci": "mocha -r esm test/test.js",
+    "updateDeps": "ncu -u"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",

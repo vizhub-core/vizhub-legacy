@@ -7,15 +7,16 @@
   "scripts": {
     "test": "mocha -r esm test/*.js",
     "prettier": "prettier --single-quote --write '{src,test}/**/*.js'",
-    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix",
+    "updateDeps": "ncu -u"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
     "mocha": "^8.2.1",
-    "eslint": "^7.13.0",
+    "eslint": "^7.15.0",
     "esm": "^3.2.25",
-    "prettier": "^2.1.2"
+    "prettier": "^2.2.1"
   }
 }
