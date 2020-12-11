@@ -84,6 +84,10 @@ export class DatabaseVisualizationGateway {
     return await this.database.getHomePageVisualizationInfos(offset);
   }
 
+  async getTemplatesVisualizationInfos(offset) {
+    return await this.database.getTemplatesVisualizationInfos(offset);
+  }
+
   async deleteVisualization({ id }) {
     return await this.database.deleteVisualization({ id });
   }
