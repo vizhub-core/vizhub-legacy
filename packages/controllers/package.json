@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
-    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix"
+    "lint": "eslint src -c ./.eslintrc.js --no-eslintrc --fix",
+    "updateDeps": "ncu -u"
   },
   "author": "Curran Kelleher",
   "license": "MIT",
@@ -15,17 +16,17 @@
     "express-async-handler": "^1.1.4",
     "json0-ot-diff": "^1.0.5",
     "jsonwebtoken": "^8.5.1",
-    "marked": "^1.2.3",
+    "marked": "^1.2.5",
     "node-fetch": "^2.6.1",
-    "sanitize-html": "^2.1.2",
-    "string-strip-html": "^6.2.0",
-    "stripe": "^8.120.0",
+    "sanitize-html": "^2.2.0",
+    "string-strip-html": "^7.0.3",
+    "stripe": "^8.127.0",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-use-cases": "1"
   },
   "devDependencies": {
-    "eslint": "^7.13.0",
-    "prettier": "^2.1.2"
+    "eslint": "^7.15.0",
+    "prettier": "^2.2.1"
   }
 }
