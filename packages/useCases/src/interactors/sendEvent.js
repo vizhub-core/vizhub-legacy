@@ -31,40 +31,42 @@ const initQueueProcessor = (eventRecordsGateway, testing) => {
       }, {})
     );
 
-    // This is intentional, to test that the system is working in production
-    console.log('Incrementing event records:', allEventIDs);
+    if (allEventIDs.length > 0) {
+      // This is intentional, to test that the system is working in production
+      console.log('Incrementing event records:', allEventIDs);
 
-    // TODO acquire distributed lock to handle multiple app servers.
-    // See https://github.com/mike-marcacci/node-redlock
-    // const lock = redlock.lock('write-event-records', 1000);
+      // TODO acquire distributed lock to handle multiple app servers.
+      // See https://github.com/mike-marcacci/node-redlock
+      // const lock = redlock.lock('write-event-records', 1000);
 
-    // Get the current version for all event records to be incremented.
-    // Note that a given record may be incremented more than once.
-    const records = await eventRecordsGateway.getEventRecords(allEventIDs);
+      // Get the current version for all event records to be incremented.
+      // Note that a given record may be incremented more than once.
+      const records = await eventRecordsGateway.getEventRecords(allEventIDs);
 
-    // Assemble a lookup table of eventID to record.
-    const recordsByID = records.reduce(
-      (accumulator, record) => ({ ...accumulator, [record.id]: record }),
-      {}
-    );
+      // Assemble a lookup table of eventID to record.
+      const recordsByID = records.reduce(
+        (accumulator, record) => ({ ...accumulator, [record.id]: record }),
+        {}
+      );
 
-    // For each queue entry, increment its records (mutating recordsByID).
-    previousQueue.forEach(({ eventIDs, date }) => {
-      eventIDs.forEach((id) => {
-        const record = recordsByID[id] || { id };
-        const newRecord = increment(record, date, maxEntries);
-        recordsByID[id] = newRecord;
+      // For each queue entry, increment its records (mutating recordsByID).
+      previousQueue.forEach(({ eventIDs, date }) => {
+        eventIDs.forEach((id) => {
+          const record = recordsByID[id] || { id };
+          const newRecord = increment(record, date, maxEntries);
+          recordsByID[id] = newRecord;
+        });
       });
-    });
 
-    // Flatten the lookup table to the incremented records.
-    const newRecords = Object.values(recordsByID);
+      // Flatten the lookup table to the incremented records.
+      const newRecords = Object.values(recordsByID);
 
-    // Persist the incremented records.
-    await eventRecordsGateway.setEventRecords(newRecords);
+      // Persist the incremented records.
+      await eventRecordsGateway.setEventRecords(newRecords);
 
-    // TODO release distributed lock
-    // await lock.unlock()
+      // TODO release distributed lock
+      // await lock.unlock()
+    }
   };
 
   if (testing) {
