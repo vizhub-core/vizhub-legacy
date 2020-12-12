@@ -8,7 +8,6 @@
     "start-neoFrontend:ci": "cd packages/neoFrontend && npm run start:ci",
     "test:e2e": "cd packages/neoCI && npm run test:e2e",
     "lerna:test:e2e": "lerna run test:e2e",
-    "lint": "eslint . --fix",
     "testAll": "npm run test && cd packages/web && npm test",
     "updateDeps": "lerna run updateDeps",
     "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete",
@@ -16,11 +15,6 @@
     "deploy:staging": "pm2 deploy staging"
   },
   "devDependencies": {
-    "eslint": "^7.15.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.21.5",
     "esm": "^3.2.25",
     "lerna": "^3.22.1",
     "mocha": "^8.2.1"
