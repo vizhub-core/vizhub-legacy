@@ -4,7 +4,7 @@ import { NavBar } from '../../NavBar';
 import { Vizzes } from '../../VizzesGrid/Vizzes';
 import { Wrapper, Content } from '../styles';
 import { FromScratchSection } from './FromScratchSection';
-import { useTemplatesData } from './useTemplatesData';
+import { useTemplates } from './useTemplates';
 import {
   AttentionGrabbingTitle,
   Centered,
@@ -12,8 +12,11 @@ import {
   LearnMoreLink,
 } from './styles';
 
+ // TODO: Curran define ids for templates here
+const TEMPLATE_IDS = [];
+
 export const CreateVizPage = () => {
-  const templatesData = useTemplatesData();
+  const templatesData = useTemplates(TEMPLATE_IDS);
 
   return (
     <>

@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 import { usePaginatedVizzes } from '../../VizzesGrid/usePaginatedVizzes';
 
-export const useTemplatesData = () => {
+export const useTemplates = (ids) => {
   const fetchData = useCallback(
     async (offset) => {
-      const url = `/api/visualization/templates?offset=${offset}`;
+      const url = `/api/visualization/get?offset=${offset}&ids=${ids}`;
       const response = await fetch(url, {
         method: 'GET',
         credentials: 'same-origin',

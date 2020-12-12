@@ -6,7 +6,7 @@ import { deleteVisualizationController } from './deleteVisualizationController';
 import { forkVisualizationController } from './forkVisualizationController';
 import { getAllVisualizationInfosController } from './getAllVisualizationInfosController';
 import { getHomePageDataController } from './getHomePageDataController';
-import { getTemplatesDataController } from './getTemplatesDataController';
+import { getVisualizationInfosController } from './getTemplatesDataController';
 import { getThumbnailController } from './getThumbnailController';
 import { getPreviewController } from './getPreviewController';
 import { getSearchResultsPageDataController } from './getSearchResultsPageData';
@@ -21,7 +21,7 @@ export const visualizationAPIController = (expressApp, gateways) => {
   forkVisualizationController(expressApp, gateways);
   getAllVisualizationInfosController(expressApp, gateways);
   getHomePageDataController(expressApp, gateways);
-  getTemplatesDataController(expressApp, gateways),
+  getVisualizationInfosController(expressApp, gateways),
   getThumbnailController(expressApp, gateways);
   getPreviewController(expressApp, gateways);
   getSearchResultsPageDataController(expressApp, gateways);
