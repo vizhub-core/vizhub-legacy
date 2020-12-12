@@ -7,9 +7,9 @@ export class GetVisualizationInfos {
     this.getOwnersInteractor = new GetVisualizationsOwners({ userGateway });
   }
 
-  async execute(args) {
+  async execute({ offset, ids }) {
     const visualizationInfos = await this.visualizationGateway.getVisualizationInfos(
-      args
+      { offset, ids }
     );
 
     const ownerUsers = await this.getOwnersInteractor.execute(
