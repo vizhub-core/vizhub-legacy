@@ -6,7 +6,7 @@ export const getVisualizationInfos = (connection) => async (args) => {
   return getPageVisualizationInfos(connection)({
     offset,
     extraQueryParams: {
-      id: { $in: ids }
+      id: { $in: ids },
     },
     includePrivate: false,
   });

@@ -12,7 +12,7 @@ import {
   LearnMoreLink,
 } from './styles';
 
- // TODO: Curran define ids for templates here
+// TODO: Curran define ids for templates here
 const TEMPLATE_IDS = [];
 
 export const CreateVizPage = () => {
