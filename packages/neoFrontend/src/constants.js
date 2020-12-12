@@ -1,4 +1,5 @@
-const isProd = process.env.NODE_ENV !== 'development';
+// TODO refactor all instances of "process.env.NODE_ENV !== 'development'" to use this.
+export const isProd = process.env.NODE_ENV !== 'development';
 
 // The minimum time that the interstitial spinner is shown to the user.
 // Allow the tests to run fast in development.
