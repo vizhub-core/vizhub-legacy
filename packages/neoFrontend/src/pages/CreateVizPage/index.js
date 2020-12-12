@@ -10,10 +10,9 @@ import {
   Centered,
   Subtitle,
   LearnMoreLink,
+  SectionTitle,
 } from './styles';
 
-// TODO: Curran define ids for templates here
-//const TEMPLATE_IDS = ['469e558ba77941aa9e1b416ea521b0aa','86a75dc8bdbe4965ba353a79d4bd44c8','be771477cb974c938cd8603dd8b59d32','c3b14112dae34ef395999cef5783324f','366c38ba5ebc4631b4bd936f3b709744'];
 const TEMPLATE_IDS = [
   '469e558ba77941aa9e1b416ea521b0aa',
   'c3b14112dae34ef395999cef5783324f',
@@ -50,6 +49,21 @@ export const CreateVizPage = () => {
             >
               <Button>Learn more</Button>
             </LearnMoreLink>
+            <SectionTitle>Starters</SectionTitle>
+            <SectionTitle>
+              D3 Examples from{' '}
+              <a href="https://curran.github.io/dataviz-course-2018/">
+                Data Visualization Course 2018
+              </a>
+            </SectionTitle>
+            <SectionTitle>
+              D3 + React Examples from{' '}
+              <a href="https://vizhub.com/datavis-2020">Datavis 2020</a>
+            </SectionTitle>
+            <SectionTitle>
+              Community Templates - any recommendations?
+            </SectionTitle>
+            <SectionTitle>Most Forked</SectionTitle>
             <Vizzes {...templatesData} />
             <FromScratchSection />
           </Centered>

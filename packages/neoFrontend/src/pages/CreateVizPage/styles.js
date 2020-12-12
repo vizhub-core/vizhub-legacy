@@ -22,3 +22,7 @@ export const Subtitle = styled.div`
 export const LearnMoreLink = styled.a`
   margin-bottom: 40px;
 `;
+
+export const SectionTitle = styled.div`
+  font-size: 24px;
+`;
