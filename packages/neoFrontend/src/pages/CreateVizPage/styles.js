@@ -23,6 +23,13 @@ export const LearnMoreLink = styled.a`
   margin-bottom: 40px;
 `;
 
+export const Section = styled.div`
+  text-align: left;
+`;
+
 export const SectionTitle = styled.div`
-  font-size: 20px;
+  font-size: 22px;
+  padding-left: 5px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 `;
