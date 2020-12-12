@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
   margin: 0 6px 12px 6px;
   color: ${(props) => props.theme.dark};
   position: relative;
+  text-align: left;
 `;
 
 // Inspired by https://vega.github.io/vega/
