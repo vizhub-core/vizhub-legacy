@@ -1,11 +1,11 @@
-import { GetTemplatesData } from 'vizhub-use-cases';
+import { GetVisualizationInfos } from 'vizhub-use-cases';
 
-export const getTemplatesDataController = (expressApp, gateways) => {
-  const getTemplatesData = new GetTemplatesData(gateways);
-  expressApp.get('/api/visualization/templates', async (req, res) => {
+export const getVisualizationInfosController = (expressApp, gateways) => {
+  const getVisualizationInfos = new GetVisualizationInfos(gateways);
+  expressApp.get('/api/visualization/get', async (req, res) => {
     try {
-      const templatesData = await getTemplatesData.execute(req.query);
-      res.json(templatesData);
+      const visualizationInfos = await getVisualizationInfos.execute(req.query);
+      res.json(visualizationInfos);
     } catch (error) {
       console.log(error);
       res.json({ error });

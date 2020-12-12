@@ -1,16 +1,14 @@
 import { GetVisualizationsOwners } from './getVisualizationsOwners';
 
-export class GetTemplatesData {
+export class GetVisualizationInfos {
   constructor({ visualizationGateway, userGateway }) {
     this.visualizationGateway = visualizationGateway;
 
     this.getOwnersInteractor = new GetVisualizationsOwners({ userGateway });
   }
 
-  async execute(offset) {
-    const visualizationInfos = await this.visualizationGateway.getTemplatesVisualizationInfos(
-      offset
-    );
+  async execute(args) {
+    const visualizationInfos = await this.visualizationGateway.getVisualizationInfos(args);
 
     const ownerUsers = await this.getOwnersInteractor.execute(
       visualizationInfos

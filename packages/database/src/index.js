@@ -14,7 +14,7 @@ import { getUserByUserName } from './getUserByUserName';
 import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
 import { getHomePageVisualizationInfos } from './getHomePageVisualizationInfos';
-import { getTemplatesVisualizationInfos } from './getTemplatesVisualizationInfos';
+import { getVisualizationInfos } from './getVisualizationInfos';
 import { searchVisualizationInfos } from './searchVisualizationInfos';
 import { getForks } from './getForks';
 import { searchUsers } from './searchUsers';
@@ -53,7 +53,7 @@ export const Database = (connection, mongoDatabase) => ({
   getVisualizationInfosByUserId: getVisualizationInfosByUserId(connection),
   getAllVisualizationInfos: getAllVisualizationInfos(connection),
   getHomePageVisualizationInfos: getHomePageVisualizationInfos(connection),
-  getTemplatesVisualizationInfos: getTemplatesVisualizationInfos(connection),
+  getVisualizationInfos: getVisualizationInfos(connection),
   searchVisualizationInfos: searchVisualizationInfos(connection),
   getForks: getForks(connection),
   searchUsers: searchUsers(connection),
