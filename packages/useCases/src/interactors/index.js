@@ -17,6 +17,7 @@ export { GetOrCreateUser } from './getOrCreateUser';
 export { GetUserProfileData } from './getUserProfileData';
 export { GetAllVisualizationInfos } from './getAllVisualizationInfos';
 export { GetHomePageData } from './getHomePageData';
+export { GetVisualizationInfos } from './getVisualizationInfos';
 export { DeleteVisualization } from './deleteVisualization';
 export { UpdateImages } from './updateImages';
 export { GetThumbnail } from './getThumbnail';
