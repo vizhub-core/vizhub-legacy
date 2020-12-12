@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 import { usePaginatedVizzes } from '../../VizzesGrid/usePaginatedVizzes';
 
-const urlBase = process.env.NODE_ENV === 'development' ? 'https://staging.vizhub.com':'';
+const urlBase =
+  process.env.NODE_ENV === 'development' ? 'https://staging.vizhub.com' : '';
 const url = `${urlBase}/api/visualization/get/info`;
 
 export const useTemplates = (ids) => {

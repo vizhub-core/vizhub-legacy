@@ -24,5 +24,5 @@ export const LearnMoreLink = styled.a`
 `;
 
 export const SectionTitle = styled.div`
-  font-size: 24px;
+  font-size: 20px;
 `;
