@@ -3,13 +3,14 @@ import { usePaginatedVizzes } from '../../VizzesGrid/usePaginatedVizzes';
 
 export const useTemplates = (ids) => {
   const fetchData = useCallback(async (offset) => {
-    const url = `/api/visualization/get?offset=${offset}&ids=${ids}`;
+    const url = `/api/visualization/get/info`;
     const response = await fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ offset, ids }),
     });
     return await response.json();
-  }, []);
+  }, [ids]);
 
   return usePaginatedVizzes(fetchData);
 };
