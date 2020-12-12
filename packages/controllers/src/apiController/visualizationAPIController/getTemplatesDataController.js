@@ -2,9 +2,13 @@ import { GetVisualizationInfos } from 'vizhub-use-cases';
 
 export const getVisualizationInfosController = (expressApp, gateways) => {
   const getVisualizationInfos = new GetVisualizationInfos(gateways);
-  expressApp.get('/api/visualization/get', async (req, res) => {
+  expressApp.post('/api/visualization/get/info', async (req, res) => {
     try {
-      const visualizationInfos = await getVisualizationInfos.execute(req.query);
+      const { offset, ids } = req.body;
+      const visualizationInfos = await getVisualizationInfos.execute({
+        offset,
+        ids,
+      });
       res.json(visualizationInfos);
     } catch (error) {
       console.log(error);
