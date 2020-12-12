@@ -22,7 +22,7 @@ export const visualizationAPIController = (expressApp, gateways) => {
   getAllVisualizationInfosController(expressApp, gateways);
   getHomePageDataController(expressApp, gateways);
   getVisualizationInfosController(expressApp, gateways),
-  getThumbnailController(expressApp, gateways);
+    getThumbnailController(expressApp, gateways);
   getPreviewController(expressApp, gateways);
   getSearchResultsPageDataController(expressApp, gateways);
   getForksController(expressApp, gateways);
