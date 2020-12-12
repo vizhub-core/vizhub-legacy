@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, CopyWrapper } from '../styles';
-import { Entries, Entry, EntryTitle, PageTitle, PlayListTitle, BlogLink, VizLink } from './styles';
+import { Wrapper, Content } from '../styles';
+import { Entries, Entry, EntryTitle, PageTitle, PlayListTitle } from './styles';
 import { data } from './data';
 
 const id = (youTubeURL) => {
@@ -40,7 +40,7 @@ export const Datavis2020Page = () => {
             <Entry href={blogPostURL ? blogPostURL : youTubeURL}>
               <EntryTitle>{title}</EntryTitle>
               {youTubeURL ? (
-                <img width="100%" src={imgSrc(id(youTubeURL))} />
+                <img width="100%" src={imgSrc(id(youTubeURL))} alt={title} />
               ) : null}
             </Entry>
           ))}
