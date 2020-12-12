@@ -16,9 +16,7 @@ export const DesktopLayout = ({
 
   return (
     <Banner isHomePage={isHomePage}>
-      <Left>
-        {Logo}
-      </Left>
+      <Left>{Logo}</Left>
       <Right
         className="test-user-navbar-section"
         data-test-is-authenticated={Boolean(me)}
