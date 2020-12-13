@@ -113,7 +113,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
       codeMirror.performLint();
     }, [codeMirror, extension]);
 
-    // Don't allow editing of bundle.js.
+    // Don't allow editing of readonly files.
     useEffect(() => {
       if (!codeMirror) return;
       codeMirror.setOption('readOnly', readonly);
