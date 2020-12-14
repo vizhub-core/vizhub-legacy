@@ -9,3 +9,9 @@ export const Wrapper = styled.input`
   border-radius: 4px;
   padding-left: 14px;
 `;
+
+export const FocusableFragment = styled.div`
+  height: 100%;
+  display: flex;
+  flex: 1;
+`;

@@ -6,22 +6,26 @@
   "private": true,
   "scripts": {
     "test": "mocha -r esm test/test.js",
-    "prettier": "prettier --single-quote --write 'src/**/*.js'"
+    "prettier": "prettier --single-quote --write 'src/**/*.js'",
+    "updateDeps": "ncu -u"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "vizhub-libraries": "^1.8.0",
     "buble-jsx-only": "^0.19.8",
     "mocha": "^8.2.1",
     "path-posix": "^1.0.0",
     "rollup-pluginutils": "^2.8.2",
+    "svelte": "3.31.0",
     "vizhub-entities": "1",
-    "vizhub-use-cases": "1"
+    "vizhub-libraries": "^1.8.0",
+    "vizhub-use-cases": "1",
+    "xmldom": "^0.4.0"
   },
   "devDependencies": {
     "esm": "^3.2.25",
     "mocha": "^8.2.1",
-    "prettier": "^2.1.2"
+    "prettier": "^2.2.1",
+    "sinon": "^9"
   }
 }

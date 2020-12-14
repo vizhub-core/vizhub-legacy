@@ -31,13 +31,6 @@ export const NeoNavBar = withTheme(
             <LogoSVG height={navbarHeight} fill={navbarLogoColor} />
           </LogoLink>
         }
-        DashboardLink={
-          me && me !== 'AUTH_PENDING' ? (
-            <NavLink exact to={`/${me.userName}`}>
-              Profile
-            </NavLink>
-          ) : null
-        }
         Search={showSearch && <Search mobile={isMobile} {...searchProps} />}
         AboutLink={
           showAboutLink && (
@@ -49,6 +42,15 @@ export const NeoNavBar = withTheme(
               About
             </NavHREF>
           )
+        }
+        ForumLink={
+          <NavHREF
+            href="https://vizhub.com/forum/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Forum
+          </NavHREF>
         }
         PricingLink={
           showPricing ? (

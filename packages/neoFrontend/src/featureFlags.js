@@ -6,6 +6,7 @@ export const showCollaboratorsManagement = true;
 
 export const showPricing = true;
 export const showEmbed = process.env.REACT_APP_VIZHUB_EMBED === 'true';
+export const showSnippet = process.env.REACT_APP_VIZHUB_SNIPPET === 'true';
 export const showNeoNavBar = true;
 
 export const showDownvote = false;
@@ -28,6 +29,8 @@ export const showGoogleLogin = false;
 
 export const showUserActionsMenuCreateViz = true;
 export const showUserActionsProfile = true;
+
+export const packageJSON = process.env.REACT_APP_VIZHUB_PACKAGE_JSON === 'true';
 
 // List of usernames who have access to
 // private viz feature.

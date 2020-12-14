@@ -1,0 +1,21 @@
+/* This is the custom CSS added to the VizHub Forum. */
+
+.nav-pills, .nav-pills>li>a, .alert, .admin-controls, button, .post-notice, nav, .buttons {
+  border-radius: 4px;
+}
+
+:root {
+  --font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  --heading-font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+}
+
+aside.onebox {
+  border-radius: 6px;
+  border: none;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 4px 0px
+}
+
+aside.onebox img {
+  border-radius: 4px;
+}

@@ -1,4 +1,4 @@
-import { GetVisualization } from 'vizhub-use-cases';
+import { GetVisualization, SendEvent } from 'vizhub-use-cases';
 import { servePage } from './servePage';
 import { userIdFromReq } from './userIdFromReq';
 
@@ -7,6 +7,7 @@ export const visualizationRoute = ({ userName, id }) => `/${userName}/${id}`;
 
 export const serveVizPage = (gateways, indexHTML) => {
   const getVisualization = new GetVisualization(gateways);
+  const sendEvent = new SendEvent(gateways);
 
   return async (req, res) => {
     try {
@@ -18,8 +19,9 @@ export const serveVizPage = (gateways, indexHTML) => {
         visualization: {
           info: { title, description },
         },
-        ownerUser: { userName },
+        ownerUser,
       } = responseModel;
+      const { userName } = ownerUser;
 
       const meta = {
         title,
@@ -28,6 +30,16 @@ export const serveVizPage = (gateways, indexHTML) => {
         url: visualizationRoute({ userName, id }),
       };
       const servePageMiddleware = servePage(indexHTML, meta);
+
+      sendEvent.execute({
+        eventIDs: [
+          'event',
+          'event.pageview',
+          'event.pageview.viz',
+          `event.pageview.viz.author:${ownerUser.id}`,
+          `event.pageview.viz.viz:${id}`,
+        ],
+      });
 
       return servePageMiddleware(req, res);
     } catch (error) {

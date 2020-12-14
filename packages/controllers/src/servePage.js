@@ -6,7 +6,10 @@ const unfurlPlaceholder = '<meta name="unfurl-all-that:shit" value="please"/>';
 const absolute = (relative) => 'https://vizhub.com' + relative;
 
 const generateUnfurlHTML = ({ title, descriptionPlainText, image, url }) =>
-  `<meta name="description" content="${descriptionPlainText}"/>
+  `<link rel="alternate" type="application/json+oembed" href="${absolute(
+    '/oembed'
+  )}?url=${url}" title="${title}"/>
+<meta name="description" content="${descriptionPlainText}"/>
 <meta name="twitter:url" content="${url}"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@datavis_tech"/>

@@ -1,3 +1,4 @@
+import { SendEvent } from 'vizhub-use-cases';
 import { servePage } from './servePage';
 
 const meta = {
@@ -8,10 +9,13 @@ const meta = {
   url: '/',
 };
 
-export const serveHomePage = (indexHTML) => {
+export const serveHomePage = (gateways, indexHTML) => {
+  const sendEvent = new SendEvent(gateways);
+  const servePageMiddleware = servePage(indexHTML, meta);
   return async (req, res) => {
-    const servePageMiddleware = servePage(indexHTML, meta);
-
+    sendEvent.execute({
+      eventIDs: ['event', 'event.pageview', 'event.pageview.home'],
+    });
     return servePageMiddleware(req, res);
   };
 };

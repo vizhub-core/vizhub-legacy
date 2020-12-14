@@ -11,8 +11,10 @@ export const ExitableWrapper = ({
 
   useEffect(() => {
     const hanldeGlobalClick = (event) => {
+      // shortcut if the wrapper is not ready or if the event.target is not in the dom
       if (!wrapperRef.current || !event.target.isConnected) return;
 
+      // do exit if the click target outside of the wrapper
       if (!wrapperRef.current.contains(event.target)) {
         onExit();
       }
@@ -38,7 +40,6 @@ export const ExitableWrapper = ({
   return (
     <div
       className={className}
-      tabIndex="-1"
       ref={wrapperRef}
       onKeyDown={handleKeyDown}
       {...rest}

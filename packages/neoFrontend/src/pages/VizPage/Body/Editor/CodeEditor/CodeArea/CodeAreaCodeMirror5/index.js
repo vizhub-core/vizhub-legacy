@@ -1,8 +1,14 @@
-import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
+import React, {
+  useContext,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import ReactDOM from 'react-dom';
 import ColorHash from 'color-hash';
-import { getVizFile, getExtension, fileChangeOp } from 'vizhub-presenters';
-import { lintJs } from '../../../../../../../featureFlags';
+import { getVizFile, fileChangeOp } from 'vizhub-presenters';
 import { LoadingScreen } from '../../../../../../../LoadingScreen';
 import { VizContext } from '../../../../../VizContext';
 import { VimModeContext } from '../../../../../VimModeContext';
@@ -14,35 +20,20 @@ import { EditorModulesContext } from '../../../../../EditorModulesContext';
 import { light } from '../../../themes/vizHub';
 import { useFileIndex } from '../../useFileIndex';
 import { usePath } from '../../usePath';
-import { Wrapper } from './styles';
-import { CodeMirrorGlobalStyle } from './CodeMirrorGlobalStyle';
 import { PresenceWidget } from './PresenceWidget';
-import { linkOverlay } from './overlays';
+import { CodeMirrorReactBinding } from './CodeMirrorReactBinding';
 
 const colorHash = new ColorHash();
-
-const modes = {
-  '.html': 'htmlmixed',
-  '.css': 'css',
-  '.js': 'jsx',
-  '.md': 'markdown',
-};
-const getMode = (extension) => modes[extension];
-
-// Disable wrapping for JS code.
-// Enable wrapping for everything else.
-const getLineWrapping = (extension) => extension !== '.js';
 
 const fileIndexOfPath = (path) => path[1];
 
 export const CodeAreaCodeMirror5 = ({
   activeFile,
-  activeLine,
+  selectedLines,
   onGutterClick,
   onLinkClick,
 }) => {
-  const ref = useRef();
-  const [codeMirror, setCodeMirror] = useState();
+  const [codeMirror, setCodeMirror] = useState(null);
 
   const {
     viz$,
@@ -73,19 +64,6 @@ export const CodeAreaCodeMirror5 = ({
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
 
-  // Alt+V to toggle Vim mode.
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.altKey && e.code === 'KeyV') {
-        toggleVimMode();
-      }
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-    };
-  }, [toggleVimMode]);
-
   const manualRunRef = useRef(() => {});
   useEffect(() => {
     manualRunRef.current = () => {
@@ -111,15 +89,7 @@ export const CodeAreaCodeMirror5 = ({
   // This is a no-op if the modules are already loaded.
   loadEditorModules();
 
-  // Compute extension of active file (e.g. '.js', '.md').
-  const extension = useMemo(() => getExtension(activeFile), [activeFile]);
-
-  // Initialize codeMirror instance.
-  useEffect(() => {
-    if (!editorModules) return;
-
-    if (codeMirror) return;
-
+  const fileText = useMemo(() => {
     const file = getVizFile(fileIndex)(viz$.getValue());
 
     // If the file does not exist at this point, it means that
@@ -127,39 +97,11 @@ export const CodeAreaCodeMirror5 = ({
     // either because it's been renamed or deleted.
     // In this case, we bail out to avoid a crash.
     if (!file) {
-      return;
+      return null;
     }
 
-    const { CodeMirror } = editorModules;
-    const cm = new CodeMirror(ref.current, {
-      mode: getMode(extension),
-      value: file.text,
-      lineNumbers: true,
-      tabSize: 2,
-      matchBrackets: true,
-      closeOnBlur: false,
-      extraKeys: {
-        'Ctrl-Space': 'autocomplete',
-        'Shift-Enter': () => {
-          manualRunRef.current();
-        },
-      },
-      gutters: ['CodeMirror-lint-markers'],
-      lint: lintJs,
-    });
-
-    cm.addOverlay(linkOverlay);
-
-    setCodeMirror(cm);
-  }, [
-    ref,
-    editorModules,
-    fileIndex,
-    realtimeModules,
-    viz$,
-    codeMirror,
-    extension,
-  ]);
+    return file.text;
+  }, [viz$, fileIndex]);
 
   useEffect(() => {
     if (!codeMirror) return;
@@ -173,132 +115,25 @@ export const CodeAreaCodeMirror5 = ({
     };
   }, [codeMirror, subscribeOnPrettierSuccess, unsubscribeFromPrettier]);
 
-  // Update language mode and wrapping when extension changes.
-  useEffect(() => {
-    if (!codeMirror) return;
-    codeMirror.setOption('mode', getMode(extension));
-    codeMirror.setOption('lineWrapping', getLineWrapping(extension));
-
-    codeMirror.performLint();
-  }, [codeMirror, extension]);
-
-  // Don't allow editing of bundle.js.
-  useEffect(() => {
-    if (!codeMirror) return;
-    codeMirror.setOption('readOnly', activeFile === 'bundle.js');
-  }, [codeMirror, activeFile]);
-
-  // Update keyMap.
-  useEffect(() => {
-    if (!codeMirror) return;
-    codeMirror.setOption('keyMap', keyMap);
-  }, [codeMirror, keyMap]);
-
-  // Ensure newly opened file has focus.
-  useEffect(() => {
-    if (!codeMirror) return;
-    codeMirror.focus();
-  }, [codeMirror, activeFile]);
-
-  // keep track of active doc line
-  const activeDocLineNumberRef = useRef(null);
-
-  // Respond to change of active line
-  useEffect(() => {
-    if (!codeMirror) return;
-
-    const doc = codeMirror.getDoc();
-
-    // need to reset previous line (if any)
-    if (activeDocLineNumberRef.current !== null) {
-      doc.removeLineClass(
-        activeDocLineNumberRef.current,
-        'wrap',
-        'CodeMirror-activeline-background'
-      );
-    }
-
-    if (!activeLine) return;
-
-    // codemiror line count starts from 0, users count lines from 1
-    const updatedActiveDocLineNumber = activeLine - 1;
-
-    doc.addLineClass(
-      updatedActiveDocLineNumber,
-      'wrap',
-      'CodeMirror-activeline-background'
-    );
-
-    const top = codeMirror.heightAtLine(updatedActiveDocLineNumber, 'local');
-
-    codeMirror.scrollTo(null, top);
-
-    activeDocLineNumberRef.current = updatedActiveDocLineNumber;
-  }, [codeMirror, activeLine]);
-
-  // Respond to gutter click
-  useEffect(() => {
-    if (!codeMirror) return;
-
-    const handler = (_, docLineNumber) => {
-      onGutterClick(docLineNumber + 1);
-    };
-
-    codeMirror.on('gutterClick', handler);
-    return () => {
-      codeMirror.off('gutterClick', handler);
-    };
-  }, [codeMirror, onGutterClick]);
-
-  // Respond to link click
-  useEffect(() => {
-    if (!codeMirror) return;
-
-    const handler = (_, event) => {
-      if (event.ctrlKey && event.target.classList.contains('cm-link')) {
-        event.preventDefault();
-        event.stopPropagation();
-        onLinkClick(event.target.textContent);
-      }
-    };
-
-    codeMirror.on('mousedown', handler);
-    return () => {
-      codeMirror.off('mousedown', handler);
-    };
-  }, [codeMirror, onLinkClick]);
-
   // Respond to changes in text.
-  // Submit ops for local user-generated changes.
-  // Ignore other types of changes (remote op, initialization using setValue).
-  useEffect(() => {
-    if (!codeMirror) return;
+  const handleFileTextChange = useCallback(
+    (newText) => {
+      const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
+      const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
 
-    const onTextChange = (instance, changes) => {
-      // Assumption: if the first change object is user generated,
-      // then all other change objects in the same operation are as well.
-      if (changes[0].origin !== 'op') {
-        const newText = codeMirror.getValue();
-        const oldText = getVizFile(fileIndex)(viz$.getValue()).text;
-        const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
-
-        submittingOp.current = true;
-        submitVizContentOp(op);
-        submittingOp.current = false;
-      }
-    };
-
-    codeMirror.on('changes', onTextChange);
-    return () => {
-      codeMirror.off('changes', onTextChange);
-    };
-  }, [codeMirror, submitVizContentOp, path, fileIndex, realtimeModules, viz$]);
+      submittingOp.current = true;
+      submitVizContentOp(op);
+      submittingOp.current = false;
+    },
+    [submitVizContentOp, fileIndex, realtimeModules, viz$]
+  );
 
   // Initialize text and subscribe to changes.
   useEffect(() => {
     if (!realtimeModules || !codeMirror) {
       return;
     }
+
     const { json0 } = realtimeModules;
 
     const subscription = vizContentOp$.subscribe(({ op }) => {
@@ -325,55 +160,25 @@ export const CodeAreaCodeMirror5 = ({
     return () => {
       subscription.unsubscribe();
     };
-  }, [viz$, ref, vizContentOp$, realtimeModules, path, fileIndex, codeMirror]);
-
-  // Reset run timer on cursor movement.
-  //
-  // Motivation: If the user is moving about in the code editor,
-  // chances are they are going to make some edits,
-  // and they don't want the run to happen soon,
-  // so better reset the run timer on each cursor motion.
-  useEffect(() => {
-    if (!codeMirror) return;
-    codeMirror.on('cursorActivity', resetRunTimer);
-    return () => {
-      codeMirror.off('cursorActivity', resetRunTimer);
-    };
-  }, [codeMirror, resetRunTimer]);
+  }, [viz$, vizContentOp$, realtimeModules, path, fileIndex, codeMirror]);
 
   // Submit presence
-  useEffect(() => {
-    if (!codeMirror || !me) return;
-    const handleCursorActivity = () => {
-      const from = codeMirror.getCursor(true);
-      const to = codeMirror.getCursor(false);
+  const handleCursorPositionChange = useCallback(
+    (presenceObject) => {
+      if (!me) return;
 
-      const doc = codeMirror.getDoc();
-      const fromIndex = doc.indexFromPos(from);
-      const toIndex = doc.indexFromPos(to);
-
-      const presenceObject = {
-        path,
-        index: fromIndex,
-        length: toIndex - fromIndex,
-        userId: me.id,
-      };
-
-      submitVizContentPresence(presenceObject);
-    };
-    codeMirror.on('cursorActivity', handleCursorActivity);
-
-    // Remove presence on blur.
-    const handleBlur = () => {
-      submitVizContentPresence(null);
-    };
-    codeMirror.on('blur', handleBlur);
-
-    return () => {
-      codeMirror.off('cursorActivity', handleCursorActivity);
-      codeMirror.off('blur', handleBlur);
-    };
-  }, [codeMirror, submitVizContentPresence, path, me]);
+      if (presenceObject) {
+        submitVizContentPresence({
+          path,
+          userId: me.id,
+          ...presenceObject,
+        });
+      } else {
+        submitVizContentPresence(null);
+      }
+    },
+    [submitVizContentPresence, path, me]
+  );
 
   // Render remote presence(s).
   useEffect(() => {
@@ -452,10 +257,41 @@ export const CodeAreaCodeMirror5 = ({
     };
   }, [vizContentPresence$, codeMirror, fileIndex]);
 
+  const [highlightScrollStrategy, setHighlightScrollStrategy] = useState('top');
+
+  const handleGutterClick = useCallback(
+    (...args) => {
+      // Order metters, if setHighlightScrollStrategy called after setHighlightScrollStrategy
+      // in case when strategy changes from default one to none
+      // previous defult would be applied for current click.
+      // This order changes strategy for current click as well
+      setHighlightScrollStrategy('none');
+      onGutterClick(...args);
+    },
+    [onGutterClick]
+  );
+
   return (
     <>
-      <CodeMirrorGlobalStyle />
-      <Wrapper ref={ref} />
+      {fileText !== null && (
+        <CodeMirrorReactBinding
+          ref={setCodeMirror}
+          fileText={fileText}
+          fileName={activeFile}
+          selectedLines={selectedLines}
+          readonly={activeFile === 'bundle.js'}
+          keyMap={keyMap}
+          editorModules={editorModules}
+          highlightScrollStrategy={highlightScrollStrategy}
+          onGutterClick={handleGutterClick}
+          onLinkClick={onLinkClick}
+          onManualRun={manualRunRef.current}
+          onFileTextChange={handleFileTextChange}
+          onCursorActivity={resetRunTimer}
+          onCursorPositionChange={handleCursorPositionChange}
+          onToggleVimMode={toggleVimMode}
+        />
+      )}
       {!editorModules ? <LoadingScreen color={light} isChild={true} /> : null}
     </>
   );

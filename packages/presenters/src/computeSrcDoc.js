@@ -2,7 +2,7 @@ import magicSandbox from './magicSandbox';
 import { getText } from './accessors';
 
 // Feature flag.
-const packageJSON = false;
+const packageJSON = process.env.REACT_APP_VIZHUB_PACKAGE_JSON === 'true';
 
 const dependencies = (files) => {
   const packageJsonText = getText(files, 'package.json');
@@ -20,7 +20,14 @@ const dependencies = (files) => {
 const template = (files) => getText(files, 'index.html');
 const bundle = (files) => getText(files, 'bundle.js');
 
-const parser = new DOMParser();
+// Dynamic require in a Node environment.
+let parser;
+if (typeof module !== 'undefined' && module.exports) {
+  const { DOMParser } = require('xmldom');
+  parser = new DOMParser();
+} else {
+  parser = new DOMParser();
+}
 
 const injectBundleScript = (htmlTemplate, files) => {
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
