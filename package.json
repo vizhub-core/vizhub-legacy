@@ -8,19 +8,13 @@
     "start-neoFrontend:ci": "cd packages/neoFrontend && npm run start:ci",
     "test:e2e": "cd packages/neoCI && npm run test:e2e",
     "lerna:test:e2e": "lerna run test:e2e",
-    "lint": "eslint . --fix",
     "testAll": "npm run test && cd packages/web && npm test",
-    "updateDeps": "ncu -u; cd packages/entities && ncu -u && cd ../useCases && ncu -u cd ../gateways && ncu -u && cd ../presenters && ncu -u && cd ../controllers && ncu -u && cd ../database && ncu -u && echo 'All dependencies upgraded!'",
+    "updateDeps": "lerna run updateDeps",
     "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete",
     "prettier": "lerna run prettier",
     "deploy:staging": "pm2 deploy staging"
   },
   "devDependencies": {
-    "eslint": "^7.13.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.21.5",
     "esm": "^3.2.25",
     "lerna": "^3.22.1",
     "mocha": "^8.2.1"

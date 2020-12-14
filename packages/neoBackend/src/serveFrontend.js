@@ -29,5 +29,5 @@ export const serveFrontend = (app, gateways) => {
 
   app.get('/:userName/:vizId', serveVizPage(gateways, indexHTML));
 
-  app.get('*', serveHomePage(indexHTML));
+  app.get('*', serveHomePage(gateways, indexHTML));
 };

@@ -26,3 +26,5 @@ export { testData };
 export { timestamp, toDate } from './timestamp';
 
 export { VizHubAPIError } from './VizHubAPIError';
+export { Commit } from './commit';
+export { Edge } from './edge';

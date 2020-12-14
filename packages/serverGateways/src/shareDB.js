@@ -5,6 +5,7 @@ import ShareDB from 'sharedb';
 import ShareDBMingoMemory from 'sharedb-mingo-memory';
 import ShareDBMongo from 'sharedb-mongo';
 import { type as json0 } from 'json0-with-presence';
+import { mongoURI, redisHost } from './constants';
 
 // Use our custom json0 that implements presence.
 ShareDB.types.register(json0);
@@ -13,10 +14,6 @@ ShareDB.types.defaultType = json0;
 // Singletons.
 let shareDB;
 let connection;
-
-// Environment variables.
-const mongoURI = process.env.VIZHUB_MONGO_URI;
-const redisHost = process.env.VIZHUB_REDIS_HOST;
 
 export const getShareDB = () => {
   if (!shareDB) {

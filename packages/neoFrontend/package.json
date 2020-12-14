@@ -9,7 +9,8 @@
     "start:ci": "node scripts/server.js",
     "build": "react-scripts build",
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "updateDeps": "ncu -u"
   },
   "proxy": "http://localhost:4000/",
   "//proxy": "https://vizhub.com/",

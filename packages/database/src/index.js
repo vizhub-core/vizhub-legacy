@@ -14,6 +14,7 @@ import { getUserByUserName } from './getUserByUserName';
 import { getVisualizationInfosByUserId } from './getVisualizationInfosByUserId';
 import { getAllVisualizationInfos } from './getAllVisualizationInfos';
 import { getHomePageVisualizationInfos } from './getHomePageVisualizationInfos';
+import { getVisualizationInfos } from './getVisualizationInfos';
 import { searchVisualizationInfos } from './searchVisualizationInfos';
 import { getForks } from './getForks';
 import { searchUsers } from './searchUsers';
@@ -23,6 +24,7 @@ import { getThumbnail } from './getThumbnail';
 import { getPreview } from './getPreview';
 import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
 import { incrementForksCount, decrementForksCount } from './forksCount';
+import { getEventRecords, setEventRecords } from './eventRecords';
 
 export {
   DOCUMENT_CONTENT,
@@ -33,7 +35,9 @@ export {
 } from './collectionName';
 export { fetchShareDBDoc } from './fetchShareDBDoc';
 
-export const Database = (connection) => ({
+// connection is the ShareDB connection.
+// mongoDatabase is the MongoDB driver database.
+export const Database = (connection, mongoDatabase) => ({
   createVisualization: createVisualization(connection),
   getVisualization: getVisualization(connection),
   getVisualizationInfo: getVisualizationInfo(connection),
@@ -49,6 +53,7 @@ export const Database = (connection) => ({
   getVisualizationInfosByUserId: getVisualizationInfosByUserId(connection),
   getAllVisualizationInfos: getAllVisualizationInfos(connection),
   getHomePageVisualizationInfos: getHomePageVisualizationInfos(connection),
+  getVisualizationInfos: getVisualizationInfos(connection),
   searchVisualizationInfos: searchVisualizationInfos(connection),
   getForks: getForks(connection),
   searchUsers: searchUsers(connection),
@@ -64,4 +69,6 @@ export const Database = (connection) => ({
    */
   getDataset: getDataset(connection),
   getDatasetInfosByUserId: getDatasetInfosByUserId(connection),
+  getEventRecords: getEventRecords(mongoDatabase),
+  setEventRecords: setEventRecords(mongoDatabase),
 });

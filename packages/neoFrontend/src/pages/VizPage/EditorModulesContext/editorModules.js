@@ -18,6 +18,7 @@ import 'codemirror/addon/hint/show-hint';
 import 'codemirror/addon/hint/anyword-hint';
 import 'codemirror/addon/lint/lint';
 import './codemirrorAddons/lint/jsxLint';
+import './codemirrorAddons/highlightLinesDocExtentions';
 
 import { bundle } from 'vizhub-presenters';
 

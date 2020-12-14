@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { serverGateways } from 'vizhub-server-gateways';
-import { apiController, jwtAuth } from 'vizhub-controllers';
+import { apiController, jwtAuth, oembedController } from 'vizhub-controllers';
 import { serveFrontend } from './serveFrontend';
 import { serveShareDB } from './serveShareDB';
 
@@ -30,12 +30,16 @@ const server = http.createServer(expressApp);
 
 serveShareDB(server);
 
-const gateways = serverGateways();
-jwtAuth(expressApp, gateways.userGateway);
-apiController(expressApp, gateways);
+const initGateways = async () => {
+  const gateways = await serverGateways();
+  jwtAuth(expressApp, gateways.userGateway);
+  apiController(expressApp, gateways);
 
-serveFrontend(expressApp, gateways);
+  oembedController(expressApp, gateways);
+  serveFrontend(expressApp, gateways);
 
-const port = 4000;
-server.listen(port);
-console.log(`Listening at http://localhost:${port}`);
+  const port = 4000;
+  server.listen(port);
+  console.log(`Listening at http://localhost:${port}`);
+};
+initGateways();
