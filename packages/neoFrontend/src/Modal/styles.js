@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { Z_WAY_WAY_ABOVE } from '../styles';
 import { LargeIcon } from '../pages/styles';
-import { ExitableWrapper } from '../ExitableWrapper';
 
-export const Wrapper = styled(ExitableWrapper)`
+export const FullscreenOverlay = styled.div`
   position: fixed;
   top: 0;
   right: 0;
