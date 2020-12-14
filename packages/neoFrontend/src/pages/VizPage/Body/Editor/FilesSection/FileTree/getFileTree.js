@@ -1,9 +1,13 @@
 import { packageJSON } from '../../../../../../featureFlags';
 
 export const getFileTree = (files) => {
-  const pkg = packageJSON ? files.find(({name}) => name === 'package.json') : null;
+  const pkg = packageJSON
+    ? files.find(({ name }) => name === 'package.json')
+    : null;
 
-  const filesToShow = pkg ? files.filter(({name}) => name !== 'bundle.js') : files;
+  const filesToShow = pkg
+    ? files.filter(({ name }) => name !== 'bundle.js')
+    : files;
 
   const tree = { name: 'files' };
   filesToShow.forEach((file) => {
