@@ -13,9 +13,9 @@ import {
   datavis2020Templates,
 } from './curatedVizzes';
 import {
-  //AttentionGrabbingTitle,
+  AttentionGrabbingTitle,
   Centered,
-  //Subtitle,
+  Subtitle,
   //LearnMoreLink,
   Section,
   SectionTitle,
@@ -68,6 +68,13 @@ export const CreateVizPage = () => {
               //      <Button>Learn more</Button>
               //    </LearnMoreLink>
             }
+            <AttentionGrabbingTitle>Create a Viz</AttentionGrabbingTitle>
+            <Subtitle>
+              by forking one of these{' '}
+              <span role="img" aria-label="look below">
+                👇
+              </span>{' '}
+            </Subtitle>
             <CuratedVizzes ids={starters}>Starters</CuratedVizzes>
             <CuratedVizzes ids={communityTemplates}>
               Community Templates
