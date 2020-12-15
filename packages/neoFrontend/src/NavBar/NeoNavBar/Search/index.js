@@ -74,7 +74,11 @@ export const Search = ({ mobile, redirectPath = '/search' }) => {
 
   return (
     <Form onSubmit={handleFormSubmit}>
-      <ExitableWrapper onKeyDown={handleKeyDown} onExit={handleExit}>
+      <ExitableWrapper
+        tabIndex="-1"
+        onKeyDown={handleKeyDown}
+        onExit={handleExit}
+      >
         <SearchInputWrapper mobile={mobile}>
           <SearchInputIcon onClick={handleFormSubmit}>
             <SearchSVG fill="white" />
