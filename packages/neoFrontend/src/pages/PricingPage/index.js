@@ -27,14 +27,16 @@ import { handleUpgradeClick } from './stripe';
 export const PricingPage = () => {
   const { me } = useContext(AuthContext);
 
+  const viewer = (me && me.id) || 'anonymous';
+
   useEffect(() => {
     sendEvent([
       'event',
       'event.pageview',
       'event.pageview.pricing',
-      `event.pageview.pricing.viewer:${me ? me.id : 'anonymous'}`,
+      `event.pageview.pricing.viewer:${viewer}`,
     ]);
-  }, [me]);
+  }, [viewer]);
 
   return (
     <>
