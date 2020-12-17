@@ -28,7 +28,7 @@ export const Body = () => {
       'event.pageview',
       'event.pageview.viz',
       `event.pageview.viz.owner:${ownerUser.id}`,
-      `event.pageview.viz.viz:${vizId}`,
+      `event.pageview.viz.owner:${ownerUser.id}.viz:${vizId}`,
     ]);
   }, [ownerUser.id, vizId]);
 
