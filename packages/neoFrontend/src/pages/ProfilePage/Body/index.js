@@ -1,6 +1,12 @@
-import React, { useState, useContext, useMemo, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useMemo,
+  useCallback,
+} from 'react';
 import { isVizInfoPrivate } from 'vizhub-presenters';
-
+import { sendEvent } from '../../../sendEvent';
 import { AuthContext } from '../../../authentication';
 import { showProfileSidebar } from '../../../featureFlags';
 import { showSortOptions } from '../../../featureFlags';
@@ -29,6 +35,15 @@ export const Body = () => {
   const { me } = useContext(AuthContext);
 
   const [privacy, setPrivacy] = useState('public');
+
+  useEffect(() => {
+    sendEvent([
+      'event',
+      'event.pageview',
+      'event.pageview.profile',
+      `event.pageview.profile.user:${user.id}`,
+    ]);
+  }, [user]);
 
   const visualizations = useMemo(
     () =>
