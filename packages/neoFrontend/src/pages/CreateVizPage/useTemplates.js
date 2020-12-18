@@ -21,11 +21,13 @@ export const useTemplates = (ids) => {
 
   const { usersById, visualizationInfos } = usePaginatedVizzes(fetchData);
 
-  const sortedVisualizationInfos = useMemo(() => (
-    ids
-      .map(id => visualizationInfos.find(({id: vizId}) => vizId === id))
-      .filter(Boolean)
-  ), [visualizationInfos, ids])
+  const sortedVisualizationInfos = useMemo(
+    () =>
+      ids
+        .map((id) => visualizationInfos.find(({ id: vizId }) => vizId === id))
+        .filter(Boolean),
+    [visualizationInfos, ids]
+  );
 
-  return { usersById, visualizationInfos: sortedVisualizationInfos }
+  return { usersById, visualizationInfos: sortedVisualizationInfos };
 };
