@@ -1,6 +1,7 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useEffect, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { getVizInfoOwner, getUserName } from 'vizhub-presenters';
+import { sendEvent } from '../../sendEvent';
 import { LoadingScreen } from '../../LoadingScreen';
 import { Feedback } from '../../Feedback';
 import { NavBar } from '../../NavBar';
@@ -24,6 +25,18 @@ export const ForksPage = () => {
     pageData.usersById,
   ]);
 
+  useEffect(() => {
+    if (pageData && pageData.visualizationInfo) {
+      const vizId = pageData.visualizationInfo.id;
+      sendEvent([
+        'event',
+        'event.pageview',
+        'event.pageview.forks',
+        `event.pageview.forks.viz:${vizId}`,
+      ]);
+    }
+  }, [pageData]);
+
   if (pageData && pageData.error) {
     setError({
       message: 'Visualization not found.',
@@ -37,6 +50,7 @@ export const ForksPage = () => {
     const { id } = vizInfo;
     const owner = getVizInfoOwner(pageData.visualizationInfo);
     const ownerUser = getUser(owner);
+
     return (
       <>
         <NavBar />

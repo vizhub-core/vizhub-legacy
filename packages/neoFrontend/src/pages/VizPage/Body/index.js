@@ -1,5 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { sendEvent } from '../../../sendEvent';
 import { URLStateContext } from '../URLStateContext';
+import { VizPageDataContext } from '../VizPageDataContext';
 import { modes } from '../URLStateContext/modes';
 import { FullScreenModePresenter } from './FullScreenModePresenter';
 import { EmbedModePresenter } from './EmbedModePresenter';
@@ -17,7 +19,18 @@ const modePresentersMap = {
 };
 
 export const Body = () => {
-  const { mode } = useContext(URLStateContext);
+  const { mode, vizId } = useContext(URLStateContext);
+  const { ownerUser } = useContext(VizPageDataContext);
+
+  useEffect(() => {
+    sendEvent([
+      'event',
+      'event.pageview',
+      'event.pageview.viz',
+      `event.pageview.viz.owner:${ownerUser.id}`,
+      `event.pageview.viz.owner:${ownerUser.id}.viz:${vizId}`,
+    ]);
+  }, [ownerUser.id, vizId]);
 
   const VizModePresenter = modePresentersMap[mode] || EditorModePresenter;
 
