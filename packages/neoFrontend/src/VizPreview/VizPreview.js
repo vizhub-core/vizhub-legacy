@@ -20,6 +20,12 @@ import { PrivacyNotice } from '../PrivacyNotice';
 
 const noop = () => {};
 
+// Use production thumbnails during development.
+const urlBase =
+  process.env.NODE_ENV === 'development' ? 'https://staging.vizhub.com' : '';
+const thumbnailURL = (id) =>
+  `url(${urlBase}/api/visualization/thumbnail/${id}.png)`;
+
 export const VizPreview = ({
   vizInfo,
   ownerUser,
@@ -43,7 +49,7 @@ export const VizPreview = ({
         key={id}
         title={title}
         style={{
-          backgroundImage: `url(/api/visualization/thumbnail/${id}.png)`,
+          backgroundImage: thumbnailURL(id),
         }}
       />
       <VizPreviewFooter borderRadiusLarge={true}>
