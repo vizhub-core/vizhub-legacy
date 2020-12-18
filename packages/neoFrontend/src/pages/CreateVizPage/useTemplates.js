@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { usePaginatedVizzes } from '../../VizzesGrid/usePaginatedVizzes';
 
 const urlBase =
@@ -19,5 +19,13 @@ export const useTemplates = (ids) => {
     [ids]
   );
 
-  return usePaginatedVizzes(fetchData);
+  const { usersById, visualizationInfos } = usePaginatedVizzes(fetchData);
+
+  const sortedVisualizationInfos = useMemo(() => (
+    ids
+      .map(id => visualizationInfos.find(({id: vizId}) => vizId === id))
+      .filter(Boolean)
+  ), [visualizationInfos, ids])
+
+  return { usersById, visualizationInfos: sortedVisualizationInfos }
 };
