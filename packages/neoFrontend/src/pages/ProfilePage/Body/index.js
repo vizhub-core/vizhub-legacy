@@ -37,12 +37,7 @@ export const Body = () => {
   const [privacy, setPrivacy] = useState('public');
 
   useEffect(() => {
-    sendEvent([
-      'event',
-      'event.pageview',
-      'event.pageview.profile',
-      `event.pageview.profile.user:${user.id}`,
-    ]);
+    sendEvent(`event.pageview.profile.user:${user.id}`);
   }, [user]);
 
   const visualizations = useMemo(
