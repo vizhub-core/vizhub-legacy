@@ -10,15 +10,26 @@ export const Centered = styled.div`
 `;
 
 export const AttentionGrabbingTitle = styled(Title)`
-  font-weight: bold;
-  color: ${(props) => props.theme.attentionGrabber};
+  margin-top: 10px;
+  font-size: 50px;
 `;
 
 export const Subtitle = styled.div`
-  margin-top: 0;
-  margin-bottom: 30px;
+  font-size: 22px;
 `;
 
 export const LearnMoreLink = styled.a`
   margin-bottom: 40px;
+`;
+
+export const Section = styled.div`
+  text-align: left;
+  margin-bottom: 30px;
+`;
+
+export const SectionTitle = styled.div`
+  font-size: 22px;
+  padding-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 `;
