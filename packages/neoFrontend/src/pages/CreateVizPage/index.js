@@ -51,12 +51,7 @@ export const CreateVizPage = () => {
   const { me } = useContext(AuthContext);
   const viewer = (me && me.id) || 'anonymous';
   useEffect(() => {
-    sendEvent([
-      'event',
-      'event.pageview',
-      'event.pageview.create-viz',
-      `event.pageview.create-viz.viewer:${viewer}`,
-    ]);
+    sendEvent(`event.pageview.create-viz.viewer:${viewer}`);
   }, [viewer]);
 
   return (
