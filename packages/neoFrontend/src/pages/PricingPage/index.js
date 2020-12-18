@@ -1,5 +1,6 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 
+import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
 import { Feedback } from '../../Feedback';
@@ -25,6 +26,17 @@ import { handleUpgradeClick } from './stripe';
 
 export const PricingPage = () => {
   const { me } = useContext(AuthContext);
+
+  const viewer = (me && me.id) || 'anonymous';
+
+  useEffect(() => {
+    sendEvent([
+      'event',
+      'event.pageview',
+      'event.pageview.pricing',
+      `event.pageview.pricing.viewer:${viewer}`,
+    ]);
+  }, [viewer]);
 
   return (
     <>

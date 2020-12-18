@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { sendEvent } from '../../sendEvent';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
@@ -13,6 +14,10 @@ import { HtmlStylesOverride } from './styles';
 
 export const HomePage = () => {
   const [sort, handleSortChange] = useVizzesSort();
+
+  useEffect(() => {
+    sendEvent(['event', 'event.pageview', 'event.pageview.home']);
+  }, []);
 
   return (
     <>

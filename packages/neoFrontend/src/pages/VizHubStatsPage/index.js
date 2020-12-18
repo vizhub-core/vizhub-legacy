@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavBar } from '../../NavBar';
-import { Wrapper, Content, CopyWrapper } from '../styles';
+import { Wrapper, Content } from '../styles';
 import { Stats } from './styles';
 
 export const VizHubStatsPage = () => {
