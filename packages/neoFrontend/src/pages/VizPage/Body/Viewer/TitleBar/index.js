@@ -15,8 +15,10 @@ export const TitleBar = ({
 }) => {
   const instrumentedOnUpvoteClick = useCallback(() => {
     onUpvoteClick();
-    sendEvent(`interaction.viz.upvote.viz:${vizId}.from-viz-page`);
-  }, [onUpvoteClick, vizId]);
+    const action = (didVote ? 'undo-' : '') + 'upvote';
+    const source = 'viz-page';
+    sendEvent(`interaction.viz.${action}.viz:${vizId}.from-${source}`);
+  }, [onUpvoteClick, vizId, didVote]);
 
   return (
     <Wrapper>
