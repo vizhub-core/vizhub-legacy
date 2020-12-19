@@ -2,18 +2,18 @@ import { timestamp } from 'vizhub-entities';
 import { i18n } from 'vizhub-i18n';
 import { generateId } from '../utils/generateId';
 import { GetUser } from './getUser';
-
-// Feature flag.
-const incrementForksCount = true;
+import { SendEvent } from './sendEvent';
 
 export class ForkVisualization {
-  constructor({ visualizationGateway, userGateway }) {
+  constructor({ visualizationGateway, userGateway, eventRecordsGateway }) {
     this.visualizationGateway = visualizationGateway;
     this.getUser = new GetUser({ userGateway });
+    this.sendEvent = new SendEvent({ eventRecordsGateway });
   }
 
   async execute(requestModel) {
     const { visualization, owner } = requestModel;
+    const vizId = visualization.info.id;
 
     if (!owner) {
       throw new Error(i18n('errorNoOwner'));
@@ -35,7 +35,7 @@ export class ForkVisualization {
         description: visualization.info.description,
         height: visualization.info.height,
         files: visualization.content.files,
-        forkedFrom: visualization.info.id,
+        forkedFrom: vizId,
         forksCount: 0,
         createdTimestamp: nowTimestamp,
         lastUpdatedTimestamp: nowTimestamp,
@@ -44,11 +44,13 @@ export class ForkVisualization {
       this.getUser.execute({ id: owner }),
     ]);
 
-    if (incrementForksCount) {
-      await this.visualizationGateway.incrementForksCount({
-        id: visualization.id,
-      });
-    }
+    // No need to "await" this as we can return immediately.
+    this.visualizationGateway.incrementForksCount({ id: vizId });
+
+    // No need to "await" this as we can return immediately.
+    const vizOwner = visualization.info.owner;
+    const eventIDs = `event.interaction.viz.fork.owner:${vizOwner}.viz:${vizId}`;
+    this.sendEvent.execute({ eventIDs });
 
     return { id, userName };
   }
