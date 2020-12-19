@@ -13,6 +13,7 @@ export class ForkVisualization {
 
   async execute(requestModel) {
     const { visualization, owner } = requestModel;
+    const vizId = visualization.info.id;
 
     if (!owner) {
       throw new Error(i18n('errorNoOwner'));
@@ -34,7 +35,7 @@ export class ForkVisualization {
         description: visualization.info.description,
         height: visualization.info.height,
         files: visualization.content.files,
-        forkedFrom: visualization.info.id,
+        forkedFrom: vizId,
         forksCount: 0,
         createdTimestamp: nowTimestamp,
         lastUpdatedTimestamp: nowTimestamp,
@@ -44,23 +45,12 @@ export class ForkVisualization {
     ]);
 
     // No need to "await" this as we can return immediately.
-    this.visualizationGateway.incrementForksCount({
-      id: visualization.id,
-    });
+    this.visualizationGateway.incrementForksCount({ id: vizId });
 
     // No need to "await" this as we can return immediately.
     const vizOwner = visualization.info.owner;
-    const vizId = visualization.info.id;
-    this.sendEvent.execute({
-      eventIDs: [
-        'event',
-        'event.interaction',
-        'event.interaction.viz',
-        'event.interaction.viz.fork',
-        `event.interaction.viz.fork.owner:${vizOwner}`,
-        `event.interaction.viz.fork.owner:${vizOwner}.viz:${vizId}`,
-      ],
-    });
+    const eventIDs = `event.interaction.viz.fork.owner:${vizOwner}.viz:${vizId}`;
+    this.sendEvent.execute({ eventIDs });
 
     return { id, userName };
   }
