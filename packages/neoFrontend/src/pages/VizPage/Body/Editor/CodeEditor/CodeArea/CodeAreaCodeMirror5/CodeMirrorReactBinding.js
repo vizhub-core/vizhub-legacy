@@ -10,6 +10,7 @@ const modes = {
   '.html': 'htmlmixed',
   '.css': 'css',
   '.js': 'jsx',
+  '.json': 'application/json',
   '.md': 'markdown',
 };
 const getMode = (extension) => modes[extension];
