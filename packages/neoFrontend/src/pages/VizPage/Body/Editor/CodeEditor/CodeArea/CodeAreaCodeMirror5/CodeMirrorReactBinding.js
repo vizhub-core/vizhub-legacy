@@ -68,7 +68,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
     const manualRunRef = useRef(() => {});
     useEffect(() => {
       manualRunRef.current = onManualRun;
-    }, [onManualRun])
+    }, [onManualRun]);
 
     // Initialize codeMirror instance.
     useEffect(() => {
