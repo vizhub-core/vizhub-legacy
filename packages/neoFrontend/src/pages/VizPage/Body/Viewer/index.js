@@ -111,6 +111,7 @@ export const Viewer = () => {
             />
             <TitleBar
               title={vizInfo.title}
+              vizId={vizInfo.id}
               canVote={canVote}
               didVote={didVote}
               upvoteCount={upvoteCount}
