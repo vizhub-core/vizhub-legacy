@@ -90,12 +90,22 @@ export class SendEvent {
   }
 
   async execute(requestModel) {
-    const { eventIDs, date } = requestModel;
+    let { eventIDs, date } = requestModel;
 
-    // console.log('sendEvent: ' + JSON.stringify(eventIDs, null, 2));
+    if (typeof eventIDs === 'string') {
+      const values = eventIDs.split('.');
+      eventIDs = values.reduce((accumulator, value, i) => {
+        accumulator.push(`${values.slice(0, i + 1).join('.')}`);
+        return accumulator;
+      }, []);
+    }
+
+    console.log('sendEvent: ' + JSON.stringify(eventIDs, null, 2));
 
     // Fall back to current date if no date was passed in.
-    queue.push({ eventIDs, date: date || new Date() });
+    date = date || new Date();
+
+    queue.push({ eventIDs, date });
 
     return 'success';
   }
