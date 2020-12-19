@@ -100,7 +100,7 @@ export class SendEvent {
       }, []);
     }
 
-    console.log('sendEvent: ' + JSON.stringify(eventIDs, null, 2));
+    // console.log('sendEvent: ' + JSON.stringify(eventIDs, null, 2));
 
     // Fall back to current date if no date was passed in.
     date = date || new Date();
