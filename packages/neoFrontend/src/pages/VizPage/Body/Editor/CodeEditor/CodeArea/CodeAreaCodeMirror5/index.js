@@ -65,7 +65,7 @@ export const CodeAreaCodeMirror5 = ({
   const submittingOp = useRef(false);
 
   const manualRun = useCallback(() => {
-    console.log('SHIFT ENTER', isAutoRunEnabled, needsManualRun);
+    // console.log('SHIFT ENTER', isAutoRunEnabled, needsManualRun);
     if (isAutoRunEnabled) {
       setIsAutoRunEnabled(false);
       cancelRunTimer();
