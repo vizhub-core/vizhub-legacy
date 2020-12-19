@@ -49,13 +49,16 @@ export class ForkVisualization {
     });
 
     // No need to "await" this as we can return immediately.
+    const vizOwner = visualization.owner;
+    const vizId = visualization.id;
     this.sendEvent.execute({
       eventIDs: [
         'event',
         'event.interaction',
-        'event.interaction.fork',
-        `event.interaction.fork.owner:${owner}`,
-        `event.interaction.fork.owner:${owner}.viz:${visualization.id}`,
+        'event.interaction.viz',
+        'event.interaction.viz.fork',
+        `event.interaction.viz.fork.owner:${vizOwner}`,
+        `event.interaction.viz.fork.owner:${vizOwner}.viz:${vizId}`,
       ],
     });
 
