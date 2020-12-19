@@ -30,12 +30,7 @@ export const PricingPage = () => {
   const viewer = (me && me.id) || 'anonymous';
 
   useEffect(() => {
-    sendEvent([
-      'event',
-      'event.pageview',
-      'event.pageview.pricing',
-      `event.pageview.pricing.viewer:${viewer}`,
-    ]);
+    sendEvent(`event.pageview.pricing.viewer:${viewer}`);
   }, [viewer]);
 
   return (

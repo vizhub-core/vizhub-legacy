@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
 import { Wrapper, Content } from '../styles';
 import { Entries, Entry, EntryTitle, PageTitle, PlayListTitle } from './styles';
@@ -12,6 +13,10 @@ const id = (youTubeURL) => {
 const imgSrc = (id) => `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
 
 export const Datavis2020Page = () => {
+  useEffect(() => {
+    sendEvent('event.pageview.datavis-2020');
+  }, []);
+
   return (
     <Wrapper>
       <Content>

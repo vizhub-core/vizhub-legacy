@@ -23,13 +23,7 @@ export const Body = () => {
   const { ownerUser } = useContext(VizPageDataContext);
 
   useEffect(() => {
-    sendEvent([
-      'event',
-      'event.pageview',
-      'event.pageview.viz',
-      `event.pageview.viz.owner:${ownerUser.id}`,
-      `event.pageview.viz.owner:${ownerUser.id}.viz:${vizId}`,
-    ]);
+    sendEvent(`event.pageview.viz.owner:${ownerUser.id}.viz:${vizId}`);
   }, [ownerUser.id, vizId]);
 
   const VizModePresenter = modePresentersMap[mode] || EditorModePresenter;

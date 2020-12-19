@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import { AuthContext } from '../../authentication';
+import { sendEvent } from '../../sendEvent';
 import { isProd } from '../../constants';
 //import { Button } from '../../Button';
 import { NavBar } from '../../NavBar';
@@ -46,6 +48,12 @@ const CuratedVizzes = ({ children, ids }) => {
 };
 
 export const CreateVizPage = () => {
+  const { me } = useContext(AuthContext);
+  const viewer = (me && me.id) || 'anonymous';
+  useEffect(() => {
+    sendEvent(`event.pageview.create-viz.viewer:${viewer}`);
+  }, [viewer]);
+
   return (
     <>
       <NavBar />
