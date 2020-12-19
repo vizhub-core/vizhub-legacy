@@ -11,6 +11,7 @@ const modes = {
   '.css': 'css',
   '.js': 'jsx',
   '.md': 'markdown',
+  '.svelte': {name: "handlebars", base: "htmlmixed"}
 };
 const getMode = (extension) => modes[extension];
 

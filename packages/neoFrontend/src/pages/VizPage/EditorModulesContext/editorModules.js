@@ -5,6 +5,7 @@ import 'codemirror/mode/jsx/jsx';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/markdown/markdown';
+import 'codemirror/mode/handlebars/handlebars';
 import 'codemirror/keymap/vim';
 
 import 'codemirror/addon/search/searchcursor';
