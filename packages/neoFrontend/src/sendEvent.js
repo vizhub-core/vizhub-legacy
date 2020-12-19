@@ -9,3 +9,8 @@ export const sendEvent = (eventIDs) => {
     body: JSON.stringify({ eventIDs }),
   });
 };
+
+export const upvoteEvent = (vizId, didVote, source) => {
+  const action = (didVote ? 'undo-' : '') + 'upvote';
+  return `interaction.viz.${action}.viz:${vizId}.from-${source}`;
+};

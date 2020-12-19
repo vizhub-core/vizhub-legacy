@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { sendEvent } from '../../../../../sendEvent';
+import { sendEvent, upvoteEvent } from '../../../../../sendEvent';
 import { Voter } from '../../../../../Voter';
 import { Wrapper, Title } from './styles';
 
@@ -15,9 +15,7 @@ export const TitleBar = ({
 }) => {
   const instrumentedOnUpvoteClick = useCallback(() => {
     onUpvoteClick();
-    const action = (didVote ? 'undo-' : '') + 'upvote';
-    const source = 'viz-page';
-    sendEvent(`interaction.viz.${action}.viz:${vizId}.from-${source}`);
+    sendEvent(upvoteEvent(vizId, didVote, 'viz-page'));
   }, [onUpvoteClick, vizId, didVote]);
 
   return (
