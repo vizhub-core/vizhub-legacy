@@ -1,7 +1,7 @@
 {
   "scripts": {
     "lerna": "lerna bootstrap",
-    "lerna:bootstrap": "lerna bootstrap --hoist",
+    "lerna:bootstrap": "lerna bootstrap",
     "lerna:test": "lerna run test",
     "lerna:start:ci": "lerna run start:ci",
     "start-neoBackend:ci": "cd packages/neoBackend && npm run start:ci",
