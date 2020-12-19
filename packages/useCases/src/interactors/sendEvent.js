@@ -92,6 +92,8 @@ export class SendEvent {
   async execute(requestModel) {
     const { eventIDs, date } = requestModel;
 
+    // console.log('sendEvent: ' + JSON.stringify(eventIDs, null, 2));
+
     // Fall back to current date if no date was passed in.
     queue.push({ eventIDs, date: date || new Date() });
 
