@@ -1,10 +1,6 @@
 export const sendEvent = (eventIDs) => {
-  if (typeof eventIDs === 'string') {
-    const values = eventIDs.split('.');
-    eventIDs = values.reduce((accumulator, value, i) => {
-      accumulator.push(`${values.slice(0, i + 1).join('.')}`);
-      return accumulator;
-    }, []);
+  if (typeof eventIDs !== 'string') {
+    throw new Error('Expected eventIDs to be a string.');
   }
   // console.log('sendEvent: ' + JSON.stringify(eventIDs));
   fetch('/api/event/send', {
@@ -12,4 +8,9 @@ export const sendEvent = (eventIDs) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ eventIDs }),
   });
+};
+
+export const upvoteEvent = (vizId, didVote, source) => {
+  const action = (didVote ? 'undo-' : '') + 'upvote';
+  return `interaction.viz.${action}.viz:${vizId}.from-${source}`;
 };

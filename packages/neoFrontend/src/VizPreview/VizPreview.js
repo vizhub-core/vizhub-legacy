@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   getUserName,
   getUpvoteCount,
   isVizInfoPrivate,
 } from 'vizhub-presenters';
+import { sendEvent, upvoteEvent } from '../sendEvent';
 import { Author } from '../Author';
 import { Voter } from '../Voter';
 import { ForksLink } from '../ForksLink';
@@ -42,6 +43,11 @@ export const VizPreview = ({
 
   const upvoteCount = getUpvoteCount(upvotes);
 
+  const instrumentedOnUpvoteClick = useCallback(() => {
+    onUpvoteClick();
+    sendEvent(upvoteEvent(id, didVote, 'viz-preview'));
+  }, [onUpvoteClick, id, didVote]);
+
   return (
     <Wrapper className="test-viz-preview" data-test-viz-id={id}>
       <ImageLink
@@ -72,7 +78,7 @@ export const VizPreview = ({
             canVote={canVote}
             didVote={didVote}
             upvoteCount={upvoteCount}
-            onUpvoteClick={onUpvoteClick}
+            onUpvoteClick={instrumentedOnUpvoteClick}
           />
         </Bottom>
       </VizPreviewFooter>
