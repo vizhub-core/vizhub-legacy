@@ -49,8 +49,8 @@ export class ForkVisualization {
     });
 
     // No need to "await" this as we can return immediately.
-    const vizOwner = visualization.owner;
-    const vizId = visualization.id;
+    const vizOwner = visualization.info.owner;
+    const vizId = visualization.info.id;
     this.sendEvent.execute({
       eventIDs: [
         'event',
