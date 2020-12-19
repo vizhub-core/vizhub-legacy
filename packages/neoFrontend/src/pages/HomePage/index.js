@@ -16,7 +16,7 @@ export const HomePage = () => {
   const [sort, handleSortChange] = useVizzesSort();
 
   useEffect(() => {
-    sendEvent(['event', 'event.pageview', 'event.pageview.home']);
+    sendEvent('event.pageview.home');
   }, []);
 
   return (

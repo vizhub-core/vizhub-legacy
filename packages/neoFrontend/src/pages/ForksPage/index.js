@@ -28,12 +28,7 @@ export const ForksPage = () => {
   useEffect(() => {
     if (pageData && pageData.visualizationInfo) {
       const vizId = pageData.visualizationInfo.id;
-      sendEvent([
-        'event',
-        'event.pageview',
-        'event.pageview.forks',
-        `event.pageview.forks.viz:${vizId}`,
-      ]);
+      sendEvent(`event.pageview.forks.viz:${vizId}`);
     }
   }, [pageData]);
 

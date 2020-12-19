@@ -1,9 +1,13 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
 import { Wrapper, Content, Copy, CopyWrapper } from '../styles';
 
 export const ContactPage = () => {
+  useEffect(() => {
+    sendEvent('event.pageview.contact');
+  }, []);
+
   return (
     <Wrapper>
       <Content>

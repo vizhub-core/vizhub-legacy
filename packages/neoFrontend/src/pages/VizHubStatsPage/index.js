@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
 import { Wrapper, Content } from '../styles';
 import { Stats } from './styles';
 
 export const VizHubStatsPage = () => {
   const [data, setData] = useState();
+
+  useEffect(() => {
+    sendEvent('event.pageview.stats');
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
