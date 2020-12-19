@@ -65,6 +65,11 @@ export const CodeMirrorReactBinding = React.forwardRef(
       };
     }, [onToggleVimMode]);
 
+    const manualRunRef = useRef(() => {});
+    useEffect(() => {
+      manualRunRef.current = onManualRun;
+    }, [onManualRun])
+
     // Initialize codeMirror instance.
     useEffect(() => {
       if (!editorModules) return;
@@ -81,9 +86,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
         closeOnBlur: false,
         extraKeys: {
           'Ctrl-Space': 'autocomplete',
-          'Shift-Enter': () => {
-            onManualRun();
-          },
+          'Shift-Enter': manualRunRef.current,
         },
         gutters: ['CodeMirror-lint-markers'],
         lint: lintJs,
@@ -101,7 +104,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
       codeMirror,
       fileText,
       extension,
-      onManualRun,
+      manualRunRef,
     ]);
 
     // Update language mode and wrapping when extension changes.
