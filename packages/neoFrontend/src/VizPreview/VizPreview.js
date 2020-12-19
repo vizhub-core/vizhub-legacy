@@ -4,7 +4,7 @@ import {
   getUpvoteCount,
   isVizInfoPrivate,
 } from 'vizhub-presenters';
-import { sendEvent } from '../sendEvent';
+import { sendEvent, upvoteEvent } from '../sendEvent';
 import { Author } from '../Author';
 import { Voter } from '../Voter';
 import { ForksLink } from '../ForksLink';
@@ -45,10 +45,8 @@ export const VizPreview = ({
 
   const instrumentedOnUpvoteClick = useCallback(() => {
     onUpvoteClick();
-    const action = (didVote ? 'undo-' : '') + 'upvote';
-    const source = 'viz-preview';
-    sendEvent(`interaction.viz.${action}.viz:${id}.from-${source}`);
-  }, [onUpvoteClick, didVote, id]);
+    sendEvent(upvoteEvent(id, didVote, 'viz-preview'));
+  }, [onUpvoteClick, id, didVote]);
 
   return (
     <Wrapper className="test-viz-preview" data-test-viz-id={id}>
