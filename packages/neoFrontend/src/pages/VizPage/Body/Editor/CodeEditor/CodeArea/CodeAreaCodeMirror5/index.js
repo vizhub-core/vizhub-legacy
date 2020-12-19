@@ -79,7 +79,7 @@ export const CodeAreaCodeMirror5 = ({
     run,
     cancelRunTimer,
     needsManualRun,
-  ])
+  ]);
 
   // Request to load editor modules.
   // This line is only strictly required in the case that the user opens a link
