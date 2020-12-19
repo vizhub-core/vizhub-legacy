@@ -64,24 +64,22 @@ export const CodeAreaCodeMirror5 = ({
   // A flag indicating we are in the process of submitting an op.
   const submittingOp = useRef(false);
 
-  const manualRunRef = useRef(() => {});
-  useEffect(() => {
-    manualRunRef.current = () => {
-      if (isAutoRunEnabled) {
-        setIsAutoRunEnabled(false);
-        cancelRunTimer();
-        run();
-      } else if (needsManualRun) {
-        run();
-      }
-    };
+  const manualRun = useCallback(() => {
+    console.log('SHIFT ENTER', isAutoRunEnabled, needsManualRun);
+    if (isAutoRunEnabled) {
+      setIsAutoRunEnabled(false);
+      cancelRunTimer();
+      run();
+    } else if (needsManualRun) {
+      run();
+    }
   }, [
     isAutoRunEnabled,
     setIsAutoRunEnabled,
     run,
     cancelRunTimer,
     needsManualRun,
-  ]);
+  ])
 
   // Request to load editor modules.
   // This line is only strictly required in the case that the user opens a link
@@ -285,7 +283,7 @@ export const CodeAreaCodeMirror5 = ({
           highlightScrollStrategy={highlightScrollStrategy}
           onGutterClick={handleGutterClick}
           onLinkClick={onLinkClick}
-          onManualRun={manualRunRef.current}
+          onManualRun={manualRun}
           onFileTextChange={handleFileTextChange}
           onCursorActivity={resetRunTimer}
           onCursorPositionChange={handleCursorPositionChange}
