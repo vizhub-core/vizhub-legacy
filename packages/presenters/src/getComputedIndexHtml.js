@@ -1,6 +1,6 @@
 import { getText } from './accessors';
 import {
-  dependencies,
+  getDependencies,
   getConfiguredLibraries,
   dependencySource,
 } from './packageJson';
@@ -36,7 +36,7 @@ const injectBundleScript = (htmlTemplate, files) => {
 };
 
 const injectDependenciesScript = (htmlTemplate, files) => {
-  const deps = Object.entries(dependencies(files));
+  const deps = Object.entries(getDependencies(files));
 
   if (deps.length === 0) return htmlTemplate;
 
