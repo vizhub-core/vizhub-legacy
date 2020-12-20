@@ -6,7 +6,7 @@ import { extent } from 'd3-array';
 import { area, curveStep } from 'd3-shape';
 import { Wrapper, SVG } from './styles';
 
-const width = 400;
+const width = 500;
 const height = 90;
 const maxEntries = 90;
 
