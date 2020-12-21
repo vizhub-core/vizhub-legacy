@@ -1,9 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { utcFormat } from 'd3-time-format';
+import { utcDay } from 'd3-time';
 import { max } from 'd3-array';
 import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
 import { Wrapper, Content } from '../styles';
 import { Stats } from './styles';
+
+const interval = {
+  recordKey: 'days',
+  d3TimeInterval: utcDay,
+  format: utcFormat('%Y-%m-%d'),
+};
 
 export const VizHubStatsPage = () => {
   const [data, setData] = useState();
@@ -59,7 +67,10 @@ export const VizHubStatsPage = () => {
   // Use the max value across events, so that the Y scale
   // for all charts is the same.
   const maxValue = useMemo(
-    () => (data ? max(data, (record) => max(Object.values(record.days))) : 0),
+    () =>
+      data
+        ? max(data, (record) => max(Object.values(record[interval.recordKey])))
+        : 0,
     [data]
   );
 
@@ -76,6 +87,7 @@ export const VizHubStatsPage = () => {
                       key={record.id}
                       record={record}
                       maxValue={maxValue}
+                      interval={interval}
                     />
                   );
                 })
