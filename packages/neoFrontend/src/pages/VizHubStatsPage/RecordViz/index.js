@@ -4,9 +4,9 @@ import { extent } from 'd3-array';
 import { area, curveStep } from 'd3-shape';
 import { Wrapper, SVG } from './styles';
 
-const width = 500;
-const height = 90;
-const maxEntries = 10;
+const width = 900;
+const height = 100;
+const maxEntries = 90;
 
 const Chart = ({ timeseries, maxValue, format, d3TimeInterval }) => {
   const now = new Date();
