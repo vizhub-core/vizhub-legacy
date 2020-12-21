@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { utcFormat } from 'd3-time-format';
-import { utcDay } from 'd3-time';
+import { utcHour } from 'd3-time';
 import { max } from 'd3-array';
 import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
 import { Wrapper, Content } from '../styles';
 import { Stats } from './styles';
 
+//const interval = {
+//  recordKey: 'days',
+//  d3TimeInterval: utcDay,
+//  format: utcFormat('%Y-%m-%d'),
+//};
 const interval = {
-  recordKey: 'days',
-  d3TimeInterval: utcDay,
-  format: utcFormat('%Y-%m-%d'),
+  recordKey: 'hours',
+  d3TimeInterval: utcHour,
+  format: utcFormat('%Y-%m-%dT%H'),
 };
 
 export const VizHubStatsPage = () => {
@@ -79,6 +84,7 @@ export const VizHubStatsPage = () => {
       <NavBar />
       <Wrapper>
         <Content>
+          Last 90 hours:
           <Stats>
             {data && RecordViz
               ? data.map((record) => {
