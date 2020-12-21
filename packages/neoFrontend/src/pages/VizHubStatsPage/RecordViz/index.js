@@ -8,11 +8,11 @@ import { Wrapper, SVG } from './styles';
 
 const width = 500;
 const height = 90;
-const maxEntries = 90;
+const maxEntries = 10;
 
 const Chart = ({ timeseries, interval, format, maxValue }) => {
   const now = new Date();
-  const endDate = interval.floor(now);
+  const endDate = interval.ceil(now);
   const startDate = interval.offset(now, -maxEntries);
   const dates = interval.range(startDate, endDate);
   const data = dates.map((date) => ({
