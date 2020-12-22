@@ -19,7 +19,9 @@ const transformFilesToObject = (files) =>
 
 export const bundle = async (files) => {
   const configuredLibraries = getConfiguredLibraries(files);
-  const userLibrariesNames = Object.keys(configuredLibraries);
+  const userLibrariesNames = configuredLibraries
+    ? Object.keys(configuredLibraries)
+    : [];
 
   const userLibraries = userLibrariesNames.reduce((globals, packageName) => {
     // in case if user created settings but not provide global, stub global with vizhub known global name
