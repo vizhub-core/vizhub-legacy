@@ -1,4 +1,5 @@
 import { timestamp } from 'vizhub-entities';
+import { getFileIndex } from 'vizhub-presenters';
 import { i18n } from 'vizhub-i18n';
 import { generateId } from '../utils/generateId';
 import { GetUser } from './getUser';
@@ -21,6 +22,22 @@ export class ForkVisualization {
 
     const nowTimestamp = timestamp();
 
+    const indexHtmlIndex = getFileIndex(
+      visualization.content.files,
+      'index.html'
+    );
+    const indexHtml = visualization.content.files[indexHtmlIndex];
+    const updatedIndexHtml = {
+      ...indexHtml,
+      text: indexHtml.text.replace(
+        `<title>${visualization.info.title}</title>`,
+        `<title>${forkSettings.forkTitle}</title>`
+      ),
+    };
+
+    const files = [...visualization.content.files];
+    files[indexHtmlIndex] = updatedIndexHtml;
+
     const [
       { id },
       {
@@ -34,7 +51,7 @@ export class ForkVisualization {
         slug: undefined,
         description: visualization.info.description,
         height: visualization.info.height,
-        files: visualization.content.files,
+        files,
         forkedFrom: vizId,
         forksCount: 0,
         createdTimestamp: nowTimestamp,

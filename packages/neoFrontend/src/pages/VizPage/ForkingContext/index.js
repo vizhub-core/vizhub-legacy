@@ -25,12 +25,6 @@ import { withRouter } from 'react-router';
 export const ForkingContext = createContext();
 
 export const ForkingProvider = withRouter(({ fallback, children, history }) => {
-  const { viz$ } = useContext(VizContext);
-
-  const originalTitle = useValue(viz$, getVizTitle);
-
-  const [forkTitle, setForkTitle] = useState(null);
-
   const [isForkModalOpen, setIsForkModalOpen] = useState(false);
 
   const hideForkModal = useCallback(() => setIsForkModalOpen(false), [
@@ -43,6 +37,14 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
       hideForkModal,
     };
   }, [hideForkModal, setIsForkModalOpen]);
+
+  const { viz$ } = useContext(VizContext);
+
+  const originalTitle = useValue(viz$, getVizTitle);
+
+  const [userTitle, setUserTitle] = useState(null);
+
+  const forkTitle = userTitle || `Fork of ${originalTitle}`;
 
   const { isForking, onFork } = useForking(history, { forkTitle });
 
@@ -62,11 +64,7 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
             <Section>
               <SectionTitle>Viz name</SectionTitle>
               <FormRow>
-                <Input
-                  size="grow"
-                  value={forkTitle || `Fork of ${originalTitle}`}
-                  onChange={setForkTitle}
-                />
+                <Input size="grow" value={forkTitle} onChange={setUserTitle} />
               </FormRow>
             </Section>
             <DialogButtons>
