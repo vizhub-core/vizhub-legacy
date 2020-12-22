@@ -12,7 +12,7 @@ export class ForkVisualization {
   }
 
   async execute(requestModel) {
-    const { visualization, owner } = requestModel;
+    const { visualization, forkSettings, owner } = requestModel;
     const vizId = visualization.info.id;
 
     if (!owner) {
@@ -30,7 +30,7 @@ export class ForkVisualization {
       this.visualizationGateway.createVisualization({
         owner,
         id: generateId(),
-        title: visualization.info.title,
+        title: forkSettings.forkTitle || visualization.info.title,
         slug: undefined,
         description: visualization.info.description,
         height: visualization.info.height,
