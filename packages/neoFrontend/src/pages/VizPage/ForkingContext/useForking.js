@@ -20,7 +20,9 @@ export const useForking = (history, { forkTitle }) => {
     setIsForking(true);
 
     const viz = viz$.getValue();
-    const dataLoaded = fetchFork(viz, { forkTitle });
+
+    // Remove any leading and trailing white space from the given title.
+    const dataLoaded = fetchFork(viz, { forkTitle: forkTitle.trim() });
 
     if (!me) {
       return setError(new Error('You must be signed in to fork.'));
