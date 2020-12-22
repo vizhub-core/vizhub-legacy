@@ -17,8 +17,15 @@ import { updateDescriptionIfNeeded } from './updateDescriptionIfNeeded';
 import { updateLastUpdatedTimestamp } from './updateLastUpdatedTimestamp';
 import { generateRunId } from './generateRunId';
 import { onlyBundleJSChanged } from './onlyBundleJSChanged';
-import { changesJS } from './changesJS';
-import { changesMD } from './changesMD';
+import { createChangesChecker } from './createChangesChecker';
+
+const changesMD = createChangesChecker('.md');
+const changesJS = createChangesChecker('.js');
+const changesSvelte = createChangesChecker('.svelte');
+
+// Note: This is here specifically to detect changes in package.json.
+// If any other .json files change, bundle.js gets updated unnecessarily.
+const changesJSON = createChangesChecker('package.json');
 
 export const useRun = () => {
   const {
@@ -34,7 +41,12 @@ export const useRun = () => {
   const { editorModules } = useContext(EditorModulesContext);
   const realtimeModules = useContext(RealtimeModulesContext);
   const runTimerProgress$ = useMemo(() => new Subject(), []);
-  const jsChanged = useRef(false);
+
+  // If this .current is true, then something changed that is
+  // an input to the build process that generates bundle.js.
+  // Namely, if any .js or .svelte file changed, or if package.json changes.
+  const bundleInputChanged = useRef(false);
+
   const mdChanged = useRef(false);
   const localChanges = useRef(false);
   const timeoutId = useRef();
@@ -73,9 +85,9 @@ export const useRun = () => {
 
   const run = useCallback(async () => {
     // if not js or md files are changed then generate run id
-    if (!(jsChanged.current || mdChanged.current)) {
+    if (!(bundleInputChanged.current || mdChanged.current)) {
       setRunId(generateRunId());
-    } else if (jsChanged.current === 'local') {
+    } else if (bundleInputChanged.current === 'local') {
       try {
         await updateBundleIfNeeded(
           viz$,
@@ -83,14 +95,14 @@ export const useRun = () => {
           realtimeModules,
           submitVizContentOp
         );
-        jsChanged.current = false;
+        bundleInputChanged.current = false;
         setRunError(null);
         setRunId(generateRunId());
       } catch (error) {
         console.error(error);
         setRunError(error);
       }
-    } else if (jsChanged.current === 'remote') {
+    } else if (bundleInputChanged.current === 'remote') {
       // If JS changed remotely, do nothing here,
       // but wait for remote to update bundle.js,
       // and let that trigger a run id update.
@@ -149,8 +161,12 @@ export const useRun = () => {
   useEffect(() => {
     const subscription = vizContentOp$.subscribe(
       ({ previous, op, originatedLocally }) => {
-        if (changesJS(op, previous.files)) {
-          jsChanged.current = originatedLocally ? 'local' : 'remote';
+        if (
+          changesJS(op, previous.files) ||
+          changesSvelte(op, previous.files) ||
+          changesJSON(op, previous.files)
+        ) {
+          bundleInputChanged.current = originatedLocally ? 'local' : 'remote';
         }
 
         if (changesMD(op, previous.files)) {
