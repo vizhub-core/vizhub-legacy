@@ -25,7 +25,7 @@ const changesSvelte = createChangesChecker('.svelte');
 
 // Note: This is here specifically to detect changes in package.json.
 // If any other .json files change, bundle.js gets updated unnecessarily.
-const changesJSON = createChangesChecker('.json');
+const changesJSON = createChangesChecker('package.json');
 
 export const useRun = () => {
   const {
