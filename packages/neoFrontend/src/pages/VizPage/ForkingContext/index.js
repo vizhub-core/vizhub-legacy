@@ -75,7 +75,9 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
               <Button isFilled onClick={onFork}>
                 Fork
               </Button>
-              <Button onClick={hideForkModal}>Cancel</Button>
+              <Button isRed onClick={hideForkModal}>
+                Cancel
+              </Button>
             </DialogButtons>
           </Dialog>
         </Modal>
