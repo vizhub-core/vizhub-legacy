@@ -3,7 +3,7 @@ import vizhubLibraries from 'vizhub-libraries';
 import bubleJSXOnly from './bubleJSXOnly';
 import svelte from './svelte';
 import hypothetical from './hypothetical';
-import { vizhubLibraries as userLibrariesSettings } from './packageJson';
+import { getConfiguredLibraries } from './packageJson';
 
 const vizhubLibrariesNames = Object.keys(vizhubLibraries);
 
@@ -18,14 +18,13 @@ const transformFilesToObject = (files) =>
     }, {});
 
 export const bundle = async (files) => {
-  const _userLibrariesSettings = userLibrariesSettings(files);
-  const userLibrariesNames = Object.keys(_userLibrariesSettings);
+  const configuredLibraries = getConfiguredLibraries(files);
+  const userLibrariesNames = Object.keys(configuredLibraries);
 
   const userLibraries = userLibrariesNames.reduce((globals, packageName) => {
     // in case if user created settings but not provide global, stub global with vizhub known global name
     const globalName =
-      _userLibrariesSettings[packageName].global ||
-      vizhubLibraries[packageName];
+      configuredLibraries[packageName].global || vizhubLibraries[packageName];
 
     if (globalName) {
       globals[packageName] = globalName;
