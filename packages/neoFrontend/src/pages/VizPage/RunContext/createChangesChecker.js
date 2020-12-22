@@ -1,11 +1,10 @@
 import { getExtension } from 'vizhub-presenters';
 
-export const createChangesChecker = (
-  targetExtension,
-  ignoreFiles = ['bundle.js']
-) => {
-  // Returns true if the given op changes a .[targetExtension] file
-  // that is not one of ignored files
+// Returns true if the given op changes the target file
+// that is not one of ignored files.
+// If 'target' starts with '.', then we match on the extension.
+// Otherwise, 'target' is matched on the exact file name.
+export const createChangesChecker = (target, ignoreFiles = ['bundle.js']) => {
   return (op, previousFiles) => {
     for (let i = 0; i < op.length; i++) {
       const c = op[i];
@@ -21,10 +20,13 @@ export const createChangesChecker = (
             continue;
           }
 
-          const extension = getExtension(fileName);
-          if (extension === targetExtension) {
-            return true;
+          // If target starts with '.', we are looking for a matching extension.
+          if (target[0] === '.') {
+            return getExtension(fileName) === target;
           }
+
+          // Otherwise we are looking for an exact file name match.
+          return fileName === target;
         }
       }
     }
