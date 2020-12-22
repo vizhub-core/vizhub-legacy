@@ -3,7 +3,6 @@ import { zipFiles } from './zipFiles';
 import vizhubLibraries from 'vizhub-libraries';
 import { getFileIndex, dependencies } from 'vizhub-presenters';
 
-
 export class ExportVisualization {
   constructor({ visualizationGateway }) {
     this.visualizationGateway = visualizationGateway;
@@ -21,13 +20,16 @@ export class ExportVisualization {
     const packageJSONDependencies = dependencies(visualization.content.files);
     const packageJSONDependencyNames = Object.keys(packageJSONDependencies);
 
-    const globals = packageJSONDependencyNames.reduce((globals, packageName) => {
-      if(vizhubLibraries[packageName]) {
-        delete globals[packageName];
-      }
+    const globals = packageJSONDependencyNames.reduce(
+      (globals, packageName) => {
+        if (vizhubLibraries[packageName]) {
+          delete globals[packageName];
+        }
 
-      return globals;
-    }, {...vizhubLibraries})
+        return globals;
+      },
+      { ...vizhubLibraries }
+    );
 
     const globalsJSON = JSON.stringify(globals);
     const externalJSON = JSON.stringify(Object.keys(globals));
@@ -49,7 +51,7 @@ export class ExportVisualization {
   },
   plugins: [nodeResolve(), buble({exclude: ['node_modules/**/*']})]
 };`,
-      }
+      },
     ]);
 
     const packageJSONFile = {
@@ -64,7 +66,7 @@ export class ExportVisualization {
   "@rollup/plugin-buble": "latest",
   "@rollup/plugin-node-resolve": "latest"
 }
-}`
+}`,
     };
 
     const packageJSONFileIndex = getFileIndex(files, 'package.json');
@@ -73,7 +75,7 @@ export class ExportVisualization {
       files.append(packageJSONFile);
     } else {
       files[packageJSONFileIndex] = packageJSONFile;
-    };
+    }
 
     const zipFileBuffer = zipFiles(files);
     const zipFileName = visualization.info.title + '.zip';

@@ -37,7 +37,7 @@ const injectDependenciesScript = (htmlTemplate, files) => {
   const libraries = vizhubLibraries(files);
 
   deps
-    .map(([name, version]) => dependencySource({name, version}, libraries))
+    .map(([name, version]) => dependencySource({ name, version }, libraries))
     .forEach((url) => {
       const scriptTag = doc.createElement('script');
       scriptTag.src = url;

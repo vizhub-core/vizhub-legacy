@@ -23,24 +23,26 @@ export const bundle = async (files) => {
 
   const userLibraries = userLibrariesNames.reduce((globals, packageName) => {
     // in case if user created settings but not provide global, stub global with vizhub known global name
-    const globalName = _userLibrariesSettings[packageName].global || vizhubLibraries[packageName];
+    const globalName =
+      _userLibrariesSettings[packageName].global ||
+      vizhubLibraries[packageName];
 
-    if(globalName) {
+    if (globalName) {
       globals[packageName] = globalName;
     } else {
       console.warn(
         `There is no global name for ${packageName}.\n Please add it to "vizhub.${packageName}.global" section in package.json.`
-        )
+      );
     }
 
     return globals;
-  }, {})
+  }, {});
 
   const outputOptions = {
     format: 'iife',
     name: 'bundle',
     sourcemap: 'inline',
-    globals: {...vizhubLibraries, ...userLibraries},
+    globals: { ...vizhubLibraries, ...userLibraries },
   };
 
   const inputOptions = {
@@ -56,7 +58,9 @@ export const bundle = async (files) => {
         },
       }),
     ],
-    external: Array.from(new Set([...vizhubLibrariesNames, userLibrariesNames])),
+    external: Array.from(
+      new Set([...vizhubLibrariesNames, userLibrariesNames])
+    ),
   };
   const rollupBundle = await rollup(inputOptions);
   const { output } = await rollupBundle.generate(outputOptions);
