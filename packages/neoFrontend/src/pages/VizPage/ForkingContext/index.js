@@ -16,6 +16,7 @@ import {
   FormRow,
   Section,
   SectionTitle,
+  SectionDescription,
 } from '../styles';
 import { useValue } from '../../../useValue';
 import { VizContext } from '../VizContext';
@@ -63,6 +64,9 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
             <DialogTitle>Fork Viz</DialogTitle>
             <Section>
               <SectionTitle>Viz name</SectionTitle>
+              <SectionDescription>
+                Choose a name for your new viz.
+              </SectionDescription>
               <FormRow>
                 <Input size="grow" value={forkTitle} onChange={setUserTitle} />
               </FormRow>
@@ -71,7 +75,9 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
               <Button isFilled onClick={onFork}>
                 Fork
               </Button>
-              <Button onClick={hideForkModal}>Cancel</Button>
+              <Button isRed onClick={hideForkModal}>
+                Cancel
+              </Button>
             </DialogButtons>
           </Dialog>
         </Modal>
