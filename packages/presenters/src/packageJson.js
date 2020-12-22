@@ -4,9 +4,7 @@ const EMPTY_PKG_JSON = { dependencies: {}, vizhub: {} };
 export const packageJSON = (files) => {
   const packageJsonText = getText(files, 'package.json');
   try {
-    const pkg = packageJsonText
-      ? JSON.parse(packageJsonText)
-      : EMPTY_PKG_JSON;
+    const pkg = packageJsonText ? JSON.parse(packageJsonText) : EMPTY_PKG_JSON;
     return pkg;
   } catch (error) {
     console.log(error);
@@ -14,15 +12,15 @@ export const packageJSON = (files) => {
   }
 };
 
-export const dependencies = files => packageJSON(files).dependencies;
+export const dependencies = (files) => packageJSON(files).dependencies;
 
-export const vizhubLibraries = files => {
+export const vizhubLibraries = (files) => {
   const vizhubConfig = packageJSON(files).vizhub;
-  return vizhubConfig ? vizhubConfig.libraries : {}
-}
+  return vizhubConfig ? vizhubConfig.libraries : {};
+};
 
-export const dependencySource = ({name, version}, libraries) => {
+export const dependencySource = ({ name, version }, libraries) => {
   const path = libraries[pkg] ? libraries[pkg].path || '' : '';
   // unpkg uses file from unpkg or main field when no file specifid in url
-  return `https://unpkg.com/${name}@${version}${path}`
-}
+  return `https://unpkg.com/${name}@${version}${path}`;
+};
