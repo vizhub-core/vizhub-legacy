@@ -1,9 +1,7 @@
 import { i18n } from 'vizhub-i18n';
 import { zipFiles } from './zipFiles';
 import vizhubLibraries from 'vizhub-libraries';
-
-const globalsJSON = JSON.stringify(vizhubLibraries);
-const externalJSON = JSON.stringify(Object.keys(vizhubLibraries));
+import { getFileIndex, dependencies } from 'vizhub-presenters';
 
 export class ExportVisualization {
   constructor({ visualizationGateway }) {
@@ -19,22 +17,28 @@ export class ExportVisualization {
       id: requestModel.id,
     });
 
-    const files = visualization.content.files.concat([
-      {
-        name: 'package.json',
-        text: `{
-  "scripts": {
-    "build": "rollup -c"
-  },
-  "devDependencies": {
-    "rollup": "latest",
-    "@rollup/plugin-buble": "latest"
-  }
-}`,
+    const packageJSONDependencies = dependencies(visualization.content.files);
+    const packageJSONDependencyNames = Object.keys(packageJSONDependencies);
+
+    const globals = packageJSONDependencyNames.reduce(
+      (globals, packageName) => {
+        if (vizhubLibraries[packageName]) {
+          delete globals[packageName];
+        }
+
+        return globals;
       },
+      { ...vizhubLibraries }
+    );
+
+    const globalsJSON = JSON.stringify(globals);
+    const externalJSON = JSON.stringify(Object.keys(globals));
+
+    const files = visualization.content.files.concat([
       {
         name: 'rollup.config.js',
         text: `const buble = require('@rollup/plugin-buble');
+  const { nodeResolve } = require('@rollup/plugin-node-resolve');
   
   export default {
   input: 'index.js',
@@ -45,10 +49,33 @@ export class ExportVisualization {
     sourcemap: true,
     globals: ${globalsJSON}
   },
-  plugins: [buble()]
+  plugins: [nodeResolve(), buble({exclude: ['node_modules/**/*']})]
 };`,
       },
     ]);
+
+    const packageJSONFile = {
+      name: 'package.json',
+      text: `{
+"scripts": {
+  "build": "rollup -c"
+},
+"dependencies": ${JSON.stringify(packageJSONDependencies)},
+"devDependencies": {
+  "rollup": "latest",
+  "@rollup/plugin-buble": "latest",
+  "@rollup/plugin-node-resolve": "latest"
+}
+}`,
+    };
+
+    const packageJSONFileIndex = getFileIndex(files, 'package.json');
+
+    if (packageJSONFileIndex === -1) {
+      files.append(packageJSONFile);
+    } else {
+      files[packageJSONFileIndex] = packageJSONFile;
+    }
 
     const zipFileBuffer = zipFiles(files);
     const zipFileName = visualization.info.title + '.zip';

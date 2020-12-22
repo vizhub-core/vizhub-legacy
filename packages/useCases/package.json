@@ -21,7 +21,8 @@
     "uuid": "^8.3.2",
     "vizhub-entities": "1",
     "vizhub-i18n": "1",
-    "vizhub-libraries": "^1.8.0"
+    "vizhub-libraries": "^1.8.0",
+    "vizhub-presenters": "1"
   },
   "devDependencies": {
     "mocha": "^8.2.1",

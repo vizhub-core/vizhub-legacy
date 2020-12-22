@@ -1,21 +1,11 @@
 import magicSandbox from './magicSandbox';
 import { getText } from './accessors';
-
-// Feature flag.
-const packageJSON = process.env.REACT_APP_VIZHUB_PACKAGE_JSON === 'true';
-
-const dependencies = (files) => {
-  const packageJsonText = getText(files, 'package.json');
-  try {
-    const pkg = packageJsonText
-      ? JSON.parse(packageJsonText)
-      : { dependencies: {} };
-    return pkg.dependencies || {};
-  } catch (error) {
-    console.log(error);
-    return {};
-  }
-};
+import {
+  dependencies,
+  getConfiguredLibraries,
+  dependencySource,
+} from './packageJson';
+import { isPackageJSONEnabled } from './featureFlags';
 
 const template = (files) => getText(files, 'index.html');
 const bundle = (files) => getText(files, 'bundle.js');
@@ -48,9 +38,10 @@ const injectDependenciesScript = (htmlTemplate, files) => {
   if (deps.length === 0) return htmlTemplate;
 
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
+  const libraries = getConfiguredLibraries(files);
 
   deps
-    .map(([pkg, version]) => `https://unpkg.com/${pkg}@${version}`) // unpkg uses file from unpkg or main field when no file specifid in url
+    .map(([name, version]) => dependencySource({ name, version }, libraries))
     .forEach((url) => {
       const scriptTag = doc.createElement('script');
       scriptTag.src = url;
@@ -72,14 +63,14 @@ const transform = (files) =>
     }, {});
 
 export const computeSrcDoc = (files) => {
-  if (packageJSON) {
+  if (isPackageJSONEnabled) {
     const htmlTemplate = template(files);
-    const htmlWIthBundleScriptTemplate = injectBundleScript(
+    const htmlWithBundleScriptTemplate = injectBundleScript(
       htmlTemplate,
       files
     );
     const indexHtml = injectDependenciesScript(
-      htmlWIthBundleScriptTemplate,
+      htmlWithBundleScriptTemplate,
       files
     );
     return magicSandbox(indexHtml, transform(files));
