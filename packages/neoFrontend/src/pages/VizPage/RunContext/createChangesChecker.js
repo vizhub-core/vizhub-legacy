@@ -17,7 +17,7 @@ export const createChangesChecker = (
           const fileName = previousFiles[fileIndex].name;
 
           // Ignore when ignored file updates
-          if (!!ignoreFiles.find((file) => file === fileName)) {
+          if (ignoreFiles.find((file) => file === fileName)) {
             continue;
           }
 
