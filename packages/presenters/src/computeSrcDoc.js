@@ -1,6 +1,10 @@
 import magicSandbox from './magicSandbox';
 import { getText } from './accessors';
-import { dependencies, vizhubLibraries, dependencySource } from './packageJson';
+import {
+  dependencies,
+  getConfiguredLibraries,
+  dependencySource,
+} from './packageJson';
 import { isPackageJSONEnabled } from './featureFlags';
 
 const template = (files) => getText(files, 'index.html');
@@ -34,7 +38,7 @@ const injectDependenciesScript = (htmlTemplate, files) => {
   if (deps.length === 0) return htmlTemplate;
 
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
-  const libraries = vizhubLibraries(files);
+  const libraries = getConfiguredLibraries(files);
 
   deps
     .map(([name, version]) => dependencySource({ name, version }, libraries))
