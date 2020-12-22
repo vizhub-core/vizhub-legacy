@@ -1,6 +1,6 @@
 import { entityTooLargeStatusCode } from '../../../constants';
 
-export const fetchFork = async (visualization) => {
+export const fetchFork = async (visualization, { forkTitle }) => {
   // TODO include pre-fork changes to files.
   // TODO add test for this case.
   // const visualization = Object.assign(
@@ -17,6 +17,9 @@ export const fetchFork = async (visualization) => {
     },
     body: JSON.stringify({
       visualization,
+      forkSettings: {
+        forkTitle,
+      },
     }),
   });
 

@@ -23,7 +23,7 @@ import { EditorToggler } from './EditorToggler';
 import { TrashIcon } from '../TrashIcon';
 
 export const Head = ({ showRight }) => {
-  const onFork = useContext(ForkingContext);
+  const { showForkModal } = useContext(ForkingContext);
   const onDeleteViz = useContext(DeleteVizContext);
   const { warning } = useContext(WarningContext);
   const { me } = useContext(AuthContext);
@@ -83,7 +83,7 @@ export const Head = ({ showRight }) => {
           ) : null}
           <HeadIcon
             title="Fork this viz"
-            onClick={onFork}
+            onClick={showForkModal}
             className="test-fork"
             rightmost={!showHeadTrash}
           >
