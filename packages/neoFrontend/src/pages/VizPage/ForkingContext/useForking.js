@@ -15,7 +15,7 @@ export const useForking = (history, { forkTitle }) => {
 
   const onFork = useCallback(() => {
     // short circuit if no fork title was provided
-    if(!forkTitle) return;
+    if (!forkTitle) return;
 
     setIsForking(true);
 
