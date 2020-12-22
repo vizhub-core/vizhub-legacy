@@ -18,8 +18,8 @@ export const fetchFork = async (visualization, { forkTitle }) => {
     body: JSON.stringify({
       visualization,
       forkSettings: {
-        forkTitle
-      }
+        forkTitle,
+      },
     }),
   });
 

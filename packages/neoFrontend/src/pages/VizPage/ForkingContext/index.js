@@ -1,4 +1,4 @@
-import React, { 
+import React, {
   useMemo,
   useState,
   useContext,
@@ -15,7 +15,7 @@ import {
   DialogButtons,
   FormRow,
   Section,
-  SectionTitle
+  SectionTitle,
 } from '../styles';
 import { useValue } from '../../../useValue';
 import { VizContext } from '../VizContext';
@@ -33,49 +33,51 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
 
   const [isForkModalOpen, setIsForkModalOpen] = useState(false);
 
-  const hideForkModal = useCallback(() => setIsForkModalOpen(false), [setIsForkModalOpen]);
+  const hideForkModal = useCallback(() => setIsForkModalOpen(false), [
+    setIsForkModalOpen,
+  ]);
 
   const forkingContext = useMemo(() => {
     return {
       showForkModal: () => setIsForkModalOpen(true),
-      hideForkModal
-    }
-  }, [hideForkModal]);
+      hideForkModal,
+    };
+  }, [hideForkModal, setIsForkModalOpen]);
+
+  const { isForking, onFork } = useForking(history, { forkTitle });
 
   if (isForking) {
-    return fallback
+    return fallback;
   }
 
   return (
     <>
-     <ForkingContext.Provider value={forkingContext}>{children}</ForkingContext.Provider>
-     {isForkModalOpen && (
-       <Modal
-        onClose={hideForkModal}
-       >
-         <Dialog>
-          <DialogTitle>Fork Viz</DialogTitle>
-          <Section>
-            <SectionTitle>Viz name</SectionTitle>
-            <FormRow>
-              <Input
-                size="grow"
-                value={forkTitle || `Fork of ${originalTitle}`}
-                onChange={setForkTitle}
-              />
-            </FormRow>
-          </Section>
-          <DialogButtons>
-            <Button isFilled onClick={onFork}>
-              Fork
-            </Button>
-            <Button onClick={hideForkModal}>
-              Cancel
-            </Button>
-          </DialogButtons>
+      <ForkingContext.Provider value={forkingContext}>
+        {children}
+      </ForkingContext.Provider>
+      {isForkModalOpen && (
+        <Modal onClose={hideForkModal}>
+          <Dialog>
+            <DialogTitle>Fork Viz</DialogTitle>
+            <Section>
+              <SectionTitle>Viz name</SectionTitle>
+              <FormRow>
+                <Input
+                  size="grow"
+                  value={forkTitle || `Fork of ${originalTitle}`}
+                  onChange={setForkTitle}
+                />
+              </FormRow>
+            </Section>
+            <DialogButtons>
+              <Button isFilled onClick={onFork}>
+                Fork
+              </Button>
+              <Button onClick={hideForkModal}>Cancel</Button>
+            </DialogButtons>
           </Dialog>
-       </Modal>
-     )}
+        </Modal>
+      )}
     </>
-  )
+  );
 });
