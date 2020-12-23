@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext } from 'react';
 import { useLocation } from 'react-router';
-import { getVizTitle } from 'vizhub-presenters';
+import { getVizTitle, vizWidth, getVizHeight } from 'vizhub-presenters';
 import {
   enableWhiteLabelEmbeding,
   enablePreviewEmbeding,
@@ -9,7 +9,7 @@ import { domain } from '../../../../constants';
 import { isMobile } from '../../../../mobileMods';
 import { useValue } from '../../../../useValue';
 import { VizContext } from '../../VizContext';
-import { SubSectionDescription, Spacer } from '../../styles';
+import { SubSectionDescription } from '../../styles';
 import { RadioButton } from '../../RadioButton';
 import { TextCopier } from '../TextCopier';
 import { Preview } from './styles';
@@ -28,18 +28,29 @@ export const EmbedBody = () => {
   const [embedType, setEmbedType] = useState(VIZ);
   const title = useValue(viz$, getVizTitle);
 
-  const src = useMemo(() => {
-    return `${domain}${pathname}?mode=embed`;
-  }, [pathname]);
+  const src = useMemo(() => `${domain}${pathname}?mode=embed`, [pathname]);
 
-  const html = useMemo(() => {
-    return `<iframe src="${src}" title="${title}" height="${iframeDefaultProps.height}"></iframe>`;
-  }, [src, title]);
+  const vizHeight = useValue(viz$, getVizHeight);
+
+  const html = useMemo(
+    () =>
+      [
+        '<iframe',
+        `src="${src}"`,
+        `title="${title}"`,
+        `width="${vizWidth}"`,
+        `height="${vizHeight}"`,
+        'frameborder="0"',
+        '></iframe>',
+      ].join(' '),
+    [src, title, vizHeight]
+  );
 
   const hasSettings = enableWhiteLabelEmbeding || enablePreviewEmbeding;
 
   return (
     <>
+      <SubSectionDescription>Embed preview</SubSectionDescription>
       <Preview {...iframeDefaultProps} title={title} src={src} />
       {hasSettings && (
         <>
@@ -55,7 +66,7 @@ export const EmbedBody = () => {
           </RadioButton.Group>
         </>
       )}
-      <Spacer height={22} />
+      <SubSectionDescription>Embed snippet</SubSectionDescription>
       <TextCopier text={html} />
     </>
   );
