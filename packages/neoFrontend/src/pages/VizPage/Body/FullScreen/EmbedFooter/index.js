@@ -1,12 +1,11 @@
 import React, { useContext, useMemo } from 'react';
-import { getVizInfo, getUserFullName, getUserName } from 'vizhub-presenters';
+import { getVizInfo, getUserName } from 'vizhub-presenters';
 import { domain } from '../../../../../constants';
 import { useValue } from '../../../../../useValue';
 import { LogoSVG } from '../../../../../svg';
-import { Avatar } from '../../../../../Avatar';
 import { VizPageDataContext } from '../../../VizPageDataContext';
 import { VizContext } from '../../../VizContext';
-import { AuthorName, Authorship, Title, VizInfo, Wrapper } from './styles';
+import { Wrapper, LogoWrapper, LogoText } from './styles';
 
 export const EmbedFooter = () => {
   const { ownerUser } = useContext(VizPageDataContext);
@@ -18,15 +17,16 @@ export const EmbedFooter = () => {
   }, [ownerUser, vizInfo]);
 
   return (
-    <Wrapper target="_blank" rel="noopener noreferrer" href={href}>
-      <VizInfo>
-        <Title>{vizInfo.title}</Title>
-        <Authorship>
-          <Avatar size={31} user={ownerUser} />
-          <AuthorName>{getUserFullName(ownerUser)}</AuthorName>
-        </Authorship>
-      </VizInfo>
-      <LogoSVG height={26} />
+    <Wrapper>
+      <LogoText>view in </LogoText>
+      <LogoWrapper
+        target="_blank"
+        rel="noopener noreferrer"
+        href={href}
+        title="View in VizHub"
+      >
+        <LogoSVG height={26} />
+      </LogoWrapper>
     </Wrapper>
   );
 };
