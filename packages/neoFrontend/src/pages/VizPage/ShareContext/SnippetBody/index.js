@@ -1,12 +1,6 @@
 import React, { useState, useMemo, useContext, useCallback } from 'react';
 import { useLocation } from 'react-router';
-import {
-  getVizTitle,
-  getVizFiles,
-  getFile,
-  vizWidth,
-  getVizHeight,
-} from 'vizhub-presenters';
+import { getVizTitle, getVizFiles, getFile } from 'vizhub-presenters';
 import { VizLinkBuilder } from '../../../../utils/viz';
 import { useValue } from '../../../../useValue';
 import { Input, Autocomplete } from '../../../../Input';
@@ -90,23 +84,10 @@ export const SnippetBody = () => {
     [src, title, height]
   );
 
-  const vizHeight = useValue(viz$, getVizHeight);
-
-  const width = useMemo(() => (vizWidth / vizHeight) * height, [
-    height,
-    vizHeight,
-  ]);
-
   return (
     <>
       <SubSectionDescription>Snippet preview</SubSectionDescription>
-      <IFrame
-        frameBorder="0"
-        width={width}
-        height={height}
-        title={title}
-        src={src}
-      />
+      <IFrame frameBorder="0" height={height} title={title} src={src} />
       <form>
         <SubSectionDescription>Snippet settings</SubSectionDescription>
         <DescriptionRow>File</DescriptionRow>
