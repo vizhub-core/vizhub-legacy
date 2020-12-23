@@ -2,7 +2,6 @@ import React, { useState, useMemo, useContext, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { getVizTitle, getVizFiles, getFile } from 'vizhub-presenters';
 import { VizLinkBuilder } from '../../../../utils/viz';
-import { isMobile } from '../../../../mobileMods';
 import { useValue } from '../../../../useValue';
 import { Input, Autocomplete } from '../../../../Input';
 import { VizContext } from '../../VizContext';
@@ -10,11 +9,7 @@ import { URLStateContext } from '../../URLStateContext';
 import { modes } from '../../URLStateContext/modes';
 import { SubSectionDescription, FormRow, DescriptionRow } from '../../styles';
 import { TextCopier } from '../TextCopier';
-import { Preview } from './styles';
-
-const iframeDefaultProps = {
-  height: isMobile ? 162 : 300,
-};
+import { IFrame } from '../styles';
 
 export const SnippetBody = () => {
   const { pathname } = useLocation();
@@ -56,7 +51,8 @@ export const SnippetBody = () => {
   );
 
   const [highlight, setHighlight] = useState(selectedLines);
-  const [height, setHeight] = useState(iframeDefaultProps.height);
+
+  const [height, setHeight] = useState(300);
 
   const fileExists = Boolean(getFile(files, suggestedFile));
 
@@ -78,10 +74,9 @@ export const SnippetBody = () => {
     () =>
       [
         '<iframe',
+        `height="${height}"`,
         `src="${src}"`,
         `title="${title}"`,
-        'width="960"',
-        `height="${height}"`,
         'frameborder="0"',
         '></iframe>',
       ].join(' '),
@@ -91,10 +86,10 @@ export const SnippetBody = () => {
   return (
     <>
       <SubSectionDescription>Snippet preview</SubSectionDescription>
-      <Preview height={height} title={title} src={src} />
+      <IFrame frameBorder="0" height={height} title={title} src={src} />
       <form>
         <SubSectionDescription>Snippet settings</SubSectionDescription>
-        <DescriptionRow>Choose which file to embed code from.</DescriptionRow>
+        <DescriptionRow>File</DescriptionRow>
         <FormRow>
           <Autocomplete
             value={suggestedFile}
@@ -104,8 +99,7 @@ export const SnippetBody = () => {
             size="grow"
           />
         </FormRow>
-
-        <DescriptionRow>Highlight specific lines of code</DescriptionRow>
+        <DescriptionRow>Lines</DescriptionRow>
         <FormRow>
           <Input
             value={highlight}
@@ -114,8 +108,7 @@ export const SnippetBody = () => {
             placeholder="e.g '14' for a single line, '14-16' or '14,16-17' for multiple"
           />
         </FormRow>
-
-        <DescriptionRow>Control iframe height</DescriptionRow>
+        <DescriptionRow>Height</DescriptionRow>
         <FormRow>
           <Input value={height} onChange={setHeight} size="grow" />
         </FormRow>
