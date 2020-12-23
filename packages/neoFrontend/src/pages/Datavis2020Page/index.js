@@ -30,7 +30,8 @@ export const Datavis2020Page = () => {
               target="_blank"
             >
               YouTube Playlist
-            </a>{' | '}
+            </a>
+            {' | '}
             <a
               rel="noreferrer noopener"
               href="https://drive.google.com/drive/folders/1DYYRUq_-QSbDI62Y1xCxawrQeBv9b_dA?usp=sharing"

@@ -28,7 +28,8 @@ export const data = [
   //   title: 'Viz: Locations of Datavis 2020 Students',
   // }, Thumbnail is not tracking on this, let's embed this in the prev. post.
   {
-    blogPostURL: 'https://vizhub.com/blog/2020/10/31/datavis-2020-ep2-week1-qa/',
+    blogPostURL:
+      'https://vizhub.com/blog/2020/10/31/datavis-2020-ep2-week1-qa/',
     youTubeURL: 'https://www.youtube.com/watch?v=EpJllW-iHnU',
     title: 'Episode 2: Week 1 Q&A',
   },
@@ -39,7 +40,8 @@ export const data = [
     youTubeURL: 'https://www.youtube.com/watch?v=l4ly6W8SL64',
   },
   {
-    blogPostURL: 'https://vizhub.com/blog/2020/01/10/visualizations-of-current-events/',
+    blogPostURL:
+      'https://vizhub.com/blog/2020/01/10/visualizations-of-current-events/',
     title: 'Blog: Visualizations of Current Events',
     youTubeURL:
       'https://www.youtube.com/watch?v=30lR5BlcO48&amp;list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV',
@@ -278,49 +280,53 @@ export const data = [
     title: 'Episode 45 - React Performance Optimization',
   },
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=QdIsmTIcL5U', 
+    youTubeURL: 'https://www.youtube.com/watch?v=QdIsmTIcL5U',
     title: 'Datavis 2020 Episode 46 - Choropleth Map',
   },
 
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=AJVeqgs9URc', 
+    youTubeURL: 'https://www.youtube.com/watch?v=AJVeqgs9URc',
     title: 'Datavis 2020 Episode 47 - Log Scales',
   },
 
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=Si6TsBYxkZc', 
-    title: 'Datavis 2020 Episode 48 - Making a Choropleth Map with React and D3',
+    youTubeURL: 'https://www.youtube.com/watch?v=Si6TsBYxkZc',
+    title:
+      'Datavis 2020 Episode 48 - Making a Choropleth Map with React and D3',
   },
 
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=b8Ellt-BYjI', 
+    youTubeURL: 'https://www.youtube.com/watch?v=b8Ellt-BYjI',
     title: 'Datavis 2020 episode 49 - Coronavirus Basic Line Chart',
   },
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=5Rb0wvICpXA', 
+    youTubeURL: 'https://www.youtube.com/watch?v=5Rb0wvICpXA',
     title: 'Datavis 2020 episode 50 - Coronavirus Line Chart with Marker Lines',
   },
 
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=4YTZwPeWZcM', 
+    youTubeURL: 'https://www.youtube.com/watch?v=4YTZwPeWZcM',
     title: 'Datavis 2020 episode 51 - React & D3 Axes with useRef and d3 axis',
   },
 
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=D7iaMGgiu4A', 
-    title: 'Datavis 2020 Episode 52 - Coronavirus Line Chart with Log Scale and Labels',
+    youTubeURL: 'https://www.youtube.com/watch?v=D7iaMGgiu4A',
+    title:
+      'Datavis 2020 Episode 52 - Coronavirus Line Chart with Log Scale and Labels',
   },
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=cLziE0i8kRI', 
-    title: 'Datavis 2020 Episode 053 Coronavirus Line Chart with Multiple Colored Lines',
+    youTubeURL: 'https://www.youtube.com/watch?v=cLziE0i8kRI',
+    title:
+      'Datavis 2020 Episode 053 Coronavirus Line Chart with Multiple Colored Lines',
   },
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=YdSFgK0hPgU', 
-    title: 'Datavis 2020 Episode 54 - Coronavirus Line Chart with Voronoi Overlay',
+    youTubeURL: 'https://www.youtube.com/watch?v=YdSFgK0hPgU',
+    title:
+      'Datavis 2020 Episode 54 - Coronavirus Line Chart with Voronoi Overlay',
   },
   {
-    youTubeURL: 'https://www.youtube.com/watch?v=JDTjddCPpio', 
-    title: 'Datavis 2020 Episode 55 - Coronavirus Line Chart with Voronoi Tooltips',
+    youTubeURL: 'https://www.youtube.com/watch?v=JDTjddCPpio',
+    title:
+      'Datavis 2020 Episode 55 - Coronavirus Line Chart with Voronoi Tooltips',
   },
-
 ];
