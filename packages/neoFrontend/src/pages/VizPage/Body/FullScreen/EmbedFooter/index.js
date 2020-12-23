@@ -19,12 +19,7 @@ export const EmbedFooter = () => {
   return (
     <Wrapper>
       <LogoText>view in </LogoText>
-      <LogoWrapper
-        target="_blank"
-        rel="noopener noreferrer"
-        href={href}
-        title="View in VizHub"
-      >
+      <LogoWrapper target="_blank" rel="noopener noreferrer" href={href}>
         <LogoSVG height={26} />
       </LogoWrapper>
     </Wrapper>
