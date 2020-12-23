@@ -12,15 +12,11 @@ import { VizContext } from '../../VizContext';
 import { SubSectionDescription } from '../../styles';
 import { RadioButton } from '../../RadioButton';
 import { TextCopier } from '../TextCopier';
-import { Preview } from './styles';
+import { IFrame } from '../styles';
 
 const VIZ = 'Embed visualization';
 const WHITELABEL = 'Embed white-label visualization';
 const PREVIEW = 'Embed visualization preview';
-
-const iframeDefaultProps = {
-  height: isMobile ? 162 : 300,
-};
 
 export const EmbedBody = () => {
   const { pathname } = useLocation();
@@ -46,12 +42,22 @@ export const EmbedBody = () => {
     [src, title, vizHeight]
   );
 
-  const hasSettings = enableWhiteLabelEmbeding || enablePreviewEmbeding;
+  const previewHeight = isMobile ? 162 : 300;
+  const previewWidth = (vizWidth / vizHeight) * previewHeight;
 
+  // vizWidth/vizHeight=previewWidth/previewHeight
+
+  const hasSettings = enableWhiteLabelEmbeding || enablePreviewEmbeding;
   return (
     <>
       <SubSectionDescription>Embed preview</SubSectionDescription>
-      <Preview {...iframeDefaultProps} title={title} src={src} />
+      <IFrame
+        frameBorder="0"
+        width={previewWidth}
+        height={previewHeight}
+        title={title}
+        src={src}
+      />
       {hasSettings && (
         <>
           <SubSectionDescription>Embed Settings</SubSectionDescription>
