@@ -8,7 +8,7 @@ import { Input, Autocomplete } from '../../../../Input';
 import { VizContext } from '../../VizContext';
 import { URLStateContext } from '../../URLStateContext';
 import { modes } from '../../URLStateContext/modes';
-import { SubSectionDescription, Spacer, FormRow } from '../../styles';
+import { SubSectionDescription, FormRow, DescriptionRow } from '../../styles';
 import { TextCopier } from '../TextCopier';
 import { Preview } from './styles';
 
@@ -29,9 +29,10 @@ export const SnippetBody = () => {
   const [suggestedFile, setSuggestedFile] = useState(activeFile);
   const [fileSuggestions, setFileSuggestions] = useState([]);
 
-  const allPossibleFileSuggestions = useMemo(() => {
-    return files.map((file) => ({ id: file.name, value: file.name }));
-  }, [files]);
+  const allPossibleFileSuggestions = useMemo(
+    () => files.map((file) => ({ id: file.name, value: file.name })),
+    [files]
+  );
 
   const handleFileSuggestionChange = useCallback(
     (fileName) => {
@@ -59,33 +60,41 @@ export const SnippetBody = () => {
 
   const fileExists = Boolean(getFile(files, suggestedFile));
 
-  const vizLinkBuilder = useMemo(() => {
-    return VizLinkBuilder(pathname);
-  }, [pathname]);
+  const vizLinkBuilder = useMemo(() => VizLinkBuilder(pathname), [pathname]);
 
-  const src = useMemo(() => {
-    if (file) {
-      return vizLinkBuilder
-        .setMode(modes.snippet)
-        .setFile(file)
-        .setLines(highlight)
-        .get();
-    }
+  const src = useMemo(
+    () =>
+      file
+        ? vizLinkBuilder
+            .setMode(modes.snippet)
+            .setFile(file)
+            .setLines(highlight)
+            .get()
+        : '',
+    [vizLinkBuilder, highlight, file]
+  );
 
-    return '';
-  }, [vizLinkBuilder, highlight, file]);
-
-  const html = useMemo(() => {
-    return `<iframe src="${src}" title="${title}" height="${height}"></iframe>`;
-  }, [src, title, height]);
+  const html = useMemo(
+    () =>
+      [
+        '<iframe',
+        `src="${src}"`,
+        `title="${title}"`,
+        'width="960"',
+        `height="${height}"`,
+        'frameborder="0"',
+        '></iframe>',
+      ].join(' '),
+    [src, title, height]
+  );
 
   return (
     <>
+      <SubSectionDescription>Snippet preview</SubSectionDescription>
       <Preview height={height} title={title} src={src} />
       <form>
         <SubSectionDescription>Snippet settings</SubSectionDescription>
-
-        <FormRow>Choose which file to embed code from *(requried)</FormRow>
+        <DescriptionRow>Choose which file to embed code from.</DescriptionRow>
         <FormRow>
           <Autocomplete
             value={suggestedFile}
@@ -96,22 +105,22 @@ export const SnippetBody = () => {
           />
         </FormRow>
 
-        <FormRow>Highlight specific lines of code</FormRow>
+        <DescriptionRow>Highlight specific lines of code</DescriptionRow>
         <FormRow>
           <Input
             value={highlight}
             onChange={setHighlight}
             size="grow"
-            placeholder="e.g '14' for a single line, 14,15,16, 14-16 or 14,15-17 for multiple"
+            placeholder="e.g '14' for a single line, '14-16' or '14,16-17' for multiple"
           />
         </FormRow>
 
-        <FormRow>Control iframe height</FormRow>
+        <DescriptionRow>Control iframe height</DescriptionRow>
         <FormRow>
           <Input value={height} onChange={setHeight} size="grow" />
         </FormRow>
       </form>
-      <Spacer height={22} />
+      <SubSectionDescription>Embed snippet</SubSectionDescription>
       {fileExists && <TextCopier text={html} />}
     </>
   );
