@@ -9,8 +9,9 @@ import { domain } from '../../../../constants';
 import { isMobile } from '../../../../mobileMods';
 import { useValue } from '../../../../useValue';
 import { VizContext } from '../../VizContext';
-import { SubSectionDescription } from '../../styles';
+import { SubSectionDescription, FormRow, DescriptionRow } from '../../styles';
 import { RadioButton } from '../../RadioButton';
+import { Input } from '../../../../Input';
 import { TextCopier } from '../TextCopier';
 import { IFrame } from '../styles';
 
@@ -18,34 +19,40 @@ const VIZ = 'Embed visualization';
 const WHITELABEL = 'Embed white-label visualization';
 const PREVIEW = 'Embed visualization preview';
 
+// This is the default used by YouTube for their embeds.
+const defaultEmbedWidth = 560;
+
 export const EmbedBody = () => {
   const { pathname } = useLocation();
   const { viz$ } = useContext(VizContext);
   const [embedType, setEmbedType] = useState(VIZ);
   const title = useValue(viz$, getVizTitle);
 
-  const src = useMemo(() => `${domain}${pathname}?mode=embed`, [pathname]);
-
   const vizHeight = useValue(viz$, getVizHeight);
+  const [width, setWidth] = useState(defaultEmbedWidth);
+  const height = useMemo(() => Math.round((width * vizHeight) / vizWidth), [
+    width,
+    vizHeight,
+  ]);
+
+  const src = useMemo(() => `${domain}${pathname}?mode=embed`, [pathname]);
 
   const html = useMemo(
     () =>
       [
         '<iframe',
+        `width="${width}"`,
+        `height="${height}"`,
         `src="${src}"`,
         `title="${title}"`,
-        `width="${vizWidth}"`,
-        `height="${vizHeight}"`,
         'frameborder="0"',
         '></iframe>',
       ].join(' '),
-    [src, title, vizHeight]
+    [src, title, width, height]
   );
 
   const previewHeight = isMobile ? 162 : 300;
   const previewWidth = (vizWidth / vizHeight) * previewHeight;
-
-  // vizWidth/vizHeight=previewWidth/previewHeight
 
   const hasSettings = enableWhiteLabelEmbeding || enablePreviewEmbeding;
   return (
@@ -72,6 +79,10 @@ export const EmbedBody = () => {
           </RadioButton.Group>
         </>
       )}
+      <DescriptionRow>Width</DescriptionRow>
+      <FormRow>
+        <Input value={width} onChange={setWidth} size="grow" />
+      </FormRow>
       <SubSectionDescription>Embed snippet</SubSectionDescription>
       <TextCopier text={html} />
     </>

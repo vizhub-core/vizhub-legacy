@@ -74,10 +74,9 @@ export const SnippetBody = () => {
     () =>
       [
         '<iframe',
+        `height="${height}"`,
         `src="${src}"`,
         `title="${title}"`,
-        'width="960"',
-        `height="${height}"`,
         'frameborder="0"',
         '></iframe>',
       ].join(' '),
