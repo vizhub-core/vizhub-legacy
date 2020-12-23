@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { useLocation } from 'react-router';
 import { getVizFile } from 'vizhub-presenters';
+import { LogoSVG } from '../../../../../svg';
 import { VizLinkBuilder } from '../../../../../utils/viz';
 import { LoadingScreen } from '../../../../../LoadingScreen';
 import { URLStateContext } from '../../../URLStateContext';
@@ -10,7 +11,7 @@ import { light } from '../themes/vizHub';
 import { CodeMirrorReactBinding } from '../CodeEditor/CodeArea/CodeAreaCodeMirror5/CodeMirrorReactBinding';
 import { useFileIndex } from '../CodeEditor/useFileIndex';
 import { Header } from './CodeEditorHeader/Header';
-import { Wrapper, HeaderLink } from './styles';
+import { Wrapper, HeaderLink, LogoWrapper, LogoText } from './styles';
 
 export const CodeSnippet = () => {
   const { pathname } = useLocation();
@@ -46,7 +47,10 @@ export const CodeSnippet = () => {
     <Wrapper showLeftBorder={true} style={{ flex: '1' }}>
       <Header showEditor={false} activeFile={activeFile}>
         <HeaderLink target="_blank" rel="noopener noreferrer" href={link}>
-          Open in vizhub
+          <LogoText>view in </LogoText>
+          <LogoWrapper target="_blank" rel="noopener noreferrer" href={link}>
+            <LogoSVG height={26} />
+          </LogoWrapper>
         </HeaderLink>
       </Header>
       <>
