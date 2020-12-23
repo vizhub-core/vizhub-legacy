@@ -27,6 +27,7 @@ export const SectionTitle = styled.div`
   font-size: 14px;
   color: ${(props) => props.theme.lightText};
   padding-top: 32px;
+  font-weight: bold;
 `;
 
 export const SectionDescription = styled.div`
@@ -53,4 +54,9 @@ export const FormRow = styled.div`
   font-size: 16px;
   align-items: center;
   position: relative;
+`;
+
+export const DescriptionRow = styled(FormRow)`
+  align-items: flex-end;
+  margin-bottom: 5px;
 `;
