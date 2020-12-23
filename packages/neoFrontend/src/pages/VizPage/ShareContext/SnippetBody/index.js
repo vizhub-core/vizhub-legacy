@@ -29,9 +29,10 @@ export const SnippetBody = () => {
   const [suggestedFile, setSuggestedFile] = useState(activeFile);
   const [fileSuggestions, setFileSuggestions] = useState([]);
 
-  const allPossibleFileSuggestions = useMemo(() => {
-    return files.map((file) => ({ id: file.name, value: file.name }));
-  }, [files]);
+  const allPossibleFileSuggestions = useMemo(
+    () => files.map((file) => ({ id: file.name, value: file.name })),
+    [files]
+  );
 
   const handleFileSuggestionChange = useCallback(
     (fileName) => {
@@ -59,25 +60,33 @@ export const SnippetBody = () => {
 
   const fileExists = Boolean(getFile(files, suggestedFile));
 
-  const vizLinkBuilder = useMemo(() => {
-    return VizLinkBuilder(pathname);
-  }, [pathname]);
+  const vizLinkBuilder = useMemo(() => VizLinkBuilder(pathname), [pathname]);
 
-  const src = useMemo(() => {
-    if (file) {
-      return vizLinkBuilder
-        .setMode(modes.snippet)
-        .setFile(file)
-        .setLines(highlight)
-        .get();
-    }
+  const src = useMemo(
+    () =>
+      file
+        ? vizLinkBuilder
+            .setMode(modes.snippet)
+            .setFile(file)
+            .setLines(highlight)
+            .get()
+        : '',
+    [vizLinkBuilder, highlight, file]
+  );
 
-    return '';
-  }, [vizLinkBuilder, highlight, file]);
-
-  const html = useMemo(() => {
-    return `<iframe src="${src}" title="${title}" height="${height}"></iframe>`;
-  }, [src, title, height]);
+  const html = useMemo(
+    () =>
+      [
+        '<iframe',
+        `src="${src}"`,
+        `title="${title}"`,
+        'width="960"',
+        `height="${height}"`,
+        'frameborder="0"',
+        '></iframe>',
+      ].join(' '),
+    [src, title, height]
+  );
 
   return (
     <>
