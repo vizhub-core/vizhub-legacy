@@ -45,7 +45,9 @@ export const CodeSnippet = () => {
   return (
     <Wrapper showLeftBorder={true} style={{ flex: '1' }}>
       <Header showEditor={false} activeFile={activeFile}>
-        <HeaderLink href={link}>Edit in vizhub</HeaderLink>
+        <HeaderLink target="_blank" rel="noopener noreferrer" href={link}>
+          Open in vizhub
+        </HeaderLink>
       </Header>
       <>
         <CodeMirrorReactBinding
