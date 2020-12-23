@@ -19,6 +19,28 @@ export const CodeEditorIcon = styled(Icon)`
 
 export const HeaderLink = styled.a`
   color: #ffffff;
-  line-height: ${(props) => props.theme.editorEntryHeight + 1}px;
-  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  opacity: 0.1;
+  transition: opacity 0.2s ease-out;
+  :hover {
+    opacity: 1;
+  }
+`;
+
+export const LogoWrapper = styled.a`
+  color: #ffffff;
+  display: flex;
+  padding: 2px;
+`;
+
+export const LogoText = styled.div`
+  font-weight: bold;
+  margin-right: 8px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  ${HeaderLink}:hover & {
+    opacity: 1;
+  }
 `;
