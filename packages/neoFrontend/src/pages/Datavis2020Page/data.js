@@ -13,14 +13,14 @@ export const data = [
   },
   {
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep1-what-is-data-visualization/',
+      'https://vizhub.com/blog/2020/10/31/datavis-2020-ep1-what-is-data-visualization/',
     youTubeURL: 'www.youtube.com/watch?v=Di5fjz9n0o8',
     title: 'Episode 1 – What is Data Visualization',
   },
   {
     youTubeURL:
       'https://www.youtube.com/watch?v=30lR5BlcO48&amp;list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV',
-    blogPostURL: 'https://datavis.tech/datavis-2020-week-1/',
+    blogPostURL: 'https://vizhub.com/blog/2020/01/03/datavis-2020-week-1/',
     title: 'Blog: Datavis 2020 Week 1',
   },
   // {
@@ -28,32 +28,32 @@ export const data = [
   //   title: 'Viz: Locations of Datavis 2020 Students',
   // }, Thumbnail is not tracking on this, let's embed this in the prev. post.
   {
-    blogPostURL: 'https://datavis.tech/datavis-2020-ep2-week1-qa/',
+    blogPostURL: 'https://vizhub.com/blog/2020/10/31/datavis-2020-ep2-week1-qa/',
     youTubeURL: 'https://www.youtube.com/watch?v=EpJllW-iHnU',
     title: 'Episode 2: Week 1 Q&A',
   },
   {
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep3-finding-visualizations/',
+      'https://vizhub.com/blog/2020/10/31/datavis-2020-ep3-finding-visualizations/',
     title: 'Episode 3 – Finding Visualizations',
     youTubeURL: 'https://www.youtube.com/watch?v=l4ly6W8SL64',
   },
   {
-    blogPostURL: 'https://datavis.tech/visualizations-of-current-events/',
+    blogPostURL: 'https://vizhub.com/blog/2020/01/10/visualizations-of-current-events/',
     title: 'Blog: Visualizations of Current Events',
     youTubeURL:
       'https://www.youtube.com/watch?v=30lR5BlcO48&amp;list=PL9yYRbwpkykuK6LSMLH3bAaPpXaDUXcLV',
   },
   {
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep4-introduction-to-web-technologies/',
+      'https://vizhub.com/blog/2020/10/31/datavis-2020-ep4-introduction-to-web-technologies/',
     title: 'Episode 4 – Introduction to Web Technologies',
     youTubeURL: 'https://www.youtube.com/watch?v=NatZzPrwBnU&feature=emb_title',
   },
   {
     title: 'Episode 5 – Let’s Make a Face Part I (HTML, CSS, SVG)',
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep5-lets-make-a-face-part-i-html-css-svg/',
+      'https://vizhub.com/blog/2020/10/31/datavis-2020-ep5-lets-make-a-face-part-i-html-css-svg/',
     startingVizURL:
       'https://vizhub.com/curran/e54aba86481147a482f339763d4fc598',
     startingVizTitle: 'Hello HTML',
@@ -62,7 +62,7 @@ export const data = [
   {
     title: 'Episode 6 – Let’s Make a Face Part II (React)',
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep6-lets-make-a-face-part-ii-with-react/',
+      'https://vizhub.com/blog/2020/10/31/datavis-2020-ep6-lets-make-a-face-part-ii-with-react/',
     startingVizURL:
       'https://vizhub.com/curran/fbf0dfea4bcc41f898f3ab9f10c4a279',
     startingVizTitle: ' Smiley Face Part I',
@@ -70,7 +70,7 @@ export const data = [
   },
   {
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep7-lets-make-a-face-part-iii-with-react-d3/',
+      'https://vizhub.com/blog/2020/11/01/datavis-2020-ep7-lets-make-a-face-part-iii-with-react-d3/',
     title: 'Episode 7 – Let’s Make a Face Part III (React & D3)',
     startingVizURL:
       'https://vizhub.com/curran/3a00f5c877ac4e30b7269c17f29d2e4d',
@@ -79,7 +79,7 @@ export const data = [
   },
   {
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep8-lets-make-a-face-part-iv-react-components-es6/',
+      'https://vizhub.com/blog/2020/11/01/datavis-2020-ep8-lets-make-a-face-part-iv-react-components-es6/',
     title: 'Episode 8 – Let’s Make a Face Part IV (React Components & ES6)',
     youTubeURL: 'https://www.youtube.com/watch?v=x1WwIKmnpjA&feature=emb_title',
   },
@@ -89,7 +89,7 @@ export const data = [
   // },
   {
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep9-lets-make-a-face-part-v-multiple-files-with-es6-modules/',
+      'https://vizhub.com/blog/2020/11/01/datavis-2020-ep9-lets-make-a-face-part-v-multiple-files-with-es6-modules/',
     title:
       'Episode 9 – Let’s Make a Face Part V multiple files with ES6 modules',
     youTubeURL: 'https://www.youtube.com/watch?v=0AjwWMiVfv4&feature=emb_title',
@@ -100,7 +100,7 @@ export const data = [
   // },
   {
     blogPostURL:
-      'https://datavis.tech/datavis-2020-ep10-lets-make-a-face-part-vi-compartmentalizing-complexity/',
+      'https://vizhub.com/blog/2020/11/01/datavis-2020-ep10-lets-make-a-face-part-vi-compartmentalizing-complexity/',
     title:
       'Episode 10 – Let’s Make a Face Part VI (Compartmentalizing Complexity)',
     youTubeURL: 'https://www.youtube.com/watch?v=skiecpXhGxQ&feature=emb_title',
@@ -110,7 +110,7 @@ export const data = [
   //   title: 'Smiley Face Part V',
   // },
   {
-    url: 'https://youtu.be/v5F9l-Pfsp4',
+    url: 'https://www.youtube.com/watch?v=v5F9l-Pfsp4',
     title:
       'Episode 11 – Coronavirus Dataviz Hackathon Part I (Coronavirus Dataviz)',
     youTubeURL:
@@ -277,4 +277,50 @@ export const data = [
     youTubeURL: 'https://www.youtube.com/watch?v=Gf40jrJTsQU',
     title: 'Episode 45 - React Performance Optimization',
   },
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=QdIsmTIcL5U', 
+    title: 'Datavis 2020 Episode 46 - Choropleth Map',
+  },
+
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=AJVeqgs9URc', 
+    title: 'Datavis 2020 Episode 47 - Log Scales',
+  },
+
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=Si6TsBYxkZc', 
+    title: 'Datavis 2020 Episode 48 - Making a Choropleth Map with React and D3',
+  },
+
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=b8Ellt-BYjI', 
+    title: 'Datavis 2020 episode 49 - Coronavirus Basic Line Chart',
+  },
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=5Rb0wvICpXA', 
+    title: 'Datavis 2020 episode 50 - Coronavirus Line Chart with Marker Lines',
+  },
+
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=4YTZwPeWZcM', 
+    title: 'Datavis 2020 episode 51 - React & D3 Axes with useRef and d3 axis',
+  },
+
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=D7iaMGgiu4A', 
+    title: 'Datavis 2020 Episode 52 - Coronavirus Line Chart with Log Scale and Labels',
+  },
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=cLziE0i8kRI', 
+    title: 'Datavis 2020 Episode 053 Coronavirus Line Chart with Multiple Colored Lines',
+  },
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=YdSFgK0hPgU', 
+    title: 'Datavis 2020 Episode 54 - Coronavirus Line Chart with Voronoi Overlay',
+  },
+  {
+    youTubeURL: 'https://www.youtube.com/watch?v=JDTjddCPpio', 
+    title: 'Datavis 2020 Episode 55 - Coronavirus Line Chart with Voronoi Tooltips',
+  },
+
 ];
