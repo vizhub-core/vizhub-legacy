@@ -17,9 +17,9 @@ export const EmbedFooter = () => {
   }, [ownerUser, vizInfo]);
 
   return (
-    <Wrapper>
+    <Wrapper target="_blank" rel="noopener noreferrer" href={href}>
       <LogoText>view in </LogoText>
-      <LogoWrapper target="_blank" rel="noopener noreferrer" href={href}>
+      <LogoWrapper>
         <LogoSVG height={26} />
       </LogoWrapper>
     </Wrapper>
