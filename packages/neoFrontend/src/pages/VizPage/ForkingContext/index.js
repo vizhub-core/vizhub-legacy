@@ -49,6 +49,11 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
 
   const { isForking, onFork } = useForking(history, { forkTitle });
 
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+    onFork();
+  }, [onFork]);
+
   if (isForking) {
     return fallback;
   }
@@ -67,9 +72,11 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
               <SectionDescription>
                 Choose a name for your new viz.
               </SectionDescription>
-              <FormRow>
-                <Input size="grow" value={forkTitle} onChange={setUserTitle} />
-              </FormRow>
+              <form onSubmit={handleSubmit}>
+                <FormRow>
+                  <Input size="grow" value={forkTitle} onChange={setUserTitle} />
+                </FormRow>
+              </form>
             </Section>
             <DialogButtons>
               <Button isFilled onClick={onFork}>
