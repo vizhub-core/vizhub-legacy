@@ -19,7 +19,6 @@
     "svelte": "3.31.0",
     "vizhub-entities": "1",
     "vizhub-libraries": "^1.8.0",
-    "vizhub-use-cases": "1",
     "jsdom": "^16.4.0"
   },
   "devDependencies": {
