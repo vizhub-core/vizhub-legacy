@@ -8,16 +8,32 @@ const pageSize = 100;
 
 export const searchVisualizationInfos = (connection) => async ({
   query,
+  collaborators,
   offset,
+  inlcudePrivate,
 }) => {
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
     $limit: pageSize,
     $skip: offset * pageSize,
     $sort: { lastUpdatedTimestamp: -1 },
-    $text: { $search: query },
     privacy: { $ne: 'private' },
   };
+
+  if (inlcudePrivate) {
+    delete mongoQuery['privacy'];
+  }
+
+  if (query) {
+    mongoQuery['$text'] = { $search: query };
+  }
+
+  if (collaborators && collaborators.length > 0) {
+    mongoQuery['collaborators.userId'] = {
+      $in: collaborators,
+    };
+  }
+
   const results = await fetchShareDBQuery(
     DOCUMENT_INFO,
     mongoQuery,

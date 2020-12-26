@@ -15,7 +15,7 @@ export const Main = styled.div`
 export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
-  ${isMobile ? '' : 'width: 150px;'}
+  ${isMobile ? '' : 'width: 170px;'}
   margin-top: ${isMobile ? '10px' : '0'};
   padding: 0 6px;
 `;

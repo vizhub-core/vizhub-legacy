@@ -1,8 +1,8 @@
 import React from 'react';
-import { PeopleSVG, LockSVG } from '../../../svg';
+import { PeopleSVG, LockSVG, SharedWithMeSVG } from '../../../svg';
 import { Wrapper, LinkText } from './styles';
 
-const svgs = { PeopleSVG, LockSVG };
+const svgs = { PeopleSVG, LockSVG, SharedWithMeSVG };
 
 export const LinkWithIcon = ({ onClick, icon, active, children }) => {
   const Icon = svgs[icon];
