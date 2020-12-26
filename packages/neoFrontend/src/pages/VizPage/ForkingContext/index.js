@@ -49,10 +49,13 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
 
   const { isForking, onFork } = useForking(history, { forkTitle });
 
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-    onFork();
-  }, [onFork]);
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      onFork();
+    },
+    [onFork]
+  );
 
   if (isForking) {
     return fallback;
@@ -74,7 +77,11 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
               </SectionDescription>
               <form onSubmit={handleSubmit}>
                 <FormRow>
-                  <Input size="grow" value={forkTitle} onChange={setUserTitle} />
+                  <Input
+                    size="grow"
+                    value={forkTitle}
+                    onChange={setUserTitle}
+                  />
                 </FormRow>
               </form>
             </Section>
