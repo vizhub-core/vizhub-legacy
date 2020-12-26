@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const red = theme.attentionGrabber;
 
 const Path = styled.path`
-  transition: fill 0.5s ease-out;
+  transition: fill 0.2s ease-out;
 `;
 
 export const SharedWithMeSVG = ({
