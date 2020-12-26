@@ -50,7 +50,7 @@ export const reducer = (state, action) => {
           state.mode === modes.mini || state.mode === modes.hide
             ? undefined
             : state.mode,
-        selectedLines: null
+        selectedLines: null,
       });
 
     // Invoked when a line(s) are selected.
