@@ -11,9 +11,12 @@ import { getThumbnailController } from './getThumbnailController';
 import { getPreviewController } from './getPreviewController';
 import { getSearchResultsPageDataController } from './getSearchResultsPageData';
 import { getForksController } from './getForksController';
+import { getGetSharedVisualizationsController } from './getGetSharedVisualizationsController';
 
+// the order of controllers matters
 export const visualizationAPIController = (expressApp, gateways) => {
   createVisualizationController(expressApp, gateways);
+  getGetSharedVisualizationsController(expressApp, gateways);
   getVisualizationController(expressApp, gateways);
   exportVisualizationController(expressApp, gateways);
   saveVisualizationController(expressApp, gateways);

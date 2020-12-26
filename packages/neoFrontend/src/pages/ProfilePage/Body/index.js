@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useMemo,
-  useCallback,
-} from 'react';
-import { isVizInfoPrivate } from 'vizhub-presenters';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { sendEvent } from '../../../sendEvent';
 import { AuthContext } from '../../../authentication';
 import { showProfileSidebar } from '../../../featureFlags';
@@ -18,12 +11,14 @@ import {
 import { Content, Centering } from '../../styles';
 import { SidebarWrapper, Main, Sidebar } from '../styles';
 import { LinkWithIcon } from '../LinkWithIcon';
-import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { ProfilePane } from '../ProfilePane';
+import { useProfileData } from './useProfileData';
 import { ProfileMenuBar } from './styles';
 
 export const Body = () => {
-  const profilePageData = useContext(ProfilePageDataContext);
+  const { me } = useContext(AuthContext);
+  const [typeOfVizzes, setTypeOfVizzes] = useState('public');
+  const profilePageData = useProfileData(me, typeOfVizzes);
   const {
     user,
     visualizationInfos,
@@ -32,28 +27,20 @@ export const Body = () => {
     isFetchingNextPage,
   } = profilePageData;
 
-  const { me } = useContext(AuthContext);
-
-  const [privacy, setPrivacy] = useState('public');
-
   useEffect(() => {
     sendEvent(`event.pageview.profile.user:${user.id}`);
   }, [user]);
 
-  const visualizations = useMemo(
-    () =>
-      visualizationInfos.filter((d) =>
-        privacy === 'private' ? isVizInfoPrivate(d) : !isVizInfoPrivate(d)
-      ),
-    [visualizationInfos, privacy]
-  );
-
   const showPublic = useCallback(() => {
-    setPrivacy('public');
+    setTypeOfVizzes('public');
   }, []);
 
   const showPrivate = useCallback(() => {
-    setPrivacy('private');
+    setTypeOfVizzes('private');
+  }, []);
+
+  const showVizzesSharedWithMe = useCallback(() => {
+    setTypeOfVizzes('shared');
   }, []);
 
   const [sort, handleSortChange] = useVizzesSort();
@@ -67,29 +54,38 @@ export const Body = () => {
         ) : null}
       </ProfileMenuBar>
       <SidebarWrapper>
-        {showProfileSidebar(user, me) ? (
-          <Sidebar>
+        <Sidebar>
+          <LinkWithIcon
+            active={typeOfVizzes === 'public'}
+            icon="PeopleSVG"
+            onClick={showPublic}
+          >
+            Public
+          </LinkWithIcon>
+          {showProfileSidebar(user, me) ? (
             <LinkWithIcon
-              active={privacy !== 'private'}
-              icon="PeopleSVG"
-              onClick={showPublic}
-            >
-              Public
-            </LinkWithIcon>
-            <LinkWithIcon
-              active={privacy === 'private'}
+              active={typeOfVizzes === 'private'}
               icon="LockSVG"
               onClick={showPrivate}
             >
               Private
             </LinkWithIcon>
-          </Sidebar>
-        ) : null}
+          ) : null}
+          {Boolean(me) && (
+            <LinkWithIcon
+              active={typeOfVizzes === 'shared'}
+              icon="SharedWithMeSVG"
+              onClick={showVizzesSharedWithMe}
+            >
+              Shared with me
+            </LinkWithIcon>
+          )}
+        </Sidebar>
         <Main>
           <Centering>
             <Vizzes
               className="test-profile-page-viz-previews"
-              visualizationInfos={visualizations}
+              visualizationInfos={visualizationInfos}
               paginate={paginate}
               usersById={usersById}
               isFetchingNextPage={isFetchingNextPage}

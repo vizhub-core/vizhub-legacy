@@ -8,3 +8,4 @@ npm-debug.log
 *.swp
 *.autosave
 .env
+.vscode
