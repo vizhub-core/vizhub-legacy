@@ -8,7 +8,7 @@ import { useVizzesSort } from '../../VizzesGrid/VizzesSortForm';
 import { Wrapper, Content } from '../styles';
 import { HomePageDataProvider } from './HomePageDataContext';
 import { Vizzes } from './Vizzes';
-import { Banner } from './Banner';
+// import { Banner } from './Banner';
 import { Sort } from './Sort';
 import { HtmlStylesOverride } from './styles';
 
@@ -24,7 +24,9 @@ export const HomePage = () => {
       <HtmlStylesOverride />
       <HomePageDataProvider sort={sort} fallback={<LoadingScreen />}>
         <NavBar isHomePage={true} showSearch />
-        <Banner />
+        {
+          //    <Banner />
+        }
         <Wrapper>
           <Content>
             {showSortOptions ? (
