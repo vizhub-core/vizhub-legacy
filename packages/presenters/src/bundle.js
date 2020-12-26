@@ -1,11 +1,8 @@
 import { rollup } from './rollup.browser';
-import vizhubLibraries from 'vizhub-libraries';
 import bubleJSXOnly from './bubleJSXOnly';
 import svelte from './svelte';
 import hypothetical from './hypothetical';
-import { getConfiguredLibraries } from './packageJson';
-
-const vizhubLibrariesNames = Object.keys(vizhubLibraries);
+import { getLibraries } from './getLibraries';
 
 const transformFilesToObject = (files) =>
   files
@@ -18,32 +15,13 @@ const transformFilesToObject = (files) =>
     }, {});
 
 export const bundle = async (files) => {
-  const configuredLibraries = getConfiguredLibraries(files);
-  const userLibrariesNames = configuredLibraries
-    ? Object.keys(configuredLibraries)
-    : [];
-
-  const userLibraries = userLibrariesNames.reduce((globals, packageName) => {
-    // in case if user created settings but not provide global, stub global with vizhub known global name
-    const globalName =
-      configuredLibraries[packageName].global || vizhubLibraries[packageName];
-
-    if (globalName) {
-      globals[packageName] = globalName;
-    } else {
-      console.warn(
-        `There is no global name for ${packageName}.\n Please add it to "vizhub.${packageName}.global" section in package.json.`
-      );
-    }
-
-    return globals;
-  }, {});
+  const libraries = getLibraries(files);
 
   const outputOptions = {
     format: 'iife',
     name: 'bundle',
     sourcemap: 'inline',
-    globals: { ...vizhubLibraries, ...userLibraries },
+    globals: libraries,
   };
 
   const inputOptions = {
@@ -59,9 +37,7 @@ export const bundle = async (files) => {
         },
       }),
     ],
-    external: Array.from(
-      new Set([...vizhubLibrariesNames, userLibrariesNames])
-    ),
+    external: Object.keys(libraries),
   };
   const rollupBundle = await rollup(inputOptions);
   const { output } = await rollupBundle.generate(outputOptions);
