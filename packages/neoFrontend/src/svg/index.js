@@ -25,5 +25,5 @@ export { PlanExcludedSVG } from './PlanExcludedSVG';
 export { PeopleSVG } from './PeopleSVG';
 export { VimSVG } from './VimSVG';
 export { SearchSVG } from './SearchSVG';
-
+export { SharedWithMeSVG } from './SharedWithMeSVG';
 export { SVGGallery } from './svgGallery';

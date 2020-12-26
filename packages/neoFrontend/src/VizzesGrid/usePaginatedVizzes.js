@@ -72,6 +72,8 @@ export const usePaginatedVizzes = (fetchData) => {
 
   // Fetch the next page of visualizations.
   const fetchNextPage = useCallback(() => {
+    if (!fetchData) return;
+
     dispatch({ type: 'FETCH_NEXT_PAGE_REQUEST' });
     fetchData(currentPage).then((data) => {
       if (data.error) {
