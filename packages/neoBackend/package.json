@@ -17,6 +17,7 @@
   "devDependencies": {
     "eslint": "^7.3.1",
     "esm": "^3.2.25",
+    "jsdom": "^16.4.0",
     "prettier": "^2.0.5"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "vizhub-controllers": "1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
+    "vizhub-presenters": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
     "ws": "^7.3.0"

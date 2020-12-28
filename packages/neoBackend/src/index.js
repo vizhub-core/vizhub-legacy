@@ -5,8 +5,12 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { serverGateways } from 'vizhub-server-gateways';
 import { apiController, jwtAuth, oembedController } from 'vizhub-controllers';
+import { setJSDOM } from 'vizhub-presenters';
+import { JSDOM } from 'jsdom';
 import { serveFrontend } from './serveFrontend';
 import { serveShareDB } from './serveShareDB';
+
+setJSDOM(JSDOM);
 
 const expressApp = express();
 
