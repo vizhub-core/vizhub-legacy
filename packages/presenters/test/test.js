@@ -1,11 +1,15 @@
 import assert from 'assert';
 import { testData } from 'vizhub-entities';
-import { VisualizationViewModel, DatasetViewModel } from '../src';
-import { bundle } from '../src';
-import sinon from 'sinon';
 import { JSDOM } from 'jsdom';
-import { setParser } from '../src/getComputedIndexHtml';
-setParser(new new JSDOM().window.DOMParser());
+import {
+  VisualizationViewModel,
+  DatasetViewModel,
+  bundle,
+  setJSDOM,
+} from '../src';
+import sinon from 'sinon';
+
+setJSDOM(JSDOM);
 
 const { visualization, dataset } = testData;
 
