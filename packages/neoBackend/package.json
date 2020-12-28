@@ -15,10 +15,10 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^7.3.1",
+    "eslint": "^7.16.0",
     "esm": "^3.2.25",
-    "jsdom": "^16.4.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.2.1",
+    "jsdom": "^16.4.0"
   },
   "dependencies": {
     "@teamwork/websocket-json-stream": "^2.0.0",
@@ -33,6 +33,6 @@
     "vizhub-presenters": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
-    "ws": "^7.3.0"
+    "ws": "^7.4.1"
   }
 }

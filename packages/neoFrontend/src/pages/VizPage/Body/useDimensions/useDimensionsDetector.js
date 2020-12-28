@@ -29,10 +29,11 @@ export const useDimensionsDetector = (containerRef, onDimensionsChanged) => {
       detector.contentWindow.addEventListener('resize', onDimensionsChanged);
 
       return () => {
-        detector.contentWindow.removeEventListener(
-          'resize',
-          onDimensionsChanged
-        );
+        detector.contentWindow &&
+          detector.contentWindow.removeEventListener(
+            'resize',
+            onDimensionsChanged
+          );
         container.removeChild(detector);
       };
     }

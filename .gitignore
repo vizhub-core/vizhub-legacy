@@ -9,3 +9,4 @@ npm-debug.log
 *.autosave
 .env
 .vscode
+.eslintcache
