@@ -45,16 +45,19 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
 
   const [userTitle, setUserTitle] = useState(null);
 
-  const forkTitle = userTitle || `Fork of ${originalTitle}`;
+  const forkTitle = userTitle === null ? `Fork of ${originalTitle}` : userTitle;
+  const isEmptyStringTitle = forkTitle === '';
 
   const { isForking, onFork } = useForking(history, { forkTitle });
 
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      onFork();
+      if (!isEmptyStringTitle) {
+        onFork();
+      }
     },
-    [onFork]
+    [isEmptyStringTitle, onFork]
   );
 
   if (isForking) {
@@ -86,9 +89,11 @@ export const ForkingProvider = withRouter(({ fallback, children, history }) => {
               </form>
             </Section>
             <DialogButtons>
-              <Button isFilled onClick={onFork}>
-                Fork
-              </Button>
+              {!isEmptyStringTitle && (
+                <Button isFilled onClick={onFork}>
+                  Fork
+                </Button>
+              )}
               <Button isRed onClick={hideForkModal}>
                 Cancel
               </Button>
