@@ -4,7 +4,9 @@
   "private": true,
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "updateDeps": "ncu -u"
+  },
   "author": "Curran Kelleher",
   "license": "UNLICENSED"
 }

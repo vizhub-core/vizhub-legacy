@@ -16,12 +16,12 @@
     "vizhub-presenters": "1",
     "vizhub-use-cases": "1",
     "dotenv": "^8.2.0",
-    "puppeteer": "^4.0.1",
-    "sharp": "^0.25.4",
+    "puppeteer": "^5.5.0",
+    "sharp": "^0.27.0",
     "vizhub-server-gateways": "1"
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^8.0.1"
+    "mocha": "^8.2.1"
   }
 }
