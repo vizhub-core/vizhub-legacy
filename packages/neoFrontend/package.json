@@ -43,6 +43,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "rxjs": "^6.6.3",
     "sharedb": "^1.5.2",
     "styled-components": "^5.2.1",
     "vizhub-database": "1",
