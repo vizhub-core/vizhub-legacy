@@ -9,7 +9,7 @@
     "test:e2e": "cd packages/neoCI && npm run test:e2e",
     "lerna:test:e2e": "lerna run test:e2e",
     "testAll": "npm run test && cd packages/web && npm test",
-    "updateDeps": "lerna run updateDeps",
+    "updateDeps": "for D in ./packages/*; do [ -d '${D}' ] && npm run updateDeps; done",
     "cleanLockFiles": "find . -type f -name '*package-lock.json' -delete",
     "prettier": "lerna run prettier",
     "deploy:staging": "pm2 deploy staging"
