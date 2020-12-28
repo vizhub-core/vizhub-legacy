@@ -71,7 +71,7 @@ export const Body = () => {
               Private
             </LinkWithIcon>
           ) : null}
-          {Boolean(me) && (
+          {Boolean(me) && user.id === me.id && (
             <LinkWithIcon
               active={typeOfVizzes === 'shared'}
               icon="SharedWithMeSVG"
