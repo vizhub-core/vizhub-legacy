@@ -21,12 +21,15 @@ const bundle = (files) => getText(files, 'bundle.js');
 
 // Dynamic require in a Node environment.
 let parser;
-if (typeof module !== 'undefined' && module.exports) {
-  const { JSDOM } = require('jsdom');
-  parser = new new JSDOM().window.DOMParser();
-} else {
+if (typeof window !== 'undefined') {
   parser = new DOMParser();
 }
+
+// Expose a way to inject a DOMParser implementation for
+// unit tests that run in Node.
+export const setParser = (newParser) => {
+  parser = newParser;
+};
 
 const injectBundleScript = (htmlTemplate, files) => {
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
