@@ -17,7 +17,8 @@
   "devDependencies": {
     "eslint": "^7.16.0",
     "esm": "^3.2.25",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "jsdom": "^16.4.0"
   },
   "dependencies": {
     "@teamwork/websocket-json-stream": "^2.0.0",
@@ -29,6 +30,7 @@
     "vizhub-controllers": "1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
+    "vizhub-presenters": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
     "ws": "^7.4.1"

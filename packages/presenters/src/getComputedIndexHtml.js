@@ -9,24 +9,18 @@ import { isPackageJSONEnabled } from './featureFlags';
 const template = (files) => getText(files, 'index.html');
 const bundle = (files) => getText(files, 'bundle.js');
 
-// let parse;
-// if (typeof module !== 'undefined' && module.exports) {
-//   const jsdom = require('jsdom');
-//   const { JSDOM } = jsdom;
-
-//   parse = (template) => new JSDOM(template);
-// } else {
-//   parse = (template, mimeType) => new DOMParser().parseFromString(template, mimeType);
-// }
-
-// Dynamic require in a Node environment.
 let parser;
-if (typeof module !== 'undefined' && module.exports) {
-  const { JSDOM } = require('jsdom');
-  parser = new new JSDOM().window.DOMParser();
-} else {
+
+// If we're in the browser, use native DOMParser.
+if (typeof window !== 'undefined') {
   parser = new DOMParser();
 }
+
+// Expose a way to inject a DOMParser implementation
+// when we're in a Node environment (tests, API server).
+export const setJSDOM = (JSDOM) => {
+  parser = new new JSDOM().window.DOMParser();
+};
 
 const injectBundleScript = (htmlTemplate, files) => {
   const doc = parser.parseFromString(htmlTemplate, 'text/html');
