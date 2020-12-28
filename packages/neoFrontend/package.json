@@ -18,8 +18,8 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@datavis-tech/ot-json0": "^2.1.0",
-    "@eslint/eslintrc": "^0.2.0",
-    "codemirror": "^5.58.1",
+    "@eslint/eslintrc": "^0.2.2",
+    "codemirror": "^5.59.0",
     "color-hash": "^1.0.3",
     "copy-to-clipboard": "^3.3.1",
     "d3-color": "^2.0.0",
@@ -29,22 +29,22 @@
     "d3-time": "^2.0.0",
     "d3-time-format": "^3.0.0",
     "diff-match-patch": "^1.0.5",
-    "eslint-plugin-react": "^7.21.4",
-    "eslint4b": "^7.11.0",
-    "immer": "^7.0.9",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint4b": "^7.16.0",
+    "immer": "^8.0.0",
     "is-mobile": "^2.2.2",
     "json0-ot-diff": "^1.0.5",
     "json0-with-presence": "1",
-    "marked": "^1.2.0",
+    "marked": "^1.2.7",
     "perfect-scrollbar": "^1.5.0",
-    "query-string": "^6.13.6",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "query-string": "^6.13.7",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3",
-    "sharedb": "^1.4.1",
-    "styled-components": "^5.2.0",
+    "react-scripts": "^4.0.1",
+    "sharedb": "^1.5.2",
+    "styled-components": "^5.2.1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
     "vizhub-presenters": "1"
@@ -56,8 +56,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "prettier": "^2.1.2"
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "prettier": "^2.2.1"
   }
 }
