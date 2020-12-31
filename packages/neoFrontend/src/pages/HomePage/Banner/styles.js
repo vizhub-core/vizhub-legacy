@@ -25,8 +25,15 @@ export const Gradient = styled.div`
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 1) 0%,
-    rgba(0, 212, 255, 0) 100%
+    rgba(255, 255, 255, 0) 100%
   );
+  @media (max-width: 1200px) {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 40%,
+      rgba(255, 255, 255, 0.4) 100%
+    );
+  }
 `;
 
 export const Left = styled.div`
@@ -39,6 +46,9 @@ export const Right = styled.div`
   display: flex;
   align-items: center;
   z-index: ${Z_ABOVE};
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 export const Message = styled.div`
