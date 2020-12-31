@@ -17,7 +17,7 @@ export const VIZ_INFO_SORT_OPTIONS = [
   {
     id: 'mostUpvoted',
     label: 'Most upvoted',
-    vizInfoProperty: 'upvoteCount',
+    vizInfoProperty: 'upvotesCount',
   },
 ];
 
