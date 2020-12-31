@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { isMobile } from '../../../mobileMods';
 import {
   Wrapper,
-  Bar,
+  Gradient,
   Left,
   Right,
   Message,
@@ -11,19 +11,30 @@ import {
   MessageLargeText,
   Iframe,
   MessageButton,
+  CallToAction,
 } from './styles';
 
 export const Banner = () => (
   <Wrapper>
-    <Bar></Bar>
+    <Gradient />
     <Left>
       <Message>
-        <MessageSmallText>Learn, practice & teach</MessageSmallText>
-        <MessageLargeText>Data Visualization</MessageLargeText>
-        <MessageSmallText>with Web technologies.</MessageSmallText>
-        <Link to="/create-viz">
-          <MessageButton>Get started</MessageButton>
-        </Link>
+        <MessageLargeText>
+          You're minutes away from creating a viz.
+        </MessageLargeText>
+        <MessageSmallText>
+          Learn, practice, teach with one of our{' '}
+          <Link to="/create-viz">templates</Link> or start from{' '}
+          <Link t="/curran/469e558ba77941aa9e1b416ea521b0aa?edit=files&file=index.html">
+            scratch
+          </Link>
+          .
+        </MessageSmallText>
+        <CallToAction>
+          <Link to="/auth">
+            <MessageButton isFilled>Sign in</MessageButton>
+          </Link>
+        </CallToAction>
       </Message>
     </Left>
     <Right>
