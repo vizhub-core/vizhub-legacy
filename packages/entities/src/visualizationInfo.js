@@ -14,11 +14,11 @@ export const VIZ_INFO_SORT_OPTIONS = [
     label: 'Most forked',
     vizInfoProperty: 'forksCount',
   },
-  //{
-  //  id: 'upvotes',
-  //  label: 'Most upvoted',
-  //  vizInfoProperty: 'upvotes',
-  //},
+  {
+    id: 'upvotes',
+    label: 'Most upvoted',
+    vizInfoProperty: 'upvotes',
+  },
 ];
 
 export const VIZ_INFO_DEFAULT_SORT_OPTION = VIZ_INFO_SORT_OPTIONS.find(
