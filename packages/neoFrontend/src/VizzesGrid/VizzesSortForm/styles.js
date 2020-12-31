@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import selectArrow from './selectArrow.svg';
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 6px 12px 6px;
-  flex-wrap: wrap;
-`;
-
 export const Header = styled.div`
   font-weight: 600;
   font-size: 28px;
@@ -29,6 +21,7 @@ export const Select = styled.select`
   display: block;
   appearance: none;
   margin-top: 6px;
+  margin-bottom: 6px;
   padding: 13px 14px 12px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
