@@ -14,6 +14,15 @@ export const communityTemplates = [
   'ddee531e7a414d97a059d751507e0f41',
   '7fcc84f68758417a8a1f6076410e98ab',
 ];
+
+export const mostForked = [
+  '469e558ba77941aa9e1b416ea521b0aa',
+  '86a75dc8bdbe4965ba353a79d4bd44c8',
+  'be771477cb974c938cd8603dd8b59d32',
+  'c3b14112dae34ef395999cef5783324f',
+  '366c38ba5ebc4631b4bd936f3b709744',
+];
+
 export const datavis2018Templates = [
   '1e6587bb27c54c368deae8b79a7ca59a',
   '3b8a76ab64a649d19d73ddcaff6bdaf3',

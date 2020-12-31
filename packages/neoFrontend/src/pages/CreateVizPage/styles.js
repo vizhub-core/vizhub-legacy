@@ -33,3 +33,12 @@ export const SectionTitle = styled.div`
   margin-top: 20px;
   margin-bottom: 10px;
 `;
+
+export const SeeMore = styled.a`
+  font-size: 18px;
+  padding-right: 5px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+`;
