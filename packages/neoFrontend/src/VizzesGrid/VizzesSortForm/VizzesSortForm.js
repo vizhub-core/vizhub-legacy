@@ -12,7 +12,7 @@ export const VizzesSortForm = ({ value, onChange }) => {
 
   return (
     <form>
-      <SelectLabel>Sort By</SelectLabel>
+      <SelectLabel>Sort vizzes by</SelectLabel>
       <Select value={value} onChange={handleChange}>
         {VIZ_INFO_SORT_OPTIONS.map(({ id, label }) => (
           <option key={id} value={id}>

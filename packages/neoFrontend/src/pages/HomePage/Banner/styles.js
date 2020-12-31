@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../../../Button';
 import { isMobile } from '../../../mobileMods';
-import { Z_BELOW } from '../../../styles';
+import { Z_ABOVE } from '../../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -10,33 +10,39 @@ export const Wrapper = styled.div`
   position: relative;
   justify-content: space-around;
   align-items: center;
-  color: white;
+  color: ${(props) => props.theme.dark};
   margin: ${isMobile ? '6px 6px 30px 6px' : 0};
+  background-image: url(/images/mountains.png);
+  background-size: cover;
 `;
 
-export const Bar = styled.div`
+export const Gradient = styled.div`
   position: absolute;
   top: 0;
-  bottom: ${isMobile ? 0 : 10}px;
   right: 0;
+  bottom: 0;
   left: 0;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-  background-image: linear-gradient(to bottom, #55627c, #3d4b65);
-  z-index: ${Z_BELOW};
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(0, 212, 255, 0) 100%
+  );
 `;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
+  z-index: ${Z_ABOVE};
 `;
 
 export const Right = styled.div`
   display: flex;
   align-items: center;
+  z-index: ${Z_ABOVE};
 `;
 
 export const Message = styled.div`
-  text-align: center;
+  text-align: left;
 `;
 
 //export const MessageTinyText = styled.div`
@@ -63,17 +69,13 @@ export const MessageLink = styled.a`
   text-decoration: underline;
 `;
 
+export const CallToAction = styled.div`
+  display: flex;
+`;
+
 export const MessageButton = styled(Button)`
-  margin-top: 30px;
-  border: solid 1px ${(props) => props.theme.attentionGrabber};
-  font-size: 15px;
-  color: white;
-  :hover {
-    background-color: ${(props) => props.theme.hoverBackground};
-  }
-  :active {
-    background-color: ${(props) => props.theme.activeBackground};
-  }
+  margin-top: 20px;
+  margin-left: 0px;
 `;
 
 export const Iframe = styled.iframe`
