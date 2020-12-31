@@ -52,7 +52,7 @@ export const Button = styled.div`
       ? '#ffffff'
       : props.theme.dark};
   background-color: ${(props) =>
-    props.isFilled ? buttonColor(props) : 'transparent'};
+    props.isFilled ? buttonColor(props) : 'white'};
   text-decoration: none;
 
   :hover {
