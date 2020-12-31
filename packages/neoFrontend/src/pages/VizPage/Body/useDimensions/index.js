@@ -21,7 +21,7 @@ export const useDimensions = ({
   // Capture the initial dimensions before first render.
   // This is also before the vertical scrollbar appears,
   // but having this here avoids a flash of zero-height viz.
-  useLayoutEffect(measure, []);
+  useLayoutEffect(measure, [measure]);
 
   // Detect when width of the scroller element changes.
   // This also fires when the scrollbar is added or removed.

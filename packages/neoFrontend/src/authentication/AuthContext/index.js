@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useEffect, useState, useMemo } from 'react';
 import { fetchMe } from './fetchMe';
 import { AUTH_PENDING } from '../constants';
 import { signInFlow } from '../signInFlow';
@@ -37,12 +37,10 @@ export const AuthProvider = ({ children }) => {
 
     return () => (subscribed = false);
   }, []);
+  const signIn = useMemo(() => signInFlow(setMe), [setMe]);
+  const signOut = useMemo(() => signOutFlow(setMe), [setMe]);
 
-  const contextValue = {
-    me,
-    signIn: useCallback(signInFlow(setMe), [setMe]),
-    signOut: useCallback(signOutFlow(setMe), [setMe]),
-  };
+  const contextValue = { me, signIn, signOut };
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
