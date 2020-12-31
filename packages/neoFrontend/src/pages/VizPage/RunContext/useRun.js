@@ -70,16 +70,17 @@ export const useRun = () => {
     runTimerStart.current = Date.now();
   }, []);
 
-  const setRunIdSoon = useCallback(
-    (() => {
-      let timeout;
-      return (newRunId) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          setRunId(newRunId);
-        }, 0);
-      };
-    })(),
+  const setRunIdSoon = useMemo(
+    () =>
+      (() => {
+        let timeout;
+        return (newRunId) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => {
+            setRunId(newRunId);
+          }, 0);
+        };
+      })(),
     [setRunId]
   );
 

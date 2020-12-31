@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { Wrapper } from './styles';
 
 export const Input = ({
@@ -13,8 +13,8 @@ export const Input = ({
     onChange,
   ]);
 
-  const handleFocus = useCallback(
-    autoSelect ? (event) => event.target.select() : () => {},
+  const handleFocus = useMemo(
+    () => (autoSelect ? (event) => event.target.select() : () => {}),
     [autoSelect]
   );
 
