@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 
 export const AuthorAvatar = styled.div`
   margin-right: 20px;
+  pointer-events: none;
 `;
 
 export const AuthorInfo = styled.div`
