@@ -25,7 +25,7 @@ export const Banner = () => (
         <MessageSmallText>
           Learn, practice, teach with one of our{' '}
           <Link to="/create-viz">templates</Link> or start from{' '}
-          <Link t="/curran/469e558ba77941aa9e1b416ea521b0aa?edit=files&file=index.html">
+          <Link to="/curran/469e558ba77941aa9e1b416ea521b0aa?edit=files&file=index.html">
             scratch
           </Link>
           .
