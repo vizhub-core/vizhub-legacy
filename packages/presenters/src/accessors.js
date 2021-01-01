@@ -153,10 +153,8 @@ export const upvoteOp = (userId, upvotes) => {
 
   // Initialize the upvote field if needed.
   if (!upvotes) {
-    op.push({
-      p: ['upvotes'],
-      oi: [],
-    });
+    op.push({ p: ['upvotes'], oi: [] });
+    op.push({ p: ['upvotesCount'], oi: 0 });
   }
 
   // Did this user already upvote here?
@@ -175,17 +173,16 @@ export const upvoteOp = (userId, upvotes) => {
     // then cast the vote.
     op.push({
       p: ['upvotes', 0],
-      li: {
-        userId,
-        timestamp: timestamp(),
-      },
+      li: { userId, timestamp: timestamp() },
     });
+    // increment upvotesCount
+    op.push({ p: ['upvotesCount'], na: 1 });
   } else {
     // otherwise, remove the existing vote
-    op.push({
-      p: ['upvotes', voteIndex],
-      ld: upvote,
-    });
+    op.push({ p: ['upvotes', voteIndex], ld: upvote });
+
+    // decrement upvotesCount
+    op.push({ p: ['upvotesCount'], na: -1 });
   }
   return op;
 };
