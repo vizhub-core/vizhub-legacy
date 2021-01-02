@@ -30,7 +30,7 @@ export const showGoogleLogin = false;
 export const showUserActionsMenuCreateViz = true;
 export const showUserActionsProfile = true;
 
-export const packageJSON = process.env.REACT_APP_VIZHUB_PACKAGE_JSON === 'true';
+export const packageJSON = true;
 
 // List of usernames who have access to
 // private viz feature.
