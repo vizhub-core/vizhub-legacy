@@ -20,7 +20,7 @@ export const Banner = () => (
     <Left>
       <Message>
         <MessageLargeText>
-          You're minutes away from creating a viz.
+          You're minutes away from creating a visualization.
         </MessageLargeText>
         <MessageSmallText>
           Learn, practice, teach with one of our{' '}
@@ -32,15 +32,15 @@ export const Banner = () => (
         </MessageSmallText>
         <CallToAction>
           <Link to="/auth">
-            <MessageButton isFilled>Sign in</MessageButton>
+            <MessageButton isFilled>Get Started</MessageButton>
           </Link>
         </CallToAction>
       </Message>
     </Left>
     <Right>
       <Iframe
-        width={isMobile ? '100%' : '560'}
-        height="315"
+        width={isMobile ? '100%' : '400'}
+        height="300"
         src="https://www.youtube.com/embed/Ia_DwVMXwgk"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
