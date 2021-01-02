@@ -81,6 +81,7 @@ export const MessageLink = styled.a`
 
 export const CallToAction = styled.div`
   display: flex;
+  position:center;
 `;
 
 export const MessageButton = styled(Button)`
