@@ -81,7 +81,6 @@ export const MessageLink = styled.a`
 
 export const CallToAction = styled.div`
   display: flex;
-  position:center;
 `;
 
 export const MessageButton = styled(Button)`
@@ -91,5 +90,6 @@ export const MessageButton = styled(Button)`
 
 export const Iframe = styled.iframe`
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  box-shadow: ${(props) => props.theme.shadow};
 `;
