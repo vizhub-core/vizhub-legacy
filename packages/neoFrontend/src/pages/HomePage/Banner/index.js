@@ -20,7 +20,7 @@ export const Banner = () => (
     <Left>
       <Message>
         <MessageLargeText>
-          You're minutes away from creating a visualization.
+          You're minutes away from creating a data visualization.
         </MessageLargeText>
         <MessageSmallText>
           Learn, practice, teach with one of our{' '}
@@ -40,7 +40,7 @@ export const Banner = () => (
     <Right>
       <Iframe
         width={isMobile ? '100%' : '400'}
-        height="300"
+        height="225"
         src="https://www.youtube.com/embed/Ia_DwVMXwgk"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
