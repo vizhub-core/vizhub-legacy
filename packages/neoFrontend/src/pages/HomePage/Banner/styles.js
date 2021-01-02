@@ -55,19 +55,16 @@ export const Message = styled.div`
   text-align: left;
 `;
 
-//export const MessageTinyText = styled.div`
-//  font-size: 10px;
-//  font-weight: 500;
-//`;
-
 export const MessageSmallText = styled.div`
   font-size: 18px;
+  text-shadow: #fff 0 0 4px,#fff 0 0 4px,#fff 0 0 4px;
 `;
 
 export const MessageLargeText = styled.div`
   font-size: 32px;
   margin-top: 5px;
   margin-bottom: 5px;
+  text-shadow: #fff 0 0 4px,#fff 0 0 4px,#fff 0 0 4px;
 `;
 
 export const MessageList = styled.ul`
