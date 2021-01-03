@@ -39,8 +39,6 @@ export class UpdateScores {
       return await this.visualizationGateway.updateScores({ id, scores });
     };
 
-    const sleep = (n) => new Promise((res) => setTimeout(res, n));
-
     const step = 100;
     await vizInfos.reduce(async (accumulator, info, i) => {
       await accumulator;
