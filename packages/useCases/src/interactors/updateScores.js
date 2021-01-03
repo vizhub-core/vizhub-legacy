@@ -41,7 +41,7 @@ export class UpdateScores {
 
     const sleep = (n) => new Promise((res) => setTimeout(res, n));
 
-    const step = 100;
+    const step = 1;
     await vizInfos.reduce(async (accumulator, info, i) => {
       await accumulator;
       if (i % step === 0) {
