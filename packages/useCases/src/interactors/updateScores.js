@@ -21,21 +21,15 @@ export class UpdateScores {
       const lastUpdatedDate = toDate(lastUpdatedTimestamp);
       const upvotesCount = upvotes ? upvotes.length : 0;
 
+console.log(info);
       console.log({ createdDate, lastUpdatedDate, upvotesCount });
 
       const scores = {
         scoreWilson: wilsonScore(upvotesCount, 0),
         scoreRedditHotCreated: redditHotScore(upvotesCount, 0, createdDate),
         scoreHackerHotCreated: hackerHotScore(upvotesCount, createdDate),
-        scoreRedditHotLastUpdated: redditHotScore(
-          upvotesCount,
-          0,
-          lastUpdatedDate
-        ),
-        scoreHackerHotLastUpdated: hackerHotScore(
-          upvotesCount,
-          lastUpdatedDate
-        ),
+        scoreRedditHotLastUpdated: redditHotScore(upvotesCount, 0, lastUpdatedDate),
+        scoreHackerHotLastUpdated: hackerHotScore(upvotesCount, lastUpdatedDate),
       };
       console.log(scores);
 
