@@ -31,3 +31,4 @@ export { GetVizAtCommit } from './getVizAtCommit';
 export { SendEvent } from './sendEvent';
 export { GetEventRecords } from './getEventRecords';
 export { GetSharedVisualizations } from './getSharedVisualizations';
+export { UpdateScores } from './updateScores';
