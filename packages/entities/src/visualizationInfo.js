@@ -19,6 +19,11 @@ export const VIZ_INFO_SORT_OPTIONS = [
     label: 'Most upvoted',
     vizInfoProperty: 'upvotesCount',
   },
+  {
+    id: 'hot',
+    label: 'Hot',
+    vizInfoProperty: 'scoreRedditHotCreated',
+  },
 ];
 
 export const VIZ_INFO_DEFAULT_SORT_OPTION = VIZ_INFO_SORT_OPTIONS.find(
