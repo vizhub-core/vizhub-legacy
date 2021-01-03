@@ -19,10 +19,26 @@ export const VIZ_INFO_SORT_OPTIONS = [
     label: 'Most upvoted',
     vizInfoProperty: 'upvotesCount',
   },
+  { id: 'wilson', label: 'Wilson Score', vizInfoProperty: 'scoreWilson' },
   {
-    id: 'hot',
-    label: 'Hot',
+    id: 'reddit-hot-created',
+    label: 'Reddit Hot (created date)',
     vizInfoProperty: 'scoreRedditHotCreated',
+  },
+  {
+    id: 'hacker-hot-created',
+    label: 'Hacker Hot (created date)',
+    vizInfoProperty: 'scoreHackerHotCreated',
+  },
+  {
+    id: 'reddit-hot-updated',
+    label: 'Reddit Hot (updated date)',
+    vizInfoProperty: 'scoreRedditHotLastUpdated',
+  },
+  {
+    id: 'hacker-hot-updated',
+    label: 'Hacker Hot (updated date)',
+    vizInfoProperty: 'scoreHackerHotLastUpdated',
   },
 ];
 
