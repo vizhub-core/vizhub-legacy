@@ -15,18 +15,27 @@ export class UpdateScores {
     const n = vizInfos.length;
 
     const updateScore = async (info) => {
-      const { id, createdTimestamp, lastUpdatedTimestamp, upvotesCount } = info;
+      const { id, createdTimestamp, lastUpdatedTimestamp, upvotes } = info;
 
       const createdDate = toDate(createdTimestamp);
       const lastUpdatedDate = toDate(lastUpdatedTimestamp);
-      const upVotes = upvotesCount || 0;
+      const upvotesCount = upvotes ? upvotes.length : 0;
+
+      console.log({ createdDate, lastUpdatedDate, upvotesCount });
 
       const scores = {
-        scoreWilson: wilsonScore(upVotes, 0),
-        scoreRedditHotCreated: redditHotScore(upVotes, 0, createdDate),
-        scoreHackerHotCreated: hackerHotScore(upVotes, createdDate),
-        scoreRedditHotLastUpdated: redditHotScore(upVotes, 0, lastUpdatedDate),
-        scoreHackerHotLastUpdated: hackerHotScore(upVotes, lastUpdatedDate),
+        scoreWilson: wilsonScore(upvotesCount, 0),
+        scoreRedditHotCreated: redditHotScore(upvotesCount, 0, createdDate),
+        scoreHackerHotCreated: hackerHotScore(upvotesCount, createdDate),
+        scoreRedditHotLastUpdated: redditHotScore(
+          upvotesCount,
+          0,
+          lastUpdatedDate
+        ),
+        scoreHackerHotLastUpdated: hackerHotScore(
+          upvotesCount,
+          lastUpdatedDate
+        ),
       };
       console.log(scores);
 
