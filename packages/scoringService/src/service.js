@@ -17,7 +17,7 @@ export const startService = async () => {
   console.log('Scoring service starting...');
 
   let loop = () => {
-    console.log('Scoring all vizes...');
+    console.log('Scoring all vizzes...');
     Promise.all([
       updateScores.execute(),
       new Promise(resolve => setTimeout(resolve, downTime))
