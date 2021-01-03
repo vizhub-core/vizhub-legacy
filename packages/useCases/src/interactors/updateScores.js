@@ -28,18 +28,24 @@ export class UpdateScores {
         redditHotLastUpdated: redditHotScore(upVotes, 0, lastUpdatedDate),
         hackerHotLastUpdated: hackerHotScore(upVotes, lastUpdatedDate),
       };
+      console.log(scores);
 
       return await this.visualizationGateway.updateScores({ id, scores });
     };
 
+    const sleep = (n) => new Promise((res) => setTimeout(res, n));
+
+    const step = 1;
     await vizInfos.reduce(async (accumulator, info, i) => {
-      if (i % 100 === 0) {
+      await accumulator;
+      if (i % step === 0) {
         console.log(
           `computed score for ${i} vizzes of ${n}. ${
             Math.round((i / n) * 1000) / 10
           }% done.`
         );
       }
+      await sleep(1000);
       return await updateScore(info);
     }, {});
 
