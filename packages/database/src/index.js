@@ -25,6 +25,7 @@ import { getPreview } from './getPreview';
 import { setImagesUpdatedTimestamp } from './setImagesUpdatedTimestamp';
 import { incrementForksCount, decrementForksCount } from './forksCount';
 import { getEventRecords, setEventRecords } from './eventRecords';
+import { updateScores } from './updateScores';
 
 export {
   DOCUMENT_CONTENT,
@@ -63,6 +64,7 @@ export const Database = (connection, mongoDatabase) => ({
   setImagesUpdatedTimestamp: setImagesUpdatedTimestamp(connection),
   incrementForksCount: incrementForksCount(connection),
   decrementForksCount: decrementForksCount(connection),
+  updateScores: updateScores(connection),
 
   /**
    * @deprecated database api

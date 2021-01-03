@@ -1,0 +1,25 @@
+{
+  "name": "vizhub-scoring-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node -r esm src/index.js",
+    "dev": "NODE_ENV=development node -r esm src/index.js",
+    "test-no-ci": "mocha -r esm test/test.js",
+    "updateDeps": "ncu -u"
+  },
+  "author": "Curran Kelleher",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "vizhub-entities": "1",
+    "vizhub-presenters": "1",
+    "vizhub-server-gateways": "1",
+    "vizhub-use-cases": "1"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "mocha": "^8.2.1"
+  }
+}
