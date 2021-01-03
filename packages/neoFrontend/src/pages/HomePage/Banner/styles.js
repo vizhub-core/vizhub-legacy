@@ -57,14 +57,14 @@ export const Message = styled.div`
 
 export const MessageSmallText = styled.div`
   font-size: 18px;
-  text-shadow: #fff 0 0 4px,#fff 0 0 4px,#fff 0 0 4px;
+  text-shadow: #fff 0 0 4px, #fff 0 0 4px, #fff 0 0 4px;
 `;
 
 export const MessageLargeText = styled.div`
   font-size: 32px;
   margin-top: 5px;
   margin-bottom: 5px;
-  text-shadow: #fff 0 0 4px,#fff 0 0 4px,#fff 0 0 4px;
+  text-shadow: #fff 0 0 4px, #fff 0 0 4px, #fff 0 0 4px;
 `;
 
 export const MessageList = styled.ul`

@@ -22,11 +22,11 @@ export class UpdateScores {
       const upVotes = upvotesCount || 0;
 
       const scores = {
-        wilson: wilsonScore(upVotes, 0),
-        redditHotCreated: redditHotScore(upVotes, 0, createdDate),
-        hackerHotCreated: hackerHotScore(upVotes, createdDate),
-        redditHotLastUpdated: redditHotScore(upVotes, 0, lastUpdatedDate),
-        hackerHotLastUpdated: hackerHotScore(upVotes, lastUpdatedDate),
+        scoreWilson: wilsonScore(upVotes, 0),
+        scoreRedditHotCreated: redditHotScore(upVotes, 0, createdDate),
+        scoreHackerHotCreated: hackerHotScore(upVotes, createdDate),
+        scoreRedditHotLastUpdated: redditHotScore(upVotes, 0, lastUpdatedDate),
+        scoreHackerHotLastUpdated: hackerHotScore(upVotes, lastUpdatedDate),
       };
       console.log(scores);
 
