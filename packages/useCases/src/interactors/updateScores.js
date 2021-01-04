@@ -5,6 +5,8 @@ const wilsonScore = decay.wilsonScore();
 const redditHotScore = decay.redditHot();
 const hackerHotScore = decay.hackerHot();
 
+const infinityIfNaN = (number) => (isNaN(number) ? -Infinity : number);
+
 export class UpdateScores {
   constructor(gateways) {
     this.visualizationGateway = gateways.visualizationGateway;
@@ -22,17 +24,18 @@ export class UpdateScores {
       const upvotesCount = upvotes ? upvotes.length : 0;
 
       const scores = {
-        scoreWilson: wilsonScore(upvotesCount, 0),
-        scoreRedditHotCreated: redditHotScore(upvotesCount, 0, createdDate),
-        scoreHackerHotCreated: hackerHotScore(upvotesCount, createdDate),
-        scoreRedditHotLastUpdated: redditHotScore(
-          upvotesCount,
-          0,
-          lastUpdatedDate
+        scoreWilson: infinityIfNaN(wilsonScore(upvotesCount, 0)),
+        scoreRedditHotCreated: infinityIfNaN(
+          redditHotScore(upvotesCount, 0, createdDate)
         ),
-        scoreHackerHotLastUpdated: hackerHotScore(
-          upvotesCount,
-          lastUpdatedDate
+        scoreHackerHotCreated: infinityIfNaN(
+          hackerHotScore(upvotesCount, createdDate)
+        ),
+        scoreRedditHotLastUpdated: infinityIfNaN(
+          redditHotScore(upvotesCount, 0, lastUpdatedDate)
+        ),
+        scoreHackerHotLastUpdated: infinityIfNaN(
+          hackerHotScore(upvotesCount, lastUpdatedDate)
         ),
       };
 
