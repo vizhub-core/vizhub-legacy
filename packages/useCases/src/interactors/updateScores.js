@@ -17,25 +17,37 @@ export class UpdateScores {
     const n = vizInfos.length;
 
     const updateScore = async (info) => {
-      const { id, createdTimestamp, lastUpdatedTimestamp, upvotes } = info;
+      const {
+        id,
+        createdTimestamp,
+        lastUpdatedTimestamp,
+        upvotes,
+        forksCount,
+      } = info;
 
       const createdDate = toDate(createdTimestamp);
       const lastUpdatedDate = toDate(lastUpdatedTimestamp);
-      const upvotesCount = upvotes ? upvotes.length : 0;
+      const numUpvotes = upvotes ? upvotes.length : 0;
+      const numForks = forksCount ? forksCount : 0;
+
+      // Weighted score of "activity".
+      //  * Forking counts as half of an "effective upvote"
+      //  * One upvote = one "effective upvote"
+      const effectiveUpvotes = numForks / 2 + numUpvotes;
 
       const scores = {
-        scoreWilson: infinityIfNaN(wilsonScore(upvotesCount, 0)),
+        scoreWilson: infinityIfNaN(wilsonScore(effectiveUpvotes, 0)),
         scoreRedditHotCreated: infinityIfNaN(
-          redditHotScore(upvotesCount, 0, createdDate)
+          redditHotScore(effectiveUpvotes, 0, createdDate)
         ),
         scoreHackerHotCreated: infinityIfNaN(
-          hackerHotScore(upvotesCount, createdDate)
+          hackerHotScore(effectiveUpvotes, createdDate)
         ),
         scoreRedditHotLastUpdated: infinityIfNaN(
-          redditHotScore(upvotesCount, 0, lastUpdatedDate)
+          redditHotScore(effectiveUpvotes, 0, lastUpdatedDate)
         ),
         scoreHackerHotLastUpdated: infinityIfNaN(
-          hackerHotScore(upvotesCount, lastUpdatedDate)
+          hackerHotScore(effectiveUpvotes, lastUpdatedDate)
         ),
       };
 
