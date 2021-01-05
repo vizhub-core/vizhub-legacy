@@ -22,18 +22,19 @@ export class UpdateScores {
         createdTimestamp,
         lastUpdatedTimestamp,
         upvotes,
-        forksCount,
+        // forksCount,
       } = info;
 
       const createdDate = toDate(createdTimestamp);
       const lastUpdatedDate = toDate(lastUpdatedTimestamp);
       const numUpvotes = upvotes ? upvotes.length : 0;
-      const numForks = forksCount ? forksCount : 0;
+      // const numForks = forksCount ? forksCount : 0;
 
       // Weighted score of "activity".
       //  * Forking counts as half of an "effective upvote"
       //  * One upvote = one "effective upvote"
-      const effectiveUpvotes = numForks / 2 + numUpvotes;
+      //const effectiveUpvotes = numForks / 2 + numUpvotes;
+      const effectiveUpvotes = numUpvotes;
 
       const scores = {
         scoreWilson: infinityIfNaN(wilsonScore(effectiveUpvotes, 0)),
