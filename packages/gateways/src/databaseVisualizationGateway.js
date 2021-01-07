@@ -103,4 +103,8 @@ export class DatabaseVisualizationGateway {
   async decrementForksCount({ id }) {
     return await this.database.decrementForksCount({ id });
   }
+
+  async updateScores({ id, scores }) {
+    return await this.database.updateScores({ id, scores });
+  }
 }
