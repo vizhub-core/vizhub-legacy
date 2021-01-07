@@ -48,7 +48,8 @@
     "styled-components": "^5.2.1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
-    "vizhub-presenters": "1"
+    "vizhub-presenters": "1",
+    "prettier": "2.1.2"
   },
   "browserslist": [
     ">0.2%",
@@ -58,7 +59,6 @@
   ],
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "prettier": "^2.2.1"
+    "@testing-library/react": "^11.2.2"
   }
 }
