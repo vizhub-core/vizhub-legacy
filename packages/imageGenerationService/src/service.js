@@ -8,9 +8,9 @@ const noop = () => {};
 // Otherwise we'd generate the same image twice in a row.
 const downTime = 5000;
 
-export const startService = ({ waitTime = defaultWaitTime }) => {
+export const startService = async ({ waitTime = defaultWaitTime }) => {
 
-  const gateways = Object.assign({}, serverGateways(), {
+  const gateways = Object.assign({}, await serverGateways(), {
     imageGeneratorGateway: {
       generateImages
     }

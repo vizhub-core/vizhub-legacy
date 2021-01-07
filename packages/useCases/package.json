@@ -19,6 +19,7 @@
     "multiscale-timeseries": "^1.4.0",
     "ot-json0": "^1.1.0",
     "uuid": "^8.3.2",
+    "decay": "^1.0.12",
     "vizhub-entities": "1",
     "vizhub-i18n": "1",
     "vizhub-libraries": "^1.8.0",
