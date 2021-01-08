@@ -13,7 +13,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^7.16.0",
+    "eslint": "^7.17.0",
     "esm": "^3.2.25",
     "prettier": "^2.2.1"
   },
