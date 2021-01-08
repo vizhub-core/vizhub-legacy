@@ -16,7 +16,7 @@
     "mocha": "^8.2.1",
     "path-posix": "^1.0.0",
     "rollup-pluginutils": "^2.8.2",
-    "svelte": "3.31.0",
+    "svelte": "3.31.2",
     "vizhub-entities": "1",
     "vizhub-libraries": "^1.8.0",
     "jsdom": "^16.4.0"

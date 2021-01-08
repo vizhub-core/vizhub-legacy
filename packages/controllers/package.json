@@ -21,13 +21,13 @@
     "node-fetch": "^2.6.1",
     "sanitize-html": "^2.3.0",
     "string-strip-html": "^7.0.3",
-    "stripe": "^8.129.0",
+    "stripe": "^8.130.0",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-use-cases": "1"
   },
   "devDependencies": {
-    "eslint": "^7.16.0",
+    "eslint": "^7.17.0",
     "prettier": "^2.2.1"
   }
 }
