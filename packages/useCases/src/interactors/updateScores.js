@@ -55,10 +55,11 @@ export class UpdateScores {
       return await this.visualizationGateway.updateScores({ id, scores });
     };
 
+    const logProgress = false;
     const step = 100;
     await vizInfos.reduce(async (accumulator, info, i) => {
       await accumulator;
-      if (i % step === 0) {
+      if (logProgress && i % step === 0) {
         console.log(
           `computed score for ${i} vizzes of ${n}. ${
             Math.round((i / n) * 1000) / 10

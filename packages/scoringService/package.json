@@ -7,7 +7,8 @@
     "start": "NODE_ENV=production node -r esm src/index.js",
     "dev": "NODE_ENV=development node -r esm src/index.js",
     "test-no-ci": "mocha -r esm test/test.js",
-    "updateDeps": "ncu -u"
+    "updateDeps": "ncu -u",
+    "prettier": "prettier --single-quote --write 'src/**/*.js'"
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
@@ -16,7 +17,8 @@
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-server-gateways": "1",
-    "vizhub-use-cases": "1"
+    "vizhub-use-cases": "1",
+    "prettier": "^2.2.1"
   },
   "devDependencies": {
     "esm": "^3.2.25",

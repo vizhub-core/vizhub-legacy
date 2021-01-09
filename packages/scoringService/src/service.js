@@ -18,6 +18,7 @@ export const startService = async () => {
 
   let loop = () => {
     console.log('Scoring all vizzes...');
+    console.log('Present time: ' + new Date());
     Promise.all([
       updateScores.execute(),
       new Promise(resolve => setTimeout(resolve, downTime))
