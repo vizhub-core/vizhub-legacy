@@ -22,13 +22,22 @@ export class UpdateScores {
         createdTimestamp,
         lastUpdatedTimestamp,
         upvotes,
-        // forksCount,
+        forksCount,
       } = info;
 
       const createdDate = toDate(createdTimestamp);
       const lastUpdatedDate = toDate(lastUpdatedTimestamp);
-      const numUpvotes = upvotes ? upvotes.length : 0;
-      // const numForks = forksCount ? forksCount : 0;
+      let numUpvotes = upvotes ? upvotes.length : 0;
+      const numForks = forksCount ? forksCount : 0;
+
+      // Count each fork as half an upvote.
+      numUpvotes += numForks / 2;
+
+      // Count Curran's upvote as 10 upvotes.
+      const CURRAN = '68416';
+      if (upvotes && upvotes.find((d) => d.userId === CURRAN)) {
+        numUpvotes += 9;
+      }
 
       // Weighted score of "activity".
       //  * Forking counts as half of an "effective upvote"
