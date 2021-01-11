@@ -21,14 +21,14 @@ export const startService = async () => {
     console.log('Present time: ' + new Date());
     Promise.all([
       updateScores.execute(),
-      new Promise(resolve => setTimeout(resolve, downTime))
+      new Promise((resolve) => setTimeout(resolve, downTime)),
     ]).then(loop);
-  }
+  };
   loop();
 
   return {
     stopService: () => {
       loop = noop;
-    }
+    },
   };
 };
