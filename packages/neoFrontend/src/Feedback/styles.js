@@ -20,8 +20,9 @@ export const FeedbackButton = styled(Button)`
   width: 24px;
   height: unset;
   padding: 12px 0 12px 0;
-  border-radius: 0 6px 6px 0;
+  border-radius:  0;
+  stroke-color:'black';
   border-left: none;
   font-size: 12px;
-  background-color: #e1e8f4;
+  background-color: 0;
 `;
