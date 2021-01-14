@@ -27,6 +27,9 @@ const colorHash = new ColorHash();
 
 const fileIndexOfPath = (path) => path[1];
 
+const historyByFile = {}
+const cursorByFile = {}
+
 export const CodeAreaCodeMirror5 = ({
   activeFile,
   selectedLines,
@@ -269,6 +272,11 @@ export const CodeAreaCodeMirror5 = ({
     [onGutterClick]
   );
 
+  const saveEditorState = useCallback(({ fileName, cursor, history }) => {
+    historyByFile[fileName] = history;
+    cursorByFile[fileName] = cursor;
+  }, []);
+
   return (
     <>
       {fileText !== null && (
@@ -281,6 +289,8 @@ export const CodeAreaCodeMirror5 = ({
           keyMap={keyMap}
           editorModules={editorModules}
           highlightScrollStrategy={highlightScrollStrategy}
+          history={historyByFile[activeFile]}
+          cursor={cursorByFile[activeFile]}
           onGutterClick={handleGutterClick}
           onLinkClick={onLinkClick}
           onManualRun={manualRun}
@@ -288,6 +298,7 @@ export const CodeAreaCodeMirror5 = ({
           onCursorActivity={resetRunTimer}
           onCursorPositionChange={handleCursorPositionChange}
           onToggleVimMode={toggleVimMode}
+          onDestroy={saveEditorState}
         />
       )}
       {!editorModules ? <LoadingScreen color={light} isChild={true} /> : null}
