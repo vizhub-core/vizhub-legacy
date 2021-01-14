@@ -4,7 +4,7 @@ import { Wrapper, FeedbackButton } from './styles';
 export const Feedback = () => (
   <Wrapper>
     <a
-      href="https://github.com/datavis-tech/vizhub-issue-tracker/issues/new"
+      href="https://vizhub.com/forum/c/site-feedback/2"
       target="_blank"
       rel="noopener noreferrer"
     >
