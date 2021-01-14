@@ -32,7 +32,7 @@ export const Banner = () => (
         </MessageSmallText>
         <CallToAction>
           <Link to="/auth">
-            <MessageButton isFilled >Get Started</MessageButton>
+            <MessageButton isFilled>Get Started</MessageButton>
           </Link>
         </CallToAction>
       </Message>
