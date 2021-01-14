@@ -36,8 +36,6 @@ export const CodeMirrorReactBinding = React.forwardRef(
       keyMap,
       editorModules,
       highlightScrollStrategy,
-      history,
-      cursor,
       onGutterClick,
       onLinkClick,
       onManualRun,
@@ -45,7 +43,6 @@ export const CodeMirrorReactBinding = React.forwardRef(
       onCursorActivity,
       onCursorPositionChange,
       onToggleVimMode,
-      onDestroy,
     },
     ref
   ) => {
@@ -98,10 +95,6 @@ export const CodeMirrorReactBinding = React.forwardRef(
       });
 
       cm.addOverlay(linkOverlay);
-      const doc = cm.getDoc();
-      
-      if (history) doc.setHistory(history);
-      if (cursor) doc.setCursor(cursor);
 
       setCodeMirror(cm);
 
@@ -114,22 +107,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
       fileText,
       extension,
       manualRunRef,
-      history,
-      cursor
     ]);
-
-    useEffect(() => {
-      return () => {
-        if (!codeMirror) return;
-
-        const doc = codeMirror.getDoc();
-        onDestroy({
-          fileName,
-          cursor: doc.getCursor(),
-          history: doc.getHistory()
-        })
-      }
-    }, [fileName, codeMirror, onDestroy]);
 
     // Update language mode and wrapping when extension changes.
     useEffect(() => {
