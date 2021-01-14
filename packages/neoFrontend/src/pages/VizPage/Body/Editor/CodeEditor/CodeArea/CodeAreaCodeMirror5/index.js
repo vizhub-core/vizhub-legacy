@@ -27,8 +27,8 @@ const colorHash = new ColorHash();
 
 const fileIndexOfPath = (path) => path[1];
 
-const historyByFile = {}
-const cursorByFile = {}
+const historyByFile = {};
+const cursorByFile = {};
 
 export const CodeAreaCodeMirror5 = ({
   activeFile,

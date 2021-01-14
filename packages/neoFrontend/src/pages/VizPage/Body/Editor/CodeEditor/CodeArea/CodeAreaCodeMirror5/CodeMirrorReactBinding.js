@@ -99,7 +99,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
 
       cm.addOverlay(linkOverlay);
       const doc = cm.getDoc();
-      
+
       if (history) doc.setHistory(history);
       if (cursor) doc.setCursor(cursor);
 
@@ -115,7 +115,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
       extension,
       manualRunRef,
       history,
-      cursor
+      cursor,
     ]);
 
     useEffect(() => {
@@ -126,9 +126,9 @@ export const CodeMirrorReactBinding = React.forwardRef(
         onDestroy({
           fileName,
           cursor: doc.getCursor(),
-          history: doc.getHistory()
-        })
-      }
+          history: doc.getHistory(),
+        });
+      };
     }, [fileName, codeMirror, onDestroy]);
 
     // Update language mode and wrapping when extension changes.
