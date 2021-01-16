@@ -12,13 +12,14 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "vizhub-entities": "1",
-    "vizhub-presenters": "1",
-    "vizhub-use-cases": "1",
     "dotenv": "^8.2.0",
+    "jsdom": "^16.4.0",
     "puppeteer": "^5.5.0",
     "sharp": "^0.27.0",
-    "vizhub-server-gateways": "1"
+    "vizhub-entities": "1",
+    "vizhub-presenters": "1",
+    "vizhub-server-gateways": "1",
+    "vizhub-use-cases": "1"
   },
   "devDependencies": {
     "esm": "^3.2.25",
