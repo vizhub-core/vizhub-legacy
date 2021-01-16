@@ -1,5 +1,8 @@
-import { computeSrcDoc } from 'vizhub-presenters';
+import { JSDOM } from 'jsdom';
 import puppeteer from 'puppeteer';
+import { computeSrcDoc, setJSDOM } from 'vizhub-presenters';
+
+setJSDOM(JSDOM);
 
 export const generateScreenshot = async ({ visualizationViewModel, waitTime }) => {
   const { width, height, files } = visualizationViewModel;
