@@ -24,4 +24,8 @@ export const ViewerFooter = styled.div`
   text-align: center;
   color: ${(props) => props.theme.veryLightPink};
   padding: 20px 0 20px 0;
+
+  a {
+    color: ${(props) => props.theme.veryLightPink};
+  }
 `;
