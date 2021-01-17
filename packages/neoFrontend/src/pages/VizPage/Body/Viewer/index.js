@@ -16,7 +16,7 @@ import {
   upvoteOp,
   isVizInfoPrivate,
   getVizFiles,
-  getLicenses,
+  getLicense,
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
@@ -31,6 +31,9 @@ import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 import { Resizer } from './Resizer';
 import { GlobalScrollbarStyle } from './GlobalScrollbarStyle';
+import { useLicenseToHtmlRenderer } from './useLicenseToHtmlRenderer';
+
+const getLicenseFromViz = (viz$) => getLicense(getVizFiles(viz$)); 
 
 export const Viewer = () => {
   const {
@@ -100,9 +103,19 @@ export const Viewer = () => {
 
   const isPrivate = isVizInfoPrivate(vizInfo);
 
-  const files = useValue(viz$, getVizFiles);
+  const renderLicenseToHtml = useLicenseToHtmlRenderer();
 
-  const licenses = useMemo(() => getLicenses(files).join(','), [files]);
+  const spdxLicenseString = useValue(viz$, getLicenseFromViz);
+
+  const license = useMemo(() => {
+    return (
+      <span
+        dangerouslySetInnerHTML={{
+          __html: renderLicenseToHtml(spdxLicenseString),
+        }}
+      />
+    );
+  }, [spdxLicenseString, renderLicenseToHtml]);
 
   return (
     <Wrapper className="test-viewer">
@@ -138,7 +151,7 @@ export const Viewer = () => {
             />
             <HorizontalRule />
             <ViewerFooter title="All public code in VizHub is released under the MIT License.">
-              {licenses} Licensed
+              {license}
             </ViewerFooter>
           </ViewerContent>
         </Centering>
