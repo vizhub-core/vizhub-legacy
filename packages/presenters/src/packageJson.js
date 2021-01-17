@@ -4,7 +4,7 @@ import { getText } from './accessors';
 const EMPTY_PKG_JSON = {
   dependencies: {},
   vizhub: {},
-  license: 'MIT'
+  license: 'MIT',
 };
 
 export const packageJSON = (files) => {
@@ -31,8 +31,7 @@ export const dependencySource = ({ name, version }, libraries) => {
   return `https://unpkg.com/${name}@${version}${path}`;
 };
 
-
 export const getLicenses = (files) => {
   const licenseTypes = packageLicenseTypes(packageJSON(files));
-  return licenseTypes.length > 0 ? licenseTypes : ['MIT']
-}
+  return licenseTypes.length > 0 ? licenseTypes : ['MIT'];
+};
