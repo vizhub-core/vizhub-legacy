@@ -1,6 +1,11 @@
+import packageLicenseTypes from 'package-license-types';
 import { getText } from './accessors';
 
-const EMPTY_PKG_JSON = { dependencies: {}, vizhub: {} };
+const EMPTY_PKG_JSON = {
+  dependencies: {},
+  vizhub: {},
+  license: 'MIT'
+};
 
 export const packageJSON = (files) => {
   const packageJsonText = getText(files, 'package.json');
@@ -25,3 +30,9 @@ export const dependencySource = ({ name, version }, libraries) => {
   // unpkg uses file from unpkg or main field when no file specifid in url
   return `https://unpkg.com/${name}@${version}${path}`;
 };
+
+
+export const getLicenses = (files) => {
+  const licenseTypes = packageLicenseTypes(packageJSON(files));
+  return licenseTypes.length > 0 ? licenseTypes : ['MIT']
+}
