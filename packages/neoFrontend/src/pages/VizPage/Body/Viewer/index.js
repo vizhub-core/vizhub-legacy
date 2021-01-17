@@ -4,6 +4,7 @@ import React, {
   useState,
   useCallback,
   useEffect,
+  useMemo,
 } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
 import {
@@ -14,6 +15,8 @@ import {
   getDidVote,
   upvoteOp,
   isVizInfoPrivate,
+  getVizFiles,
+  getLicenses,
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
@@ -97,6 +100,10 @@ export const Viewer = () => {
 
   const isPrivate = isVizInfoPrivate(vizInfo);
 
+  const files = useValue(viz$, getVizFiles);
+
+  const licenses = useMemo(() =>  getLicenses(files).join(','), [files])
+
   return (
     <Wrapper className="test-viewer">
       <Resizer />
@@ -131,7 +138,7 @@ export const Viewer = () => {
             />
             <HorizontalRule />
             <ViewerFooter title="All public code in VizHub is released under the MIT License.">
-              MIT Licensed
+              {licenses} Licensed
             </ViewerFooter>
           </ViewerContent>
         </Centering>

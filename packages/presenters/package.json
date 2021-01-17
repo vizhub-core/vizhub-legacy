@@ -19,7 +19,8 @@
     "svelte": "3.31.2",
     "vizhub-entities": "1",
     "vizhub-libraries": "^1.8.0",
-    "jsdom": "^16.4.0"
+    "jsdom": "^16.4.0",
+    "package-license-types": "1.0.1"
   },
   "devDependencies": {
     "esm": "^3.2.25",
