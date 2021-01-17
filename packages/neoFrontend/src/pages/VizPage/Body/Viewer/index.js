@@ -102,7 +102,7 @@ export const Viewer = () => {
 
   const files = useValue(viz$, getVizFiles);
 
-  const licenses = useMemo(() =>  getLicenses(files).join(','), [files])
+  const licenses = useMemo(() => getLicenses(files).join(','), [files]);
 
   return (
     <Wrapper className="test-viewer">
