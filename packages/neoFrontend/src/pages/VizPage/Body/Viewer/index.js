@@ -33,7 +33,7 @@ import { Resizer } from './Resizer';
 import { GlobalScrollbarStyle } from './GlobalScrollbarStyle';
 import { useLicenseToHtmlRenderer } from './useLicenseToHtmlRenderer';
 
-const getLicenseFromViz = (viz$) => getLicense(getVizFiles(viz$)); 
+const getLicenseFromViz = (viz$) => getLicense(getVizFiles(viz$));
 
 export const Viewer = () => {
   const {
