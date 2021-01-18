@@ -55,7 +55,7 @@ export const deleteFileOp = (viz, fileName) => {
 
 export const extractTitle = (html) => {
   if (html) {
-    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+    const titleMatch = html.match(/<title>(.*?)<\/title>/si);
     if (titleMatch) {
       return titleMatch[1];
     }
