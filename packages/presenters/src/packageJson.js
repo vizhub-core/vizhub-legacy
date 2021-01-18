@@ -1,6 +1,10 @@
 import { getText } from './accessors';
 
-const EMPTY_PKG_JSON = { dependencies: {}, vizhub: {} };
+const EMPTY_PKG_JSON = {
+  dependencies: {},
+  vizhub: {},
+  license: 'MIT',
+};
 
 export const packageJSON = (files) => {
   const packageJsonText = getText(files, 'package.json');
@@ -25,3 +29,6 @@ export const dependencySource = ({ name, version }, libraries) => {
   // unpkg uses file from unpkg or main field when no file specifid in url
   return `https://unpkg.com/${name}@${version}${path}`;
 };
+
+export const getLicense = (files) =>
+  packageJSON(files).license || EMPTY_PKG_JSON.license;

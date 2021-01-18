@@ -4,6 +4,7 @@ import React, {
   useState,
   useCallback,
   useEffect,
+  useMemo,
 } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
 import {
@@ -14,6 +15,8 @@ import {
   getDidVote,
   upvoteOp,
   isVizInfoPrivate,
+  getVizFiles,
+  getLicense,
 } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { AuthContext } from '../../../../authentication';
@@ -28,6 +31,9 @@ import { TitleBar } from './TitleBar';
 import { DescriptionSection } from './DescriptionSection';
 import { Resizer } from './Resizer';
 import { GlobalScrollbarStyle } from './GlobalScrollbarStyle';
+import { useLicenseToHtmlRenderer } from './useLicenseToHtmlRenderer';
+
+const getLicenseFromViz = (viz$) => getLicense(getVizFiles(viz$)); 
 
 export const Viewer = () => {
   const {
@@ -97,6 +103,20 @@ export const Viewer = () => {
 
   const isPrivate = isVizInfoPrivate(vizInfo);
 
+  const renderLicenseToHtml = useLicenseToHtmlRenderer();
+
+  const spdxLicenseString = useValue(viz$, getLicenseFromViz);
+
+  const license = useMemo(() => {
+    return (
+      <span
+        dangerouslySetInnerHTML={{
+          __html: renderLicenseToHtml(spdxLicenseString),
+        }}
+      />
+    );
+  }, [spdxLicenseString, renderLicenseToHtml]);
+
   return (
     <Wrapper className="test-viewer">
       <Resizer />
@@ -131,7 +151,7 @@ export const Viewer = () => {
             />
             <HorizontalRule />
             <ViewerFooter title="All public code in VizHub is released under the MIT License.">
-              MIT Licensed
+              {license}
             </ViewerFooter>
           </ViewerContent>
         </Centering>
