@@ -49,7 +49,8 @@
     "vizhub-database": "1",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "spdx-to-html": "1.0.0"
   },
   "browserslist": [
     ">0.2%",
