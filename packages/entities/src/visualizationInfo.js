@@ -1,13 +1,14 @@
 import { DocumentInfo } from './documentInfo';
 import { VISUALIZATION_TYPE } from './documentTypes';
 
+const isStaging = process.env.REACT_APP_VIZHUB_IS_STAGING;
+
 // The options for sorting views of many visualizations.
 export const VIZ_INFO_SORT_OPTIONS = [
   {
     id: 'mostRecent', // Used in URL param
     label: 'Most recent', // Used in UI
     vizInfoProperty: 'lastUpdatedTimestamp', // Used in DB query
-    isDefault: true, // Used in URL logic
   },
   {
     id: 'mostForked',
@@ -23,29 +24,35 @@ export const VIZ_INFO_SORT_OPTIONS = [
     id: 'popular',
     label: 'Most popular',
     vizInfoProperty: 'scoreHackerHotLastUpdated',
+    isDefault: true, // Used in URL logic
   },
-  //  { id: 'wilson', label: 'Wilson Score', vizInfoProperty: 'scoreWilson' },
-  //  {
-  //    id: 'reddit-hot-created',
-  //    label: 'Reddit Hot (created date)',
-  //    vizInfoProperty: 'scoreRedditHotCreated',
-  //  },
-  //  {
-  //    id: 'hacker-hot-created',
-  //    label: 'Hacker Hot (created date)',
-  //    vizInfoProperty: 'scoreHackerHotCreated',
-  //  },
-  //  {
-  //    id: 'reddit-hot-updated',
-  //    label: 'Reddit Hot (updated date)',
-  //    vizInfoProperty: 'scoreRedditHotLastUpdated',
-  //  },
-  //  {
-  //    id: 'hacker-hot-updated',
-  //    label: 'Hacker Hot (updated date)',
-  //    vizInfoProperty: 'scoreHackerHotLastUpdated',
-  //  },
 ];
+
+if (isStaging) {
+  VIZ_INFO_DEFAULT_SORT_OPTION.push([
+    { id: 'wilson', label: 'Wilson Score', vizInfoProperty: 'scoreWilson' },
+    {
+      id: 'reddit-hot-created',
+      label: 'Reddit Hot (created date)',
+      vizInfoProperty: 'scoreRedditHotCreated',
+    },
+    {
+      id: 'hacker-hot-created',
+      label: 'Hacker Hot (created date)',
+      vizInfoProperty: 'scoreHackerHotCreated',
+    },
+    {
+      id: 'reddit-hot-updated',
+      label: 'Reddit Hot (updated date)',
+      vizInfoProperty: 'scoreRedditHotLastUpdated',
+    },
+    {
+      id: 'hacker-hot-updated',
+      label: 'Hacker Hot (updated date)',
+      vizInfoProperty: 'scoreHackerHotLastUpdated',
+    },
+  ]);
+}
 
 export const VIZ_INFO_DEFAULT_SORT_OPTION = VIZ_INFO_SORT_OPTIONS.find(
   ({ isDefault }) => isDefault
