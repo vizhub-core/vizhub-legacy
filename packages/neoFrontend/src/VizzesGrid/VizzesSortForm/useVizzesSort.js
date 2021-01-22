@@ -6,7 +6,8 @@ import { useSearchQuery } from '../../useSearchQuery';
 const isDefault = (sort) => VIZ_INFO_DEFAULT_SORT_OPTION.id === sort;
 
 export const useVizzesSort = () => {
-  const sort = useSearchQuery('sort');
+  const sortQuery = useSearchQuery('sort');
+  const sort = sortQuery || VIZ_INFO_DEFAULT_SORT_OPTION.id;
   const history = useHistory();
 
   const handleSortChange = useCallback(
