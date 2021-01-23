@@ -56,6 +56,7 @@ export const CodeSnippet = () => {
       <>
         <CodeMirrorReactBinding
           readonly
+          focusOnLoad={false}
           fileText={fileText}
           fileName={activeFile}
           selectedLines={selectedLines}
