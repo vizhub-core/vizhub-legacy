@@ -38,6 +38,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
       highlightScrollStrategy,
       history,
       cursor,
+      focusOnLoad = true,
       onGutterClick,
       onLinkClick,
       onManualRun,
@@ -95,6 +96,8 @@ export const CodeMirrorReactBinding = React.forwardRef(
         },
         gutters: ['CodeMirror-lint-markers'],
         lint: lintJs,
+        // Ensure newly opened file has focus.
+        autofocus: focusOnLoad,
       });
 
       cm.addOverlay(linkOverlay);
@@ -114,6 +117,7 @@ export const CodeMirrorReactBinding = React.forwardRef(
       fileText,
       extension,
       manualRunRef,
+      focusOnLoad,
       history,
       cursor,
     ]);
@@ -151,12 +155,6 @@ export const CodeMirrorReactBinding = React.forwardRef(
       if (!codeMirror || !keyMap) return;
       codeMirror.setOption('keyMap', keyMap);
     }, [codeMirror, keyMap]);
-
-    // Ensure newly opened file has focus.
-    useEffect(() => {
-      if (!codeMirror) return;
-      codeMirror.focus();
-    }, [codeMirror, fileText]);
 
     // keep track of previous selected lines
     const prevSelectedLinesRef = useRef(null);
