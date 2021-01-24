@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import { getVizOwner } from 'vizhub-presenters';
+import { getVizOwner, getVizCollaborators } from 'vizhub-presenters';
 import {
   ForkSVG,
   PullSVG,
@@ -22,6 +22,10 @@ import { Wrapper, Left, Center, Right, HeadIcon, HeadLink } from './styles';
 import { EditorToggler } from './EditorToggler';
 import { TrashIcon } from '../TrashIcon';
 
+const getCollaboratorIds = (viz) => (
+  getVizCollaborators(viz).map(({ userId }) => userId)
+);
+
 export const Head = ({ showRight }) => {
   const { showForkModal } = useContext(ForkingContext);
   const onDeleteViz = useContext(DeleteVizContext);
@@ -32,9 +36,14 @@ export const Head = ({ showRight }) => {
   const showShareModal = useContext(ShareContext);
   const { vizId } = useContext(URLStateContext);
   const owner = useValue(viz$, getVizOwner);
+  const collaboratorIds = useValue(viz$, getCollaboratorIds);
 
-  const showHeadTrash = me && me.id === owner;
-  const showHeadSettings = showHeadTrash;
+  let showHeadTrash = false;
+  let showHeadSettings = false;
+  if (me) {
+    showHeadTrash = me.id === owner;
+    showHeadSettings = showHeadTrash || collaboratorIds.includes(me.id);
+  }
 
   const onSettingsClick = useCallback(() => {
     showSettingsModal();
