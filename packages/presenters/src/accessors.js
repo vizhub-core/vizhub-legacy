@@ -205,7 +205,7 @@ export const getVizInfo = (viz) => viz.info;
 
 const getCollaboratorCount = (collaborators) =>
   collaborators ? collaborators.length : 0;
-export const getVizCollaborators = (viz) => viz.info.collaborators;
+export const getVizCollaborators = (viz) => viz.info.collaborators || [];
 export const addCollaboratorOp = ({
   collaborators,
   collaborator,
