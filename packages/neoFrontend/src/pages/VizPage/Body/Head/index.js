@@ -22,9 +22,8 @@ import { Wrapper, Left, Center, Right, HeadIcon, HeadLink } from './styles';
 import { EditorToggler } from './EditorToggler';
 import { TrashIcon } from '../TrashIcon';
 
-const getCollaboratorIds = (viz) => (
-  getVizCollaborators(viz).map(({ userId }) => userId)
-);
+const getCollaboratorIds = (viz) =>
+  getVizCollaborators(viz).map(({ userId }) => userId);
 
 export const Head = ({ showRight }) => {
   const { showForkModal } = useContext(ForkingContext);
