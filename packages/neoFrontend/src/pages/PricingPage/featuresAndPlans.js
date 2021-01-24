@@ -1,4 +1,4 @@
-import { showProPlan, showNeoPricing } from '../../featureFlags'
+import { showProPlan, showNeoPricing } from '../../featureFlags';
 
 export const FREE = 'free';
 export const BASIC = 'basic';
@@ -85,7 +85,7 @@ const neoFeatures = [
     title: 'Whitelabel Embedding',
     plans: { [FREE]: false, [BASIC]: false, [PRO]: true },
   },
-]
+];
 
 export const features = showNeoPricing ? neoFeatures : oldFeatures;
 
@@ -96,7 +96,7 @@ export const plans = [
     label: 'Basic',
     subtext: ['$4 / month'],
   },
-  showProPlan &&   {
+  showProPlan && {
     id: PRO,
     label: 'Pro',
     subtext: ['$12 / month'],
