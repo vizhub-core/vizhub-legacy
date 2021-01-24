@@ -31,6 +31,8 @@ export const showUserActionsMenuCreateViz = true;
 export const showUserActionsProfile = true;
 
 export const packageJSON = true;
+export const showProPlan = process.env.REACT_APP_PRO_PLAN === 'true'
+export const showNeoPricing = process.env.REACT_APP_NEO_PRICING === 'true'
 
 // List of usernames who have access to
 // private viz feature.
