@@ -22,7 +22,7 @@ export const getFile = (files, name) => files[getFileIndex(files, name)];
 
 export const getText = (files, name) => {
   const file = getFile(files, name);
-  return file ? file.text : '';
+  return file ? file.text || '' : '';
 };
 
 export const getVizHeight = (viz) => viz.info.height || defaultVizHeight;
