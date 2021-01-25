@@ -57,7 +57,7 @@ export const Body = () => {
         <Sidebar>
           <LinkWithIcon
             active={typeOfVizzes === 'public'}
-            icon="PeopleSVG"
+            icon="LockOpenSVG"
             onClick={showPublic}
           >
             Public
