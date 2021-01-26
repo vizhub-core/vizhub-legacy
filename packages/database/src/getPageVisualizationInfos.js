@@ -6,14 +6,11 @@ import {
 } from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
+import { pageSize } from './constants';
 
 const defaultSort = VIZ_INFO_DEFAULT_SORT_OPTION.id;
 const isAllowed = (sort) =>
   !!VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
-
-// The number of vizzes shown in a page of content.
-// Infinite scroll pagination fetches the next page.
-const pageSize = 100;
 
 export const getPageVisualizationInfos = (connection) => async ({
   query,

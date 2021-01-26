@@ -7,8 +7,6 @@ export const getVisualizationInfosByUserId = (connection) => async ({
 }) => {
   return getPageVisualizationInfos(connection)({
     ...commonProps,
-    // Show private visualizations if profile owner is currently authenticated.
-    includePrivate: owner === authenticatedUser,
     extraQueryParams: { owner },
   });
 };

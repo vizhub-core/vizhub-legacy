@@ -9,38 +9,38 @@ import {
   useVizzesSort,
 } from '../../../VizzesGrid/VizzesSortForm';
 import { Content, Centering } from '../../styles';
+import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { SidebarWrapper, Main, Sidebar } from '../styles';
 import { LinkWithIcon } from '../LinkWithIcon';
 import { ProfilePane } from '../ProfilePane';
-import { useProfileData } from './useProfileData';
+import { useProfileVizzes } from './useProfileVizzes';
 import { ProfileMenuBar } from './styles';
 
 export const Body = () => {
   const { me } = useContext(AuthContext);
-  const [typeOfVizzes, setTypeOfVizzes] = useState('public');
-  const profilePageData = useProfileData(me, typeOfVizzes);
+  const { user, visualizationInfos: initialVisualizationInfos } = useContext(ProfilePageDataContext);
+  const [vizType, setVizType] = useState('public');
   const {
-    user,
     visualizationInfos,
     paginate,
     usersById,
     isFetchingNextPage,
-  } = profilePageData;
+  } = useProfileVizzes({ me, vizType, initialVisualizationInfos });
 
   useEffect(() => {
     sendEvent(`event.pageview.profile.user:${user.id}`);
   }, [user]);
 
   const showPublic = useCallback(() => {
-    setTypeOfVizzes('public');
+    setVizType('public');
   }, []);
 
   const showPrivate = useCallback(() => {
-    setTypeOfVizzes('private');
+    setVizType('private');
   }, []);
 
   const showVizzesSharedWithMe = useCallback(() => {
-    setTypeOfVizzes('shared');
+    setVizType('shared');
   }, []);
 
   const [sort, handleSortChange] = useVizzesSort();
@@ -56,7 +56,7 @@ export const Body = () => {
       <SidebarWrapper>
         <Sidebar>
           <LinkWithIcon
-            active={typeOfVizzes === 'public'}
+            active={vizType === 'public'}
             icon="LockOpenSVG"
             onClick={showPublic}
           >
@@ -64,7 +64,7 @@ export const Body = () => {
           </LinkWithIcon>
           {showProfileSidebar(user, me) ? (
             <LinkWithIcon
-              active={typeOfVizzes === 'private'}
+              active={vizType === 'private'}
               icon="LockSVG"
               onClick={showPrivate}
             >
@@ -73,7 +73,7 @@ export const Body = () => {
           ) : null}
           {Boolean(me) && user.id === me.id && (
             <LinkWithIcon
-              active={typeOfVizzes === 'shared'}
+              active={vizType === 'shared'}
               icon="SharedWithMeSVG"
               onClick={showVizzesSharedWithMe}
             >

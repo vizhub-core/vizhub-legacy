@@ -1,36 +1,36 @@
-import { useCallback } from 'react';
-import { usePaginatedVizzes } from '../../../VizzesGrid/usePaginatedVizzes';
+import { useState, useEffect } from 'react';
 import { fetchProfilePageData } from './fetchProfilePageData';
 
+const initialState = {
+  user: null,
+  visualizationInfos: [],
+  error: null
+}
+
 export const useProfilePageData = (userName, query, sort) => {
-  const fetchData = useCallback(
-    (offset) => {
-      return fetchProfilePageData({ userName, query, sort, offset }).then(
+  const [profilePageData, setProfilePageData] = useState(initialState)
+
+  useEffect(
+    () => {
+      fetchProfilePageData({ userName, query, sort }).then(
         ({ user, visualizationInfos, error }) => {
           if (error && error.message === 'The requested user does not exist') {
-            return {
-              error: { message: 'User not found' },
-            };
+            setProfilePageData({
+              ...initialState,
+              error: { message: 'User not found' }
+            })
           }
 
-          return {
-            ownerUsers: [user],
+          setProfilePageData({
+            user,
             visualizationInfos,
-          };
+            error: null
+          })
         }
       );
     },
-    [sort, userName, query]
+    [sort, userName, query, setProfilePageData]
   );
 
-  const paginatedVizzes = usePaginatedVizzes(fetchData);
-  const user =
-    paginatedVizzes.error || !paginatedVizzes.usersById
-      ? null
-      : Object.values(paginatedVizzes.usersById)[0];
-
-  return {
-    ...paginatedVizzes,
-    user,
-  };
+  return profilePageData;
 };

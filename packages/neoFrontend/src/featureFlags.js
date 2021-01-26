@@ -36,7 +36,7 @@ export const showNeoPricing = process.env.REACT_APP_NEO_PRICING === 'true';
 
 // List of usernames who have access to
 // private viz feature.
-const core = ['ci'];
+const core = ['ci', 'stushurik'];
 
 const professors = ['Razpudding', 'sjengle', 'nazareno'];
 
