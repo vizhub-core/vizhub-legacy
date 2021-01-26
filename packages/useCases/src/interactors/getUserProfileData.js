@@ -17,6 +17,8 @@ export class GetUserProfileData {
     const visualizationInfos = await this.visualizationGateway.getVisualizationInfosByUserId(
       {
         ...otherProfileOptions,
+        offset: 0,
+        includePrivate: false,
         owner: user.id,
       }
     );

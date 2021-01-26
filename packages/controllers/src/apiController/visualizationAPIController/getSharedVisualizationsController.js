@@ -1,7 +1,7 @@
-import { GetSharedVisualizations } from 'vizhub-use-cases';
+import { GetSearchResultsPageData } from 'vizhub-use-cases';
 
-export const getGetSharedVisualizationsController = (expressApp, gateways) => {
-  const getSearchResultsPageData = new GetSharedVisualizations(gateways);
+export const getSharedVisualizationsController = (expressApp, gateways) => {
+  const getSearchResultsPageData = new GetSearchResultsPageData(gateways);
   expressApp.post('/api/visualization/get/shared', async (req, res) => {
     try {
       const { offset = 0, collaborators = [] } = req.body;
