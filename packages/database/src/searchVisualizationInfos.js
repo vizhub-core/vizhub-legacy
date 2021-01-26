@@ -1,16 +1,15 @@
 import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
-
-// The number of vizzes shown in a page of content.
-// Infinite scroll pagination fetches the next page.
-const pageSize = 100;
+import { pageSize } from './constants';
 
 export const searchVisualizationInfos = (connection) => async ({
   query,
   collaborators,
   offset,
   inlcudePrivate,
+  onlyPrivate,
+  owner
 }) => {
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
@@ -18,10 +17,15 @@ export const searchVisualizationInfos = (connection) => async ({
     $skip: offset * pageSize,
     $sort: { lastUpdatedTimestamp: -1 },
     privacy: { $ne: 'private' },
+    owner
   };
 
   if (inlcudePrivate) {
     delete mongoQuery['privacy'];
+  }
+
+  if(onlyPrivate) {
+    mongoQuery['privacy'] = 'private';
   }
 
   if (query) {
