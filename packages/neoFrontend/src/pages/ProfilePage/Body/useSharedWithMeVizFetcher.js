@@ -1,7 +1,12 @@
-import { useCallback } from 'react';
-import { usePaginatedVizzes } from '../../../VizzesGrid/usePaginatedVizzes';
+import { useCallback , useEffect, useState} from 'react';
 
-export const useSharedWithMe = (userId) => {
+export const useSharedWithMeVizFetcher = (userId, vizType) => {
+  const [state, setState] = useState(false);
+
+  useEffect(() => {
+    if(vizType === 'shared') setState(true)
+  }, [vizType])
+
   const fetchData = useCallback(
     async (offset) => {
       if (!userId) return;
@@ -17,5 +22,5 @@ export const useSharedWithMe = (userId) => {
     [userId]
   );
 
-  return usePaginatedVizzes(userId ? fetchData : null);
+  return state ? fetchData : null;
 };

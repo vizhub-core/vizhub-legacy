@@ -6,7 +6,7 @@ import {
   useRef,
 } from 'react';
 
-const initialState = {
+const initialStateFallback = {
   visualizationInfos: [],
   isFetchingNextPage: false,
   currentPage: 0,
@@ -18,7 +18,7 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'RESET':
-      return initialState;
+      return action.data;
     case 'FETCH_NEXT_PAGE_REQUEST':
       return {
         ...state,
@@ -52,7 +52,7 @@ function reducer(state, action) {
 
 const noop = () => {};
 
-export const usePaginatedVizzes = (fetchData) => {
+export const usePaginatedVizzes = (fetchData, initialState = initialStateFallback) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
     visualizationInfos,
@@ -63,7 +63,7 @@ export const usePaginatedVizzes = (fetchData) => {
     error,
   } = state;
 
-  const reset = useCallback(() => dispatch({ type: 'RESET' }), [dispatch]);
+  const reset = useCallback(() => dispatch({ type: 'RESET', data: initialState }), [initialState, dispatch]);
 
   // change current page should not cause reset since current page stay untouched
   useEffect(() => {

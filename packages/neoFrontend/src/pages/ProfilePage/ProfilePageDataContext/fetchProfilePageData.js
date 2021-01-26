@@ -12,10 +12,9 @@ export const fetchProfilePageData = async ({
   userName,
   query,
   sort,
-  offset,
 }) => {
   const urlSearchParamsString = new URLSearchParams(
-    omitUndefined({ query, sort, offset })
+    omitUndefined({ query, sort })
   ).toString();
 
   const url = `/api/user/getProfileData/${userName}${
