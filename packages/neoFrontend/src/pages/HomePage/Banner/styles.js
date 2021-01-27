@@ -8,12 +8,25 @@ export const Wrapper = styled.div`
   flex-direction: ${isMobile ? 'column' : 'row'};
   height: ${isMobile ? 600 : 400}px;
   position: relative;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
   color: ${(props) => props.theme.dark};
   margin: ${isMobile ? '6px 6px 30px 6px' : 0};
   background-image: url(/images/mountains.png);
   background-size: cover;
+`;
+
+export const LeftRight = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  max-width: 1380px;
+  padding-left: 10px;
+  padding-right: 10px;
+  @media (min-width: 600px) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
 `;
 
 export const Gradient = styled.div`
@@ -55,16 +68,19 @@ export const Message = styled.div`
   text-align: left;
 `;
 
-export const MessageSmallText = styled.div`
-  font-size: 18px;
+export const MessageLargeText = styled.div`
+  max-width: 600px;
+  font-size: 40px;
   text-shadow: #fff 0 0 4px, #fff 0 0 4px, #fff 0 0 4px;
+  font-family: 'Poppins', sans-serif;
 `;
 
-export const MessageLargeText = styled.div`
-  font-size: 32px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+export const MessageSmallText = styled.div`
+  max-width: 400px;
+  font-size: 24px;
   text-shadow: #fff 0 0 4px, #fff 0 0 4px, #fff 0 0 4px;
+  margin-top: 25px;
+  margin-bottom: 20px;
 `;
 
 export const MessageList = styled.ul`
