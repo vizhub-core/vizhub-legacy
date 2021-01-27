@@ -17,7 +17,7 @@ export const packageJSON = (files) => {
   }
 };
 
-export const dependencies = (files) => packageJSON(files).dependencies;
+export const dependencies = (files) => packageJSON(files).dependencies || {};
 
 export const getConfiguredLibraries = (files) => {
   const vizhubConfig = packageJSON(files).vizhub;
