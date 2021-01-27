@@ -1,22 +1,11 @@
 // Common styles used in multiple pages.
 import styled from 'styled-components';
-import { Clickable } from '../styles';
+import { Clickable, breathableHorizontal } from '../styles';
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-
-// Responsive horizontal padding used in many places.
-export const breathableHorizontal = `
-  max-width: 1380px;
-  padding-left: 10px;
-  padding-right: 10px;
-  @media (min-width: 600px) {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-`
 
 export const Content = styled.div`
   display: flex;

@@ -63,3 +63,14 @@ export const Flex = styled.div`
       alignContent,
     })}
 `;
+
+// Responsive horizontal padding used in many places.
+export const breathableHorizontal = `
+  max-width: 1380px;
+  padding-left: 10px;
+  padding-right: 10px;
+  @media (min-width: 600px) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+`
