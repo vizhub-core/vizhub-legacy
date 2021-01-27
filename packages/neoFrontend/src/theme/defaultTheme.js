@@ -17,7 +17,6 @@ export const theme = {
   shadow: '0 1px 4px 0 rgba(0, 0, 0, 0.15)',
   shadowLight: '0 1px 3px 0 rgba(0, 0, 0, 0.15)',
   bannerBackground: 'transparent',
-  bannerMaxWidth: 1380,
   bannerHeight: 100,
   bannerHeightMobile: 52,
   bannerPadding: 6,
@@ -88,7 +87,6 @@ theme.redActive = red.formatHex();
 export const darkNavbarTheme = {
   ...theme,
   bannerBackground: theme.dark,
-  bannerMaxWidth: 'none',
   bannerHeight: 40,
   bannerHeightMobile: 40,
   bannerPadding: 20,
