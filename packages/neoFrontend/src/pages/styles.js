@@ -7,11 +7,22 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 
+// Responsive horizontal padding used in many places.
+export const breathableHorizontal = `
+  max-width: 1380px;
+  padding-left: 10px;
+  padding-right: 10px;
+  @media (min-width: 600px) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+`
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1380px;
   flex: 1;
+  ${breathableHorizontal}
 `;
 
 export const Title = styled.div`

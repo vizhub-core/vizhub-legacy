@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../../../Button';
 import { isMobile } from '../../../mobileMods';
+import { breathableHorizontal } from '../../styles';
 import { Z_ABOVE } from '../../../styles';
 
 export const Wrapper = styled.div`
@@ -20,13 +21,7 @@ export const LeftRight = styled.div`
   display: flex;
   flex: 1;
   justify-content: space-between;
-  max-width: 1380px;
-  padding-left: 10px;
-  padding-right: 10px;
-  @media (min-width: 600px) {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
+  ${breathableHorizontal}
 `;
 
 export const Gradient = styled.div`
