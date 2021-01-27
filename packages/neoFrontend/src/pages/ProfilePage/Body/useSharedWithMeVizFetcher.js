@@ -1,11 +1,11 @@
-import { useCallback , useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useSharedWithMeVizFetcher = (userId, vizType) => {
   const [state, setState] = useState(false);
 
   useEffect(() => {
-    if(vizType === 'shared') setState(true)
-  }, [vizType])
+    if (vizType === 'shared') setState(true);
+  }, [vizType]);
 
   const fetchData = useCallback(
     async (offset) => {

@@ -18,7 +18,9 @@ import { ProfileMenuBar } from './styles';
 
 export const Body = () => {
   const { me } = useContext(AuthContext);
-  const { user, visualizationInfos: initialVisualizationInfos } = useContext(ProfilePageDataContext);
+  const { user, visualizationInfos: initialVisualizationInfos } = useContext(
+    ProfilePageDataContext
+  );
   const [vizType, setVizType] = useState('public');
   const {
     visualizationInfos,

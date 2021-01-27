@@ -9,7 +9,7 @@ export const searchVisualizationInfos = (connection) => async ({
   offset,
   inlcudePrivate,
   onlyPrivate,
-  owner
+  owner,
 }) => {
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
@@ -17,14 +17,14 @@ export const searchVisualizationInfos = (connection) => async ({
     $skip: offset * pageSize,
     $sort: { lastUpdatedTimestamp: -1 },
     privacy: { $ne: 'private' },
-    owner
+    owner,
   };
 
   if (inlcudePrivate) {
     delete mongoQuery['privacy'];
   }
 
-  if(onlyPrivate) {
+  if (onlyPrivate) {
     mongoQuery['privacy'] = 'private';
   }
 
