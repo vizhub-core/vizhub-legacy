@@ -8,11 +8,7 @@ const omitUndefined = (object) => {
   }, {});
 };
 
-export const fetchProfilePageData = async ({
-  userName,
-  query,
-  sort,
-}) => {
+export const fetchProfilePageData = async ({ userName, query, sort }) => {
   const urlSearchParamsString = new URLSearchParams(
     omitUndefined({ query, sort })
   ).toString();

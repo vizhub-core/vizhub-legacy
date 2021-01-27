@@ -1,11 +1,11 @@
-import { useCallback , useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const usePrivateVizFetcher = (userId, vizType) => {
   const [state, setState] = useState(false);
 
   useEffect(() => {
-    if(vizType === 'private') setState(true)
-  }, [vizType])
+    if (vizType === 'private') setState(true);
+  }, [vizType]);
 
   const fetchData = useCallback(
     async (offset) => {

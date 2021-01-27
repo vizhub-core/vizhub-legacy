@@ -9,13 +9,16 @@ export const getPrivateVisualizationsController = (expressApp, gateways) => {
       if (userIdFromReq(req) !== owner) {
         return res
           .status(403)
-          .json({ error: 'Getting private visualizations is allowed only for visualizations owner' });
+          .json({
+            error:
+              'Getting private visualizations is allowed only for visualizations owner',
+          });
       }
 
       const data = await getSearchResultsPageData.execute({
         offset,
         owner,
-        onlyPrivate: true
+        onlyPrivate: true,
       });
       res.json(data);
     } catch (error) {
