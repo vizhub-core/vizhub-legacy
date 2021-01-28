@@ -15,18 +15,20 @@ export const useProfileVizzes = ({
       isFetchingNextPage: false,
       currentPage: 1,
       fetchedAllPages: false,
-      usersById: { [me.id]: me },
+      usersById: me ? { [me.id]: me } : {},
       error: null,
     };
   }, [me, initialVisualizationInfos]);
 
-  const publicVizFetcher = usePublicVizFetcher(me.id, vizType);
+  const myUserId = me ? me.id : null;
+
+  const publicVizFetcher = usePublicVizFetcher(myUserId, vizType);
   const publicData = usePaginatedVizzes(publicVizFetcher, publicInitialState);
 
-  const privateVizFetcher = usePrivateVizFetcher(me.id, vizType);
+  const privateVizFetcher = usePrivateVizFetcher(myUserId, vizType);
   const privateData = usePaginatedVizzes(privateVizFetcher);
 
-  const sharedWithMeVizFetcher = useSharedWithMeVizFetcher(me.id, vizType);
+  const sharedWithMeVizFetcher = useSharedWithMeVizFetcher(myUserId, vizType);
   const sharedData = usePaginatedVizzes(sharedWithMeVizFetcher);
 
   if (vizType === 'shared') {
