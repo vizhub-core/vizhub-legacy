@@ -5,7 +5,7 @@ export const getSharedVisualizationsController = (expressApp, gateways) => {
   const getSearchResultsPageData = new GetSearchResultsPageData(gateways);
   expressApp.post('/api/visualization/get/shared', async (req, res) => {
     try {
-      const { offset = 0, userId} = req.body;
+      const { offset = 0, userId } = req.body;
       if (!userId) {
         return res.status(400).json({
           error:
