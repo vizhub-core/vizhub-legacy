@@ -5,7 +5,7 @@ const fetchVizzes = async ({ offset, userId }) => {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ offset, collaborators: [userId] }),
+    body: JSON.stringify({ offset, userId }),
   });
   return await response.json();
 };
