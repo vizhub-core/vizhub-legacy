@@ -7,7 +7,7 @@ export class GetUserProfileData {
   }
 
   async execute(requestModel) {
-    const { userName, ...otherProfileOptions } = requestModel;
+    const { userName, authenticatedUser, ...otherProfileOptions } = requestModel;
 
     const user =
       userName === ciUser.userName
@@ -18,7 +18,7 @@ export class GetUserProfileData {
       {
         ...otherProfileOptions,
         offset: 0,
-        includePrivate: false,
+        includePrivate: authenticatedUser === user.id,
         owner: user.id,
       }
     );
