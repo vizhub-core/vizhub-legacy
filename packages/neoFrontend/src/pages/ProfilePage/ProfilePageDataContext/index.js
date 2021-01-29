@@ -6,9 +6,9 @@ export const ProfilePageDataContext = createContext();
 
 export const ProfilePageDataProvider = ({ fallback, children, onError }) => {
   const { userName } = useParams();
-  const { query, sort } = useSearchQuery();
+  const { query, sort, section = 'public' } = useSearchQuery();
 
-  const profilePageData = useProfilePageData(userName, query, sort);
+  const profilePageData = useProfilePageData(userName, query, sort, section);
 
   useEffect(() => {
     if (profilePageData.error) {

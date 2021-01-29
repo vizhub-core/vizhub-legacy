@@ -6,7 +6,7 @@ import { useSharedWithMeVizFetcher } from './useSharedWithMeVizFetcher';
 
 export const useProfileVizzes = ({
   me,
-  vizType,
+  section,
   initialVisualizationInfos,
 }) => {
   const publicInitialState = useMemo(() => {
@@ -21,19 +21,20 @@ export const useProfileVizzes = ({
   }, [me, initialVisualizationInfos]);
 
   const myUserId = me ? me.id : null;
+  const currentSection = section || "public" // handles coerce "" to public
 
-  const publicVizFetcher = usePublicVizFetcher(myUserId, vizType);
+  const publicVizFetcher = usePublicVizFetcher(myUserId, currentSection);
   const publicData = usePaginatedVizzes(publicVizFetcher, publicInitialState);
 
-  const privateVizFetcher = usePrivateVizFetcher(myUserId, vizType);
+  const privateVizFetcher = usePrivateVizFetcher(myUserId, currentSection);
   const privateData = usePaginatedVizzes(privateVizFetcher);
 
-  const sharedWithMeVizFetcher = useSharedWithMeVizFetcher(myUserId, vizType);
+  const sharedWithMeVizFetcher = useSharedWithMeVizFetcher(myUserId, currentSection);
   const sharedData = usePaginatedVizzes(sharedWithMeVizFetcher);
 
-  if (vizType === 'shared') {
+  if (currentSection === 'shared') {
     return sharedData;
-  } else if (vizType === 'private') {
+  } else if (currentSection === 'private') {
     return privateData;
   } else {
     return publicData;
