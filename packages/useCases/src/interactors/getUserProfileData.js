@@ -7,7 +7,12 @@ export class GetUserProfileData {
   }
 
   async execute(requestModel) {
-    const { section = 'public', userName, authenticatedUser, ...otherProfileOptions } = requestModel;
+    const {
+      section = 'public',
+      userName,
+      authenticatedUser,
+      ...otherProfileOptions
+    } = requestModel;
 
     const user =
       userName === ciUser.userName
@@ -26,7 +31,9 @@ export class GetUserProfileData {
       searchParams.owner = user.id;
     }
 
-    const visualizationInfos = await this.visualizationGateway.searchVisualizationInfos(searchParams);
+    const visualizationInfos = await this.visualizationGateway.searchVisualizationInfos(
+      searchParams
+    );
 
     return { user, [section]: visualizationInfos };
   }

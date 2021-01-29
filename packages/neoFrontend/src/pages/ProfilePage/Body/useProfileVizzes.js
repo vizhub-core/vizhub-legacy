@@ -21,7 +21,7 @@ export const useProfileVizzes = ({
   }, [me, initialVisualizationInfos]);
 
   const myUserId = me ? me.id : null;
-  const currentSection = section || "public" // handles coerce "" to public
+  const currentSection = section || 'public'; // handles coerce "" to public
 
   const publicVizFetcher = usePublicVizFetcher(myUserId, currentSection);
   const publicData = usePaginatedVizzes(publicVizFetcher, publicInitialState);
@@ -29,7 +29,10 @@ export const useProfileVizzes = ({
   const privateVizFetcher = usePrivateVizFetcher(myUserId, currentSection);
   const privateData = usePaginatedVizzes(privateVizFetcher);
 
-  const sharedWithMeVizFetcher = useSharedWithMeVizFetcher(myUserId, currentSection);
+  const sharedWithMeVizFetcher = useSharedWithMeVizFetcher(
+    myUserId,
+    currentSection
+  );
   const sharedData = usePaginatedVizzes(sharedWithMeVizFetcher);
 
   if (currentSection === 'shared') {
