@@ -1,16 +1,32 @@
-import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
+import {
+  VisualizationInfo,
+  VISUALIZATION_TYPE,
+  VIZ_INFO_SORT_OPTIONS,
+  VIZ_INFO_DEFAULT_SORT_OPTION,
+} from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 import { pageSize } from './constants';
 
+const defaultSort = VIZ_INFO_DEFAULT_SORT_OPTION.id;
+const isAllowed = (sort) =>
+  !!VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
+
 export const searchVisualizationInfos = (connection) => async ({
   query,
-  collaborators,
   offset,
+  sort,
+  owner,
+  collaborators,
   inlcudePrivate,
   onlyPrivate,
-  owner,
+  extraQueryParams = {},
 }) => {
+  const sortId = isAllowed(sort) ? sort : defaultSort;
+
+  const sortField = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sortId)
+    .vizInfoProperty;
+
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
     $limit: pageSize,
@@ -18,6 +34,8 @@ export const searchVisualizationInfos = (connection) => async ({
     $sort: { lastUpdatedTimestamp: -1 },
     privacy: { $ne: 'private' },
     owner,
+    $sort: { [sortField]: -1 },
+    ...extraQueryParams,
   };
 
   if (inlcudePrivate) {

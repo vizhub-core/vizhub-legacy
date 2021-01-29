@@ -7,9 +7,9 @@ const toObject = (searchParams) => {
   );
 };
 
-export const useSearchQuery = (key) => {
+export const useSearchQuery = (key, defaultValue = '') => {
   const { search } = useLocation();
   const searchParams = new URLSearchParams(search);
 
-  return key ? searchParams.get(key) || '' : toObject(searchParams);
+  return key ? searchParams.get(key) || defaultValue : toObject(searchParams);
 };

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useEffect, useContext, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { sendEvent } from '../../../sendEvent';
 import { AuthContext } from '../../../authentication';
 import { showProfileSidebar } from '../../../featureFlags';
@@ -16,34 +17,43 @@ import { ProfilePane } from '../ProfilePane';
 import { useProfileVizzes } from './useProfileVizzes';
 import { ProfileMenuBar } from './styles';
 
+const isPublic = (section) => section === 'public' || section === '';
+
 export const Body = () => {
+  const history = useHistory();
   const { me } = useContext(AuthContext);
-  const { user, visualizationInfos: initialVisualizationInfos } = useContext(
+  const { user, section, visualizationInfos: initialVisualizationInfos } = useContext(
     ProfilePageDataContext
   );
-  const [vizType, setVizType] = useState('public');
   const {
     visualizationInfos,
     paginate,
     usersById,
     isFetchingNextPage,
-  } = useProfileVizzes({ me, vizType, initialVisualizationInfos });
+  } = useProfileVizzes({ me, section, initialVisualizationInfos });
+
+  const handleSectionChange = useCallback(
+    (newSection) => {
+      history.push({ search: isPublic(newSection) ? '' : `?section=${newSection}` });
+    },
+    [history]
+  );
 
   useEffect(() => {
     sendEvent(`event.pageview.profile.user:${user.id}`);
   }, [user]);
 
   const showPublic = useCallback(() => {
-    setVizType('public');
-  }, []);
+    handleSectionChange('public');
+  }, [handleSectionChange]);
 
   const showPrivate = useCallback(() => {
-    setVizType('private');
-  }, []);
+    handleSectionChange('private');
+  }, [handleSectionChange]);
 
   const showVizzesSharedWithMe = useCallback(() => {
-    setVizType('shared');
-  }, []);
+    handleSectionChange('shared');
+  }, [handleSectionChange]);
 
   const [sort, handleSortChange] = useVizzesSort();
 
@@ -58,7 +68,7 @@ export const Body = () => {
       <SidebarWrapper>
         <Sidebar>
           <LinkWithIcon
-            active={vizType === 'public'}
+            active={isPublic(section)}
             icon="LockOpenSVG"
             onClick={showPublic}
           >
@@ -66,7 +76,7 @@ export const Body = () => {
           </LinkWithIcon>
           {showProfileSidebar(user, me) ? (
             <LinkWithIcon
-              active={vizType === 'private'}
+              active={section === 'private'}
               icon="LockSVG"
               onClick={showPrivate}
             >
@@ -75,7 +85,7 @@ export const Body = () => {
           ) : null}
           {Boolean(me) && user.id === me.id && (
             <LinkWithIcon
-              active={vizType === 'shared'}
+              active={section === 'shared'}
               icon="SharedWithMeSVG"
               onClick={showVizzesSharedWithMe}
             >
