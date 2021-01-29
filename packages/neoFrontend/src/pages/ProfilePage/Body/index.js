@@ -22,9 +22,11 @@ const isPublic = (section) => section === 'public' || section === '';
 export const Body = () => {
   const history = useHistory();
   const { me } = useContext(AuthContext);
-  const { user, section, visualizationInfos: initialVisualizationInfos } = useContext(
-    ProfilePageDataContext
-  );
+  const {
+    user,
+    section,
+    visualizationInfos: initialVisualizationInfos,
+  } = useContext(ProfilePageDataContext);
   const {
     visualizationInfos,
     paginate,
@@ -34,7 +36,9 @@ export const Body = () => {
 
   const handleSectionChange = useCallback(
     (newSection) => {
-      history.push({ search: isPublic(newSection) ? '' : `?section=${newSection}` });
+      history.push({
+        search: isPublic(newSection) ? '' : `?section=${newSection}`,
+      });
     },
     [history]
   );
