@@ -1,6 +1,5 @@
 import React from 'react';
 import { showUpvote, showDownvote } from '../featureFlags';
-import { PrivacyNotice } from '../PrivacyNotice';
 import { VoteSVG } from '../svg';
 import { Container, VoteIcon } from './styles';
 
@@ -9,9 +8,9 @@ export const Voter = ({
   onUpvoteClick,
   canVote,
   didVote,
-  isPrivate,
   usersWhoUpvoted,
   whyCantUpvote = 'Sign in to upvote.',
+  extension = null
 }) => (
   <Container title={usersWhoUpvoted}>
     {showUpvote ? (
@@ -37,6 +36,6 @@ export const Voter = ({
         6
       </>
     ) : null}
-    {isPrivate ? <PrivacyNotice /> : null}
+    {extension}
   </Container>
 );
