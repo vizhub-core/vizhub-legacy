@@ -35,6 +35,6 @@ export class GetUserProfileData {
       searchParams
     );
 
-    return { user, [section]: visualizationInfos };
+    return { user, visualizationInfosBySection: {[section]: visualizationInfos} };
   }
 }
