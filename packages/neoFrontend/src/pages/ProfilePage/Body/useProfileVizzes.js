@@ -21,7 +21,7 @@ export const useProfileVizzes = ({
   }, [me, initialVisualizationInfos]);
 
   const myUserId = me ? me.id : null;
-  const currentSection = section || 'public'; // handles coerce "" to public
+  const currentSection = section || 'public'; // coerce "" (empty string) to public
 
   const publicVizFetcher = usePublicVizFetcher(myUserId, currentSection);
   const publicData = usePaginatedVizzes(publicVizFetcher, publicInitialState);
