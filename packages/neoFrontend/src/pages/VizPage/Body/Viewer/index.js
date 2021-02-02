@@ -138,6 +138,7 @@ export const Viewer = () => {
               onUpvoteClick={handleUpvote}
               isPrivate={isPrivate}
               usersWhoUpvoted={usersWhoUpvoted}
+              owner={ownerUser}
             />
             <HorizontalRule />
             <DescriptionSection

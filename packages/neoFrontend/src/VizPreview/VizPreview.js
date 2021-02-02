@@ -82,7 +82,9 @@ export const VizPreview = ({
           />
         </Bottom>
       </VizPreviewFooter>
-      {isPrivate ? <PrivacyNotice isVizPreview={true} /> : null}
+      {isPrivate ? (
+        <PrivacyNotice owner={ownerUser} isVizPreview={true} />
+      ) : null}
     </Wrapper>
   );
 };
