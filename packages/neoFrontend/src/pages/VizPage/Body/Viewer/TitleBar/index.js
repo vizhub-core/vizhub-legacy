@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { sendEvent, upvoteEvent } from '../../../../../sendEvent';
 import { Voter } from '../../../../../Voter';
+import { PrivacyNotice } from '../../../../../PrivacyNotice';
 import { Wrapper, Title } from './styles';
 
 export const TitleBar = ({
@@ -12,6 +13,7 @@ export const TitleBar = ({
   onUpvoteClick,
   isPrivate,
   usersWhoUpvoted,
+  owner,
 }) => {
   const instrumentedOnUpvoteClick = useCallback(() => {
     onUpvoteClick();
@@ -28,6 +30,7 @@ export const TitleBar = ({
         didVote={didVote}
         isPrivate={isPrivate}
         usersWhoUpvoted={usersWhoUpvoted}
+        extension={isPrivate && <PrivacyNotice owner={owner} />}
       />
     </Wrapper>
   );
