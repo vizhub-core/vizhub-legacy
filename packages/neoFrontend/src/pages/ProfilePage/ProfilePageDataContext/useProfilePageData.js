@@ -13,7 +13,7 @@ export const useProfilePageData = (userName, query, sort, section) => {
 
   useEffect(() => {
     fetchProfilePageData({ userName, query, sort, section }).then(
-      ({ user, visualizationInfos, error }) => {
+      ({ user, visualizationInfosBySection, error }) => {
         if (error && error.message === 'The requested user does not exist') {
           setProfilePageData({
             ...initialState,
@@ -24,7 +24,7 @@ export const useProfilePageData = (userName, query, sort, section) => {
 
         setProfilePageData({
           user,
-          visualizationInfos,
+          visualizationInfos: visualizationInfosBySection[section],
           section,
           error: null,
         });
