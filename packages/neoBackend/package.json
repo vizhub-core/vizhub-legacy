@@ -27,6 +27,7 @@
     "cookie": "^0.4.1",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-basic-auth": "1.2.0",
     "vizhub-controllers": "1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
