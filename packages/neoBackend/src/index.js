@@ -14,7 +14,7 @@ setJSDOM(JSDOM);
 
 const expressApp = express();
 
-if (process.env.BASIC_AUTH === 'true') {
+if (process.env.VIZHUB_BASIC_AUTH === 'true') {
   expressApp.use(basicAuth({
     users: { 'admin': process.env.ADMIN_PASSWORD },
     challenge: true,
