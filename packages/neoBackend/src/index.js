@@ -16,7 +16,7 @@ const expressApp = express();
 
 if (process.env.VIZHUB_BASIC_AUTH === 'true') {
   expressApp.use(basicAuth({
-    users: { 'admin': process.env.ADMIN_PASSWORD },
+    users: { 'admin': process.env.VIZHUB_ADMIN_PASSWORD },
     challenge: true,
     realm: 'VizHub',
   }));
