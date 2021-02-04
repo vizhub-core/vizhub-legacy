@@ -1,8 +1,8 @@
 import http from 'http';
 import express from 'express';
+import basicAuth from 'express-basic-auth';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import compression from 'compression';
 import { serverGateways } from 'vizhub-server-gateways';
 import { apiController, jwtAuth, oembedController } from 'vizhub-controllers';
 import { setJSDOM } from 'vizhub-presenters';
@@ -13,6 +13,14 @@ import { serveShareDB } from './serveShareDB';
 setJSDOM(JSDOM);
 
 const expressApp = express();
+
+if (process.env.BASIC_AUTH === 'true') {
+  expressApp.use(basicAuth({
+    users: { 'admin': process.env.ADMIN_PASSWORD },
+    challenge: true,
+    realm: 'VizHub',
+  }));
+}
 
 // We need the raw body to verify webhook signatures.
 // Let's compute it only when hitting the Stripe webhook endpoint.
@@ -26,7 +34,7 @@ expressApp.use(
     },
   })
 );
-//expressApp.use(compression());
+
 expressApp.use(bodyParser.json({ limit: '2mb' }));
 expressApp.use(cookieParser());
 
