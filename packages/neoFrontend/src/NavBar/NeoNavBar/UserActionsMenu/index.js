@@ -9,7 +9,7 @@ import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 import {
   showUserActionsMenuCreateViz,
   showUserActionsProfile,
-  showAccountPage
+  showAccountPage,
 } from '../../../featureFlags';
 
 export const UserActionsMenu = withTheme(({ theme, mobile }) => {

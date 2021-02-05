@@ -8,7 +8,12 @@ export const ProfilePageDataProvider = ({ fallback, children, onError }) => {
   const { userName } = useParams();
   const { query, sort, section } = useSearchQuery();
 
-  const profilePageData = useProfilePageData(userName, query, sort, section || 'public');
+  const profilePageData = useProfilePageData(
+    userName,
+    query,
+    sort,
+    section || 'public'
+  );
 
   useEffect(() => {
     if (profilePageData.error) {
