@@ -10,4 +10,4 @@ export const PrivacyNotice = ({ owner, isVizPreview }) => (
       <LockSVG height={20} fill="white" />
     </Wrapper>
   </Link>
-)
+);

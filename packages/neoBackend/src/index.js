@@ -15,11 +15,13 @@ setJSDOM(JSDOM);
 const expressApp = express();
 
 if (process.env.VIZHUB_BASIC_AUTH === 'true') {
-  expressApp.use(basicAuth({
-    users: { 'admin': process.env.VIZHUB_ADMIN_PASSWORD },
-    challenge: true,
-    realm: 'VizHub',
-  }));
+  expressApp.use(
+    basicAuth({
+      users: { admin: process.env.VIZHUB_ADMIN_PASSWORD },
+      challenge: true,
+      realm: 'VizHub',
+    })
+  );
 }
 
 // We need the raw body to verify webhook signatures.

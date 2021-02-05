@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const borderRadius = 30;
 
 export const Badge = styled.div`
-  align-self:start;
+  align-self: start;
   font-size: ${(props) => props.theme.text.small};
   font-weight: bold;
   background-color: ${(props) => props.theme.red};
