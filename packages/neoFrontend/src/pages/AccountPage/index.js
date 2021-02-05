@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router';
 
+import { showAccountPage } from '../../featureFlags'
 import { AUTH_PENDING } from '../../authentication/constants';
 import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
@@ -19,6 +20,11 @@ export const AccountPage = () => {
     sendEvent(`event.pageview.account.viewer:${viewer}`);
   }, [viewer]);
 
+
+  if(!showAccountPage) {
+    return <Redirect push to="/404" />
+  }
+  
   const isLoadingAuthData = me === AUTH_PENDING;
 
   if (!isLoadingAuthData) {
