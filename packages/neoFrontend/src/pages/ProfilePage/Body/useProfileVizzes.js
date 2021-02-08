@@ -5,7 +5,7 @@ import { usePrivateVizFetcher } from './usePrivateVizFetcher';
 import { useSharedWithMeVizFetcher } from './useSharedWithMeVizFetcher';
 
 export const useProfileVizzes = ({
-  me,
+  user,
   section,
   initialVisualizationInfos,
 }) => {
@@ -15,22 +15,22 @@ export const useProfileVizzes = ({
       isFetchingNextPage: false,
       currentPage: 1,
       fetchedAllPages: false,
-      usersById: me ? { [me.id]: me } : {},
+      usersById: user ? { [user.id]: user } : {},
       error: null,
     };
-  }, [me, initialVisualizationInfos]);
+  }, [user, initialVisualizationInfos]);
 
-  const myUserId = me ? me.id : null;
+  const userId = user ? user.id : null;
   const currentSection = section || 'public'; // coerce "" (empty string) to public
 
-  const publicVizFetcher = usePublicVizFetcher(myUserId, currentSection);
+  const publicVizFetcher = usePublicVizFetcher(userId, currentSection);
   const publicData = usePaginatedVizzes(publicVizFetcher, publicInitialState);
 
-  const privateVizFetcher = usePrivateVizFetcher(myUserId, currentSection);
+  const privateVizFetcher = usePrivateVizFetcher(userId, currentSection);
   const privateData = usePaginatedVizzes(privateVizFetcher);
 
   const sharedWithMeVizFetcher = useSharedWithMeVizFetcher(
-    myUserId,
+    userId,
     currentSection
   );
   const sharedData = usePaginatedVizzes(sharedWithMeVizFetcher);
