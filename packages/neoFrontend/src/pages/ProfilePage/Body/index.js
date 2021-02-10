@@ -32,7 +32,7 @@ export const Body = () => {
     paginate,
     usersById,
     isFetchingNextPage,
-  } = useProfileVizzes({ me, section, initialVisualizationInfos });
+  } = useProfileVizzes({ user, section, initialVisualizationInfos });
 
   const handleSectionChange = useCallback(
     (newSection) => {
