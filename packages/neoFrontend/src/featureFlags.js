@@ -34,9 +34,13 @@ export const packageJSON = true;
 export const showProPlan = process.env.REACT_APP_PRO_PLAN === 'true';
 export const showNeoPricing = process.env.REACT_APP_NEO_PRICING === 'true';
 
+export const showAccountPage = process.env.REACT_APP_VIZHUB_ACCOUNT_PAGE === 'true';
+
 // List of usernames who have access to
 // private viz feature.
-const core = ['ci', 'stushurik'];
+const core = ['ci'];
+
+const devTeam = ['stushurik'];
 
 const professors = ['Razpudding', 'sjengle', 'nazareno'];
 
@@ -79,6 +83,7 @@ const friends = [
 ];
 
 const whitelist = core
+  .concat(devTeam)
   .concat(professors)
   .concat(stamen)
   .concat(kickstarter)

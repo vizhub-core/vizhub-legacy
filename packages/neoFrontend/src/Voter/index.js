@@ -10,7 +10,7 @@ export const Voter = ({
   didVote,
   usersWhoUpvoted,
   whyCantUpvote = 'Sign in to upvote.',
-  extension = null
+  extension = null,
 }) => (
   <Container title={usersWhoUpvoted}>
     {showUpvote ? (
