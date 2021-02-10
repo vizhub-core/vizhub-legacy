@@ -9,15 +9,12 @@ export const Wrapper = styled.div`
   height: 30px;
   display: flex;
   align-items: center;
-  padding: 0 8px 0 ${(props) => (props.isVizPreview ? 8 : 10)}px;
+  padding: 0 8px 0 10px;
   color: white;
-  margin-top: ${(props) => (props.isVizPreview ? 10 : 0)}px;
-  margin-left: ${(props) => (props.isVizPreview ? 0 : 12)}px;
-  position: ${(props) => (props.isVizPreview ? 'absolute' : 'static')};
-  border-top-left-radius: ${(props) =>
-    props.isVizPreview ? 0 : borderRadius}px;
-  border-bottom-left-radius: ${(props) =>
-    props.isVizPreview ? 0 : borderRadius}px;
+  margin-top: 0;
+  margin-left: 12px;
+  border-top-left-radius: ${borderRadius}px;
+  border-bottom-left-radius: ${borderRadius}px;
   border-top-right-radius: ${borderRadius}px;
   border-bottom-right-radius: ${borderRadius}px;
 `;
