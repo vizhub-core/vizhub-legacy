@@ -24,6 +24,8 @@ import {
   TermsPage,
   Datavis2020Page,
   VizHubStatsPage,
+  AccountPage,
+  NotFoundPage,
 } from './pages';
 import { Themed } from './theme';
 
@@ -37,6 +39,7 @@ export const App = () => (
               <WarningProvider>
                 <ConnectionProvider>
                   <Switch>
+                    <Route path="/404" component={NotFoundPage} />
                     <Route
                       path="/authenticated/:provider"
                       component={AuthPopupPage}
@@ -67,8 +70,10 @@ export const App = () => (
                       path="/:userName/:vizId/forks"
                       component={ForksPage}
                     />
+                    <Route path="/:userName/account" component={AccountPage} />
                     <Route path="/:userName/:vizId" component={VizPage} />
                     <Route path="/:userName" component={ProfilePage} />
+                    <Route component={NotFoundPage} />
                   </Switch>
                 </ConnectionProvider>
               </WarningProvider>

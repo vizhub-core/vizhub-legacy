@@ -20,14 +20,14 @@ export const useProfilePageData = (userName, query, sort, section) => {
             section,
             error: { message: 'User not found' },
           });
+        } else {
+          setProfilePageData({
+            user,
+            visualizationInfos: visualizationInfosBySection[section],
+            section,
+            error: null,
+          });
         }
-
-        setProfilePageData({
-          user,
-          visualizationInfos: visualizationInfosBySection[section],
-          section,
-          error: null,
-        });
       }
     );
   }, [sort, userName, query, section, setProfilePageData]);
