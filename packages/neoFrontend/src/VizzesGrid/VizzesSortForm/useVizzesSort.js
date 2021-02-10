@@ -1,20 +1,18 @@
 import { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { VIZ_INFO_DEFAULT_SORT_OPTION } from 'vizhub-entities';
-import { useSearchQuery } from '../../useSearchQuery';
+import { useSearchState } from '../../useSearchQuery';
 
 const isDefault = (sort) => VIZ_INFO_DEFAULT_SORT_OPTION.id === sort;
 
 export const useVizzesSort = () => {
-  const sortQuery = useSearchQuery('sort');
-  const sort = sortQuery || VIZ_INFO_DEFAULT_SORT_OPTION.id;
-  const history = useHistory();
+  const [search, setSearch] = useSearchState();
+  const { sort = VIZ_INFO_DEFAULT_SORT_OPTION.id } = search;
 
   const handleSortChange = useCallback(
     (newSort) => {
-      history.push({ search: isDefault(newSort) ? '' : `?sort=${newSort}` });
+      setSearch({ sort: isDefault(newSort) ? undefined : newSort });
     },
-    [history]
+    [setSearch]
   );
 
   return [sort, handleSortChange];
