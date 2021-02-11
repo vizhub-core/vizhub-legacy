@@ -32,9 +32,11 @@ export const showUserActionsProfile = true;
 
 export const packageJSON = true;
 export const showProPlan = process.env.REACT_APP_VIZHUB_PRO_PLAN === 'true';
-export const showNeoPricing = process.env.REACT_APP_VIZHUB_NEO_PRICING === 'true';
+export const showNeoPricing =
+  process.env.REACT_APP_VIZHUB_NEO_PRICING === 'true';
 
-export const showAccountPage = process.env.REACT_APP_VIZHUB_ACCOUNT_PAGE === 'true';
+export const showAccountPage =
+  process.env.REACT_APP_VIZHUB_ACCOUNT_PAGE === 'true';
 
 // List of usernames who have access to
 // private viz feature.
