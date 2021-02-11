@@ -31,8 +31,8 @@ export const showUserActionsMenuCreateViz = true;
 export const showUserActionsProfile = true;
 
 export const packageJSON = true;
-export const showProPlan = process.env.REACT_APP_PRO_PLAN === 'true';
-export const showNeoPricing = process.env.REACT_APP_NEO_PRICING === 'true';
+export const showProPlan = process.env.REACT_APP_VIZHUB_PRO_PLAN === 'true';
+export const showNeoPricing = process.env.REACT_APP_VIZHUB_NEO_PRICING === 'true';
 
 export const showAccountPage = process.env.REACT_APP_VIZHUB_ACCOUNT_PAGE === 'true';
 
