@@ -5,7 +5,7 @@ export const getPrivateVisualizationsController = (expressApp, gateways) => {
   const getSearchResultsPageData = new GetSearchResultsPageData(gateways);
   expressApp.post('/api/visualization/get/private', async (req, res) => {
     try {
-      const { owner, offset = 0 } = req.body;
+      const { owner, sort, offset = 0 } = req.body;
       if (userIdFromReq(req) !== owner) {
         return res.status(403).json({
           error:
@@ -16,7 +16,8 @@ export const getPrivateVisualizationsController = (expressApp, gateways) => {
       const data = await getSearchResultsPageData.execute({
         offset,
         owner,
-        onlyPrivate: true,
+        sort,
+        privacy: 'private',
       });
       res.json(data);
     } catch (error) {
