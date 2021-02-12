@@ -39,6 +39,6 @@ export const useProfilePageData = (userName, query, sort, section) => {
 
   return {
     ...profilePageData,
-    section
+    section,
   };
 };

@@ -49,10 +49,10 @@ export const useProfileVizzes = ({
   const sharedVizFetcher = useSharedVizFetcher(userId, currentSection, sort);
   const sharedData = usePaginatedVizzes(sharedVizFetcher, initialSharedState);
 
-  const isInitialSortAppliedRef = useRef(false)
+  const isInitialSortAppliedRef = useRef(false);
   useEffect(() => {
     if (!isInitialSortAppliedRef.current) {
-      isInitialSortAppliedRef.current = true
+      isInitialSortAppliedRef.current = true;
       return;
     }
 
@@ -60,7 +60,6 @@ export const useProfileVizzes = ({
     setInitialPrivateState(null);
     setInitialSharedState(null);
   }, [isInitialSortAppliedRef, sort]);
-
 
   if (currentSection === 'shared') {
     return sharedData;
