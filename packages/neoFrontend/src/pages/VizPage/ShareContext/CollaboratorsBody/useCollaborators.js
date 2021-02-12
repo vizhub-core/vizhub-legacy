@@ -11,7 +11,7 @@ import { VizContext } from '../../VizContext';
 export const useCollaborators = () => {
   const { viz$, submitVizInfoOp } = useContext(VizContext);
   const realtimeModules = useContext(RealtimeModulesContext);
-  const collaborators = useValue(viz$, getVizCollaborators);
+  const collaborators = useValue(viz$, (viz) => viz.info.collaborators);
 
   const addCollaborator = useCallback(
     (userId) => {

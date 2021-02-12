@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Z_ABOVE } from '../styles';
 import { isMobile } from '../mobileMods';
+import { PrivacyNotice } from '../PrivacyNotice';
 
 export const VizPreviews = styled.div`
   display: flex;
@@ -72,4 +73,14 @@ export const Top = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const VizPrivacyNotice = styled(PrivacyNotice)`
+  position: absolute;
+  padding: 0 8px 0 8px;
+  color: white;
+  margin-top: 10px;
+  margin-left: 0px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 `;

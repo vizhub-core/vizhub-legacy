@@ -9,6 +9,7 @@ import { useCloseOnGlobalClick } from './useCloseOnGlobalClick';
 import {
   showUserActionsMenuCreateViz,
   showUserActionsProfile,
+  showAccountPage,
 } from '../../../featureFlags';
 
 export const UserActionsMenu = withTheme(({ theme, mobile }) => {
@@ -40,6 +41,11 @@ export const UserActionsMenu = withTheme(({ theme, mobile }) => {
           {showUserActionsProfile ? (
             <Link to={`/${me.userName}`}>
               <Item>Profile</Item>
+            </Link>
+          ) : null}
+          {showAccountPage ? (
+            <Link to={`/${me.userName}/account`}>
+              <Item>Account</Item>
             </Link>
           ) : null}
           <HorizontalRule />
