@@ -31,7 +31,7 @@ export const Banner = () => (
           .
         </MessageSmallText>
         <CallToAction>
-          <Link to="/auth">
+          <Link to="/create-viz">
             <MessageButton isFilled>Get Started</MessageButton>
           </Link>
         </CallToAction>
