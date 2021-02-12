@@ -22,13 +22,23 @@ export class GetUserProfileData {
     const searchParams = {
       ...otherProfileOptions,
       offset: 0,
-      includePrivare: authenticatedUser === user.id,
     };
+
+    const isUserRequestOwnProfile = authenticatedUser === user.id;
 
     if (section === 'shared') {
       searchParams.collaborators = [user.id];
-    } else {
+      searchParams.privacy = isUserRequestOwnProfile ? 'any' : 'public';
+    }
+    
+    if (section === 'private') {
       searchParams.owner = user.id;
+      searchParams.privacy = isUserRequestOwnProfile ? 'private' : 'public';
+    }
+
+    if (section === 'public') {
+      searchParams.owner = user.id;
+      searchParams.privacy = 'public';
     }
 
     const visualizationInfos = await this.visualizationGateway.searchVisualizationInfos(

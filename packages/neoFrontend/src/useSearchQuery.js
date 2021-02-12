@@ -27,7 +27,7 @@ export const useSearchQuery = (key, defaultValue = '') => {
   return key ? searchParams.get(key) || defaultValue : toObject(searchParams);
 };
 
-export const useSearchState = ({ rewrite } = { rewrite: false }) => {
+export const useSearchState = () => {
   const history = useHistory();
   const { search } = useLocation();
 
@@ -43,10 +43,12 @@ export const useSearchState = ({ rewrite } = { rewrite: false }) => {
   }, [searchParamsObject]);
 
   const setSearch = useCallback(
-    (newSearchOrSetter) => {
+    (newSearchOrSetter, { rewrite } = { rewrite: false }) => {
       let newSearchParamsObject = newSearchOrSetter;
       if (typeof newSearchOrSetter === 'function') {
-        newSearchParamsObject = newSearchOrSetter(prevSearchParamsObjectRef.current);
+        newSearchParamsObject = newSearchOrSetter(
+          prevSearchParamsObjectRef.current
+        );
       }
 
       let currentSearchParamsObject = prevSearchParamsObjectRef.current;
@@ -63,7 +65,7 @@ export const useSearchState = ({ rewrite } = { rewrite: false }) => {
 
       history.push({ search: newSearchParams.toString() });
     },
-    [history, prevSearchParamsObjectRef, rewrite]
+    [history, prevSearchParamsObjectRef]
   );
 
   return [searchParamsObject, setSearch];

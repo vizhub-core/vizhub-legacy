@@ -21,17 +21,21 @@ const isPublic = (section) => section === 'public' || section === '';
 
 export const Body = () => {
   const { me } = useContext(AuthContext);
+
+  const [sort, handleSortChange] = useVizzesSort();
+
   const {
     user,
     section,
     visualizationInfos: initialVisualizationInfos,
   } = useContext(ProfilePageDataContext);
+
   const {
     visualizationInfos,
     paginate,
     usersById,
     isFetchingNextPage,
-  } = useProfileVizzes({ user, section, initialVisualizationInfos });
+  } = useProfileVizzes({ user, section, sort, initialVisualizationInfos });
 
   const [, setSearch] = useSearchState();
   const handleSectionChange = useCallback(
@@ -58,8 +62,6 @@ export const Body = () => {
   const showVizzesSharedWithMe = useCallback(() => {
     handleSectionChange('shared');
   }, [handleSectionChange]);
-
-  const [sort, handleSortChange] = useVizzesSort();
 
   return (
     <Content>
