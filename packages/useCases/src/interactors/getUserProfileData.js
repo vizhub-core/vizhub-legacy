@@ -30,7 +30,7 @@ export class GetUserProfileData {
       searchParams.collaborators = [user.id];
       searchParams.privacy = isUserRequestOwnProfile ? 'any' : 'public';
     }
-    
+
     if (section === 'private') {
       searchParams.owner = user.id;
       searchParams.privacy = isUserRequestOwnProfile ? 'private' : 'public';

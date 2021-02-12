@@ -8,7 +8,9 @@ import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 import { pageSize } from './constants';
 
-const defaultSort = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === VIZ_INFO_DEFAULT_SORT_OPTION.id);
+const defaultSort = VIZ_INFO_SORT_OPTIONS.find(
+  ({ id }) => id === VIZ_INFO_DEFAULT_SORT_OPTION.id
+);
 
 export const searchVisualizationInfos = (connection) => async ({
   query,
@@ -19,8 +21,7 @@ export const searchVisualizationInfos = (connection) => async ({
   privacy,
   extraQueryParams = {},
 }) => {
-
-  const requestedSort = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort)
+  const requestedSort = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
   const sortToApply = requestedSort ? requestedSort : defaultSort;
   const sortField = sortToApply.vizInfoProperty;
 

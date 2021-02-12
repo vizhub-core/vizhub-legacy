@@ -14,5 +14,5 @@ export const PrivacyNotice = ({ className, owner }) => {
       <Label>PRIVATE</Label>
       <LockSVG height={20} fill="white" />
     </Link>
-  )
-}
+  );
+};
