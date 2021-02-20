@@ -30,29 +30,27 @@ export const VIZ_INFO_SORT_OPTIONS = [
 
 if (isStaging) {
   VIZ_INFO_SORT_OPTIONS.push(
-    ...[
-      { id: 'wilson', label: 'Wilson Score', vizInfoProperty: 'scoreWilson' },
-      {
-        id: 'reddit-hot-created',
-        label: 'Reddit Hot (created date)',
-        vizInfoProperty: 'scoreRedditHotCreated',
-      },
-      {
-        id: 'hacker-hot-created',
-        label: 'Hacker Hot (created date)',
-        vizInfoProperty: 'scoreHackerHotCreated',
-      },
-      {
-        id: 'reddit-hot-updated',
-        label: 'Reddit Hot (updated date)',
-        vizInfoProperty: 'scoreRedditHotLastUpdated',
-      },
-      {
-        id: 'hacker-hot-updated',
-        label: 'Hacker Hot (updated date)',
-        vizInfoProperty: 'scoreHackerHotLastUpdated',
-      },
-    ]
+    { id: 'wilson', label: 'Wilson Score', vizInfoProperty: 'scoreWilson' },
+    {
+      id: 'reddit-hot-created',
+      label: 'Reddit Hot (created date)',
+      vizInfoProperty: 'scoreRedditHotCreated',
+    },
+    {
+      id: 'hacker-hot-created',
+      label: 'Hacker Hot (created date)',
+      vizInfoProperty: 'scoreHackerHotCreated',
+    },
+    {
+      id: 'reddit-hot-updated',
+      label: 'Reddit Hot (updated date)',
+      vizInfoProperty: 'scoreRedditHotLastUpdated',
+    },
+    {
+      id: 'hacker-hot-updated',
+      label: 'Hacker Hot (updated date)',
+      vizInfoProperty: 'scoreHackerHotLastUpdated',
+    }
   );
 }
 
