@@ -18,8 +18,8 @@
     "vizhub-i18n": "1"
   },
   "devDependencies": {
-    "mocha": "^8.2.1",
-    "eslint": "^7.17.0",
+    "mocha": "^8.3.0",
+    "eslint": "^7.20.0",
     "esm": "^3.2.25",
     "prettier": "^2.2.1"
   }

@@ -18,8 +18,8 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@datavis-tech/ot-json0": "^2.1.0",
-    "@eslint/eslintrc": "^0.2.2",
-    "codemirror": "^5.59.1",
+    "@eslint/eslintrc": "^0.3.0",
+    "codemirror": "^5.59.2",
     "color-hash": "^1.0.3",
     "copy-to-clipboard": "^3.3.1",
     "d3-color": "^2.0.0",
@@ -30,21 +30,21 @@
     "d3-time-format": "^3.0.0",
     "diff-match-patch": "^1.0.5",
     "eslint-plugin-react": "^7.22.0",
-    "eslint4b": "^7.17.0",
-    "immer": "^8.0.0",
+    "eslint4b": "^7.20.0",
+    "immer": "^8.0.1",
     "is-mobile": "^2.2.2",
     "json0-ot-diff": "^1.0.5",
     "json0-with-presence": "1",
-    "marked": "^1.2.7",
+    "marked": "^2.0.0",
     "perfect-scrollbar": "^1.5.0",
-    "query-string": "^6.13.8",
+    "query-string": "^6.14.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^4.0.2",
     "rxjs": "^6.6.3",
-    "sharedb": "^1.5.2",
+    "sharedb": "^1.7.0",
     "styled-components": "^5.2.1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
@@ -59,7 +59,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.8",
-    "@testing-library/react": "^11.2.3"
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5"
   }
 }
