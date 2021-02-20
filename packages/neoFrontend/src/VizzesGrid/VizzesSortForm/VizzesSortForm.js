@@ -10,6 +10,8 @@ export const VizzesSortForm = ({ value, onChange }) => {
     [onChange]
   );
 
+  console.log(VIZ_INFO_SORT_OPTIONS);
+
   return (
     <form>
       <SelectLabel>Sort vizzes by</SelectLabel>
