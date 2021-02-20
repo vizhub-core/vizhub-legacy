@@ -4,6 +4,10 @@ import svelte from './svelte';
 import hypothetical from './hypothetical';
 import { getLibraries } from './getLibraries';
 
+// if HTML parser encounter </script> it stops parsing current script
+// in order to avoid that, </script> should be splitted
+const escapeClosingScriptTag = (code) => code.split("</script>").join('" + "<" + "/script>" + "');
+
 const transformFilesToObject = (files) =>
   files
     .filter(
@@ -56,11 +60,13 @@ export const bundle = async (files) => {
   }
   const { code, map } = output[0];
 
+  const escapedCode = escapeClosingScriptTag(code);
+
   const toString = map.toString.bind(map);
   map.toString = () => unescape(encodeURIComponent(toString()));
 
   // Inspired by https://github.com/rollup/rollup/issues/121
-  const codeWithSourceMap = code + '\n//# sourceMappingURL=' + map.toUrl();
+  const codeWithSourceMap = escapedCode + '\n//# sourceMappingURL=' + map.toUrl();
 
   return [
     {
