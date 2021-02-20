@@ -4,14 +4,20 @@ Built with React, Node, Lerna, and ShareDB. Loosely based on [Clean Architecture
 
 To set up your development environment:
 
+Install dependencies:
 ```
 cd vizhub
-npm install -g lerna # one time only
-lerna bootstrap
+npm install
+npm run lerna
+```
+
+Start the backend:
+```
 cd packages/neoBackend
 npm run dev # Leave this open in a console tab. Serves on port 4000
 ```
-In another terminal:
+
+Start the frontend server (in another terminal):
 
 ```
 cd ../packages/neoFrontend
