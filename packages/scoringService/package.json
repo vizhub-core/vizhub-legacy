@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^8.2.1"
+    "mocha": "^8.3.0"
   }
 }

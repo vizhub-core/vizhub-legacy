@@ -1,20 +1,11 @@
 {
-  "name": "vizhub-ci",
-  "private": true,
-  "scripts": {
-    "test:e2e": "mocha -r esm --timeout 10000",
-    "prettier": "prettier --single-quote --write 'test/**/*.js'",
-    "lint": "eslint test -c ./.eslintrc.js --no-eslintrc --fix",
-    "updateDeps": "ncu -u"
-  },
-  "dependencies": {
-    "vizhub-database": "1"
-  },
-  "devDependencies": {
-    "esm": "^3.2.25",
-    "mocha": "^8.2.1",
-    "puppeteer": "^5.5.0",
-    "eslint": "^7.17.0",
-    "prettier": "^2.2.1"
-  }
+	"name": "vizhub-ci",
+	"private": true,
+	"devDependencies": {
+		"eslint": "^7.20.0",
+		"esm": "^3.2.25",
+		"mocha": "^8.3.0",
+		"prettier": "^2.2.1",
+		"puppeteer": "^7.1.0"
+	}
 }

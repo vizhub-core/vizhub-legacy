@@ -17,6 +17,7 @@
   "devDependencies": {
     "esm": "^3.2.25",
     "lerna": "^3.22.1",
-    "mocha": "^8.2.1"
+    "mocha": "^8.2.1",
+    "npm-check-updates": "^11.1.4"
   }
 }
