@@ -30,7 +30,7 @@ export const useProfilePageData = (userName, query, sort, section) => {
         }
       }
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
