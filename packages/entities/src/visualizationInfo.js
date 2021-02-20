@@ -29,7 +29,7 @@ export const VIZ_INFO_SORT_OPTIONS = [
 ];
 
 if (isStaging) {
-  VIZ_INFO_SORT_OPTIONS.push([
+  VIZ_INFO_SORT_OPTIONS.push(...[
     { id: 'wilson', label: 'Wilson Score', vizInfoProperty: 'scoreWilson' },
     {
       id: 'reddit-hot-created',
