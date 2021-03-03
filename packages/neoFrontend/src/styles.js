@@ -73,4 +73,4 @@ export const breathableHorizontal = `
     padding-left: 60px;
     padding-right: 60px;
   }
-`
+`;
