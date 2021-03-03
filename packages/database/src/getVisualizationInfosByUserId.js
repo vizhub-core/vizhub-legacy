@@ -1,12 +1,11 @@
-import { getPageVisualizationInfos } from './getPageVisualizationInfos';
+import { searchVisualizationInfos } from './searchVisualizationInfos';
 
 export const getVisualizationInfosByUserId = (connection) => async ({
   owner,
-  authenticatedUser,
-  ...commonProps
+  ...restArgs
 }) => {
-  return getPageVisualizationInfos(connection)({
-    ...commonProps,
+  return searchVisualizationInfos(connection)({
+    ...restArgs,
     extraQueryParams: { owner },
   });
 };

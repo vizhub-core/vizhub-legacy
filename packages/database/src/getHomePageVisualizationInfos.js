@@ -1,8 +1,5 @@
-import { getPageVisualizationInfos } from './getPageVisualizationInfos';
+import { searchVisualizationInfos } from './searchVisualizationInfos';
 
 export const getHomePageVisualizationInfos = (connection) => async (args) => {
-  return getPageVisualizationInfos(connection)({
-    ...args,
-    includePrivate: false,
-  });
+  return searchVisualizationInfos(connection)(args);
 };

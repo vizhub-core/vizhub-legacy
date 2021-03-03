@@ -1,13 +1,12 @@
-import { getPageVisualizationInfos } from './getPageVisualizationInfos';
+import { searchVisualizationInfos } from './searchVisualizationInfos';
 
 export const getVisualizationInfos = (connection) => async (args) => {
   const { offset, ids } = args;
 
-  return getPageVisualizationInfos(connection)({
+  return searchVisualizationInfos(connection)({
     offset,
     extraQueryParams: {
       id: { $in: ids },
     },
-    includePrivate: false,
   });
 };

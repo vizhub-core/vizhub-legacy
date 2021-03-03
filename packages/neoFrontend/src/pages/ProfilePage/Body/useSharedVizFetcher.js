@@ -1,16 +1,16 @@
 import { createVizzFetcherHook } from './createVizzFetcherHook';
 
 const fetchVizzes = async ({ offset, sort, userId }) => {
-  const response = await fetch('/api/visualization/get/public', {
+  const response = await fetch('/api/visualization/get/shared', {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ offset, sort, owner: userId }),
+    body: JSON.stringify({ offset, sort, userId }),
   });
   return await response.json();
 };
 
-export const usePublicVizFetcher = createVizzFetcherHook({
-  vizTypeOfInterest: 'public',
+export const useSharedVizFetcher = createVizzFetcherHook({
+  vizTypeOfInterest: 'shared',
   fetchVizzes,
 });
