@@ -1,4 +1,4 @@
-import { type } from 'ot-json0';
+import type from './json0';
 
 type.transformPresence = function (presence, op, isOwnOp) {
   if (!presence) {
@@ -18,6 +18,7 @@ type.transformPresence = function (presence, op, isOwnOp) {
   //  index: start,
   //  length: end - start
   //});
+  console.log(presence);
   return presence;
 };
 
