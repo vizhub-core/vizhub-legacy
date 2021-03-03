@@ -15,9 +15,8 @@ import {
   VizPreviewTitle,
   Top,
   Bottom,
+  VizPrivacyNotice,
 } from './styles';
-
-import { PrivacyNotice } from '../PrivacyNotice';
 
 const noop = () => {};
 
@@ -82,7 +81,7 @@ export const VizPreview = ({
           />
         </Bottom>
       </VizPreviewFooter>
-      {isPrivate ? <PrivacyNotice isVizPreview={true} /> : null}
+      {isPrivate ? <VizPrivacyNotice owner={ownerUser} /> : null}
     </Wrapper>
   );
 };

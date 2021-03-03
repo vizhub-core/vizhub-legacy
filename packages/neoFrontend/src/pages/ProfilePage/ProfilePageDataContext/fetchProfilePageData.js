@@ -1,16 +1,13 @@
-const omitUndefined = (object) => {
-  return Object.keys(object).reduce((refinedObject, key) => {
-    if (object[key] !== undefined) {
-      refinedObject[key] = object[key];
-    }
+import { omitUndefined } from '../../../utils/object';
 
-    return refinedObject;
-  }, {});
-};
-
-export const fetchProfilePageData = async ({ userName, query, sort }) => {
+export const fetchProfilePageData = async ({
+  userName,
+  query,
+  sort,
+  section,
+}) => {
   const urlSearchParamsString = new URLSearchParams(
-    omitUndefined({ query, sort })
+    omitUndefined({ query, sort, section })
   ).toString();
 
   const url = `/api/user/getProfileData/${userName}${

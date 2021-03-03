@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const borderRadius = 30;
 
-export const Wrapper = styled.div`
+export const Badge = styled.div`
+  align-self: start;
   font-size: ${(props) => props.theme.text.small};
   font-weight: bold;
   background-color: ${(props) => props.theme.red};
@@ -11,7 +12,7 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 0 8px 0 10px;
   color: white;
-  margin-top: 0;
+  margin-top: 0px;
   margin-left: 12px;
   border-top-left-radius: ${borderRadius}px;
   border-bottom-left-radius: ${borderRadius}px;

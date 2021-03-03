@@ -52,11 +52,10 @@ function reducer(state, action) {
 
 const noop = () => {};
 
-export const usePaginatedVizzes = (
-  fetchData,
-  initialState = initialStateFallback
-) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export const usePaginatedVizzes = (fetchData, initialState) => {
+  const initialStateToUse = initialState || initialStateFallback;
+
+  const [state, dispatch] = useReducer(reducer, initialStateToUse);
   const {
     visualizationInfos,
     isFetchingNextPage,
@@ -67,8 +66,8 @@ export const usePaginatedVizzes = (
   } = state;
 
   const reset = useCallback(
-    () => dispatch({ type: 'RESET', data: initialState }),
-    [initialState, dispatch]
+    () => dispatch({ type: 'RESET', data: initialStateToUse }),
+    [initialStateToUse, dispatch]
   );
 
   // change current page should not cause reset since current page stay untouched

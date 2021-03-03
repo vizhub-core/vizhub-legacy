@@ -4,14 +4,20 @@ Built with React, Node, Lerna, and ShareDB. Loosely based on [Clean Architecture
 
 To set up your development environment:
 
+Install dependencies:
 ```
 cd vizhub
-npm install -g lerna # one time only
-lerna bootstrap
+npm install
+npm run lerna
+```
+
+Start the backend:
+```
 cd packages/neoBackend
 npm run dev # Leave this open in a console tab. Serves on port 4000
 ```
-In another terminal:
+
+Start the frontend server (in another terminal):
 
 ```
 cd ../packages/neoFrontend
@@ -19,6 +25,16 @@ npm start # Leave this open, it's a `create-react-app` dev server on port 3000
 ```
 
 To login, we use the Github integration with the development credentials below. Or, in development you can log in as CI (Continuous Integration) User without any need to set up GitHub authentication.
+
+## Puppeteer Dependencies
+
+The install step may fail with errors related to Puppeteer and Chrome. The following dependencies are required for Debian/Ubuntu Linux:
+
+```
+sudo apt install build-essential ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils -y
+```
+
+See also [Puppeteer troubleshooting](https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md)
 
 # Testing
 

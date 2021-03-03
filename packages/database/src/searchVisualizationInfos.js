@@ -1,31 +1,46 @@
-import { VisualizationInfo, VISUALIZATION_TYPE } from 'vizhub-entities';
+import {
+  VisualizationInfo,
+  VISUALIZATION_TYPE,
+  VIZ_INFO_SORT_OPTIONS,
+  VIZ_INFO_DEFAULT_SORT_OPTION,
+} from 'vizhub-entities';
 import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 import { pageSize } from './constants';
 
+const defaultSort = VIZ_INFO_SORT_OPTIONS.find(
+  ({ id }) => id === VIZ_INFO_DEFAULT_SORT_OPTION.id
+);
+
 export const searchVisualizationInfos = (connection) => async ({
   query,
-  collaborators,
   offset,
-  inlcudePrivate,
-  onlyPrivate,
+  sort,
   owner,
+  collaborators,
+  privacy,
+  extraQueryParams = {},
 }) => {
+  const requestedSort = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
+  const sortToApply = requestedSort ? requestedSort : defaultSort;
+  const sortField = sortToApply.vizInfoProperty;
+
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
     $limit: pageSize,
     $skip: offset * pageSize,
-    $sort: { lastUpdatedTimestamp: -1 },
     privacy: { $ne: 'private' },
     owner,
+    $sort: { [sortField]: -1 },
+    ...extraQueryParams,
   };
 
-  if (inlcudePrivate) {
-    delete mongoQuery['privacy'];
+  if (privacy === 'private') {
+    mongoQuery['privacy'] = 'private';
   }
 
-  if (onlyPrivate) {
-    mongoQuery['privacy'] = 'private';
+  if (privacy === 'any') {
+    delete mongoQuery['privacy'];
   }
 
   if (query) {

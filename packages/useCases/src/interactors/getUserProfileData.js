@@ -7,22 +7,47 @@ export class GetUserProfileData {
   }
 
   async execute(requestModel) {
-    const { userName, ...otherProfileOptions } = requestModel;
+    const {
+      section = 'public',
+      userName,
+      authenticatedUser,
+      ...otherProfileOptions
+    } = requestModel;
 
     const user =
       userName === ciUser.userName
         ? ciUser
         : await this.userGateway.getUserByUserName(userName);
 
-    const visualizationInfos = await this.visualizationGateway.getVisualizationInfosByUserId(
-      {
-        ...otherProfileOptions,
-        offset: 0,
-        includePrivate: false,
-        owner: user.id,
-      }
+    const searchParams = {
+      ...otherProfileOptions,
+      offset: 0,
+    };
+
+    const isUserRequestOwnProfile = authenticatedUser === user.id;
+
+    if (section === 'shared') {
+      searchParams.collaborators = [user.id];
+      searchParams.privacy = isUserRequestOwnProfile ? 'any' : 'public';
+    }
+
+    if (section === 'private') {
+      searchParams.owner = user.id;
+      searchParams.privacy = isUserRequestOwnProfile ? 'private' : 'public';
+    }
+
+    if (section === 'public') {
+      searchParams.owner = user.id;
+      searchParams.privacy = 'public';
+    }
+
+    const visualizationInfos = await this.visualizationGateway.searchVisualizationInfos(
+      searchParams
     );
 
-    return { user, visualizationInfos };
+    return {
+      user,
+      visualizationInfosBySection: { [section]: visualizationInfos },
+    };
   }
 }
