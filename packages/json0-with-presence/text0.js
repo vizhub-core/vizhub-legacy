@@ -253,4 +253,14 @@ text.invert = function(op) {
   return op;
 };
 
+// Draws from
+// https://github.com/Teamwork/ot-rich-text/blob/master/src/Operation.js
+// https://github.com/ottypes/json0/pull/31/files
+text.transformPresence = function(presence, operation, isOwnOperation) {
+  var side = isOwnOperation ? 'right' : 'left';
+  console.log(side);
+  var newIndex = text.transformCursor(presence.index, operation, side);
+  return Object.assign({}, presence, { index: newIndex });
+}
+
 require('./bootstrapTransform')(text, transformComponent, checkValidOp, append);

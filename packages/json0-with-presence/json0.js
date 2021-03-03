@@ -651,6 +651,38 @@ json.transformComponent = function(dest, c, otherC, type) {
   return dest;
 };
 
+json.transformPresence = function(presence, op, isOwnOp) {
+  console.log('before: ' + JSON.stringify(presence));
+
+  // Don't transform our presence against our own ops,
+  // because presence is set elsewhere.
+  if(isOwnOp) return presence;
+
+  // Defensively bail out if expected data structure is not there.
+  if(!presence.index) return presence;
+
+  for (var i = 0; i < op.length; i++) {
+    var c = op[i];
+
+    // convert old string ops to use subtype for backwards compatibility
+    if (c.si != null || c.sd != null) {
+      convertFromText(c);
+    }
+
+    // Transform against text0 ops.
+    if (c.t && c.t === 'text0' && json.pathMatches(c.p, presence.path)) {
+      presence = text.transformPresence(presence, c.o, isOwnOp);
+    }
+
+    // convert back to old string ops
+    if (c.t === 'text0') {
+      convertToText(c);
+    }
+  };
+  console.log('after : ' + JSON.stringify(presence));
+  return presence;
+};
+
 require('./bootstrapTransform')(json, json.transformComponent, json.checkValidOp, json.append);
 
 /**

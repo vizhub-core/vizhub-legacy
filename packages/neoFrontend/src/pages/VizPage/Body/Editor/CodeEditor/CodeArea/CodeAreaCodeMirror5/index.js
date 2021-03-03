@@ -173,9 +173,10 @@ export const CodeAreaCodeMirror5 = ({
           path,
           userId: me.id,
           ...presenceObject,
+          t: 'text0'
         });
       } else {
-        submitVizContentPresence(null);
+        //submitVizContentPresence(null);
       }
     },
     [submitVizContentPresence, path, me]
