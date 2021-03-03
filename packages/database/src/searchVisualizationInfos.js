@@ -8,9 +8,9 @@ import { DOCUMENT_INFO } from './collectionName';
 import { fetchShareDBQuery } from './fetchShareDBQuery';
 import { pageSize } from './constants';
 
-const defaultSort = VIZ_INFO_DEFAULT_SORT_OPTION.id;
-const isAllowed = (sort) =>
-  !!VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
+const defaultSort = VIZ_INFO_SORT_OPTIONS.find(
+  ({ id }) => id === VIZ_INFO_DEFAULT_SORT_OPTION.id
+);
 
 export const searchVisualizationInfos = (connection) => async ({
   query,
@@ -18,32 +18,29 @@ export const searchVisualizationInfos = (connection) => async ({
   sort,
   owner,
   collaborators,
-  inlcudePrivate,
-  onlyPrivate,
+  privacy,
   extraQueryParams = {},
 }) => {
-  const sortId = isAllowed(sort) ? sort : defaultSort;
-
-  const sortField = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sortId)
-    .vizInfoProperty;
+  const requestedSort = VIZ_INFO_SORT_OPTIONS.find(({ id }) => id === sort);
+  const sortToApply = requestedSort ? requestedSort : defaultSort;
+  const sortField = sortToApply.vizInfoProperty;
 
   const mongoQuery = {
     documentType: VISUALIZATION_TYPE,
     $limit: pageSize,
     $skip: offset * pageSize,
-    $sort: { lastUpdatedTimestamp: -1 },
     privacy: { $ne: 'private' },
     owner,
     $sort: { [sortField]: -1 },
     ...extraQueryParams,
   };
 
-  if (inlcudePrivate) {
-    delete mongoQuery['privacy'];
+  if (privacy === 'private') {
+    mongoQuery['privacy'] = 'private';
   }
 
-  if (onlyPrivate) {
-    mongoQuery['privacy'] = 'private';
+  if (privacy === 'any') {
+    delete mongoQuery['privacy'];
   }
 
   if (query) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useSearchState } from '../../../useSearchQuery';
 import { sendEvent } from '../../../sendEvent';
 import { AuthContext } from '../../../authentication';
 import { showProfileSidebar } from '../../../featureFlags';
@@ -20,27 +20,31 @@ import { ProfileMenuBar } from './styles';
 const isPublic = (section) => section === 'public' || section === '';
 
 export const Body = () => {
-  const history = useHistory();
   const { me } = useContext(AuthContext);
+
+  const [sort, handleSortChange] = useVizzesSort();
+
   const {
     user,
     section,
     visualizationInfos: initialVisualizationInfos,
   } = useContext(ProfilePageDataContext);
+
   const {
     visualizationInfos,
     paginate,
     usersById,
     isFetchingNextPage,
-  } = useProfileVizzes({ user, section, initialVisualizationInfos });
+  } = useProfileVizzes({ user, section, sort, initialVisualizationInfos });
 
+  const [, setSearch] = useSearchState();
   const handleSectionChange = useCallback(
     (newSection) => {
-      history.push({
-        search: isPublic(newSection) ? '' : `?section=${newSection}`,
+      setSearch({
+        section: isPublic(newSection) ? undefined : newSection,
       });
     },
-    [history]
+    [setSearch]
   );
 
   useEffect(() => {
@@ -58,8 +62,6 @@ export const Body = () => {
   const showVizzesSharedWithMe = useCallback(() => {
     handleSectionChange('shared');
   }, [handleSectionChange]);
-
-  const [sort, handleSortChange] = useVizzesSort();
 
   return (
     <Content>

@@ -30,7 +30,11 @@ export const useProfilePageData = (userName, query, sort, section) => {
         }
       }
     );
-  }, [sort, userName, query, section, setProfilePageData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return profilePageData;
+  return {
+    ...profilePageData,
+    section,
+  };
 };
