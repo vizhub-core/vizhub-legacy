@@ -4,10 +4,15 @@ import { Z_ABOVE } from '../styles';
 import { isMobile } from '../mobileMods';
 import { PrivacyNotice } from '../PrivacyNotice';
 
+// margin-right and margin-left are negative so that
+// the left and right align with the breathable outer margin,
+// and there can be a minimum gap within the grid.
 export const VizPreviews = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: ${isMobile ? 'center' : 'space-between'};
+  margin-left: -6px;
+  margin-right: -6px;
 `;
 
 export const Wrapper = styled.div`
