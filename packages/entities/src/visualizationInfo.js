@@ -29,7 +29,7 @@ export const VIZ_INFO_SORT_OPTIONS = [
 ];
 
 if (isStaging) {
-  VIZ_INFO_SORT_OPTIONS.push([
+  VIZ_INFO_SORT_OPTIONS.push(
     { id: 'wilson', label: 'Wilson Score', vizInfoProperty: 'scoreWilson' },
     {
       id: 'reddit-hot-created',
@@ -50,8 +50,8 @@ if (isStaging) {
       id: 'hacker-hot-updated',
       label: 'Hacker Hot (updated date)',
       vizInfoProperty: 'scoreHackerHotLastUpdated',
-    },
-  ]);
+    }
+  );
 }
 
 export const VIZ_INFO_DEFAULT_SORT_OPTION = VIZ_INFO_SORT_OPTIONS.find(

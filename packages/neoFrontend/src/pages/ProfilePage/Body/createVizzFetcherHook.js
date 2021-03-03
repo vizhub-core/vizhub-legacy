@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 export const createVizzFetcherHook = ({ vizTypeOfInterest, fetchVizzes }) => (
   userId,
-  vizType
+  vizType,
+  sort
 ) => {
   const [
     isVizzesOfTypeRequestedAtLeastOnce,
@@ -14,8 +15,9 @@ export const createVizzFetcherHook = ({ vizTypeOfInterest, fetchVizzes }) => (
       setIsVizzesOfTypeRequestedAtLeastOnce(true);
   }, [vizType]);
 
-  const fetch = useCallback((offset) => fetchVizzes({ offset, userId }), [
+  const fetch = useCallback((offset) => fetchVizzes({ offset, sort, userId }), [
     userId,
+    sort,
   ]);
 
   return isVizzesOfTypeRequestedAtLeastOnce && userId ? fetch : null;

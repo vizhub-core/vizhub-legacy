@@ -5,7 +5,7 @@ export const getSharedVisualizationsController = (expressApp, gateways) => {
   const getSearchResultsPageData = new GetSearchResultsPageData(gateways);
   expressApp.post('/api/visualization/get/shared', async (req, res) => {
     try {
-      const { offset = 0, userId } = req.body;
+      const { sort, offset = 0, userId } = req.body;
       if (!userId) {
         return res.status(400).json({
           error:
@@ -15,6 +15,7 @@ export const getSharedVisualizationsController = (expressApp, gateways) => {
 
       const data = await getSearchResultsPageData.execute({
         offset,
+        sort,
         collaborators: [userId],
         includePrivare: userIdFromReq(req) === userId,
       });
