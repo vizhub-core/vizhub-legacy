@@ -1,6 +1,6 @@
 // Common styles used in multiple pages.
 import styled from 'styled-components';
-import { Clickable } from '../styles';
+import { Clickable, breathableHorizontal } from '../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1380px;
   flex: 1;
+  ${breathableHorizontal}
 `;
 
 export const Title = styled.div`
