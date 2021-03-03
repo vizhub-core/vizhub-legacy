@@ -17,7 +17,7 @@
  * @param obj
  * @returns {boolean}
  */
-var isArray = function(obj) {
+var isArray = function (obj) {
   return Object.prototype.toString.call(obj) == '[object Array]';
 };
 
@@ -28,8 +28,8 @@ var isArray = function(obj) {
  * @param obj
  * @returns {boolean}
  */
-var isObject = function(obj) {
-  return (!!obj) && (obj.constructor === Object);
+var isObject = function (obj) {
+  return !!obj && obj.constructor === Object;
 };
 
 /**
@@ -39,7 +39,7 @@ var isObject = function(obj) {
  * to deep clone an object, assuming we have browser support for JSON.  @see
  * http://jsperf.com/cloning-an-object/12
  */
-var clone = function(o) {
+var clone = function (o) {
   return JSON.parse(JSON.stringify(o));
 };
 
@@ -49,24 +49,24 @@ var clone = function(o) {
  */
 var json = {
   name: 'json0',
-  uri: 'http://sharejs.org/types/JSONv0'
+  uri: 'http://sharejs.org/types/JSONv0',
 };
 
 // You can register another OT type as a subtype in a JSON document using
 // the following function. This allows another type to handle certain
 // operations instead of the builtin JSON type.
 var subtypes = {};
-json.registerSubtype = function(subtype) {
+json.registerSubtype = function (subtype) {
   subtypes[subtype.name] = subtype;
 };
 
-json.create = function(data) {
+json.create = function (data) {
   // Null instead of undefined if you don't pass an argument.
   return data === undefined ? null : clone(data);
 };
 
-json.invertComponent = function(c) {
-  var c_ = {p: c.p};
+json.invertComponent = function (c) {
+  var c_ = { p: c.p };
 
   // handle subtype ops
   if (c.t && subtypes[c.t]) {
@@ -83,14 +83,14 @@ json.invertComponent = function(c) {
   if (c.na !== void 0) c_.na = -c.na;
 
   if (c.lm !== void 0) {
-    c_.lm = c.p[c.p.length-1];
-    c_.p = c.p.slice(0,c.p.length-1).concat([c.lm]);
+    c_.lm = c.p[c.p.length - 1];
+    c_.p = c.p.slice(0, c.p.length - 1).concat([c.lm]);
   }
 
   return c_;
 };
 
-json.invert = function(op) {
+json.invert = function (op) {
   var op_ = op.slice().reverse();
   var iop = [];
   for (var i = 0; i < op_.length; i++) {
@@ -99,27 +99,28 @@ json.invert = function(op) {
   return iop;
 };
 
-json.checkValidOp = function(op) {
+json.checkValidOp = function (op) {
   for (var i = 0; i < op.length; i++) {
     if (!isArray(op[i].p)) throw new Error('Missing path');
   }
 };
 
-json.checkList = function(elem) {
-  if (!isArray(elem))
-    throw new Error('Referenced element not a list');
+json.checkList = function (elem) {
+  if (!isArray(elem)) throw new Error('Referenced element not a list');
 };
 
-json.checkObj = function(elem) {
+json.checkObj = function (elem) {
   if (!isObject(elem)) {
-    throw new Error("Referenced element not an object (it was " + JSON.stringify(elem) + ")");
+    throw new Error(
+      'Referenced element not an object (it was ' + JSON.stringify(elem) + ')'
+    );
   }
 };
 
 // helper functions to convert old string ops to and from subtype ops
 function convertFromText(c) {
   c.t = 'text0';
-  var o = {p: c.p.pop()};
+  var o = { p: c.p.pop() };
   if (c.si != null) o.i = c.si;
   if (c.sd != null) o.d = c.sd;
   c.o = [o];
@@ -133,21 +134,20 @@ function convertToText(c) {
   delete c.o;
 }
 
-json.apply = function(snapshot, op) {
+json.apply = function (snapshot, op) {
   json.checkValidOp(op);
 
   op = clone(op);
 
   var container = {
-    data: snapshot
+    data: snapshot,
   };
 
   for (var i = 0; i < op.length; i++) {
     var c = op[i];
 
     // convert old string ops to use subtype for backwards compatibility
-    if (c.si != null || c.sd != null)
-      convertFromText(c);
+    if (c.si != null || c.sd != null) convertFromText(c);
 
     var parent = null;
     var parentKey = null;
@@ -162,15 +162,14 @@ json.apply = function(snapshot, op) {
       elem = elem[key];
       key = p;
 
-      if (parent == null)
-        throw new Error('Path invalid');
+      if (parent == null) throw new Error('Path invalid');
     }
 
     // handle subtype ops
     if (c.t && c.o !== void 0 && subtypes[c.t]) {
       elem[key] = subtypes[c.t].apply(elem[key], c.o);
 
-    // Number add
+      // Number add
     } else if (c.na !== void 0) {
       if (typeof elem[key] != 'number')
         throw new Error('Referenced element not a number');
@@ -188,14 +187,14 @@ json.apply = function(snapshot, op) {
     // List insert
     else if (c.li !== void 0) {
       json.checkList(elem);
-      elem.splice(key,0, c.li);
+      elem.splice(key, 0, c.li);
     }
 
     // List delete
     else if (c.ld !== void 0) {
       json.checkList(elem);
       // Should check the list element matches c.ld here too.
-      elem.splice(key,1);
+      elem.splice(key, 1);
     }
 
     // List move
@@ -204,9 +203,9 @@ json.apply = function(snapshot, op) {
       if (c.lm != key) {
         var e = elem[key];
         // Remove it...
-        elem.splice(key,1);
+        elem.splice(key, 1);
         // And insert it back.
-        elem.splice(c.lm,0,e);
+        elem.splice(c.lm, 0, e);
       }
     }
 
@@ -224,9 +223,7 @@ json.apply = function(snapshot, op) {
 
       // Should check that elem[key] == c.od
       delete elem[key];
-    }
-
-    else {
+    } else {
       throw new Error('invalid / missing instruction in op');
     }
   }
@@ -235,7 +232,7 @@ json.apply = function(snapshot, op) {
 };
 
 // Helper to break an operation up into a bunch of small ops.
-json.shatter = function(op) {
+json.shatter = function (op) {
   var results = [];
   for (var i = 0; i < op.length; i++) {
     results.push([op[i]]);
@@ -245,7 +242,7 @@ json.shatter = function(op) {
 
 // Helper for incrementally applying an operation to a snapshot. Calls yield
 // after each op component has been applied.
-json.incrementalApply = function(snapshot, op, _yield) {
+json.incrementalApply = function (snapshot, op, _yield) {
   for (var i = 0; i < op.length; i++) {
     var smallOp = [op[i]];
     snapshot = json.apply(snapshot, smallOp);
@@ -257,19 +254,17 @@ json.incrementalApply = function(snapshot, op, _yield) {
 };
 
 // Checks if two paths, p1 and p2 match.
-var pathMatches = json.pathMatches = function(p1, p2, ignoreLast) {
-  if (p1.length != p2.length)
-    return false;
+var pathMatches = (json.pathMatches = function (p1, p2, ignoreLast) {
+  if (p1.length != p2.length) return false;
 
   for (var i = 0; i < p1.length; i++) {
-    if (p1[i] !== p2[i] && (!ignoreLast || i !== p1.length - 1))
-      return false;
+    if (p1[i] !== p2[i] && (!ignoreLast || i !== p1.length - 1)) return false;
   }
 
   return true;
-};
+});
 
-json.append = function(dest,c) {
+json.append = function (dest, c) {
   c = clone(c);
 
   if (dest.length === 0) {
@@ -303,8 +298,12 @@ json.append = function(dest,c) {
         convertToText(last);
       }
     } else if (last.na != null && c.na != null) {
-      dest[dest.length - 1] = {p: last.p, na: last.na + c.na};
-    } else if (last.li !== undefined && c.li === undefined && c.ld === last.li) {
+      dest[dest.length - 1] = { p: last.p, na: last.na + c.na };
+    } else if (
+      last.li !== undefined &&
+      c.li === undefined &&
+      c.ld === last.li
+    ) {
       // insert immediately followed by delete becomes a noop.
       if (last.ld !== undefined) {
         // leave the delete part of the replace
@@ -312,7 +311,12 @@ json.append = function(dest,c) {
       } else {
         dest.pop();
       }
-    } else if (last.od !== undefined && last.oi === undefined && c.oi !== undefined && c.od === undefined) {
+    } else if (
+      last.od !== undefined &&
+      last.oi === undefined &&
+      c.oi !== undefined &&
+      c.od === undefined
+    ) {
       last.oi = c.oi;
     } else if (last.oi !== undefined && c.od !== undefined) {
       // The last path component inserted something that the new component deletes (or replaces).
@@ -332,7 +336,10 @@ json.append = function(dest,c) {
     }
   } else {
     // convert string ops back
-    if ((c.si != null || c.sd != null) && (last.si != null || last.sd != null)) {
+    if (
+      (c.si != null || c.sd != null) &&
+      (last.si != null || last.sd != null)
+    ) {
       convertToText(c);
       convertToText(last);
     }
@@ -341,20 +348,20 @@ json.append = function(dest,c) {
   }
 };
 
-json.compose = function(op1,op2) {
+json.compose = function (op1, op2) {
   json.checkValidOp(op1);
   json.checkValidOp(op2);
 
   var newOp = clone(op1);
 
   for (var i = 0; i < op2.length; i++) {
-    json.append(newOp,op2[i]);
+    json.append(newOp, op2[i]);
   }
 
   return newOp;
 };
 
-json.normalize = function(op) {
+json.normalize = function (op) {
   var newOp = [];
 
   op = isArray(op) ? op : [op];
@@ -363,21 +370,19 @@ json.normalize = function(op) {
     var c = op[i];
     if (c.p == null) c.p = [];
 
-    json.append(newOp,c);
+    json.append(newOp, c);
   }
 
   return newOp;
 };
 
 // Returns the common length of the paths of ops a and b
-json.commonLengthForOps = function(a, b) {
+json.commonLengthForOps = function (a, b) {
   var alen = a.p.length;
   var blen = b.p.length;
-  if (a.na != null || a.t)
-    alen++;
+  if (a.na != null || a.t) alen++;
 
-  if (b.na != null || b.t)
-    blen++;
+  if (b.na != null || b.t) blen++;
 
   if (alen === 0) return -1;
   if (blen === 0) return null;
@@ -387,20 +392,19 @@ json.commonLengthForOps = function(a, b) {
 
   for (var i = 0; i < alen; i++) {
     var p = a.p[i];
-    if (i >= blen || p !== b.p[i])
-      return null;
+    if (i >= blen || p !== b.p[i]) return null;
   }
 
   return alen;
 };
 
 // Returns true if an op can affect the given path
-json.canOpAffectPath = function(op, path) {
-  return json.commonLengthForOps({p:path}, op) != null;
+json.canOpAffectPath = function (op, path) {
+  return json.commonLengthForOps({ p: path }, op) != null;
 };
 
 // transform c so it applies to a document with otherC applied.
-json.transformComponent = function(dest, c, otherC, type) {
+json.transformComponent = function (dest, c, otherC, type) {
   c = clone(c);
 
   var common = json.commonLengthForOps(otherC, c);
@@ -408,23 +412,25 @@ json.transformComponent = function(dest, c, otherC, type) {
   var cplength = c.p.length;
   var otherCplength = otherC.p.length;
 
-  if (c.na != null || c.t)
-    cplength++;
+  if (c.na != null || c.t) cplength++;
 
-  if (otherC.na != null || otherC.t)
-    otherCplength++;
+  if (otherC.na != null || otherC.t) otherCplength++;
 
   // if c is deleting something, and that thing is changed by otherC, we need to
   // update c to reflect that change for invertibility.
-  if (common2 != null && otherCplength > cplength && c.p[common2] == otherC.p[common2]) {
+  if (
+    common2 != null &&
+    otherCplength > cplength &&
+    c.p[common2] == otherC.p[common2]
+  ) {
     if (c.ld !== void 0) {
       var oc = clone(otherC);
       oc.p = oc.p.slice(cplength);
-      c.ld = json.apply(clone(c.ld),[oc]);
+      c.ld = json.apply(clone(c.ld), [oc]);
     } else if (c.od !== void 0) {
       var oc = clone(otherC);
       oc.p = oc.p.slice(cplength);
-      c.od = json.apply(clone(c.od),[oc]);
+      c.od = json.apply(clone(c.od), [oc]);
     }
   }
 
@@ -433,7 +439,10 @@ json.transformComponent = function(dest, c, otherC, type) {
 
     // backward compatibility for old string ops
     var oc = otherC;
-    if ((c.si != null || c.sd != null) && (otherC.si != null || otherC.sd != null)) {
+    if (
+      (c.si != null || c.sd != null) &&
+      (otherC.si != null || otherC.sd != null)
+    ) {
       convertFromText(c);
       oc = clone(otherC);
       convertFromText(oc);
@@ -482,10 +491,14 @@ json.transformComponent = function(dest, c, otherC, type) {
         }
       }
     } else if (otherC.li !== void 0) {
-      if (c.li !== void 0 && c.ld === undefined && commonOperand && c.p[common] === otherC.p[common]) {
+      if (
+        c.li !== void 0 &&
+        c.ld === undefined &&
+        commonOperand &&
+        c.p[common] === otherC.p[common]
+      ) {
         // in li vs. li, left wins.
-        if (type === 'right')
-          c.p[common]++;
+        if (type === 'right') c.p[common]++;
       } else if (otherC.p[common] <= c.p[common]) {
         c.p[common]++;
       }
@@ -493,8 +506,7 @@ json.transformComponent = function(dest, c, otherC, type) {
       if (c.lm !== void 0) {
         if (commonOperand) {
           // otherC edits the same list we edit
-          if (otherC.p[common] <= c.lm)
-            c.lm++;
+          if (otherC.p[common] <= c.lm) c.lm++;
           // changing c.from is handled above.
         }
       }
@@ -509,9 +521,7 @@ json.transformComponent = function(dest, c, otherC, type) {
           var p = otherC.p[common];
           var from = c.p[common];
           var to = c.lm;
-          if (p < to || (p === to && from < to))
-            c.lm--;
-
+          if (p < to || (p === to && from < to)) c.lm--;
         }
       }
 
@@ -531,7 +541,6 @@ json.transformComponent = function(dest, c, otherC, type) {
           }
         }
       }
-
     } else if (otherC.lm !== void 0) {
       if (c.lm !== void 0 && cplength === otherCplength) {
         // lm vs lm, here we go!
@@ -547,7 +556,8 @@ json.transformComponent = function(dest, c, otherC, type) {
             // they moved it! tie break.
             if (type === 'left') {
               c.p[common] = otherTo;
-              if (from === to) // ugh
+              if (from === to)
+                // ugh
                 c.lm = otherTo;
             } else {
               return dest;
@@ -559,7 +569,8 @@ json.transformComponent = function(dest, c, otherC, type) {
             else if (from === otherTo) {
               if (otherFrom > otherTo) {
                 c.p[common]++;
-                if (from === to) // ugh, again
+                if (from === to)
+                  // ugh, again
                   c.lm++;
               }
             }
@@ -568,15 +579,16 @@ json.transformComponent = function(dest, c, otherC, type) {
             if (to > otherFrom) {
               c.lm--;
             } else if (to === otherFrom) {
-              if (to > from)
-                c.lm--;
+              if (to > from) c.lm--;
             }
             if (to > otherTo) {
               c.lm++;
             } else if (to === otherTo) {
               // if we're both moving in the same direction, tie break
-              if ((otherTo > otherFrom && to > from) ||
-                  (otherTo < otherFrom && to < from)) {
+              if (
+                (otherTo > otherFrom && to > from) ||
+                (otherTo < otherFrom && to < from)
+              ) {
                 if (type === 'right') c.lm++;
               } else {
                 if (to > from) c.lm++;
@@ -608,8 +620,7 @@ json.transformComponent = function(dest, c, otherC, type) {
           else if (p === to && from > to) c.p[common]++;
         }
       }
-    }
-    else if (otherC.oi !== void 0 && otherC.od !== void 0) {
+    } else if (otherC.oi !== void 0 && otherC.od !== void 0) {
       if (c.p[common] === otherC.p[common]) {
         if (c.oi !== void 0 && commonOperand) {
           // we inserted where someone else replaced
@@ -629,15 +640,14 @@ json.transformComponent = function(dest, c, otherC, type) {
       if (c.oi !== void 0 && c.p[common] === otherC.p[common]) {
         // left wins if we try to insert at the same place
         if (type === 'left') {
-          json.append(dest,{p: c.p, od:otherC.oi});
+          json.append(dest, { p: c.p, od: otherC.oi });
         } else {
           return dest;
         }
       }
     } else if (otherC.od !== void 0) {
       if (c.p[common] == otherC.p[common]) {
-        if (!commonOperand)
-          return dest;
+        if (!commonOperand) return dest;
         if (c.oi !== void 0) {
           delete c.od;
         } else {
@@ -647,19 +657,19 @@ json.transformComponent = function(dest, c, otherC, type) {
     }
   }
 
-  json.append(dest,c);
+  json.append(dest, c);
   return dest;
 };
 
-json.transformPresence = function(presence, op, isOwnOp) {
+json.transformPresence = function (presence, op, isOwnOp) {
   console.log('before: ' + JSON.stringify(presence));
 
   // Don't transform our presence against our own ops,
   // because presence is set elsewhere.
-  if(isOwnOp) return presence;
+  if (isOwnOp) return presence;
 
   // Defensively bail out if expected data structure is not there.
-  if(!presence.index) return presence;
+  if (!presence.index) return presence;
 
   for (var i = 0; i < op.length; i++) {
     var c = op[i];
@@ -678,12 +688,17 @@ json.transformPresence = function(presence, op, isOwnOp) {
     if (c.t === 'text0') {
       convertToText(c);
     }
-  };
+  }
   console.log('after : ' + JSON.stringify(presence));
   return presence;
 };
 
-require('./bootstrapTransform')(json, json.transformComponent, json.checkValidOp, json.append);
+require('./bootstrapTransform')(
+  json,
+  json.transformComponent,
+  json.checkValidOp,
+  json.append
+);
 
 /**
  * Register a subtype for string operations, using the text0 type.
@@ -692,4 +707,3 @@ var text = require('./text0');
 
 json.registerSubtype(text);
 module.exports = json;
-

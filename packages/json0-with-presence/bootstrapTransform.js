@@ -7,14 +7,14 @@
 // Add transform and transformX functions for an OT type which has
 // transformComponent defined.  transformComponent(destination array,
 // component, other component, side)
-module.exports = bootstrapTransform
+module.exports = bootstrapTransform;
 function bootstrapTransform(type, transformComponent, checkValidOp, append) {
-  var transformComponentX = function(left, right, destLeft, destRight) {
+  var transformComponentX = function (left, right, destLeft, destRight) {
     transformComponent(destLeft, left, right, 'left');
     transformComponent(destRight, right, left, 'right');
   };
 
-  var transformX = type.transformX = function(leftOp, rightOp) {
+  var transformX = (type.transformX = function (leftOp, rightOp) {
     checkValidOp(leftOp);
     checkValidOp(rightOp);
     var newRightOp = [];
@@ -58,10 +58,10 @@ function bootstrapTransform(type, transformComponent, checkValidOp, append) {
       leftOp = newLeftOp;
     }
     return [leftOp, newRightOp];
-  };
+  });
 
   // Transforms op with specified type ('left' or 'right') by otherOp.
-  type.transform = function(op, otherOp, type) {
+  type.transform = function (op, otherOp, type) {
     if (!(type === 'left' || type === 'right'))
       throw new Error("type must be 'left' or 'right'");
 
@@ -70,9 +70,7 @@ function bootstrapTransform(type, transformComponent, checkValidOp, append) {
     if (op.length === 1 && otherOp.length === 1)
       return transformComponent([], op[0], otherOp[0], type);
 
-    if (type === 'left')
-      return transformX(op, otherOp)[0];
-    else
-      return transformX(otherOp, op)[1];
+    if (type === 'left') return transformX(op, otherOp)[0];
+    else return transformX(otherOp, op)[1];
   };
-};
+}

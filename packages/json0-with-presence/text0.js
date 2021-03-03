@@ -3,7 +3,6 @@
 // This type works, but is not exported. Its included here because the JSON0
 // embedded string operations use this library.
 
-
 // A simple text implementation
 //
 // Operations are lists of components. Each component either inserts or deletes
@@ -21,43 +20,42 @@
 // is equivalent to this op:
 //   [{i:'a', p:0}, {i:'b', p:1}, {i:'c', p:2}]
 
-var text = module.exports = {
+var text = (module.exports = {
   name: 'text0',
   uri: 'http://sharejs.org/types/textv0',
-  create: function(initial) {
-    if ((initial != null) && typeof initial !== 'string') {
+  create: function (initial) {
+    if (initial != null && typeof initial !== 'string') {
       throw new Error('Initial data must be a string');
     }
     return initial || '';
-  }
-};
+  },
+});
 
 /** Insert s2 into s1 at pos. */
-var strInject = function(s1, pos, s2) {
+var strInject = function (s1, pos, s2) {
   return s1.slice(0, pos) + s2 + s1.slice(pos);
 };
 
 /** Check that an operation component is valid. Throws if its invalid. */
-var checkValidComponent = function(c) {
+var checkValidComponent = function (c) {
   if (typeof c.p !== 'number')
     throw new Error('component missing position field');
 
   if ((typeof c.i === 'string') === (typeof c.d === 'string'))
     throw new Error('component needs an i or d field');
 
-  if (c.p < 0)
-    throw new Error('position cannot be negative');
+  if (c.p < 0) throw new Error('position cannot be negative');
 };
 
 /** Check that an operation is valid */
-var checkValidOp = function(op) {
+var checkValidOp = function (op) {
   for (var i = 0; i < op.length; i++) {
     checkValidComponent(op[i]);
   }
 };
 
 /** Apply op to snapshot */
-text.apply = function(snapshot, op) {
+text.apply = function (snapshot, op) {
   var deleted;
 
   checkValidOp(op);
@@ -68,9 +66,17 @@ text.apply = function(snapshot, op) {
     } else {
       deleted = snapshot.slice(component.p, component.p + component.d.length);
       if (component.d !== deleted)
-        throw new Error("Delete component '" + component.d + "' does not match deleted text '" + deleted + "'");
+        throw new Error(
+          "Delete component '" +
+            component.d +
+            "' does not match deleted text '" +
+            deleted +
+            "'"
+        );
 
-      snapshot = snapshot.slice(0, component.p) + snapshot.slice(component.p + component.d.length);
+      snapshot =
+        snapshot.slice(0, component.p) +
+        snapshot.slice(component.p + component.d.length);
     }
   }
   return snapshot;
@@ -80,7 +86,7 @@ text.apply = function(snapshot, op) {
  * Append a component to the end of newOp. Exported for use by the random op
  * generator and the JSON0 type.
  */
-var append = text._append = function(newOp, c) {
+var append = (text._append = function (newOp, c) {
   if (c.i === '' || c.d === '') return;
 
   if (newOp.length === 0) {
@@ -88,22 +94,36 @@ var append = text._append = function(newOp, c) {
   } else {
     var last = newOp[newOp.length - 1];
 
-    if (last.i != null && c.i != null && last.p <= c.p && c.p <= last.p + last.i.length) {
+    if (
+      last.i != null &&
+      c.i != null &&
+      last.p <= c.p &&
+      c.p <= last.p + last.i.length
+    ) {
       // Compose the insert into the previous insert
-      newOp[newOp.length - 1] = {i:strInject(last.i, c.p - last.p, c.i), p:last.p};
-
-    } else if (last.d != null && c.d != null && c.p <= last.p && last.p <= c.p + c.d.length) {
+      newOp[newOp.length - 1] = {
+        i: strInject(last.i, c.p - last.p, c.i),
+        p: last.p,
+      };
+    } else if (
+      last.d != null &&
+      c.d != null &&
+      c.p <= last.p &&
+      last.p <= c.p + c.d.length
+    ) {
       // Compose the deletes together
-      newOp[newOp.length - 1] = {d:strInject(c.d, last.p - c.p, last.d), p:c.p};
-
+      newOp[newOp.length - 1] = {
+        d: strInject(c.d, last.p - c.p, last.d),
+        p: c.p,
+      };
     } else {
       newOp.push(c);
     }
   }
-};
+});
 
 /** Compose op1 and op2 together */
-text.compose = function(op1, op2) {
+text.compose = function (op1, op2) {
   checkValidOp(op1);
   checkValidOp(op2);
   var newOp = op1.slice();
@@ -114,7 +134,7 @@ text.compose = function(op1, op2) {
 };
 
 /** Clean up an op */
-text.normalize = function(op) {
+text.normalize = function (op) {
   var newOp = [];
 
   // Normalize should allow ops which are a single (unwrapped) component:
@@ -140,7 +160,7 @@ text.normalize = function(op) {
 // is pushed after the insert (true) or before it (false).
 //
 // insertAfter is optional for deletes.
-var transformPosition = function(pos, c, insertAfter) {
+var transformPosition = function (pos, c, insertAfter) {
   // This will get collapsed into a giant ternary by uglify.
   if (c.i != null) {
     if (c.p < pos || (c.p === pos && insertAfter)) {
@@ -168,7 +188,7 @@ var transformPosition = function(pos, c, insertAfter) {
 // Like transformPosition above, if c is an insert, insertAfter specifies
 // whether the cursor position is pushed after an insert (true) or before it
 // (false).
-text.transformCursor = function(position, op, side) {
+text.transformCursor = function (position, op, side) {
   var insertAfter = side === 'right';
   for (var i = 0; i < op.length; i++) {
     position = transformPosition(position, op[i], insertAfter);
@@ -181,7 +201,7 @@ text.transformCursor = function(position, op, side) {
 // The result will be appended to destination.
 //
 // exported for use in JSON type
-var transformComponent = text._tc = function(dest, c, otherC, side) {
+var transformComponent = (text._tc = function (dest, c, otherC, side) {
   //var cIntersect, intersectEnd, intersectStart, newC, otherIntersect, s;
 
   checkValidComponent(c);
@@ -189,31 +209,30 @@ var transformComponent = text._tc = function(dest, c, otherC, side) {
 
   if (c.i != null) {
     // Insert.
-    append(dest, {i:c.i, p:transformPosition(c.p, otherC, side === 'right')});
+    append(dest, {
+      i: c.i,
+      p: transformPosition(c.p, otherC, side === 'right'),
+    });
   } else {
     // Delete
     if (otherC.i != null) {
       // Delete vs insert
       var s = c.d;
       if (c.p < otherC.p) {
-        append(dest, {d:s.slice(0, otherC.p - c.p), p:c.p});
+        append(dest, { d: s.slice(0, otherC.p - c.p), p: c.p });
         s = s.slice(otherC.p - c.p);
       }
-      if (s !== '')
-        append(dest, {d: s, p: c.p + otherC.i.length});
-
+      if (s !== '') append(dest, { d: s, p: c.p + otherC.i.length });
     } else {
       // Delete vs delete
       if (c.p >= otherC.p + otherC.d.length)
-        append(dest, {d: c.d, p: c.p - otherC.d.length});
-      else if (c.p + c.d.length <= otherC.p)
-        append(dest, c);
+        append(dest, { d: c.d, p: c.p - otherC.d.length });
+      else if (c.p + c.d.length <= otherC.p) append(dest, c);
       else {
         // They overlap somewhere.
-        var newC = {d: '', p: c.p};
+        var newC = { d: '', p: c.p };
 
-        if (c.p < otherC.p)
-          newC.d = c.d.slice(0, otherC.p - c.p);
+        if (c.p < otherC.p) newC.d = c.d.slice(0, otherC.p - c.p);
 
         if (c.p + c.d.length > otherC.p + otherC.d.length)
           newC.d += c.d.slice(otherC.p + otherC.d.length - c.p);
@@ -221,11 +240,19 @@ var transformComponent = text._tc = function(dest, c, otherC, side) {
         // This is entirely optional - I'm just checking the deleted text in
         // the two ops matches
         var intersectStart = Math.max(c.p, otherC.p);
-        var intersectEnd = Math.min(c.p + c.d.length, otherC.p + otherC.d.length);
+        var intersectEnd = Math.min(
+          c.p + c.d.length,
+          otherC.p + otherC.d.length
+        );
         var cIntersect = c.d.slice(intersectStart - c.p, intersectEnd - c.p);
-        var otherIntersect = otherC.d.slice(intersectStart - otherC.p, intersectEnd - otherC.p);
+        var otherIntersect = otherC.d.slice(
+          intersectStart - otherC.p,
+          intersectEnd - otherC.p
+        );
         if (cIntersect !== otherIntersect)
-          throw new Error('Delete ops delete different text in the same region of the document');
+          throw new Error(
+            'Delete ops delete different text in the same region of the document'
+          );
 
         if (newC.d !== '') {
           newC.p = transformPosition(newC.p, otherC);
@@ -236,15 +263,15 @@ var transformComponent = text._tc = function(dest, c, otherC, side) {
   }
 
   return dest;
-};
+});
 
-var invertComponent = function(c) {
-  return (c.i != null) ? {d:c.i, p:c.p} : {i:c.d, p:c.p};
+var invertComponent = function (c) {
+  return c.i != null ? { d: c.i, p: c.p } : { i: c.d, p: c.p };
 };
 
 // No need to use append for invert, because the components won't be able to
 // cancel one another.
-text.invert = function(op) {
+text.invert = function (op) {
   // Shallow copy & reverse that sucka.
   op = op.slice().reverse();
   for (var i = 0; i < op.length; i++) {
@@ -256,11 +283,11 @@ text.invert = function(op) {
 // Draws from
 // https://github.com/Teamwork/ot-rich-text/blob/master/src/Operation.js
 // https://github.com/ottypes/json0/pull/31/files
-text.transformPresence = function(presence, operation, isOwnOperation) {
+text.transformPresence = function (presence, operation, isOwnOperation) {
   var side = isOwnOperation ? 'right' : 'left';
   console.log(side);
   var newIndex = text.transformCursor(presence.index, operation, side);
   return Object.assign({}, presence, { index: newIndex });
-}
+};
 
 require('./bootstrapTransform')(text, transformComponent, checkValidOp, append);
