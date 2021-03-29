@@ -27,7 +27,8 @@ export class UpdateImages {
     const n = visualizationInfosNeedingThumbnails.length;
     if (n > 0) {
       const imagesUpdatedTimestamp = timestamp();
-      const vizToUpdate = visualizationInfosNeedingThumbnails[n - 1];
+      const randomIndex = Math.floor(Math.random() * visualizationInfosNeedingThumbnails.length)
+      const vizToUpdate = visualizationInfosNeedingThumbnails[randomIndex];
       const id = vizToUpdate.id;
 
       const visualization = await this.visualizationGateway.getVisualization({
