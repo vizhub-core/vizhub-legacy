@@ -37,9 +37,8 @@ export const generateScreenshot = async ({ visualizationViewModel, waitTime }) =
     console.log(error);
 
     console.log('Using white image as thumbnail');
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({defaultViewport: { width, height }});
     const page = await browser.newPage();
-    await page.setViewport({ width, height });
     await page.setContent('<html></html>');
     const screenshotBuffer = await page.screenshot();
     await page.close();
