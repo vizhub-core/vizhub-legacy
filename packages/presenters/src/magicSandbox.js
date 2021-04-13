@@ -7,7 +7,14 @@
 //  - Erik Hazzard (@erikhazzard)
 //  - Curran Kelleher (@curran)
 //  - Micah Stubbs (@micahstubbs)
+
+// This is from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
 export default function (template, files) {
+
   // We parse the user's code to handle some cases where people expect
   // to be able to use relative urls to load files associated with the block
   // (things like external script files, style files or using XHR to grab data)
@@ -49,7 +56,7 @@ export default function (template, files) {
       // We first try to find instances of loading js files through a <script> tag.
       // We can't fall back on the raw_url because you can't load scripts with MIME type text.
       // This does have the benefit of live reloading when changing a script file.
-      var find = '<script.*?src=["\']' + file + '["\'].*?>';
+      var find = '<script.*?src=["\']' + escapeRegExp(file) + '["\'].*?>';
       var re = new RegExp(find, 'g');
       var matches = template.match(re);
       if (matches) {
@@ -63,26 +70,10 @@ export default function (template, files) {
         return;
       }
     }
-    if (file.indexOf('.coffee') > 0) {
-      // We first try to find instances of loading js files through a <script> tag.
-      // We can't fall back on the raw_url because you can't load scripts with MIME type text.
-      // This does have the benefit of live reloading when changing a script file.
-      find = '<script.*?src=["\']' + file + '["\'].*?>';
-      re = new RegExp(find, 'g');
-      matches = template.match(re);
-      if (matches) {
-        // if we found one, replace it with the code and return.
-        template = template.replace(
-          re,
-          "<script type='text/coffeescript'>" + files[file].content
-        );
-        return;
-      }
-    }
     if (file.indexOf('.css') > 0) {
       // We support loading of css files with relative paths if they are included in the gist.
       // This has the added benefit of live reloading the iframe when editing the style
-      find = '<link.*?href=["\']' + file + '["\'].*?>';
+      find = '<link.*?href=["\']' + escapeRegExp(file) + '["\'].*?>';
       re = new RegExp(find, 'g');
       matches = template.match(re);
       if (matches) {
