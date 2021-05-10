@@ -219,6 +219,13 @@ pm2 start --cron "0 * * * *" --name image-generation-service npm -- start
 
 The above command sets up PM2 to mimic a CRON job that restarts the image generation service every hour. This is a hacky solution for an unknown instability within the image generation service itself.
 
+Start scoring service
+
+```
+cd ../scoringService
+pm2 start --name scoring-service npm -- start
+```
+
 # VizHub 2.0
 
 `~/.bashrc`
