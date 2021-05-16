@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "lerna": "^3.22.1",
-    "mocha": "^8.2.1"
+    "lerna": "^4.0.0",
+    "mocha": "^8.4.0"
   }
 }

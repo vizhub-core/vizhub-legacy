@@ -12,10 +12,10 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "jsdom": "^16.4.0",
-    "puppeteer": "^7.1.0",
-    "sharp": "^0.27.1",
+    "dotenv": "^9.0.2",
+    "jsdom": "^16.5.3",
+    "puppeteer": "^9.1.1",
+    "sharp": "^0.28.2",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-server-gateways": "1",
@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^8.3.0"
+    "mocha": "^8.4.0"
   }
 }
