@@ -14,9 +14,9 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^8.4.0",
-    "eslint": "^7.26.0",
+    "mocha": "^9.0.1",
+    "eslint": "^7.29.0",
     "esm": "^3.2.25",
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.1"
   }
 }

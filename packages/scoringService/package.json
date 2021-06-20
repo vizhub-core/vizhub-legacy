@@ -13,15 +13,15 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "dotenv": "^9.0.2",
+    "dotenv": "^10.0.0",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.1"
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^8.4.0"
+    "mocha": "^9.0.1"
   }
 }
