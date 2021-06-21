@@ -7,7 +7,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:ci": "node scripts/server.js",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "prettier": "prettier --single-quote --write 'src/**/*.js'",
     "test": "react-scripts test",
     "updateDeps": "ncu -u"
