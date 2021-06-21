@@ -4,7 +4,7 @@ These instructions assume an Ubuntu server instance. In AWS, a "medium" instance
 
 ## Instructions for App Server
 
-Start with a T2 Medium (T2 Small runs out of memory for build).
+Start with a T2 Small.
 
 Choose subnet `us-east-1c`, so it can communicate with other VMs in the VizHub cluster.
 
@@ -25,6 +25,15 @@ Add security rules to accept HTTP and HTTPS.
 `./deployFirstTime.sh`
 
 `./deploy.sh`
+
+Build the front end locally, then copy it into the server (build on the server tends to run out of memory).
+
+```
+cd packages/neoFrontend
+npm run build
+cd directoryWithPemFile
+scp -r -i myKey.pem ~/repos/vizhub/packages/neoFrontend/build ubuntu@18.232.93.75:vizhub/packages/neoBackend/build
+```
 
 ## Preparing the VM
 
