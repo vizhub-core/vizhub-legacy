@@ -1,9 +1,14 @@
 import express from 'express';
+import fs from 'fs';
 const app = express();
 const port = 3000;
 
+const indexHTML = fs.readFileSync('./client/src/index.html', 'utf8');
+
+console.log(indexHTML);
+
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send(indexHTML);
 });
 
 app.listen(port, () => {
