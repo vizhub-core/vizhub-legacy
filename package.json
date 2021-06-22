@@ -1,0 +1,32 @@
+{
+  "name": "vizhub-v3",
+  "version": "3.0.0",
+  "description": "Next generation of VizHub, 2021.",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "build": "rollup -c",
+    "start": "npm run build && node server/build/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curran/vizhub-v3.git"
+  },
+  "keywords": [
+    "VizHub"
+  ],
+  "author": "Curran Kelleher",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/curran/vizhub-v3/issues"
+  },
+  "homepage": "https://github.com/curran/vizhub-v3#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "prettier": "^2.3.1",
+    "rollup": "^2.52.2"
+  }
+}

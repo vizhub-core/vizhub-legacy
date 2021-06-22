@@ -1,0 +1,4 @@
+*.swp
+.*
+server/build
+client/build
