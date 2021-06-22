@@ -8,8 +8,10 @@ const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send(indexHTML('SSR Title', renderToString(<App/>)));
+  res.send(indexHTML('SSR Title', renderToString(<App />)));
 });
+
+app.use(express.static('public'));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
