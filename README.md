@@ -1,5 +1,12 @@
 # vizhub-v3
 
+## Core
+
+Conventions for variable names:
+
+ * user = instance of User
+ * userName = the name of the user
+
 ## Production
 
 Set up NGINX so that it will serve the app from port 3000 to port 80.
