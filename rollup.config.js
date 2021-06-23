@@ -1,6 +1,15 @@
 import buble from '@rollup/plugin-buble';
-//import { nodeResolve } from '@rollup/plugin-node-resolve';
 
+const external = [
+  'express',
+  'react',
+  'react-dom',
+  'react-dom/server',
+  'd3-require',
+];
+const globals = { react: 'React', 'react-dom': 'ReactDOM', 'd3-require': 'd3' };
+
+// The node server.
 const serverBuild = {
   input: 'src/server.js',
   output: {
@@ -8,32 +17,33 @@ const serverBuild = {
     format: 'cjs',
     interop: 'default',
   },
-  external: ['express', 'react', 'react-dom/server'],
+  external,
   plugins: [buble()],
 };
 
+// The primary client bundle.
 const clientBuild = {
   input: 'src/client.js',
   output: {
     dir: 'public/build',
     format: 'iife',
     interop: 'default',
-    globals: { react: 'React', 'react-dom': 'ReactDOM', 'd3-require': 'd3' },
+    globals,
   },
-  external: ['react', 'react-dom', 'd3-require'],
+  external,
   plugins: [buble()],
 };
 
+// The secondary, lazy loaded, client bundle.
 const client2Build = {
   input: 'src/client2.js',
   output: {
     dir: 'public/build',
-    format: 'umd',
-    name: 'VizHubClient2',
+    format: 'amd',
     interop: 'default',
-    globals: { react: 'React', 'react-dom': 'ReactDOM' },
+    // Globals are handled by d3-require on lazy load.
   },
-  external: ['react', 'react-dom'],
+  external,
   plugins: [buble()],
 };
 
