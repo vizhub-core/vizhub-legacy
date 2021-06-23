@@ -21,7 +21,7 @@ const plugins = [
 
 // The node server.
 const serverBuild = {
-  input: 'src/server.js',
+  input: 'src/server/index.js',
   output: {
     file: 'server/build/bundle.js',
     format: 'cjs',

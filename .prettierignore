@@ -2,3 +2,4 @@
 .*
 server/build
 public/build
+deploy.sh

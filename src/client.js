@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
 import { require } from 'd3-require';
 import { aliases } from './globals';
+import { App } from './App';
+import { RequireContext } from './RequireContext';
 
 ReactDOM.hydrate(
-  <App require={require.alias(aliases())} />,
+  <RequireContext.Provider value={require.alias(aliases())}>
+    <App />
+  </RequireContext.Provider>,
   document.getElementById('root')
 );
