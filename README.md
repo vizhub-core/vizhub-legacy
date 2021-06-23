@@ -13,7 +13,7 @@ Paste the following:
 
 ```
 upstream app_vizhub {
-  server 127.0.0.1:4000;
+  server 127.0.0.1:8080;
   keepalive 8;
 }
 
