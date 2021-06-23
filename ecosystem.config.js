@@ -8,7 +8,7 @@ module.exports = {
 
   deploy: {
     production: {
-      key: '/home/curran/Dropbox/Datavis\\ Tech/nv.pem',
+      key: '"/home/curran/Dropbox/Datavis Tech/nv.pem"',
       user: 'ubuntu',
       host: 'beta.vizhub.com',
       ref: 'origin/master',
