@@ -13,7 +13,7 @@ module.exports = {
       host: 'beta.vizhub.com',
       ref: 'origin/master',
       repo: 'git@github.com:curran/vizhub-v3.git',
-      path: '~',
+      path: '',
       'pre-deploy-local': '',
       'post-deploy':
         'npm install && pm2 reload ecosystem.config.js --env production',
