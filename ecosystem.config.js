@@ -11,7 +11,7 @@ module.exports = {
       key: '/home/curran/Dropbox/nv.pem',
       user: 'ubuntu',
       host: 'beta.vizhub.com',
-      ref: 'origin/master',
+      ref: 'origin/main',
       repo: 'git@github.com:curran/vizhub-v3.git',
       path: '/home/ubuntu',
       'pre-deploy-local': '',
