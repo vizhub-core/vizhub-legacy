@@ -4,8 +4,12 @@
 
 Conventions for variable names:
 
- * user = instance of User
- * userName = the name of the user
+ * User
+   * user = instance of User
+   * userName = the name of the user
+ * Viz
+   * viz = instance of Viz
+   * vizId = the id of the viz
 
 ## Production
 
