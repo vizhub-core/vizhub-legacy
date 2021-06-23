@@ -4,12 +4,12 @@
 
 Conventions for variable names:
 
- * User
-   * user = instance of User
-   * userName = the name of the user
- * Viz
-   * viz = instance of Viz
-   * vizId = the id of the viz
+- User
+  - user = instance of User
+  - userName = the name of the user
+- Viz
+  - viz = instance of Viz
+  - vizId = the id of the viz
 
 ## Production
 
@@ -39,7 +39,7 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_set_header X-NginX-Proxy true;
-    
+
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
 
@@ -58,4 +58,22 @@ tail /var/log/nginx/error.log
 
 Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
 
- * Note that you'll need to change `server_name` to match the subdomain, e.g. `staging` or `beta`.
+- Note that you'll need to change `server_name` to match the subdomain, e.g. `staging` or `beta`.
+
+Install node via [NVM](https://github.com/nvm-sh/nvm#install--update-script)
+
+```
+nvm install node
+```
+
+[Add SSH key to GitHub account](https://docs.github.com/en/enterprise-server@3.0/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
+`git clone git@github.com:curran/vizhub-v3.git`
+
+```
+cd vizhub-v3
+npm install
+npm start
+```
+
+[Install PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)

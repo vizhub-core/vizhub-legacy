@@ -1,19 +1,23 @@
 module.exports = {
-  apps : [{
-    script: 'index.js',
-    watch: '.'
-  }],
+  apps: [
+    {
+      script: 'server/build/bundle.js',
+      watch: '.',
+    },
+  ],
 
-  deploy : {
-    production : {
-      user : 'SSH_USERNAME',
-      host : 'SSH_HOSTMACHINE',
-      ref  : 'origin/master',
-      repo : 'GIT_REPOSITORY',
-      path : 'DESTINATION_PATH',
+  deploy: {
+    production: {
+      key: '/home/curran/Dropbox/Datavis Tech/nv.pem',
+      user: 'ubuntu',
+      host: 'beta.vizhub.com',
+      ref: 'origin/master',
+      repo: 'git@github.com:curran/vizhub-v3.git',
+      path: '/',
       'pre-deploy-local': '',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
-      'pre-setup': ''
-    }
-  }
+      'post-deploy':
+        'npm install && pm2 reload ecosystem.config.js --env production',
+      'pre-setup': '',
+    },
+  },
 };

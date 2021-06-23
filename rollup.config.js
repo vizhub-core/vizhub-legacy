@@ -1,4 +1,6 @@
 import buble from '@rollup/plugin-buble';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
 import { globals } from './src/globals';
 
 const external = [
@@ -8,9 +10,14 @@ const external = [
   'd3-require',
 ];
 
-// Use Buble for the JSX transform.
-// objectAssign configuration allows rest/spread syntax.
-const plugins = buble({ objectAssign: 'Object.assign' });
+const plugins = [
+  // Use Buble for the JSX transform.
+  // objectAssign configuration allows rest/spread syntax.
+  buble({ objectAssign: 'Object.assign' }),
+
+  // nodeResolve is used mainly so we can resolve 'dir' to 'dir/index.js'
+  nodeResolve(),
+];
 
 // The node server.
 const serverBuild = {

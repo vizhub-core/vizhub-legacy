@@ -18,7 +18,6 @@ app.get('/:userName/:vizId', (req, res) => {
   res.send(indexHTML('Viz page ' + userName + vizId, renderToString(<App />)));
 });
 
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
