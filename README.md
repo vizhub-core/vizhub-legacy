@@ -46,3 +46,5 @@ tail /var/log/nginx/error.log
 ```
 
 Set up HTTPS by following instructions at https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
+
+ * Note that you'll need to change `server_name` to match the subdomain, e.g. `staging` or `beta`.
