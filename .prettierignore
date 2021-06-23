@@ -1,4 +1,4 @@
 *.swp
 .*
 server/build
-client/build
+public/build

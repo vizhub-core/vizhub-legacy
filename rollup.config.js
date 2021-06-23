@@ -1,13 +1,16 @@
 import buble from '@rollup/plugin-buble';
+import { globals } from './src/globals';
 
 const external = [
-  'express',
-  'react',
-  'react-dom',
+  ...Object.keys(globals),
   'react-dom/server',
+  'express',
   'd3-require',
 ];
-const globals = { react: 'React', 'react-dom': 'ReactDOM', 'd3-require': 'd3' };
+
+// Use Buble for the JSX transform.
+// objectAssign configuration allows rest/spread syntax.
+const plugins = buble({ objectAssign: 'Object.assign' });
 
 // The node server.
 const serverBuild = {
@@ -18,10 +21,11 @@ const serverBuild = {
     interop: 'default',
   },
   external,
-  plugins: [buble()],
+  plugins,
 };
 
 // The primary client bundle.
+// Runs in Node for SSR, also runs in the browser.
 const clientBuild = {
   input: 'src/client.js',
   output: {
@@ -31,10 +35,11 @@ const clientBuild = {
     globals,
   },
   external,
-  plugins: [buble()],
+  plugins,
 };
 
 // The secondary, lazy loaded, client bundle.
+// Runs in the browser only.
 const client2Build = {
   input: 'src/client2.js',
   output: {
@@ -44,7 +49,7 @@ const client2Build = {
     // Globals are handled by d3-require on lazy load.
   },
   external,
-  plugins: [buble()],
+  plugins,
 };
 
 export default [serverBuild, clientBuild, client2Build];
