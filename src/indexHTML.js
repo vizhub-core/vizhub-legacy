@@ -12,8 +12,7 @@ export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
   <body>
     <div id="root">${rootHTML}</div>
     <script>
-      window.page = "${page}";
-      window.pageProps = ${JSON.stringify(pageProps)}
+      window.pageData = "${btoa(JSON.stringify({ page, pageProps }))}";
     </script>
     <script src="/build/client.js"></script>
   </body>

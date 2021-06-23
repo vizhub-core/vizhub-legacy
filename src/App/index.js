@@ -17,7 +17,7 @@ const HomePage = () => {
 };
 
 const VizPage = ({ viz }) => {
-  return <div>Viz page</div>;
+  return <div>Viz page ${JSON.stringify(viz)}</div>;
 };
 
 const pages = { HomePage, VizPage };
