@@ -5,10 +5,9 @@
 Conventions for variable names:
 
 - User
-  - user = instance of User
   - userName = the name of the user
 - Viz
-  - viz = instance of Viz
+  - viz =
   - vizId = the id of the viz
 
 ## Production
@@ -77,3 +76,5 @@ npm start
 ```
 
 [Install PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)
+
+[Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)

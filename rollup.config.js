@@ -1,5 +1,6 @@
 import buble from '@rollup/plugin-buble';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 import { globals } from './src/globals';
 
@@ -8,12 +9,17 @@ const external = [
   'react-dom/server',
   'express',
   'd3-require',
+  'mongodb',
 ];
 
 const plugins = [
   // Use Buble for the JSX transform.
-  // objectAssign configuration allows rest/spread syntax.
-  buble({ objectAssign: 'Object.assign' }),
+  buble({
+    // objectAssign configuration allows rest/spread syntax.
+    objectAssign: 'Object.assign',
+    // Allows async/await syntax.
+    transforms: { asyncAwait: false },
+  }),
 
   // nodeResolve is used mainly so we can resolve 'dir' to 'dir/index.js'
   nodeResolve(),
@@ -28,7 +34,7 @@ const serverBuild = {
     interop: 'default',
   },
   external,
-  plugins,
+  plugins: [...plugins, commonjs()],
 };
 
 // The primary client bundle.
