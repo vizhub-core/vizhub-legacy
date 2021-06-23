@@ -1,6 +1,7 @@
 import buble from '@rollup/plugin-buble';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 
 import { globals } from './src/globals';
 
@@ -10,9 +11,12 @@ const external = [
   'express',
   'd3-require',
   'mongodb',
+  'marked',
 ];
 
 const plugins = [
+  // So we can parse package.json.
+  json(),
   // Use Buble for the JSX transform.
   buble({
     // objectAssign configuration allows rest/spread syntax.

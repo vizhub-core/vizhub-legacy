@@ -1,5 +1,6 @@
 import express from 'express';
 import React from 'react';
+import marked from 'marked';
 import { renderToString } from 'react-dom/server';
 import { indexHTML } from '../indexHTML';
 import { App } from '../App';
@@ -19,9 +20,13 @@ app.get('/:userName/:vizId', async (req, res) => {
 
   const vizInfo = await getVizInfo(vizId);
 
-  const title = vizInfo.title;
+  // TODO handle case of missing viz by rendering error page VizNotFoundPage.
+  const { title, description } = vizInfo;
+
   const page = 'VizPage';
-  const pageProps = { vizInfo };
+  // TODO sanitize this
+  const sanitizedDescriptionHTML = marked(description);
+  const pageProps = { title, sanitizedDescriptionHTML };
 
   res.send(
     indexHTML({

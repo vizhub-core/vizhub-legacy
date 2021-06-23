@@ -16,11 +16,11 @@ const HomePage = () => {
   );
 };
 
-const VizPage = ({ vizInfo: { title, description } }) => {
+const VizPage = ({ title, sanitizedDescriptionHTML }) => {
   return (
     <>
       <h1>{title}</h1>
-      <p>{description}</p>
+      <div dangerouslySetInnerHTML={{ __html: sanitizedDescriptionHTML }}></div>
     </>
   );
 };
