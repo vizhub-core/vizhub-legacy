@@ -8,7 +8,7 @@ import { RequireContext } from './RequireContext';
 
 ReactDOM.hydrate(
   <RequireContext.Provider value={require.alias(aliases())}>
-    <App />
+    <App page={window.page} pageProps={window.pageProps} />
   </RequireContext.Provider>,
   document.getElementById('root')
 );

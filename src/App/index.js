@@ -1,7 +1,7 @@
 import React from 'react';
 import { useModule } from '../client/useModule';
 
-export const App = () => {
+const HomePage = () => {
   const { Client2 } = useModule('/build/client2.js');
 
   return (
@@ -14,4 +14,15 @@ export const App = () => {
       {Client2 ? <Client2 /> : 'Loading...'}
     </div>
   );
+};
+
+const VizPage = ({ viz }) => {
+  return <div>Viz page</div>;
+};
+
+const pages = { HomePage, VizPage };
+
+export const App = ({ page, pageProps }) => {
+  const Page = pages[page];
+  return <Page {...pageProps} />;
 };

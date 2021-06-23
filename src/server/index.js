@@ -9,17 +9,26 @@ const app = express();
 const port = 8080;
 
 app.get('/', (req, res) => {
-  res.send(indexHTML('Home Page', renderToString(<App />)));
+  res.send(indexHTML('Home Page', renderToString(<App page="HomePage" />)));
 });
 
 app.use(express.static('public'));
 
 app.get('/:userName/:vizId', async (req, res) => {
   const { userName, vizId } = req.params;
-  console.log(vizId);
   const viz = await getViz(vizId);
-  console.log(viz);
-  res.send(indexHTML('Viz page ' + userName + vizId, renderToString(<App />)));
+
+  const page = 'VizPage';
+  const pageProps = { viz };
+
+  res.send(
+    indexHTML({
+      title: 'Viz page',
+      rootHTML: renderToString(<App page={page} pageProps={pageProps} />),
+      page,
+      pageProps,
+    })
+  );
 });
 
 app.listen(port, () => {

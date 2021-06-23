@@ -2,7 +2,7 @@
 const reactVersion = '17.0.2';
 const d3RequireVersion = '1.2.4';
 
-export const indexHTML = (title, rootHTML) => `<html>
+export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
   <head>
     <title>${title}</title>
     <script src="https://unpkg.com/react@${reactVersion}/umd/react.production.min.js"></script>
@@ -11,6 +11,10 @@ export const indexHTML = (title, rootHTML) => `<html>
   </head>
   <body>
     <div id="root">${rootHTML}</div>
+    <script>
+      window.page = "${page}";
+      window.pageProps = ${JSON.stringify(pageProps)}
+    </script>
     <script src="/build/client.js"></script>
   </body>
 </html>`;
