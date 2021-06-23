@@ -34,9 +34,9 @@ const serverBuild = {
 // The primary client bundle.
 // Runs in Node for SSR, also runs in the browser.
 const clientBuild = {
-  input: 'src/client.js',
+  input: 'src/client/index.js',
   output: {
-    dir: 'public/build',
+    file: 'public/build/client.js',
     format: 'iife',
     interop: 'default',
     globals,
@@ -48,7 +48,7 @@ const clientBuild = {
 // The secondary, lazy loaded, client bundle.
 // Runs in the browser only.
 const client2Build = {
-  input: 'src/client2.js',
+  input: 'src/client/client2.js',
   output: {
     dir: 'public/build',
     format: 'amd',

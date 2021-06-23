@@ -1,15 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { RequireContext } from '../RequireContext';
+import React from 'react';
+import { useModule } from '../client/useModule';
 
 export const App = () => {
-  const [module, setModule] = useState({});
-  const require = useContext(RequireContext);
-
-  useEffect(() => {
-    if (require) require('/build/client2.js').then(setModule);
-  }, [require]);
-
-  const { Client2 } = module;
+  const { Client2 } = useModule('/build/client2.js');
 
   return (
     <div
