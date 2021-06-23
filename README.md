@@ -7,8 +7,9 @@ Conventions for variable names:
 - User
   - userName = the name of the user
 - Viz
-  - viz =
   - vizId = the id of the viz
+  - vizInfo = the info part of the viz
+  - vizContent = the content part of the viz
 
 ## Production
 
