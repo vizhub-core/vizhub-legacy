@@ -9,6 +9,6 @@ export const indexHTML = (title, rootHTML) => `<html>
   </head>
   <body>
     <div id="root">${rootHTML}</div>
-    <script src="build/client.js"></script>
+    <script src="/build/client.js"></script>
   </body>
 </html>`;

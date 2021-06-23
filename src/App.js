@@ -4,7 +4,7 @@ export const App = ({ require }) => {
   const [module, setModule] = useState({});
 
   useEffect(() => {
-    if (require) require('./build/client2.js').then(setModule);
+    if (require) require('/build/client2.js').then(setModule);
   }, [require]);
 
   const { Client2 } = module;
