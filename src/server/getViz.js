@@ -19,7 +19,14 @@ const getMongoDatabase = async () => {
   return mongoDatabase;
 };
 
-export const getViz = async (vizId) =>
-  await (await getMongoDatabase())
-    .collection(DOCUMENT_INFO)
-    .findOne({ id: vizId });
+const getById = (collection) => async (id) =>
+  await (await getMongoDatabase()).collection(collection).findOne({ id });
+
+export const getVizInfo = getById(DOCUMENT_INFO);
+export const getVizContent = getById(DOCUMENT_CONTENT);
+
+export const getViz = async (vizId) => {
+  const infoPromise = getVizInfo(vizId);
+  const contentPromise = getVizContent(vizId);
+  return { info: await infoPromise, content: await contentPromise };
+};
