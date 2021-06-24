@@ -1,14 +1,6 @@
-// Generates a function that creates a shallow copy of
-// a given object `d`, with only the specified `keys`.
-const copyKeys = (keys, newObject, d) =>
-  d
-    ? keys.reduce((accumulator, key) => {
-        accumulator[key] = d[key];
-        return accumulator;
-      }, newObject)
-    : null;
+import { createInstance } from './createInstance';
 
-const vizInfoKeys = [
+const keys = [
   // The unique ID of the document.
   'id',
 
@@ -66,6 +58,6 @@ const vizInfoKeys = [
   'collaborators',
 ];
 
-export function VizInfo(vizInfoData) {
-  return copyKeys(vizInfoKeys, Object.create(VizInfo.prototype), vizInfoData);
+export function VizInfo(data) {
+  return createInstance(VizInfo, keys, data);
 }

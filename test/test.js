@@ -1,8 +1,8 @@
 import assert from 'assert';
-import { VizInfo } from '../src/entities/VizInfo.js';
+import { VizInfo } from '../src/entities/VizInfo.mjs';
 
 describe('VizInfo', () => {
-  it('should copy expected keys', function () {
+  it('should copy expected keys', () => {
     const vizInfo = VizInfo({});
     assert.deepEqual(Object.keys(vizInfo), [
       'id',

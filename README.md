@@ -7,12 +7,19 @@ Conventions for variable names:
 - User
   - userName = the name of the user
 - Viz
+
   - vizId = the id of the viz
   - vizInfo = instance of VizInfo
   - vizInfoMongoDoc = document object from raw MongoDB driver
   - vizInfoShareDoc = document object from ShareDB
   - vizInfoData = the raw data for the VizInfo constructor
   - vizContent = instance of VizContent
+
+- Pages
+  - HomePage = component that renders the page
+  - page = 'HomePage'; page needs to match exactly component name
+  - homePagePresenter = function that transforms input data to page inputs
+  - homePagePresented = returned value from presenter
 
 ## Production
 

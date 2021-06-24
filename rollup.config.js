@@ -21,8 +21,12 @@ const plugins = [
   buble({
     // objectAssign configuration allows rest/spread syntax.
     objectAssign: 'Object.assign',
-    // Allows async/await syntax.
-    transforms: { asyncAwait: false },
+    transforms: {
+      // Allows async/await syntax.
+      asyncAwait: false,
+      // Allows for of loops.
+      forOf: false,
+    },
   }),
 
   // nodeResolve is used mainly so we can resolve 'dir' to 'dir/index.js'

@@ -2,7 +2,6 @@
   "name": "vizhub-v3",
   "version": "3.0.0",
   "description": "Next generation of VizHub, 2021.",
-  "type": "module",
   "scripts": {
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
     "test": "mocha",
@@ -23,6 +22,7 @@
   },
   "homepage": "https://github.com/curran/vizhub-v3#readme",
   "dependencies": {
+    "dompurify": "^2.2.9",
     "express": "4.17.1",
     "marked": "2.1.2",
     "mongodb": "3.6.9",

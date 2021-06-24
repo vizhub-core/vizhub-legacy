@@ -7,6 +7,7 @@ export const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
   'd3-require': 'd3',
+  // TODO marked, sanitize
 };
 
 // Used by d3-require.
