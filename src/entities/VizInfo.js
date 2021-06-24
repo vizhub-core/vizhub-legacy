@@ -1,17 +1,14 @@
 // Generates a function that creates a shallow copy of
 // a given object `d`, with only the specified `keys`.
-const copyKeys = (type, keys) => (d) =>
+const copyKeys = (keys) => (newObject, d) =>
   d
-    ? keys.reduce(
-        (accumulator, key) => {
-          accumulator[key] = d[key];
-          return accumulator;
-        },
-        { type }
-      )
+    ? keys.reduce((accumulator, key) => {
+        accumulator[key] = d[key];
+        return accumulator;
+      }, newObject)
     : null;
 
-export const VizInfo = copyKeys('VizInfo', [
+const copyVizInfoKeys = copyKeys([
   // The unique ID of the document.
   'id',
 
@@ -68,3 +65,7 @@ export const VizInfo = copyKeys('VizInfo', [
   // Each collaborator object has a userId field.
   'collaborators',
 ]);
+
+export function VizInfo(vizInfoData) {
+  return copyVizInfoKeys(Object.create(VizInfo.prototype), vizInfoData);
+}

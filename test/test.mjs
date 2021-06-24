@@ -1,13 +1,10 @@
 import assert from 'assert';
 import { VizInfo } from '../src/entities/VizInfo.js';
 
-console.log(VizInfo);
-
 describe('VizInfo', () => {
   it('should copy expected keys', function () {
     const vizInfo = VizInfo({});
     assert.deepEqual(Object.keys(vizInfo), [
-      'type',
       'id',
       'owner',
       'title',
@@ -25,8 +22,9 @@ describe('VizInfo', () => {
       'collaborators',
     ]);
   });
-  it('should allow inspection of the type', () => {
+
+  it('should support instanceof', () => {
     const vizInfo = VizInfo({});
-    assert.equal(vizInfo.type, 'VizInfo');
+    assert(vizInfo instanceof VizInfo);
   });
 });
