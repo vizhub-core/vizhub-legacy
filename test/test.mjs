@@ -27,4 +27,9 @@ describe('VizInfo', () => {
     const vizInfo = VizInfo({});
     assert(vizInfo instanceof VizInfo);
   });
+
+  it('should pass through null & undefined as null', () => {
+    assert.equal(VizInfo(null), null);
+    assert.equal(VizInfo(undefined), null);
+  });
 });
