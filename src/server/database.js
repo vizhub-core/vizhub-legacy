@@ -1,5 +1,10 @@
 import { MongoClient } from 'mongodb';
+import { VizInfo } from '../entities/VizInfo';
 
+// TODO consider using ShareDB for many benefits:
+//  * always up to date
+//  * it caches recently accessed docs in memory
+//    * good for serving viz files statically at latest version
 const mongoURI = process.env.VIZHUB_MONGO_URI || 'mongodb://localhost:27017';
 const mongoDatabaseName = 'vizhub';
 
@@ -22,7 +27,13 @@ const getMongoDatabase = async () => {
 const getById = (collection) => async (id) =>
   await (await getMongoDatabase()).collection(collection).findOne({ id });
 
-export const getVizInfo = getById(DOCUMENT_INFO);
+const getVizInfoMongoDocById = getById(DOCUMENT_INFO);
+
+// TODO add this when we need it.
+//const getVizContentMongoDocById = getById(DOCUMENT_CONTENT);
+
+export const getVizInfo = async (id) =>
+  VizInfo(await getVizInfoMongoDocById(id));
 
 // Uncomment these when we need them.
 //export const getVizContent = getById(DOCUMENT_CONTENT);

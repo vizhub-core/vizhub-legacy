@@ -8,8 +8,11 @@ Conventions for variable names:
   - userName = the name of the user
 - Viz
   - vizId = the id of the viz
-  - vizInfo = the info part of the viz
-  - vizContent = the content part of the viz
+  - vizInfo = instance of VizInfo
+  - vizInfoMongoDoc = document object from raw MongoDB driver
+  - vizInfoShareDoc = document object from ShareDB
+  - vizInfoData = the info part of the viz
+  - vizContent = instance of VizContent
 
 ## Production
 
