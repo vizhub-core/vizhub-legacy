@@ -89,3 +89,17 @@ npm start
 [Install PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
 [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+## Environment Variables
+
+In order to ensure the environment variables persist across reboots, put them in:
+
+```
+/etc/environment
+```
+
+Example configuration:
+
+```
+export VIZHUB_MONGO_URI='mongodb://localhost:27017/vizhub'
+```
