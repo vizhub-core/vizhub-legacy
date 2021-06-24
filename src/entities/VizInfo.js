@@ -1,14 +1,17 @@
 // Generates a function that creates a shallow copy of
 // a given object `d`, with only the specified `keys`.
-const copyKeys = (keys) => (d) =>
+const copyKeys = (type, keys) => (d) =>
   d
-    ? keys.reduce((accumulator, key) => {
-        accumulator[key] = d[key];
-        return accumulator;
-      }, {})
+    ? keys.reduce(
+        (accumulator, key) => {
+          accumulator[key] = d[key];
+          return accumulator;
+        },
+        { type }
+      )
     : null;
 
-export const VizInfo = copyKeys([
+export const VizInfo = copyKeys('VizInfo', [
   // The unique ID of the document.
   'id',
 

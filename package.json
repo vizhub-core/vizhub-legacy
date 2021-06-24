@@ -2,9 +2,10 @@
   "name": "vizhub-v3",
   "version": "3.0.0",
   "description": "Next generation of VizHub, 2021.",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "test": "mocha",
     "build": "rollup -c",
     "start": "npm run build && node server/build/bundle.js"
   },
@@ -33,6 +34,7 @@
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
+    "mocha": "^9.0.1",
     "prettier": "^2.3.1",
     "rollup": "^2.52.2"
   }
