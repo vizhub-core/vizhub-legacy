@@ -45,6 +45,20 @@ const serverBuild = {
   plugins: [...plugins, commonjs()],
 };
 
+// The tests.
+// A build is required since Mocha was not
+// playing well with ES6 modules.
+const testBuild = {
+  input: 'src/test/index.js',
+  output: {
+    file: 'test/index.js',
+    format: 'cjs',
+    interop: 'default',
+  },
+  external,
+  plugins: [...plugins, commonjs()],
+};
+
 // The primary client bundle.
 // Runs in Node for SSR, also runs in the browser.
 const clientBuild = {
@@ -73,4 +87,4 @@ const client2Build = {
   plugins,
 };
 
-export default [serverBuild, clientBuild, client2Build];
+export default [serverBuild, testBuild, clientBuild, client2Build];

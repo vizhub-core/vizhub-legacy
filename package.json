@@ -4,8 +4,8 @@
   "description": "Next generation of VizHub, 2021.",
   "scripts": {
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
-    "test": "mocha",
     "build": "rollup -c",
+    "test": "npm run build && mocha",
     "start": "npm run build && node server/build/bundle.js"
   },
   "repository": {

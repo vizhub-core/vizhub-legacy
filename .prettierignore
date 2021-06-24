@@ -2,4 +2,5 @@
 .*
 server/build
 public/build
+test
 deploy.sh
