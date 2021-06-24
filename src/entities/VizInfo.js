@@ -1,18 +1,33 @@
-const copyKeys = (keys) => (data) =>
-  data
+// Generates a function that creates a shallow copy of
+// a given object `d`, with only the specified `keys`.
+const copyKeys = (keys) => (d) =>
+  d
     ? keys.reduce((accumulator, key) => {
-        accumulator[key] = data[key];
+        accumulator[key] = d[key];
         return accumulator;
       }, {})
     : null;
 
 export const VizInfo = copyKeys([
+  // The unique ID of the document.
   'id',
+
+  // The ID of the user that owns this document.
   'owner',
+
+  // The title of the document.
   'title',
+
+  // The URL slug for the document.
   'slug',
+
+  // The Markdown description of the document.
   'description',
+
+  // The Unix timestamp at which this document was created.
   'createdTimestamp',
+
+  // The Unix timestamp at which this document was last updated.
   'lastUpdatedTimestamp',
 
   // The visualization that this visualization was forked from.
