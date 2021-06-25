@@ -2,6 +2,7 @@ import buble from '@rollup/plugin-buble';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+import { terser } from 'rollup-plugin-terser';
 
 import { globals } from './src/globals';
 
@@ -33,6 +34,12 @@ const plugins = [
   nodeResolve(),
 ];
 
+// Minify client builds.
+if (process.env.NODE_ENV === 'production') {
+  console.log('Minifying build for production.');
+  plugins.push(terser());
+}
+
 // The node server.
 const serverBuild = {
   input: 'src/server/index.js',
@@ -56,7 +63,7 @@ const testBuild = {
     interop: 'default',
   },
   external,
-  plugins: [...plugins, commonjs()],
+  plugins,
 };
 
 // The primary client bundle.
