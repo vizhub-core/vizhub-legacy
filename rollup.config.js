@@ -34,10 +34,14 @@ const plugins = [
   nodeResolve(),
 ];
 
-// Minify client builds.
+// Use sourcemaps in development.
+let sourcemap = true;
+
+// Minify client builds and disable sourcemaps in production.
 if (process.env.NODE_ENV === 'production') {
-  console.log('Minifying build for production.');
+  console.log('Generating production build...');
   plugins.push(terser());
+  sourcemap = false;
 }
 
 // The node server.
@@ -47,6 +51,7 @@ const serverBuild = {
     file: 'server/build/bundle.js',
     format: 'cjs',
     interop: 'default',
+    sourcemap,
   },
   external,
   plugins: [...plugins, commonjs()],
@@ -61,6 +66,7 @@ const testBuild = {
     file: 'test/index.js',
     format: 'cjs',
     interop: 'default',
+    sourcemap,
   },
   external,
   plugins,
@@ -75,6 +81,7 @@ const clientBuild = {
     format: 'iife',
     interop: 'default',
     globals,
+    sourcemap,
   },
   external,
   plugins,
@@ -88,6 +95,7 @@ const client2Build = {
     dir: 'public/build',
     format: 'amd',
     interop: 'default',
+    sourcemap,
     // Globals are handled by d3-require on lazy load.
   },
   external,

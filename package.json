@@ -7,7 +7,7 @@
     "build": "rollup -c",
     "test": "npm run build && mocha",
     "update": "ncu -u",
-    "start": "npm run build && node server/build/bundle.js",
+    "start": "npm run build && NODE_OPTIONS=--enable-source-maps node server/build/bundle.js",
     "startProduction": "NODE_ENV=production npm run start"
   },
   "repository": {
