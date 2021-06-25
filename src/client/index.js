@@ -5,8 +5,9 @@ import { require } from 'd3-require';
 import { aliases } from '../globals';
 import { App } from '../App';
 import { RequireContext } from './RequireContext';
+import { decodePageData } from '../pageData';
 
-const { page, pageProps } = JSON.parse(atob(window.pageData));
+const { page, pageProps } = decodePageData(window.pageData);
 
 ReactDOM.hydrate(
   <RequireContext.Provider value={require.alias(aliases())}>

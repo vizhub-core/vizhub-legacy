@@ -4,28 +4,32 @@ import { homePagePresenter } from '../presenters/homePagePresenter';
 
 export const testRenderPage = () => {
   describe('renderPage', () => {
-    it('Should render home page with tricky characters.', () => {
-      const vizInfos = [
-        {
-          id: 'b6066101bd3a4f22a829c914fe01ac87',
-          owner: '13540669',
-          title:
-            'Fork of       Episode 3: Sol LeWitt in Vanilla JavaScript version 2',
-          description:
-            "Inspiration from [Curran's live streaming](https://www.youtube.com/watch?v=_BLn9glthVk)\n\nStarted from scratch. Lot of research helps. \n\nExercise options:\n\nReproduce any Sol LeWitt piece.\n\nCreate generative art in the spirit of Sol LeWitt.\n\nAdd animation to what we’ve created (e.g. rotation).",
-          createdTimestamp: 1616530197,
-          lastUpdatedTimestamp: 1616530223,
-          forkedFrom: 'a677d7bd926b41f59b240e11e7ba4b5a',
-          forksCount: 3,
-          height: 500,
-          imagesUpdatedTimestamp: 1616530244,
-          upvotes: [{ userId: '68416', timestamp: 1616706312 }],
-          privacy: 'public',
-        },
-      ];
-      const renderedHTML = renderPage(homePagePresenter({ vizInfos }));
-      console.log(renderedHTML);
-      assert.equal(renderedHTML, '');
+    it('Should render home page with tricky unicode characters.', () => {
+      const renderedHTML = renderPage({
+        title: 'Test',
+        page: 'TestPage',
+        // This test is for the ’ unicode character.
+        pageProps: { message: 'It’s a beautiful day!' },
+      });
+      assert.equal(
+        renderedHTML,
+        `<html>
+  <head>
+    <title>Test</title>
+    <link href="/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"><div data-reactroot="">Test: <!-- -->It’s a beautiful day!</div></div>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/d3-require@1.2.4/dist/d3-require.min.js"></script>
+    <script>
+      window.pageData = "JTdCJTIycGFnZSUyMiUzQSUyMlRlc3RQYWdlJTIyJTJDJTIycGFnZVByb3BzJTIyJTNBJTdCJTIybWVzc2FnZSUyMiUzQSUyMkl0JUUyJTgwJTk5cyUyMGElMjBiZWF1dGlmdWwlMjBkYXkhJTIyJTdEJTdE";
+    </script>
+    <script src="/build/client.js"></script>
+  </body>
+</html>`
+      );
     });
   });
 };

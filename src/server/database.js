@@ -49,7 +49,7 @@ const getVizInfoMongoDoc = getMongoDoc(DOCUMENT_INFO);
 
 const getMongoDocs =
   (collectionName) =>
-  async ({ sortField }) => {
+  async ({ sortField, limit }) => {
     const collection = await getCollection(collectionName);
     return await (
       await getCollection(collectionName)
@@ -58,7 +58,7 @@ const getMongoDocs =
       .sort({ [sortField]: -1 })
 
       // TODO implement infinite scroll or other pagination pattern
-      .limit(100);
+      .limit(limit);
   };
 
 const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
@@ -69,7 +69,9 @@ const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
 export const getVizInfo = async (id) => VizInfo(await getVizInfoMongoDoc(id));
 
 export const getVizInfos = async ({ sortField }) =>
-  (await (await getVizInfoMongoDocs({ sortField })).toArray()).map(VizInfo);
+  (await (await getVizInfoMongoDocs({ sortField, limit: 50 })).toArray()).map(
+    VizInfo
+  );
 
 // Uncomment these when we need them.
 //export const getVizContent = getById(DOCUMENT_CONTENT);

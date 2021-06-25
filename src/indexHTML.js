@@ -1,5 +1,7 @@
 import pkg from '../package.json';
+import { encodePageData } from './pageData';
 
+// Derive the CDN package versions from package.json.
 const {
   dependencies: { react },
 } = pkg;
@@ -18,7 +20,7 @@ export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
     <script src="https://unpkg.com/react-dom@${react}/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/d3-require@${d3Require}/dist/d3-require.min.js"></script>
     <script>
-      window.pageData = "${btoa(JSON.stringify({ page, pageProps }))}";
+      window.pageData = "${encodePageData({ page, pageProps })}";
     </script>
     <script src="/build/client.js"></script>
   </body>
