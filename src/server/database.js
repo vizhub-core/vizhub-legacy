@@ -36,9 +36,7 @@ const getMongoDatabase = async () => {
 };
 
 const getCollection = async (collectionName) => {
-  console.log('before');
   const db = await getMongoDatabase();
-  console.log('after');
   return db.collection(collectionName);
 };
 
@@ -50,15 +48,10 @@ const getVizInfoMongoDoc = getMongoDoc(DOCUMENT_INFO);
 const getMongoDocs =
   (collectionName) =>
   async ({ sortField }) => {
-    console.log('te');
     const collection = await getCollection(collectionName);
-    console.log('dte');
-    return await (
-      await getCollection(collectionName)
-    ).find({
-      privacy: { $ne: 'private' },
-      $sort: { [sortField]: -1 },
-    });
+    return await (await getCollection(collectionName))
+      .find({ privacy: { $ne: 'private' } })
+      .sort({ [sortField]: -1 });
   };
 
 const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
@@ -69,7 +62,7 @@ const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
 export const getVizInfo = async (id) => VizInfo(await getVizInfoMongoDoc(id));
 
 export const getVizInfos = async ({ sortField }) =>
-  (await getVizInfoMongoDocs({ sortField })).map(VizInfo);
+  (await (await getVizInfoMongoDocs({ sortField })).toArray()).map(VizInfo);
 
 // Uncomment these when we need them.
 //export const getVizContent = getById(DOCUMENT_CONTENT);
