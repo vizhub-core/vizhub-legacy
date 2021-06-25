@@ -20,6 +20,9 @@ const getMongoDatabase = async () => {
         console.log('Having trouble connecting to the database.');
         console.log('Ensure that the database is running.');
         console.log(`VIZHUB_MONGO_URI environment variable is "${mongoURI}".`);
+        console.log('See README for setup details.');
+        console.log('In dev on Linux, start MongoDB with:');
+        console.log('sudo service mongod start');
       }, 5000);
       mongoDatabase = (
         await new MongoClient(mongoURI, {

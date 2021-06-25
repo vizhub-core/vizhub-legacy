@@ -1,25 +1,19 @@
 import express from 'express';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { indexHTML } from '../indexHTML';
-import { App } from '../App';
+//import React from 'react';
 import { getVizInfo, getVizInfos } from './database';
 import { vizPagePresenter } from '../presenters/vizPagePresenter';
 import { homePagePresenter } from '../presenters/homePagePresenter';
+import { renderPage } from './renderPage';
 
 const app = express();
 const port = 8080;
-
-const renderPage = ({ title, page, pageProps }) => {
-  const rootHTML = renderToString(<App page={page} pageProps={pageProps} />);
-  return indexHTML({ title, page, pageProps, rootHTML });
-};
 
 app.get('/', async (req, res) => {
   // TODO support sort options from ~/repos/vizhub/packages/entities/src/visualizationInfo.js
   const vizInfos = await getVizInfos({
     sortField: 'scoreHackerHotLastUpdated',
   });
+
   res.send(renderPage(homePagePresenter({ vizInfos })));
 });
 
