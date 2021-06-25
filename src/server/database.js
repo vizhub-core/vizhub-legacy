@@ -49,9 +49,14 @@ const getMongoDocs =
   (collectionName) =>
   async ({ sortField }) => {
     const collection = await getCollection(collectionName);
-    return await (await getCollection(collectionName))
+    return await (
+      await getCollection(collectionName)
+    )
       .find({ privacy: { $ne: 'private' } })
-      .sort({ [sortField]: -1 });
+      .sort({ [sortField]: -1 })
+
+      // TODO implement infinite scroll or other pagination pattern
+      .limit(100);
   };
 
 const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
