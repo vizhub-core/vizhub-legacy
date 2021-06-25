@@ -11,7 +11,7 @@ const app = express();
 const port = 8080;
 
 const renderPage = ({ title, page, pageProps }) => {
-  const rootHTML = renderToString(<App page={page} />);
+  const rootHTML = renderToString(<App page={page} pageProps={pageProps} />);
   return indexHTML({ title, page, pageProps, rootHTML });
 };
 
@@ -20,9 +20,7 @@ app.get('/', async (req, res) => {
   const vizInfos = await getVizInfos({
     sortField: 'scoreHackerHotLastUpdated',
   });
-  console.log(vizInfos);
-  const { title, page, pageProps } = homePagePresenter({ vizInfos });
-  res.send(renderPage({ title, page, pageProps }));
+  res.send(renderPage(homePagePresenter({ vizInfos })));
 });
 
 app.use(express.static('public'));
@@ -39,10 +37,7 @@ app.get('/:userName/:vizId', async (req, res) => {
     return;
   }
 
-  // TODO handle case of missing viz by rendering error page VizNotFoundPage.
-
-  const { title, page, pageProps } = vizPagePresenter({ vizInfo });
-  res.send(renderPage({ title, page, pageProps }));
+  res.send(renderPage(vizPagePresenter({ vizInfo })));
 });
 
 app.listen(port, () => {
