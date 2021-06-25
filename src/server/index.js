@@ -27,6 +27,14 @@ app.get('/:userName/:vizId', async (req, res) => {
 
   const vizInfo = await getVizInfo(vizId);
 
+  if (!vizInfo) {
+    const title = 'Viz not found';
+    const page = 'VizNotFoundPage';
+    const rootHTML = renderToString(<App page={page} />);
+    res.send(indexHTML({ title, page, pageProps, rootHTML }));
+    return;
+  }
+
   // TODO handle case of missing viz by rendering error page VizNotFoundPage.
 
   const { title, page, pageProps } = vizPagePresenter({ vizInfo });

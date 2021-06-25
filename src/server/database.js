@@ -16,7 +16,6 @@ let mongoDatabase;
 const getMongoDatabase = async () => {
   try {
     if (!mongoDatabase) {
-      console.log('Connecting to database...');
       const timeout = setTimeout(() => {
         console.log('Having trouble connecting to the database.');
         console.log('Ensure that the database is running.');

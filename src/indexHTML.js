@@ -10,6 +10,7 @@ const d3Require = '1.2.4';
 export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
   <head>
     <title>${title}</title>
+    <link href="/styles.css" rel="stylesheet">
   </head>
   <body>
     <div id="root">${rootHTML}</div>
