@@ -14,26 +14,62 @@ const DOCUMENT_CONTENT = 'documentContent';
 
 let mongoDatabase;
 const getMongoDatabase = async () => {
-  if (!mongoDatabase) {
-    mongoDatabase = (
-      await new MongoClient(mongoURI, {
-        useUnifiedTopology: true,
-      }).connect()
-    ).db(mongoDatabaseName);
+  try {
+    if (!mongoDatabase) {
+      console.log('Connecting to database...');
+      const timeout = setTimeout(() => {
+        console.log('Having trouble connecting to the database.');
+        console.log('Ensure that the database is running.');
+        console.log(`VIZHUB_MONGO_URI environment variable is "${mongoURI}".`);
+      }, 5000);
+      mongoDatabase = (
+        await new MongoClient(mongoURI, {
+          useUnifiedTopology: true,
+        }).connect()
+      ).db(mongoDatabaseName);
+      clearTimeout(timeout);
+    }
+    return mongoDatabase;
+  } catch (error) {
+    console.log(error);
   }
-  return mongoDatabase;
 };
 
-const getById = (collection) => async (id) =>
-  await (await getMongoDatabase()).collection(collection).findOne({ id });
+const getCollection = async (collectionName) => {
+  console.log('before');
+  const db = await getMongoDatabase();
+  console.log('after');
+  return db.collection(collectionName);
+};
 
-const getVizInfoMongoDocById = getById(DOCUMENT_INFO);
+const getMongoDoc = (collectionName) => async (id) =>
+  await (await getCollection(collectionName)).findOne({ id });
+
+const getVizInfoMongoDoc = getMongoDoc(DOCUMENT_INFO);
+
+const getMongoDocs =
+  (collectionName) =>
+  async ({ sortField }) => {
+    console.log('te');
+    const collection = await getCollection(collectionName);
+    console.log('dte');
+    return await (
+      await getCollection(collectionName)
+    ).find({
+      privacy: { $ne: 'private' },
+      $sort: { [sortField]: -1 },
+    });
+  };
+
+const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
 
 // TODO add this when we need it.
 //const getVizContentMongoDocById = getById(DOCUMENT_CONTENT);
 
-export const getVizInfo = async (id) =>
-  VizInfo(await getVizInfoMongoDocById(id));
+export const getVizInfo = async (id) => VizInfo(await getVizInfoMongoDoc(id));
+
+export const getVizInfos = async ({ sortField }) =>
+  (await getVizInfoMongoDocs({ sortField })).map(VizInfo);
 
 // Uncomment these when we need them.
 //export const getVizContent = getById(DOCUMENT_CONTENT);

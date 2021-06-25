@@ -16,10 +16,15 @@ Conventions for variable names:
   - vizContent = instance of VizContent
 
 - Pages
+
   - HomePage = component that renders the page
   - page = 'HomePage'; page needs to match exactly component name
   - homePagePresenter = function that transforms input data to page inputs
   - homePagePresented = returned value from presenter
+
+- Database
+  - collectionName = name of the MongoDB collection
+  - collection = return value from Mongo driver `.collection()`
 
 ## Production
 
