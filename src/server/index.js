@@ -15,8 +15,7 @@ app.get('/', async (req, res) => {
   const vizInfos = await getVizInfos({
     sortField: 'scoreHackerHotLastUpdated',
   });
-  console.log(vizInfos);
-  const { title, page, pageProps } = homePagePresenter(vizInfos);
+  const { title, page, pageProps } = homePagePresenter({ vizInfos });
   const rootHTML = renderToString(<App page={page} pageProps={pageProps} />);
   res.send(indexHTML({ title, page, pageProps, rootHTML }));
 });

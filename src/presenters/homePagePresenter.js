@@ -1,5 +1,5 @@
-const homePagePresented = {
+export const homePagePresenter = ({ vizInfos }) => ({
   title: 'Home',
   page: 'HomePage',
-};
-export const homePagePresenter = () => homePagePresented;
+  pageProps: { vizInfos },
+});
