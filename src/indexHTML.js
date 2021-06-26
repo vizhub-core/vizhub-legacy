@@ -11,7 +11,9 @@ const d3Require = '1.2.4';
 
 export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
   <head>
+    <meta charset="utf-8">
     <title>${title}</title>
+    <meta name="viewport" content="width=device-width">
     <link href="/styles.css" rel="stylesheet">
   </head>
   <body>

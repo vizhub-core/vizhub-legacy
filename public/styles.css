@@ -1,8 +1,39 @@
+:root {
+  --background-color: #f6eee3;
+  --foreground-color: #161514;
+  --link-color: #3866e9;
+  --link-color-visited: #5238e9;
+}
 body {
-  background-color: #f6eee3;
+  background-color: var(--background-color);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji;
-  color: #161514;
+  color: var(--foreground-color);
+  font-size: 16px;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:visited {
+  color: var(--link-color-visited);
+}
+
+/* TODO iterate this */
+a:focus {
+  box-shadow: 0 0 0 2px red;
+  border-radius: 6px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  transform: translateY(1px);
 }
 
 .vh .monospace {
