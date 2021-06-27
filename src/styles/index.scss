@@ -1,0 +1,13 @@
+// Inspired by
+//  * https://github.com/milligram/milligram/blob/master/src/milligram.sass
+//  * https://codyhouse.co/blog/post/css-custom-properties-vs-sass-variables
+
+@use 'base';
+@use 'link';
+
+:root {
+  --background-color: #f6eee3;
+  --foreground-color: #161514;
+  --link-color: #3866e9;
+  --link-color-visited: #5238e9;
+}

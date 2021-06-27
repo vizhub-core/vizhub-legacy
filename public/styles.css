@@ -6,6 +6,28 @@ body {
   margin: 0;
 }
 
+.monospace {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:visited {
+  color: var(--link-color-visited);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  transform: translateY(1px);
+}
+
 :root {
   --background-color: #f6eee3;
   --foreground-color: #161514;

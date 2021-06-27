@@ -8,21 +8,10 @@ a:visited {
   color: var(--link-color-visited);
 }
 
-/* TODO iterate this */
-a:focus {
-  box-shadow: 0 0 0 2px red;
-  border-radius: 6px;
-}
-
 a:hover {
   text-decoration: underline;
 }
 
 a:active {
   transform: translateY(1px);
-}
-
-.vh .monospace {
-  font-family: ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono,
-    Menlo, monospace;
 }
