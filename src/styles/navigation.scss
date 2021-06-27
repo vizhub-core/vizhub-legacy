@@ -1,0 +1,11 @@
+.navigation {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navigation-height);
+  background-color: black;
+  display: flex;
+  align-items: center;
+  padding: 0 4px 0 4px;
+}
