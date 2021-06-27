@@ -1,17 +1,3 @@
-:root {
-  --background-color: #f6eee3;
-  --foreground-color: #161514;
-  --link-color: #3866e9;
-  --link-color-visited: #5238e9;
-}
-body {
-  background-color: var(--background-color);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji;
-  color: var(--foreground-color);
-  font-size: 16px;
-}
-
 a {
   color: var(--link-color);
   text-decoration: none;

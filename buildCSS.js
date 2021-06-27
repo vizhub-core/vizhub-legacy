@@ -4,5 +4,5 @@ const { writeFileSync } = require('fs');
 console.log('Building CSS...');
 writeFileSync(
   './public/styles.css',
-  renderSync({ file: 'src/styles/index.css' }).css.toString()
+  renderSync({ file: 'src/styles/index.scss' }).css.toString()
 );
