@@ -54,6 +54,27 @@ a:active {
   color: var(--foreground-color);
 }
 
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .content {
+  /* TODO get this to center, add padding */
   max-width: 960px;
+  background-color: white;
+  flex: 1;
+}
+
+.sidebar {
+  width: 170px;
+  background-color: #5b677d;
+}
+
+/* TODO make the sidebar full width on mobile. */
+/* TODO hide content entirely when sidebar is open on mobile. */
+.viz-page-wrapper {
+  display: flex;
+  flex-direction: row;
 }

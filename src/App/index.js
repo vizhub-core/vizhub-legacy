@@ -7,6 +7,6 @@ import { VizNotFoundPage } from './VizNotFoundPage';
 const pages = { TestPage, HomePage, VizPage, VizNotFoundPage };
 
 export const App = ({ page, pageProps }) => {
-  const Page = pages[page];
-  return <Page {...pageProps} />;
+  const PageComponent = pages[page];
+  return <PageComponent {...pageProps} />;
 };
