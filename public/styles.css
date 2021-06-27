@@ -7,7 +7,7 @@
 }
 
 [data-theme=dark] {
-  --foreground-color: #f6eee3;
+  --foreground-color: white;
   --background-color: #161514;
 }
 
@@ -48,8 +48,12 @@ a:active {
   right: 0;
   display: flex;
   align-items: center;
-  padding: 0 4px 0 4px;
+  padding: 0 4px;
   height: var(--navigation-height);
   background-color: var(--background-color);
   color: var(--foreground-color);
+}
+
+.content {
+  max-width: 960px;
 }
