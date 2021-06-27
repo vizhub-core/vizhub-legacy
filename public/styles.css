@@ -6,6 +6,11 @@
   --navigation-height: 40px;
 }
 
+[data-theme=dark] {
+  --foreground-color: #f6eee3;
+  --background-color: #161514;
+}
+
 body {
   background-color: var(--background-color);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
@@ -41,9 +46,10 @@ a:active {
   top: 0;
   left: 0;
   right: 0;
-  height: var(--navigation-height);
-  background-color: black;
   display: flex;
   align-items: center;
   padding: 0 4px 0 4px;
+  height: var(--navigation-height);
+  background-color: var(--background-color);
+  color: var(--foreground-color);
 }
