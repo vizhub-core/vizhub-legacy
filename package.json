@@ -4,8 +4,10 @@
   "description": "Next generation of VizHub, 2021.",
   "scripts": {
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
-    "build": "rollup -c",
-    "test": "npm run build && mocha",
+    "buildJS": "rollup -c",
+    "buildCSS": "node buildCSS.js",
+    "build": "npm run buildJS && npm run buildCSS",
+    "test": "npm run buildJS && mocha",
     "update": "ncu -u",
     "start": "npm run build && NODE_OPTIONS=--enable-source-maps node server/build/bundle.js",
     "startProduction": "NODE_ENV=production npm run start"
@@ -40,6 +42,7 @@
     "npm-check-updates": "^11.7.1",
     "prettier": "^2.3.1",
     "rollup": "^2.52.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.35.1"
   }
 }

@@ -77,7 +77,7 @@ const testBuild = {
 const clientBuild = {
   input: 'src/client/index.js',
   output: {
-    file: 'public/build/client.js',
+    file: 'public/client.js',
     format: 'iife',
     interop: 'default',
     globals,
@@ -92,7 +92,7 @@ const clientBuild = {
 const client2Build = {
   input: 'src/client/client2.js',
   output: {
-    dir: 'public/build',
+    dir: 'public',
     format: 'amd',
     interop: 'default',
     sourcemap,

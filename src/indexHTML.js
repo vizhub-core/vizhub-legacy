@@ -24,6 +24,6 @@ export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
     <script>
       window.pageData = "${encodePageData({ page, pageProps })}";
     </script>
-    <script src="/build/client.js"></script>
+    <script src="/client.js"></script>
   </body>
 </html>`;

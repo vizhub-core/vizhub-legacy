@@ -1,6 +1,6 @@
 *.swp
 .*
-server/build
-public/build
+/server/build
+/public
 /test
 deploy.sh
