@@ -17,6 +17,10 @@ app.get('/', async (req, res) => {
   res.send(renderPage(homePagePresenter({ vizInfos })));
 });
 
+app.get('/sanitycheck', async (req, res) => {
+  res.send(renderPage({ title: 'Sanity check', page: 'SanityCheckPage' }));
+});
+
 app.use(express.static('public'));
 
 app.get('/:userName/:vizId', async (req, res) => {
@@ -25,9 +29,7 @@ app.get('/:userName/:vizId', async (req, res) => {
   const vizInfo = await getVizInfo(vizId);
 
   if (!vizInfo) {
-    const title = 'Viz not found';
-    const page = 'VizNotFoundPage';
-    res.send(renderPage({ title, page }));
+    res.send(renderPage({ title: 'Viz not found', page: 'VizNotFoundPage' }));
     return;
   }
 

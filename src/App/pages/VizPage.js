@@ -1,12 +1,9 @@
 import React from 'react';
-import { Navigation } from './Navigation';
+import { Navigation } from '../Navigation';
+import { classed } from '../classed';
 
-const classed =
-  (className) =>
-  ({ children }) =>
-    <div className={className}>{children}</div>;
-
-const Wrapper = classed('viz-page-wrapper');
+const Wrapper = classed('viz-page');
+const Head = classed('head');
 const Sidebar = classed('sidebar');
 const ContentWrapper = classed('content-wrapper');
 const Content = classed('content');
@@ -16,6 +13,7 @@ export const VizPage = ({ title, sanitizedDescriptionHTML }) => {
     <>
       <Navigation />
       <Wrapper>
+        <Head />
         <Sidebar />
         <ContentWrapper>
           <Content>

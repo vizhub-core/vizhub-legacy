@@ -1,6 +1,11 @@
-.viz-page-wrapper {
+.viz-page {
   display: flex;
   flex-direction: row;
+  .head {
+    background-color: white;
+    height: var(--head-height);
+  }
+
   .content-wrapper {
     flex: 1;
     display: flex;
@@ -21,4 +26,3 @@
   /* TODO make the sidebar full width on mobile. */
   /* TODO hide content entirely when sidebar is open on mobile. */
 }
-

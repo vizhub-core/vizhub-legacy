@@ -4,6 +4,14 @@
   --link-color: #3866e9;
   --link-color-visited: #5238e9;
   --navigation-height: 40px;
+  /* Used in Viz Page only */
+  --head-height: 30px;
+  /* Inspired by http://getskeleton.com/#queries */
+  --breakpoint-mobile: 400px;
+  --breakpoint-phablet: 550px;
+  --breakpoint-tablet: 750px;
+  --breakpoint-desktop: 1000px;
+  --breakpoint-desktop-hd: 1200px;
 }
 
 [data-theme=dark] {
@@ -54,24 +62,33 @@ a:active {
   color: var(--foreground-color);
 }
 
-.viz-page-wrapper {
+.home-page {
+  display: flex;
+  padding: 12px;
+}
+
+.viz-page {
   display: flex;
   flex-direction: row;
   /* TODO make the sidebar full width on mobile. */
   /* TODO hide content entirely when sidebar is open on mobile. */
 }
-.viz-page-wrapper .content-wrapper {
+.viz-page .head {
+  background-color: white;
+  height: var(--head-height);
+}
+.viz-page .content-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
 }
-.viz-page-wrapper .content {
+.viz-page .content {
   /* TODO get this to center, add padding */
   max-width: 960px;
   background-color: white;
   flex: 1;
 }
-.viz-page-wrapper .sidebar {
+.viz-page .sidebar {
   width: 170px;
   background-color: #5b677d;
 }

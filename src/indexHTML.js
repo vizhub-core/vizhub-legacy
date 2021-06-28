@@ -1,6 +1,11 @@
 import pkg from '../package.json';
 import { encodePageData } from './pageData';
 
+// Stopped using UNPKG due to this issue: https://github.com/mjackson/unpkg/issues/302
+//const cdn = 'https://unpkg.com';
+
+const cdn = 'https://cdn.jsdelivr.net/npm';
+
 // Derive the CDN package versions from package.json.
 const {
   dependencies: { react },
@@ -18,9 +23,9 @@ export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
   </head>
   <body>
     <div id="root">${rootHTML}</div>
-    <script src="https://unpkg.com/react@${react}/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@${react}/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/d3-require@${d3Require}/dist/d3-require.min.js"></script>
+    <script src="${cdn}/react@${react}/umd/react.production.min.js"></script>
+    <script src="${cdn}/react-dom@${react}/umd/react-dom.production.min.js"></script>
+    <script src="${cdn}/d3-require@${d3Require}/dist/d3-require.min.js"></script>
     <script>
       window.pageData = "${encodePageData({ page, pageProps })}";
     </script>
