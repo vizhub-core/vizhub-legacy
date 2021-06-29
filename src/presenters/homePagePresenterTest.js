@@ -7,7 +7,7 @@ export const homePagePresenterTest = () => {
       const {
         title,
         page,
-        pageProps: { vizInfos, ownerUsersMap },
+        pageProps: { vizInfos, ownerUsersById },
       } = homePagePresenter({
         vizInfos: 'vizInfos',
         ownerUsers: [{ id: 'foo' }, { id: 'bar' }],
@@ -15,8 +15,8 @@ export const homePagePresenterTest = () => {
       assert.equal(title, 'Home');
       assert.equal(page, 'HomePage');
       assert.equal(vizInfos, 'vizInfos');
-      assert.deepEqual(ownerUsersMap.get('foo'), { id: 'foo' });
-      assert.deepEqual(ownerUsersMap.get('bar'), { id: 'bar' });
+      assert.deepEqual(ownerUsersById.foo, { id: 'foo' });
+      assert.deepEqual(ownerUsersById.bar, { id: 'bar' });
     });
   });
 };

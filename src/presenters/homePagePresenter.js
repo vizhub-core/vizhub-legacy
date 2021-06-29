@@ -3,6 +3,9 @@ export const homePagePresenter = ({ vizInfos, ownerUsers }) => ({
   page: 'HomePage',
   pageProps: {
     vizInfos,
-    ownerUsersMap: new Map(ownerUsers.map((user) => [user.id, user])),
+    ownerUsersById: ownerUsers.reduce((accumulator, user) => {
+      accumulator[user.id] = user;
+      return accumulator;
+    }, {}),
   },
 });

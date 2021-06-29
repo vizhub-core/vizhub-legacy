@@ -13,7 +13,7 @@ const VizPreview = ({ vizInfo, ownerUser }) => {
   return <a href={`/${userName}/${id}`}>{title}</a>;
 };
 
-export const HomePage = ({ vizInfos, ownerUsersMap }) => (
+export const HomePage = ({ vizInfos, ownerUsersById }) => (
   <>
     <Navigation />
     <Wrapper>
@@ -21,7 +21,7 @@ export const HomePage = ({ vizInfos, ownerUsersMap }) => (
         <VizPreview
           key={vizInfo.id}
           vizInfo={vizInfo}
-          ownerUser={ownerUsersMap.get(vizInfo.owner)}
+          ownerUser={ownerUsersById[vizInfo.owner]}
         />
       ))}
     </Wrapper>
