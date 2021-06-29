@@ -1,5 +1,6 @@
 import assert from 'assert';
 import * as database from './database';
+import { generateId } from './generateId';
 
 // TODO Use an in-memory database during tests, for speed.
 // An attempt was made, but there were frustrating differences in the
@@ -24,7 +25,7 @@ export const databaseTest = () => {
     it('should implement createViz.', async () => {
       const vizInfoData = {
         title: 'Test Viz',
-        id: 'h8sa7h8e9whq7re9qh',
+        id: generateId(),
       };
       const vizId = await database.createVizInfo(vizInfoData);
       const vizInfo = await database.getVizInfo(vizInfoData.id);
