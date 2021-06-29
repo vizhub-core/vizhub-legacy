@@ -6,12 +6,15 @@
   --navigation-height: 40px;
   /* Used in Viz Page only */
   --head-height: 30px;
-  /* Inspired by http://getskeleton.com/#queries */
-  --breakpoint-mobile: 400px;
-  --breakpoint-phablet: 550px;
-  --breakpoint-tablet: 750px;
-  --breakpoint-desktop: 1000px;
-  --breakpoint-desktop-hd: 1200px;
+  /* Intent is to use the same box shadow and border radius everywhere. */
+  --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+  --border-radius: 4px;
+  --padding-tiny: 4px;
+  --padding-small: 8px;
+  --padding-medium: 16px;
+  --padding-large: 24px;
+  --padding-huge: 32px;
+  --padding-massive: 64px;
 }
 
 [data-theme=dark] {
@@ -64,7 +67,37 @@ a:active {
 
 .home-page {
   display: flex;
-  padding: 12px;
+  /* TODO responsive breakpoints adjustments. */
+  padding: var(--padding-tiny);
+  /* Inspired by http://getskeleton.com/#queries */
+}
+@media (min-width: 400px) {
+  .home-page {
+    padding: var(--padding-small);
+  }
+}
+@media (min-width: 550px) {
+  .home-page {
+    padding: var(--padding-medium);
+  }
+}
+@media (min-width: 750px) {
+  .home-page {
+    padding: var(--padding-large);
+  }
+}
+@media (min-width: 1000px) {
+  .home-page {
+    padding: var(--padding-huge);
+  }
+}
+.home-page .viz-preview-collection {
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  /* TODO responsive breakpoints adjustments. */
+  gap: 8px;
 }
 
 .viz-page {
@@ -91,4 +124,23 @@ a:active {
 .viz-page .sidebar {
   width: 170px;
   background-color: #5b677d;
+}
+
+.viz-preview {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  width: 300px;
+  font-weight: bold;
+}
+.viz-preview .image-link {
+  width: 230px;
+  height: 120px;
+  background-position: left top;
+  background-size: cover;
+}
+.viz-preview .title {
+  padding: var(--padding-large);
 }

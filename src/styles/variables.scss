@@ -10,12 +10,16 @@
   /* Used in Viz Page only */
   --head-height: 30px;
 
-  /* Inspired by http://getskeleton.com/#queries */
-  --breakpoint-mobile: 400px;
-  --breakpoint-phablet: 550px;
-  --breakpoint-tablet: 750px;
-  --breakpoint-desktop: 1000px;
-  --breakpoint-desktop-hd: 1200px;
+  /* Intent is to use the same box shadow and border radius everywhere. */
+  --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+  --border-radius: 4px;
+
+  --padding-tiny: 4px;
+  --padding-small: 8px;
+  --padding-medium: 16px;
+  --padding-large: 24px;
+  --padding-huge: 32px;
+  --padding-massive: 64px;
 }
 
 [data-theme='dark'] {

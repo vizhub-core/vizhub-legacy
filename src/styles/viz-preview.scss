@@ -1,0 +1,19 @@
+.viz-preview {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  width: 300px;
+
+  font-weight: bold;
+  .image-link {
+    width: 230px;
+    height: 120px;
+    background-position: left top;
+    background-size: cover;
+  }
+  .title {
+    padding: var(--padding-large);
+  }
+}

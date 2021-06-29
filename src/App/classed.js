@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Generates a component that's a div with a class.
+// Generates a component that's a div (or specified tagName) with a class.
 export const classed =
-  (className) =>
-  ({ children }) =>
-    <div className={className}>{children}</div>;
+  (className, type = 'div') =>
+  (props) =>
+    React.createElement(type, { className, ...props }, props.children);

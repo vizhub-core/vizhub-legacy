@@ -1,4 +1,30 @@
 .home-page {
   display: flex;
-  padding: 12px;
+
+  /* TODO responsive breakpoints adjustments. */
+  padding: var(--padding-tiny);
+
+  /* Inspired by http://getskeleton.com/#queries */
+  @media (min-width: 400px) {
+    padding: var(--padding-small);
+  }
+  @media (min-width: 550px) {
+    padding: var(--padding-medium);
+  }
+  @media (min-width: 750px) {
+    padding: var(--padding-large);
+  }
+  @media (min-width: 1000px) {
+    padding: var(--padding-huge);
+  }
+
+  .viz-preview-collection {
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    display: flex;
+
+    /* TODO responsive breakpoints adjustments. */
+    gap: 8px;
+  }
 }
