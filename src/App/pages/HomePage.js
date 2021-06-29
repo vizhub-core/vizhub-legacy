@@ -9,7 +9,8 @@ const VizPreview = ({ vizInfo }) => {
   return <a href={`/todoAddUser/${id}`}>{title}</a>;
 };
 
-export const HomePage = ({ vizInfos }) => {
+export const HomePage = ({ vizInfos, ownerUsers }) => {
+  console.log(ownerUsers);
   return (
     <>
       <Navigation />

@@ -1,7 +1,7 @@
 import assert from 'assert';
-import { VizInfo } from '../entities/VizInfo';
+import { VizInfo } from './VizInfo';
 
-export const testVizInfo = () => {
+export const vizInfoTest = () => {
   describe('VizInfo', () => {
     it('should copy expected keys', () => {
       const vizInfo = VizInfo({});

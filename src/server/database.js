@@ -1,5 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { VizInfo } from '../entities/VizInfo';
+import { User } from '../entities/User';
 
 // TODO consider using ShareDB for many benefits:
 //  * always up to date
@@ -11,6 +12,13 @@ const mongoDatabaseName = 'vizhub';
 // Collection names.
 const DOCUMENT_INFO = 'documentInfo';
 const DOCUMENT_CONTENT = 'documentContent';
+const USER = 'user';
+//export const DOCUMENT_INFO = 'documentInfo';
+//export const DOCUMENT_CONTENT = 'documentContent';
+//export const USER = 'user';
+//export const THUMBNAIL_IMAGES = 'thumbnailImages';
+//export const PREVIEW_IMAGES = 'previewImages';
+//export const EVENT_RECORDS = 'eventRecords';
 
 let mongoDatabase;
 const getMongoDatabase = async () => {
@@ -37,31 +45,41 @@ const getMongoDatabase = async () => {
   }
 };
 
-const getCollection = async (collectionName) => {
-  const db = await getMongoDatabase();
-  return db.collection(collectionName);
-};
+const getCollection = async (collectionName) =>
+  (await getMongoDatabase()).collection(collectionName);
 
 const getMongoDoc = (collectionName) => async (id) =>
   await (await getCollection(collectionName)).findOne({ id });
 
 const getVizInfoMongoDoc = getMongoDoc(DOCUMENT_INFO);
 
+// Fetches a page of results.
 const getMongoDocs =
   (collectionName) =>
-  async ({ sortField, limit }) => {
-    const collection = await getCollection(collectionName);
-    return await (
+  async ({ sortField, limit }) =>
+    await (
       await getCollection(collectionName)
     )
       .find({ privacy: { $ne: 'private' } })
       .sort({ [sortField]: -1 })
 
       // TODO implement infinite scroll or other pagination pattern
-      .limit(limit);
-  };
+      .limit(limit)
+      .toArray();
+
+// Fetches documents with the given ids.
+const getMongoDocsByIds = (collectionName) => async (ids) =>
+  await (
+    await getCollection(collectionName)
+  )
+    .find({
+      id: { $in: ids },
+    })
+    .toArray();
 
 const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
+
+const getUserMongoDocsByIds = getMongoDocsByIds(USER);
 
 // TODO add this when we need it.
 //const getVizContentMongoDocById = getById(DOCUMENT_CONTENT);
@@ -69,9 +87,10 @@ const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
 export const getVizInfo = async (id) => VizInfo(await getVizInfoMongoDoc(id));
 
 export const getVizInfos = async ({ sortField }) =>
-  (await (await getVizInfoMongoDocs({ sortField, limit: 50 })).toArray()).map(
-    VizInfo
-  );
+  (await getVizInfoMongoDocs({ sortField, limit: 50 })).map(VizInfo);
+
+export const getUsersByIds = async (userIds) =>
+  (await getUserMongoDocsByIds(userIds)).map(User);
 
 // Uncomment these when we need them.
 //export const getVizContent = getById(DOCUMENT_CONTENT);
