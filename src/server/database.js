@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+//import mingo from 'mingo';
 import { VizInfo } from '../entities/VizInfo';
 import { User } from '../entities/User';
 
@@ -20,8 +21,23 @@ const USER = 'user';
 //export const PREVIEW_IMAGES = 'previewImages';
 //export const EVENT_RECORDS = 'eventRecords';
 
+// TODO Support using Mingo, an in-memory database, for fast tests.
+//let mingoDatabase = null;
+//export const useMingo = () => {
+//  mingoDatabase = mingo;
+//};
+
+// Get and lazy-initialize the database.
+let mongoClient;
 let mongoDatabase;
 const getMongoDatabase = async () => {
+  // TODO If we want to use Mingo, return the Mingo database.
+  //if (mingoDatabase) {
+  //  console.log('using Mingo...');
+  //  return mingoDatabase;
+  //}
+
+  // Otherwise actually instantiate the real MongoDB connection.
   try {
     if (!mongoDatabase) {
       const timeout = setTimeout(() => {
@@ -32,17 +48,20 @@ const getMongoDatabase = async () => {
         console.log('In dev on Linux, start MongoDB with:');
         console.log('sudo service mongod start');
       }, 5000);
-      mongoDatabase = (
-        await new MongoClient(mongoURI, {
-          useUnifiedTopology: true,
-        }).connect()
-      ).db(mongoDatabaseName);
+      mongoClient = new MongoClient(mongoURI, {
+        useUnifiedTopology: true,
+      });
+      mongoDatabase = (await mongoClient.connect()).db(mongoDatabaseName);
       clearTimeout(timeout);
     }
     return mongoDatabase;
   } catch (error) {
     console.log(error);
   }
+};
+
+export const closeConnection = () => {
+  mongoClient.close();
 };
 
 const getCollection = async (collectionName) =>
