@@ -4,4 +4,4 @@
 /public
 /test
 deploy.sh
-expectedHTML
+renderPageTestExpected.html

@@ -43,3 +43,12 @@ const keys = [
 export function User(data) {
   return createInstance(User, keys, data);
 }
+
+// This defines a "CI User" for use in continuous integration testing.
+export const ciUserData = {
+  id: '47895473289547832938754',
+  fullName: 'CI',
+  email: 'ci@testing.com',
+  userName: 'ci',
+  avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4',
+};
