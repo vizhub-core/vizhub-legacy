@@ -14,10 +14,13 @@ const {
 // This is only used in the browser, version is defined here only.
 const d3Require = '1.2.4';
 
+// TODO favicon
 export const indexHTML = ({ title, rootHTML, page, pageProps }) => `<html>
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials"/>
     <meta name="viewport" content="width=device-width">
     <link href="/styles.css" rel="stylesheet">
   </head>
