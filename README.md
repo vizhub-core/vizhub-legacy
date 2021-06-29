@@ -13,7 +13,6 @@ Conventions for variable names:
   - vizInfoMongoDoc = document object from raw MongoDB driver
   - vizInfoShareDoc = document object from ShareDB
   - vizInfoData = the raw data for the VizInfo constructor
-  - vizContent = instance of VizContent
 
 - Pages
 

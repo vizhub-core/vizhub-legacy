@@ -67,10 +67,11 @@ export const closeConnection = () => {
 const getCollection = async (collectionName) =>
   (await getMongoDatabase()).collection(collectionName);
 
+const createMongoDoc = (collectionName) => async (data) =>
+  await (await getCollection(collectionName)).insertOne(data);
+
 const getMongoDoc = (collectionName) => async (id) =>
   await (await getCollection(collectionName)).findOne({ id });
-
-const getVizInfoMongoDoc = getMongoDoc(DOCUMENT_INFO);
 
 // Fetches a page of results.
 const getMongoDocs =
@@ -88,20 +89,20 @@ const getMongoDocs =
 
 // Fetches documents with the given ids.
 const getMongoDocsByIds = (collectionName) => async (ids) =>
-  await (
-    await getCollection(collectionName)
-  )
-    .find({
-      id: { $in: ids },
-    })
+  await (await getCollection(collectionName))
+    .find({ id: { $in: ids } })
     .toArray();
 
+const createVizInfoMongoDoc = createMongoDoc(DOCUMENT_INFO);
+const getVizInfoMongoDoc = getMongoDoc(DOCUMENT_INFO);
 const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
-
 const getUserMongoDocsByIds = getMongoDocsByIds(USER);
 
 // TODO add this when we need it.
 //const getVizContentMongoDocById = getById(DOCUMENT_CONTENT);
+
+export const createVizInfo = async (vizInfoData) =>
+  await createVizInfoMongoDoc(vizInfoData);
 
 export const getVizInfo = async (id) => VizInfo(await getVizInfoMongoDoc(id));
 

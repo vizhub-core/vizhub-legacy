@@ -9,14 +9,26 @@ import * as database from './database';
 export const databaseTest = () => {
   describe('database', () => {
     it('Should implement expected set of methods.', () => {
-      ['getVizInfo', 'getVizInfos', 'getUsersByIds'].forEach((method) => {
-        assert(method in database);
-      });
+      ['createVizInfo', 'getVizInfo', 'getVizInfos', 'getUsersByIds'].forEach(
+        (method) => {
+          assert(method in database);
+        }
+      );
     });
 
     it('should implement getVizInfo - return null if no viz found.', async () => {
-      const vizInfo = await database.getVizInfo({ vizId: '12345' });
+      const vizInfo = await database.getVizInfo('12345');
       assert.equal(vizInfo, null);
+    });
+
+    it('should implement createViz.', async () => {
+      const vizInfoData = {
+        title: 'Test Viz',
+        id: 'h8sa7h8e9whq7re9qh',
+      };
+      const vizId = await database.createVizInfo(vizInfoData);
+      const vizInfo = await database.getVizInfo(vizInfoData.id);
+      assert.equal(vizInfo.title, vizInfoData.title);
     });
 
     it('Should close the connection.', () => {

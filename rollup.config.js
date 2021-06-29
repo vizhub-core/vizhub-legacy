@@ -13,7 +13,6 @@ const external = [
   'd3-require',
   'mongodb',
   'marked',
-  'mingo',
 ];
 
 const plugins = [
