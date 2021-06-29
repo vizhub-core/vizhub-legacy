@@ -6,22 +6,24 @@ const Wrapper = classed('home-page');
 
 const VizPreview = ({ vizInfo, ownerUser }) => {
   const { id, title } = vizInfo;
-  return <a href={`/${ownerUser.userName}/${id}`}>{title}</a>;
+
+  // Should never happen, but being defensive so it doesn't crash.
+  const userName = ownerUser ? ownerUser.userName : 'undefined';
+
+  return <a href={`/${userName}/${id}`}>{title}</a>;
 };
 
-export const HomePage = ({ vizInfos, ownerUsersMap }) => {
-  return (
-    <>
-      <Navigation />
-      <Wrapper>
-        {vizInfos.map((vizInfo) => (
-          <VizPreview
-            key={vizInfo.id}
-            vizInfo={vizInfo}
-            ownerUser={ownerUsersMap.get(vizInfo.owner)}
-          />
-        ))}
-      </Wrapper>
-    </>
-  );
-};
+export const HomePage = ({ vizInfos, ownerUsersMap }) => (
+  <>
+    <Navigation />
+    <Wrapper>
+      {vizInfos.map((vizInfo) => (
+        <VizPreview
+          key={vizInfo.id}
+          vizInfo={vizInfo}
+          ownerUser={ownerUsersMap.get(vizInfo.owner)}
+        />
+      ))}
+    </Wrapper>
+  </>
+);
