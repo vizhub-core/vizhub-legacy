@@ -8,10 +8,6 @@ a:visited {
   color: var(--link-color-visited);
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 a:active {
   transform: translateY(1px);
 }

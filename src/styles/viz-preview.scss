@@ -4,16 +4,26 @@
   background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
-  width: 300px;
 
-  font-weight: bold;
-  .image-link {
-    width: 230px;
-    height: 120px;
+  .thumbnail {
+    width: 300px;
+    height: 170px;
     background-position: left top;
     background-size: cover;
   }
-  .title {
-    padding: var(--padding-large);
+
+  .content-container {
+    padding: 24px 24px 30px 24px;
+    .last-updated-date {
+      color: #828282;
+      font-size: 12px;
+      padding-bottom: 4px;
+    }
+
+    .title {
+      color: var(--foreground-color);
+      font-family: Poppins;
+      font-weight: 600;
+    }
   }
 }

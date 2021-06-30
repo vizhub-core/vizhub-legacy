@@ -1,8 +1,10 @@
 import React from 'react';
 import { classed } from './classed';
 
-const Wrapper = classed('viz-preview');
-const ImageLink = classed('image-link', 'a');
+const Wrapper = classed('viz-preview', 'a');
+const ContentContainer = classed('content-container');
+const Thumbnail = classed('thumbnail');
+const LastUpdatedDate = classed('last-updated-date');
 const Title = classed('title');
 
 const urlBase = 'https://vizhub.com';
@@ -19,12 +21,12 @@ export const VizPreview = ({ vizInfo, ownerUser }) => {
 
   //  return <a href={href}>{title}</a>;
   return (
-    <Wrapper>
-      <ImageLink
-        href={href}
-        style={{ backgroundImage: thumbnailURL(id) }}
-      ></ImageLink>
-      <Title>{title}</Title>
+    <Wrapper href={href}>
+      <Thumbnail style={{ backgroundImage: thumbnailURL(id) }}></Thumbnail>
+      <ContentContainer>
+        <LastUpdatedDate>January 10, 2020</LastUpdatedDate>
+        <Title>{title}</Title>
+      </ContentContainer>
     </Wrapper>
   );
 };

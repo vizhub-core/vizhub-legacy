@@ -43,10 +43,6 @@ a:visited {
   color: var(--link-color-visited);
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 a:active {
   transform: translateY(1px);
 }
@@ -110,15 +106,23 @@ a:active {
   background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
-  width: 300px;
-  font-weight: bold;
 }
-.viz-preview .image-link {
-  width: 230px;
-  height: 120px;
+.viz-preview .thumbnail {
+  width: 300px;
+  height: 170px;
   background-position: left top;
   background-size: cover;
 }
-.viz-preview .title {
-  padding: var(--padding-large);
+.viz-preview .content-container {
+  padding: 24px 24px 30px 24px;
+}
+.viz-preview .content-container .last-updated-date {
+  color: #828282;
+  font-size: 12px;
+  padding-bottom: 4px;
+}
+.viz-preview .content-container .title {
+  color: var(--foreground-color);
+  font-family: Poppins;
+  font-weight: 600;
 }
