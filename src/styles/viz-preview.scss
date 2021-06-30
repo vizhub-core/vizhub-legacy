@@ -1,6 +1,7 @@
 .viz-preview {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
@@ -30,6 +31,13 @@
     .title {
       font-family: Poppins;
       font-weight: 600;
+
+      /* Truncate text at 2 lines. */
+      /* Inspired by https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp */
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
     }
   }
   .meta-container {
