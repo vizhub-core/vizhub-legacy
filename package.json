@@ -10,7 +10,8 @@
     "test": "npm run buildJS && NODE_OPTIONS=--enable-source-maps mocha",
     "update": "ncu -u",
     "start": "npm run build && NODE_OPTIONS=--enable-source-maps node server/build/bundle.js",
-    "startProduction": "NODE_ENV=production npm run start"
+    "buildProduction": "NODE_ENV=production npm run buildJS && npm run buildCSS",
+    "startProduction": "NODE_ENV=production node server/build/bundle.js"
   },
   "repository": {
     "type": "git",
