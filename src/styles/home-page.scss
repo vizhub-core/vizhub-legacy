@@ -2,7 +2,33 @@
   display: flex;
 
   /* TODO responsive breakpoints adjustments. */
-  padding: 4px;
+  padding: 24px 4px;
+
+  /* Inspired by http://getskeleton.com/#queries */
+  /* Larger than mobile */
+  @media (min-width: 400px) {
+    padding: 24px 8px;
+  }
+
+  /* Larger than phablet */
+  @media (min-width: 550px) {
+    padding: 24px 16px;
+  }
+
+  /* Larger than tablet */
+  @media (min-width: 750px) {
+    padding: 32px;
+  }
+
+  /* Larger than desktop */
+  @media (min-width: 1000px) {
+    padding: 64px;
+  }
+
+  /* Larger than Desktop HD */
+  @media (min-width: 1200px) {
+    padding: 84px;
+  }
 
   .viz-preview-collection {
     flex: 1;
@@ -11,6 +37,6 @@
     display: flex;
 
     /* TODO responsive breakpoints adjustments. */
-    gap: 8px;
+    gap: 24px;
   }
 }

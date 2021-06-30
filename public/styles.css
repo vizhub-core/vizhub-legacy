@@ -2,7 +2,7 @@
   --background-color: #f6eee3;
   --foreground-color: #161514;
   --foreground-color-light: #828282;
-  --rule-color-: #e4e4e4;
+  --rule-color: #e4e4e4;
   --font-size-tiny: 12px;
   --font-size-small: 14px;
   --font-size-default: 16px;
@@ -68,7 +68,38 @@ a:active {
 .home-page {
   display: flex;
   /* TODO responsive breakpoints adjustments. */
-  padding: 4px;
+  padding: 24px 4px;
+  /* Inspired by http://getskeleton.com/#queries */
+  /* Larger than mobile */
+  /* Larger than phablet */
+  /* Larger than tablet */
+  /* Larger than desktop */
+  /* Larger than Desktop HD */
+}
+@media (min-width: 400px) {
+  .home-page {
+    padding: 24px 8px;
+  }
+}
+@media (min-width: 550px) {
+  .home-page {
+    padding: 24px 16px;
+  }
+}
+@media (min-width: 750px) {
+  .home-page {
+    padding: 32px;
+  }
+}
+@media (min-width: 1000px) {
+  .home-page {
+    padding: 64px;
+  }
+}
+@media (min-width: 1200px) {
+  .home-page {
+    padding: 84px;
+  }
 }
 .home-page .viz-preview-collection {
   flex: 1;
@@ -76,7 +107,7 @@ a:active {
   justify-content: space-between;
   display: flex;
   /* TODO responsive breakpoints adjustments. */
-  gap: 8px;
+  gap: 24px;
 }
 
 .viz-page {
@@ -108,10 +139,20 @@ a:active {
 .viz-preview {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   width: 300px;
+  color: var(--foreground-color);
+  /* Center a single column on mobile. */
+  margin: 0px auto;
+  /* Match page margins on desktop. */
+}
+@media (min-width: 670px) {
+  .viz-preview {
+    margin: 0px;
+  }
 }
 .viz-preview .thumbnail {
   width: 300px;
@@ -132,11 +173,27 @@ a:active {
   padding-bottom: 4px;
 }
 .viz-preview .content-container .title {
-  color: var(--foreground-color);
   font-family: Poppins;
   font-weight: 600;
+  /* Truncate text at 2 lines. */
+  /* Inspired by https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .viz-preview .meta-container {
+  display: flex;
+  align-items: center;
+  padding: 16px 14px;
   border-top: 1px solid var(--rule-color);
   font-size: var(--font-size-small);
+}
+.viz-preview .meta-container .owner-avatar-image {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+}
+.viz-preview .meta-container .owner-name {
+  margin-left: 12px;
 }
