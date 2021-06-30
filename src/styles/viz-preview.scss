@@ -6,6 +6,7 @@
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   width: 300px;
+  color: var(--foreground-color);
 
   .thumbnail {
     width: 300px;
@@ -17,7 +18,6 @@
   }
 
   .content-container {
-    color: var(--foreground-color);
     display: flex;
     flex-direction: column;
     padding: 24px 24px 30px 24px;
