@@ -21,8 +21,8 @@
     padding: 24px 24px 30px 24px;
 
     .last-updated-date {
-      color: #828282;
-      font-size: 12px;
+      color: var(--foreground-color-light);
+      font-size: var(--font-size-tiny);
       padding-bottom: 4px;
     }
 
@@ -30,6 +30,12 @@
       color: var(--foreground-color);
       font-family: Poppins;
       font-weight: 600;
+    }
+  }
+  .meta-container {
+    border-top: 1px solid var(--rule-color);
+    font-size: var(--font-size-small);
+    .author-avatar-image {
     }
   }
 }
