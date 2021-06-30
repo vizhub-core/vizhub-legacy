@@ -1,3 +1,3 @@
 git pull
 npm install
-pm2 restart
+pm2 start ecosystem.config.js

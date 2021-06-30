@@ -7,7 +7,8 @@ const Thumbnail = classed('thumbnail');
 const LastUpdatedDate = classed('last-updated-date');
 const Title = classed('title');
 const MetaContainer = classed('meta-container');
-const AuthorAvatarImage = classed('author-avatar-image');
+const OwnerAvatarImage = classed('owner-avatar-image', 'img');
+const OwnerName = classed('owner-name');
 
 const urlBase = 'https://vizhub.com';
 const thumbnailURL = (id) =>
@@ -21,11 +22,10 @@ export const VizPreview = ({ vizInfo, ownerUser }) => {
   const { id, title } = vizInfo;
 
   // Should never happen, but being defensive so it doesn't crash.
-  const userName = ownerUser ? ownerUser.userName : 'undefined';
+  const userName = ownerUser ? ownerUser.userName : 'viz';
 
   const href = `/${userName}/${id}`;
 
-  //  return <a href={href}>{title}</a>;
   return (
     <Wrapper href={href}>
       <Thumbnail style={{ backgroundImage: thumbnailURL(id) }}></Thumbnail>
@@ -37,8 +37,8 @@ export const VizPreview = ({ vizInfo, ownerUser }) => {
         {ownerUser ? (
           <>
             {' '}
-            <AuthorAvatarImage src={avatarUrl(ownerUser)} />{' '}
-            {ownerUser.userName}
+            <OwnerAvatarImage src={avatarUrl(ownerUser)} />{' '}
+            <OwnerName>{ownerUser.fullName || ownerUser.userName}</OwnerName>
           </>
         ) : null}
       </MetaContainer>
