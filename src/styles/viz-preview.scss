@@ -32,6 +32,10 @@
     border-top: 1px solid var(--rule-color);
     border-bottom: 1px solid var(--rule-color);
 
+    /* Handle single-line titles. */
+    flex: 1;
+    justify-content: flex-start;
+
     .last-updated-date {
       color: var(--foreground-color-light);
       font-size: var(--font-size-tiny);
