@@ -44,8 +44,13 @@ a {
   display: inline-block;
 }
 
+/*
 a:visited {
   color: var(--link-color-visited);
+}
+*/
+a:hover {
+  transform: translateY(-1px);
 }
 
 a:active {
@@ -166,6 +171,8 @@ a:active {
   display: flex;
   flex-direction: column;
   padding: 24px 24px 30px 24px;
+  border-top: 1px solid var(--rule-color);
+  border-bottom: 1px solid var(--rule-color);
 }
 .viz-preview .content-container .last-updated-date {
   color: var(--foreground-color-light);
@@ -186,7 +193,6 @@ a:active {
   display: flex;
   align-items: center;
   padding: 16px 14px;
-  border-top: 1px solid var(--rule-color);
   font-size: var(--font-size-small);
 }
 .viz-preview .meta-container .owner-avatar-image {

@@ -6,8 +6,8 @@ export const vizPagePresenter = ({ vizInfo }) => {
   const { title, description } = vizInfo;
 
   // TODO sanitize this
-  // TODO allow iframes
-  // TODO handle null for README
+  // TODO allow iframes after sanitization
+  // TODO handle null for README (defensive just to prevent crashes)
   //const sanitizedDescriptionHTML = sanitize(marked(description));
   const sanitizedDescriptionHTML = marked(description);
 

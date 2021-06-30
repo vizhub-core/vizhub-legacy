@@ -2,7 +2,13 @@ import assert from 'assert';
 import * as database from './database';
 import { generateId } from './generateId';
 
-// TODO Use an in-memory database during tests, for speed.
+// TODO Make sure the documents are deleted after the tests finish.
+//  - How?
+//    - Idea: add a flag to the database entries that indicate they are transient.
+//      Execute a single query that deletes all documents with this flag.
+//      This would scale as we add more tests, with no added complexity in tests.
+
+// TODO (lower priority) Use an in-memory database during tests, for speed.
 // An attempt was made, but there were frustrating differences in the
 // APIs between the real MongoDB driver and Mingo.
 //database.useMingo();

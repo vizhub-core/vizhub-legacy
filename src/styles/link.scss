@@ -4,8 +4,14 @@ a {
   display: inline-block;
 }
 
+/*
 a:visited {
   color: var(--link-color-visited);
+}
+*/
+
+a:hover {
+  transform: translateY(-1px);
 }
 
 a:active {
