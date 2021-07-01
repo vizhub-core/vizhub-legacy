@@ -14,9 +14,10 @@ const urlBase = 'https://vizhub.com';
 const thumbnailURL = (id) =>
   `url(${urlBase}/api/visualization/thumbnail/${id}.png)`;
 
-// Use 's=180' because that's what GitHub uses all over the place
-// for small avatars, so they are more likely to be cached.
-const avatarUrl = (user) => user.avatarUrl + '&s=180';
+// Seen on GitHub: 32px, 24px. Always uses double that in "s=" for hidpi.
+// If you change this, also change .owner-avatar-image in viz-preview.scss.
+const avatarSize = 32;
+const avatarUrl = (user) => `${user.avatarUrl}&s=${avatarSize * 2}`;
 
 // TODO refactor this into a common definition,
 // as soon as we need this logic in multiple places.

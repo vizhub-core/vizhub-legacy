@@ -34,6 +34,8 @@ app.get('/:userName/:vizId', async (req, res) => {
   res.send(renderPage(vizPagePresenter(vizPageData)));
 });
 
+// TODO serve thumbnails with configurable size and cache policy 5 min, like GitHub avatars
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
