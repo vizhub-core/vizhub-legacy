@@ -1,7 +1,7 @@
 :root {
   --background-color: #f6eee3;
   --foreground-color: #161514;
-  --foreground-color-light: #828282;
+  --foreground-color-light: #757575;
   --rule-color: #e4e4e4;
   --font-size-tiny: 12px;
   --font-size-small: 14px;
@@ -162,10 +162,14 @@ a:active {
 .viz-preview .thumbnail {
   width: 300px;
   height: 170px;
-  background-position: left top;
-  background-size: cover;
   border-top-right-radius: inherit;
   border-top-left-radius: inherit;
+  background-position: left top;
+  transition: background-position 3s;
+  background-size: cover;
+}
+.viz-preview .thumbnail:hover {
+  background-position: right bottom;
 }
 .viz-preview .content-container {
   display: flex;
@@ -173,6 +177,9 @@ a:active {
   padding: 24px 24px 30px 24px;
   border-top: 1px solid var(--rule-color);
   border-bottom: 1px solid var(--rule-color);
+  /* Handle single-line titles. */
+  flex: 1;
+  justify-content: flex-start;
 }
 .viz-preview .content-container .last-updated-date {
   color: var(--foreground-color-light);
@@ -196,9 +203,9 @@ a:active {
   font-size: var(--font-size-small);
 }
 .viz-preview .meta-container .owner-avatar-image {
-  width: 28px;
-  height: 28px;
-  border-radius: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
 }
 .viz-preview .meta-container .owner-name {
   margin-left: 12px;

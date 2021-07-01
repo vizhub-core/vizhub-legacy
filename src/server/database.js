@@ -67,8 +67,15 @@ export const closeConnection = () => {
 const getCollection = async (collectionName) =>
   (await getMongoDatabase()).collection(collectionName);
 
-const createMongoDoc = (collectionName) => async (data) =>
-  await (await getCollection(collectionName)).insertOne(data);
+const createMongoDoc = (collectionName) => async (data, isTestingDoc) =>
+  await (
+    await getCollection(collectionName)
+  ).insertOne({ ...data, isTestingDoc });
+
+const deleteTestingDocs = (collectionName) => async () =>
+  await (
+    await getCollection(collectionName)
+  ).deleteMany({ isTestingDoc: true });
 
 const getMongoDoc = (collectionName) => async (id) =>
   await (await getCollection(collectionName)).findOne({ id });
@@ -94,15 +101,18 @@ const getMongoDocsByIds = (collectionName) => async (ids) =>
     .toArray();
 
 const createVizInfoMongoDoc = createMongoDoc(DOCUMENT_INFO);
+
 const getVizInfoMongoDoc = getMongoDoc(DOCUMENT_INFO);
 const getVizInfoMongoDocs = getMongoDocs(DOCUMENT_INFO);
 const getUserMongoDocsByIds = getMongoDocsByIds(USER);
 
+export const deleteVizInfoTestingDocs = deleteTestingDocs(DOCUMENT_INFO);
+
 // TODO add this when we need it.
 //const getVizContentMongoDocById = getById(DOCUMENT_CONTENT);
 
-export const createVizInfo = async (vizInfoData) =>
-  await createVizInfoMongoDoc(vizInfoData);
+export const createVizInfo = async (vizInfoData, isTestingDoc = false) =>
+  await createVizInfoMongoDoc(vizInfoData, isTestingDoc);
 
 export const getVizInfo = async (id) => VizInfo(await getVizInfoMongoDoc(id));
 

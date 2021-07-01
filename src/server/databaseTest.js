@@ -28,18 +28,20 @@ export const databaseTest = () => {
       assert.equal(vizInfo, null);
     });
 
-    it('should implement createViz.', async () => {
+    it('should implement createVizInfo.', async () => {
+      // TODO make this a valid viz.
       const vizInfoData = {
         title: 'Test Viz',
         id: generateId(),
       };
-      const vizId = await database.createVizInfo(vizInfoData);
+      const vizId = await database.createVizInfo(vizInfoData, true);
       const vizInfo = await database.getVizInfo(vizInfoData.id);
       assert.equal(vizInfo.title, vizInfoData.title);
     });
 
-    it('Should close the connection.', () => {
-      database.closeConnection();
+    it('Should delete all testing documents and close the connection.', async () => {
+      await database.deleteVizInfoTestingDocs();
+      await database.closeConnection();
     });
   });
 };
