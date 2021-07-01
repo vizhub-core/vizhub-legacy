@@ -51,20 +51,26 @@ export const VizPreview = ({ vizInfo, ownerUser }) => {
         ownerName: null,
       };
 
-  // TODO big change:
+  // TODO big change (need to think deeply about it more):
   // const href = `/${id}`;
   // Why?
   //  - Simpler URLs for vizzes
   //  - Easy to redirect from old format
   //  - Paves the way for custom urls (slugs)
   //    - This could be a paid feature
+  //  - Establishes a global namespace, like NPM
+  //  - Paves the way to `import { X } from 'vizhub/scatter-plot'`
+
   const href = `/${userName}/${id}`;
   const backgroundImage = thumbnailURL(id);
   const lastUpdatedDateFormatted = formatTimestamp(lastUpdatedTimestamp);
 
+  const thumbnailAltText = title;
+  const ownerAvatarAltText = ownerName;
+
   return (
     <Wrapper href={href}>
-      <Thumbnail style={{ backgroundImage }}></Thumbnail>
+      <Thumbnail style={{ backgroundImage }} alt={thumbnailAltText}></Thumbnail>
       <ContentContainer>
         <LastUpdatedDate>{lastUpdatedDateFormatted}</LastUpdatedDate>
         <Title>{title}</Title>
@@ -72,7 +78,7 @@ export const VizPreview = ({ vizInfo, ownerUser }) => {
       <MetaContainer>
         {ownerUser ? (
           <>
-            <OwnerAvatarImage src={avatarImageSrc} />
+            <OwnerAvatarImage src={avatarImageSrc} alt={ownerAvatarAltText} />
             <OwnerName>{ownerName}</OwnerName>
           </>
         ) : null}
