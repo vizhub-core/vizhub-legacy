@@ -85,7 +85,7 @@
   pre {
     line-height: 1.45;
     overflow: auto;
-    padding: 16px;
+    padding: var(--padding-little);
   }
   pre code {
     border-radius: 0;

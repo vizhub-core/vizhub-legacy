@@ -32,7 +32,7 @@
   .content-container {
     display: flex;
     flex-direction: column;
-    padding: 24px 24px 30px 24px;
+    padding: var(--padding-lots);
     border-top: 1px solid var(--rule-color);
     border-bottom: 1px solid var(--rule-color);
 
@@ -61,7 +61,7 @@
   .meta-container {
     display: flex;
     align-items: center;
-    padding: 16px 14px;
+    padding: var(--padding-little);
     font-size: var(--font-size-small);
 
     .owner-avatar-image {
