@@ -7,6 +7,7 @@ const Head = classed('head');
 const Sidebar = classed('sidebar');
 const ContentWrapper = classed('content-wrapper');
 const Content = classed('content');
+const MarkdownBody = classed('markdown-body');
 
 export const VizPage = ({ title, sanitizedDescriptionHTML }) => {
   return (
@@ -18,9 +19,9 @@ export const VizPage = ({ title, sanitizedDescriptionHTML }) => {
         <ContentWrapper>
           <Content>
             <h1>{title}</h1>
-            <div
+            <MarkdownBody
               dangerouslySetInnerHTML={{ __html: sanitizedDescriptionHTML }}
-            ></div>
+            ></MarkdownBody>
           </Content>
         </ContentWrapper>
       </Wrapper>

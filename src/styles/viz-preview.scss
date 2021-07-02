@@ -47,7 +47,7 @@
     }
 
     .title {
-      font-family: Poppins;
+      font-family: var(--font-family-heading);
       font-weight: 600;
 
       /* Truncate text at 2 lines. */

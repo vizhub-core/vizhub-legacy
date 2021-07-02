@@ -1,7 +1,7 @@
 body {
   background-color: var(--background-color);
   color: var(--foreground-color);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-default);
   font-size: var(--font-size-default);
   margin: 0;
 }
@@ -10,9 +10,4 @@ body {
   font-family: 'Ubuntu Mono Arrowized';
   src: url('https://cdn.jsdelivr.net/npm/ubuntu-mono-ligaturized@3.0.0/arrowized/UbuntuMonoLigaturized-Regular.woff2')
     format('woff2');
-}
-
-.monospace {
-  font-family: 'Ubuntu Mono Arrowized';
-  font-size: 16px;
 }

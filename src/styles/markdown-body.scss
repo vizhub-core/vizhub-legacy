@@ -1,0 +1,32 @@
+.markdown-body {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    margin-top: 24px;
+  }
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  h1,
+  h2 {
+    border-bottom: 1px solid var(--rule-color);
+    padding-bottom: 0.3em;
+  }
+  img {
+    border-style: none;
+  }
+  code,
+  kbd,
+  pre {
+    font-family: 'Ubuntu Mono Arrowized', monospace;
+    font-size: 1em;
+  }
+}
