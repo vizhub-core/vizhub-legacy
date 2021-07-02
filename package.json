@@ -7,7 +7,7 @@
     "buildJS": "rollup -c",
     "buildCSS": "node buildCSS.js",
     "build": "npm run buildJS && npm run buildCSS",
-    "test": "npm run buildJS && NODE_OPTIONS=--enable-source-maps mocha build",
+    "test": "npm run buildJS && NODE_OPTIONS=--enable-source-maps mocha build/test.js",
     "update": "ncu -u",
     "start": "npm run build && NODE_OPTIONS=--enable-source-maps node build/server.js",
     "buildProduction": "NODE_ENV=production npm run buildJS && npm run buildCSS",
