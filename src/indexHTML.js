@@ -48,15 +48,15 @@ export const indexHTML = ({
 <html lang="${locale}">
   <head>
     <meta charset="utf-8">
+    <title>${title}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600&display=swap" rel="stylesheet">
-
-    <title>${title}</title>
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.json" crossorigin="use-credentials"/>
+    <link href="/build/styles.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
-    <link href="/styles.css" rel="stylesheet">
     <meta property="og:url" content="${meta.url}"/>
     <meta property="og:title" content="${meta.title}"/>
     <meta property="og:description" content="${meta.description}"/>
@@ -74,6 +74,6 @@ export const indexHTML = ({
     <script>
       window.pageData = "${encodePageData({ page, pageProps })}";
     </script>
-    <script src="/client.js"></script>
+    <script src="/build/client.js"></script>
   </body>
 </html>`;

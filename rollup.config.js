@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === 'production') {
 const serverBuild = {
   input: 'src/server/index.js',
   output: {
-    file: 'server/build/bundle.js',
+    file: 'build/server.js',
     format: 'cjs',
     interop: 'default',
     sourcemap,
@@ -62,9 +62,9 @@ const serverBuild = {
 // A build is required since Mocha was not
 // playing well with ES6 modules.
 const testBuild = {
-  input: 'src/test/index.js',
+  input: 'src/test.js',
   output: {
-    file: 'test/index.js',
+    file: 'build/test.js',
     format: 'cjs',
     interop: 'default',
     sourcemap,
@@ -78,7 +78,7 @@ const testBuild = {
 const clientBuild = {
   input: 'src/client/index.js',
   output: {
-    file: 'public/client.js',
+    file: 'public/build/client.js',
     format: 'iife',
     interop: 'default',
     globals,
@@ -93,7 +93,7 @@ const clientBuild = {
 const client2Build = {
   input: 'src/client/client2.js',
   output: {
-    dir: 'public',
+    dir: 'public/build',
     format: 'amd',
     interop: 'default',
     sourcemap,
