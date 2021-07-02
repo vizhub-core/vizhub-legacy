@@ -1,3 +1,4 @@
+/* Inspired by GitHub README styling. */
 .markdown-body {
   line-height: 1.5;
 
@@ -7,6 +8,8 @@
   h4,
   h5,
   h6 {
+    font-family: var(--font-family-heading);
+    font-weight: 600;
     line-height: 1.25;
     margin-bottom: 16px;
     margin-top: 24px;
@@ -15,6 +18,27 @@
   h1 {
     font-size: 2em;
     margin: 0.67em 0;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-size: 0.85em;
+    color: var(--foreground-color-light);
   }
 
   h1,
@@ -44,5 +68,14 @@
   pre {
     font-family: var(--font-family-monospace);
     font-size: 1em;
+  }
+
+  pre {
+    background-color: white;
+    border-radius: var(--border-radius);
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+    box-shadow: var(--box-shadow);
   }
 }
