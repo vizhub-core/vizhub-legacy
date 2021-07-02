@@ -8,4 +8,5 @@ export const homePagePresenter = ({ vizInfos, ownerUsers }) => ({
       return accumulator;
     }, {}),
   },
+  // TODO add meta tag info
 });

@@ -1,6 +1,7 @@
 *.swp
 .*
-/server/build
+/public/favicon.ico
+/public/build
 /build
 deploy.sh
 renderPageTestExpected.html

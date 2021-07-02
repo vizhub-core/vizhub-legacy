@@ -13,5 +13,6 @@ export const vizPagePresenter = ({ vizInfo }) => {
 
   const pageProps = { title, sanitizedDescriptionHTML };
 
+  // TODO add meta tag info
   return { title, page, pageProps };
 };
