@@ -20,6 +20,7 @@ const d3Require = '1.2.4';
 // TODO get oembed working
 // <link rel="alternate" type="application/json+oembed" href="https://vizhub.com/oembed?url=https://vizhub.com/" title="VizHub - data visualization platform"/>
 
+// TODO remove this, implement it for each page
 const defaultMeta = {
   url: 'https://vizhub.com',
   title: 'VizHub - data visualization platform',
@@ -54,7 +55,7 @@ export const indexHTML = ({
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="manifest" href="manifest.json" crossorigin="use-credentials"/>
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials"/>
     <link href="/build/styles.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
     <meta property="og:url" content="${meta.url}"/>
