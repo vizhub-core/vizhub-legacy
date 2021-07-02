@@ -78,9 +78,18 @@
     box-shadow: var(--box-shadow);
   }
 
+  code {
+    padding: 0.1em 0.3em 0.2em 0.3em;
+  }
+
   pre {
     line-height: 1.45;
     overflow: auto;
     padding: 16px;
+  }
+  pre code {
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
   }
 }
