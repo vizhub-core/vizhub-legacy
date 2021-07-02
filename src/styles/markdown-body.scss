@@ -70,18 +70,17 @@
   }
 
   code,
-  kbd,
   pre {
     font-family: var(--font-family-monospace);
     font-size: 1em;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
   }
 
   pre {
-    background-color: white;
-    border-radius: var(--border-radius);
     line-height: 1.45;
     overflow: auto;
     padding: 16px;
-    box-shadow: var(--box-shadow);
   }
 }
