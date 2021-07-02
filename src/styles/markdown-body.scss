@@ -47,6 +47,12 @@
     padding-bottom: 0.3em;
   }
 
+  hr {
+    border: none;
+    height: 2px;
+    background-color: var(--rule-color);
+  }
+
   blockquote,
   details,
   dl,
