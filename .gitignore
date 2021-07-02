@@ -1,6 +1,5 @@
 node_modules
 *.swp
-/server/build
-/public
-/test
+/build
+/public/build
 package-lock.json

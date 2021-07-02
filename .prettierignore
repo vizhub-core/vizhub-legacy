@@ -1,7 +1,6 @@
 *.swp
 .*
 /server/build
-/public
-/test
+/build
 deploy.sh
 renderPageTestExpected.html
