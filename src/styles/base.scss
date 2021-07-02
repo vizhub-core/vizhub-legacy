@@ -6,6 +6,10 @@ body {
   margin: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'Ubuntu Mono Arrowized';
   src: url('https://cdn.jsdelivr.net/npm/ubuntu-mono-ligaturized@3.0.0/arrowized/UbuntuMonoLigaturized-Regular.woff2')

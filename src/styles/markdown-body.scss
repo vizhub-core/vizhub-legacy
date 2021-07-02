@@ -1,4 +1,6 @@
 .markdown-body {
+  line-height: 1.5;
+
   h1,
   h2,
   h3,
@@ -11,22 +13,38 @@
     margin-bottom: 16px;
     margin-top: 24px;
   }
+
   h1 {
     font-size: 2em;
     margin: 0.67em 0;
   }
+
   h1,
   h2 {
     border-bottom: 1px solid var(--rule-color);
     padding-bottom: 0.3em;
   }
+
+  blockquote,
+  details,
+  dl,
+  ol,
+  p,
+  pre,
+  table,
+  ul {
+    margin-bottom: 16px;
+    margin-top: 0;
+  }
+
   img {
     border-style: none;
   }
+
   code,
   kbd,
   pre {
-    font-family: 'Ubuntu Mono Arrowized', monospace;
+    font-family: var(--font-family-monospace);
     font-size: 1em;
   }
 }
