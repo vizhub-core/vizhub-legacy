@@ -1,9 +1,9 @@
 import assert from 'assert';
 import fs from 'fs';
-import { renderPage } from '../server/renderPage';
-import { homePagePresenter } from '../presenters/homePagePresenter';
+import { renderPage } from './index';
+import { homePagePresenter } from '../../presenters/homePagePresenter';
 
-const fileName = 'src/server/renderPageTestExpected.html';
+const fileName = 'src/server/renderPage/renderPageTestExpected.html';
 const updateExpectedHTML = (renderedHTML) => {
   fs.writeFileSync(fileName, renderedHTML);
   console.log('Updated expected HTML for renderPageTest:');

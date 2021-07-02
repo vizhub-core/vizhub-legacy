@@ -1,5 +1,5 @@
-import pkg from '../package.json';
-import { encodePageData } from './pageData';
+import pkg from '../../../package.json';
+import { encodePageData } from '../../pageData';
 
 // Stopped using UNPKG due to this issue: https://github.com/mjackson/unpkg/issues/302
 //const cdn = 'https://unpkg.com';
