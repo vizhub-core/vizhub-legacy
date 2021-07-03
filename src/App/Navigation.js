@@ -1,8 +1,17 @@
 import React from 'react';
 import { LogoSVG } from '../svg/LogoSVG';
+import { classed } from './classed';
 
-export const Navigation = () => (
+const LogoLink = classed('logo-link', 'a');
+
+export const Navigation = ({ linkLogoToHome = true }) => (
   <div className="navigation" data-theme="dark">
-    <LogoSVG />
+    {linkLogoToHome ? (
+      <LogoLink href="/">
+        <LogoSVG />
+      </LogoLink>
+    ) : (
+      <LogoSVG />
+    )}
   </div>
 );

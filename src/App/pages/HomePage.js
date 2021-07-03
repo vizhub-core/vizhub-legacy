@@ -8,7 +8,7 @@ const VizPreviewCollection = classed('viz-preview-collection');
 
 export const HomePage = ({ vizInfos, ownerUsersById }) => (
   <>
-    <Navigation />
+    <Navigation linkLogoToHome={false} />
     <Wrapper>
       <VizPreviewCollection>
         {vizInfos.map((vizInfo) => (
