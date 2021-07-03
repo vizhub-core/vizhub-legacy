@@ -9,13 +9,15 @@ const ContentWrapper = classed('content-wrapper');
 const Content = classed('content');
 const MarkdownBody = classed('markdown-body');
 
+const showSidebar = false;
+
 export const VizPage = ({ title, sanitizedDescriptionHTML }) => {
   return (
     <>
       <Navigation />
       <Wrapper>
         <Head />
-        <Sidebar />
+        {showSidebar ? <Sidebar /> : null}
         <ContentWrapper>
           <Content>
             <h1>{title}</h1>
