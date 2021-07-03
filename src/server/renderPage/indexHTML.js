@@ -50,6 +50,7 @@ export const indexHTML = ({
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
+    <meta name="theme-color" content="#f6eee3">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
