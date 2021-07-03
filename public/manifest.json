@@ -2,7 +2,7 @@
   "short_name": "VizHub",
   "name": "VizHub",
   "short_name": "VizHub",
-  "start_url": "/",
+  "start_url": "./",
   "icons": [
     {
       "src": "favicon.ico",
