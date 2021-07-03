@@ -8,7 +8,7 @@ import { RequireContext } from './RequireContext';
 import { decodePageData } from '../pageData';
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/build/serviceWorker.js');
+  navigator.serviceWorker.register('/build/serviceWorker.js', { scope: '/' });
 }
 
 const { page, pageProps } = decodePageData(window.pageData);
