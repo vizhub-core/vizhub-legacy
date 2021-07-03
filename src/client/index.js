@@ -8,7 +8,15 @@ import { RequireContext } from './RequireContext';
 import { decodePageData } from '../pageData';
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceWorkerBuild.js', { scope: './' });
+  navigator.serviceWorker
+    .register('/serviceWorkerBuild.js')
+    .then((registration) => {
+      console.log('Registration succeeded.');
+      registration.unregister().then((success) => {
+        console.log('Unregistration succeeded: ' + success);
+        // if boolean = true, unregister is successful
+      });
+    });
 }
 
 const { page, pageProps } = decodePageData(window.pageData);
