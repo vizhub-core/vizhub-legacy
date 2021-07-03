@@ -9,7 +9,7 @@ import { decodePageData } from '../pageData';
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/serviceWorkerBuild.js')
+    .register('/serviceWorkerBuild.js', { scope: './' })
     .then((registration) => {
       console.log('Registration succeeded.');
       registration.unregister().then((success) => {
