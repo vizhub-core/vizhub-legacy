@@ -25,7 +25,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     (async () => {
       console.log(
-        `[Service Worker] Opportunity to fetch resource: ${e.request.url}`
+        `[Service Worker] Opportunity to fetch resource: ${request.url}`
       );
       return await fetch(request);
 
