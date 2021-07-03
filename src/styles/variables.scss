@@ -26,6 +26,9 @@
   /* Intent is to use the same box shadow and border radius everywhere. */
   --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
   --border-radius: 4px;
+
+  /* Homage to bl.ocks.org. */
+  --content-max-width: 960px;
 }
 
 [data-theme='dark'] {

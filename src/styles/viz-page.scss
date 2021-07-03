@@ -13,7 +13,7 @@
   }
 
   .content {
-    max-width: 960px;
+    max-width: var(--content-max-width);
     flex: 1;
     padding: var(--padding-little);
 
@@ -29,4 +29,8 @@
   }
   /* TODO make the sidebar full width on mobile. */
   /* TODO hide content entirely when sidebar is open on mobile. */
+
+  img {
+    max-width: var(--content-max-width);
+  }
 }

@@ -9,6 +9,7 @@ const ContentWrapper = classed('content-wrapper');
 const Content = classed('content');
 const MarkdownBody = classed('markdown-body');
 
+const showHead = false;
 const showSidebar = false;
 
 export const VizPage = ({ title, sanitizedDescriptionHTML, previewUrl }) => {
@@ -16,7 +17,7 @@ export const VizPage = ({ title, sanitizedDescriptionHTML, previewUrl }) => {
     <>
       <Navigation />
       <Wrapper>
-        <Head />
+        {showHead ? <Head /> : null}
         {/* TODO load the actual viz */}
         <img src={previewUrl} />
         {showSidebar ? <Sidebar /> : null}
