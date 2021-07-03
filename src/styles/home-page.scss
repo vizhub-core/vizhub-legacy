@@ -29,5 +29,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     display: flex;
+    gap: 24px;
+
+    /* Larger than tablet */
+    @media (min-width: 750px) {
+      gap: 32px;
+    }
   }
 }
