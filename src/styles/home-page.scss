@@ -1,14 +1,8 @@
 .home-page {
   display: flex;
 
-  /* TODO responsive breakpoints adjustments. */
-  padding: 24px 4px;
-
   /* Inspired by http://getskeleton.com/#queries */
-  /* Larger than mobile */
-  @media (min-width: 400px) {
-    padding: 24px 8px;
-  }
+  padding: 4px 4px;
 
   /* Larger than phablet */
   @media (min-width: 550px) {
@@ -35,8 +29,5 @@
     flex-wrap: wrap;
     justify-content: space-between;
     display: flex;
-
-    /* TODO responsive breakpoints adjustments. */
-    gap: 24px;
   }
 }

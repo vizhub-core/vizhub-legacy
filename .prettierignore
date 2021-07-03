@@ -1,6 +1,7 @@
 *.swp
 *.png
 *.ico
+*.map
 .*
 /build
 /public/build
