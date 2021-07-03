@@ -2,11 +2,11 @@
   display: flex;
 
   /* Inspired by http://getskeleton.com/#queries */
-  padding: 4px 4px;
+  padding: 32px 4px;
 
   /* Larger than phablet */
   @media (min-width: 550px) {
-    padding: 24px 16px;
+    padding: 32px 16px;
   }
 
   /* Larger than tablet */
@@ -29,11 +29,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     display: flex;
-    gap: 24px;
-
-    /* Larger than tablet */
-    @media (min-width: 750px) {
-      gap: 32px;
-    }
+    gap: 32px;
   }
 }
