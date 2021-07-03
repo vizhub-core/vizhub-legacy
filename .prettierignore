@@ -1,6 +1,7 @@
 *.swp
+*.png
+*.ico
 .*
-/public/favicon.ico
 /public/build
 /build
 deploy.sh
