@@ -12,7 +12,7 @@
     {
       "src": "logoBlackSquare.png",
       "sizes": "512x512",
-      "type": "image/x-icon"
+      "type": "image/png"
     }
   ],
   "display": "fullscreen",
