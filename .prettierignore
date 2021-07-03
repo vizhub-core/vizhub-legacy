@@ -2,7 +2,8 @@
 *.png
 *.ico
 .*
-/public/build
 /build
+/public/build
+/public/serviceWorkerBuild.js
 deploy.sh
 renderPageTestExpected.html

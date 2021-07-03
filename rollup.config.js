@@ -108,7 +108,7 @@ const client2Build = {
 const serviceWorkerBuild = {
   input: 'src/client/serviceWorker.js',
   output: {
-    file: 'public/build/serviceWorker.js',
+    file: 'public/serviceWorkerBuild.js',
     format: 'iife',
     interop: 'default',
     sourcemap,
