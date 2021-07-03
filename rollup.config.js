@@ -74,7 +74,7 @@ const testBuild = {
 };
 
 // The primary client bundle.
-// Runs in Node for SSR, also runs in the browser.
+// Runs in the browser only, not for SSR.
 const clientBuild = {
   input: 'src/client/index.js',
   output: {
@@ -103,4 +103,25 @@ const client2Build = {
   plugins,
 };
 
-export default [serverBuild, testBuild, clientBuild, client2Build];
+// The service worker.
+// Runs in the browser only.
+const serviceWorkerBuild = {
+  input: 'src/client/serviceWorker.js',
+  output: {
+    file: 'public/build/serviceWorker.js',
+    format: 'iife',
+    interop: 'default',
+    sourcemap,
+    // Globals are handled by d3-require on lazy load.
+  },
+  external,
+  plugins,
+};
+
+export default [
+  serverBuild,
+  testBuild,
+  clientBuild,
+  client2Build,
+  serviceWorkerBuild,
+];

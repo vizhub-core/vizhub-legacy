@@ -7,6 +7,10 @@ import { App } from '../App';
 import { RequireContext } from './RequireContext';
 import { decodePageData } from '../pageData';
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/build/serviceWorker.js');
+}
+
 const { page, pageProps } = decodePageData(window.pageData);
 
 ReactDOM.hydrate(
