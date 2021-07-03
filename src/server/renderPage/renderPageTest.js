@@ -3,6 +3,9 @@ import fs from 'fs';
 import { renderPage } from './index';
 import { homePagePresenter } from '../../presenters/homePagePresenter';
 
+let updateExpected = false;
+//updateExpected = true;
+
 const fileName = 'src/server/renderPage/renderPageTestExpected.html';
 const updateExpectedHTML = (renderedHTML) => {
   fs.writeFileSync(fileName, renderedHTML);
@@ -23,7 +26,9 @@ export const renderPageTest = () => {
 
       // Uncomment this to update expected value,
       // e.g. if index.html was changed.
-      // updateExpectedHTML(renderedHTML);
+      if (updateExpected) {
+        updateExpectedHTML(renderedHTML);
+      }
 
       assert.equal(renderedHTML, getExpectedHTML());
     });

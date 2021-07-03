@@ -11,12 +11,14 @@ const MarkdownBody = classed('markdown-body');
 
 const showSidebar = false;
 
-export const VizPage = ({ title, sanitizedDescriptionHTML }) => {
+export const VizPage = ({ title, sanitizedDescriptionHTML, previewUrl }) => {
   return (
     <>
       <Navigation />
       <Wrapper>
         <Head />
+        {/* TODO load the actual viz */}
+        <img src={previewUrl} />
         {showSidebar ? <Sidebar /> : null}
         <ContentWrapper>
           <Content>

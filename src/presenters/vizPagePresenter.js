@@ -3,7 +3,7 @@ import marked from 'marked';
 
 const page = 'VizPage';
 export const vizPagePresenter = ({ vizInfo }) => {
-  const { title, description } = vizInfo;
+  const { id, title, description } = vizInfo;
 
   // TODO sanitize this
   // TODO allow iframes after sanitization
@@ -11,8 +11,9 @@ export const vizPagePresenter = ({ vizInfo }) => {
   //const sanitizedDescriptionHTML = sanitize(marked(description));
   const sanitizedDescriptionHTML = marked(description);
 
-  const pageProps = { title, sanitizedDescriptionHTML };
+  const previewUrl = `https://vizhub.com/api/visualization/preview/${id}.png`;
 
+  const pageProps = { title, sanitizedDescriptionHTML, previewUrl };
   // TODO add meta tag info
   return { title, page, pageProps };
 };
