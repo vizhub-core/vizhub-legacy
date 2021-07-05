@@ -4,6 +4,7 @@
   "description": "Next generation of VizHub, 2021.",
   "scripts": {
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "auditLOC": "find src -type f -exec wc -l {} + | sort -rn",
     "buildJS": "rollup -c",
     "buildCSS": "node buildCSS.js",
     "build": "npm run buildJS && npm run buildCSS",

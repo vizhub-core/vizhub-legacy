@@ -1,5 +1,5 @@
 import assert from 'assert';
-import * as database from './database';
+import * as database from './index';
 import { generateId } from './generateId';
 
 // TODO Make sure the documents are deleted after the tests finish.
