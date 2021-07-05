@@ -17,8 +17,9 @@
 
   --navigation-height: 40px;
 
-  --padding-lots: 24px;
+  --padding-miniscule: 7px;
   --padding-little: 14px;
+  --padding-lots: 24px;
 
   /* Used in Viz Page only */
   --head-height: 30px;
@@ -32,7 +33,8 @@
 
   --z-index-above: 10;
 
-  --code-background-darkest: #202e46;
+  --code-background: #202e46;
+  --code-foreground: #e2e2e2;
 }
 
 [data-theme='dark'] {

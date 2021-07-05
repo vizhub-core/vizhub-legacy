@@ -72,19 +72,11 @@
 
   code,
   pre {
-    background-color: var(--code-background-darkest);
-    color: white;
+    background-color: var(--code-background);
+    color: var(--code-foreground);
 
     font-family: var(--font-family-monospace);
     font-size: 1em;
-  }
-
-  code,
-  pre,
-  img {
-    background-color: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
   }
   /* TODO fix vertical alignment of inline code snippets
     display: inline-block;
@@ -104,5 +96,31 @@
     border-radius: 0;
     padding: 0;
     box-shadow: none;
+  }
+
+  table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid var(--rule-color);
+    padding: var(--padding-miniscule) var(--padding-little);
+  }
+
+  img,
+  table {
+    background-color: white;
+  }
+
+  code,
+  pre,
+  img,
+  table {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
   }
 }
