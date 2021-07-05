@@ -9,6 +9,7 @@
   height: var(--navigation-height);
   background-color: var(--background-color);
   color: var(--foreground-color);
+  z-index: var(--z-index-above);
 
   .logo-link {
     line-height: 0;
