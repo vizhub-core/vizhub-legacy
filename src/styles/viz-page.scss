@@ -13,14 +13,10 @@
   }
 
   .content {
-    max-width: var(--content-max-width);
+    max-width: 100%;
+    /*max-width: var(--content-max-width);*/
     flex: 1;
-    padding: var(--padding-little);
-
-    /* Larger than phablet */
-    @media (min-width: 550px) {
-      padding: var(--padding-lots);
-    }
+    padding: var(--padding-lots);
   }
 
   .sidebar {
