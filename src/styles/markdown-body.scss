@@ -67,12 +67,21 @@
 
   img {
     border-style: none;
+    width: 100%;
   }
 
   code,
   pre {
+    background-color: var(--code-background-darkest);
+    color: white;
+
     font-family: var(--font-family-monospace);
     font-size: 1em;
+  }
+
+  code,
+  pre,
+  img {
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -80,8 +89,7 @@
   /* TODO fix vertical alignment of inline code snippets
     display: inline-block;
     line-height: 1;
-    transform: translateY(-1px);
-*/
+    transform: translateY(-1px); */
 
   code {
     padding: 0.1em 0.3em 0.2em 0.3em;
