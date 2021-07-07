@@ -106,7 +106,8 @@
     border-collapse: collapse;
   }
 
-  th, td {
+  th,
+  td {
     border: 1px solid var(--rule-color);
     padding: var(--padding-miniscule) var(--padding-little);
   }

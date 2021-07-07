@@ -24,9 +24,10 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(
     (async () => {
-      console.log(
-        `[Service Worker] Opportunity to fetch resource: ${request.url}`
-      );
+      // TODO cache things that need caching
+      //console.log(
+      //  `[Service Worker] Opportunity to fetch resource: ${request.url}`
+      //);
       return await fetch(request);
 
       //  const cacheHit = await caches.match(request);

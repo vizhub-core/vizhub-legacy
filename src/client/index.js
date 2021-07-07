@@ -4,8 +4,14 @@ import ReactDOM from 'react-dom';
 import { require } from 'd3-require';
 import { aliases } from '../globals';
 import { App } from '../App';
-import { RequireContext } from './RequireContext';
+import { setIsClient } from '../App/isClient';
 import { decodePageData } from '../pageData';
+import { RequireContext } from './RequireContext';
+
+// Before rendering anything, set the isClient flag
+// so all downstream components know we are running
+// in the client (browser), not in the server (SSR).
+setIsClient();
 
 // Required to enable PWA, install to home screen on mobile.
 if ('serviceWorker' in navigator) {
