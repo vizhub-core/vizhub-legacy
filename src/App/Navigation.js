@@ -1,54 +1,46 @@
-import React, { useEffect, useState, useMemo, useRef, useReducer } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { LogoSVG } from '../svg/LogoSVG';
 import { classed } from './classed';
 import { isClient } from './isClient';
-
 const { max, min } = Math;
 
 const LogoLink = classed('logo-link', 'a');
 
-const heightFake = 30;
-const reducer = (top, { delta, height }) => {
-  const newTop = min(max(top + delta, -heightFake), 0);
-  console.log(newTop);
-  return newTop;
-};
-
 export const Navigation = ({ linkLogoToHome = true }) => {
   const ref = useRef();
-  const [height, setHeight] = useState(null);
-  const [top, dispatch] = useReducer(reducer, 0);
 
-  // Get height defined in CSS.
+  // Implement sticky header with show/hide on scroll.
   useEffect(() => {
     if (isClient) {
-      setHeight(parseFloat(window.getComputedStyle(ref.current).height));
-    }
-  }, []);
+      // Get height defined in CSS.
+      // This approach supports CSS as the single source of truth,
+      // rather than duplicating the hardcoded value.
+      const height = parseFloat(window.getComputedStyle(ref.current).height);
 
-  // Implement show/hide on page scroll.
-  useEffect(() => {
-    if (isClient && height !== null) {
       let previousScroll = window.pageYOffset;
-      const callback = () => {
+      let top = 0;
+      const handleScroll = () => {
+        //Compute scroll delta.
         const currentScroll = window.pageYOffset;
         const delta = previousScroll - currentScroll;
         previousScroll = currentScroll;
-        dispatch({ delta, height });
+
+        // Update navbar top.
+        const newTop = min(max(top + delta, -height), 0);
+        if (newTop !== top) {
+          top = newTop;
+          ref.current.style.top = top + 'px';
+        }
       };
-      window.addEventListener('scroll', callback);
+      window.addEventListener('scroll', handleScroll);
       return () => {
-        // TODO verify that this is working
-        console.log('removing scroll listener');
-        window.removeEventListener('scroll', callback);
+        window.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [height]);
-
-  const style = useMemo(() => ({ top }), [top]);
+  }, []);
 
   return (
-    <div className="navigation" ref={ref} style={style} data-theme="dark">
+    <div className="navigation" ref={ref} data-theme="dark">
       {linkLogoToHome ? (
         <LogoLink href="/">
           <LogoSVG />
