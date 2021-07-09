@@ -1,5 +1,5 @@
 {
-  "name": "vizhub-core",
+  "name": "vizhub-open-core",
   "version": "0.0.1",
   "description": "An experiment in adopting the open-core model for VizHub.",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/curran/vizhub-core.git"
+    "url": "git+https://github.com/curran/vizhub-open-core.git"
   },
   "keywords": [
     "VizHub",
@@ -27,9 +27,9 @@
   "author": "Curran Kelleher",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/curran/vizhub-core/issues"
+    "url": "https://github.com/curran/vizhub-open-core/issues"
   },
-  "homepage": "https://github.com/curran/vizhub-core#readme",
+  "homepage": "https://github.com/curran/vizhub-open-core#readme",
   "devDependencies": {
     "prettier": "^2.3.2"
   }
