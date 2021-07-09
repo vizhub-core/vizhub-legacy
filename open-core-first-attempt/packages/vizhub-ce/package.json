@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "cd ..; npm run prettier",
     "build": "node src/build.js",
-    "start": "node build/server.js"
+    "start": "npm run build && node build/server.js"
   },
   "repository": {
     "type": "git",
