@@ -1,9 +1,9 @@
-const buildWithPlugins = (plugins) => {
+const buildWithPlugins = (plugins) => () => {
   console.log('TODO build JS');
   console.log('TODO build CSS');
 };
 
-const startWithPlugins = (plugins) => {
+const startWithPlugins = (plugins) => () => {
   console.log('TODO start server');
 };
 

@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
-    "test": "node src/test.js"
+    "build": "node src/app.js build",
+    "start": "node src/app.js start"
   },
   "repository": {
     "type": "git",
