@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "An experiment in adopting the open-core model for VizHub.",
   "main": "index.js",
-  "type": "module",
+  "workspaces": [
+    "./packages/*"
+  ],
   "scripts": {
-    "prettier": "prettier {*.*,**/*.*} --single-quote --write",
-    "build": "node src/app.js build",
-    "start": "node src/app.js start"
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
   },
   "homepage": "https://github.com/curran/vizhub-core#readme",
   "devDependencies": {
-    "prettier": "^2.3.2",
-    "rollup": "^2.52.8"
+    "prettier": "^2.3.2"
   }
 }

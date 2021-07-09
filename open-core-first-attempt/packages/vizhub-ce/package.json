@@ -1,0 +1,25 @@
+{
+  "name": "vizhub-ce",
+  "version": "0.0.1",
+  "description": "VizHub Community Edition",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node src/build.js",
+    "start": "node build/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/curran/vizhub-core.git"
+  },
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curran/vizhub-core/issues"
+  },
+  "homepage": "https://github.com/curran/vizhub-core#readme",
+  "devDependencies": {
+    "rollup": "^2.53.0"
+  }
+}
