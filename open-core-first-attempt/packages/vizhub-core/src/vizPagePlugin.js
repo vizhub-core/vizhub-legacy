@@ -1,7 +1,8 @@
+// Gets a current snapshot of a ShareDB document.
 const getSnapshot = (shareDBConnection, collectionName) => (id) =>
   new Promise((resolve, reject) => {
     // See https://github.com/share/sharedb/blob/master/examples/counter-json1/server.js
-    const shareDBDoc = shareDBConnection.get(collectionName, iid);
+    const shareDBDoc = shareDBConnection.get(collectionName, id);
     shareDBDoc.fetch((error) => {
       if (error) {
         return reject(error);
@@ -25,7 +26,7 @@ export const vizPagePlugin = () => ({
       try {
         const snapshot = await getVizInfoSnapshot(vizId);
         if (snapshot === null) {
-          res.send('TODO 404 not found page. need to log in?');
+          return res.send('TODO 404 not found page. need to log in?');
         }
 
         // TODO leverage ingestSnapshot in frontend.
