@@ -9,6 +9,7 @@ const inputOptions = {
   plugins: [nodeResolve()],
   external: ['express'],
 };
+
 const outputOptions = { file: 'build/server.js' };
 
 const build = async () => {

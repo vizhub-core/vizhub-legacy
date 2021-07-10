@@ -1,12 +1,16 @@
 import express from 'express';
 
 export const server = (plugins) => {
-  const app = express();
+  const expressApp = express();
   const port = 8080;
 
-  console.log('TODO interface with plugins: ', plugins);
+  for (const plugin of plugins) {
+    plugin.extendServer?.(expressApp);
+  }
 
-  app.listen(port, () => {
+  expressApp.use(express.static('public'));
+
+  expressApp.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
   });
 };
