@@ -7,7 +7,7 @@ import commonjs from '@rollup/plugin-commonjs';
 const inputOptions = {
   input: 'src/server.js',
   plugins: [nodeResolve()],
-  external: ['express'],
+  external: ['express', '@teamwork/websocket-json-stream', 'ws', 'sharedb'],
 };
 
 const outputOptions = { file: 'build/server.js' };
