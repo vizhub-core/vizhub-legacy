@@ -14,11 +14,25 @@ const mongoURI =
   process.env.VIZHUB_MONGO_URI || 'mongodb://localhost:27017/vizhub';
 
 const db = ShareDBMongo({
-  mongo: (callback) => {
+  mongo: async (callback) => {
+    const timeout = setTimeout(() => {
+      console.log('\nHaving trouble connecting to the database...');
+      console.log('Ensure that the database is running.');
+      console.log(
+        `VIZHUB_MONGO_URI environment variable is "${process.env.VIZHUB_MONGO_URI}"`
+      );
+      console.log(`Using Mongo URI "${mongoURI}".`);
+      console.log('See README for setup details.');
+      console.log('In dev on Linux, start MongoDB with:');
+      console.log('\nsudo service mongod start\n');
+    }, 4000);
+
     const mongoClient = new mongodb.MongoClient(mongoURI, {
       useUnifiedTopology: true,
     });
-    mongoClient.connect(callback);
+    const mongoDatabase = await mongoClient.connect();
+    clearTimeout(timeout);
+    callback(null, mongoDatabase);
   },
 });
 
