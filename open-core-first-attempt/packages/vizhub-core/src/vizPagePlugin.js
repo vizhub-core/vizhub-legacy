@@ -1,24 +1,12 @@
-// Gets a current snapshot of a ShareDB document.
-const getSnapshot = (shareDBConnection, collectionName) => (id) =>
-  new Promise((resolve, reject) => {
-    // See https://github.com/share/sharedb/blob/master/examples/counter-json1/server.js
-    const shareDBDoc = shareDBConnection.get(collectionName, id);
-    shareDBDoc.fetch((error) => {
-      if (error) {
-        return reject(error);
-      }
-      if (shareDBDoc.type === null) {
-        return resolve(null);
-      }
-      const { version, data, type } = shareDBDoc;
-      const snapshot = { v: version, data, type };
-      resolve(snapshot);
-    });
-  });
+import { getShareDBSnapshot } from './getShareDBSnapshot';
+import { indexHTML } from './indexHTML';
 
 export const vizPagePlugin = () => ({
   extendServer: (expressApp, shareDBConnection) => {
-    const getVizInfoSnapshot = getSnapshot(shareDBConnection, 'documentInfo');
+    const getVizInfoSnapshot = getShareDBSnapshot(
+      shareDBConnection,
+      'documentInfo'
+    );
 
     expressApp.get('/:userName/:vizId', async (req, res) => {
       const { vizId } = req.params;
@@ -32,7 +20,15 @@ export const vizPagePlugin = () => ({
         // TODO leverage ingestSnapshot in frontend.
         // TODO SSR React
         // TODO SSR React-Router
-        res.send(JSON.stringify(snapshot));
+        //res.send(JSON.stringify(snapshot));
+        res.type('html');
+        res.send(
+          indexHTML({
+            title: 'TODO viz title',
+            rootHTML: 'TODO render react',
+            pageProps: { todo: 'send props' },
+          })
+        );
       } catch (error) {
         // Should never happen, but if it does, surface the error clearly.
         console.log(error);
