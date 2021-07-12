@@ -65,7 +65,7 @@ export const indexHTML = ({
     <div id="root">${rootHTML}</div>
     <script src="${cdn}/react@${reactVersion}/umd/react.production.min.js"></script>
     <script src="${cdn}/react-dom@${reactVersion}/umd/react-dom.production.min.js"></script>
-    <script src="${cdn}/d3-require@${d3RequireVersion}/dist/d3-require.min.js"></script>
+    <script src="${cdn}/d3-require@${d3RequireVersion}/dist/d3-require.js"></script>
     <script>
       window.pageData = "${encodePageData({ pageProps })}";
     </script>

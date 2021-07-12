@@ -32,7 +32,10 @@ const buildClient = async () => {
     external: [],
   };
 
-  const outputOptions = { dir: 'public/build' };
+  const outputOptions = {
+    dir: 'public/build',
+    format: 'es',
+  };
 
   const bundle = await rollup(inputOptions);
   const { output } = await bundle.generate(outputOptions);
