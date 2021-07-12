@@ -44,11 +44,11 @@ export const server = (plugins) => {
   const expressApp = express();
   const port = 8000;
 
+  expressApp.use(express.static('public'));
+
   for (const plugin of plugins) {
     plugin.extendServer?.(expressApp, shareDBConnection);
   }
-
-  expressApp.use(express.static('public'));
 
   const server = http.createServer(expressApp);
 
