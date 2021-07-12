@@ -29,12 +29,16 @@ const buildClient = async () => {
   const inputOptions = {
     input: 'src/client/index.js',
     plugins: [],
-    external: [],
+    external: ['react'],
   };
 
   const outputOptions = {
     dir: 'public/build',
     format: 'es',
+    paths: {
+      react:
+        'https://cdn.skypack.dev/pin/react@v17.0.1-yH0aYV1FOvoIPeKBbHxg/mode=imports,min/optimized/react.js',
+    },
   };
 
   const bundle = await rollup(inputOptions);

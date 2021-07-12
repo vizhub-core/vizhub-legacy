@@ -1,19 +1,5 @@
 import { encodePageData } from './pageData';
 
-// Stopped using UNPKG due to this issue: https://github.com/mjackson/unpkg/issues/302
-//const cdn = 'https://unpkg.com';
-
-const cdn = 'https://cdn.jsdelivr.net/npm';
-
-// To check latest version: https://unpkg.com/react
-const reactVersion = '17.0.2';
-
-// To check latest version: https://unpkg.com/d3-require
-const d3RequireVersion = '1.2.4';
-
-// TODO get favicon to work by moving built files into public/build
-// and including stuff in public/ in the git repo.
-
 // TODO get oembed working
 // <link rel="alternate" type="application/json+oembed" href="https://vizhub.com/oembed?url=https://vizhub.com/" title="VizHub - data visualization platform"/>
 
@@ -63,12 +49,9 @@ export const indexHTML = ({
   </head>
   <body>
     <div id="root">${rootHTML}</div>
-    <script src="${cdn}/react@${reactVersion}/umd/react.production.min.js"></script>
-    <script src="${cdn}/react-dom@${reactVersion}/umd/react-dom.production.min.js"></script>
-    <script src="${cdn}/d3-require@${d3RequireVersion}/dist/d3-require.js"></script>
     <script>
       window.pageData = "${encodePageData({ pageProps })}";
     </script>
-    <script src="/build/index.js"></script>
+    <script type="module" src="/build/index.js"></script>
   </body>
 </html>`;
