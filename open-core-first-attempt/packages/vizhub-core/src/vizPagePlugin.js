@@ -1,3 +1,5 @@
+import React from 'react';
+import { renderToString } from 'react-dom/server';
 import { getShareDBSnapshot } from './getShareDBSnapshot';
 import { indexHTML } from './indexHTML';
 
@@ -21,11 +23,15 @@ export const vizPagePlugin = () => ({
         // TODO SSR React
         // TODO SSR React-Router
         //res.send(JSON.stringify(snapshot));
+
+        const App = () => <div>Hello React</div>;
+        const rootHTML = renderToString(<App />);
+
         res.type('html');
         res.send(
           indexHTML({
             title: 'TODO viz title',
-            rootHTML: 'TODO render react',
+            rootHTML,
             pageProps: { todo: 'send props' },
           })
         );

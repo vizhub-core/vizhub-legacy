@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "cd ..; npm run prettier",
     "build": "node src/build.js",
-    "start": "npm run build && node build/server.js"
+    "start": "npm run build && node build/server.cjs"
   },
   "repository": {
     "type": "git",
@@ -24,12 +24,15 @@
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-sucrase": "^3.1.0",
     "rollup": "^2.53.0"
   },
   "dependencies": {
     "@teamwork/websocket-json-stream": "^2.0.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sharedb": "^1.8.3",
     "sharedb-mongo": "^1.0.0-beta.18",
     "ws": "^7.5.3"
