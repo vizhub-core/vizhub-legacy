@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "cd ..; npm run prettier",
     "build": "node src/build.js",
+    "test": "npm run build && NODE_OPTIONS=--enable-source-maps mocha build/test.cjs",
     "start": "npm run build && node build/server.cjs"
   },
   "repository": {
@@ -25,6 +25,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-sucrase": "^3.1.0",
+    "mocha": "^9.0.2",
     "rollup": "^2.53.0"
   },
   "dependencies": {
