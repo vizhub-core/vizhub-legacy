@@ -21,11 +21,12 @@ const defaultMeta = {
 // TODO i18n, translations
 const locale = 'en-US';
 
-// TODO tweak meta information per page.
 export const indexHTML = ({
   title,
   rootHTML,
-  pageProps,
+  pageData,
+
+  // TODO tweak meta information per page.
   meta = defaultMeta,
 }) => `<!DOCTYPE html>
 <html lang="${locale}">
@@ -50,7 +51,7 @@ export const indexHTML = ({
   <body>
     <div id="root">${rootHTML}</div>
     <script>
-      window.pageData = "${encodePageData({ pageProps })}";
+      window.pageData = "${encodePageData({ pageData })}";
     </script>
     <script type="module" src="/build/index.js"></script>
   </body>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import { VizInfo } from './entities/VizInfo';
 import { getShareDBSnapshot } from './getShareDBSnapshot';
 import { indexHTML } from './indexHTML';
 
@@ -14,15 +15,19 @@ export const vizPagePlugin = () => ({
       const { vizId } = req.params;
 
       try {
-        const snapshot = await getVizInfoSnapshot(vizId);
-        if (snapshot === null) {
+        const vizInfoSnapshot = await getVizInfoSnapshot(vizId);
+        if (vizInfoSnapshot === null) {
           return res.send('TODO 404 not found page. need to log in?');
         }
+
+        const vizInfo = VizInfo(vizInfoSnapshot.data);
+        console.log('vizInfo');
+        console.log(vizInfo);
 
         // TODO leverage ingestSnapshot in frontend.
         // TODO SSR React
         // TODO SSR React-Router
-        //res.send(JSON.stringify(snapshot));
+        //res.send(JSON.stringify(vizInfoSnapshot));
 
         const App = () => <div>Hello React</div>;
         const rootHTML = renderToString(<App />);
@@ -32,7 +37,7 @@ export const vizPagePlugin = () => ({
           indexHTML({
             title: 'TODO viz title',
             rootHTML,
-            pageProps: { todo: 'send props' },
+            pageData: { vizInfoSnapshot },
           })
         );
       } catch (error) {

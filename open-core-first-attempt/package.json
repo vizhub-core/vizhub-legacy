@@ -7,7 +7,9 @@
     "./packages/*"
   ],
   "scripts": {
-    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "test": "cd packages/vizhub-ce; npm test",
+    "start": "cd packages/vizhub-ce; npm start"
   },
   "repository": {
     "type": "git",
