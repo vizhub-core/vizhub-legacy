@@ -1,8 +1,9 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { VizInfo } from './entities/VizInfo';
-import { getShareDBSnapshot } from './getShareDBSnapshot';
-import { indexHTML } from './indexHTML';
+import { VizInfo } from '../../entities/VizInfo';
+import { getShareDBSnapshot } from '../../getShareDBSnapshot';
+import { indexHTML } from '../../indexHTML';
+import { VizPage } from './VizPage';
 
 export const vizPagePlugin = () => ({
   extendServer: (expressApp, shareDBConnection) => {
@@ -22,24 +23,16 @@ export const vizPagePlugin = () => ({
 
         const vizInfo = VizInfo(vizInfoSnapshot.data);
         console.log('vizInfo');
-        console.log(vizInfo);
+        const { title } = vizInfo;
 
-        // TODO leverage ingestSnapshot in frontend.
-        // TODO SSR React
         // TODO SSR React-Router
-        //res.send(JSON.stringify(vizInfoSnapshot));
+        // TODO leverage ingestSnapshot in frontend.
 
-        const App = () => <div>Hello React</div>;
-        const rootHTML = renderToString(<App />);
+        const rootHTML = renderToString(<VizPage vizInfo={vizInfo} />);
+        const pageData = { vizInfoSnapshot };
 
         res.type('html');
-        res.send(
-          indexHTML({
-            title: 'TODO viz title',
-            rootHTML,
-            pageData: { vizInfoSnapshot },
-          })
-        );
+        res.send(indexHTML({ title, rootHTML, pageData }));
       } catch (error) {
         // Should never happen, but if it does, surface the error clearly.
         console.log(error);
