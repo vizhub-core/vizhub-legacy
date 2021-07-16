@@ -151,6 +151,9 @@ const getShareDBSnapshot = (shareDBConnection, collectionName) => (id) =>
 const encodePageData = (pageData) =>
   btoa(encodeURIComponent(JSON.stringify(pageData)));
 
+const reactVersion = "17.0.2";
+const cdn = 'https://cdn.jsdelivr.net/npm';
+
 // TODO get oembed working
 // <link rel="alternate" type="application/json+oembed" href="https://vizhub.com/oembed?url=https://vizhub.com/" title="VizHub - data visualization platform"/>
 
@@ -201,8 +204,10 @@ const indexHTML = ({
   </head>
   <body>
     <div id="root">${rootHTML}</div>
+    <script src="${cdn}/react@${reactVersion}/umd/react.production.min.js"></script>
+    <script src="${cdn}/react-dom@${reactVersion}/umd/react-dom.production.min.js"></script>
     <script>
-      window.pageData = "${encodePageData({ pageData })}";
+      window.pageData = "${encodePageData(pageData)}";
     </script>
     <script src="/build/index.js"></script>
   </body>
@@ -251,3 +256,4 @@ const vizPageServerPlugin = () => ({
 const plugins = [vizPageServerPlugin()];
 
 server(plugins);
+//# sourceMappingURL=server.cjs.map

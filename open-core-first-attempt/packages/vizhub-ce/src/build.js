@@ -45,7 +45,7 @@ const buildServer = async () => {
       onwarn,
       external,
     },
-    outputOptions: { file: 'build/server.cjs', format: 'cjs' },
+    outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true, },
   });
 };
 
@@ -60,6 +60,7 @@ const buildClient = async () => {
     outputOptions: {
       file: 'public/build/index.js',
       format: 'iife',
+      globals: { react: 'React' },
     },
   });
 };

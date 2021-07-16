@@ -8,7 +8,7 @@
     "prettier": "cd ..; npm run prettier",
     "build": "node src/build.js",
     "test": "npm run build && NODE_OPTIONS=--enable-source-maps mocha build/test.cjs",
-    "start": "npm run build && node build/server.cjs"
+    "start": "npm run build && NODE_OPTIONS=--enable-source-maps node build/server.cjs"
   },
   "repository": {
     "type": "git",
