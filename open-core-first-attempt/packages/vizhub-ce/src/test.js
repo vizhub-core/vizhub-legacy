@@ -1,3 +1,3 @@
-import { coreTests } from 'vizhub-core';
+import { coreTests } from 'vizhub-core/test';
 
 coreTests();

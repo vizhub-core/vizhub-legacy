@@ -5,7 +5,7 @@ import { getShareDBSnapshot } from '../../getShareDBSnapshot';
 import { indexHTML } from '../../indexHTML';
 import { VizPage } from './VizPage';
 
-export const vizPagePlugin = () => ({
+export const vizPageServerPlugin = () => ({
   extendServer: (expressApp, shareDBConnection) => {
     const getVizInfoSnapshot = getShareDBSnapshot(
       shareDBConnection,
@@ -22,7 +22,6 @@ export const vizPagePlugin = () => ({
         }
 
         const vizInfo = VizInfo(vizInfoSnapshot.data);
-        console.log('vizInfo');
         const { title } = vizInfo;
 
         // TODO SSR React-Router

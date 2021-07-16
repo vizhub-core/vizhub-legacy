@@ -53,6 +53,6 @@ export const indexHTML = ({
     <script>
       window.pageData = "${encodePageData({ pageData })}";
     </script>
-    <script type="module" src="/build/index.js"></script>
+    <script src="/build/index.js"></script>
   </body>
 </html>`;
