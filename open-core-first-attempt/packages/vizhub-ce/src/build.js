@@ -34,6 +34,7 @@ const external = [
   'mongodb',
   'sharedb-mongo',
   'react',
+  'react-dom',
   'react-dom/server',
 ];
 
@@ -45,7 +46,7 @@ const buildServer = async () => {
       onwarn,
       external,
     },
-    outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true, },
+    outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true },
   });
 };
 
@@ -60,7 +61,7 @@ const buildClient = async () => {
     outputOptions: {
       file: 'public/build/index.js',
       format: 'iife',
-      globals: { react: 'React' },
+      globals: { react: 'React', 'react-dom': 'ReactDOM' },
     },
   });
 };

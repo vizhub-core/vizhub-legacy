@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { VizInfo } from '../../entities/VizInfo';
 import { getShareDBSnapshot } from '../../getShareDBSnapshot';
 import { indexHTML } from '../../indexHTML';
-import { VizPage } from './VizPage';
+import { App } from '../../App';
 
 export const vizPageServerPlugin = () => ({
   extendServer: (expressApp, shareDBConnection) => {
@@ -27,7 +27,7 @@ export const vizPageServerPlugin = () => ({
         // TODO SSR React-Router
         // TODO leverage ingestSnapshot in frontend.
 
-        const rootHTML = renderToString(<VizPage vizInfo={vizInfo} />);
+        const rootHTML = renderToString(<App />);
         const pageData = { vizInfoSnapshot };
 
         res.type('html');

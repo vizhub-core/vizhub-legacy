@@ -1,6 +1,6 @@
 import { encodePageData } from './pageData';
 
-const reactVersion = "17.0.2";
+const reactVersion = '17.0.2';
 const cdn = 'https://cdn.jsdelivr.net/npm';
 
 // TODO get oembed working

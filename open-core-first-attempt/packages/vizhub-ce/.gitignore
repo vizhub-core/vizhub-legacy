@@ -1,2 +1,3 @@
-./build
-./public/build
+/packages/vizhub-ce/build
+/packages/vizhub-ce/build
+/packages/vizhub-ce/public/build
