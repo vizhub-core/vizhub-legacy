@@ -44,8 +44,15 @@ export const server = (plugins) => {
 
   expressApp.use(express.static('public'));
 
+  // TODO refactor into common module
+  const pages = new Map(
+    plugins
+      .filter(({ pageComponent }) => pageComponent)
+      .map(({ pageComponent }) => [pageComponent.name, pageComponent])
+  );
+
   for (const plugin of plugins) {
-    plugin.extendServer?.(expressApp, shareDBConnection);
+    plugin.extendServer?.(expressApp, shareDBConnection, pages);
   }
 
   const server = http.createServer(expressApp);

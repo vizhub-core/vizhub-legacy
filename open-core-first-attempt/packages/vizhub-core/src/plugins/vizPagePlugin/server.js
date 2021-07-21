@@ -1,12 +1,15 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { VizInfo } from '../../entities/VizInfo';
-import { getShareDBSnapshot } from '../../getShareDBSnapshot';
 import { indexHTML } from '../../indexHTML';
 import { App } from '../../App';
+import { getShareDBSnapshot } from './getShareDBSnapshot';
+import { VizPage } from './VizPage';
 
+const pageComponent = VizPage;
 export const vizPageServerPlugin = () => ({
-  extendServer: (expressApp, shareDBConnection) => {
+  pageComponent,
+  extendServer: (expressApp, shareDBConnection, pages) => {
     const getVizInfoSnapshot = getShareDBSnapshot(
       shareDBConnection,
       'documentInfo'
@@ -24,11 +27,18 @@ export const vizPageServerPlugin = () => ({
         const vizInfo = VizInfo(vizInfoSnapshot.data);
         const { title } = vizInfo;
 
-        // TODO SSR React-Router
         // TODO leverage ingestSnapshot in frontend.
 
-        const rootHTML = renderToString(<App />);
-        const pageData = { vizInfoSnapshot };
+        const pageData = {
+          pageName: pageComponent.name,
+          pageProps: { vizInfoSnapshot },
+        };
+
+        const rootHTML = renderToString(
+          <App pageData={pageData} pages={pages} />
+        );
+        // This works to disable SSR
+        //const rootHTML = '';
 
         res.type('html');
         res.send(indexHTML({ title, rootHTML, pageData }));

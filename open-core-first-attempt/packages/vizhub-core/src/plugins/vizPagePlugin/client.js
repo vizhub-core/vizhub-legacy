@@ -1,3 +1,5 @@
+import { VizPage } from './VizPage';
+
 export const vizPageClientPlugin = () => ({
-  foo: 'bar',
+  pageComponent: VizPage,
 });

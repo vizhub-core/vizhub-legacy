@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const VizPage = ({ vizInfo }) => <div>{vizInfo.title}</div>;
+export const VizPage = ({ vizInfoSnapshot }) => {
+  return <div>{vizInfoSnapshot.data.title}</div>;
+};
