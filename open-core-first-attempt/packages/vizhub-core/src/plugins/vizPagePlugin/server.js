@@ -1,10 +1,10 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { VizInfo } from '../../entities/VizInfo';
-import { indexHTML } from '../../indexHTML';
 import { App } from '../../App';
 import { getShareDBSnapshot } from './getShareDBSnapshot';
 import { VizPage } from './VizPage';
+import { indexHTML } from './indexHTML';
 
 const pageComponent = VizPage;
 export const vizPageServerPlugin = () => ({

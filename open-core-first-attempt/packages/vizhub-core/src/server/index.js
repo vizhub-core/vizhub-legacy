@@ -5,8 +5,9 @@ import ShareDB from 'sharedb';
 import mongodb from 'mongodb';
 import ShareDBMongo from 'sharedb-mongo';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
+import { getPages } from '../getPages';
 
-export const server = (plugins) => {
+export const server = (serverPlugins) => {
   // See:
   // https://share.github.io/sharedb/getting-started
   // https://github.com/share/sharedb-mongo
@@ -45,13 +46,9 @@ export const server = (plugins) => {
   expressApp.use(express.static('public'));
 
   // TODO refactor into common module
-  const pages = new Map(
-    plugins
-      .filter(({ pageComponent }) => pageComponent)
-      .map(({ pageComponent }) => [pageComponent.name, pageComponent])
-  );
+  const pages = getPages(serverPlugins);
 
-  for (const plugin of plugins) {
+  for (const plugin of serverPlugins) {
     plugin.extendServer?.(expressApp, shareDBConnection, pages);
   }
 
