@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { VizInfo } from '../../entities/VizInfo';
-import { App } from '../../App';
+import { App } from '../../isomorphic/App';
 import { getShareDBSnapshot } from './getShareDBSnapshot';
 import { VizPage } from './VizPage';
 import { indexHTML } from './indexHTML';

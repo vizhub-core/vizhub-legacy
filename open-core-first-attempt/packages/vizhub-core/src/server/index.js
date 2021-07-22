@@ -5,7 +5,7 @@ import ShareDB from 'sharedb';
 import mongodb from 'mongodb';
 import ShareDBMongo from 'sharedb-mongo';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
-import { getPages } from '../getPages';
+import { getPages } from '../isomorphic/getPages';
 
 export const server = (serverPlugins) => {
   // See:

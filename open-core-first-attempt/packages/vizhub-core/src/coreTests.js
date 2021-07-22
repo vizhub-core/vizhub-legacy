@@ -1,4 +1,4 @@
-import { pageDataTest } from './pageDataTest';
+import { pageDataTest } from './isomorphic/pageDataTest';
 import { vizInfoTest } from './entities/VizInfoTest';
 //import { renderPageTest } from './server/renderPage/renderPageTest';
 //import { databaseTest } from './server/database/databaseTest';

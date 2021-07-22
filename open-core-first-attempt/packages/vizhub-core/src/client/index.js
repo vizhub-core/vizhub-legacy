@@ -1,13 +1,13 @@
-import { App } from '../App';
-import { decodePageData } from '../pageData';
-import { getPages } from '../getPages';
-import { setIsClient } from '../isClient';
+import { App } from '../isomorphic/App';
+import { decodePageData } from '../isomorphic/pageData';
+import { getPages } from '../isomorphic/getPages';
+import { setIsClient } from '../isomorphic/isClient';
 
 setIsClient();
 
-export const client = (plugins) => {
+export const client = (clientPlugins) => {
   const pageData = decodePageData(window.pageData);
-  const pages = getPages(plugins);
+  const pages = getPages(clientPlugins);
 
   ReactDOM.hydrate(
     <App pageData={pageData} pages={pages} />,

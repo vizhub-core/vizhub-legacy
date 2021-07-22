@@ -1,4 +1,4 @@
-import { encodePageData } from '../../pageData';
+import { encodePageData } from '../../isomorphic/pageData';
 
 const reactVersion = '17.0.2';
 const cdn = 'https://cdn.jsdelivr.net/npm';

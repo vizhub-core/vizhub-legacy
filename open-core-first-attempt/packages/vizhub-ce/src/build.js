@@ -1,6 +1,8 @@
 import { rollup } from 'rollup';
 import sucrase from '@rollup/plugin-sucrase';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+
 // Inspired by
 // https://rollupjs.org/guide/en/#rolluprollup
 const buildBundle = async ({ inputOptions, outputOptions }) => {
@@ -11,11 +13,12 @@ const buildBundle = async ({ inputOptions, outputOptions }) => {
 };
 
 const plugins = [
-  nodeResolve(),
   sucrase({
     exclude: ['node_modules/**'],
     transforms: ['jsx'],
   }),
+  commonjs(),
+  nodeResolve(),
 ];
 
 // Ignore warnings from sucrase plugin.
@@ -31,6 +34,7 @@ const external = [
   '@teamwork/websocket-json-stream',
   'ws',
   'sharedb',
+  'sharedb/lib/client',
   'mongodb',
   'sharedb-mongo',
   'react',
