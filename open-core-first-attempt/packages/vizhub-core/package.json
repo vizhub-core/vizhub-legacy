@@ -9,5 +9,7 @@
   },
   "author": "Curran Kelleher",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "sharedb": "^1.9.1"
+  }
 }

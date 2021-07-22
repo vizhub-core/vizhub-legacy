@@ -2,6 +2,7 @@ import { rollup } from 'rollup';
 import sucrase from '@rollup/plugin-sucrase';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 // Inspired by
 // https://rollupjs.org/guide/en/#rolluprollup
@@ -12,14 +13,10 @@ const buildBundle = async ({ inputOptions, outputOptions }) => {
   await bundle.close();
 };
 
-const plugins = [
-  sucrase({
-    exclude: ['node_modules/**'],
-    transforms: ['jsx'],
-  }),
-  commonjs(),
-  nodeResolve(),
-];
+const sucraseOptions = {
+  exclude: ['node_modules/**'],
+  transforms: ['jsx'],
+};
 
 // Ignore warnings from sucrase plugin.
 // https://github.com/rollup/rollup/issues/1518
@@ -29,26 +26,24 @@ const onwarn = (warning, warn) => {
   warn(warning);
 };
 
-const external = [
-  'express',
-  '@teamwork/websocket-json-stream',
-  'ws',
-  'sharedb',
-  'sharedb/lib/client',
-  'mongodb',
-  'sharedb-mongo',
-  'react',
-  'react-dom',
-  'react-dom/server',
-];
-
 const buildServer = async () => {
   await buildBundle({
     inputOptions: {
       input: 'src/server.js',
-      plugins,
+      plugins: [sucrase(sucraseOptions), nodeResolve()],
       onwarn,
-      external,
+      external: [
+        'express',
+        '@teamwork/websocket-json-stream',
+        'ws',
+        'sharedb',
+        'sharedb/lib/client',
+        'mongodb',
+        'sharedb-mongo',
+        'react',
+        'react-dom',
+        'react-dom/server',
+      ],
     },
     outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true },
   });
@@ -58,9 +53,14 @@ const buildClient = async () => {
   await buildBundle({
     inputOptions: {
       input: 'src/client/index.js',
-      plugins,
+      plugins: [
+        sucrase(sucraseOptions),
+        nodePolyfills(),
+        commonjs(),
+        nodeResolve(),
+      ],
       onwarn,
-      external,
+      external: ['react', 'react-dom'],
     },
     outputOptions: {
       file: 'public/build/index.js',
@@ -74,9 +74,8 @@ const buildTests = async () => {
   await buildBundle({
     inputOptions: {
       input: 'src/test.js',
-      plugins,
+      plugins: [sucrase(sucraseOptions), nodeResolve()],
       onwarn,
-      external,
     },
     outputOptions: {
       file: 'build/test.cjs',
