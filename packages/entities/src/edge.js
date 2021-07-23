@@ -10,7 +10,7 @@ export class Edge {
     // The operational transform operations required
     // to get from the source state to the target state.
     //
-    // These ops operate over the Visualization data structure,
+    // These ops operate over the Viz data structure,
     // so can address both viz.info and viz.content.
     this.ops = data.ops;
   }
