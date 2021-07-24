@@ -54,7 +54,7 @@ const buildServer = async () => {
 const buildClient = async () => {
   await buildBundle({
     inputOptions: {
-      input: 'src/client/index.js',
+      input: 'src/client.js',
       plugins: [
         sucrase(sucraseOptions),
         nodePolyfills(),

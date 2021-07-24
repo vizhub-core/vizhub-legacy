@@ -1,4 +1,4 @@
-import { encodePageData } from '../../isomorphic/pageData';
+import { encodePageData } from './pageData';
 
 // Fetch React and ReactDOM in a single CDN request.
 // See https://www.jsdelivr.com/features#combine
