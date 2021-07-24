@@ -27,8 +27,6 @@ export const vizPageServerPlugin = () => ({
         const vizInfo = VizInfo(vizInfoSnapshot.data);
         const { title } = vizInfo;
 
-        // TODO leverage ingestSnapshot in frontend.
-
         const pageData = {
           pageName: pageComponent.name,
           pageProps: { vizInfoSnapshot },

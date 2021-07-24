@@ -8,6 +8,4 @@ export const VizPage = ({ vizInfoSnapshot }) => {
       <Body />
     </VizContextProvider>
   );
-
-  //  return <div>{vizInfoSnapshot.data.title}</div>;
 };

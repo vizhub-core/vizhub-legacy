@@ -49,7 +49,6 @@ const buildServer = async () => {
   });
 };
 
-// TODO get ShareDB client out of this bundle, load it async from CDN
 const buildClient = async () => {
   await buildBundle({
     inputOptions: {
@@ -61,11 +60,7 @@ const buildClient = async () => {
         nodeResolve(),
       ],
       onwarn,
-      external: [
-        'react',
-        'react-dom',
-        // TODO 'sharedb/lib/client',
-      ],
+      external: ['react', 'react-dom', 'sharedb/lib/client'],
     },
     outputOptions: {
       file: 'public/build/index.js',
@@ -73,7 +68,7 @@ const buildClient = async () => {
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        //TODO 'sharedb/lib/client':'ShareDBClient',
+        'sharedb/lib/client': 'ShareDBClient',
       },
     },
   });

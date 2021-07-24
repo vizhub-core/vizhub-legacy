@@ -6,10 +6,14 @@ import { encodePageData } from '../../isomorphic/pageData';
 // TODO derive this from package.json?
 const reactVersion = '17.0.2';
 
-const reactCombined = [
+// https://github.com/curran/sharedb-client-browser
+const shareDBClientVersion = '1.2.0';
+
+const libraries = [
   'https://cdn.jsdelivr.net/combine/',
   `npm/react@${reactVersion}/umd/react.production.min.js,`,
-  `npm/react-dom@${reactVersion}/umd/react-dom.production.min.js`,
+  `npm/react-dom@${reactVersion}/umd/react-dom.production.min.js,`,
+  `npm/sharedb-client-browser@1.2.0/sharedb-client-browser.min.js`,
 ].join('');
 
 // TODO get oembed working
@@ -61,7 +65,7 @@ export const indexHTML = ({
   </head>
   <body>
     <div id="root">${rootHTML}</div>
-    <script src="${reactCombined}"></script>
+    <script src="${libraries}"></script>
     <script>
       window.pageData = "${encodePageData(pageData)}";
     </script>

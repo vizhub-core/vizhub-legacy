@@ -1,21 +1,30 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import shareDB from 'sharedb/lib/client';
 import { isClient } from '../../isomorphic/isClient';
 import { VizInfo } from '../../entities/VizInfo';
 
-// TODO load ShareDB client async from CDN using d3-require
-import shareDB from 'sharedb/lib/client';
-
-console.log(!!shareDB);
 export const VizContext = createContext();
 
 export const VizContextProvider = ({ vizInfoSnapshot, children }) => {
-  // TODO make this dynamic with ingestSnapshot if client rendered.
-  // if(isClient){
-  // ingestSnapshot(vizInfoSnapshot);
-  // }
-  const viz = {
+  const [viz, setViz] = useState({
     vizInfo: VizInfo(vizInfoSnapshot.data),
     //vizContent: VizContent(vizContentSnapshot.data),
-  };
+  });
+
+  useEffect(() => {
+    if (isClient) {
+      const socket = new WebSocket('ws://' + window.location.host);
+      const shareDBConnection = new shareDB.Connection(socket);
+      const shareDBDoc = shareDBConnection.get(
+        'documentInfo',
+        vizInfoSnapshot.id
+      );
+      shareDBDoc.ingestSnapshot(vizInfoSnapshot, (error) => {
+        if (error) return console.log(error);
+        console.log('Successfully ingested snapshot');
+      });
+    }
+  }, []);
+
   return <VizContext.Provider value={viz}>{children}</VizContext.Provider>;
 };
