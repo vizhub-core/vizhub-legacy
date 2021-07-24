@@ -7,6 +7,7 @@ import { VizPage } from './VizPage';
 import { indexHTML } from './indexHTML';
 
 const pageComponent = VizPage;
+
 export const vizPageServerPlugin = () => ({
   pageComponent,
   extendServer: (expressApp, shareDBConnection, pages) => {

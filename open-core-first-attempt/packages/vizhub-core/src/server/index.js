@@ -45,7 +45,6 @@ export const server = (serverPlugins) => {
 
   expressApp.use(express.static('public'));
 
-  // TODO refactor into common module
   const pages = getPages(serverPlugins);
 
   for (const plugin of serverPlugins) {

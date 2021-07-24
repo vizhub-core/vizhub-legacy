@@ -23,6 +23,17 @@ export const VizContextProvider = ({ vizInfoSnapshot, children }) => {
         if (error) return console.log(error);
         console.log('Successfully ingested snapshot');
       });
+
+      shareDBDoc.subscribe((error) => {
+        if (error) return console.log(error);
+        console.log('Successfully subscribed');
+      });
+
+      shareDBDoc.on('op batch', (op, source) => {
+        console.log('on op batch');
+        console.log(op);
+        console.log(source);
+      });
     }
   }, []);
 
