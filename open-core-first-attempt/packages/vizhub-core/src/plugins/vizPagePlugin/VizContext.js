@@ -1,6 +1,8 @@
 import React, { createContext } from 'react';
 import { isClient } from '../../isomorphic/isClient';
 import { VizInfo } from '../../entities/VizInfo';
+
+// TODO load ShareDB client async from CDN using d3-require
 import shareDB from 'sharedb/lib/client';
 
 console.log(!!shareDB);
