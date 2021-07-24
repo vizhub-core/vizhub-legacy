@@ -40,6 +40,8 @@ const buildServer = async () => {
         'sharedb/lib/client',
         'mongodb',
         'sharedb-mongo',
+        'sharedb-redis-pubsub',
+        'redis',
         'react',
         'react-dom',
         'react-dom/server',

@@ -3,8 +3,10 @@ import WebSocket from 'ws';
 import express from 'express';
 import ShareDB from 'sharedb';
 import mongodb from 'mongodb';
+import redis from 'redis';
 import ShareDBMongo from 'sharedb-mongo';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
+import ShareDBRedisPubSub from 'sharedb-redis-pubsub';
 import { getPages } from '../isomorphic/getPages';
 
 export const server = (serverPlugins) => {
@@ -13,6 +15,8 @@ export const server = (serverPlugins) => {
   // https://github.com/share/sharedb-mongo
   const mongoURI =
     process.env.VIZHUB_MONGO_URI || 'mongodb://localhost:27017/vizhub';
+
+  const redisHost = process.env.VIZHUB_REDIS_HOST;
 
   const db = ShareDBMongo({
     mongo: async (callback) => {
@@ -37,7 +41,15 @@ export const server = (serverPlugins) => {
     },
   });
 
-  const backend = new ShareDB({ db });
+  const shareDBOptions = { db };
+
+  if (redisHost) {
+    shareDBOptions.pubsub = ShareDBRedisPubSub({
+      client: redis.createClient({ host: redisHost }),
+    });
+  }
+
+  const backend = new ShareDB(shareDBOptions);
 
   const shareDBConnection = backend.connect();
   const expressApp = express();
