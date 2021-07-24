@@ -11,5 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "sharedb": "^1.9.1"
+  },
+  "devDependencies": {
+    "rollup": "^2.53.3"
   }
 }

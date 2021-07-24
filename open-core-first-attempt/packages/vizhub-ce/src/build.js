@@ -1,31 +1,10 @@
-import { rollup } from 'rollup';
+import { buildBundle, sucraseOptions, onwarn } from 'vizhub-core/build.js'
 import sucrase from '@rollup/plugin-sucrase';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 
-// Inspired by
-// https://rollupjs.org/guide/en/#rolluprollup
-const buildBundle = async ({ inputOptions, outputOptions }) => {
-  const bundle = await rollup(inputOptions);
-  const { output } = await bundle.generate(outputOptions);
-  await bundle.write(outputOptions);
-  await bundle.close();
-};
-
-const sucraseOptions = {
-  exclude: ['node_modules/**'],
-  transforms: ['jsx'],
-};
-
-// Ignore warnings from sucrase plugin.
-// https://github.com/rollup/rollup/issues/1518
-const onwarn = (warning, warn) => {
-  if (warning.code === 'THIS_IS_UNDEFINED') return;
-  if (warning.code === 'SOURCEMAP_ERROR') return;
-  warn(warning);
-};
-
+// TODO refactor more stuff
 const buildServer = async () => {
   await buildBundle({
     inputOptions: {
