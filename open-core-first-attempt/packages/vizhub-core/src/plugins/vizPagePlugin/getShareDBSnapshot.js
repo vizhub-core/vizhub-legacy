@@ -1,18 +1,14 @@
 // Gets a current snapshot of a ShareDB document.
+// See https://share.github.io/sharedb/api/connection#fetchsnapshot
 export const getShareDBSnapshot = (shareDBConnection, collectionName) => (id) =>
   new Promise((resolve, reject) => {
-    // See https://github.com/share/sharedb/blob/master/examples/counter-json1/server.js
-    const shareDBDoc = shareDBConnection.get(collectionName, id);
-    shareDBDoc.fetch((error) => {
-      if (error) {
-        return reject(error);
+    const shareDBDoc = shareDBConnection.fetchSnapshot(
+      collectionName,
+      id,
+      (error, shareDBSnapshot) => {
+        if (error) return reject(error);
+        const notFound = shareDBSnapshot.type === null;
+        resolve(notFound ? null : shareDBSnapshot);
       }
-      if (shareDBDoc.type === null) {
-        // Not found.
-        return resolve(null);
-      }
-      const { version, data, type } = shareDBDoc;
-      const snapshot = { v: version, data, type };
-      resolve(snapshot);
-    });
+    );
   });
