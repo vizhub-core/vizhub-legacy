@@ -13,7 +13,11 @@ export const homePageServerPlugin = () => ({
       const pageData = {
         pageName: pageComponent.name,
         pageProps: {
-          vizInfoSnapshots: [{ title: 'Foo' }, { title: 'Bar' }],
+          // TODO get this from ShareDB
+          vizInfoSnapshots: [
+            { data: { title: 'Foo' } },
+            { data: { title: 'Bar' } },
+          ],
         },
       };
       res.type('html');
