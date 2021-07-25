@@ -1,4 +1,4 @@
-import { buildBundle, sucraseOptions, onwarn } from 'vizhub-core/build.js'
+import { buildBundle, sucraseOptions, onwarn } from 'vizhub-core/build.js';
 import sucrase from '@rollup/plugin-sucrase';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';

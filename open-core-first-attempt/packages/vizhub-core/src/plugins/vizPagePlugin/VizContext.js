@@ -30,9 +30,7 @@ export const VizContextProvider = ({ vizInfoSnapshot, children }) => {
       });
 
       shareDBDoc.on('op batch', (op, source) => {
-        console.log('on op batch');
-        console.log(op);
-        console.log(source);
+        setViz({ vizInfo: VizInfo(shareDBDoc.data) });
       });
     }
   }, []);

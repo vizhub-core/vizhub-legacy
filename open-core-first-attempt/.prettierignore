@@ -3,5 +3,5 @@
 *.ico
 *.map
 .*
-packages/vizhub-ce/build
-packages/vizhub-ce/public/build
+packages/vizhub-*/build
+packages/vizhub-*/public/build
