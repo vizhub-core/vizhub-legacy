@@ -2,7 +2,13 @@ import React, { useContext } from 'react';
 import { VizContext } from './VizContext';
 
 export const Body = () => {
-  const { vizInfo } = useContext(VizContext);
+  const { vizInfo, vizContent } = useContext(VizContext);
   const { title } = vizInfo;
-  return <div className="title">{title}</div>;
+  const { files } = vizContent;
+  return (
+    <div>
+      <div>{title}</div>
+      {files ? files.map((file, i) => <div key={i}>{file.name}</div>) : null}
+    </div>
+  );
 };

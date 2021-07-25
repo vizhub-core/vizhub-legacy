@@ -16,18 +16,26 @@ export const vizPageServerPlugin = () => ({
       'documentInfo'
     );
 
+    const getVizContentSnapshot = getShareDBSnapshot(
+      shareDBConnection,
+      'documentContent'
+    );
+
     expressApp.get('/:userName/:vizId', async (req, res) => {
       const { vizId } = req.params;
 
       try {
-        const vizInfoSnapshot = await getVizInfoSnapshot(vizId);
+        const [vizInfoSnapshot, vizContentSnapshot] = await Promise.all([
+          getVizInfoSnapshot(vizId),
+          getVizContentSnapshot(vizId),
+        ]);
         if (vizInfoSnapshot === null) {
           return res.send('TODO 404 not found page. need to log in?');
         }
 
         const pageData = {
           pageName: pageComponent.name,
-          pageProps: { vizInfoSnapshot },
+          pageProps: { vizInfoSnapshot, vizContentSnapshot },
         };
         res.type('html');
         res.send(

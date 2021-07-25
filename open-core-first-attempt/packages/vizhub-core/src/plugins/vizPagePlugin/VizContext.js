@@ -2,15 +2,21 @@ import React, { createContext, useEffect, useState } from 'react';
 import shareDB from 'sharedb/lib/client';
 import { isClient } from '../../isomorphic/isClient';
 import { VizInfo } from '../../entities/VizInfo';
+import { VizContent } from '../../entities/VizContent';
 
 export const VizContext = createContext();
 
-export const VizContextProvider = ({ vizInfoSnapshot, children }) => {
+export const VizContextProvider = ({
+  vizInfoSnapshot,
+  vizContentSnapshot,
+  children,
+}) => {
   const [viz, setViz] = useState({
     vizInfo: VizInfo(vizInfoSnapshot.data),
-    //vizContent: VizContent(vizContentSnapshot.data),
+    vizContent: VizContent(vizContentSnapshot.data),
   });
 
+  // TODO make vizContent dynamic
   useEffect(() => {
     if (isClient) {
       const socket = new WebSocket('ws://' + window.location.host);
@@ -30,6 +36,7 @@ export const VizContextProvider = ({ vizInfoSnapshot, children }) => {
       });
 
       shareDBDoc.on('op batch', (op, source) => {
+        // TODO test if deep fields are replaced or preserved when unchanged.
         setViz({ vizInfo: VizInfo(shareDBDoc.data) });
       });
     }
