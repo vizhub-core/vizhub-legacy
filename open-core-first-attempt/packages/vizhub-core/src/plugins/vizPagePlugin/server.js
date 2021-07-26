@@ -21,6 +21,8 @@ export const vizPageServerPlugin = () => ({
       'documentContent'
     );
 
+    const getUserSnapshot = getShareDBSnapshot(shareDBConnection, 'user');
+
     expressApp.get('/:userName/:vizId', async (req, res) => {
       const { vizId } = req.params;
 
@@ -32,6 +34,14 @@ export const vizPageServerPlugin = () => ({
         if (vizInfoSnapshot === null) {
           return res.send('TODO 404 not found page. need to log in?');
         }
+
+        const vizInfo = new VizInfo(vizInfoSnapshot.data);
+
+        const ownerUserSnapshot = await getUserSnapshot(vizInfo.owner);
+        // TODO include this in page data
+        // TODO fill in CI user
+        // TODO refactor this out into an interactor.
+        console.log(ownerUserSnapshot);
 
         const pageData = {
           pageName: pageComponent.name,
