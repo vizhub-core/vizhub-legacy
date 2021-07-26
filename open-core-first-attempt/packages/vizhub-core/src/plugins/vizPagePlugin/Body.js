@@ -6,7 +6,7 @@ export const Body = () => {
   const { title } = vizInfo;
   const { files } = vizContent;
   return (
-    <div>
+    <div className="viz-page">
       <div>{title}</div>
       {files ? files.map((file, i) => <div key={i}>{file.name}</div>) : null}
     </div>

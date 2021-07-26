@@ -3,6 +3,8 @@ import sucrase from '@rollup/plugin-sucrase';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
+import sass from 'sass';
+import { writeFileSync } from 'fs';
 
 // TODO refactor more stuff
 const buildServer = async () => {
@@ -69,7 +71,24 @@ const buildTests = async () => {
   });
 };
 
-// These run in parallel as we don't use "await" here.
-buildServer();
-buildClient();
-buildTests();
+const buildStyles = () => {
+  // TODO minify for production build.
+  writeFileSync(
+    './public/build/styles.css',
+    sass.renderSync({ file: 'src/styles.scss' }).css.toString()
+  );
+};
+
+const build = async () => {
+  const startTime = Date.now();
+  await Promise.all([
+    buildServer(),
+    buildClient(),
+    buildTests(),
+    buildStyles(),
+  ]);
+  const endTime = Date.now();
+  const buildTime = endTime - startTime;
+  console.log(`Built everything in ${buildTime} ms`);
+};
+build();

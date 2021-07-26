@@ -35,13 +35,12 @@ export const vizPageServerPlugin = () => ({
           return res.send('TODO 404 not found page. need to log in?');
         }
 
-        const vizInfo = new VizInfo(vizInfoSnapshot.data);
-
-        const ownerUserSnapshot = await getUserSnapshot(vizInfo.owner);
         // TODO include this in page data
         // TODO fill in CI user
         // TODO refactor this out into an interactor.
-        console.log(ownerUserSnapshot);
+        //const vizInfo = new VizInfo(vizInfoSnapshot.data);
+        //const ownerUserSnapshot = await getUserSnapshot(vizInfo.owner);
+        //console.log(ownerUserSnapshot);
 
         const pageData = {
           pageName: pageComponent.name,
