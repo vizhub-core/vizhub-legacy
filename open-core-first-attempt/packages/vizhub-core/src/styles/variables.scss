@@ -2,7 +2,7 @@
   --background-color: #f6eee3;
   --foreground-color: #161514;
   /* --foreground-color-light: #757575; */
-  /* --rule-color: #0000001c; */
+  --rule-color: #0000001c;
 
   /* --font-size-tiny: 12px; */
   /* --font-size-small: 14px; */
@@ -15,15 +15,15 @@
   /* --navigation-height: 40px; */
 
   /* --padding-miniscule: 7px; */
-  /* --padding-little: 14px; */
-  /* --padding-lots: 24px; */
+  --padding-little: 10px;
+  --padding-lots: 20px;
 
   /* Used in Viz Page only */
   /* --head-height: 30px; */
 
   /* Intent is to use the same box shadow and border radius everywhere. */
-  /* --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05); */
-  /* --border-radius: 4px; */
+  --box-shadow: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
+  --border-radius: 3px;
 
   /* Homage to bl.ocks.org. */
   --content-max-width: 960px;

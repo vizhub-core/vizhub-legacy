@@ -10,8 +10,16 @@
 
   .viz-viewer {
     width: var(--content-max-width);
+    padding-top: var(--padding-little);
+    .viz-frame {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
     .title {
+      padding: var(--padding-lots) 0px;
       font-size: var(--font-size-large);
+      border-bottom: 1px solid var(--rule-color);
     }
   }
 }

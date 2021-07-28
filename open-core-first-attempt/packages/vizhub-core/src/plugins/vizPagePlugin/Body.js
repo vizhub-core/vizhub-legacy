@@ -4,6 +4,7 @@ import { classed } from '../../isomorphic/classed';
 
 const Wrapper = classed('viz-page');
 const VizViewer = classed('viz-viewer');
+const VizFrame = classed('viz-frame');
 const Title = classed('title');
 
 export const Body = () => {
@@ -15,6 +16,8 @@ export const Body = () => {
   return (
     <Wrapper>
       <VizViewer>
+        {/* TODO use viz height from doc */}
+        <VizFrame style={{ height: '500px' }} />
         <Title>{title}</Title>
       </VizViewer>
     </Wrapper>
