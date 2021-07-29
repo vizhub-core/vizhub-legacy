@@ -5,7 +5,7 @@ import { classed } from '../../isomorphic/classed';
 
 const Wrapper = classed('viz-page');
 const VizViewer = classed('viz-viewer');
-const VizFrame = classed('viz-frame');
+const VizFrame = classed('viz-frame', 'svg');
 const Title = classed('title');
 
 export const Body = () => {
@@ -18,7 +18,7 @@ export const Body = () => {
   return (
     <Wrapper>
       <VizViewer>
-        <VizFrame style={{ height: height + 'px' }} />
+        <VizFrame viewBox={`0 0 960 ${height}`} />
         <Title>{title}</Title>
       </VizViewer>
     </Wrapper>
