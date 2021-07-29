@@ -4,7 +4,7 @@ import { vizInfoTest } from './entities/VizInfoTest';
 //import { databaseTest } from './server/database/databaseTest';
 //import { getHomePageDataTest } from './interactors/getHomePageDataTest';
 //import { homePagePresenterTest } from './presenters/homePagePresenterTest';
-//import { vizPagePresenterTest } from './presenters/vizPagePresenterTest';
+//import { vizPagePresenterTest } from './plugins/vizPage/vizPagePresenterTest';
 export const coreTests = () => {
   pageDataTest();
   vizInfoTest();

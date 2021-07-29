@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { VizInfo } from './VizInfo';
+import { VizInfo, getHeight } from './VizInfo';
 
 export const vizInfoTest = () => {
   describe('VizInfo', () => {
@@ -43,6 +43,21 @@ export const vizInfoTest = () => {
         'height',
         'someFancyNewPropertyDefinedByAPlugin',
       ]);
+    });
+  });
+
+  describe('VizInfo/getHeight', () => {
+    it('should return height value if present', () => {
+      const vizInfo = VizInfo({ height: 300 });
+      assert.equal(getHeight(vizInfo), 300);
+    });
+    it('should return default height if height not defined', () => {
+      const vizInfo = VizInfo({});
+      assert.equal(getHeight(vizInfo), 500);
+    });
+    it('should preserve zero', () => {
+      const vizInfo = VizInfo({ height: 0 });
+      assert.equal(getHeight(vizInfo), 0);
     });
   });
 };

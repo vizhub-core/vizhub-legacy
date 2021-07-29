@@ -32,5 +32,13 @@ VizInfo.keys = [
   'forksCount',
 
   // The height of the viz in pixels.
+  // A number, not a string.
+  // If undefined, the viz should use 500 by default.
+  // See getHeight below.
   'height',
 ];
+
+// Gets the presented height of the viz.
+const defaultHeight = 500;
+export const getHeight = (vizInfo) =>
+  vizInfo.height === undefined ? defaultHeight : vizInfo.height;
