@@ -19,3 +19,15 @@ VizContent.keys = [
   //   styles.css - Optional, CSS file, could be any name ending with .css.
   'files',
 ];
+
+// Gets the text content of a file with the given name.
+// Returns undefined if not found.
+export const getFileText = (vizContent, fileName) => {
+  if (vizContent && vizContent.files) {
+    for (const file of vizContent.files) {
+      if (file.name === fileName) {
+        return file.text;
+      }
+    }
+  }
+};

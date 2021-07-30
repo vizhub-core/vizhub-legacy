@@ -41,4 +41,4 @@ VizInfo.keys = [
 // Gets the presented height of the viz.
 const defaultHeight = 500;
 export const getHeight = (vizInfo) =>
-  vizInfo.height === undefined ? defaultHeight : vizInfo.height;
+  vizInfo && vizInfo.height !== undefined ? vizInfo.height : defaultHeight;

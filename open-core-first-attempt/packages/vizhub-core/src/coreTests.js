@@ -1,5 +1,6 @@
 import { pageDataTest } from './isomorphic/pageDataTest';
 import { vizInfoTest } from './entities/VizInfoTest';
+import { vizContentTest } from './entities/VizContentTest';
 //import { renderPageTest } from './server/renderPage/renderPageTest';
 //import { databaseTest } from './server/database/databaseTest';
 //import { getHomePageDataTest } from './interactors/getHomePageDataTest';
@@ -8,6 +9,7 @@ import { vizInfoTest } from './entities/VizInfoTest';
 export const coreTests = () => {
   pageDataTest();
   vizInfoTest();
+  vizContentTest();
   // renderPageTest();
   // databaseTest();
   // getHomePageDataTest();

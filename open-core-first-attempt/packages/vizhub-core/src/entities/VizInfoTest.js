@@ -55,6 +55,9 @@ export const vizInfoTest = () => {
       const vizInfo = VizInfo({});
       assert.equal(getHeight(vizInfo), 500);
     });
+    it('should return default height if vizInfo not defined (defensive)', () => {
+      assert.equal(getHeight(null), 500);
+    });
     it('should preserve zero', () => {
       const vizInfo = VizInfo({ height: 0 });
       assert.equal(getHeight(vizInfo), 0);

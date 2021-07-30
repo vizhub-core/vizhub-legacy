@@ -12,7 +12,9 @@ export const Body = () => {
   const { vizInfo, vizContent } = useContext(VizContext);
   const { title } = vizInfo;
   const height = getHeight(vizInfo);
-  // const { files } = vizContent;
+  //  const readmeMarkdown = getFileText(vizContent, 'README.md');
+  const { files } = vizContent;
+  console.log(files);
   // {files ? files.map((file, i) => <div key={i}>{file.name}</div>) : null}
 
   return (
