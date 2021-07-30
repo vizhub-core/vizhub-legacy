@@ -19,14 +19,17 @@ Work in progress... An experiment in adopting the [open-core model](https://en.w
 
 ## Development
 
+[Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+[Install Redis](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
 ```
+sudo service mongod start
+redis-server
 cd vizhub-open-core
 npm install
-cd packages/vizhub-ce
 npm start
 ```
-
-[Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
 ### Environment Variables
 
@@ -40,6 +43,7 @@ Example configuration:
 
 ```
 export VIZHUB_MONGO_URI='mongodb://localhost:27017/vizhub'
+export VIZHUB_REDIS_HOST='127.0.0.1'
 ```
 
 ### Variable Naming Conventions
