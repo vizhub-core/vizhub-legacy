@@ -32,6 +32,9 @@ export const vizPageServerPlugin = () => ({
           getVizContentSnapshot(vizId),
         ]);
         if (vizInfoSnapshot === null) {
+          // TODO serve example from GitHub Gist.
+          // TODO present a banner stating this is hosted in GitHub Gist.
+          // TODO present an option to import into VizHub for editing.
           return res.send('TODO 404 not found page. need to log in?');
         }
 
