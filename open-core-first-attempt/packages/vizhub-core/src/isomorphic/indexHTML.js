@@ -1,4 +1,5 @@
 import { encodePageData } from './pageData';
+import { jsDelivrCombine } from './jsDelivrCombine';
 
 // Fetch React and ReactDOM in a single CDN request.
 // See https://www.jsdelivr.com/features#combine
@@ -6,15 +7,25 @@ import { encodePageData } from './pageData';
 // TODO derive this from package.json?
 const reactVersion = '17.0.2';
 
+// The ShareDB client is responsible for real time synchronization.
 // https://github.com/curran/sharedb-client-browser
 const shareDBClientVersion = '1.2.0';
 
-const libraries = [
-  'https://cdn.jsdelivr.net/combine/',
-  `npm/react@${reactVersion}/umd/react.production.min.js,`,
-  `npm/react-dom@${reactVersion}/umd/react-dom.production.min.js,`,
-  `npm/sharedb-client-browser@1.2.0/sharedb-client-browser.min.js`,
-].join('');
+// We use Marked to render Markdown.
+// https://www.npmjs.com/package/marked
+const markedVersion = '2.1.3';
+
+// We use DOMPurify to sanitize rendered Markdown.
+// https://www.npmjs.com/package/dompurify
+const domPurifyVersion = '2.3.0';
+
+const libraries = jsDelivrCombine([
+  `react@${reactVersion}/umd/react.production.min.js`,
+  `react-dom@${reactVersion}/umd/react-dom.production.min.js`,
+  `sharedb-client-browser@${shareDBClientVersion}/sharedb-client-browser.min.js`,
+  `marked@${markedVersion}/marked.min.js`,
+  `dompurify@${domPurifyVersion}/dist/purify.min.js`,
+]);
 
 // TODO get oembed working
 // <link rel="alternate" type="application/json+oembed" href="https://vizhub.com/oembed?url=https://vizhub.com/" title="VizHub - data visualization platform"/>

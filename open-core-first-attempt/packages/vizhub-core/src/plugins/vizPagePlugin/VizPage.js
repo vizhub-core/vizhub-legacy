@@ -1,5 +1,6 @@
 import React from 'react';
 import { VizContextProvider } from './VizContext';
+import { SecondaryModulesContextProvider } from './SecondaryModulesContext';
 import { Body } from './Body';
 
 export const VizPage = ({ vizInfoSnapshot, vizContentSnapshot }) => {
@@ -8,7 +9,9 @@ export const VizPage = ({ vizInfoSnapshot, vizContentSnapshot }) => {
       vizInfoSnapshot={vizInfoSnapshot}
       vizContentSnapshot={vizContentSnapshot}
     >
-      <Body />
+      <SecondaryModulesContextProvider>
+        <Body />
+      </SecondaryModulesContextProvider>
     </VizContextProvider>
   );
 };

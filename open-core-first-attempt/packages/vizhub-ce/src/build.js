@@ -26,6 +26,8 @@ const buildServer = async () => {
         'react',
         'react-dom',
         'react-dom/server',
+        'marked',
+        'dompurify',
       ],
     },
     outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true },
@@ -43,7 +45,13 @@ const buildClient = async () => {
         nodeResolve(),
       ],
       onwarn,
-      external: ['react', 'react-dom', 'sharedb/lib/client'],
+      external: [
+        'react',
+        'react-dom',
+        'sharedb/lib/client',
+        'marked',
+        'dompurify',
+      ],
     },
     outputOptions: {
       file: 'public/build/index.js',
@@ -52,6 +60,8 @@ const buildClient = async () => {
         react: 'React',
         'react-dom': 'ReactDOM',
         'sharedb/lib/client': 'ShareDBClient',
+        marked: 'marked',
+        dompurify: 'DOMPurify',
       },
     },
   });
