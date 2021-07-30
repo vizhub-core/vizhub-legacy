@@ -1,4 +1,4 @@
-import { pageDataTest } from './isomorphic/pageDataTest';
+import { stringifyPageDataTest } from './isomorphic/stringifyPageDataTest';
 import { vizInfoTest } from './entities/VizInfoTest';
 import { vizContentTest } from './entities/VizContentTest';
 //import { renderPageTest } from './server/renderPage/renderPageTest';
@@ -7,7 +7,7 @@ import { vizContentTest } from './entities/VizContentTest';
 //import { homePagePresenterTest } from './presenters/homePagePresenterTest';
 //import { vizPagePresenterTest } from './plugins/vizPage/vizPagePresenterTest';
 export const coreTests = () => {
-  pageDataTest();
+  stringifyPageDataTest();
   vizInfoTest();
   vizContentTest();
   // renderPageTest();

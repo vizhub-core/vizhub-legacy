@@ -9,6 +9,7 @@ const Wrapper = classed('viz-page');
 const VizViewer = classed('viz-viewer');
 const VizFrame = classed('viz-frame', 'svg');
 const Title = classed('title');
+const MarkdownBody = classed('markdown-body');
 
 export const Body = () => {
   const { vizInfo, vizContent } = useContext(VizContext);
@@ -27,7 +28,7 @@ export const Body = () => {
       <VizViewer>
         <VizFrame viewBox={`0 0 960 ${height}`} />
         <Title>{title}</Title>
-        <div dangerouslySetInnerHTML={{ __html: readmeHTML }} />
+        <MarkdownBody dangerouslySetInnerHTML={{ __html: readmeHTML }} />
       </VizViewer>
     </Wrapper>
   );

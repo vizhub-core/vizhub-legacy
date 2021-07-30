@@ -1,4 +1,4 @@
-import { encodePageData } from './pageData';
+import { stringifyPageData } from './stringifyPageData';
 import { jsDelivrCombine } from './jsDelivrCombine';
 
 // Fetch React and ReactDOM in a single CDN request.
@@ -77,9 +77,7 @@ export const indexHTML = ({
   <body>
     <div id="root">${rootHTML}</div>
     <script src="${libraries}"></script>
-    <script>
-      window.pageData = "${encodePageData(pageData)}";
-    </script>
+    <script>window.pageData = ${stringifyPageData(pageData)};</script>
     <script src="/build/index.js"></script>
   </body>
 </html>`;

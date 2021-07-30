@@ -1,25 +1,28 @@
 :root {
   --background-color: #f6eee3;
   --foreground-color: #161514;
-  /* --foreground-color-light: #757575; */
+  --foreground-color-light: #757575;
   --rule-color: #0000001c;
+
+  /* Inspired by GitHub system font stack. */
+  --font-family-ui: -apple-system, blinkmacsystemfont, segoe ui, helvetica,
+    arial, sans-serif, apple color emoji, segoe ui emoji;
+  --font-family-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo,
+    Consolas, Liberation Mono, monospace;
 
   /* --font-size-tiny: 12px; */
   /* --font-size-small: 14px; */
   --font-size-default: 16px;
   --font-size-large: 20px;
 
-  /* --link-color: #3866e9; */
-  /* --link-color-visited: #5238e9; */
+  --link-color: #3866e9;
+  --link-color-visited: #4f62e6;
 
   /* --navigation-height: 40px; */
 
-  /* --padding-miniscule: 7px; */
+  --padding-miniscule: 7px;
   --padding-little: 10px;
   --padding-lots: 20px;
-
-  /* Used in Viz Page only */
-  /* --head-height: 30px; */
 
   /* Intent is to use the same box shadow and border radius everywhere. */
   --box-shadow: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
@@ -28,10 +31,13 @@
   /* Homage to bl.ocks.org. */
   --content-max-width: 960px;
 
+  --code-background: #202e46;
+  --code-foreground: #e2e2e2;
+
   /* --z-index-above: 10; */
 
-  /* --code-background: #202e46; */
-  /* --code-foreground: #e2e2e2; */
+  /* Used in Viz Page only */
+  /* --head-height: 30px; */
 }
 
 /*
