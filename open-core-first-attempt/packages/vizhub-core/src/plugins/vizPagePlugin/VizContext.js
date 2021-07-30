@@ -11,34 +11,41 @@ export const VizContextProvider = ({
   vizContentSnapshot,
   children,
 }) => {
+  // Initialize the viz from server rendered snapshot data.
   const [viz, setViz] = useState({
     vizInfo: VizInfo(vizInfoSnapshot.data),
     vizContent: VizContent(vizContentSnapshot.data),
   });
 
-  // TODO make vizContent dynamic
+  // In the client, connect the viz to real time updates via ShareDB.
   useEffect(() => {
     if (isClient) {
       const socket = new WebSocket('ws://' + window.location.host);
       const shareDBConnection = new shareDB.Connection(socket);
-      const shareDBDoc = shareDBConnection.get(
-        'documentInfo',
-        vizInfoSnapshot.id
-      );
-      shareDBDoc.ingestSnapshot(vizInfoSnapshot, (error) => {
-        if (error) return console.log(error);
-        console.log('Successfully ingested snapshot');
-      });
 
-      shareDBDoc.subscribe((error) => {
-        if (error) return console.log(error);
-        console.log('Successfully subscribed');
-      });
+      const { id } = vizInfoSnapshot;
+      const vizInfoShareDBDoc = shareDBConnection.get('documentInfo', id);
+      const vizContentShareDBDoc = shareDBConnection.get('documentContent', id);
 
-      shareDBDoc.on('op batch', (op, source) => {
-        // TODO test if deep fields are replaced or preserved when unchanged.
-        setViz({ vizInfo: VizInfo(shareDBDoc.data) });
-      });
+      const logError = (error) => {
+        if (error) console.log(error);
+      };
+
+      vizInfoShareDBDoc.ingestSnapshot(vizInfoSnapshot, logError);
+      vizInfoShareDBDoc.subscribe(logError);
+
+      vizContentShareDBDoc.ingestSnapshot(vizContentSnapshot, logError);
+      vizContentShareDBDoc.subscribe(logError);
+
+      const updateViz = () => {
+        setViz({
+          vizInfo: VizInfo(vizInfoShareDBDoc.data),
+          vizContent: VizContent(vizContentShareDBDoc.data),
+        });
+      };
+
+      vizContentShareDBDoc.on('op batch', updateViz);
+      vizInfoShareDBDoc.on('op batch', updateViz);
     }
   }, []);
 
