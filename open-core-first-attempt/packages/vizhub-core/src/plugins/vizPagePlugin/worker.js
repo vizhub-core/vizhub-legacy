@@ -15,15 +15,22 @@ const libraries = jsDelivrCombine([
   `dompurify@${domPurifyVersion}/dist/purify.min.js`,
 ]);
 
+const workerWindow = self;
+
 export const vizPageWorkerPlugin = () => {
   importScripts(libraries);
-  const secondaryModules = { marked, DOMPurify };
+  const secondaryModules = {
+    marked,
+    // TODO get this working.
+    // https://github.com/cure53/DOMPurify/issues/278
+    DOMPurify: DOMPurify(workerWindow),
+  };
 
   // Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/worker.js
   onmessage = (event) => {
     console.log('Worker: Message received from main script');
-    console.log(event.data.readmeMarkdown);
-    const result = marked(event.data.readmeMarkdown);
+    const { readmeMarkdown } = event.data;
+    const result = renderREADME(readmeMarkdown, secondaryModules);
     const workerResult = 'Result: ' + result;
     console.log('Worker: Posting message back to main script');
     postMessage(workerResult);

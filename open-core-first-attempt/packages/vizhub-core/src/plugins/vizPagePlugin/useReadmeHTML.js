@@ -24,7 +24,7 @@ const getInitialReadmeHTML = (vizContent) =>
       document.getElementById('readme').innerHTML
     : // If we're on the server,
       // render Markdown synchronously.
-      renderREADME(vizContent, secondaryModules);
+      renderREADME(getFileText(vizContent, 'README.md'), secondaryModules);
 
 // Initialize the Web Worker.
 // TODO think about maybe we want to do this at the app level,
