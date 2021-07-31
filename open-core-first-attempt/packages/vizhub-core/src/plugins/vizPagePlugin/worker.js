@@ -1,4 +1,5 @@
 import { jsDelivrCombine } from '../../isomorphic/jsDelivrCombine';
+import { renderREADME } from './renderREADME';
 
 // We use Marked to render Markdown.
 // https://www.npmjs.com/package/marked
@@ -16,8 +17,7 @@ const libraries = jsDelivrCombine([
 
 export const vizPageWorkerPlugin = () => {
   importScripts(libraries);
-
-  console.log({ marked, DOMPurify });
+  const secondaryModules = { marked, DOMPurify };
 
   // Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/worker.js
   onmessage = (event) => {
