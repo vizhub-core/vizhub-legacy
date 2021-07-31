@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { isClient } from '../../isomorphic/isClient';
 import { getFileText } from '../../entities/VizContent';
 import { renderREADME } from './renderREADME';
@@ -21,33 +21,40 @@ const getInitialReadmeHTML = (vizContent) =>
       renderREADME(getFileText(vizContent, 'README.md'), marked, filterXSS);
 
 // Initialize the Web Worker.
-// TODO think about maybe we want to do this at the app level,
-// as there will be "plugins".
-// TODO rename
-let myWorker;
-if (isClient) {
-  // Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/main.js
-  myWorker = new Worker('/build/worker.js');
-}
+// TODO think about how to organize the build
+// such that plugins can add entry points, e.g. worker script.
+// Ideally we could use multiple Web Workers to utilize more CPU cores.
+// Use case: render Markdown in one thread and simultaneously
+// bundle JavaScript in another thread and simultaneously
+// run Prettier in another thread.
+
+// Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/main.js
+const worker = isClient ? new Worker('/build/worker.js') : null;
+
+// The delay used to debounce Markdown rendering (in milliseconds).
+// This prevents re-rendering Markdown on each keystroke when editing.
+// The Markdown is rendered 500ms after you stop editing the text.
+const readmeRenderDebounce = 500;
 
 export const useReadmeHTML = (vizContent) => {
   const [readmeHTML, setReadmeHTML] = useState(
     getInitialReadmeHTML(vizContent)
   );
 
-  // TODO on client, invoke Web Worker to re-render when vizContent changes.
-  // TODO debounce rendering.
+  // Receive rendered Markdown.
   useEffect(() => {
-    if (isClient) {
-      const readmeMarkdown = getFileText(vizContent, 'README.md');
-      myWorker.postMessage({ readmeMarkdown });
-      console.log('Message posted to worker');
+    worker.onmessage = ({ data }) => {
+      setReadmeHTML(data);
+    };
+  }, [vizContent]);
 
-      myWorker.onmessage = function (e) {
-        console.log('Message received from worker');
-        console.log(e.data);
-      };
-    }
+  // Send Markdown for rendering.
+  const timeoutRef = useRef();
+  useEffect(() => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      worker.postMessage(getFileText(vizContent, 'README.md'));
+    }, readmeRenderDebounce);
   }, [vizContent]);
 
   return readmeHTML;

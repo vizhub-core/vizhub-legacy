@@ -17,21 +17,11 @@ const libraries = jsDelivrCombine([
   `xss@${xssVersion}/dist/xss.min.js`,
 ]);
 
-const workerWindow = self;
-
 export const vizPageWorkerPlugin = () => {
   importScripts(libraries);
 
-  console.log('marked');
-  console.log(marked);
-  console.log('filterXSS');
-  console.log(filterXSS);
-
   // Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/worker.js
-  onmessage = (event) => {
-    console.log('Worker: Message received from main script');
-    const { readmeMarkdown } = event.data;
-    const result = renderREADME(readmeMarkdown, marked, filterXSS);
-    postMessage(result);
+  onmessage = ({ data }) => {
+    postMessage(renderREADME(data, marked, filterXSS));
   };
 };

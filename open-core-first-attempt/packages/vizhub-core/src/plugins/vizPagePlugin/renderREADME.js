@@ -14,6 +14,5 @@ export const renderREADME = (readmeMarkdown, marked, filterXSS) => {
   //      return hljs.highlight(code, { language }).value;
   //    },
   //  });
-
   return filterXSS(marked(readmeMarkdown));
 };
