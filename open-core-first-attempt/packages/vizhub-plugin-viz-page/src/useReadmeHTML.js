@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect, useRef } from 'react';
-import { isClient } from '../../isomorphic/isClient';
-import { getFileText } from '../../entities/VizContent';
+import { isClient, getFileText } from 'vizhub-core';
 import { renderREADME } from './renderREADME';
 
 // Load modules in Node via require().

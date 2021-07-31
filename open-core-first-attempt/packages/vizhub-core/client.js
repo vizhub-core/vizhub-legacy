@@ -3,4 +3,3 @@
 // import { ... } from 'vizhub-core/client';
 export { client } from './src/client';
 export { homePageClientPlugin } from './src/plugins/homePagePlugin/client';
-export { vizPageClientPlugin } from './src/plugins/vizPagePlugin/client';

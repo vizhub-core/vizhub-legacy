@@ -1,8 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { VizInfo } from '../../entities/VizInfo';
-import { App } from '../../isomorphic/App';
-import { indexHTML } from '../../isomorphic/indexHTML';
+import { VizInfo, App, indexHTML } from 'vizhub-core';
 import { getShareDBSnapshot } from './getShareDBSnapshot';
 import { VizPage } from './VizPage';
 

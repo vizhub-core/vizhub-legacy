@@ -1,4 +1,4 @@
-import { jsDelivrCombine } from '../../isomorphic/jsDelivrCombine';
+import { jsDelivrCombine } from 'vizhub-core';
 import { renderREADME } from './renderREADME';
 
 // We use Marked to render Markdown.

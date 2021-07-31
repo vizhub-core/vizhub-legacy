@@ -6,7 +6,7 @@ import nodePolyfills from 'rollup-plugin-node-polyfills';
 import sass from 'sass';
 import { writeFileSync } from 'fs';
 
-// TODO refactor more stuff
+// TODO refactor more stuff - move it from here to vizhub-core
 const buildServer = async () => {
   await buildBundle({
     inputOptions: {
@@ -26,8 +26,6 @@ const buildServer = async () => {
         'react',
         'react-dom',
         'react-dom/server',
-        'marked',
-        'dompurify',
       ],
     },
     outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true },
@@ -59,23 +57,16 @@ const buildClient = async () => {
   });
 };
 
+// TODO factor this out to plugin realm.
 const buildWorker = async () => {
   await buildBundle({
     inputOptions: {
-      input: 'src/worker.js',
-      plugins: [commonjs(), nodeResolve()],
+      input: '../vizhub-ce/src/worker.js',
+      plugins: [sucrase(sucraseOptions), nodeResolve()],
       onwarn,
-      external: [''],
+      external: ['react'],
     },
-    outputOptions: {
-      file: 'public/build/worker.js',
-      format: 'iife',
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'sharedb/lib/client': 'ShareDBClient',
-      },
-    },
+    outputOptions: { file: 'public/build/worker.js', format: 'iife' },
   });
 };
 
@@ -86,10 +77,7 @@ const buildTests = async () => {
       plugins: [sucrase(sucraseOptions), nodeResolve()],
       onwarn,
     },
-    outputOptions: {
-      file: 'build/test.cjs',
-      format: 'cjs',
-    },
+    outputOptions: { file: 'build/test.cjs', format: 'cjs' },
   });
 };
 
@@ -114,4 +102,5 @@ const build = async () => {
   const buildTime = endTime - startTime;
   console.log(`Built everything in ${buildTime} ms`);
 };
+
 build();

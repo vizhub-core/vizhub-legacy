@@ -1,10 +1,3 @@
-import {
-  //worker,
-  vizPageWorkerPlugin,
-} from 'vizhub-core/worker';
+import { vizPageWorkerPlugin } from 'vizhub-plugin-viz-page/worker';
 
 vizPageWorkerPlugin();
-//
-//const plugins = [vizPageworkerPlugin()];
-//
-//worker(plugins);
