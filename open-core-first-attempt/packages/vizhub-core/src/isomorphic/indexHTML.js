@@ -11,20 +11,10 @@ const reactVersion = '17.0.2';
 // https://github.com/curran/sharedb-client-browser
 const shareDBClientVersion = '1.2.0';
 
-// We use Marked to render Markdown.
-// https://www.npmjs.com/package/marked
-const markedVersion = '2.1.3';
-
-// We use DOMPurify to sanitize rendered Markdown.
-// https://www.npmjs.com/package/dompurify
-const domPurifyVersion = '2.3.0';
-
 const libraries = jsDelivrCombine([
   `react@${reactVersion}/umd/react.production.min.js`,
   `react-dom@${reactVersion}/umd/react-dom.production.min.js`,
   `sharedb-client-browser@${shareDBClientVersion}/sharedb-client-browser.min.js`,
-  `marked@${markedVersion}/marked.min.js`,
-  `dompurify@${domPurifyVersion}/dist/purify.min.js`,
 ]);
 
 // TODO get oembed working

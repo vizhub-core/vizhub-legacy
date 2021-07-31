@@ -45,13 +45,7 @@ const buildClient = async () => {
         nodeResolve(),
       ],
       onwarn,
-      external: [
-        'react',
-        'react-dom',
-        'sharedb/lib/client',
-        'marked',
-        'dompurify',
-      ],
+      external: ['react', 'react-dom', 'sharedb/lib/client'],
     },
     outputOptions: {
       file: 'public/build/index.js',
@@ -60,8 +54,6 @@ const buildClient = async () => {
         react: 'React',
         'react-dom': 'ReactDOM',
         'sharedb/lib/client': 'ShareDBClient',
-        marked: 'marked',
-        dompurify: 'DOMPurify',
       },
     },
   });
