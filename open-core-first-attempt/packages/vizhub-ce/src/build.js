@@ -48,7 +48,27 @@ const buildClient = async () => {
       external: ['react', 'react-dom', 'sharedb/lib/client'],
     },
     outputOptions: {
-      file: 'public/build/index.js',
+      file: 'public/build/client.js',
+      format: 'iife',
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'sharedb/lib/client': 'ShareDBClient',
+      },
+    },
+  });
+};
+
+const buildWorker = async () => {
+  await buildBundle({
+    inputOptions: {
+      input: 'src/worker.js',
+      plugins: [commonjs(), nodeResolve()],
+      onwarn,
+      external: [''],
+    },
+    outputOptions: {
+      file: 'public/build/worker.js',
       format: 'iife',
       globals: {
         react: 'React',
@@ -86,6 +106,7 @@ const build = async () => {
   await Promise.all([
     buildServer(),
     buildClient(),
+    buildWorker(),
     buildTests(),
     buildStyles(),
   ]);

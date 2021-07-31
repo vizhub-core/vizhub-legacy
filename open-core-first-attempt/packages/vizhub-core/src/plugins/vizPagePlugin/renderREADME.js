@@ -1,7 +1,20 @@
 import { isClient } from '../../isomorphic/isClient';
 import { getFileText } from '../../entities/VizContent';
 
-export const renderREADME = (vizContent, { marked, DOMPurify }) => {
+if (isClient) {
+  // Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/main.js
+  const myWorker = new Worker('/build/worker.js');
+
+  myWorker.postMessage([5, 6]);
+  console.log('Message posted to worker');
+
+  myWorker.onmessage = function (e) {
+    console.log('Message received from worker');
+    console.log(e.data);
+  };
+}
+
+export const renderREADME = async (vizContent, { marked, DOMPurify }) => {
   const readmeMarkdown = getFileText(vizContent, 'README.md');
 
   // TODO highlight code snippets

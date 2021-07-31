@@ -68,6 +68,6 @@ export const indexHTML = ({
     <div id="root">${rootHTML}</div>
     <script src="${libraries}"></script>
     <script>window.pageData = ${stringifyPageData(pageData)};</script>
-    <script src="/build/index.js"></script>
+    <script src="/build/client.js"></script>
   </body>
 </html>`;
