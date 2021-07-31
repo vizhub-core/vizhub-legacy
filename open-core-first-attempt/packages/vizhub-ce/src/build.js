@@ -26,8 +26,6 @@ const buildServer = async () => {
         'react',
         'react-dom',
         'react-dom/server',
-        'marked',
-        'dompurify',
       ],
     },
     outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true },
@@ -63,26 +61,12 @@ const buildClient = async () => {
 const buildWorker = async () => {
   await buildBundle({
     inputOptions: {
-      // TODO
-      //      input: '../vizhub-plugin-viz-page/src/markdownWorker.js',
       input: '../vizhub-ce/src/worker.js',
-      // TODO check if we need all of these plugins here.
-      plugins: [
-        sucrase(sucraseOptions),
-        nodeResolve(),
-      ],
+      plugins: [sucrase(sucraseOptions), nodeResolve()],
       onwarn,
-      external: ['react']
+      external: ['react'],
     },
-    outputOptions: {
-      file: 'public/build/worker.js',
-      format: 'iife',
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'sharedb/lib/client': 'ShareDBClient',
-      },
-    },
+    outputOptions: { file: 'public/build/worker.js', format: 'iife' },
   });
 };
 
@@ -93,10 +77,7 @@ const buildTests = async () => {
       plugins: [sucrase(sucraseOptions), nodeResolve()],
       onwarn,
     },
-    outputOptions: {
-      file: 'build/test.cjs',
-      format: 'cjs',
-    },
+    outputOptions: { file: 'build/test.cjs', format: 'cjs' },
   });
 };
 
@@ -121,4 +102,5 @@ const build = async () => {
   const buildTime = endTime - startTime;
   console.log(`Built everything in ${buildTime} ms`);
 };
+
 build();

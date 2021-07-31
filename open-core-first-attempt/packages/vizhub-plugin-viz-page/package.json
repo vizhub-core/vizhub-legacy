@@ -2,10 +2,6 @@
   "name": "vizhub-plugin-viz-page",
   "version": "0.0.1",
   "description": "",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Tests run inside the vizhub-ce package.\" && exit 1"
-  },
   "author": "Curran Kelleher",
   "license": "MIT"
 }
