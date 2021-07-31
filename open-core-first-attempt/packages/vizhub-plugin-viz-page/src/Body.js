@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { getHeight } from '../../entities/VizInfo';
-import { classed } from '../../isomorphic/classed';
+import { getHeight, classed } from 'vizhub-core';
 import { VizContext } from './VizContext';
 import { useReadmeHTML } from './useReadmeHTML';
 

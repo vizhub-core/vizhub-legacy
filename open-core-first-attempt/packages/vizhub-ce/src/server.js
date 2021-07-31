@@ -1,8 +1,5 @@
-import {
-  server,
-  homePageServerPlugin,
-  vizPageServerPlugin,
-} from 'vizhub-core/server';
+import { server, homePageServerPlugin } from 'vizhub-core/server';
+import { vizPageServerPlugin } from 'vizhub-plugin-viz-page/server';
 
 const plugins = [homePageServerPlugin(), vizPageServerPlugin()];
 

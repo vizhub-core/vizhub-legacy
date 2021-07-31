@@ -6,7 +6,7 @@ import nodePolyfills from 'rollup-plugin-node-polyfills';
 import sass from 'sass';
 import { writeFileSync } from 'fs';
 
-// TODO refactor more stuff
+// TODO refactor more stuff - move it from here to vizhub-core
 const buildServer = async () => {
   await buildBundle({
     inputOptions: {
@@ -59,13 +59,20 @@ const buildClient = async () => {
   });
 };
 
+// TODO factor this out to plugin realm.
 const buildWorker = async () => {
   await buildBundle({
     inputOptions: {
-      input: 'src/worker.js',
-      plugins: [commonjs(), nodeResolve()],
+      // TODO
+      //      input: '../vizhub-plugin-viz-page/src/markdownWorker.js',
+      input: '../vizhub-ce/src/worker.js',
+      // TODO check if we need all of these plugins here.
+      plugins: [
+        sucrase(sucraseOptions),
+        nodeResolve(),
+      ],
       onwarn,
-      external: [''],
+      external: ['react']
     },
     outputOptions: {
       file: 'public/build/worker.js',

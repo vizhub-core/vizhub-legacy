@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import shareDB from 'sharedb/lib/client';
-import { isClient } from '../../isomorphic/isClient';
-import { VizInfo } from '../../entities/VizInfo';
-import { VizContent } from '../../entities/VizContent';
+import { isClient, VizInfo, VizContent } from 'vizhub-core';
 
 export const VizContext = createContext();
 

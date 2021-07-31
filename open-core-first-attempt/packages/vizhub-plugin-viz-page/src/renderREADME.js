@@ -1,5 +1,4 @@
-import { isClient } from '../../isomorphic/isClient';
-import { getFileText } from '../../entities/VizContent';
+import { isClient, getFileText } from 'vizhub-core';
 
 export const renderREADME = (readmeMarkdown, marked, filterXSS) => {
   // TODO highlight code snippets
