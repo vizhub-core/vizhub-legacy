@@ -1,7 +1,7 @@
 import { isClient } from '../../isomorphic/isClient';
 import { getFileText } from '../../entities/VizContent';
 
-export const renderREADME = (readmeMarkdown, { marked, DOMPurify }) => {
+export const renderREADME = (readmeMarkdown, marked, filterXSS) => {
   // TODO highlight code snippets
   //  marked.setOptions({
   //    highlight: (code, lang) => {
@@ -15,5 +15,5 @@ export const renderREADME = (readmeMarkdown, { marked, DOMPurify }) => {
   //    },
   //  });
 
-  return DOMPurify.sanitize(marked(readmeMarkdown));
+  return filterXSS(marked(readmeMarkdown));
 };

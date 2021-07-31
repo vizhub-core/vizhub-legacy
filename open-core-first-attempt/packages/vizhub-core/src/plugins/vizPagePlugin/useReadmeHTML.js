@@ -4,17 +4,11 @@ import { getFileText } from '../../entities/VizContent';
 import { renderREADME } from './renderREADME';
 
 // Load modules in Node via require().
-const loadSecondaryModulesServerSide = () => {
-  const marked = require('marked');
-
-  // Invocation of DOMPurify is different on the client vs. server.
-  // See https://github.com/cure53/DOMPurify#okay-makes-sense-lets-move-on
-  const { JSDOM } = require('jsdom');
-  const DOMPurify = require('dompurify')(new JSDOM('').window);
-
-  return { marked, DOMPurify };
-};
-const secondaryModules = isClient ? null : loadSecondaryModulesServerSide();
+const loadNodeModules = () => ({
+  marked: require('marked'),
+  filterXSS: require('xss'),
+});
+const { marked, filterXSS } = isClient ? {} : loadNodeModules();
 
 const getInitialReadmeHTML = (vizContent) =>
   isClient
@@ -24,7 +18,7 @@ const getInitialReadmeHTML = (vizContent) =>
       document.getElementById('readme').innerHTML
     : // If we're on the server,
       // render Markdown synchronously.
-      renderREADME(getFileText(vizContent, 'README.md'), secondaryModules);
+      renderREADME(getFileText(vizContent, 'README.md'), marked, filterXSS);
 
 // Initialize the Web Worker.
 // TODO think about maybe we want to do this at the app level,
