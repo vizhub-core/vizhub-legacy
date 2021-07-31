@@ -2,6 +2,7 @@ import { isClient } from '../../isomorphic/isClient';
 import { getFileText } from '../../entities/VizContent';
 
 export const renderREADME = (vizContent, { marked, DOMPurify }) => {
+  // TODO accept this, rather than vizContent, as an arg.
   const readmeMarkdown = getFileText(vizContent, 'README.md');
 
   // TODO highlight code snippets

@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { isClient } from '../../isomorphic/isClient';
+import { getFileText } from '../../entities/VizContent';
 import { renderREADME } from './renderREADME';
 
 // Load modules in Node via require().
@@ -44,7 +45,8 @@ export const useReadmeHTML = (vizContent) => {
   // TODO debounce rendering.
   useEffect(() => {
     if (isClient) {
-      myWorker.postMessage([5, 6]);
+      const readmeMarkdown = getFileText(vizContent, 'README.md');
+      myWorker.postMessage({ readmeMarkdown });
       console.log('Message posted to worker');
 
       myWorker.onmessage = function (e) {

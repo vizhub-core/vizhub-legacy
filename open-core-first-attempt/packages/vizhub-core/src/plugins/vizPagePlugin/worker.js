@@ -22,8 +22,8 @@ export const vizPageWorkerPlugin = () => {
   // Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/worker.js
   onmessage = (event) => {
     console.log('Worker: Message received from main script');
-    console.log(event.data);
-    const result = event.data[0] * event.data[1];
+    console.log(event.data.readmeMarkdown);
+    const result = marked(event.data.readmeMarkdown);
     const workerResult = 'Result: ' + result;
     console.log('Worker: Posting message back to main script');
     postMessage(workerResult);
