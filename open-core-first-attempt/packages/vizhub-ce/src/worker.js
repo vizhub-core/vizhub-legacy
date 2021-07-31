@@ -8,4 +8,3 @@ vizPageWorkerPlugin();
 //const plugins = [vizPageworkerPlugin()];
 //
 //worker(plugins);
-

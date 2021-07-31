@@ -14,7 +14,7 @@ if (isClient) {
   };
 }
 
-export const renderREADME = async (vizContent, { marked, DOMPurify }) => {
+export const renderREADME = (vizContent, { marked, DOMPurify }) => {
   const readmeMarkdown = getFileText(vizContent, 'README.md');
 
   // TODO highlight code snippets
