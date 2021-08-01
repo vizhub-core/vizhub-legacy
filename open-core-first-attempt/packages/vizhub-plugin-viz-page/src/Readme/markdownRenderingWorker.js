@@ -1,6 +1,8 @@
 import { jsDelivrCombine } from 'vizhub-core';
 import { renderREADME } from './renderREADME';
 
+// This file defines a Web Worker that renders Markdown.
+
 // We use Marked to render Markdown.
 // https://www.npmjs.com/package/marked
 const markedVersion = '2.1.3';
@@ -17,11 +19,9 @@ const libraries = jsDelivrCombine([
   `xss@${xssVersion}/dist/xss.min.js`,
 ]);
 
-export const vizPageWorkerPlugin = () => {
-  importScripts(libraries);
+importScripts(libraries);
 
-  // Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/worker.js
-  onmessage = ({ data }) => {
-    postMessage(renderREADME(data, marked, filterXSS));
-  };
+// Inspired by https://github.com/mdn/simple-web-worker/blob/gh-pages/worker.js
+onmessage = ({ data }) => {
+  postMessage(renderREADME(data, marked, filterXSS));
 };

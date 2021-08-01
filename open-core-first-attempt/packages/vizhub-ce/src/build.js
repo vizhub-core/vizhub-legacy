@@ -1,10 +1,13 @@
-import { buildBundle, sucraseOptions, onwarn } from 'vizhub-core/build.js';
 import sucrase from '@rollup/plugin-sucrase';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 import sass from 'sass';
 import { writeFileSync } from 'fs';
+import { buildBundle, sucraseOptions, onwarn } from 'vizhub-core/build.js';
+import { vizPageBuildPlugin } from 'vizhub-plugin-viz-page/build.js';
+
+const buildPlugins = [vizPageBuildPlugin()];
 
 // TODO refactor more stuff - move it from here to vizhub-core
 const buildServer = async () => {
@@ -57,19 +60,6 @@ const buildClient = async () => {
   });
 };
 
-// TODO factor this out to plugin realm.
-const buildWorker = async () => {
-  await buildBundle({
-    inputOptions: {
-      input: '../vizhub-ce/src/worker.js',
-      plugins: [sucrase(sucraseOptions), nodeResolve()],
-      onwarn,
-      external: ['react'],
-    },
-    outputOptions: { file: 'public/build/worker.js', format: 'iife' },
-  });
-};
-
 const buildTests = async () => {
   await buildBundle({
     inputOptions: {
@@ -94,10 +84,15 @@ const build = async () => {
   await Promise.all([
     buildServer(),
     buildClient(),
-    buildWorker(),
     buildTests(),
-    buildStyles(),
+    ...buildPlugins.map((plugin) => plugin()),
   ]);
+
+  // Build styles last because it depends on
+  // the existence of the public/build directory,
+  // which is created by buildClient().
+  await buildStyles();
+
   const endTime = Date.now();
   const buildTime = endTime - startTime;
   console.log(`Built everything in ${buildTime} ms`);
