@@ -12,6 +12,7 @@ const { marked, filterXSS } = isClient ? {} : loadNodeModules();
 
 // Parse the innerHTML _only once_ on module load,
 // not every time getInitialReadmeHTML is called.
+// TODO ensure this only runs in the Viz page, not other pages.
 const serverRenderedMarkdown = isClient
   ? document.getElementById('readme').innerHTML
   : null;
