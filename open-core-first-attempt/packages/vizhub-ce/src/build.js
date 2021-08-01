@@ -85,9 +85,14 @@ const build = async () => {
     buildServer(),
     buildClient(),
     buildTests(),
-    buildStyles(),
     ...buildPlugins.map((plugin) => plugin()),
   ]);
+
+  // Build styles last because it depends on
+  // the existence of the public/build directory,
+  // which is created by buildClient().
+  await buildStyles();
+
   const endTime = Date.now();
   const buildTime = endTime - startTime;
   console.log(`Built everything in ${buildTime} ms`);
