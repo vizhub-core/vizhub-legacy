@@ -29,6 +29,8 @@ const buildServer = async () => {
         'react',
         'react-dom',
         'react-dom/server',
+        '@react-aria/button',
+        '@react-stately/toggle',
       ],
     },
     outputOptions: { file: 'build/server.cjs', format: 'cjs', sourcemap: true },
@@ -41,8 +43,8 @@ const buildClient = async () => {
       input: 'src/client.js',
       plugins: [
         sucrase(sucraseOptions),
-        nodePolyfills(),
         commonjs(),
+        nodePolyfills(),
         nodeResolve(),
       ],
       onwarn,

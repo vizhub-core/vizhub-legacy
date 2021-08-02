@@ -33,6 +33,8 @@
     "sharedb-redis-pubsub": "^2.0.0"
   },
   "dependencies": {
+    "@react-aria/button": "^3.3.2",
+    "@react-stately/toggle": "^3.2.2",
     "@teamwork/websocket-json-stream": "^2.0.0",
     "express": "^4.17.1",
     "marked": "^2.1.3",
