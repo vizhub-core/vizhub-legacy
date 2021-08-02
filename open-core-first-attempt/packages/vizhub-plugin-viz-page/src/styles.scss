@@ -5,6 +5,18 @@
   flex-direction: column;
   align-items: center;
 
+  .navigation {
+    height: 40px;
+    width: 100%;
+    background-color: black;
+  }
+
+  .head {
+    height: 30px;
+    width: 100%;
+    background-color: white;
+  }
+
   .viz-viewer {
     /* Scale horizontally when width < max-width. */
     width: 100%;

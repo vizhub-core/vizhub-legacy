@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { getHeight, classed } from 'vizhub-core';
 import { VizContext } from './VizContext';
 import { Readme } from './Readme';
+import { Navigation } from './Navigation';
+import { Head } from './Head';
 
 const Wrapper = classed('viz-page');
 const VizViewer = classed('viz-viewer');
@@ -15,10 +17,13 @@ export const Body = () => {
 
   return (
     <Wrapper>
+      <Navigation />
+      <Head />
       <VizViewer>
         <VizFrame viewBox={`0 0 960 ${height}`} />
         <Title>{title}</Title>
         <Readme />
+        {/* TODO License */}
       </VizViewer>
     </Wrapper>
   );
