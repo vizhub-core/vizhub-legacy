@@ -1,4 +1,4 @@
-@use './markdown-body';
+@use './Readme/markdown-body';
 
 .viz-page {
   display: flex;
@@ -15,6 +15,13 @@
     height: 30px;
     width: 100%;
     background-color: white;
+
+    .editor-toggle-button {
+      height: 100%;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+    }
   }
 
   .viz-viewer {
