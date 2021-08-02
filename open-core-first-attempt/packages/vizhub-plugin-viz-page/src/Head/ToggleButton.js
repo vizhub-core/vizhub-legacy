@@ -17,17 +17,12 @@ export const ToggleButton = (props) => {
   return (
     <button
       className={props.className}
+      style={
+        isPressed
+          ? { backgroundColor: 'var(--flatButtonActiveBackground)' }
+          : null
+      }
       {...buttonProps}
-      style={{
-        background: isPressed
-          ? state.isSelected
-            ? 'darkblue'
-            : 'darkgreen'
-          : state.isSelected
-          ? 'blue'
-          : 'green',
-        color: 'white',
-      }}
       ref={ref}
     >
       {props.children}

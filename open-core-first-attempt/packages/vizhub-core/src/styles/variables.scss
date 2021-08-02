@@ -11,14 +11,12 @@
     Consolas, Liberation Mono, monospace;
 
   /* --font-size-tiny: 12px; */
-  /* --font-size-small: 14px; */
+  --font-size-small: 14px;
   --font-size-default: 16px;
   --font-size-large: 20px;
 
   --link-color: #3866e9;
   --link-color-visited: #4f62e6;
-
-  /* --navigation-height: 40px; */
 
   --padding-miniscule: 7px;
   --padding-little: 10px;
@@ -34,10 +32,16 @@
   --code-background: #202e46;
   --code-foreground: #e2e2e2;
 
+  /* Height of the topmost navigation bar. */
+  --navigation-height: 40px;
+
   /* --z-index-above: 10; */
 
-  /* Used in Viz Page only */
-  /* --head-height: 30px; */
+  /* "Flat Buttons" are buttons throughout the VizHub UI */
+  /* that blend in with their surroundings, do not have rounded corners, */
+  /* and fill the vertical space of their containing element. */
+  --flatButtonHoverBackground: rgba(0, 0, 0, 0.05);
+  --flatButtonActiveBackground: rgba(0, 0, 0, 0.1);
 }
 
 /*
