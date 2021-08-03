@@ -1,6 +1,23 @@
 # vizhub-open-core
 
-Work in progress... An experiment in adopting the [open-core model](https://en.wikipedia.org/wiki/Open-core_model) for VizHub. Feedback welcome!
+Work in progress... An experiment in adopting the [open-core model](https://en.wikipedia.org/wiki/Open-core_model) for [VizHub](https://vizhub.com/).
+
+## Status
+
+Currently all this codebase does is:
+
+ * Interfaces with the existing VizHub database structure (see [vizhub-legacy entities](https://github.com/datavis-tech/vizhub-legacy/tree/master/packages/entities/src)).
+ * Defines the "Viz Page" that renders a viz.
+ * Renders an empty box (that's the right size) for the viz content.
+ * Renders the viz title.
+ * Renders Markdown (server rendered, client hydrated, then augmented with real-time synchronization via ShareDB, debounced in a Web Worker).
+
+It looks like this:
+
+![image](https://user-images.githubusercontent.com/68416/127775648-e1b1b53f-6dae-4a8c-ad14-9da7128def73.png)
+
+There is currently no clear path for new developers to start, which is the main issue right now around adoption. See [
+Add clear path to get started for new developers](https://github.com/vizhub-open-core/vizhub-open-core/issues/4).
 
 ## The Vision
 
