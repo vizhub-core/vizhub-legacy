@@ -1,19 +1,14 @@
 import React from 'react';
-import { EditorToggleButton } from './EditorToggleButton';
 import { classed } from 'vizhub-core';
 
 const Wrapper = classed('head');
 
-// TODO expand upon this notion,
-// so that we can make other features plugins:
-//  - forking
-//  - settings
-// TODO consider: can plugins have plugins?
-//  - e.g. forking as a plugin to viz page plugin
-//  - e.g. privacy checkbox as plugin to forking plugin
-const headPlugins = [EditorToggleButton];
-
-export const Head = () => {
+// TODO consider renaming this.
+// <head> is a top-level HTML element.
+// To what?
+//   Header? Goes with Footer.
+//   TopBar? Goes with SideBar. Might be the winner.
+export const Head = ({ headPlugins }) => {
   return (
     <Wrapper>
       {headPlugins.map((Component) => (

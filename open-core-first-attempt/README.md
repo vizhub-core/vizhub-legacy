@@ -37,12 +37,13 @@ Add clear path to get started for new developers](https://github.com/vizhub-open
 ## Development
 
 This codebased is built on:
- * [MongoDB](https://github.com/mongodb/mongo) for storage
- * [Redis](https://github.com/redis/redis) for horizontal scaling (see [sharedb-redis-pubsub](https://github.com/share/sharedb-redis-pubsub)
- * [ShareDB](https://github.com/share/sharedb) for real-time synchronization and collaboration
- * [React](https://reactjs.org/)
- * [Rollup](https://rollupjs.org/guide/en/)
- * [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)
+
+- [MongoDB](https://github.com/mongodb/mongo) for storage
+- [Redis](https://github.com/redis/redis) for horizontal scaling (see [sharedb-redis-pubsub](https://github.com/share/sharedb-redis-pubsub)
+- [ShareDB](https://github.com/share/sharedb) for real-time synchronization and collaboration
+- [React](https://reactjs.org/)
+- [Rollup](https://rollupjs.org/guide/en/)
+- [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)
 
 To set up your development environment, you'll need to [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and [Install Redis](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
 
