@@ -1,9 +1,35 @@
-@use './markdown-body';
+@use './Readme/markdown-body';
 
 .viz-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  /* TODO move navigation to vizhub-core package. */
+  .navigation {
+    height: var(--navigation-height);
+    width: 100%;
+    background-color: black;
+  }
+
+  .head {
+    height: 30px;
+    width: 100%;
+    background-color: white;
+
+    .editor-toggle-button {
+      height: 100%;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      background-color: white;
+      font-size: var(--font-size-small);
+      font-weight: 600;
+    }
+    .editor-toggle-button:hover {
+      background-color: var(--flatButtonHoverBackground);
+    }
+  }
 
   .viz-viewer {
     /* Scale horizontally when width < max-width. */
