@@ -36,9 +36,15 @@ Add clear path to get started for new developers](https://github.com/vizhub-open
 
 ## Development
 
-[Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+This codebased is built on:
+ * [MongoDB](https://github.com/mongodb/mongo) for storage
+ * [Redis](https://github.com/redis/redis) for horizontal scaling (see [sharedb-redis-pubsub](https://github.com/share/sharedb-redis-pubsub)
+ * [ShareDB](https://github.com/share/sharedb) for real-time synchronization and collaboration
+ * [React](https://reactjs.org/)
+ * [Rollup](https://rollupjs.org/guide/en/)
+ * [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)
 
-[Install Redis](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+To set up your development environment, you'll need to [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and [Install Redis](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
 
 ```
 sudo service mongod start
@@ -50,17 +56,19 @@ npm start
 
 ### Environment Variables
 
-In order to ensure the environment variables persist across reboots, put them in:
+Environment variables configure how the app connects to MongoDB and Redis.
 
-```
-/etc/environment
-```
-
-Example configuration:
+Example configuration (in `~/.bashrc` on Linux):
 
 ```
 export VIZHUB_MONGO_URI='mongodb://localhost:27017/vizhub'
 export VIZHUB_REDIS_HOST='127.0.0.1'
+```
+
+In production, in order to ensure the environment variables persist across reboots, put them in:
+
+```
+/etc/environment
 ```
 
 ### Variable Naming Conventions
