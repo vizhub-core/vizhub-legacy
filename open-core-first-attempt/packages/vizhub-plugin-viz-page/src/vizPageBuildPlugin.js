@@ -8,7 +8,7 @@ export const vizPageBuildPlugin = () => {
     await buildBundle({
       inputOptions: {
         input:
-          '../vizhub-plugin-viz-page/src/Readme/markdownRenderingWorker.js',
+          '../vizhub-plugin-viz-page/src/VizPage/Readme/markdownRenderingWorker.js',
         plugins: [sucrase(sucraseOptions), nodeResolve()],
         onwarn,
         external: ['react'],

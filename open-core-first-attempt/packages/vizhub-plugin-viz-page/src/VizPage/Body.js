@@ -4,7 +4,7 @@ import { VizContext } from './VizContext';
 import { Readme } from './Readme';
 import { Navigation } from './Navigation';
 import { Head } from './Head';
-import { EditorToggleButton } from './Editor';
+import { EditorToggleButton } from '../Editor';
 
 const Wrapper = classed('viz-page');
 const VizViewer = classed('viz-viewer');
