@@ -4,12 +4,9 @@ import { useReadmeHTML } from './useReadmeHTML';
 
 const MarkdownBody = classed('markdown-body');
 
-export const Readme = () => {
-  const readmeHTML = useReadmeHTML();
-  return (
-    <MarkdownBody
-      id="readme"
-      dangerouslySetInnerHTML={{ __html: readmeHTML }}
-    />
-  );
-};
+export const Readme = () => (
+  <MarkdownBody
+    id="readme"
+    dangerouslySetInnerHTML={{ __html: useReadmeHTML() }}
+  />
+);
