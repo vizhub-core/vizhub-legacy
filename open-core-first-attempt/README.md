@@ -21,18 +21,18 @@ Add clear path to get started for new developers](https://github.com/vizhub-open
 
 ## The Vision
 
+- Sustainable Open Source product of exceptional quality and durability (will last 10+ years).
 - Open Source core software wherein the hard problems are solved.
-
-  - Best possible browser based runtime for live coding.
+  - Best possible browser based runtime for live coding using ES6 standards.
   - Best possible code editor that _really_ works on mobile.
-  - Vizzes with persistent state, editable without touching code.
+  - Persistent state with real-time remote synchronization, editable without touching code.
   - Importing from other vizzes to compose complex software.
   - Revision history.
-
-- Proprietary plugins for paid features.
-  - Collaborators with presence.
-  - Teams.
+- Proprietary plugins for the paid features of the VizHub product.
+  - Real-time collaborative editing, with presence.
+  - Teams and associated permissions system.
   - In-app live audio/video meeting experience.
+  - Marketplace for pair programming / mentoring services.
 
 ## Development
 
