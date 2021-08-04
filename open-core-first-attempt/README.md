@@ -6,11 +6,11 @@ Work in progress... An experiment in adopting the [open-core model](https://en.w
 
 Currently all this codebase does is:
 
- * Interfaces with the existing VizHub database structure (see [vizhub-legacy entities](https://github.com/datavis-tech/vizhub-legacy/tree/master/packages/entities/src)).
- * Defines the "Viz Page" that renders a viz.
- * Renders an empty box (that's the right size) for the viz content.
- * Renders the viz title.
- * Renders Markdown (server rendered, client hydrated, then augmented with real-time synchronization via ShareDB, debounced in a Web Worker).
+- Interfaces with the existing VizHub database structure (see [vizhub-legacy entities](https://github.com/datavis-tech/vizhub-legacy/tree/master/packages/entities/src)).
+- Defines the "Viz Page" that renders a viz.
+- Renders an empty box (that's the right size) for the viz content.
+- Renders the viz title.
+- Renders Markdown (server rendered, client hydrated, then augmented with real-time synchronization via ShareDB, debounced in a Web Worker).
 
 It looks like this:
 
