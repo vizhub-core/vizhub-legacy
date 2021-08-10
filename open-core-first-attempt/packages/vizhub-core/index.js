@@ -7,3 +7,36 @@ export {
 } from './src/isomorphic';
 
 export { VizInfo, getHeight, VizContent, getFileText } from './src/entities';
+
+export {
+  LogoSVG,
+  ForkSVG,
+  CloseSVG,
+  PullSVG,
+  SettingsSVG,
+  ShareSVG,
+  ArrowSVG,
+  VoteSVG,
+  SpinnerSVG,
+  FullSVG,
+  FullExitSVG,
+  MiniSVG,
+  MicroSVG,
+  SplitSVG,
+  TrashSVG,
+  NewSVG,
+  ExportSVG,
+  PrettierSVG,
+  DirectoryArrowSVG,
+  RadioButtonSVG,
+  PlayPauseSVG,
+  LockSVG,
+  LockOpenSVG,
+  PlanIncludedSVG,
+  PlanExcludedSVG,
+  PeopleSVG,
+  VimSVG,
+  SearchSVG,
+  SharedWithMeSVG,
+  SVGGallery,
+} from './src/svg';

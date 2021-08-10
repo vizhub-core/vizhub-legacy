@@ -1,4 +1,5 @@
 @use './VizPage/Readme/markdown-body';
+@use './Editor/styles';
 
 .viz-page {
   display: flex;
@@ -16,19 +17,6 @@
     height: 30px;
     width: 100%;
     background-color: white;
-
-    .editor-toggle-button {
-      height: 100%;
-      cursor: pointer;
-      user-select: none;
-      border: none;
-      background-color: white;
-      font-size: var(--font-size-small);
-      font-weight: 600;
-    }
-    .editor-toggle-button:hover {
-      background-color: var(--flatButtonHoverBackground);
-    }
   }
 
   .viz-viewer {
