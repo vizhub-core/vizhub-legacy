@@ -56,17 +56,23 @@ const useURLState = (config, reducer, ssrQuery) => {
   const urlDispatch = useCallback(
     (action) => {
       const newURLState = reducer(urlState, action);
-      const urlSearchParams = new URLSearchParams();
+      const url = new URL(window.location);
+      const newQuery = {};
       for (const [key, keyConfig] of Object.entries(config)) {
         const { defaultValue, stringify } = keyConfig;
-        urlSearchParams.set(key, stringify(newURLState[key]));
+        const stringifiedValue = stringify(newURLState[key]);
+        newQuery[key] = stringifiedValue;
+        if (stringifiedValue !== undefined) {
+          url.searchParams.set(key, stringifiedValue);
+        } else {
+          url.searchParams.delete(key);
+        }
       }
-      history.pushState(
-        null,
-        null,
-        '?' + removeEmptyEquals(urlSearchParams.toString())
-      );
-      // TODO setQuery
+      //      const newQueryString = removeEmptyEquals(urlearchParams.toString());
+      //history.pushState(null, null, newQueryString ? '?' + newQueryString : '');
+      //      history.pushState(null, null, '?' + newQueryString);
+      history.pushState(null, null, url);
+      setQuery(newQuery);
     },
     [urlState, reducer]
   );
