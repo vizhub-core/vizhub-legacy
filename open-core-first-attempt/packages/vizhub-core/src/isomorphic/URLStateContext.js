@@ -51,8 +51,6 @@ const useURLState = (config, reducer, ssrQuery) => {
     return state;
   }, [config, query]);
 
-  console.log(urlState);
-
   const urlDispatch = useCallback(
     (action) => {
       const newURLState = reducer(urlState, action);
@@ -68,10 +66,7 @@ const useURLState = (config, reducer, ssrQuery) => {
           url.searchParams.delete(key);
         }
       }
-      //      const newQueryString = removeEmptyEquals(urlearchParams.toString());
-      //history.pushState(null, null, newQueryString ? '?' + newQueryString : '');
-      //      history.pushState(null, null, '?' + newQueryString);
-      history.pushState(null, null, url);
+      history.pushState(null, null, removeEmptyEquals(url.toString()));
       setQuery(newQuery);
     },
     [urlState, reducer]
