@@ -5,7 +5,7 @@ export const URLStateContext = createContext();
 const urlStateConfig = {
   edit: {
     defaultValue: false,
-    parse: (d) => d,
+    parse: (d) => d !== null,
     stringify: (d) => d,
   },
 };
@@ -34,12 +34,9 @@ const useURLState = (urlStateConfig, urlStateReducer, query) => {
   for (const [key, config] of Object.entries(urlStateConfig)) {
     const { defaultValue, parse } = config;
     const value = searchParams.get(key);
-    console.log('key');
-    console.log(key);
-    console.log('value');
-    console.log(value);
     urlState[key] = value === undefined ? defaultValue : parse(value);
   }
+  console.log(urlState);
   return urlState;
 };
 
