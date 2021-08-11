@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { ArrowSVG } from 'vizhub-core';
+import React, { useState, useContext } from 'react';
+import { ArrowSVG, URLStateContext } from 'vizhub-core';
 import { ToggleButton } from './ToggleButton';
 
 export const EditorToggleButton = () => {
-  // TODO move this state into the URL.
-  // https://github.com/stamen/pleth/blob/master/packages/examples/src/pleth/useURLState.js
-  // https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
+  const { isEditorOpen, setIsEditorOpen } = useContext(URLStateContext);
 
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  //console.log(JSON.stringify({ isEditorOpen, setIsEditorOpen }));
 
   return (
     <ToggleButton

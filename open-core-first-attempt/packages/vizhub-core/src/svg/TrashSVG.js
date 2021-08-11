@@ -1,9 +1,6 @@
 import React from 'react';
 
-export const TrashSVG = ({
-  height = 15,
-  fill = 'currentcolor',
-}) => (
+export const TrashSVG = ({ height = 15, fill = 'currentcolor' }) => (
   <svg height={height} viewBox="0 0 12 15">
     <path
       style={{ fill: isRed ? red : fill }}

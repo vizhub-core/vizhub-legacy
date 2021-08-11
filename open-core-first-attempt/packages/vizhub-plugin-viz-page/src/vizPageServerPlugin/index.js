@@ -23,7 +23,6 @@ export const vizPageServerPlugin = () => ({
 
     expressApp.get('/:userName/:vizId', async (req, res) => {
       const { vizId } = req.params;
-
       try {
         const [vizInfoSnapshot, vizContentSnapshot] = await Promise.all([
           getVizInfoSnapshot(vizId),
@@ -48,10 +47,13 @@ export const vizPageServerPlugin = () => ({
           pageProps: { vizInfoSnapshot, vizContentSnapshot },
         };
         res.type('html');
+
         res.send(
           indexHTML({
             title: vizInfoSnapshot.data.title,
-            rootHTML: renderToString(<App pageData={pageData} pages={pages} />),
+            rootHTML: renderToString(
+              <App pageData={pageData} pages={pages} query={req.query} />
+            ),
             pageData,
           })
         );

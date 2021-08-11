@@ -4,6 +4,7 @@ export {
   indexHTML,
   isClient,
   classed,
+  URLStateContext,
 } from './src/isomorphic';
 
 export { VizInfo, getHeight, VizContent, getFileText } from './src/entities';
