@@ -1,4 +1,4 @@
-import { isClient, getFileText } from 'vizhub-core';
+import { isClient, getFileText } from 'vizhub-core/worker';
 
 export const renderREADME = (readmeMarkdown, marked, filterXSS) => {
   // TODO highlight code snippets

@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from 'react';
-import { isClient, getFileText } from 'vizhub-core';
+import { isClient, getFileText } from 'vizhub-core/worker';
 import { VizContext } from '../VizContext';
 import { renderREADME } from './renderREADME';
 

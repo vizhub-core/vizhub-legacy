@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ArrowSVG, URLStateContext } from 'vizhub-core';
 import { ToggleButton } from './ToggleButton';
 
 export const EditorToggleButton = () => {
-  // TODO move this state into the URL.
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const { isEditorOpen, setIsEditorOpen } = useContext(URLStateContext);
+
+  //console.log(JSON.stringify({ isEditorOpen, setIsEditorOpen }));
 
   return (
     <ToggleButton
@@ -11,6 +13,7 @@ export const EditorToggleButton = () => {
       isSelected={isEditorOpen}
       onChange={setIsEditorOpen}
     >
+      <ArrowSVG left={isEditorOpen} />
       {isEditorOpen ? 'Close Editor' : 'Open Editor'}
     </ToggleButton>
   );
