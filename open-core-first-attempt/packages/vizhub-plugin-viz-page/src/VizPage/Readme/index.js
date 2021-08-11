@@ -1,5 +1,5 @@
 import React from 'react';
-import { classed } from 'vizhub-core';
+import { classed } from 'vizhub-core/worker';
 import { useReadmeHTML } from './useReadmeHTML';
 
 const MarkdownBody = classed('markdown-body');

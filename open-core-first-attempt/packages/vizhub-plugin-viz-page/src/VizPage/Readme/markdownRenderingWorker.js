@@ -1,4 +1,4 @@
-import { jsDelivrCombine } from 'vizhub-core';
+import { jsDelivrCombine } from 'vizhub-core/worker';
 import { renderREADME } from './renderREADME';
 
 // This file defines a Web Worker that renders Markdown.
