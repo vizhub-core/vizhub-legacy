@@ -4,7 +4,6 @@
 .viz-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   /* TODO move navigation to vizhub-core package. */
   .navigation {
@@ -19,29 +18,41 @@
     background-color: white;
   }
 
-  .viz-viewer {
-    /* Scale horizontally when width < max-width. */
-    width: 100%;
+  /* TODO responsive layout for mobile */
+  .vertical-split {
+    display: flex;
+    .vertical-split-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
 
-    /* Ensure that the _inner_ content has max-width: var(--content-max-width), */
-    /* while the _outer_ content shrinks to preserve 10px horizontal padding. */
-    max-width: calc(var(--content-max-width) + 2 * var(--padding-little));
-    padding: var(--padding-little);
+      .viz-viewer {
+        /* Scale horizontally when width < max-width. */
+        width: 100%;
 
-    svg.viz-frame {
-      background-color: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
+        /* Ensure that the _inner_ content has max-width: var(--content-max-width), */
+        /* while the _outer_ content shrinks to preserve 10px horizontal padding. */
+        max-width: calc(var(--content-max-width) + 2 * var(--padding-little));
+        padding: var(--padding-little);
 
-      /* This in conjunction with viewBox causes */
-      /* the rectangle to fill the appropriate width */
-      /* _and_ preserve aspect ratio.*/
-      width: 100%;
-    }
-    .title {
-      padding: var(--padding-lots) 0px;
-      font-size: var(--font-size-large);
-      border-bottom: 1px solid var(--rule-color);
+        svg.viz-frame {
+          background-color: white;
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+
+          /* This in conjunction with viewBox causes */
+          /* the rectangle to fill the appropriate width */
+          /* _and_ preserve aspect ratio.*/
+          width: 100%;
+        }
+        .title {
+          padding: var(--padding-lots) 0px;
+          font-size: var(--font-size-large);
+          border-bottom: 1px solid var(--rule-color);
+        }
+      }
     }
   }
 }

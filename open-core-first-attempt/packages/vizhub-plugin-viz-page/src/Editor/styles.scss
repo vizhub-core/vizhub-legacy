@@ -17,3 +17,9 @@
 .editor-toggle-button:hover {
   background-color: var(--flatButtonHoverBackground);
 }
+
+.editor-sidebar {
+  --editor-color-dark: #3d4b65;
+  width: 200px;
+  background-color: var(--editor-color-dark);
+}

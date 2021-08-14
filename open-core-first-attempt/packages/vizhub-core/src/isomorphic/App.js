@@ -1,12 +1,12 @@
 import React from 'react';
 import { URLStateContextProvider } from './URLStateContext';
 
-export const App = ({ pageData, pages, query }) => {
+export const App = ({ pageData, pages, ssrQuery }) => {
   const { pageName, pageProps } = pageData;
   const PageComponent = pages.get(pageName);
 
   return (
-    <URLStateContextProvider query={query}>
+    <URLStateContextProvider ssrQuery={ssrQuery}>
       <PageComponent {...pageProps} />
     </URLStateContextProvider>
   );
