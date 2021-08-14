@@ -1,6 +1,7 @@
 node_modules
 package-lock.json
 *.swp
+*.rdb
 /packages/vizhub-ce/build
 /packages/vizhub-ce/build
 /packages/vizhub-ce/public/build

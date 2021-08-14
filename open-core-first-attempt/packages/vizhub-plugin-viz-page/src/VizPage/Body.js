@@ -4,12 +4,15 @@ import { VizContext } from './VizContext';
 import { Readme } from './Readme';
 import { Navigation } from './Navigation';
 import { Head } from './Head';
-import { EditorToggleButton } from '../Editor';
+import { EditorToggleButton, EditorSidebar } from '../Editor';
 
 const Wrapper = classed('viz-page');
 const VizViewer = classed('viz-viewer');
 const VizFrame = classed('viz-frame', 'svg');
 const Title = classed('title');
+const VerticalSplit = classed('vertical-split');
+const VerticalSplitLeft = classed('vertical-split-left');
+const VerticalSplitRight = classed('vertical-split-right');
 
 // TODO expand upon this notion,
 // so that we can make other features plugins:
@@ -29,12 +32,19 @@ export const Body = () => {
     <Wrapper>
       <Navigation />
       <Head headPlugins={headPlugins} />
-      <VizViewer>
-        <VizFrame viewBox={`0 0 960 ${height}`} />
-        <Title>{title}</Title>
-        <Readme />
-        {/* TODO License */}
-      </VizViewer>
+      <VerticalSplit>
+        <VerticalSplitLeft>
+          <EditorSidebar />
+        </VerticalSplitLeft>
+        <VerticalSplitRight>
+          <VizViewer>
+            <VizFrame viewBox={`0 0 960 ${height}`} />
+            <Title>{title}</Title>
+            <Readme />
+            {/* TODO License */}
+          </VizViewer>
+        </VerticalSplitRight>
+      </VerticalSplit>
     </Wrapper>
   );
 };

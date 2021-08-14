@@ -52,7 +52,7 @@ export const vizPageServerPlugin = () => ({
           indexHTML({
             title: vizInfoSnapshot.data.title,
             rootHTML: renderToString(
-              <App pageData={pageData} pages={pages} query={req.query} />
+              <App pageData={pageData} pages={pages} ssrQuery={req.query} />
             ),
             pageData,
           })

@@ -75,11 +75,11 @@ const useURLState = (config, reducer, ssrQuery) => {
   return [urlState, urlDispatch];
 };
 
-export const URLStateContextProvider = ({ children, query }) => {
+export const URLStateContextProvider = ({ children, ssrQuery }) => {
   const [urlState, urlDispatch] = useURLState(
     urlStateConfig,
     urlStateReducer,
-    query
+    ssrQuery
   );
 
   const isEditorOpen = urlState.edit;
