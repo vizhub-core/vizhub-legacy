@@ -33,9 +33,7 @@ export const Body = () => {
       <Navigation />
       <Head headPlugins={headPlugins} />
       <VerticalSplit>
-        <VerticalSplitLeft>
-          <EditorSidebar />
-        </VerticalSplitLeft>
+        <EditorSidebar />
         <VerticalSplitRight>
           <VizViewer>
             <VizFrame viewBox={`0 0 960 ${height}`} />

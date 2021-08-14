@@ -20,11 +20,11 @@
 
   .vertical-split {
     display: flex;
-    .vertical-split-left {
-      display: flex;
-    }
     .vertical-split-right {
+      flex: 1;
       display: flex;
+      flex-direction: column;
+      align-items: center;
 
       .viz-viewer {
         /* Scale horizontally when width < max-width. */
