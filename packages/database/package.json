@@ -13,16 +13,16 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^7.29.0",
+    "eslint": "^7.32.0",
     "esm": "^3.2.25",
-    "prettier": "^2.3.1"
+    "prettier": "^2.3.2"
   },
   "dependencies": {
     "@teamwork/sharedb": "^3.1.1",
     "@teamwork/sharedb-mingo-memory": "^3.0.1",
     "diff-match-patch": "^1.0.5",
-    "json0-ot-diff": "^1.0.7",
-    "mocha": "^9.0.1",
+    "json0-ot-diff": "^1.0.8",
+    "mocha": "^9.1.0",
     "vizhub-entities": "1",
     "vizhub-gateways": "1",
     "vizhub-i18n": "1"
