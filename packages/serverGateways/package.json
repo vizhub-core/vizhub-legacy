@@ -11,16 +11,16 @@
   "license": "UNLICENSED",
   "dependencies": {
     "json0-with-presence": "1",
-    "mongodb": "^3.6.9",
+    "mongodb": "^4.1.0",
     "redis": "^3.1.2",
-    "sharedb": "^1.8.1",
+    "sharedb": "^1.9.2",
     "sharedb-mingo-memory": "^1.1.4",
-    "sharedb-mongo": "^1.0.0-beta.17",
+    "sharedb-mongo": "^1.0.0-beta.20",
     "sharedb-redis-pubsub": "^2.0.0",
     "vizhub-database": "1",
     "vizhub-gateways": "1"
   },
   "devDependencies": {
-    "prettier": "^2.3.1"
+    "prettier": "^2.3.2"
   }
 }
