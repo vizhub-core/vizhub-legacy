@@ -12,14 +12,15 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
+    "adm-zip": "^0.5.5",
     "buble-jsx-only": "^0.21.0",
+    "jsdom": "^17.0.0",
     "mocha": "^9.1.0",
     "path-posix": "^1.0.0",
     "rollup-pluginutils": "^2.8.2",
     "svelte": "^3.42.2",
     "vizhub-entities": "1",
-    "vizhub-libraries": "^1.8.0",
-    "jsdom": "^17.0.0"
+    "vizhub-libraries": "^1.8.0"
   },
   "devDependencies": {
     "esm": "^3.2.25",

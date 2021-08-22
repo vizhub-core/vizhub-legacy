@@ -12,6 +12,7 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
+    "adm-zip": "^0.5.5",
     "dotenv": "^10.0.0",
     "jsdom": "^17.0.0",
     "puppeteer": "^10.2.0",

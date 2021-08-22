@@ -8,5 +8,8 @@
     "updateDeps": "ncu -u"
   },
   "author": "Curran Kelleher",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "adm-zip": "^0.5.5"
+  }
 }

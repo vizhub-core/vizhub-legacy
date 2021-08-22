@@ -19,6 +19,7 @@
   "dependencies": {
     "@datavis-tech/ot-json0": "^2.1.0",
     "@eslint/eslintrc": "^1.0.0",
+    "adm-zip": "^0.5.5",
     "codemirror": "^5.62.3",
     "color-hash": "^2.0.1",
     "copy-to-clipboard": "^3.3.1",
@@ -37,6 +38,7 @@
     "json0-with-presence": "1",
     "marked": "^3.0.0",
     "perfect-scrollbar": "^1.5.2",
+    "prettier": "^2.3.2",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -45,12 +47,11 @@
     "react-scripts": "^4.0.3",
     "rxjs": "^7.3.0",
     "sharedb": "^1.9.2",
+    "spdx-to-html": "^1.0.0",
     "styled-components": "^5.3.0",
     "vizhub-database": "1",
     "vizhub-entities": "1",
-    "vizhub-presenters": "1",
-    "prettier": "^2.3.2",
-    "spdx-to-html": "^1.0.0"
+    "vizhub-presenters": "1"
   },
   "browserslist": [
     ">0.2%",
@@ -59,8 +60,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/core": "^7.15.0",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@babel/core": "^7.15.0"
+    "@testing-library/react": "^12.0.0"
   }
 }
