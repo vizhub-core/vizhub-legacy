@@ -8,13 +8,14 @@
     "updateDeps": "ncu -u"
   },
   "dependencies": {
+    "adm-zip": "^0.5.5",
     "vizhub-database": "1"
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
     "esm": "^3.2.25",
     "mocha": "^9.1.0",
-    "puppeteer": "^10.2.0",
-    "eslint": "^7.32.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "puppeteer": "^10.2.0"
   }
 }

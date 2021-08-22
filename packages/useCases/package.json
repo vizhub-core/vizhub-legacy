@@ -13,22 +13,22 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "adm-zip": "https://github.com/cthackers/adm-zip/tarball/master",
+    "adm-zip": "^0.5.5",
+    "decay": "^1.0.12",
     "diff-match-patch": "^1.0.5",
     "json0-ot-diff": "^1.0.8",
     "multiscale-timeseries": "^1.4.0",
     "ot-json0": "^1.1.0",
     "uuid": "^8.3.2",
-    "decay": "^1.0.12",
     "vizhub-entities": "1",
     "vizhub-i18n": "1",
     "vizhub-libraries": "^1.8.0",
     "vizhub-presenters": "1"
   },
   "devDependencies": {
-    "mocha": "^9.1.0",
     "eslint": "^7.32.0",
     "esm": "^3.2.25",
+    "mocha": "^9.1.0",
     "prettier": "^2.3.2"
   }
 }

@@ -11,6 +11,7 @@
   "author": "Curran Kelleher",
   "license": "MIT",
   "dependencies": {
+    "adm-zip": "^0.5.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "diff-match-patch": "^1.0.5",
