@@ -43,11 +43,13 @@ const useURLState = (config, reducer, ssrQuery) => {
 
   const urlState = useMemo(() => {
     const state = {};
+
     for (const [key, keyConfig] of Object.entries(config)) {
       const { defaultValue, parse } = keyConfig;
       const value = query[key];
       state[key] = value === undefined ? defaultValue : parse(value);
     }
+
     return state;
   }, [config, query]);
 
