@@ -12,19 +12,20 @@
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
   "dependencies": {
-    "buble-jsx-only": "^0.19.8",
-    "mocha": "^8.3.0",
+    "adm-zip": "^0.5.5",
+    "buble-jsx-only": "^0.21.0",
+    "jsdom": "^17.0.0",
+    "mocha": "^9.1.0",
     "path-posix": "^1.0.0",
     "rollup-pluginutils": "^2.8.2",
-    "svelte": "3.32.3",
+    "svelte": "^3.42.2",
     "vizhub-entities": "1",
-    "vizhub-libraries": "^1.8.0",
-    "jsdom": "^16.4.0"
+    "vizhub-libraries": "^1.8.0"
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^8.3.0",
-    "prettier": "^2.2.1",
-    "sinon": "^9"
+    "mocha": "^9.1.0",
+    "prettier": "^2.3.2",
+    "sinon": "^11"
   }
 }
