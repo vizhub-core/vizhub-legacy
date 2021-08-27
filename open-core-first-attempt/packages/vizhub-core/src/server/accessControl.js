@@ -1,6 +1,11 @@
 const vizRead = (context, next) => {
   const { collection, snapshots, snapshotType } = context;
   console.log(snapshots);
+  // TODO use new data model, so that
+  // we don't need to execute any additional fetches
+  // for vizInfo when we are figuring out access for
+  // a vizContent doc. These two should be unified into
+  // a single document type.
   next();
 };
 
