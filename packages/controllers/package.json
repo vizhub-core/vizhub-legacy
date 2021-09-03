@@ -11,24 +11,23 @@
   "author": "Curran Kelleher",
   "license": "MIT",
   "dependencies": {
-    "adm-zip": "^0.5.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "diff-match-patch": "^1.0.5",
     "express-async-handler": "^1.1.4",
-    "json0-ot-diff": "^1.0.8",
+    "json0-ot-diff": "^1.0.5",
     "jsonwebtoken": "^8.5.1",
-    "marked": "^3.0.0",
+    "marked": "^1.2.7",
     "node-fetch": "^2.6.1",
-    "sanitize-html": "^2.4.0",
-    "string-strip-html": "^8.3.0",
-    "stripe": "^8.170.0",
+    "sanitize-html": "^2.3.0",
+    "string-strip-html": "^7.0.3",
+    "stripe": "^8.130.0",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-use-cases": "1"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "prettier": "^2.3.2"
+    "eslint": "^7.17.0",
+    "prettier": "^2.2.1"
   }
 }

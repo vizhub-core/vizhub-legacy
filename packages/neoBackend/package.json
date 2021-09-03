@@ -15,26 +15,25 @@
   "author": "Datavis Tech INC",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^7.17.0",
     "esm": "^3.2.25",
-    "jsdom": "^17.0.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.2.1",
+    "jsdom": "^16.4.0"
   },
   "dependencies": {
     "@teamwork/websocket-json-stream": "^2.0.0",
-    "adm-zip": "^0.5.5",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie": "^0.4.1",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
-    "express-basic-auth": "^1.2.0",
+    "express-basic-auth": "1.2.0",
     "vizhub-controllers": "1",
     "vizhub-database": "1",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
     "vizhub-server-gateways": "1",
     "vizhub-use-cases": "1",
-    "ws": "^8.2.0"
+    "ws": "^7.4.2"
   }
 }
