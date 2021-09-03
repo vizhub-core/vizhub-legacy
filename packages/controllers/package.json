@@ -20,7 +20,7 @@
     "marked": "^1.2.7",
     "node-fetch": "^2.6.1",
     "sanitize-html": "^2.3.0",
-    "string-strip-html": "^7.0.3",
+    "string-strip-html": "^8.3.0",
     "stripe": "^8.130.0",
     "vizhub-entities": "1",
     "vizhub-presenters": "1",
