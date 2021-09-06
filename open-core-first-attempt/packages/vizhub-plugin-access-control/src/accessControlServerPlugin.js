@@ -1,5 +1,7 @@
+import { accessControl } from './accessControl';
+
 export const accessControlServerPlugin = () => ({
-  extendServer: (expressApp, shareDBConnection, pages) => {
-    console.log('here');
-  }
-})
+  extendServer: ({ shareDBBackend }) => {
+    accessControl(shareDBBackend);
+  },
+});

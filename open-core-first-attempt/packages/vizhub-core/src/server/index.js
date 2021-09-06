@@ -7,7 +7,6 @@ import redis from 'redis';
 import ShareDBMongo from 'sharedb-mongo';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
 import ShareDBRedisPubSub from 'sharedb-redis-pubsub';
-import { accessControl } from './accessControl';
 import { getPages } from '../isomorphic/getPages';
 
 export const server = (serverPlugins) => {
@@ -50,11 +49,9 @@ export const server = (serverPlugins) => {
     });
   }
 
-  const backend = new ShareDB(shareDBOptions);
+  const shareDBBackend = new ShareDB(shareDBOptions);
 
-  accessControl(backend);
-
-  const shareDBConnection = backend.connect();
+  const shareDBConnection = shareDBBackend.connect();
   const expressApp = express();
   const port = 8000;
 
@@ -63,14 +60,19 @@ export const server = (serverPlugins) => {
   const pages = getPages(serverPlugins);
 
   for (const plugin of serverPlugins) {
-    plugin.extendServer?.(expressApp, shareDBConnection, pages);
+    plugin.extendServer?.({
+      expressApp,
+      pages,
+      shareDBConnection,
+      shareDBBackend,
+    });
   }
 
   const server = http.createServer(expressApp);
 
   const wss = new WebSocket.Server({ server });
   wss.on('connection', (ws) => {
-    backend.listen(new WebSocketJSONStream(ws));
+    shareDBBackend.listen(new WebSocketJSONStream(ws));
   });
 
   server.listen(port, () => {

@@ -8,7 +8,7 @@ const pageComponent = VizPage;
 
 export const vizPageServerPlugin = () => ({
   pageComponent,
-  extendServer: (expressApp, shareDBConnection, pages) => {
+  extendServer: ({ expressApp, shareDBConnection, pages }) => {
     const getVizInfoSnapshot = getShareDBSnapshot(
       shareDBConnection,
       'documentInfo'

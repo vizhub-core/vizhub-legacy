@@ -1,5 +1,5 @@
-import { VizInfo } from '../entities';
-import { getShareDBSnapshot } from './getShareDBSnapshot';
+import { VizInfo } from 'vizhub-core';
+import { getShareDBSnapshot } from 'vizhub-core/server';
 
 // TODO refactor to centralize location of this constant
 // and use it elsewhere in the codebase.
@@ -16,10 +16,10 @@ const getVizInfo = async (collection, snapshots) => {
 
   // If we're reading an info doc, return it.
   if (collection === DOCUMENT_INFO) {
-console.log('reading info doc');
+    console.log('reading info doc');
     return VizInfo(snapshots[0].data);
   } else if (collection === DOCUMENT_CONTENT) {
-console.log('reading content doc');
+    console.log('reading content doc');
     // If we're reading a content doc,
     // we need to look up the corresponding info doc,
     // which has the data required for access control.
