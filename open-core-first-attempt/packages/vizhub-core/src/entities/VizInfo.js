@@ -36,6 +36,13 @@ VizInfo.keys = [
   // If undefined, the viz should use 500 by default.
   // See getHeight below.
   'height',
+
+  // A value that determines the privacy level of this viz.
+  // Possible values include:
+  //  - undefined or null means public visibility
+  //  - "public" also means public visibility
+  //  - "private" means visible only to collaborators
+  'privacy',
 ];
 
 // Gets the presented height of the viz.
