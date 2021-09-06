@@ -8,6 +8,7 @@ import ShareDBMongo from 'sharedb-mongo';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
 import ShareDBRedisPubSub from 'sharedb-redis-pubsub';
 import { getPages } from '../isomorphic/getPages';
+import { Gateways } from './gateways.js';
 
 export const server = (serverPlugins) => {
   // See:
@@ -59,12 +60,15 @@ export const server = (serverPlugins) => {
 
   const pages = getPages(serverPlugins);
 
+  const gateways = Gateways(shareDBConnection);
+
   for (const plugin of serverPlugins) {
     plugin.extendServer?.({
       expressApp,
       pages,
       shareDBConnection,
       shareDBBackend,
+      gateways,
     });
   }
 

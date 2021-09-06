@@ -7,7 +7,7 @@ const DOCUMENT_INFO = 'documentInfo';
 const DOCUMENT_CONTENT = 'documentContent';
 
 // Derives the VizInfo entity corresponding to the request.
-const getVizInfo = async (collection, snapshots) => {
+const getVizInfoForRequest = async (collection, snapshots) => {
   // Sanity check.
   if (snapshots.length !== 1) {
     // Not sure when it would ever not be 1.
@@ -30,7 +30,7 @@ const getVizInfo = async (collection, snapshots) => {
 const vizRead = (context, next) => {
   const { collection, snapshots, snapshotType } = context;
   try {
-    const vizInfo = getVizInfo(collection, snapshots);
+    const vizInfo = getVizInfoForRequest(collection, snapshots);
 
     next();
   } catch (error) {

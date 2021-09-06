@@ -1,25 +1,15 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { VizInfo, App, indexHTML } from 'vizhub-core';
-import { getShareDBSnapshot } from 'vizhub-core/server';
 import { VizPage } from '../VizPage';
 
 const pageComponent = VizPage;
 
 export const vizPageServerPlugin = () => ({
   pageComponent,
-  extendServer: ({ expressApp, shareDBConnection, pages }) => {
-    const getVizInfoSnapshot = getShareDBSnapshot(
-      shareDBConnection,
-      'documentInfo'
-    );
-
-    const getVizContentSnapshot = getShareDBSnapshot(
-      shareDBConnection,
-      'documentContent'
-    );
-
-    const getUserSnapshot = getShareDBSnapshot(shareDBConnection, 'user');
+  extendServer: ({ expressApp, gateways, pages }) => {
+    const { getVizInfoSnapshot, getVizContentSnapshot, getUserSnapshot } =
+      gateways;
 
     expressApp.get('/:userName/:vizId', async (req, res) => {
       const { vizId } = req.params;
