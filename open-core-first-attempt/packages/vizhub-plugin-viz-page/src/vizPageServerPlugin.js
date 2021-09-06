@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { VizInfo, App, indexHTML } from 'vizhub-core';
-import { VizPage } from '../VizPage';
+import { VizPage } from './VizPage';
 
 const pageComponent = VizPage;
 
