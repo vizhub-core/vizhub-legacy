@@ -7,7 +7,7 @@ const pageComponent = VizPage;
 
 export const vizPageServerPlugin = () => ({
   pageComponent,
-  extendServer: ({ expressApp, gateways, pages }) => {
+  extendServer: ({ expressApp, pages, gateways }) => {
     const { getVizInfoSnapshot, getVizContentSnapshot, getUserSnapshot } =
       gateways;
 

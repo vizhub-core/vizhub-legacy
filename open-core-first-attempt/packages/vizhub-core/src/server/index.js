@@ -66,9 +66,9 @@ export const server = (serverPlugins) => {
     plugin.extendServer?.({
       expressApp,
       pages,
-      shareDBConnection,
-      shareDBBackend,
       gateways,
+      //shareDBConnection,
+      shareDBBackend,
     });
   }
 

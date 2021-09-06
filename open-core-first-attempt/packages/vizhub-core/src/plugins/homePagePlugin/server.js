@@ -8,7 +8,7 @@ const pageComponent = HomePage;
 
 export const homePageServerPlugin = () => ({
   pageComponent,
-  extendServer: ({ expressApp, shareDBConnection, pages }) => {
+  extendServer: ({ expressApp, pages }) => {
     expressApp.get('/', async (req, res) => {
       const pageData = {
         pageName: pageComponent.name,
