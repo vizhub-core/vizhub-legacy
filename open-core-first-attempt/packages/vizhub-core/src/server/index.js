@@ -76,7 +76,15 @@ export const server = (serverPlugins) => {
 
   const wss = new WebSocket.Server({ server });
   wss.on('connection', (ws) => {
-    shareDBBackend.listen(new WebSocketJSONStream(ws));
+    const stream = new WebSocketJSONStream(ws);
+
+    // TODO bring this back if/when needed.
+    // Prevent server crashes on errors.
+    // stream.on('error', (error) => {
+    //   console.log('WebSocket stream error: ' + error.message);
+    // });
+
+    shareDBBackend.listen(stream);
   });
 
   server.listen(port, () => {
