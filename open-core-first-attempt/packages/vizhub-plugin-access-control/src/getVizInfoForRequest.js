@@ -7,7 +7,11 @@ const DOCUMENT_INFO = 'documentInfo';
 const DOCUMENT_CONTENT = 'documentContent';
 
 // Derives the VizInfo entity corresponding to the request.
-export const getVizInfoForRequest = async (collection, snapshots) => {
+export const getVizInfoForRequest = async ({
+  collection,
+  snapshots,
+  gateways,
+}) => {
   // Sanity check.
   if (snapshots.length !== 1) {
     // Not sure when it would ever not be 1.
@@ -20,11 +24,10 @@ export const getVizInfoForRequest = async (collection, snapshots) => {
   if (collection === DOCUMENT_INFO) {
     return VizInfo(data);
   } else if (collection === DOCUMENT_CONTENT) {
-    console.log('reading content doc');
     // If we're reading a content doc,
     // we need to look up the corresponding info doc,
     // which has the data required for access control.
-    //return VizInfo(await getShareDBSnapshot());
-    return null;
+    const vizInfoSnapshot = await gateways.getVizInfoSnapshot(data.id);
+    return vizInfoSnapshot ? VizInfo(vizInfoSnapshot.data) : null;
   }
 };

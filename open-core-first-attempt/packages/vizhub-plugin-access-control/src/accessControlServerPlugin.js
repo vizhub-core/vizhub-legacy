@@ -4,7 +4,7 @@ import { vizWrite } from './vizWrite';
 export const accessControlServerPlugin = () => ({
   extendServer: ({ shareDBBackend, gateways }) => {
     // See https://share.github.io/sharedb/middleware/
-    shareDBBackend.use('readSnapshots', vizRead);
+    shareDBBackend.use('readSnapshots', vizRead(gateways));
 
     // Note: The snapshot has not yet been fetched.
     //If you want to make any changes or assertions involving the snapshot,
