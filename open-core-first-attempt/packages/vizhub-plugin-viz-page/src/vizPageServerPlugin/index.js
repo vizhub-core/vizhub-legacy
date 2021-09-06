@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { VizInfo, App, indexHTML } from 'vizhub-core';
-import { getShareDBSnapshot } from './getShareDBSnapshot';
+import { getShareDBSnapshot } from 'vizhub-core/server';
 import { VizPage } from '../VizPage';
 
 const pageComponent = VizPage;

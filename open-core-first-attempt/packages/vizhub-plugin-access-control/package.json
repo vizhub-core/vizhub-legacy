@@ -1,0 +1,12 @@
+{
+  "name": "vizhub-plugin-access-control",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "",
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
