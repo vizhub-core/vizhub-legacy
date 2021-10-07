@@ -9,6 +9,7 @@ import WebSocketJSONStream from '@teamwork/websocket-json-stream';
 import ShareDBRedisPubSub from 'sharedb-redis-pubsub';
 import { getPages } from '../isomorphic/getPages';
 import { Gateways } from './gateways.js';
+import { identifyAgent } from './identifyAgent';
 
 export const server = (serverPlugins) => {
   // See:
@@ -52,7 +53,12 @@ export const server = (serverPlugins) => {
 
   const shareDBBackend = new ShareDB(shareDBOptions);
 
+  // Identify the agent - server or client + authenticated user.
+  shareDBBackend.use('connect', identifyAgent);
+
+  // Make the server connection (singleton).
   const shareDBConnection = shareDBBackend.connect();
+
   const expressApp = express();
   const port = 8000;
 
@@ -80,9 +86,9 @@ export const server = (serverPlugins) => {
 
     // TODO bring this back if/when needed.
     // Prevent server crashes on errors.
-    // stream.on('error', (error) => {
-    //   console.log('WebSocket stream error: ' + error.message);
-    // });
+    //stream.on('error', (error) => {
+    //  console.log('WebSocket stream error: ' + error.message);
+    //});
 
     shareDBBackend.listen(stream);
   });
