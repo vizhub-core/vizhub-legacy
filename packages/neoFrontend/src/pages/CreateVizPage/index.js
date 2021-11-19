@@ -11,6 +11,7 @@ import {
   mostForked,
   datavis2018Templates,
   datavis2020Templates,
+  getItRightTemplates,
 } from './vizLists';
 import { CuratedVizzes } from './CuratedVizzes';
 import { AttentionGrabbingTitle, Centered, Subtitle } from './styles';
@@ -28,22 +29,6 @@ export const CreateVizPage = () => {
       <Wrapper>
         <Content>
           <Centered>
-            {
-              //    <AttentionGrabbingTitle>
-              //      Create a Visualization!
-              //    </AttentionGrabbingTitle>
-              //    <Subtitle>
-              //      Create a new visualization from a template or fork one from our
-              //      users.
-              //    </Subtitle>
-              //    <LearnMoreLink
-              //      href="https://datavis.tech/vizhub/#using-vizhub"
-              //      target="_blank"
-              //      rel="noopener noreferrer"
-              //    >
-              //      <Button>Learn more</Button>
-              //    </LearnMoreLink>
-            }
             <AttentionGrabbingTitle>Create a Viz</AttentionGrabbingTitle>
             <Subtitle>
               by forking one of these{' '}
@@ -52,14 +37,18 @@ export const CreateVizPage = () => {
               </span>{' '}
             </Subtitle>
             <CuratedVizzes ids={starters}>Starters</CuratedVizzes>
-            <CuratedVizzes ids={communityTemplates}>
-              Community Templates
-            </CuratedVizzes>
             <CuratedVizzes
               ids={mostForked}
               more="https://vizhub.com/?sort=mostForked"
             >
               Most Forked
+            </CuratedVizzes>
+            <CuratedVizzes ids={communityTemplates}>
+              Community Templates
+            </CuratedVizzes>
+            <CuratedVizzes ids={getItRightTemplates}>
+              Examples from{' '}
+              <a href="https://vizhub.com/forum/t/get-it-right-in-black-white-index/110">Get it Right in Black & White</a>
             </CuratedVizzes>
             <CuratedVizzes ids={datavis2020Templates}>
               D3 & React Examples from{' '}
