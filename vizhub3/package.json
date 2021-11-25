@@ -1,0 +1,26 @@
+{
+  "name": "vizhub-bootstrap",
+  "version": "0.0.1",
+  "description": "A custom build of Bootstrap for VizHub UI.",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass vizhub-bootstrap.scss vizhub-bootstrap.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vizhub-open-core/vizhub-bootstrap.git"
+  },
+  "keywords": [
+    "UI"
+  ],
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vizhub-open-core/vizhub-bootstrap/issues"
+  },
+  "homepage": "https://github.com/vizhub-open-core/vizhub-bootstrap#readme",
+  "devDependencies": {
+    "bootstrap": "^5.1.3",
+    "sass": "^1.43.5"
+  }
+}
