@@ -13,6 +13,30 @@ $body-bg: #f6eee3;
 
 $primary: #3866e9;
 
+$border-radius: .4rem;
+
+
+$modal-content-border-width: 0;
+
+// Enable shadows, but turn off most of them
+$enable-shadows: true;
+$box-shadow-none: 0 0;
+$box-shadow-sm: $box-shadow-none;
+$box-shadow-lg: $box-shadow-none;
+$box-shadow-inset: $box-shadow-none;
+$btn-active-box-shadow: $box-shadow-none;
+$box-shadow-inset: $box-shadow-none;
+$btn-box-shadow: $box-shadow-none;
+$btn-active-box-shadow: $box-shadow-none;
+$input-box-shadow: $box-shadow-none;
+$form-select-box-shadow: $box-shadow-none;
+$form-range-track-box-shadow: $box-shadow-none;
+$progress-box-shadow: $box-shadow-none;
+
+// Define a custom box shadow for modal.
+$box-shadow-vizhub: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
+$box-shadow: $box-shadow-vizhub;
+
 // Custom close icon.
 $btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='12 12 24 24' fill='#{$body-color}'><path d='M32.97 12.63 24 21.6l-8.97-8.97a1.7 1.7 0 0 0-2.4 2.4L21.6 24l-8.97 8.97a1.7 1.7 0 0 0 2.4 2.4L24 26.4l8.97 8.97a1.7 1.7 0 0 0 2.4-2.4L26.4 24l8.97-8.97a1.7 1.7 0 0 0-2.4-2.4z'/></svg>");
 
