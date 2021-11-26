@@ -15,6 +15,7 @@ $primary: #3866e9;
 
 $border-radius: .4rem;
 
+$input-bg: transparent;
 
 $modal-content-border-width: 0;
 
@@ -28,6 +29,10 @@ $box-shadow-vizhub: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
 $btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='12 12 24 24' fill='#{$body-color}'><path d='M32.97 12.63 24 21.6l-8.97-8.97a1.7 1.7 0 0 0-2.4 2.4L21.6 24l-8.97 8.97a1.7 1.7 0 0 0 2.4 2.4L24 26.4l8.97 8.97a1.7 1.7 0 0 0 2.4-2.4L26.4 24l8.97-8.97a1.7 1.7 0 0 0-2.4-2.4z'/></svg>");
 
 $input-btn-focus-width: .2rem;
+
+// Pills with underlines instead of buttons.
+$nav-pills-link-active-color: $body-color;
+$nav-pills-link-active-bg: transparent;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "./node_modules/bootstrap/scss/variables";
@@ -46,7 +51,7 @@ $input-btn-focus-width: .2rem;
 @import "./node_modules/bootstrap/scss/transitions";
 //@import "./node_modules/bootstrap/scss/dropdown";
 //@import "./node_modules/bootstrap/scss/button-group";
-//@import "./node_modules/bootstrap/scss/nav";
+@import "./node_modules/bootstrap/scss/nav";
 //@import "./node_modules/bootstrap/scss/navbar";
 //@import "./node_modules/bootstrap/scss/card";
 //@import "./node_modules/bootstrap/scss/accordion";
@@ -67,3 +72,34 @@ $input-btn-focus-width: .2rem;
 //@import "./node_modules/bootstrap/scss/placeholders";
 
 // 5. Add additional custom code here
+
+// Custom things in forms
+.vizhub-form-note{
+  font-size: 14px;
+  color: rgb(121, 121, 121);
+  &.contextual {
+    font-weight: bold;
+    padding-bottom: 8px;
+  }
+  &.informational {
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+}
+
+.nav-pills .nav-link {
+  padding: $input-padding-y $input-padding-x;
+  &,
+  &:hover,
+  &:focus {
+    color: $body-color;
+  }
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: $primary;
+  border-radius: 0px;
+}
+
