@@ -7,6 +7,9 @@
 @import "./node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
+
+$font-family-sans-serif: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+
 $body-color: #161514;
 
 $body-bg: #f6eee3;
@@ -23,6 +26,10 @@ $modal-content-border-width: 0;
 $box-shadow-vizhub: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
 .modal-content {
   box-shadow: $box-shadow-vizhub;
+}
+// Make modal titles bold.
+.modal-title {
+  font-weight: bold;
 }
 
 // Custom close icon.
@@ -79,11 +86,11 @@ $nav-pills-link-active-bg: transparent;
   color: rgb(121, 121, 121);
   &.contextual {
     font-weight: bold;
-    padding-bottom: 8px;
+    padding-bottom: 1rem;
   }
   &.informational {
-    padding-top: 32px;
-    padding-bottom: 24px;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
   }
 }
 
