@@ -13,3 +13,10 @@ $btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' v
 // Pills with underlines instead of buttons.
 $nav-pills-link-active-color: $body-color;
 $nav-pills-link-active-bg: transparent;
+
+// Custon navbar colors.
+$navbar-dark-color: rgba(white, 0.7);
+$navbar-dark-hover-color: white;
+
+// Custom background color for dropdowns on hover.
+$dropdown-link-hover-bg: #3866e933;

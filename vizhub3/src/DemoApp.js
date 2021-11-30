@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import {
   Nav,
+  Navbar,
+  NavDropdown,
   Container,
   Modal,
   Button,
@@ -10,11 +12,27 @@ import {
 
 const pages = {
   home: () => (
-    <nav className="navbar navbar-dark bg-black">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#"></a>
-      </div>
-    </nav>
+    <Navbar bg="black" variant="dark" expand="md">
+      <Container fluid>
+        <Navbar.Brand href="#home"></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto" />
+          <Nav>
+            <Nav.Link href="#about">About</Nav.Link>
+            <Nav.Link href="#forum">Forum</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <NavDropdown title="Me" id="basic-nav-dropdown" align="end">
+              <NavDropdown.Item href="#create-viz">Create Viz</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#create-viz">Profile</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#create-viz">Sign Out</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   ),
   share: () => (
     <Container>
