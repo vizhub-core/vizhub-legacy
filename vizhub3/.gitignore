@@ -1,5 +1,5 @@
 node_modules
 *.swp
-vizhub-bootstrap.css
+vizhub-ui.css
+vizhub-ui.css.map
 package-lock.json
-vizhub-bootstrap.css.map
