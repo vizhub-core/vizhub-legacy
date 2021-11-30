@@ -1,46 +1,16 @@
 // Inspired by:
 // https://getbootstrap.com/docs/5.1/customize/sass/
-// Custom.scss
-// Option B: Include parts of Bootstrap
-
-// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "./node_modules/bootstrap/scss/functions";
 
-// 2. Include any default variable overrides here
+// Vizhub-specific variable overrides.
+@import "./scss/overrides";
 
-$font-family-sans-serif: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
-$body-color: #161514;
-$body-bg: #f6eee3;
-$primary: #3866e9;
-$border-radius: .4rem;
-$input-bg: transparent;
-$modal-content-border-width: 0;
-
-// Define a custom box shadow for modal.
-$box-shadow-vizhub: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
-.modal-content {
-  box-shadow: $box-shadow-vizhub;
-}
-// Make modal titles bold.
-.modal-title {
-  font-weight: bold;
-}
-
-// Custom close icon.
-$btn-close-bg: url("data:image/svg+xml,<svg viewBox='12 12 24 24' fill='#{$body-color}'><path d='M32.97 12.63 24 21.6l-8.97-8.97a1.7 1.7 0 0 0-2.4 2.4L21.6 24l-8.97 8.97a1.7 1.7 0 0 0 2.4 2.4L24 26.4l8.97 8.97a1.7 1.7 0 0 0 2.4-2.4L26.4 24l8.97-8.97a1.7 1.7 0 0 0-2.4-2.4z'/></svg>");
-
-$input-btn-focus-width: .2rem;
-
-// Pills with underlines instead of buttons.
-$nav-pills-link-active-color: $body-color;
-$nav-pills-link-active-bg: transparent;
-
-// 3. Include remainder of required Bootstrap stylesheets
+// Core Bootstrap imports.
 @import "./node_modules/bootstrap/scss/variables";
 @import "./node_modules/bootstrap/scss/mixins";
 @import "./node_modules/bootstrap/scss/root";
 
-// 4. Include any optional Bootstrap components as you like
+// Optional Bootstrap imports.
 @import "./node_modules/bootstrap/scss/utilities";
 @import "./node_modules/bootstrap/scss/reboot";
 @import "./node_modules/bootstrap/scss/type";
@@ -73,37 +43,15 @@ $nav-pills-link-active-bg: transparent;
 //@import "./node_modules/bootstrap/scss/offcanvas";
 //@import "./node_modules/bootstrap/scss/placeholders";
 
-// 5. Add additional custom code here
-
-// Custom things in forms
-.vizhub-form-note{
-  font-size: 14px;
-  color: rgb(121, 121, 121);
-  &.contextual {
-    font-weight: bold;
-    padding-bottom: 1rem;
-  }
-  &.informational {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-  }
-}
-
-.nav-pills .nav-link {
-  padding: $input-padding-y $input-padding-x;
-  &,
-  &:hover,
-  &:focus {
-    color: $body-color;
-  }
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  border-bottom-width: 4px;
-  border-bottom-style: solid;
-  border-bottom-color: $primary;
-  border-radius: 0px;
-}
-
+// Core Bootstrap imports.
 @import "./node_modules/bootstrap/scss/helpers";
 @import "./node_modules/bootstrap/scss/utilities/api";
+
+// Vizhub-specific variables.
+@import "./scss/variables";
+
+// Vizhub-specific custom CSS.
+@import "./scss/modal";
+@import "./scss/forms";
+@import "./scss/nav";
+
