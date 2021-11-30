@@ -20,18 +20,14 @@ export const sucraseOptions = {
 
 const inputOptions = {
   plugins: [sucrase(sucraseOptions)],
-  external: [
-    'react',
-    'react-dom',
-    'react-bootstrap',
-  ],
+  external: ['react', 'react-dom', 'react-bootstrap'],
   // Ignore warnings from sucrase plugin.
   // https://github.com/rollup/rollup/issues/1518
-  onwarn:(warning, warn) => {
+  onwarn: (warning, warn) => {
     if (warning.code === 'THIS_IS_UNDEFINED') return;
     if (warning.code === 'SOURCEMAP_ERROR') return;
     warn(warning);
-  }
+  },
 };
 
 const outputOptions = {
@@ -42,7 +38,7 @@ const outputOptions = {
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-bootstrap': 'ReactBootstrap',
-  }
+  },
 };
 
 const build = async () => {

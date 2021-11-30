@@ -1,5 +1,6 @@
 .navbar-brand {
-  background: transparent escape-svg($vizhub-svg-logo) center / $vizhub-svg-logo-width auto no-repeat;
+  background: transparent escape-svg($vizhub-svg-logo) center /
+    $vizhub-svg-logo-width auto no-repeat;
   width: $vizhub-svg-logo-width;
   height: $vizhub-svg-logo-height;
 }

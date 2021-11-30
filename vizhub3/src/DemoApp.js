@@ -1,5 +1,12 @@
-import { useCallback, useState } from 'react';
-import { Nav, Container, Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { useState } from 'react';
+import {
+  Nav,
+  Container,
+  Modal,
+  Button,
+  InputGroup,
+  FormControl,
+} from 'react-bootstrap';
 
 const pages = {
   home: () => (
@@ -15,7 +22,7 @@ const pages = {
         <Modal.Header closeButton>
           <Modal.Title>Share</Modal.Title>
         </Modal.Header>
-      
+
         <Modal.Body>
           <div className="vizhub-form-note contextual">SHARE WITH</div>
           <Nav variant="pills" defaultActiveKey="link">
@@ -29,10 +36,13 @@ const pages = {
               <Nav.Link eventKey="snippet">Snippet</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="snippet">Collaborators</Nav.Link>
+              <Nav.Link eventKey="collaborators">Collaborators</Nav.Link>
             </Nav.Item>
           </Nav>
-          <div className="vizhub-form-note informational">Sharing this link on social media will automatically create a preview.</div>
+          <div className="vizhub-form-note informational">
+            Sharing this link on social media will automatically create a
+            preview.
+          </div>
           <InputGroup className="mb-3">
             <FormControl
               aria-label="Link URL"
@@ -44,7 +54,7 @@ const pages = {
               Copy
             </Button>
           </InputGroup>
-{/*
+          {/*
           <div className="input-group mb-3">
             <input type="text" className="form-control" aria-label="Link URL" aria-describedby="button-addon-copy" >
             <button className="btn btn-outline-primary" type="button" id="button-addon-copy">Copy</button>
@@ -56,7 +66,7 @@ const pages = {
         </Modal.Footer>
       </Modal.Dialog>
     </Container>
-  )
+  ),
 };
 
 export const DemoApp = () => {
@@ -64,15 +74,17 @@ export const DemoApp = () => {
 
   const Page = pages[page];
 
-  return <>
-    <Nav variant="pills" defaultActiveKey={page}  onSelect={setPage}>
-      <Nav.Item>
-        <Nav.Link eventKey="home">Home</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="share">Share</Nav.Link>
-      </Nav.Item>
-    </Nav>
-    <Page />
-  </>;
-}
+  return (
+    <>
+      <Nav variant="pills" defaultActiveKey={page} onSelect={setPage}>
+        <Nav.Item>
+          <Nav.Link eventKey="home">Home</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="share">Share</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <Page />
+    </>
+  );
+};

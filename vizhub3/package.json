@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/vizhub-open-core/vizhub-ui#readme",
   "devDependencies": {
+    "@rollup/plugin-sucrase": "^4.0.1",
     "bootstrap": "^5.1.3",
     "prettier": "^2.5.0",
+    "rollup": "^2.60.2",
     "sass": "^1.44.0"
   }
 }
