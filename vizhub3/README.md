@@ -1,2 +1,4 @@
-# vizhub-bootstrap
-A custom build of Bootstrap for VizHub UI (experimental)
+# vizhub-ui
+CSS for the next generation VizHub UI.
+
+Built on [Bootstrap](https://getbootstrap.com/).
