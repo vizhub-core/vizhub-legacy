@@ -1,5 +1,4 @@
 node_modules
 *.swp
-vizhub-ui.css
-vizhub-ui.css.map
+build
 package-lock.json

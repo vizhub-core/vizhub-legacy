@@ -2,9 +2,11 @@
   "name": "vizhub-ui",
   "version": "0.0.1",
   "description": "CSS for the next generation VizHub UI.",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "build": "sass vizhub-ui.scss vizhub-ui.css"
+    "build-css": "sass vizhub-ui.scss build/vizhub-ui.css",
+    "build-js": "node src/build.js"
   },
   "repository": {
     "type": "git",
