@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build-css": "sass vizhub-ui.scss build/vizhub-ui.css",
-    "build-js": "node src/build.js"
+    "build-js": "node src/build.js",
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/vizhub-open-core/vizhub-ui#readme",
   "devDependencies": {
     "bootstrap": "^5.1.3",
+    "prettier": "^2.5.0",
     "sass": "^1.44.0"
   }
 }
