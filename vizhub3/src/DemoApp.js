@@ -4,8 +4,8 @@ import { VizPage } from './VizPage';
 import { Nav } from 'react-bootstrap';
 
 const pages = {
-  home: HomePage,
-  viz: VizPage,
+  home: () => <HomePage />,
+  viz: () => <VizPage />,
 };
 
 export const DemoApp = () => {
