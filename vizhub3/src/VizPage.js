@@ -9,7 +9,7 @@ const Topbar = classed('topbar');
 const Icon = classed('vizhub-icon');
 const VizViewer = classed('viz-viewer');
 const VizFrame = classed('viz-frame', 'svg');
-const Title = classed('title');
+const Title = classed('title', 'h4');
 const VerticalSplit = classed('vertical-split');
 const VerticalSplitLeft = classed('vertical-split-left');
 const VerticalSplitRight = classed('vertical-split-right');
@@ -59,6 +59,7 @@ export const VizPage = () => {
           <VizViewer>
             <VizFrame viewBox={`0 0 960 ${height}`} />
             <Title>{title}</Title>
+            <h3>Test</h3>
             {/* <Readme /> TODO License */}
           </VizViewer>
         </VerticalSplitRight>

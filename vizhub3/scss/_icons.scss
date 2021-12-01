@@ -1,0 +1,27 @@
+$vizhub-icon-share: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 1 48 48'><path fill='none' stroke='#000' stroke-width='3.4' stroke-linecap='round' stroke-miterlimit='10' d='M26.75 19.125s-16.548 1.451-18.625 15'/><path fill='none' stroke='#000' stroke-width='3.4' stroke-linecap='round' stroke-miterlimit='10' d='M26.75 29.063s-11.083-1.896-18.625 5.063M26.75 19.125v-5.208M26.75 34.125 39.75 24M26.75 13.917 39.75 24M26.75 29.063v5.062'/></svg>");
+$vizhub-icon-chevron: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 1 48 48'><path d='m34.994 27.565-8.625-8.626-.654-.654a2.43 2.43 0 0 0-3.43 0l-.654.654-8.625 8.626a1.674 1.674 0 1 0 2.369 2.368L24 21.308l1.433 1.433 7.192 7.192c.327.327.755.49 1.184.49s.857-.163 1.185-.49a1.674 1.674 0 0 0 0-2.368z'/></svg>");
+
+.vizhub-icon {
+  width: $vizhub-icon-size;
+  height: $vizhub-icon-size;
+  &.btn {
+    width: 35px;
+  }
+}
+
+.icon-share {
+  background: escape-svg($vizhub-icon-share) center / $vizhub-icon-size auto
+    no-repeat;
+}
+
+.icon-chevron {
+  background: escape-svg($vizhub-icon-chevron) center / $vizhub-icon-size auto
+    no-repeat;
+
+  &.left {
+    transform: rotate(90deg);
+  }
+  &.right {
+    transform: rotate(-90deg);
+  }
+}
