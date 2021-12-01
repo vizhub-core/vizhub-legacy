@@ -38,8 +38,8 @@ export const ShareModal = ({ show, handleClose }) => {
   const [section, setSection] = useState('link');
   const Section = sections[section];
 
-  return (
-    <Modal show={show} onHide={handleClose}>
+  return show ? (
+    <Modal show={show} onHide={handleClose} animation={false}>
       <Modal.Header closeButton>
         <Modal.Title>Share</Modal.Title>
       </Modal.Header>
@@ -68,5 +68,5 @@ export const ShareModal = ({ show, handleClose }) => {
         </Button>
       </Modal.Footer>
     </Modal>
-  );
+  ) : null;
 };
