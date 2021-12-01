@@ -4,8 +4,16 @@ import { classed } from './classed';
 import { Navigation } from './Navigation';
 import { ShareModal } from './ShareModal';
 
+const Wrapper = classed('viz-page');
 const Topbar = classed('topbar');
-const VizHubIcon = classed('vizhub-icon');
+const Icon = classed('vizhub-icon');
+const VizViewer = classed('viz-viewer');
+const VizFrame = classed('viz-frame', 'svg');
+const Title = classed('title');
+const VerticalSplit = classed('vertical-split');
+const VerticalSplitLeft = classed('vertical-split-left');
+const VerticalSplitRight = classed('vertical-split-right');
+const EditorSidebar = classed('editor-sidebar');
 
 export const VizPage = () => {
   // Inspired by
@@ -14,6 +22,8 @@ export const VizPage = () => {
   const [showEditor, setShowEditor] = useState(false);
   const handleClose = useCallback(() => setShow(false), []);
   const handleShow = useCallback(() => setShow(true), []);
+  const title = 'Test Title';
+  const height = 500;
 
   const handleToggleEditor = useCallback(
     () => setShowEditor(!showEditor),
@@ -21,7 +31,7 @@ export const VizPage = () => {
   );
 
   return (
-    <>
+    <Wrapper>
       <Navigation />
       <Topbar>
         <Button
@@ -43,6 +53,16 @@ export const VizPage = () => {
         ></Button>
       </Topbar>
       <ShareModal show={show} handleClose={handleClose} />
-    </>
+      <VerticalSplit>
+        {showEditor ? <EditorSidebar /> : null}
+        <VerticalSplitRight>
+          <VizViewer>
+            <VizFrame viewBox={`0 0 960 ${height}`} />
+            <Title>{title}</Title>
+            {/* <Readme /> TODO License */}
+          </VizViewer>
+        </VerticalSplitRight>
+      </VerticalSplit>
+    </Wrapper>
   );
 };

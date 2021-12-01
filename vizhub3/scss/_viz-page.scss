@@ -1,0 +1,141 @@
+// TODO migrate to SCSS variables, use Bootstrap variables where appropriate
+// TODO clean this up generally.
+:root {
+  --background-color: #f6eee3;
+  --foreground-color: #161514;
+  --foreground-color-light: #757575;
+  --rule-color: #0000001c;
+
+  /* Inspired by GitHub system font stack. */
+  --font-family-ui: -apple-system, blinkmacsystemfont, segoe ui, helvetica,
+    arial, sans-serif, apple color emoji, segoe ui emoji;
+  --font-family-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo,
+    Consolas, Liberation Mono, monospace;
+
+  /* --font-size-tiny: 12px; */
+  --font-size-small: 14px;
+  --font-size-default: 16px;
+  --font-size-large: 20px;
+
+  --link-color: #3866e9;
+  --link-color-visited: #4f62e6;
+
+  --padding-miniscule: 7px;
+  --padding-little: 10px;
+  --padding-lots: 20px;
+
+  /* Intent is to use the same box shadow and border radius everywhere. */
+  --box-shadow: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
+  --border-radius: 3px;
+
+  /* Homage to bl.ocks.org. */
+  --content-max-width: 960px;
+
+  --code-background: #202e46;
+  --code-foreground: #e2e2e2;
+
+  /* Height of the topmost navigation bar. */
+  --navigation-height: 40px;
+
+  /* --z-index-above: 10; */
+
+  /* "Flat Buttons" are buttons throughout the VizHub UI */
+  /* that blend in with their surroundings, do not have rounded corners, */
+  /* and fill the vertical space of their containing element. */
+  --flatButtonHoverBackground: rgba(0, 0, 0, 0.05);
+  --flatButtonActiveBackground: rgba(0, 0, 0, 0.1);
+}
+
+/*
+[data-theme='dark'] {
+  --foreground-color: white;
+  --background-color: #161514;
+}
+*/
+.viz-page {
+  .topbar {
+    height: 30px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+
+    button.flat {
+      padding: 0;
+      border-radius: 0;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      &:active {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      &.editor-toggle {
+        font-weight: bold;
+        padding-right: 0.75rem;
+      }
+    }
+  }
+  /* TODO responsive layout for mobile */
+  .vertical-split {
+    display: flex;
+    .vertical-split-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+
+      .viz-viewer {
+        /* Scale horizontally when width < max-width. */
+        width: 100%;
+
+        /* Ensure that the _inner_ content has max-width: var(--content-max-width), */
+        /* while the _outer_ content shrinks to preserve 10px horizontal padding. */
+        max-width: calc(var(--content-max-width) + 2 * var(--padding-little));
+        padding: var(--padding-little);
+
+        svg.viz-frame {
+          background-color: white;
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+
+          /* This in conjunction with viewBox causes */
+          /* the rectangle to fill the appropriate width */
+          /* _and_ preserve aspect ratio.*/
+          width: 100%;
+        }
+        .title {
+          padding: var(--padding-lots) 0px;
+          font-size: var(--font-size-large);
+          border-bottom: 1px solid var(--rule-color);
+        }
+      }
+    }
+  }
+}
+.editor-toggle-button {
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  background-color: white;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--padding-little);
+
+  svg {
+    margin-right: var(--padding-little);
+  }
+}
+.editor-toggle-button:hover {
+  background-color: var(--flatButtonHoverBackground);
+}
+
+.editor-sidebar {
+  --editor-color-dark: #3d4b65;
+  width: 200px;
+  background-color: var(--editor-color-dark);
+}
