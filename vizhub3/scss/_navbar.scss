@@ -4,3 +4,23 @@
   width: $vizhub-svg-logo-width;
   height: $vizhub-svg-logo-height;
 }
+
+.vizhub-navbar-avatar-toggle {
+  background-color: transparent; // remove default button style
+  border: 0px solid transparent; // remove default button style
+  @include border-radius($navbar-toggler-border-radius);
+  @include transition($navbar-toggler-transition);
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 $navbar-toggler-focus-width;
+  }
+
+  color: $navbar-dark-color;
+  border-color: $navbar-dark-toggler-border-color;
+}

@@ -2,7 +2,9 @@ import { useState } from 'react';
 import {
   Nav,
   Navbar,
+  Dropdown,
   NavDropdown,
+  Image,
   Container,
   Modal,
   Button,
@@ -10,18 +12,51 @@ import {
   FormControl,
 } from 'react-bootstrap';
 
+// Inspired by:
+// https://react-bootstrap.netlify.app/components/dropdowns/#custom-dropdown-components
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  <button
+    type="button"
+    className="vizhub-navbar-avatar-toggle dropdown-toggle"
+    ref={ref}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+));
+
 const pages = {
   home: () => (
-    <Navbar bg="black" variant="dark" expand="md">
+    <Navbar bg="dark" variant="dark" expand="md">
       <Container fluid>
         <Navbar.Brand href="#home"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" />
-          <Nav>
+          <Nav className="align-items-md-center">
             <Nav.Link href="#about">About</Nav.Link>
             <Nav.Link href="#forum">Forum</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
+
+            <Dropdown align="end">
+              <Dropdown.Toggle as={CustomToggle}>
+                <Image
+                  src="https://github.com/mdo.png"
+                  roundedCircle
+                  width="32"
+                  height="32"
+                />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#create-viz">Create Viz</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href="#create-viz">Profile</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href="#create-viz">Sign Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            {/*
             <NavDropdown title="Me" id="basic-nav-dropdown" align="end">
               <NavDropdown.Item href="#create-viz">Create Viz</NavDropdown.Item>
               <NavDropdown.Divider />
@@ -29,6 +64,7 @@ const pages = {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#create-viz">Sign Out</NavDropdown.Item>
             </NavDropdown>
+*/}
           </Nav>
         </Navbar.Collapse>
       </Container>
