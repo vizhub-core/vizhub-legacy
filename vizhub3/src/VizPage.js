@@ -1,7 +1,10 @@
 import { useState, useCallback } from 'react';
 import { Container, Button } from 'react-bootstrap';
-
+import { classed } from './classed';
+import { Navigation } from './Navigation';
 import { ShareModal } from './ShareModal';
+
+const Topbar = classed('topbar');
 
 export const VizPage = () => {
   // Inspired by
@@ -11,11 +14,19 @@ export const VizPage = () => {
   const handleShow = useCallback(() => setShow(true), []);
 
   return (
-    <Container>
-      <Button variant="primary" onClick={handleShow}>
-        Share
-      </Button>
+    <>
+      <Navigation />
+      <Topbar>
+        <Button variant="white" onClick={handleShow} className="flat">
+          Open Editor
+        </Button>
+        <Button
+          variant="white"
+          onClick={handleShow}
+          className="flat vizhub-icon-share"
+        ></Button>
+      </Topbar>
       <ShareModal show={show} handleClose={handleClose} />
-    </Container>
+    </>
   );
 };

@@ -4,3 +4,18 @@ $vizhub-box-shadow: rgb(0 0 0 / 15%) 0px 1px 4px 0px;
 $vizhub-svg-logo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 237.402'><g fill='#ffffff'><path d='M0 0v237.4h449v-22H22V22h756v193.4H503.6V52H469v51.5h-50l27.2 27.2h22.8v106.7H800V0H0zm53.6 52L187 185.4h6.3V52H166.4v67.4L99.6 52h-46zm160.3 0v29.3h32.3V52h-32.3zm427.2 0v133.4h32V172h.4c5.9 9 16.8 13 27.3 13 27 0 45.6-22.1 45.6-48.2 0-25.9-18.5-48-45.2-48a37.1 37.1 0 0 0-28 11.7V52h-32zm-427 42.7v90.4h32V94.7h-32zm53 0v26.6h42.5l-42.4 63.8H363v-26.6h-42.3L363 94.7h-95.8zm257.5 0v51.5c0 29.7 21 38.9 48.1 38.9s48-9.2 48-39V94.8h-32V140c0 11.4-2.8 19.5-16 19.5s-16-8-16-19.5V94.7h-32zm168.1 21.9c13 0 20.6 9.3 20.6 20.4 0 11.4-7.5 20.3-20.6 20.3-13 0-20.6-8.9-20.6-20.3 0-11 7.6-20.4 20.6-20.4z'></path><path d='M384.1 52h34.7v133.5h-34.7z'></path></g></svg>");
 $vizhub-svg-logo-width: 108px;
 $vizhub-svg-logo-height: 32px;
+
+$btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='12 12 24 24' fill='#{$body-color}'><path d='M32.97 12.63 24 21.6l-8.97-8.97a1.7 1.7 0 0 0-2.4 2.4L21.6 24l-8.97 8.97a1.7 1.7 0 0 0 2.4 2.4L24 26.4l8.97 8.97a1.7 1.7 0 0 0 2.4-2.4L26.4 24l8.97-8.97a1.7 1.7 0 0 0-2.4-2.4z'/></svg>");
+
+// let originalSize = 48;
+// let zoom = 10;
+// console.log(`viewbox='${zoom} ${zoom} ${originalSize - zoom * 2} ${originalSize - zoom * 2}'`);
+$vizhub-icon-share: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 1 48 48'><path fill='none' stroke='#000' stroke-width='3.4' stroke-linecap='round' stroke-miterlimit='10' d='M26.75 19.125s-16.548 1.451-18.625 15'/><path fill='none' stroke='#000' stroke-width='3.4' stroke-linecap='round' stroke-miterlimit='10' d='M26.75 29.063s-11.083-1.896-18.625 5.063M26.75 19.125v-5.208M26.75 34.125 39.75 24M26.75 13.917 39.75 24M26.75 29.063v5.062'/></svg>");
+$vizhub-icon-size: 30px;
+
+.vizhub-icon-share {
+  background: transparent escape-svg($vizhub-icon-share) center /
+    $vizhub-icon-size auto no-repeat;
+  width: $vizhub-icon-size;
+  height: $vizhub-icon-size;
+}
