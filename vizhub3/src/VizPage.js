@@ -58,7 +58,7 @@ export const VizPage = () => {
           className={`editor-toggle flat d-flex align-items-center clickable`}
         >
           <div
-            className={`vizhub-icon icon-chevron ${
+            className={`vizhub-icon editor-toggle-icon icon-chevron ${
               showEditor ? 'right' : 'left'
             }`}
           />

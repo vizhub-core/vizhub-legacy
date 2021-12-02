@@ -9,7 +9,10 @@
     background-color: white;
     display: flex;
     justify-content: space-between;
-    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding: 0 0.75rem 0 $input-btn-focus-width;
+
+    // Make the focus glow of topbar buttons visible.
+    z-index: $zindex-sticky;
 
     button.flat {
       border-radius: 0;
@@ -17,6 +20,9 @@
       &.editor-toggle {
         font-weight: bold;
         padding-right: 0.75rem;
+      }
+      .editor-toggle-icon {
+        margin-left: -0.15rem;
       }
     }
   }
