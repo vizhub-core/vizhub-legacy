@@ -48,6 +48,10 @@
         }
       }
     }
+    .editor-content {
+      flex: 1;
+      background-color: $vizhub-editor-bg-darkest;
+    }
     .vertical-split-right {
       &.editor-is-open {
         @include media-breakpoint-down(sm) {

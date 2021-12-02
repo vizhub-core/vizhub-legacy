@@ -4,7 +4,7 @@ import { classed } from './classed';
 import { Navigation } from './Navigation';
 import { ShareModal } from './ShareModal';
 import { MarkdownExample } from './MarkdownExample';
-import { EditorSidebar } from './EditorSidebar';
+import { Editor } from './Editor';
 
 const Wrapper = classed('viz-page');
 const Topbar = classed('topbar');
@@ -59,7 +59,7 @@ export const VizPage = () => {
       </Topbar>
       <ShareModal show={show} handleClose={handleClose} />
       <VerticalSplit>
-        {showEditor ? <EditorSidebar /> : null}
+        {showEditor ? <Editor /> : null}
         <VerticalSplitRight showEditor={showEditor}>
           <VizViewer>
             <VizFrame viewBox={`0 0 960 ${height}`} />

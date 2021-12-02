@@ -10,11 +10,11 @@ To provide an inclusive world class editing and publishing environment for inter
 
 This project may well be the beachhead for a bona fide [open core](https://medium.com/open-consensus/2-open-core-definition-examples-tradeoffs-e4d0c044da7c) reincarnation of [VizHub.com](https://vizhub.com/). VizHub has been closed source since version 2. Let's call this next reincarnation VizHub 3. Long term goals include:
 
- * **Self-hosting** - It should be possible to self-host your own instance of VizHub 3, using 100% open source code.
- * **Mobile UX** - It should be possible to develop interactive visual software on a smartphone.
- * **Internationalization** - The interface should be in your local language, for the global VizHub audience.
- * **Accessibility** - The UI should be accessible, fully navigable by keyboard and screen reader.
- * **Extensibility** - It should be possible to extend the open core with proprietary plugins that add features.
+- **Self-hosting** - It should be possible to self-host your own instance of VizHub 3, using 100% open source code.
+- **Mobile UX** - It should be possible to develop interactive visual software on a smartphone.
+- **Internationalization** - The interface should be in your local language, for the global VizHub audience.
+- **Accessibility** - The UI should be accessible, fully navigable by keyboard and screen reader.
+- **Extensibility** - It should be possible to extend the open core with proprietary plugins that add features.
 
 ## Development
 
