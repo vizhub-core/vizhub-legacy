@@ -50,7 +50,12 @@
     }
     .editor-content {
       flex: 1;
+      flex-direction: column;
       background-color: $vizhub-editor-bg-darkest;
+      .editor-content-header {
+        height: $vizhub-editor-entry-height;
+        background-color: $vizhub-editor-bg-darker;
+      }
     }
     .vertical-split-right {
       &.editor-is-open {
