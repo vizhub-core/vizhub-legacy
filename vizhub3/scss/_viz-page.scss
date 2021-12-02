@@ -36,15 +36,15 @@
 
       display: flex;
       flex-direction: column;
-      color: $vizhub-editor-color;
       background-color: $vizhub-editor-bg-dark;
-      ul.editor-items {
-        padding: 0;
+      .editor-items {
         background-color: $vizhub-editor-bg-light;
-        li.editor-item {
+        .editor-item {
+          color: $vizhub-editor-color;
+          padding: 0 0.75rem;
+          display: flex;
+          align-items: center;
           height: $vizhub-editor-entry-height;
-          padding: 0.25rem 0.75rem;
-          list-style-type: none;
         }
       }
     }
