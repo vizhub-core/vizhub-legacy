@@ -12,14 +12,8 @@
     padding-right: var(--bs-gutter-x, 0.75rem);
 
     button.flat {
-      padding: 0;
       border-radius: 0;
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-      &:active {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
+      padding: 0;
       &.editor-toggle {
         font-weight: bold;
         padding-right: 0.75rem;
@@ -32,12 +26,27 @@
     display: flex;
     height: 100%;
     .editor-sidebar {
-      display: flex;
+      // Full width on mobile.
       width: 100%;
       @include media-breakpoint-up(sm) {
         width: 200px;
       }
-      background-color: $vizhub-editor-color-dark;
+
+      font-family: $font-family-monospace;
+
+      display: flex;
+      flex-direction: column;
+      color: $vizhub-editor-color;
+      background-color: $vizhub-editor-bg-dark;
+      ul.editor-items {
+        padding: 0;
+        background-color: $vizhub-editor-bg-light;
+        li.editor-item {
+          height: $vizhub-editor-entry-height;
+          padding: 0.25rem 0.75rem;
+          list-style-type: none;
+        }
+      }
     }
     .vertical-split-right {
       &.editor-is-open {
@@ -79,5 +88,17 @@
         }
       }
     }
+  }
+}
+
+// A clickable element, with darkened background
+// for hover and active states.
+.clickable {
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.12);
   }
 }

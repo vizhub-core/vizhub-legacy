@@ -5,8 +5,12 @@
   height: $vizhub-svg-logo-height;
 }
 
+// Make it look good on mobile when
+// the avatar toggle menu is expanded.
 .navbar-nav .dropdown {
-  padding-bottom: 0.5rem;
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 0.5rem;
+  }
 }
 
 .vizhub-navbar-avatar-toggle {

@@ -4,6 +4,7 @@ import { classed } from './classed';
 import { Navigation } from './Navigation';
 import { ShareModal } from './ShareModal';
 import { MarkdownExample } from './MarkdownExample';
+import { EditorSidebar } from './EditorSidebar';
 
 const Wrapper = classed('viz-page');
 const Topbar = classed('topbar');
@@ -18,8 +19,6 @@ const VerticalSplitRight = ({ showEditor, children }) => (
     {children}
   </div>
 );
-const EditorSidebar = classed('editor-sidebar');
-//const Readme = classed('readme', 'article');
 
 export const VizPage = () => {
   // Inspired by
@@ -43,7 +42,7 @@ export const VizPage = () => {
         <Button
           variant="white"
           onClick={handleToggleEditor}
-          className={`editor-toggle flat d-flex align-items-center`}
+          className={`editor-toggle flat d-flex align-items-center clickable`}
         >
           <div
             className={`vizhub-icon icon-chevron ${
@@ -55,7 +54,7 @@ export const VizPage = () => {
         <Button
           variant="white"
           onClick={handleShow}
-          className="flat vizhub-icon icon-share"
+          className="flat vizhub-icon icon-share clickable"
         ></Button>
       </Topbar>
       <ShareModal show={show} handleClose={handleClose} />
