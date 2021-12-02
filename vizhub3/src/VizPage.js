@@ -12,7 +12,11 @@ const VizFrame = classed('viz-frame', 'svg');
 const Title = classed('title', 'h4');
 const VerticalSplit = classed('vertical-split');
 const VerticalSplitLeft = classed('vertical-split-left');
-const VerticalSplitRight = classed('vertical-split-right');
+const VerticalSplitRight = ({ showEditor, children }) => (
+  <div className={`vertical-split-right${showEditor ? ' editor-is-open' : ''}`}>
+    {children}
+  </div>
+);
 const EditorSidebar = classed('editor-sidebar');
 
 export const VizPage = () => {
@@ -55,7 +59,7 @@ export const VizPage = () => {
       <ShareModal show={show} handleClose={handleClose} />
       <VerticalSplit>
         {showEditor ? <EditorSidebar /> : null}
-        <VerticalSplitRight>
+        <VerticalSplitRight showEditor={showEditor}>
           <VizViewer>
             <VizFrame viewBox={`0 0 960 ${height}`} />
             <Title>{title}</Title>

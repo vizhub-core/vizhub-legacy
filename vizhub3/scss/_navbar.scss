@@ -5,6 +5,10 @@
   height: $vizhub-svg-logo-height;
 }
 
+.navbar-nav .dropdown {
+  padding-bottom: 0.5rem;
+}
+
 .vizhub-navbar-avatar-toggle {
   background-color: transparent; // remove default button style
   border: 0px solid transparent; // remove default button style

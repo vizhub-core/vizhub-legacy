@@ -29,9 +29,23 @@
   .vertical-split {
     flex: 1;
     display: flex;
-    .vertical-split-right {
-      flex: 1;
+    .editor-sidebar {
       display: flex;
+      width: 100%;
+      @include media-breakpoint-up(sm) {
+        width: 200px;
+      }
+      background-color: $vizhub-editor-color-dark;
+    }
+    .vertical-split-right {
+      display: none;
+      &.editor-is-open {
+        @include media-breakpoint-up(sm) {
+          display: flex;
+        }
+      }
+
+      flex: 1;
       flex-direction: column;
       align-items: center;
       min-width: 0;
@@ -61,9 +75,5 @@
         }
       }
     }
-  }
-  .editor-sidebar {
-    width: 200px;
-    background-color: $vizhub-editor-color-dark;
   }
 }
