@@ -3,6 +3,7 @@ import { Container, Button } from 'react-bootstrap';
 import { classed } from './classed';
 import { Navigation } from './Navigation';
 import { ShareModal } from './ShareModal';
+import { MarkdownExample } from './MarkdownExample';
 
 const Wrapper = classed('viz-page');
 const Topbar = classed('topbar');
@@ -18,6 +19,7 @@ const VerticalSplitRight = ({ showEditor, children }) => (
   </div>
 );
 const EditorSidebar = classed('editor-sidebar');
+//const Readme = classed('readme', 'article');
 
 export const VizPage = () => {
   // Inspired by
@@ -63,7 +65,8 @@ export const VizPage = () => {
           <VizViewer>
             <VizFrame viewBox={`0 0 960 ${height}`} />
             <Title>{title}</Title>
-            {/* <Readme /> TODO License */}
+            <MarkdownExample />
+            {/* TODO License */}
           </VizViewer>
         </VerticalSplitRight>
       </VerticalSplit>
