@@ -31,7 +31,6 @@ const sections = {
   link: LinkSection,
   embed: () => null,
   snippet: () => null,
-  collaborators: () => null,
 };
 
 export const ShareModal = ({ show, handleClose }) => {
@@ -55,9 +54,6 @@ export const ShareModal = ({ show, handleClose }) => {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="snippet">Snippet</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="collaborators">Collaborators</Nav.Link>
           </Nav.Item>
         </Nav>
         <Section />

@@ -1,47 +1,5 @@
-const __html = `<h1 id="markdown-cheatsheet">Markdown Cheatsheet<a name="TOP"></a></h1>
-<hr>
-<h1 id="heading-1">Heading 1</h1>
-<pre><code>Markup :  # Heading 1 #
-
--OR-
-
-Markup :  ============= (below H1 text)
-</code></pre>
-<h2 id="heading-2">Heading 2</h2>
-<pre><code>Markup :  ## Heading 2 ##
-
--OR-
-
-Markup: --------------- (below H2 text)
-</code></pre>
-<h3 id="heading-3">Heading 3</h3>
-<pre><code>Markup :  ### Heading 3 ###
-</code></pre>
-<h4 id="heading-4">Heading 4</h4>
-<pre><code>Markup :  #### Heading 4 ####
-</code></pre>
-<p>Common text</p>
-<pre><code>Markup :  Common text
-</code></pre>
-<p><em>Emphasized text</em></p>
-<pre><code>Markup :  _Emphasized text_ or *Emphasized text*
-</code></pre>
-<p><del>Strikethrough text</del></p>
-<pre><code>Markup :  ~~Strikethrough text~~
-</code></pre>
-<p><strong>Strong text</strong></p>
-<pre><code>Markup :  __Strong text__ or **Strong text**
-</code></pre>
-<p><strong><em>Strong emphasized text</em></strong></p>
-<pre><code>Markup :  ___Strong emphasized text___ or ***Strong emphasized text***
-</code></pre>
-<p><a target="_blank" href="http://www.google.fr/" title="Named link title">Named Link</a> and <a target="_blank" href="http://www.google.fr/">http://www.google.fr/</a> or <a target="_blank" href="http://example.com/">http://example.com/</a></p>
-<pre><code>Markup :  [Named Link](http://www.google.fr/ "Named link title") and http://www.google.fr/ or &lt;http://example.com/&gt;
-</code></pre>
-<p><a target="_blank" href="#heading-1" title="Goto heading-1">heading-1</a></p>
-<pre><code>Markup: [heading-1](#heading-1 "Goto heading-1")
-</code></pre>
-<p>Table, like this one :</p>
+const __html = `<p>This is a test of Markdown rendering.</p>
+<p>Support for <code>inline code snippets</code> and tables:</p>
 <table>
 <thead>
 <tr>
@@ -58,10 +16,10 @@ Markup: --------------- (below H2 text)
 <td>Content Cell</td>
 </tr>
 </tbody></table>
-<pre><code>First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+<pre><code>// You can import API functions like this from D3.js.
+import { select } from 'd3';
+import { message } from './myMessage';
+select('#message').text(message);
 </code></pre>
 <p>Adding a pipe <code>|</code> in a cell :</p>
 <table>
