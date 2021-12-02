@@ -20,7 +20,6 @@
       }
     }
   }
-  /* TODO responsive layout for mobile */
   .vertical-split {
     flex: 1;
     display: flex;
@@ -30,6 +29,13 @@
       width: 100%;
       @include media-breakpoint-up(sm) {
         width: 200px;
+      }
+
+      // Hidden on mobile when a file is open.
+      &.file-is-open {
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
       }
 
       font-family: $font-family-monospace;
@@ -52,9 +58,18 @@
       flex: 1;
       flex-direction: column;
       background-color: $vizhub-editor-bg-darkest;
+      font-family: $font-family-monospace;
+      color: $vizhub-editor-color;
       .editor-content-header {
         height: $vizhub-editor-entry-height;
         background-color: $vizhub-editor-bg-darker;
+        display: flex;
+        justify-content: space-between;
+        .header-left {
+          padding-left: 0.75rem;
+          display: flex;
+          align-items: center;
+        }
       }
     }
     .vertical-split-right {
