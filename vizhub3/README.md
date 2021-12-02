@@ -4,7 +4,7 @@ UI for the next generation of VizHub.
 
 ## Project Mission
 
-To provide an inclusive world class editing and publishing environment for interactive visual media.
+To provide an inclusive world class editing and publishing environment for interactive visual software on the Web.
 
 ## Long Term Goals
 
