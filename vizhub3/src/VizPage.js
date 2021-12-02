@@ -7,6 +7,7 @@ import { MarkdownExample } from './MarkdownExample';
 
 const Wrapper = classed('viz-page');
 const Topbar = classed('topbar');
+const TopbarRight = classed('topbar-right');
 const Icon = classed('vizhub-icon');
 const VizViewer = classed('viz-viewer');
 const VizFrame = classed('viz-frame', 'svg');
@@ -64,11 +65,17 @@ export const VizPage = () => {
           />
           {showEditor ? 'Close' : 'Open'} Editor
         </Button>
-        <Button
-          variant="white"
-          onClick={handleShow}
-          className="flat vizhub-icon icon-share clickable"
-        ></Button>
+        <TopbarRight>
+          <Button
+            variant="white"
+            onClick={handleShow}
+            className="flat vizhub-icon icon-share clickable"
+          ></Button>
+          <Button
+            variant="white"
+            className="flat vizhub-icon icon-fork clickable"
+          ></Button>
+        </TopbarRight>
       </Topbar>
       <ShareModal show={show} handleClose={handleClose} />
       <VerticalSplit>
