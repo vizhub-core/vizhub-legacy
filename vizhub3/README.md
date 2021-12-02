@@ -38,3 +38,7 @@ This project is nascent, but it appears possible to re-build the entire VizHub U
 ![image](https://user-images.githubusercontent.com/68416/144440084-c8e8cc88-8f5e-4dae-ab51-b70bdd98ac52.png)
 
 ![image](https://user-images.githubusercontent.com/68416/144441943-ab3f46d0-0a14-4aaa-bd08-8d22bf1f148f.png)
+
+## Get Involved
+
+Does this project pique your interest? Please let me know! Feel free to [open an issue](https://github.com/vizhub-open-core/vizhub-ui/issues) or [give me a shout on Twitter](https://twitter.com/currankelleher).
