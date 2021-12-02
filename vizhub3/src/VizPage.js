@@ -59,7 +59,6 @@ export const VizPage = () => {
           <VizViewer>
             <VizFrame viewBox={`0 0 960 ${height}`} />
             <Title>{title}</Title>
-            <h3>Test</h3>
             {/* <Readme /> TODO License */}
           </VizViewer>
         </VerticalSplitRight>

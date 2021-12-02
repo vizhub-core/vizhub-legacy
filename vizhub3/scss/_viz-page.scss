@@ -1,4 +1,7 @@
 .viz-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   .topbar {
     height: 30px;
     width: 100%;
@@ -24,6 +27,7 @@
   }
   /* TODO responsive layout for mobile */
   .vertical-split {
+    flex: 1;
     display: flex;
     .vertical-split-right {
       flex: 1;
