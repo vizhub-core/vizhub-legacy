@@ -36,7 +36,7 @@ const injectBundleScript = (htmlTemplate, files) => {
 };
 
 const injectDependenciesScript = (htmlTemplate, files) => {
-  const deps = Object.entries(dependencies(files));
+  const deps = Object.entries(dependencies(files) || {});
 
   if (deps.length === 0) return htmlTemplate;
 

@@ -2,6 +2,39 @@ What follows are the steps required to set up this app on a production instance.
 
 These instructions assume an Ubuntu server instance. In AWS, a "medium" instance is recommended. The build step may cause the VM to run out of memory on a "small" instance.
 
+## Instructions for App Server
+
+Start with a T2 Small.
+
+Choose subnet `us-east-1c`, so it can communicate with other VMs in the VizHub cluster.
+
+Add security rules to accept HTTP and HTTPS.
+
+`sudo apt update && sudo apt upgrade`
+
+[Install NVM](https://github.com/nvm-sh/nvm#install--update-script)
+
+`nvm install node`
+
+[Set up a deploy key.](https://docs.github.com/en/enterprise-server@3.0/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+`git clone git@github.com:curran/vizhub.git`
+
+`npm install -g lerna pm2`
+
+`./deployFirstTime.sh`
+
+`./deploy.sh`
+
+Build the front end locally, then copy it into the server (build on the server tends to run out of memory).
+
+```
+cd packages/neoFrontend
+npm run build
+cd directoryWithPemFile
+scp -r -i myKey.pem ~/repos/vizhub/packages/neoFrontend/build ubuntu@18.232.93.75:vizhub/packages/neoBackend/build
+```
+
 ## Preparing the VM
 
 Install Ubuntu packages required by NPM packages used by VizHub.
@@ -218,6 +251,13 @@ pm2 start --cron "0 * * * *" --name image-generation-service npm -- start
 ```
 
 The above command sets up PM2 to mimic a CRON job that restarts the image generation service every hour. This is a hacky solution for an unknown instability within the image generation service itself.
+
+Start scoring service
+
+```
+cd ../scoringService
+pm2 start --name scoring-service npm -- start
+```
 
 # VizHub 2.0
 

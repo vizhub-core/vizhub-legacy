@@ -10,10 +10,8 @@ export const generateScreenshot = async ({ visualizationViewModel, waitTime }) =
   const html = computeSrcDoc(files);
   try {
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({defaultViewport: { width, height }});
     const page = await browser.newPage();
-  
-    await page.setViewport({ width, height });
 
     return await new Promise((resolve, reject) => {
       // Catch errors.
@@ -39,9 +37,8 @@ export const generateScreenshot = async ({ visualizationViewModel, waitTime }) =
     console.log(error);
 
     console.log('Using white image as thumbnail');
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({defaultViewport: { width, height }});
     const page = await browser.newPage();
-    await page.setViewport({ width, height });
     await page.setContent('<html></html>');
     const screenshotBuffer = await page.screenshot();
     await page.close();

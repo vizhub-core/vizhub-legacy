@@ -1,9 +1,5 @@
 import { useCallback, useContext } from 'react';
-import {
-  getVizCollaborators,
-  addCollaboratorOp,
-  removeCollaboratorOp,
-} from 'vizhub-presenters';
+import { addCollaboratorOp, removeCollaboratorOp } from 'vizhub-presenters';
 import { useValue } from '../../../../useValue';
 import { RealtimeModulesContext } from '../../../../RealtimeModulesContext';
 import { VizContext } from '../../VizContext';
