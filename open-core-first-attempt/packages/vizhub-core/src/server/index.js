@@ -8,6 +8,8 @@ import ShareDBMongo from 'sharedb-mongo';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
 import ShareDBRedisPubSub from 'sharedb-redis-pubsub';
 import { getPages } from '../isomorphic/getPages';
+import { Gateways } from './gateways.js';
+import { identifyAgent } from './identifyAgent';
 
 export const server = (serverPlugins) => {
   // See:
@@ -49,9 +51,14 @@ export const server = (serverPlugins) => {
     });
   }
 
-  const backend = new ShareDB(shareDBOptions);
+  const shareDBBackend = new ShareDB(shareDBOptions);
 
-  const shareDBConnection = backend.connect();
+  // Identify the agent - server or client + authenticated user.
+  shareDBBackend.use('connect', identifyAgent);
+
+  // Make the server connection (singleton).
+  const shareDBConnection = shareDBBackend.connect();
+
   const expressApp = express();
   const port = 8000;
 
@@ -59,15 +66,31 @@ export const server = (serverPlugins) => {
 
   const pages = getPages(serverPlugins);
 
+  const gateways = Gateways(shareDBConnection);
+
   for (const plugin of serverPlugins) {
-    plugin.extendServer?.(expressApp, shareDBConnection, pages);
+    plugin.extendServer?.({
+      expressApp,
+      pages,
+      gateways,
+      //shareDBConnection,
+      shareDBBackend,
+    });
   }
 
   const server = http.createServer(expressApp);
 
   const wss = new WebSocket.Server({ server });
   wss.on('connection', (ws) => {
-    backend.listen(new WebSocketJSONStream(ws));
+    const stream = new WebSocketJSONStream(ws);
+
+    // TODO bring this back if/when needed.
+    // Prevent server crashes on errors.
+    //stream.on('error', (error) => {
+    //  console.log('WebSocket stream error: ' + error.message);
+    //});
+
+    shareDBBackend.listen(stream);
   });
 
   server.listen(port, () => {

@@ -51,7 +51,7 @@ export const indexHTML = ({
     <meta charset="utf-8">
     <title>${title}</title>
     <meta name="theme-color" content="#f6eee3">
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="manifest" href="/manifest.json" crossorigin="use-credentials"/>
     <link href="/build/styles.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">

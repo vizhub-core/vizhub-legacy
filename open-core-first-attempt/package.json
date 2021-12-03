@@ -9,7 +9,8 @@
   "scripts": {
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
     "test": "cd packages/vizhub-ce; npm test",
-    "start": "cd packages/vizhub-ce; npm start"
+    "start": "cd packages/vizhub-ce; npm start",
+    "clean": "find . -type f -name 'package-lock.json' -exec rm {} +"
   },
   "repository": {
     "type": "git",

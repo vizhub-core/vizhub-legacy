@@ -1,25 +1,21 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { VizInfo, App, indexHTML } from 'vizhub-core';
-import { getShareDBSnapshot } from './getShareDBSnapshot';
-import { VizPage } from '../VizPage';
+import { VizInfo, App, indexHTML, VizHubError } from 'vizhub-core';
+import { VizPage } from './VizPage';
 
 const pageComponent = VizPage;
 
+const { ERR_NOT_FOUND, ERR_PERMISSION_DENIED } = VizHubError.codes;
+
+// TODO make these more elaborate.
+const notFoundHTML = 'Not found';
+const accessDenied = 'Access denied';
+
 export const vizPageServerPlugin = () => ({
   pageComponent,
-  extendServer: (expressApp, shareDBConnection, pages) => {
-    const getVizInfoSnapshot = getShareDBSnapshot(
-      shareDBConnection,
-      'documentInfo'
-    );
-
-    const getVizContentSnapshot = getShareDBSnapshot(
-      shareDBConnection,
-      'documentContent'
-    );
-
-    const getUserSnapshot = getShareDBSnapshot(shareDBConnection, 'user');
+  extendServer: ({ expressApp, pages, gateways }) => {
+    const { getVizInfoSnapshot, getVizContentSnapshot, getUserSnapshot } =
+      gateways;
 
     expressApp.get('/:userName/:vizId', async (req, res) => {
       const { vizId } = req.params;
@@ -28,12 +24,6 @@ export const vizPageServerPlugin = () => ({
           getVizInfoSnapshot(vizId),
           getVizContentSnapshot(vizId),
         ]);
-        if (vizInfoSnapshot === null) {
-          // TODO serve example from GitHub Gist.
-          // TODO present a banner stating this is hosted in GitHub Gist.
-          // TODO present an option to import into VizHub for editing.
-          return res.send('TODO 404 not found page. need to log in?');
-        }
 
         // TODO include this in page data
         // TODO fill in CI user
@@ -42,12 +32,11 @@ export const vizPageServerPlugin = () => ({
         //const ownerUserSnapshot = await getUserSnapshot(vizInfo.owner);
         //console.log(ownerUserSnapshot);
 
+        res.type('html');
         const pageData = {
           pageName: pageComponent.name,
           pageProps: { vizInfoSnapshot, vizContentSnapshot },
         };
-        res.type('html');
-
         res.send(
           indexHTML({
             title: vizInfoSnapshot.data.title,
@@ -58,6 +47,15 @@ export const vizPageServerPlugin = () => ({
           })
         );
       } catch (error) {
+        if (error.code === ERR_NOT_FOUND) {
+          res.type('html');
+          return res.send(notFoundHTML);
+        }
+        if (error.code === ERR_PERMISSION_DENIED) {
+          res.type('html');
+          return res.send(accessDenied);
+        }
+
         // Should never happen, but if it does, surface the error clearly.
         console.log(error);
         res.send(error.toString?.());

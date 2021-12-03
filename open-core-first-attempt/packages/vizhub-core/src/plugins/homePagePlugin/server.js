@@ -8,7 +8,7 @@ const pageComponent = HomePage;
 
 export const homePageServerPlugin = () => ({
   pageComponent,
-  extendServer: (expressApp, shareDBConnection, pages) => {
+  extendServer: ({ expressApp, pages }) => {
     expressApp.get('/', async (req, res) => {
       const pageData = {
         pageName: pageComponent.name,
@@ -24,7 +24,9 @@ export const homePageServerPlugin = () => ({
       res.send(
         indexHTML({
           title: 'VizHub',
-          rootHTML: renderToString(<App pageData={pageData} pages={pages} />),
+          rootHTML: renderToString(
+            <App pageData={pageData} pages={pages} ssrQuery={req.query} />
+          ),
           pageData,
         })
       );
