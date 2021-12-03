@@ -1,6 +1,6 @@
 # vizhub-ui
 
-UI for the next generation of VizHub.
+UI for the next generation of [VizHub](https://vizhub.com/).
 
 ## Project Mission
 
