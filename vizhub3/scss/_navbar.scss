@@ -1,0 +1,34 @@
+.navbar-brand {
+  background: transparent escape-svg($vizhub-svg-logo) center /
+    $vizhub-svg-logo-width auto no-repeat;
+  width: $vizhub-svg-logo-width;
+  height: $vizhub-svg-logo-height;
+}
+
+// Make it look good on mobile when
+// the avatar toggle menu is expanded.
+.navbar-nav .dropdown {
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 0.5rem;
+  }
+}
+
+.vizhub-navbar-avatar-toggle {
+  background-color: transparent; // remove default button style
+  border: 0px solid transparent; // remove default button style
+  @include border-radius($navbar-toggler-border-radius);
+  @include transition($navbar-toggler-transition);
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 $navbar-toggler-focus-width;
+  }
+
+  color: $navbar-dark-color;
+  border-color: $navbar-dark-toggler-border-color;
+}

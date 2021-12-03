@@ -1,0 +1,4 @@
+node_modules
+*.swp
+build
+package-lock.json

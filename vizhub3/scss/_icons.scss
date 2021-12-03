@@ -1,0 +1,42 @@
+// Topbar icons.
+$vizhub-icon-share: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 1 48 48'><path fill='none' stroke='#000' stroke-width='3.4' stroke-linecap='round' stroke-miterlimit='10' d='M26.75 19.125s-16.548 1.451-18.625 15'/><path fill='none' stroke='#000' stroke-width='3.4' stroke-linecap='round' stroke-miterlimit='10' d='M26.75 29.063s-11.083-1.896-18.625 5.063M26.75 19.125v-5.208M26.75 34.125 39.75 24M26.75 13.917 39.75 24M26.75 29.063v5.062'/></svg>");
+$vizhub-icon-chevron: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 1 48 48'><path d='m34.994 27.565-8.625-8.626-.654-.654a2.43 2.43 0 0 0-3.43 0l-.654.654-8.625 8.626a1.674 1.674 0 1 0 2.369 2.368L24 21.308l1.433 1.433 7.192 7.192c.327.327.755.49 1.184.49s.857-.163 1.185-.49a1.674 1.674 0 0 0 0-2.368z'/></svg>");
+$vizhub-icon-fork: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M34.418 14.199a4.186 4.186 0 0 0-4.182-4.182 4.186 4.186 0 0 0-4.181 4.182c0 1.654.966 3.088 2.364 3.765-.014.227-.032.46-.06.697-.237 2.042-.97 3.447-2.177 4.179a7.085 7.085 0 0 0-2.184 2.085 7.086 7.086 0 0 0-2.184-2.085c-1.207-.731-1.939-2.137-2.177-4.179a11.652 11.652 0 0 1-.06-.697 4.185 4.185 0 0 0 2.364-3.765c0-2.306-1.876-4.182-4.182-4.182s-4.181 1.876-4.181 4.182c0 1.75 1.08 3.252 2.61 3.875.014.285.036.581.069.884.344 3.14 1.657 5.484 3.799 6.781 1.19.722 1.936 2.152 2.218 4.253a4.188 4.188 0 0 0-2.46 3.811 4.186 4.186 0 0 0 4.182 4.181 4.186 4.186 0 0 0 4.182-4.181 4.19 4.19 0 0 0-2.46-3.811c.281-2.101 1.026-3.531 2.218-4.253 2.141-1.297 3.455-3.642 3.799-6.781.033-.303.056-.599.069-.884a4.187 4.187 0 0 0 2.614-3.875zm-16.695-1.721a1.722 1.722 0 1 1-.001 3.443 1.722 1.722 0 0 1 .001-3.443zm6.236 23.045a1.722 1.722 0 1 1 .001-3.443 1.722 1.722 0 0 1-.001 3.443zm6.238-19.604a1.722 1.722 0 1 1-.002-3.44 1.722 1.722 0 0 1 .002 3.44z'/></svg>");
+
+// Editor icons.
+$vizhub-icon-x: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path fill='white' d='M32.97 12.63 24 21.6l-8.97-8.97a1.7 1.7 0 0 0-2.4 2.4L21.6 24l-8.97 8.97a1.7 1.7 0 0 0 2.4 2.4L24 26.4l8.97 8.97a1.7 1.7 0 0 0 2.4-2.4L26.4 24l8.97-8.97a1.7 1.7 0 0 0-2.4-2.4z'/></svg>");
+
+.vizhub-icon {
+  width: $vizhub-icon-size;
+  height: $vizhub-icon-size;
+  &.btn {
+    width: 35px;
+  }
+}
+
+.icon-share {
+  background: escape-svg($vizhub-icon-share) center / $vizhub-icon-size auto
+    no-repeat;
+}
+
+.icon-chevron {
+  background: escape-svg($vizhub-icon-chevron) center / $vizhub-icon-size auto
+    no-repeat;
+
+  &.left {
+    transform: rotate(90deg);
+  }
+  &.right {
+    transform: rotate(-90deg);
+  }
+}
+
+.icon-fork {
+  background: escape-svg($vizhub-icon-fork) center / $vizhub-icon-size auto
+    no-repeat;
+}
+
+.icon-x {
+  background: escape-svg($vizhub-icon-x) center / $vizhub-icon-size auto
+    no-repeat;
+}

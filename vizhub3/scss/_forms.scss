@@ -1,0 +1,13 @@
+// Custom things in forms
+.vizhub-form-note {
+  font-size: 14px;
+  color: rgb(121, 121, 121);
+  &.contextual {
+    font-weight: bold;
+    padding-bottom: 1rem;
+  }
+  //  &.informational {
+  //    padding-top: 2rem;
+  //    padding-bottom: 1rem;
+  //  }
+}

@@ -1,0 +1,139 @@
+/* Inspired by GitHub README styling. */
+.markdown-body {
+  padding-top: $vizhub-padding-lots;
+  line-height: 1.5;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    margin-top: 24px;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-size: 0.85em;
+    color: $vizhub-foreground-color-light;
+  }
+
+  h1,
+  h2 {
+    border-bottom: 1px solid $vizhub-rule-color;
+    padding-bottom: 0.3em;
+  }
+
+  hr {
+    border: none;
+    height: 2px;
+    background-color: $vizhub-rule-color;
+  }
+
+  blockquote,
+  details,
+  dl,
+  ol,
+  p,
+  pre,
+  table,
+  ul {
+    margin-bottom: 16px;
+    margin-top: 0;
+  }
+
+  img {
+    border-style: none;
+    width: 100%;
+  }
+
+  code,
+  pre {
+    background-color: $vizhub-code-background;
+    color: $vizhub-code-foreground;
+    font-family: $font-family-monospace;
+    font-size: 1em;
+  }
+  code {
+    padding: 0.1em 0.3em;
+  }
+
+  pre {
+    line-height: 1.45;
+    overflow: auto;
+    padding: $vizhub-padding-little;
+  }
+  pre code {
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 1px solid $vizhub-rule-color;
+      padding: $vizhub-padding-miniscule $vizhub-padding-little;
+    }
+
+    /* Remove external borders, so that border-radius can shine. */
+    /* Inspired by https://css-tricks.com/table-borders-inside/ */
+    tr:first-child td,
+    tr:first-child th {
+      border-top: 0;
+    }
+    tr td:first-child,
+    tr th:first-child {
+      border-left: 0;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    tr td:last-child,
+    tr th:last-child {
+      border-right: 0;
+    }
+  }
+
+  img,
+  table {
+    background-color: white;
+  }
+
+  code,
+  pre,
+  img,
+  table {
+    border-radius: $vizhub-border-radius;
+    box-shadow: $vizhub-box-shadow;
+  }
+}

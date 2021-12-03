@@ -1,0 +1,17 @@
+// Custom styling of pills so they have underlines.
+.nav-pills .nav-link {
+  padding: $input-padding-y $input-padding-x;
+  &,
+  &:hover,
+  &:focus {
+    color: $body-color;
+  }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: $primary;
+  border-radius: 0px;
+}
