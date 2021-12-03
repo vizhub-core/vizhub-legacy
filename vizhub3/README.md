@@ -31,6 +31,8 @@ http-server
 
 ## Current Status
 
+UI Only. Fake data only. No backend yet.
+
 This project is nascent, but it appears possible to re-build the entire VizHub UI and indeed the full stack open core of the next generation VizHub product using this approach. Screenshots of progress so far:
 
 ![image](https://user-images.githubusercontent.com/68416/144443632-db541593-580d-4a29-8eb3-4a106d003d06.png)
