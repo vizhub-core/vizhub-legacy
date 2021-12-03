@@ -1,0 +1,16 @@
+{
+  "name": "vizhub-plugin-viz-page",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "",
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-sucrase": "^4.0.0"
+  },
+  "dependencies": {
+    "@react-aria/button": "^3.3.2",
+    "@react-stately/toggle": "^3.2.2"
+  }
+}

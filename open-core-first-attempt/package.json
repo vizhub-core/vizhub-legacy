@@ -1,0 +1,39 @@
+{
+  "name": "vizhub-open-core",
+  "version": "0.0.1",
+  "description": "An experiment in adopting the open-core model for VizHub.",
+  "main": "index.js",
+  "workspaces": [
+    "./packages/*"
+  ],
+  "scripts": {
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "test": "cd packages/vizhub-ce; npm test",
+    "start": "cd packages/vizhub-ce; npm start",
+    "clean": "find . -type f -name 'package-lock.json' -exec rm {} +"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curran/vizhub-open-core.git"
+  },
+  "keywords": [
+    "VizHub",
+    "Web",
+    "Development",
+    "IDE",
+    "Editor",
+    "HTML",
+    "D3",
+    "React",
+    "Sandbox"
+  ],
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curran/vizhub-open-core/issues"
+  },
+  "homepage": "https://github.com/curran/vizhub-open-core#readme",
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}

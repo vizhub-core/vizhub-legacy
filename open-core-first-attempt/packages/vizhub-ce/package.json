@@ -1,0 +1,49 @@
+{
+  "name": "vizhub-ce",
+  "version": "0.0.1",
+  "description": "VizHub Community Edition",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prettier": "cd ..; npm run prettier",
+    "build": "node src/build.js",
+    "test": "npm run build && NODE_OPTIONS=--enable-source-maps mocha build/test.cjs",
+    "start": "npm run build && NODE_OPTIONS=--enable-source-maps node build/server.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/curran/vizhub-core.git"
+  },
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curran/vizhub-core/issues"
+  },
+  "homepage": "https://github.com/curran/vizhub-core#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-sucrase": "^3.1.0",
+    "mocha": "^9.0.2",
+    "redis": "^3.1.2",
+    "rollup": "^2.53.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "sass": "^1.36.0",
+    "sharedb-redis-pubsub": "^2.0.0"
+  },
+  "dependencies": {
+    "@react-aria/button": "^3.3.2",
+    "@react-stately/toggle": "^3.2.2",
+    "@teamwork/websocket-json-stream": "^2.0.0",
+    "express": "^4.17.1",
+    "marked": "^2.1.3",
+    "mongodb": "^3.6.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sharedb": "^1.8.3",
+    "sharedb-mongo": "^1.0.0-beta.18",
+    "ws": "^7.5.3",
+    "xss": "^1.0.9"
+  }
+}

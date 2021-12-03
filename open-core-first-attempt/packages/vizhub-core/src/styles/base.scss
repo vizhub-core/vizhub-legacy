@@ -1,0 +1,15 @@
+body {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  font-family: var(--font-family-ui);
+  font-size: var(--font-size-default);
+
+  /* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+  box-sizing: border-box;
+
+  margin: 0;
+}
+
+* {
+  box-sizing: inherit;
+}

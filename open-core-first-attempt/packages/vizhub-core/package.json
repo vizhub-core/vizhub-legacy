@@ -1,0 +1,18 @@
+{
+  "name": "vizhub-core",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Tests run inside the vizhub-ce package.\" && exit 1"
+  },
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "dependencies": {
+    "sharedb": "^1.9.1"
+  },
+  "devDependencies": {
+    "rollup": "^2.53.3"
+  }
+}

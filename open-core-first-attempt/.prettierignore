@@ -1,0 +1,8 @@
+*.swp
+*.png
+*.ico
+*.map
+*.rdb
+.*
+packages/vizhub-*/build
+packages/vizhub-*/public/build
