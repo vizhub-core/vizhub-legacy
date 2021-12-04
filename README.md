@@ -2,6 +2,8 @@
 
 Web based code editor for interactive graphics.
 
+[![image](https://user-images.githubusercontent.com/68416/144709900-b93dcc72-ebfc-4a26-828a-ae97adb809c8.png)](https://vizhub.com/curran/86a75dc8bdbe4965ba353a79d4bd44c8?edit=files&file=index.js)
+
 ## VizHub 3
 
 A re-write of VizHub is in progress, found in the [vizhub3](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub3) directory.
