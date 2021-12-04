@@ -1,12 +1,12 @@
-# [VizHub](https://vizhub.com)
+# VizHub
 
-Web based code editor for interactive graphics.
-
-[![image](https://user-images.githubusercontent.com/68416/144709900-b93dcc72-ebfc-4a26-828a-ae97adb809c8.png)](https://vizhub.com/curran/86a75dc8bdbe4965ba353a79d4bd44c8?edit=files&file=index.js)
+A platform for developing and publishing for interactive visual programs.
 
 ## VizHub 3
 
 A re-write of VizHub is in progress, found in the [vizhub3](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub3) directory.
+
+![image](https://user-images.githubusercontent.com/68416/144443632-db541593-580d-4a29-8eb3-4a106d003d06.png)
 
 There are implementations of various features in other subdirectories that can be ported into `vizhub3` going forward:
  * [open-core-first-attempt](https://github.com/vizhub-open-core/vizhub/tree/master/open-core-first-attempt) - Markdown rendering in a Web worker
@@ -16,6 +16,10 @@ There are implementations of various features in other subdirectories that can b
 ## VizHub 2
 
 This is the codebase deployed at https://vizhub.com.
+
+[![image](https://user-images.githubusercontent.com/68416/144710008-69a44186-def8-47ec-83e5-8a76661c7716.png)](https://vizhub.com)
+
+[![image](https://user-images.githubusercontent.com/68416/144709900-b93dcc72-ebfc-4a26-828a-ae97adb809c8.png)](https://vizhub.com/curran/86a75dc8bdbe4965ba353a79d4bd44c8?edit=files&file=index.js)
 
 The full stack VizHub 2 app is located in the [packages](https://github.com/vizhub-open-core/vizhub/tree/master/packages) directory. This contains the front end, back end, image generation service (which takes screenshots for thumbnails), and scoring service (which computes a popularity ranking). This codebase was closed source until it was released here in December 2021. It has outgrown itself and is in need of a rewrite, but it does implement a great many features and can be used as a reference for VizHub 3 development.
 
