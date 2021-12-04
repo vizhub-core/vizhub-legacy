@@ -24,8 +24,8 @@ To get your development environment up and running:
 
 ```
 npm install
-npm run build-css
-npm run build-js
+npm run build
+cd build
 http-server
 ```
 
