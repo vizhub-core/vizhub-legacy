@@ -88,7 +88,7 @@ tail /var/log/nginx/error.log
 
 Configure your DNS A record to point to the server IP.
 
-[Set up HTTPS with Certbot](https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx).
+[Set up HTTPS with Certbot](https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal).
 
 Start the server:
 
