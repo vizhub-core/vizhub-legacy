@@ -1,5 +1,22 @@
 # [VizHub](https://vizhub.com)
 
+Web based code editor for interactive graphics.
+
+## VizHub 3
+
+A re-write of VizHub is in progress, found in the [vizhub3](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub3) directory.
+
+There are implementations of various features in other subdirectories that can be ported into `vizhub3` going forward:
+ * [open-core-first-attempt](https://github.com/vizhub-open-core/vizhub/tree/master/open-core-first-attempt) - Markdown rendering in a Web worker
+ * [vizhub-v3-false-start](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub-v3-false-start) - PWA & new viz preview design
+ * [vizhub-v2-false-start](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub-v2-false-start) - Editor theming
+
+## VizHub 2
+
+This is the codebase deployed at https://vizhub.com.
+
+The full stack VizHub 2 app is located in the [packages](https://github.com/vizhub-open-core/vizhub/tree/master/packages) directory. This contains the front end, back end, image generation service (which takes screenshots for thumbnails), and scoring service (which computes a popularity ranking). This codebase was closed source until it was released here in December 2021. It has outgrown itself and is in need of a rewrite, but it does implement a great many features and can be used as a reference for VizHub 3 development.
+
 Built with React, Node, Lerna, and ShareDB. Loosely based on [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 To set up your development environment:
@@ -104,4 +121,3 @@ Upgrade all dependencies:
 npm install -g npm-check-updates
 lerna exec -- ncu -u
 ```
-
