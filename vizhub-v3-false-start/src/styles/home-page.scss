@@ -1,0 +1,34 @@
+.home-page {
+  display: flex;
+
+  /* Inspired by http://getskeleton.com/#queries */
+  padding: 32px 4px;
+
+  /* Larger than phablet */
+  @media (min-width: 550px) {
+    padding: 32px 16px;
+  }
+
+  /* Larger than tablet */
+  @media (min-width: 750px) {
+    padding: 32px;
+  }
+
+  /* Larger than desktop */
+  @media (min-width: 1000px) {
+    padding: 64px;
+  }
+
+  /* Larger than Desktop HD */
+  @media (min-width: 1200px) {
+    padding: 84px;
+  }
+
+  .viz-preview-collection {
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    display: flex;
+    gap: 32px;
+  }
+}

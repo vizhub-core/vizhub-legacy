@@ -1,0 +1,19 @@
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  display: inline-block;
+}
+
+/*
+a:visited {
+  color: var(--link-color-visited);
+}
+*/
+
+a:hover {
+  transform: translateY(-1px);
+}
+
+a:active {
+  transform: translateY(1px);
+}

@@ -1,0 +1,7 @@
+node_modules
+*.swp
+*.map
+/build
+/public/build
+/public/serviceWorkerBuild.js
+package-lock.json

@@ -1,0 +1,32 @@
+.viz-page {
+  display: flex;
+  flex-direction: column;
+  .head {
+    background-color: white;
+    height: var(--head-height);
+  }
+
+  .content-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    max-width: 100%;
+    /*max-width: var(--content-max-width);*/
+    flex: 1;
+    padding: var(--padding-lots);
+  }
+
+  .sidebar {
+    width: 170px;
+    background-color: #5b677d;
+  }
+  /* TODO make the sidebar full width on mobile. */
+  /* TODO hide content entirely when sidebar is open on mobile. */
+
+  img {
+    max-width: var(--content-max-width);
+  }
+}
