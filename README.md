@@ -6,6 +6,8 @@ A platform for developing and publishing for interactive visual programs.
 
 A re-write of VizHub is in progress, found in the [vizhub3](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub3) directory.
 
+Try it out 👉 https://beta.vizhub.com/
+
 ![image](https://user-images.githubusercontent.com/68416/144443632-db541593-580d-4a29-8eb3-4a106d003d06.png)
 
 There are implementations of various features in other subdirectories that can be ported into `vizhub3` going forward:
