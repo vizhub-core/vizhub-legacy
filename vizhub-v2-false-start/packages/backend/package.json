@@ -1,0 +1,23 @@
+{
+  "name": "vizhub-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node -r esm src/index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@datavis-tech/ot-json0": "^1.2.0",
+    "@teamwork/sharedb": "^3.1.0",
+    "@teamwork/websocket-json-stream": "^2.0.0",
+    "express": "^4.16.4",
+    "vizhub-common": "1",
+    "compression": "^1.7.4",
+    "ws": "^6.2.1"
+  },
+  "devDependencies": {
+    "esm": "^3.2.22"
+  }
+}
