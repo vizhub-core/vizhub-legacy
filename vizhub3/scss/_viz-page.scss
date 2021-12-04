@@ -11,8 +11,8 @@
     justify-content: space-between;
     padding: 0 0.75rem 0 $input-btn-focus-width;
 
-    // Make the focus glow of topbar buttons visible.
-    z-index: $zindex-sticky;
+    // TODO Make the focus glow of topbar buttons visible.
+    // z-index: $zindex-sticky; <-- This introduces a bug with the menu. See https://github.com/vizhub-open-core/vizhub/issues/492
 
     button.flat {
       border-radius: 0;
