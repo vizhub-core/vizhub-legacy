@@ -2,130 +2,26 @@
 
 A platform for developing and publishing for interactive visual programs.
 
-## VizHub 3
+## VizHub Community Edition
 
-A re-write of VizHub is in progress, found in the [vizhub3](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub3) directory.
+A re-write of VizHub is in progress, [vizhub-ce](https://github.com/vizhub-open-core/vizhub/tree/main/vizhub-ce).
 
 Try it out 👉 https://beta.vizhub.com/
 
 ![image](https://user-images.githubusercontent.com/68416/144443632-db541593-580d-4a29-8eb3-4a106d003d06.png)
 
-There are implementations of various features in other subdirectories that can be ported into `vizhub3` going forward:
- * [open-core-first-attempt](https://github.com/vizhub-open-core/vizhub/tree/master/open-core-first-attempt) - Markdown rendering in a Web worker
- * [vizhub-v3-false-start](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub-v3-false-start) - PWA & new viz preview design
- * [vizhub-v2-false-start](https://github.com/vizhub-open-core/vizhub/tree/master/vizhub-v2-false-start) - Editor theming
+The goals of this project are:
 
-## VizHub 2
+ * To be a useful piece of sortware for individuals and organizations to self-host.
+ * To be the [open core](https://medium.com/open-consensus/2-open-core-definition-examples-tradeoffs-e4d0c044da7c) of the next generation VizHub paid offering.
 
-This is the codebase deployed at https://vizhub.com.
+[Feedback welcome](https://github.com/vizhub-open-core/vizhub/issues/495).
 
-[![image](https://user-images.githubusercontent.com/68416/144710008-69a44186-def8-47ec-83e5-8a76661c7716.png)](https://vizhub.com)
+## Archive
 
-[![image](https://user-images.githubusercontent.com/68416/144709900-b93dcc72-ebfc-4a26-828a-ae97adb809c8.png)](https://vizhub.com/curran/86a75dc8bdbe4965ba353a79d4bd44c8?edit=files&file=index.js)
+This repository houses an archive of old code as a reference to draw from.
 
-The full stack VizHub 2 app is located in the [packages](https://github.com/vizhub-open-core/vizhub/tree/master/packages) directory. This contains the front end, back end, image generation service (which takes screenshots for thumbnails), and scoring service (which computes a popularity ranking). This codebase was closed source until it was released here in December 2021. It has outgrown itself and is in need of a rewrite, but it does implement a great many features and can be used as a reference for VizHub 3 development.
-
-Built with React, Node, Lerna, and ShareDB. Loosely based on [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
-
-To set up your development environment:
-
-Install dependencies:
-```
-cd vizhub
-npm install
-npm run lerna
-```
-
-Start the backend:
-```
-cd packages/neoBackend
-npm run dev # Leave this open in a console tab. Serves on port 4000
-```
-
-Start the frontend server (in another terminal):
-
-```
-cd ../packages/neoFrontend
-npm start # Leave this open, it's a `create-react-app` dev server on port 3000
-```
-
-To login, we use the Github integration with the development credentials below. Or, in development you can log in as CI (Continuous Integration) User without any need to set up GitHub authentication.
-
-## Puppeteer Dependencies
-
-The install step may fail with errors related to Puppeteer and Chrome. The following dependencies are required for Debian/Ubuntu Linux:
-
-```
-sudo apt install build-essential ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils -y
-```
-
-See also [Puppeteer troubleshooting](https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md)
-
-# Testing
-
-To run the end-to-end tests (in another terminal):
-
-```
-cd ../packages/neoCI
-npm test # Beware: auth as CI test case is a bit brittle, fails sporadically
-```
-
-These tests use [Puppeteer](https://github.com/puppeteer/puppeteer), which has some [system-level dependencies](https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#chrome-headless-doesnt-launch-on-unix) that need to be installed separately (OS-specific).
-
-If you're ever in NPM hell with `package-lock` madness, try [this](https://gist.github.com/cancerberoSgx/1892ada276992f78f488a43b3a430c9b):
-
-```
-find . -name "node_modules" -exec rm -rf '{}' +; find . -name "package-lock.json" -exec rm -rf '{}' +;
-```
-
-# Environment Variables
-
-Without setting any environment variables, the app should work in development using an in-memory database, without the ability to authenticate via GitHub.
-
-To set up the app to use MongoDB, export the following:
-
-```
-export VIZHUB_MONGO_URI=mongodb://localhost:27017/vizhub
-export REACT_APP_VIZHUB_REDIRECT_URI=http://localhost:3000/authenticated
-```
-
-To enable authentication via GitHub, export the following:
-
-```
-export REACT_APP_VIZHUB_GITHUB_CLIENT_ID=17ed8d9fa67e695f1118
-export VIZHUB_GITHUB_CLIENT_SECRET=b7673605d16aee3c66bb693578d4e1e2dac61baa
-```
-
-To enable authentication via Google, export the following:
-
-```
-export REACT_APP_VIZHUB_GOOGLE_CLIENT_ID=1089209754756-iuvb60rkf8mheiqk186n3kk7lp6sb5kr.apps.googleusercontent.com
-```
-
-To enable authentication via Facebook, export the following:
-
-```
-export REACT_APP_VIZHUB_FACEBOOK_CLIENT_ID=39270402107636
-export VIZHUB_FACEBOOK_CLIENT_SECRET=13aedfb953666b2a425e5ba00deef3c1
-```
-
-Don't forget to `source ~/.bashrc`!
-
-Additional environment variables for use in production only are detailed in [Production Docs](docs/production.md).
-
-# Codebase Maintenance
-
-The codebase uses Prettier to auto-format code. Please run Prettier on all files after making changes:
-
-`lerna run prettier`
-
-You can run Pretter within a single package directory (e.g. `neoFrontend`):
-
-`npm run prettier`
-
-Upgrade all dependencies:
-
-```
-npm install -g npm-check-updates
-lerna exec -- ncu -u
-```
+ * [archive/vizhub-v2](https://github.com/vizhub-open-core/vizhub/tree/main/archive/vizhub-v2) - The full source code for VizHub version 2, currently deployed at https://vizhub.com. No longer being developed as the codebase has become unwieldy. This will be the primary source of raw material to port/migrate/rewrite into VizHub CE.
+ * [archive/open-core-first-attempt](https://github.com/vizhub-open-core/vizhub/tree/main/archive/open-core-first-attempt) - An attempt at a modular architecture. Notable features here include: Server rendering, Proper ShareDB hydration, and Markdown rendering in a Web worker
+ * [archive/vizhub-v3-false-start](https://github.com/vizhub-open-core/vizhub/tree/main/archive/vizhub-v3-false-start) - An earlier false start at a VizHub rewrite. Notable features here include: Working PWA setup, new viz preview design, new home page design.
+ * [archive/vizhub-v2-false-start](https://github.com/vizhub-open-core/vizhub/tree/main/archive/vizhub-v2-false-start) - An ancient effort. Notable features here include: CodeMirror 6 integration, dynamic code editor theming, fonts with ligatures.
