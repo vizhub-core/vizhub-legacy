@@ -14,6 +14,15 @@
   background-color: white;
   box-shadow: $vizhub-box-shadow;
   border-radius: $vizhub-border-radius;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
 
   /* Aspect ratio, original thumbnail size: 230 X 120*/
   width: 300px;
