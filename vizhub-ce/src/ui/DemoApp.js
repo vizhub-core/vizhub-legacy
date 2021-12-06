@@ -15,7 +15,6 @@ export const DemoApp = () => {
 
   return (
     <>
-      {/* TODO bring this back when work starts on home page and profile page.
       <Nav variant="pills" defaultActiveKey={page} onSelect={setPage}>
         <Nav.Item>
           <Nav.Link eventKey="home">Home</Nav.Link>
@@ -24,7 +23,6 @@ export const DemoApp = () => {
           <Nav.Link eventKey="viz">Viz</Nav.Link>
         </Nav.Item>
       </Nav>
-*/}
       <Page />
     </>
   );
