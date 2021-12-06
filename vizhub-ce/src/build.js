@@ -43,7 +43,7 @@ const outputOptions = {
 
 const build = async () => {
   await buildBundle({
-    inputOptions: { input: 'src/index.js', ...inputOptions },
+    inputOptions: { input: 'src/ui/index.js', ...inputOptions },
     outputOptions: { file: 'build/vizhub-ui.js', ...outputOptions },
   });
 };
