@@ -10,13 +10,6 @@ Try it out 👉 https://beta.vizhub.com/
 
 ![image](https://user-images.githubusercontent.com/68416/144443632-db541593-580d-4a29-8eb3-4a106d003d06.png)
 
-The goals of this project are:
-
- * To be a useful piece of sortware for individuals and organizations to self-host.
- * To be the [open core](https://medium.com/open-consensus/2-open-core-definition-examples-tradeoffs-e4d0c044da7c) of the next generation VizHub paid offering.
-
-[Feedback welcome](https://github.com/vizhub-open-core/vizhub/issues/495).
-
 ## Archive
 
 This repository houses an archive of old code as a reference to draw from.
