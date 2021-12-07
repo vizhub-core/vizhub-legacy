@@ -20,7 +20,7 @@ export const sucraseOptions = {
 
 const inputOptions = {
   plugins: [sucrase(sucraseOptions)],
-  external: ['react', 'react-dom', 'express'],
+  external: ['react', 'react-dom', 'express', 'octokit'],
   // Ignore warnings from sucrase plugin.
   // https://github.com/rollup/rollup/issues/1518
   onwarn: (warning, warn) => {
