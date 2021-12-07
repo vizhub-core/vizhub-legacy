@@ -1,14 +1,16 @@
-import { Container } from 'react-bootstrap';
+import { Container, Image } from 'react-bootstrap';
 import { Navigation } from './Navigation';
 import { VizPreview } from './VizPreview';
 import { classed } from './classed';
 
+const Wrapper = classed('profile-page');
 const VizPreviewCollection = classed('viz-preview-collection');
 
-export const HomePage = () => (
-  <div className="overflow-auto">
+export const ProfilePage = () => (
+  <Wrapper>
     <Navigation />
     <Container className="mt-3 mb-3">
+      <Image className="profile-avatar" src="https://github.com/mdo.png" roundedCircle />
       <VizPreviewCollection>
         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((d) => (
           <VizPreview
@@ -21,5 +23,5 @@ export const HomePage = () => (
         ))}
       </VizPreviewCollection>
     </Container>
-  </div>
+  </Wrapper>
 );

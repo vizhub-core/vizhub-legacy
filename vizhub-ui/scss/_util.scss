@@ -1,0 +1,18 @@
+// Hides a thing on mobile.
+.hide-on-mobile {
+  @include media-breakpoint-down(sm) {
+    display: none !important;
+  }
+}
+
+// A clickable element, with darkened background
+// for hover and active states.
+.clickable {
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+}

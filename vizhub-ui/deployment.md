@@ -102,5 +102,9 @@ Configure your DNS A record to point to the server IP.
 Start the server:
 
 ```
+
 nohup http-server &
+
+```
+
 ```

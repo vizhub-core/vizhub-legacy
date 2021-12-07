@@ -40,13 +40,6 @@
         width: 200px;
       }
 
-      // Hidden on mobile when a file is open.
-      &.file-is-open {
-        @include media-breakpoint-down(sm) {
-          display: none;
-        }
-      }
-
       font-family: $font-family-monospace;
 
       display: flex;
@@ -82,12 +75,6 @@
       }
     }
     .vertical-split-right {
-      &.editor-is-open {
-        @include media-breakpoint-down(sm) {
-          display: none;
-        }
-      }
-
       display: flex;
       flex: 1;
       flex-direction: column;
@@ -121,17 +108,5 @@
         }
       }
     }
-  }
-}
-
-// A clickable element, with darkened background
-// for hover and active states.
-.clickable {
-  cursor: pointer;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.06);
-  }
-  &:active {
-    background-color: rgba(0, 0, 0, 0.12);
   }
 }
