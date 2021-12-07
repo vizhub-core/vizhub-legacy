@@ -16,7 +16,7 @@ export const HomePage = () => (
             thumbnailImageURL="https://vizhub.com/api/visualization/thumbnail/76631818791a48909d79d6562177e4dc.png"
             lastUpdatedDateFormatted="December 6, 2021"
             ownerName="Joe Schmo"
-            ownerAvatarURL="https://avatars.githubusercontent.com/u/5771747?v=4&s=180"
+            ownerAvatarURL="https://github.com/mdo.png"
           />
         ))}
       </VizPreviewCollection>
