@@ -1,0 +1,29 @@
+{
+  "name": "vizhub-open-core",
+  "version": "0.0.1",
+  "description": "A platform for developing and publishing for interactive visual programs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vizhub-open-core/vizhub.git"
+  },
+  "keywords": [
+    "Coding",
+    "IDE",
+    "graphics",
+    "JavaScript"
+  ],
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vizhub-open-core/vizhub/issues"
+  },
+  "homepage": "https://github.com/vizhub-open-core/vizhub#readme",
+  "workspaces": [
+    "vizhub-ce"
+    "vizhub-ui"
+  ]
+}
