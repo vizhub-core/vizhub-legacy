@@ -5,7 +5,7 @@ import { classed } from './classed';
 
 const VizPreviewCollection = classed('viz-preview-collection');
 
-export const HomePage = () => (
+export const ProfilePage = () => (
   <>
     <Navigation />
     <Container className="mt-3">
