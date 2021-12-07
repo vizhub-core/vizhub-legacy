@@ -1,0 +1,8 @@
+.gitignore
+.prettierignore
+build
+package-lock.json
+*.swp
+*.map
+*.svg
+*.ico
