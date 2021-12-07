@@ -56,7 +56,7 @@ export const VizPage = () => {
   return (
     <Wrapper>
       <Navigation />
-      <div className={`topbar${activeFile ? ' file-is-open' : ''}`}>
+      <div className={`topbar${activeFile ? ' hide-on-mobile' : ''}`}>
         <Button
           variant="white"
           onClick={handleToggleEditor}
@@ -116,7 +116,7 @@ export const VizPage = () => {
         ) : null}
         <div
           className={`vertical-split-right${
-            showEditor || activeFile ? ' editor-or-file-is-open' : ''
+            showEditor || activeFile ? ' hide-on-mobile' : ''
           }`}
         >
           <VizViewer>

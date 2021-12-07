@@ -1,0 +1,5 @@
+.hide-on-mobile {
+  @include media-breakpoint-down(sm) {
+    display: none !important;
+  }
+}
