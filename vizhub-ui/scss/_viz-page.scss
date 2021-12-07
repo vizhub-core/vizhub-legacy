@@ -11,6 +11,13 @@
     justify-content: space-between;
     padding: 0 0.75rem 0 $input-btn-focus-width;
 
+    // Hidden on mobile when a file is open.
+    &.file-is-open {
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+    }
+
     // TODO Make the focus glow of topbar buttons visible.
     // z-index: $zindex-sticky; <-- This introduces a bug with the menu. See https://github.com/vizhub-open-core/vizhub/issues/492
 
@@ -82,7 +89,7 @@
       }
     }
     .vertical-split-right {
-      &.editor-is-open {
+      &.editor-or-file-is-open {
         @include media-breakpoint-down(sm) {
           display: none;
         }

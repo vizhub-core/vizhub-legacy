@@ -7,7 +7,6 @@ import { ForkModal } from './ForkModal';
 import { MarkdownExample } from './MarkdownExample';
 
 const Wrapper = classed('viz-page');
-const Topbar = classed('topbar');
 const TopbarRight = classed('topbar-right');
 const Icon = classed('vizhub-icon');
 const VizViewer = classed('viz-viewer');
@@ -57,7 +56,7 @@ export const VizPage = () => {
   return (
     <Wrapper>
       <Navigation />
-      <Topbar>
+      <div className={`topbar${activeFile ? ' file-is-open' : ''}`}>
         <Button
           variant="white"
           onClick={handleToggleEditor}
@@ -82,7 +81,7 @@ export const VizPage = () => {
             className="flat vizhub-icon icon-fork clickable"
           ></Button>
         </TopbarRight>
-      </Topbar>
+      </div>
       <ShareModal show={showShareModal} handleClose={handleCloseShareModal} />
       <ForkModal show={showForkModal} handleClose={handleCloseForkModal} />
       <VerticalSplit>
@@ -117,7 +116,7 @@ export const VizPage = () => {
         ) : null}
         <div
           className={`vertical-split-right${
-            showEditor ? ' editor-is-open' : ''
+            showEditor || activeFile ? ' editor-or-file-is-open' : ''
           }`}
         >
           <VizViewer>

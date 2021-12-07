@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "build-css": "sass vizhub-ui.scss build/vizhub-ui.css",
+    "build-css": "sass scss/vizhub-ui.scss build/vizhub-ui.css",
     "build-js": "node src/build.js",
     "build": "rm -rf build; npm run build-css && npm run build-js && cp index.html build",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write"

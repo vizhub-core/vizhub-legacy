@@ -10,7 +10,7 @@ export const ProfilePage = () => (
     <Navigation />
     <Container className="mt-3">
       <VizPreviewCollection>
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1,1].map((d) => (
+        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((d) => (
           <VizPreview
             title="Viz Title"
             thumbnailImageURL="https://vizhub.com/api/visualization/thumbnail/76631818791a48909d79d6562177e4dc.png"

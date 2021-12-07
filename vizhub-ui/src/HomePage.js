@@ -6,11 +6,11 @@ import { classed } from './classed';
 const VizPreviewCollection = classed('viz-preview-collection');
 
 export const HomePage = () => (
-  <>
+  <div className="overflow-auto">
     <Navigation />
-    <Container className="mt-3">
+    <Container className="mt-3 mb-3">
       <VizPreviewCollection>
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1,1].map((d) => (
+        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((d) => (
           <VizPreview
             title="Viz Title"
             thumbnailImageURL="https://vizhub.com/api/visualization/thumbnail/76631818791a48909d79d6562177e4dc.png"
@@ -21,5 +21,5 @@ export const HomePage = () => (
         ))}
       </VizPreviewCollection>
     </Container>
-  </>
+  </div>
 );
