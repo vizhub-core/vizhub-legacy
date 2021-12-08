@@ -7,17 +7,15 @@ import { ForkModal } from './ForkModal';
 import { MarkdownExample } from './MarkdownExample';
 
 const Wrapper = classed('viz-page');
-const TopbarRight = classed('topbar-right');
+const TopbarRight = classed('d-flex');
 const Icon = classed('vizhub-icon');
 const VizViewer = classed('viz-viewer');
 const VizFrame = classed('viz-frame', 'svg');
 const Title = classed('title', 'h4');
-const VerticalSplit = classed('vertical-split');
+const Split = classed('viz-page__split');
 const EditorContent = classed('editor-content');
-const Items = classed('editor-items');
-const Item = classed('editor-item clickable');
-const Header = classed('editor-content-header');
-const HeaderLeft = classed('header-left');
+const Header = classed('editor-content__header');
+const HeaderLeft = classed('editor-content__header-left');
 const HeaderRight = classed('header-right');
 
 export const VizPage = () => {
@@ -55,15 +53,15 @@ export const VizPage = () => {
 
   return (
     <Wrapper>
-      <Navigation />
-      <div className={`topbar${activeFile ? ' hide-on-mobile' : ''}`}>
+      <Navigation className={activeFile ? 'hide-on-mobile' : ''} />
+      <div className={`viz-page__topbar${activeFile ? ' hide-on-mobile' : ''}`}>
         <Button
           variant="white"
           onClick={handleToggleEditor}
-          className={`editor-toggle flat d-flex align-items-center clickable`}
+          className={`flat editor-toggle d-flex align-items-center clickable`}
         >
           <div
-            className={`vizhub-icon editor-toggle-icon icon-chevron ${
+            className={`vizhub-icon editor-toggle__icon icon-chevron ${
               showEditor ? 'right' : 'left'
             }`}
           />
@@ -84,17 +82,25 @@ export const VizPage = () => {
       </div>
       <ShareModal show={showShareModal} handleClose={handleCloseShareModal} />
       <ForkModal show={showForkModal} handleClose={handleCloseForkModal} />
-      <VerticalSplit>
+      <Split>
         {showEditor ? (
-          <div className={`editor-sidebar${activeFile ? ' file-is-open' : ''}`}>
+          <div
+            className={`editor-sidebar${activeFile ? ' hide-on-mobile' : ''}`}
+          >
             <Nav
-              className="flex-column editor-items"
+              className="flex-column editor-sidebar__items"
               onSelect={handleSelectFile}
             >
-              <Nav.Link eventKey="index.js" className="editor-item clickable">
+              <Nav.Link
+                eventKey="index.js"
+                className="editor-sidebar__item clickable"
+              >
                 index.js
               </Nav.Link>
-              <Nav.Link eventKey="styles.css" className="editor-item clickable">
+              <Nav.Link
+                eventKey="styles.css"
+                className="editor-sidebar__item clickable"
+              >
                 styles.css
               </Nav.Link>
             </Nav>
@@ -126,7 +132,7 @@ export const VizPage = () => {
             {/* TODO License */}
           </VizViewer>
         </div>
-      </VerticalSplit>
+      </Split>
     </Wrapper>
   );
 };

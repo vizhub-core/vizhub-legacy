@@ -1,17 +1,17 @@
 .profile-page {
   overflow: auto;
 
-  .profile-page-avatar {
+  &__avatar {
     width: 80px;
     height: 80px;
   }
 
-  .profile-page-full-name {
+  &__full-name {
     font-weight: bold;
     font-size: $h3-font-size;
   }
 
-  .profile-page-user-name {
+  &__user-name {
     color: $vizhub-foreground-color-light;
     font-size: $small-font-size;
   }

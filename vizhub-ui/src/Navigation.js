@@ -15,7 +15,7 @@ import {
 const AvatarToggle = React.forwardRef(({ children, onClick }, ref) => (
   <button
     type="button"
-    className="vizhub-navbar-avatar-toggle dropdown-toggle"
+    className="navbar__avatar-toggle dropdown-toggle"
     ref={ref}
     onClick={onClick}
   >
@@ -23,8 +23,8 @@ const AvatarToggle = React.forwardRef(({ children, onClick }, ref) => (
   </button>
 ));
 
-export const Navigation = () => (
-  <Navbar bg="dark" variant="dark" expand="md">
+export const Navigation = ({ className }) => (
+  <Navbar bg="dark" variant="dark" expand="md" className={className}>
     <Container fluid>
       <Navbar.Brand href="#home"></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

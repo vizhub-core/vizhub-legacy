@@ -13,7 +13,7 @@
   }
 }
 
-.vizhub-navbar-avatar-toggle {
+.navbar__avatar-toggle {
   background-color: transparent; // remove default button style
   border: 0px solid transparent; // remove default button style
   @include border-radius($navbar-toggler-border-radius);

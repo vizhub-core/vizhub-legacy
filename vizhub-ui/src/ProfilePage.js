@@ -4,8 +4,8 @@ import { VizPreview } from './VizPreview';
 import { classed } from './classed';
 
 const Wrapper = classed('profile-page');
-const FullName = classed('profile-page-full-name');
-const UserName = classed('profile-page-user-name');
+const FullName = classed('profile-page__full-name');
+const UserName = classed('profile-page__user-name');
 const VizPreviewCollection = classed('viz-preview-collection');
 
 export const ProfilePage = () => (
@@ -14,13 +14,13 @@ export const ProfilePage = () => (
     <Container className="mt-3 mb-3">
       <div className="d-flex mb-3">
         <Image
-          className="profile-page-avatar me-3"
+          className="profile-page__avatar me-3"
           src="https://github.com/mdo.png"
           roundedCircle
         />
         <div className="d-flex flex-column justify-content-center">
-          <FullName>Full Name</div>
-          <UserName>username</div>
+          <FullName>Full Name</FullName>
+          <UserName>username</UserName>
         </div>
       </div>
       <VizPreviewCollection>
