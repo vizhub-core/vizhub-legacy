@@ -7,17 +7,14 @@
 
 // A clickable element, with darkened background
 // for hover and active states.
-.clickable {
+.flat-clickable {
+  border-radius: 0;
   cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
   }
   &:active {
     background-color: rgba(0, 0, 0, 0.12);
   }
-}
-
-.flat {
-  border-radius: 0;
-  padding: 0;
 }

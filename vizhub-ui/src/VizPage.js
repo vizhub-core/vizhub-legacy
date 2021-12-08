@@ -7,7 +7,7 @@ import { ForkModal } from './ForkModal';
 import { MarkdownExample } from './MarkdownExample';
 
 const Wrapper = classed('viz-page');
-const TopbarRight = classed('d-flex');
+const TopbarPart = classed('topbar__part');
 const Icon = classed('vizhub-icon');
 const VizViewer = classed('viz-viewer');
 const VizFrame = classed('viz-frame', 'svg');
@@ -54,31 +54,33 @@ export const VizPage = () => {
   return (
     <Wrapper>
       <Navigation className={activeFile ? 'hide-on-mobile' : ''} />
-      <div className={`viz-page__topbar${activeFile ? ' hide-on-mobile' : ''}`}>
-        <Button
-          variant="white"
-          onClick={handleToggleEditor}
-          className={`flat editor-toggle d-flex align-items-center clickable`}
-        >
-          <div
-            className={`vizhub-icon editor-toggle__icon icon-chevron ${
-              showEditor ? 'right' : 'left'
-            }`}
-          />
-          {showEditor ? 'Close' : 'Open'} Editor
-        </Button>
-        <TopbarRight>
+      <div className={`topbar${activeFile ? ' hide-on-mobile' : ''}`}>
+        <TopbarPart>
+          <Button
+            variant="white"
+            onClick={handleToggleEditor}
+            className={`topbar__editor-toggle d-flex align-items-center flat-clickable`}
+          >
+            <div
+              className={`topbar__editor-toggle-button vizhub-icon icon-chevron ${
+                showEditor ? 'right' : 'left'
+              }`}
+            />
+            {showEditor ? 'Close' : 'Open'} Editor
+          </Button>
+        </TopbarPart>
+        <TopbarPart>
           <Button
             variant="white"
             onClick={handleShowShareModal}
-            className="flat vizhub-icon icon-share clickable"
+            className="vizhub-icon icon-share flat-clickable"
           ></Button>
           <Button
             variant="white"
             onClick={handleShowForkModal}
-            className="flat vizhub-icon icon-fork clickable"
+            className="vizhub-icon icon-fork flat-clickable"
           ></Button>
-        </TopbarRight>
+        </TopbarPart>
       </div>
       <ShareModal show={showShareModal} handleClose={handleCloseShareModal} />
       <ForkModal show={showForkModal} handleClose={handleCloseForkModal} />
@@ -114,7 +116,7 @@ export const VizPage = () => {
                 <Button
                   variant="white"
                   onClick={handleCloseEditorContent}
-                  className="flat vizhub-icon icon-x clickable"
+                  className="vizhub-icon icon-x flat-clickable"
                 ></Button>
               </HeaderRight>
             </Header>
