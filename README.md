@@ -20,7 +20,7 @@ Try it out 👉 https://beta.vizhub.com/
 
 Goals:
 
-- **Self-hosting** - It should be possible to self-host your own instance using 100% open source code (and it should be useful).
+- **Self-hosting** - It should be possible to self-host your own instance using 100% open source code.
 - **Extensibility** - It should be possible to extend the core with plugins that add features.
 - **Mobile UX** - It should be possible to develop interactive visual software on a smartphone.
 - **Internationalization** - The interface should be in your local language, for the global VizHub audience.
