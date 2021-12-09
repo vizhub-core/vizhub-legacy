@@ -27,7 +27,9 @@ export const createAuthController = (getUserFromRequest) => {
         // Send the user data as the response (same response as authMe).
         res.send(user);
       } catch (error) {
-        res.send(toErrorResponse(error));
+	       console.log('error');
+	       console.log(error);
+        res.send(error.toString());
       }
     });
   };

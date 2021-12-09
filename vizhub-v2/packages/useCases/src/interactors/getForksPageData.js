@@ -10,11 +10,7 @@ export class GetForksPageData {
   }
 
   async execute(requestModel) {
-    const { owner, id, offset, includePrivate } = requestModel;
-
-    if (!owner) {
-      throw new Error(i18n('errorNoOwner'));
-    }
+    const { id, offset, includePrivate } = requestModel;
 
     const [visualizationInfo, forksData] = await Promise.all([
       this.getVisualization.execute({ id }),
