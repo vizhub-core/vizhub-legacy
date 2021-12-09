@@ -59,7 +59,7 @@ export const VizPage = () => {
           <Button
             variant="white"
             onClick={handleToggleEditor}
-            className={`topbar__editor-toggle d-flex align-items-center flat-clickable`}
+            className={`topbar__editor-toggle d-flex align-items-center btn-flat clickable`}
           >
             <div
               className={`topbar__editor-toggle-button vizhub-icon icon-chevron ${
@@ -73,12 +73,12 @@ export const VizPage = () => {
           <Button
             variant="white"
             onClick={handleShowShareModal}
-            className="vizhub-icon icon-share flat-clickable"
+            className="vizhub-icon icon-share btn-flat clickable"
           ></Button>
           <Button
             variant="white"
             onClick={handleShowForkModal}
-            className="vizhub-icon icon-fork flat-clickable"
+            className="vizhub-icon icon-fork btn-flat clickable"
           ></Button>
         </TopbarPart>
       </div>

@@ -5,10 +5,14 @@
   }
 }
 
+// A flat button.
+.btn-flat {
+  border-radius: 0;
+}
+
 // A clickable element, with darkened background
 // for hover and active states.
-.flat-clickable {
-  border-radius: 0;
+.clickable {
   cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.06);
