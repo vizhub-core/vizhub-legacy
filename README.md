@@ -2,6 +2,10 @@
 
 A platform for developing and publishing interactive visual programs.
 
+![image](https://user-images.githubusercontent.com/68416/145478956-cffca1c5-5c28-4bb4-8def-134329aa0975.png)
+
+Try it out 👉 https://vizhub.com/
+
 ## VizHub 2
 
 VizHub version 2 is the product currently deployed at https://vizhub.com. Source code for this is located in the [vizhub-v2 directory](https://github.com/vizhub-core/vizhub/tree/main/vizhub-v2). This codebase will remain deployed for some time with maintenance fixes from time to time, but active development energy is going towards VizHub 3.
