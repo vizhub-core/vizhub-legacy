@@ -1,6 +1,6 @@
 # VizHub
 
-A platform for developing and publishing interactive visual programs.
+VizHub lets anyone collaboratively build interactive visual products.
 
 [![image](https://user-images.githubusercontent.com/68416/145478956-cffca1c5-5c28-4bb4-8def-134329aa0975.png)](https://vizhub.com/curran/ad3f8d0a56cb4293864154a7c62719d4?edit=files&file=index.js)
 
