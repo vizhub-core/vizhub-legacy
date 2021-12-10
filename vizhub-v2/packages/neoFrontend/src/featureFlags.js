@@ -4,7 +4,7 @@ export const showCollaborators = true;
 export const showCollaboratorsAnyoneCanEdit = true;
 export const showCollaboratorsManagement = true;
 
-export const showPricing = true;
+export const showPricing = false;
 export const showEmbed = true;
 export const showSnippet = true;
 export const showNeoNavBar = true;
@@ -38,62 +38,7 @@ export const showNeoPricing =
 export const showAccountPage =
   process.env.REACT_APP_VIZHUB_ACCOUNT_PAGE === 'true';
 
-// List of usernames who have access to
-// private viz feature.
-const core = ['ci'];
-
-const devTeam = ['stushurik'];
-
-const professors = ['Razpudding', 'sjengle', 'nazareno'];
-
-const stamen = [
-  'vinaydixit',
-  'almccon',
-  'alecburch',
-  'swvogt',
-  'loganwilliams',
-  'colinsullivan',
-  'schroedermarc',
-  'aaamira',
-];
-
-// 1 Year of VizHub Pro
-const kickstarter = [
-  'KoSMik9',
-  'afraser',
-  'alangwilson',
-  'mochabits',
-  'JunyanL',
-  'leonardsip',
-  'pfmiriks',
-  'romkey',
-  'rdwong',
-  'kirkdebaets',
-  'tejbir-singh',
-  'mrwatson-de',
-];
-
-// Backers who get 2 years of "VizHub Pro".
-const kickstarter2years = [
-  'seemantk',
-  'aarondake', // Did not select reward but gave $300
-  'mbsmrtic', // Did not select reward but gave $100
-];
-
-const friends = [
-  'ejfox', // Gifted lifetime paid account for birthday 10/27/2020
-];
-
-const whitelist = core
-  .concat(devTeam)
-  .concat(professors)
-  .concat(stamen)
-  .concat(kickstarter)
-  .concat(kickstarter2years)
-  .concat(friends);
-
-export const isPayingUser = (user) =>
-  user && (user.plan === 'pro' || whitelist.includes(user.userName));
+export const isPayingUser = (user) => true;
 
 // Only show the profile sidebar if:
 // * The logged in user has access to private viz feature, and
