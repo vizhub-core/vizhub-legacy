@@ -32,7 +32,7 @@ const inputOptions = {
 
 const buildServer = async () => {
   await buildBundle({
-    inputOptions: { input: 'src/index.js', ...inputOptions },
+    inputOptions: { input: 'src/server.js', ...inputOptions },
     outputOptions: { file: 'build/server.js', format: 'es', sourcemap },
   });
 };
