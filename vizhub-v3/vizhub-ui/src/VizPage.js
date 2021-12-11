@@ -115,8 +115,12 @@ export const VizPage = () => {
               <HeaderRight>
                 <Button
                   variant="white"
+                  className="vizhub-icon icon-expand btn-flat clickable"
+                ></Button>
+                <Button
+                  variant="white"
                   onClick={handleCloseEditorContent}
-                  className="vizhub-icon icon-x flat-clickable"
+                  className="vizhub-icon icon-x btn-flat clickable"
                 ></Button>
               </HeaderRight>
             </Header>
