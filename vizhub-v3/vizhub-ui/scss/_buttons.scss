@@ -1,0 +1,8 @@
+// A flat button.
+.btn-flat {
+  border-radius: 0;
+  &:focus {
+    box-shadow: inset $btn-focus-box-shadow;
+  }
+}
+

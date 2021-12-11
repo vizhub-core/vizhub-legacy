@@ -4,7 +4,7 @@
   flex-direction: column;
   height: 100%;
 
-  &__split {
+  &-split {
     flex: 1;
     display: flex;
     height: 100%;
@@ -14,23 +14,24 @@
   /* Oddity, height was not working without this. */
   flex-shrink: 0;
 
-  height: 32px;
+  height: 30px;
   width: 100%;
   background-color: white;
   display: flex;
   justify-content: space-between;
   padding: 0 0.75rem 0 $input-btn-focus-width;
 
-  &__editor-toggle {
+  &-editor-toggle {
     height: 30px;
     font-weight: bold;
     padding: 0 0.75rem 0 0;
   }
-  &__editor-toggle-icon {
+
+  &-editor-toggle-icon {
     margin-left: -0.15rem;
   }
 
-  &__part {
+  &-part {
     display: flex;
     align-items: center;
   }
@@ -48,10 +49,10 @@
   display: flex;
   flex-direction: column;
   background-color: $vizhub-editor-bg-dark;
-  &__items {
+  &-items {
     background-color: $vizhub-editor-bg-light;
   }
-  &__item {
+  &-item {
     color: $vizhub-editor-color;
     padding: 0 0.75rem;
     display: flex;
@@ -73,7 +74,7 @@
   background-color: $vizhub-editor-bg-darkest;
   font-family: $font-family-monospace;
   color: $vizhub-editor-color;
-  &__header {
+  &-header {
     height: $vizhub-editor-entry-height;
     background-color: $vizhub-editor-bg-dark;
     display: flex;
@@ -90,7 +91,7 @@
     }
   }
 }
-// TODO BEMify
+
 .vertical-split-right {
   display: flex;
   flex: 1;

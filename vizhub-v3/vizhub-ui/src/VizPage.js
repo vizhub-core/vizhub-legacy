@@ -7,15 +7,15 @@ import { ForkModal } from './ForkModal';
 import { MarkdownExample } from './MarkdownExample';
 
 const Wrapper = classed('viz-page');
-const TopbarPart = classed('topbar__part');
+const TopbarPart = classed('topbar-part');
 const Icon = classed('vizhub-icon');
 const VizViewer = classed('viz-viewer');
 const VizFrame = classed('viz-frame', 'svg');
 const Title = classed('title', 'h4');
-const Split = classed('viz-page__split');
+const Split = classed('viz-page-split');
 const EditorContent = classed('editor-content');
-const Header = classed('editor-content__header');
-const HeaderLeft = classed('editor-content__header-left');
+const Header = classed('editor-content-header');
+const HeaderLeft = classed('editor-content-header-left');
 const HeaderRight = classed('header-right');
 
 export const VizPage = () => {
@@ -24,7 +24,10 @@ export const VizPage = () => {
   const [showShareModal, setShowShareModal] = useState(false);
   const [showForkModal, setShowForkModal] = useState(false);
 
+  // TODO move this up and out to URL state.
   const [showEditor, setShowEditor] = useState(false);
+
+  // TODO move this up and out to URL state.
   const [activeFile, setActiveFile] = useState(null);
 
   // Clicking on the already open item will close it.
@@ -43,6 +46,8 @@ export const VizPage = () => {
   const handleShowShareModal = useCallback(() => setShowShareModal(true), []);
   const handleCloseForkModal = useCallback(() => setShowForkModal(false), []);
   const handleShowForkModal = useCallback(() => setShowForkModal(true), []);
+
+  // TODO more this up and out
   const title = 'Test Title';
   const height = 500;
 
@@ -59,10 +64,10 @@ export const VizPage = () => {
           <Button
             variant="white"
             onClick={handleToggleEditor}
-            className={`topbar__editor-toggle d-flex align-items-center btn-flat clickable`}
+            className={`topbar-editor-toggle d-flex align-items-center btn-flat clickable`}
           >
             <div
-              className={`topbar__editor-toggle-button vizhub-icon icon-chevron ${
+              className={`topbar-editor-toggle-button vizhub-icon icon-chevron ${
                 showEditor ? 'right' : 'left'
               }`}
             />
@@ -90,18 +95,18 @@ export const VizPage = () => {
             className={`editor-sidebar${activeFile ? ' hide-on-mobile' : ''}`}
           >
             <Nav
-              className="flex-column editor-sidebar__items"
+              className="flex-column editor-sidebar-items"
               onSelect={handleSelectFile}
             >
               <Nav.Link
                 eventKey="index.js"
-                className="editor-sidebar__item clickable"
+                className="editor-sidebar-item clickable"
               >
                 index.js
               </Nav.Link>
               <Nav.Link
                 eventKey="styles.css"
-                className="editor-sidebar__item clickable"
+                className="editor-sidebar-item clickable"
               >
                 styles.css
               </Nav.Link>
