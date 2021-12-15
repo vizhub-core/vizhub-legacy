@@ -100,13 +100,13 @@ export const VizPage = () => {
             >
               <Nav.Link
                 eventKey="index.js"
-                className="editor-sidebar-item clickable btn-flat btn-flat-dark"
+                className="editor-sidebar-item clickable btn-flat-dark"
               >
                 index.js
               </Nav.Link>
               <Nav.Link
                 eventKey="styles.css"
-                className="editor-sidebar-item clickable"
+                className="editor-sidebar-item clickable btn-flat-dark"
               >
                 styles.css
               </Nav.Link>
