@@ -64,10 +64,10 @@ export const VizPage = () => {
           <Button
             variant="white"
             onClick={handleToggleEditor}
-            className={`topbar-editor-toggle d-flex align-items-center btn-flat clickable`}
+            className={`topbar-editor-toggle btn-flat btn-flat-light clickable`}
           >
             <div
-              className={`topbar-editor-toggle-button vizhub-icon icon-chevron ${
+              className={`vizhub-icon icon-chevron ${
                 showEditor ? 'right' : 'left'
               }`}
             />
@@ -78,12 +78,12 @@ export const VizPage = () => {
           <Button
             variant="white"
             onClick={handleShowShareModal}
-            className="vizhub-icon icon-share btn-flat clickable"
+            className="vizhub-icon icon-share btn-flat btn-flat-light clickable"
           ></Button>
           <Button
             variant="white"
             onClick={handleShowForkModal}
-            className="vizhub-icon icon-fork btn-flat clickable"
+            className="vizhub-icon icon-fork btn-flat btn-flat-light clickable"
           ></Button>
         </TopbarPart>
       </div>
@@ -100,7 +100,7 @@ export const VizPage = () => {
             >
               <Nav.Link
                 eventKey="index.js"
-                className="editor-sidebar-item clickable"
+                className="editor-sidebar-item clickable btn-flat btn-flat-dark"
               >
                 index.js
               </Nav.Link>
@@ -120,12 +120,12 @@ export const VizPage = () => {
               <HeaderRight>
                 <Button
                   variant="white"
-                  className="vizhub-icon icon-expand btn-flat clickable"
+                  className="vizhub-icon icon-expand btn-flat btn-flat-dark clickable"
                 ></Button>
                 <Button
                   variant="white"
                   onClick={handleCloseEditorContent}
-                  className="vizhub-icon icon-x btn-flat clickable"
+                  className="vizhub-icon icon-x btn-flat btn-flat-dark clickable"
                 ></Button>
               </HeaderRight>
             </Header>

@@ -1,8 +1,18 @@
 // A flat button.
 .btn-flat {
   border-radius: 0;
+}
+
+.btn-flat-light {
   &:focus {
-    box-shadow: inset $btn-focus-box-shadow;
+    outline: none;
+    box-shadow: inset 0 0 $input-btn-focus-blur $input-btn-focus-width black;
   }
 }
 
+.btn-flat-dark {
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 $input-btn-focus-blur $input-btn-focus-width white;
+  }
+}

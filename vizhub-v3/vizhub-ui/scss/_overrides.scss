@@ -17,6 +17,7 @@ $input-btn-focus-width: 1px;
 
 // Custom close icon.
 $btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='12 12 24 24'><path d='M32.97 12.63 24 21.6l-8.97-8.97a1.7 1.7 0 0 0-2.4 2.4L21.6 24l-8.97 8.97a1.7 1.7 0 0 0 2.4 2.4L24 26.4l8.97 8.97a1.7 1.7 0 0 0 2.4-2.4L26.4 24l8.97-8.97a1.7 1.7 0 0 0-2.4-2.4z'/></svg>");
+$btn-close-opacity: 1;
 
 // Pills with underlines instead of buttons.
 $nav-pills-link-active-color: $body-color;

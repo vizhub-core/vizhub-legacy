@@ -19,16 +19,14 @@
   background-color: white;
   display: flex;
   justify-content: space-between;
-  padding: 0 0.75rem 0 $input-btn-focus-width;
+  padding: 0 0.75rem 0 0;
 
   &-editor-toggle {
     height: 30px;
     font-weight: bold;
     padding: 0 0.75rem 0 0;
-  }
-
-  &-editor-toggle-icon {
-    margin-left: -0.15rem;
+    display: flex;
+    align-items: center;
   }
 
   &-part {
