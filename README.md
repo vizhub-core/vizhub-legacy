@@ -2,9 +2,11 @@
 
 A platform for interactive graphics.
 
-[![image](https://user-images.githubusercontent.com/68416/145478956-cffca1c5-5c28-4bb4-8def-134329aa0975.png)](https://vizhub.com/curran/ad3f8d0a56cb4293864154a7c62719d4?edit=files&file=index.js)
-
 Try it out 👉 https://vizhub.com/
+
+[![image](https://user-images.githubusercontent.com/68416/146487297-256c5aca-eb67-43a8-8eff-dc68218f914d.png)](https://vizhub.com/)
+
+[![image](https://user-images.githubusercontent.com/68416/145478956-cffca1c5-5c28-4bb4-8def-134329aa0975.png)](https://vizhub.com/curran/ad3f8d0a56cb4293864154a7c62719d4?edit=files&file=index.js)
 
 ## VizHub 2
 
@@ -12,9 +14,9 @@ VizHub version 2 is the product currently deployed at https://vizhub.com. Source
 
 ## VizHub 3
 
-A re-write of VizHub is in progress, located in the [vizhub-v3 directory](https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3). This is where active development is taking place.
-
 Try it out 👉 https://beta.vizhub.com/
+
+A re-write of VizHub is in progress, located in the [vizhub-v3 directory](https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3). This is where active development is taking place.
 
 ![image](https://user-images.githubusercontent.com/68416/144443632-db541593-580d-4a29-8eb3-4a106d003d06.png)
 
