@@ -3,7 +3,7 @@ import { sendEvent } from '../../sendEvent';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
-import { Feedback } from '../../Feedback';
+//import { Feedback } from '../../Feedback';
 import { useVizzesSort } from '../../VizzesGrid/VizzesSortForm';
 import { Wrapper, Content } from '../styles';
 import { HomePageDataProvider } from './HomePageDataContext';
@@ -41,7 +41,11 @@ export const HomePage = () => {
           </Content>
         </Wrapper>
       </HomePageDataProvider>
-      <Feedback />
+      {
+        // The thing on the left that says "Feedback" and links to the forum.
+        // Removed as not required. Forum link is in the navbar.
+        // <Feedback />
+      }
     </>
   );
 };
