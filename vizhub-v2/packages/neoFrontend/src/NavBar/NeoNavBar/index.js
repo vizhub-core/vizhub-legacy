@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
-import { showAboutLink, showPricing } from '../../featureFlags';
+import { showAboutLink } from '../../featureFlags';
 import { LogoSVG } from '../../svg';
 import { isMobile } from '../../mobileMods';
 import { AuthContext, AUTH_PENDING } from '../../authentication';
@@ -8,7 +8,7 @@ import { UserActionsMenu } from './UserActionsMenu';
 import { Search } from './Search';
 import { DesktopLayout } from './DesktopLayout';
 import { MobileLayout } from './MobileLayout';
-import { NavLink, NavLinkDiv, NavHREF, LogoLink } from './styles';
+import { NavLinkDiv, NavHREF, LogoLink } from './styles';
 
 export const NeoNavBar = withTheme(
   ({
