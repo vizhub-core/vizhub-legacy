@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Feedback } from '../../Feedback';
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
 import {
@@ -62,7 +61,6 @@ export const AuthPage = () => {
           </Centering>
         </Content>
       </Wrapper>
-      <Feedback />
     </>
   );
 };

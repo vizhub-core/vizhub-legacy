@@ -14,6 +14,13 @@ export const Content = styled.div`
   ${breathableHorizontal}
 `;
 
+export const WideContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 20px;
+`;
+
 export const Title = styled.div`
   font-size: 22px;
 `;

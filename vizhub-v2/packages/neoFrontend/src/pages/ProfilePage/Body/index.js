@@ -9,7 +9,7 @@ import {
   VizzesSortForm,
   useVizzesSort,
 } from '../../../VizzesGrid/VizzesSortForm';
-import { Content, Centering } from '../../styles';
+import { WideContent, Centering } from '../../styles';
 import { ProfilePageDataContext } from '../ProfilePageDataContext';
 import { SidebarWrapper, Main, Sidebar } from '../styles';
 import { LinkWithIcon } from '../LinkWithIcon';
@@ -64,7 +64,7 @@ export const Body = () => {
   }, [handleSectionChange]);
 
   return (
-    <Content>
+    <WideContent>
       <ProfileMenuBar>
         <ProfilePane user={user} />
         {showSortOptions ? (
@@ -111,6 +111,6 @@ export const Body = () => {
           </Centering>
         </Main>
       </SidebarWrapper>
-    </Content>
+    </WideContent>
   );
 };

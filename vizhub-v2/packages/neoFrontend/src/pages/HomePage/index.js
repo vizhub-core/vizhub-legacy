@@ -5,12 +5,12 @@ import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
 //import { Feedback } from '../../Feedback';
 import { useVizzesSort } from '../../VizzesGrid/VizzesSortForm';
-import { Wrapper } from '../styles';
+import { Wrapper, WideContent } from '../styles';
+import { HtmlStylesOverride } from './styles';
 import { HomePageDataProvider } from './HomePageDataContext';
 import { Vizzes } from './Vizzes';
 //import { Banner } from './Banner';
 import { Sort } from './Sort';
-import { HtmlStylesOverride, WideContent } from './styles';
 
 export const HomePage = () => {
   const [sort, handleSortChange] = useVizzesSort();

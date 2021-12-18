@@ -1,16 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavBar } from '../../NavBar';
-import { Feedback } from '../../Feedback';
 import { Button } from '../../Button';
 import { Wrapper, Large, Blurb } from './styles';
 import { useCheckoutSession } from './useCheckoutSession';
 
 export const UpgradeSuccessPage = () => {
   const checkoutSession = useCheckoutSession();
-
-  console.log('checkoutSession');
-  console.log(checkoutSession);
 
   return (
     <>
@@ -30,7 +26,6 @@ export const UpgradeSuccessPage = () => {
           <Button>Get started</Button>
         </Link>
       </Wrapper>
-      <Feedback />
     </>
   );
 };

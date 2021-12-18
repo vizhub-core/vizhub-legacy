@@ -5,7 +5,6 @@ import { showAccountPage } from '../../featureFlags';
 import { AUTH_PENDING } from '../../authentication/constants';
 import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
-import { Feedback } from '../../Feedback';
 import { AuthContext } from '../../authentication';
 import { Wrapper, Content } from '../styles';
 import { Badge, Label } from './styles';
@@ -41,7 +40,6 @@ export const AccountPage = () => {
             </Badge>
           </Content>
         </Wrapper>
-        <Feedback />
       </>
     );
   }
