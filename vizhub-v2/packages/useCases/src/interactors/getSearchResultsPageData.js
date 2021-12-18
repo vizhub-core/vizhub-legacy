@@ -8,9 +8,8 @@ export class GetSearchResultsPageData {
   }
 
   async execute(requestModel) {
-    const visualizationInfos = await this.visualizationGateway.searchVisualizationInfos(
-      requestModel
-    );
+    const visualizationInfos =
+      await this.visualizationGateway.searchVisualizationInfos(requestModel);
 
     const ownerUsers = await this.getOwnersInteractor.execute(
       visualizationInfos

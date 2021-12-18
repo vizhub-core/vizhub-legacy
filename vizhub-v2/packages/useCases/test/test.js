@@ -159,6 +159,9 @@ describe('Use Cases', () => {
       const requestModel = {
         visualization: visualizationToFork,
         owner: '456',
+        forkSettings: {
+          forkTitle: visualizationToFork.title,
+        },
       };
 
       const responseModel = await forkVisualization.execute(requestModel);
@@ -172,7 +175,7 @@ describe('Use Cases', () => {
       assert.equal(forkedViz.owner, '456');
       assert.equal(forkedViz.title, visualizationToFork.title);
       assert.equal(forkedViz.description, visualizationToFork.description);
-      assert.equal(forkedViz.files, visualizationToFork.files);
+      assert.deepEqual(forkedViz.files, visualizationToFork.files);
       assert.equal(forkedViz.forkedFrom, visualizationToFork.id);
       assert.equal(forkedViz.height, visualizationToFork.height);
     });

@@ -41,9 +41,8 @@ export class GetUserProfileData {
       searchParams.privacy = 'public';
     }
 
-    const visualizationInfos = await this.visualizationGateway.searchVisualizationInfos(
-      searchParams
-    );
+    const visualizationInfos =
+      await this.visualizationGateway.searchVisualizationInfos(searchParams);
 
     return {
       user,

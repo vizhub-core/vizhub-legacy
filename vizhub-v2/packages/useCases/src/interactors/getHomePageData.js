@@ -8,9 +8,8 @@ export class GetHomePageData {
   }
 
   async execute(offset) {
-    const visualizationInfos = await this.visualizationGateway.getHomePageVisualizationInfos(
-      offset
-    );
+    const visualizationInfos =
+      await this.visualizationGateway.getHomePageVisualizationInfos(offset);
 
     const ownerUsers = await this.getOwnersInteractor.execute(
       visualizationInfos
