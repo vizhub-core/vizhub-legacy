@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { getVizInfoOwner, getUserName } from 'vizhub-presenters';
 import { sendEvent } from '../../sendEvent';
 import { LoadingScreen } from '../../LoadingScreen';
-import { Feedback } from '../../Feedback';
 import { NavBar } from '../../NavBar';
 import { Vizzes as VizzesPresentation } from '../../VizzesGrid/Vizzes';
 import { LiveVizPreview } from '../../VizPreview';
@@ -84,7 +83,6 @@ export const ForksPage = () => {
             </Centering>
           </Content>
         </Wrapper>
-        <Feedback />
       </>
     );
   } else {

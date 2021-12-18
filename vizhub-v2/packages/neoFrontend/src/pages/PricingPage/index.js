@@ -3,7 +3,6 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import { sendEvent } from '../../sendEvent';
 import { NavBar } from '../../NavBar';
 import { Button } from '../../Button';
-import { Feedback } from '../../Feedback';
 import { PlanIncludedSVG, PlanExcludedSVG } from '../../svg';
 import { AuthContext } from '../../authentication';
 import { Wrapper, Content } from '../styles';
@@ -92,7 +91,6 @@ export const PricingPage = () => {
           </Table>
         </Content>
       </Wrapper>
-      <Feedback />
     </>
   );
 };

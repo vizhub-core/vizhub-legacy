@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavBar } from '../../NavBar';
-import { Feedback } from '../../Feedback';
 import { Wrapper, Content } from '../styles';
 
 export const UpgradeCanceledPage = () => {
@@ -10,7 +9,6 @@ export const UpgradeCanceledPage = () => {
       <Wrapper>
         <Content>Upgrade canceled.</Content>
       </Wrapper>
-      <Feedback />
     </>
   );
 };

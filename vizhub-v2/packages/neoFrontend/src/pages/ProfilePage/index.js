@@ -2,7 +2,6 @@ import React, { useMemo, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { LoadingScreen } from '../../LoadingScreen';
 import { ErrorContext } from '../../ErrorContext';
-import { Feedback } from '../../Feedback';
 import { NavBar } from '../../NavBar';
 import { Wrapper } from '../styles';
 import { ProfilePageDataProvider } from './ProfilePageDataContext';
@@ -27,7 +26,6 @@ export const ProfilePage = () => {
           <Body />
         </ProfilePageDataProvider>
       </Wrapper>
-      <Feedback />
     </>
   );
 };
