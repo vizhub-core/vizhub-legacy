@@ -12,11 +12,12 @@
   },
   "author": "Curran Kelleher",
   "license": "UNLICENSED",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
-    "mocha": "^8.2.1",
     "eslint": "^7.17.0",
     "esm": "^3.2.25",
+    "mocha": "^8.2.1",
     "prettier": "^2.2.1"
   }
 }

@@ -1,6 +1,10 @@
 import assert from 'assert';
+import { JSDOM } from 'jsdom';
+import { setJSDOM } from 'vizhub-presenters';
 import { i18n } from 'vizhub-i18n';
 import { ciUser, testData, timestamp } from 'vizhub-entities';
+
+setJSDOM(JSDOM);
 
 import {
   CreateVisualization,
@@ -159,6 +163,9 @@ describe('Use Cases', () => {
       const requestModel = {
         visualization: visualizationToFork,
         owner: '456',
+        forkSettings: {
+          forkTitle: visualizationToFork.title,
+        },
       };
 
       const responseModel = await forkVisualization.execute(requestModel);
@@ -172,7 +179,7 @@ describe('Use Cases', () => {
       assert.equal(forkedViz.owner, '456');
       assert.equal(forkedViz.title, visualizationToFork.title);
       assert.equal(forkedViz.description, visualizationToFork.description);
-      assert.equal(forkedViz.files, visualizationToFork.files);
+      assert.deepEqual(forkedViz.files, visualizationToFork.files);
       assert.equal(forkedViz.forkedFrom, visualizationToFork.id);
       assert.equal(forkedViz.height, visualizationToFork.height);
     });
@@ -185,22 +192,13 @@ describe('Use Cases', () => {
         userGateway: { getUser: () => {} },
       });
 
-      const { forkedFromVisualizationInfo } = await getVisualization.execute({
+      const responseModel = await getVisualization.execute({
         id: forkedViz.id,
       });
+      const { forkedFromVisualizationInfo } = responseModel;
 
       assert.deepEqual(forkedFromVisualizationInfo, visualizationToFork.info);
-
-      //const { visualization } = await getVisualization.execute({ id: visualizationId });
-      // const { forkedFromVisualizationInfo } = await getVisualization.execute({ id: forkedViz.id });
     });
-
-    // it('should return forked from visualizationInfo.', async () => {
-    //   const { visualization } = await getVisualization.execute({ id: visualizationId });
-    //   console.log(visualization);
-    //   const { forkedFromVisualizationInfo } = await getVisualization.execute({ id: forkedViz.id });
-    //   assert.deepEqual(forkedFromVisualizationInfo, visualization.info);
-    // });
   });
 
   const createUserRequestModel = {
@@ -308,7 +306,7 @@ describe('Use Cases', () => {
         getUserByUserName: async (userName) => fakeUser,
       },
       visualizationGateway: {
-        getVisualizationInfosByUserId: async (userId) => fakeVisualizationInfos,
+        searchVisualizationInfos: async () => fakeVisualizationInfos,
       },
       datasetGateway: {
         getDatasetInfosByUserId: async (userId) => fakeDatasetInfos,
@@ -320,7 +318,7 @@ describe('Use Cases', () => {
       const responseModel = await getUserProfileData.execute(requestModel);
       assert.deepEqual(responseModel, {
         user: fakeUser,
-        visualizationInfos: fakeVisualizationInfos,
+        visualizationInfosBySection: { public: fakeVisualizationInfos },
       });
     });
 
@@ -329,7 +327,9 @@ describe('Use Cases', () => {
       const responseModel = await getUserProfileData.execute(requestModel);
       assert.deepEqual(responseModel, {
         user: ciUser,
-        visualizationInfos: fakeVisualizationInfos,
+        visualizationInfosBySection: {
+          public: fakeVisualizationInfos,
+        },
       });
     });
   });

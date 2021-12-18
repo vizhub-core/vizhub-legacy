@@ -11,7 +11,8 @@ export class UpdateImages {
   }
 
   async execute() {
-    const visualizationsInfos = await this.visualizationGateway.getAllVisualizationInfos();
+    const visualizationsInfos =
+      await this.visualizationGateway.getAllVisualizationInfos();
 
     const visualizationInfosNeedingThumbnails = visualizationsInfos.filter(
       ({ lastUpdatedTimestamp, imagesUpdatedTimestamp }) => {
@@ -27,7 +28,9 @@ export class UpdateImages {
     const n = visualizationInfosNeedingThumbnails.length;
     if (n > 0) {
       const imagesUpdatedTimestamp = timestamp();
-      const randomIndex = Math.floor(Math.random() * visualizationInfosNeedingThumbnails.length)
+      const randomIndex = Math.floor(
+        Math.random() * visualizationInfosNeedingThumbnails.length
+      );
       const vizToUpdate = visualizationInfosNeedingThumbnails[randomIndex];
       const id = vizToUpdate.id;
 
