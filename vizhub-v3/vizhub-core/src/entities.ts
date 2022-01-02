@@ -1,13 +1,15 @@
-interface Viz {
+export interface Viz {
   vizInfo: VizInfo;
   vizContent: VizContent;
 }
 
-interface VizInfo {
+export type VizId = string;
+
+export interface VizInfo {
+  id: VizId;
+  owner: User;
 }
 
-interface VizContent {
-}
+export interface VizContent {}
 
-interface User {
-}
+export interface User {}
