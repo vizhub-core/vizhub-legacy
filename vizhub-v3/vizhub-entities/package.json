@@ -1,7 +1,7 @@
 {
-  "name": "vizhub-core",
+  "name": "vizhub-entities",
   "version": "0.0.1",
-  "description": "Entities and Interactors for VizHub 3.",
+  "description": "Entities for VizHub 3.",
   "main": "index.js",
   "scripts": {
     "test": "tsc src/index.ts --noEmit",

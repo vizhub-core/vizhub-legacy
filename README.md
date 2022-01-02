@@ -28,13 +28,13 @@ Goals:
 - **Internationalization** - The interface should be in your local language, for the global VizHub audience.
 - **Accessibility** - The UI should be accessible, fully navigable by keyboard and screen reader.
 
-## Archive
+## Prototypes
 
-This repository houses an archive of old code as a reference to draw from for VizHub 3 development.
+This repository houses an archive of prototypes as a reference to draw from for VizHub 3 development.
 
- * [archive/open-core-first-attempt](https://github.com/vizhub-open-core/vizhub/tree/main/archive/open-core-first-attempt) - An attempt at a modular architecture. Notable features here include: Server rendering, Proper ShareDB hydration, and Markdown rendering in a Web worker
- * [archive/vizhub-v3-false-start](https://github.com/vizhub-open-core/vizhub/tree/main/archive/vizhub-v3-false-start) - An earlier false start at a VizHub rewrite. Notable features here include: Working PWA setup, new viz preview design, new home page design.
- * [archive/vizhub-v2-false-start](https://github.com/vizhub-open-core/vizhub/tree/main/archive/vizhub-v2-false-start) - An ancient effort. Notable features here include: CodeMirror 6 integration, dynamic code editor theming, fonts with ligatures.
+ * [prototypes/open-core-first-attempt](https://github.com/vizhub-open-core/vizhub/tree/main/prototypes/open-core-first-attempt) - An attempt at a modular architecture. Notable features here include: Server rendering, Proper ShareDB hydration, and Markdown rendering in a Web worker
+ * [prototypes/vizhub-v3-false-start](https://github.com/vizhub-open-core/vizhub/tree/main/prototypes/vizhub-v3-false-start) - An earlier false start at a VizHub rewrite. Notable features here include: Working PWA setup, new viz preview design, new home page design.
+ * [prototypes/vizhub-v2-false-start](https://github.com/vizhub-open-core/vizhub/tree/main/prototypes/vizhub-v2-false-start) - An ancient effort. Notable features here include: CodeMirror 6 integration, dynamic code editor theming, fonts with ligatures.
 
 ## Get Involved
 Does this project pique your interest? Please let me know! Feel free to [open an issue](https://github.com/vizhub-open-core/vizhub-ui/issues) or [give me a shout on Twitter](https://twitter.com/currankelleher).

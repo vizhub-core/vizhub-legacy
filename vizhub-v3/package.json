@@ -25,6 +25,6 @@
   "workspaces": [
     "vizhub-ce",
     "vizhub-ui",
-    "vizhub-core"
+    "vizhub-entities"
   ]
 }
