@@ -7,9 +7,16 @@ export type VizId = string;
 
 export interface VizInfo {
   id: VizId;
-  owner: User;
+  owner: UserId;
+  authors: Array<UserId>;
 }
 
-export interface VizContent {}
+export interface VizContent {
+  id: VizId;
+}
 
-export interface User {}
+export type UserId = string;
+
+export interface User {
+  id: UserId;
+}
