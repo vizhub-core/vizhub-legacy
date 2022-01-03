@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tsc src/index.ts --noEmit",
+    "dev": "tsc src/index.ts --noEmit --watch",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write"
   },
   "repository": {
