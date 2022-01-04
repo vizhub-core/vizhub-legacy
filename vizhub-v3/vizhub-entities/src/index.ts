@@ -1,1 +1,1 @@
-export { Viz, VizInfo, VizContent, VizId, User } from './entities';
+export { Viz, VizInfo, VizContent, VizId, User, Timestamp, VizHubError, VizHubErrorCode } from './entities';

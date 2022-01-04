@@ -4,7 +4,7 @@ UI for the next generation of [VizHub](https://vizhub.com/).
 
 ## Package Scope
 
-This package knows about UI, and nothing else. It is intentionally decoupled from any data structures or API, to keep this layer of the application simple.
+This package knows about UI, and nothing else. It is intentionally decoupled from any data structures or API, to keep this layer of the application simple and stupid.
 
 ## Development
 

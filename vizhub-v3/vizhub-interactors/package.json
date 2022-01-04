@@ -1,11 +1,14 @@
 {
-  "name": "vizhub-entities",
+  "name": "vizhub-interactors",
   "version": "0.0.1",
-  "description": "Entities for VizHub 3.",
+  "description": "Interactors for VizHub 3.",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
-    "test": "tsc src/index.ts --noEmit",
-    "dev": "tsc src/index.ts --noEmit --watch",
+    "pretest": "npm run build",
+    "test": "NODE_OPTIONS=--enable-source-maps mocha build/test.js",
+    "build": "rm -rf build; node src/build.js",
+    "dev": "tsc src/index.ts test/test.ts --noEmit --watch --lib ES2015",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write"
   },
   "repository": {
@@ -19,7 +22,12 @@
   },
   "homepage": "https://github.com/vizhub-core/vizhub#readme",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.1.2",
+    "@rollup/plugin-sucrase": "^4.0.1",
+    "@types/node": "^17.0.7",
+    "mocha": "^9.1.3",
     "prettier": "^2.5.1",
+    "rollup": "^2.63.0",
     "typescript": "^4.5.4"
   }
 }

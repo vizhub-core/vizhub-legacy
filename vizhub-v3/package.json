@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/vizhub-open-core/vizhub#readme",
   "workspaces": [
-    "vizhub-ce",
     "vizhub-ui",
-    "vizhub-entities"
+    "vizhub-entities",
+    "vizhub-interactors"
   ]
 }

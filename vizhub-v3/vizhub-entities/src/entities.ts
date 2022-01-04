@@ -44,20 +44,20 @@ export interface VizInfo {
   owner: UserId;
 
   // The authors listed for this viz.
-  authors: Array<UserId>;
+  authors?: Array<UserId>;
 
   // The title of the viz.
   title: string;
+
+  // The id of the viz that this viz was forked from.
+  // null only for the singular primordial viz.
+  forkedFrom?: VizId;
 
   // When this viz was created.
   createdTimestamp: Timestamp;
 
   // When this viz was last updated.
   lastUpdatedTimestamp: Timestamp;
-
-  // The id of the viz that this viz was forked from.
-  // null only for the singular primordial viz.
-  forkedFrom: VizId | null;
 }
 
 // A file within a viz.
@@ -103,3 +103,17 @@ export interface Comment {
   timestamp: Timestamp;
   markdown: Markdown;
 }
+
+// Errors generated throughout VizHub should
+// be of this type.
+export class VizHubError extends Error {
+  code: VizHubErrorCode;
+  constructor(message, code) {
+    super(message);
+    this.name = 'VizHubError';
+    this.code = code;
+  }
+}
+
+// A VizHub-specific error code.
+export type VizHubErrorCode = string;
