@@ -1,6 +1,7 @@
 import { Viz, Timestamp } from 'vizhub-entities';
 
 export const ts1: Timestamp = 1638100000;
+export const ts2: Timestamp = 1638200000;
 
 // The first ever viz.
 // Special because it's the only one not forked from another.
