@@ -64,10 +64,10 @@ describe('Gateways & Interactors', () => {
       newOwner,
       forkedFrom,
       timestamp,
-      preFork: () => {
+      preFork: async () => {
         preForkInvoked = true;
       },
-      postFork: () => {
+      postFork: async () => {
         postForkInvoked = true;
       },
     });
@@ -99,10 +99,10 @@ describe('Gateways & Interactors', () => {
       newOwner: 'user2',
       forkedFrom: 'unknown-id',
       timestamp: ts2,
-      preFork: () => {
+      preFork: async () => {
         preForkInvoked = true;
       },
-      postFork: () => {
+      postFork: async () => {
         postForkInvoked = true;
       },
     }).then(
