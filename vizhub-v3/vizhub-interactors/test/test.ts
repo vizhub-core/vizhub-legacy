@@ -3,6 +3,7 @@ import { describe, it } from 'mocha';
 import { Gateways } from '../src/Gateways';
 import { MemoryGateways } from '../src/MemoryGateways';
 import { forkViz } from '../src/forkViz';
+import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../src/errors';
 import { primordialViz, ts2 } from './fixtures';
 
 // If true, DatabaseGateways is used in tests (run before deploying).
@@ -39,6 +40,24 @@ describe('Gateways & Interactors', () => {
     await saveVizContent(vizContent);
     assert.deepEqual(await getVizContent(vizContent.id), vizContent);
   });
+
+  it('getVizInfo error case VIZ_INFO_NOT_FOUND', () =>
+    gateways.getVizInfo('unknown-id').then(
+      () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
+      (error) => {
+        assert.equal(error.name, 'VizHubError');
+        assert.equal(error.code, VIZ_INFO_NOT_FOUND);
+      }
+    ));
+
+  it('getVizContent error case VIZ_CONTENT_NOT_FOUND', () =>
+    gateways.getVizContent('unknown-id').then(
+      () => Promise.reject(new Error('Expected error VIZ_CONTENT_NOT_FOUND.')),
+      (error) => {
+        assert.equal(error.name, 'VizHubError');
+        assert.equal(error.code, VIZ_CONTENT_NOT_FOUND);
+      }
+    ));
 
   it('forkViz', async () => {
     const newVizId = 'viz2';
