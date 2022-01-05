@@ -41,15 +41,6 @@ describe('Gateways & Interactors', () => {
     assert.deepEqual(await getVizContent(vizContent.id), vizContent);
   });
 
-  it('getVizInfo error case VIZ_INFO_NOT_FOUND', () =>
-    gateways.getVizInfo('unknown-id').then(
-      () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
-      (error) => {
-        assert.equal(error.name, 'VizHubError');
-        assert.equal(error.code, VIZ_INFO_NOT_FOUND);
-      }
-    ));
-
   it('getVizContent error case VIZ_CONTENT_NOT_FOUND', () =>
     gateways.getVizContent('unknown-id').then(
       () => Promise.reject(new Error('Expected error VIZ_CONTENT_NOT_FOUND.')),
@@ -86,6 +77,22 @@ describe('Gateways & Interactors', () => {
       ...primordialViz.vizContent,
       id: newVizId,
     });
+  });
+
+  it('forkViz error case VIZ_INFO_NOT_FOUND', () => {
+    return forkViz({
+      gateways,
+      newVizId: 'viz2',
+      newOwner: 'user2',
+      forkedFrom: 'unknown-id',
+      timestamp: ts2,
+    }).then(
+      () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
+      (error) => {
+        assert.equal(error.name, 'VizHubError');
+        assert.equal(error.code, VIZ_INFO_NOT_FOUND);
+      }
+    );
   });
 
   it('tear down', async () => {
