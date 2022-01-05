@@ -55,6 +55,8 @@ describe('Gateways & Interactors', () => {
     const newOwner = 'user2';
     const forkedFrom = primordialViz.id;
     const timestamp = ts2;
+    let preForkInvoked = false;
+    let postForkInvoked = false;
 
     await forkViz({
       gateways,
@@ -62,6 +64,12 @@ describe('Gateways & Interactors', () => {
       newOwner,
       forkedFrom,
       timestamp,
+      preFork: () => {
+        preForkInvoked = true;
+      },
+      postFork: () => {
+        postForkInvoked = true;
+      },
     });
 
     assert.deepEqual(await gateways.getVizInfo(newVizId), {
@@ -77,20 +85,35 @@ describe('Gateways & Interactors', () => {
       ...primordialViz.vizContent,
       id: newVizId,
     });
+
+    assert.equal(preForkInvoked, true);
+    assert.equal(postForkInvoked, true);
   });
 
   it('forkViz error case VIZ_INFO_NOT_FOUND', () => {
+    let preForkInvoked = false;
+    let postForkInvoked = false;
     return forkViz({
       gateways,
       newVizId: 'viz2',
       newOwner: 'user2',
       forkedFrom: 'unknown-id',
       timestamp: ts2,
+      preFork: () => {
+        preForkInvoked = true;
+      },
+      postFork: () => {
+        postForkInvoked = true;
+      },
     }).then(
       () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
       (error) => {
         assert.equal(error.name, 'VizHubError');
         assert.equal(error.code, VIZ_INFO_NOT_FOUND);
+
+        // If an error occurs, postFork will not be invoked.
+        assert.equal(preForkInvoked, true);
+        assert.equal(postForkInvoked, false);
       }
     );
   });

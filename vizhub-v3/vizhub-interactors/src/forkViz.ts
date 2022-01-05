@@ -7,8 +7,21 @@ export const forkViz = async (options: {
   newOwner: UserId; // The owner of the new viz.
   forkedFrom: VizId; // The ID viz being forked.
   timestamp: Timestamp; // The timestamp at which this viz is forked.
+  preFork?: () => Promise<void>; // A function invoked before forking.
+  postFork?: () => Promise<void>; // A function invoked after forking.
 }): Promise<void> => {
-  const { gateways, newVizId, newOwner, forkedFrom, timestamp } = options;
+  const {
+    gateways,
+    newVizId,
+    newOwner,
+    forkedFrom,
+    timestamp,
+    preFork,
+    postFork,
+  } = options;
+  if (preFork) {
+    await preFork();
+  }
   const { getVizInfo, getVizContent, saveVizInfo, saveVizContent } = gateways;
 
   const [forkedFromVizInfo, forkedFromVizContent] = await Promise.all([
@@ -31,4 +44,7 @@ export const forkViz = async (options: {
   };
 
   await Promise.all([saveVizInfo(newVizInfo), saveVizContent(newVizContent)]);
+  if (postFork) {
+    await postFork();
+  }
 };
