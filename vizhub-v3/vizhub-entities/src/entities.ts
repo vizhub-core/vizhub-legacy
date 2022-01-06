@@ -117,3 +117,8 @@ export class VizHubError extends Error {
 
 // A VizHub-specific error code.
 export type VizHubErrorCode = string;
+
+// An OT Operation
+// This type is complex, and is defined in detail here:
+// https://github.com/ottypes/json1/blob/master/spec.md#operations
+export type Op = any;
