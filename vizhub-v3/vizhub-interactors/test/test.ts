@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import { describe, it, beforeEach } from 'mocha';
 import { Gateways } from '../src/Gateways';
 import { MemoryGateways } from '../src/MemoryGateways';
-import { forkViz } from '../src/forkViz';
+import { ForkViz } from '../src/ForkViz';
 import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../src/errors';
 import { primordialViz, ts2 } from './fixtures';
 
@@ -50,7 +50,7 @@ describe('Gateways & Interactors', () => {
       }
     ));
 
-  it('forkViz', async () => {
+  it('ForkViz', async () => {
     const newVizId = 'viz2';
     const newOwner = 'user2';
     const forkedFrom = primordialViz.id;
@@ -63,8 +63,9 @@ describe('Gateways & Interactors', () => {
     await saveVizInfo(vizInfo);
     await saveVizContent(vizContent);
 
+    const forkViz = ForkViz(gateways);
+
     await forkViz({
-      gateways,
       newVizId,
       newOwner,
       forkedFrom,
@@ -98,8 +99,8 @@ describe('Gateways & Interactors', () => {
   it('forkViz error case VIZ_INFO_NOT_FOUND', () => {
     let preForkInvoked = false;
     let postForkInvoked = false;
+    const forkViz = ForkViz(gateways);
     return forkViz({
-      gateways,
       newVizId: 'viz2',
       newOwner: 'user2',
       forkedFrom: 'unknown-id',
