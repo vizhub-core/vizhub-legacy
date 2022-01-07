@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { describe, it } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { Gateways } from '../src/Gateways';
 import { MemoryGateways } from '../src/MemoryGateways';
 import { forkViz } from '../src/forkViz';
@@ -16,7 +16,7 @@ describe('Gateways & Interactors', () => {
   let gateways: Gateways;
   //let databaseConnection: DatabaseConnection;
 
-  it('setup', async () => {
+  beforeEach(async () => {
     if (testDB) {
       //databaseConnection = await createDatabaseConnection(
       //  'mongodb://localhost:27017/vizhub-test'
@@ -58,6 +58,11 @@ describe('Gateways & Interactors', () => {
     let preForkInvoked = false;
     let postForkInvoked = false;
 
+    const { saveVizInfo, getVizInfo, saveVizContent, getVizContent } = gateways;
+    const { vizContent, vizInfo } = primordialViz;
+    await saveVizInfo(vizInfo);
+    await saveVizContent(vizContent);
+
     await forkViz({
       gateways,
       newVizId,
@@ -72,8 +77,8 @@ describe('Gateways & Interactors', () => {
       },
     });
 
-    assert.deepEqual(await gateways.getVizInfo(newVizId), {
-      ...primordialViz.vizInfo,
+    assert.deepEqual(await getVizInfo(newVizId), {
+      ...vizInfo,
       id: newVizId,
       owner: newOwner,
       forkedFrom,
@@ -81,8 +86,8 @@ describe('Gateways & Interactors', () => {
       lastUpdatedTimestamp: timestamp,
     });
 
-    assert.deepEqual(await gateways.getVizContent(newVizId), {
-      ...primordialViz.vizContent,
+    assert.deepEqual(await getVizContent(newVizId), {
+      ...vizContent,
       id: newVizId,
     });
 
