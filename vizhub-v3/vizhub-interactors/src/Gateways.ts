@@ -7,7 +7,9 @@ import { VizId, VizInfo, VizContent } from 'vizhub-entities';
 export interface Gateways {
   saveVizInfo(viz: VizInfo): Promise<null>;
   getVizInfo(vizId: VizId): Promise<VizInfo>;
+  deleteVizInfo(vizId: VizId): Promise<null>;
 
   saveVizContent(viz: VizContent): Promise<null>;
   getVizContent(vizId: VizId): Promise<VizContent>;
+  deleteVizContent(vizId: VizId): Promise<null>;
 }

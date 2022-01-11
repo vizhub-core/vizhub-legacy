@@ -22,6 +22,10 @@ export const MemoryGateways = (): Gateways => {
         : Promise.reject(vizInfoNotFound(vizId));
     },
 
+    deleteVizInfo: (vizId) => {
+      delete vizInfoById[vizId];
+    },
+
     saveVizContent: (vizContent) => {
       vizContentById[vizContent.id] = vizContent;
       return Promise.resolve(null);
@@ -32,6 +36,10 @@ export const MemoryGateways = (): Gateways => {
       return vizContent
         ? Promise.resolve(vizContent)
         : Promise.reject(vizContentNotFound(vizId));
+    },
+
+    deleteVizContent: (vizId) => {
+      delete vizContentById[vizId];
     },
   };
 };

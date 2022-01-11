@@ -41,6 +41,15 @@ describe('Gateways & Interactors', () => {
     assert.deepEqual(await getVizContent(vizContent.id), vizContent);
   });
 
+  it('getVizContent error case VIZ_INFO_NOT_FOUND', () =>
+    gateways.getVizInfo('unknown-id').then(
+      () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
+      (error) => {
+        assert.equal(error.name, 'VizHubError');
+        assert.equal(error.code, VIZ_INFO_NOT_FOUND);
+      }
+    ));
+
   it('getVizContent error case VIZ_CONTENT_NOT_FOUND', () =>
     gateways.getVizContent('unknown-id').then(
       () => Promise.reject(new Error('Expected error VIZ_CONTENT_NOT_FOUND.')),
@@ -49,6 +58,34 @@ describe('Gateways & Interactors', () => {
         assert.equal(error.code, VIZ_CONTENT_NOT_FOUND);
       }
     ));
+
+  it('deleteVizInfo', async () => {
+    const { saveVizInfo, deleteVizInfo } = gateways;
+    const { vizInfo } = primordialViz;
+    await saveVizInfo(vizInfo);
+    await deleteVizInfo(vizInfo.id);
+    await gateways.getVizInfo(vizInfo.id).then(
+      () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
+      (error) => {
+        assert.equal(error.name, 'VizHubError');
+        assert.equal(error.code, VIZ_INFO_NOT_FOUND);
+      }
+    );
+  });
+
+  it('deleteVizContent', async () => {
+    const { saveVizContent, deleteVizContent } = gateways;
+    const { vizContent } = primordialViz;
+    await saveVizContent(vizContent);
+    await deleteVizContent(vizContent.id);
+    await gateways.getVizContent(vizContent.id).then(
+      () => Promise.reject(new Error('Expected error VIZ_CONTENT_NOT_FOUND.')),
+      (error) => {
+        assert.equal(error.name, 'VizHubError');
+        assert.equal(error.code, VIZ_CONTENT_NOT_FOUND);
+      }
+    );
+  });
 
   it('ForkViz', async () => {
     const newVizId = 'viz2';
