@@ -4,27 +4,13 @@ import { Gateways } from '../src/Gateways';
 import { MemoryGateways } from '../src/MemoryGateways';
 import { ForkViz } from '../src/ForkViz';
 import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../src/errors';
-import { primordialViz, ts2 } from './fixtures';
-
-// If true, DatabaseGateways is used in tests (run before deploying).
-// If false, MemoryGateways is used in tests (faster, run during dev).
-// With `npm test`, this is false.
-// With `npm run testDB`, this is true.
-const testDB = process.env.VIZHUB_TEST_DATABASE === 'true';
+import { primordialViz, ts2, ts3, ts4 } from './fixtures';
 
 describe('Gateways & Interactors', () => {
   let gateways: Gateways;
-  //let databaseConnection: DatabaseConnection;
 
   beforeEach(async () => {
-    if (testDB) {
-      //databaseConnection = await createDatabaseConnection(
-      //  'mongodb://localhost:27017/vizhub-test'
-      //);
-      //gateways = DatabaseGateways(databaseConnection);
-    } else {
-      gateways = MemoryGateways();
-    }
+    gateways = MemoryGateways();
   });
 
   it('saveVizInfo & getVizInfo', async () => {
@@ -92,8 +78,6 @@ describe('Gateways & Interactors', () => {
     const newOwner = 'user2';
     const forkedFrom = primordialViz.id;
     const timestamp = ts2;
-    let preForkInvoked = false;
-    let postForkInvoked = false;
 
     const { saveVizInfo, getVizInfo, saveVizContent, getVizContent } = gateways;
     const { vizContent, vizInfo } = primordialViz;
@@ -102,18 +86,7 @@ describe('Gateways & Interactors', () => {
 
     const forkViz = ForkViz(gateways);
 
-    await forkViz({
-      newVizId,
-      newOwner,
-      forkedFrom,
-      timestamp,
-      preFork: async () => {
-        preForkInvoked = true;
-      },
-      postFork: async () => {
-        postForkInvoked = true;
-      },
-    });
+    await forkViz({ newVizId, newOwner, forkedFrom, timestamp });
 
     assert.deepEqual(await getVizInfo(newVizId), {
       ...vizInfo,
@@ -128,43 +101,60 @@ describe('Gateways & Interactors', () => {
       ...vizContent,
       id: newVizId,
     });
-
-    assert.equal(preForkInvoked, true);
-    assert.equal(postForkInvoked, true);
   });
 
   it('forkViz error case VIZ_INFO_NOT_FOUND', () => {
-    let preForkInvoked = false;
-    let postForkInvoked = false;
     const forkViz = ForkViz(gateways);
     return forkViz({
       newVizId: 'viz2',
       newOwner: 'user2',
       forkedFrom: 'unknown-id',
       timestamp: ts2,
-      preFork: async () => {
-        preForkInvoked = true;
-      },
-      postFork: async () => {
-        postForkInvoked = true;
-      },
     }).then(
       () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
       (error) => {
         assert.equal(error.name, 'VizHubError');
         assert.equal(error.code, VIZ_INFO_NOT_FOUND);
-
-        // If an error occurs, postFork will not be invoked.
-        assert.equal(preForkInvoked, true);
-        assert.equal(postForkInvoked, false);
       }
     );
   });
 
-  it('tear down', async () => {
-    if (testDB) {
-      //await databaseConnection.mongoDBDatabase.dropDatabase();
-      //await databaseConnection.mongoDBConnection.close();
-    }
+  it('getForks', async () => {
+    const { saveVizInfo, saveVizContent, getForks } = gateways;
+    const forkViz = ForkViz(gateways);
+    const { id, vizInfo, vizContent } = primordialViz;
+    await saveVizInfo(vizInfo);
+    await saveVizContent(vizContent);
+
+    await forkViz({
+      newVizId: 'viz2',
+      newOwner: 'user2',
+      forkedFrom: id,
+      timestamp: ts2,
+    });
+
+    await forkViz({
+      newVizId: 'viz3',
+      newOwner: 'user2',
+      forkedFrom: id,
+      timestamp: ts3,
+    });
+
+    assert.deepEqual(
+      new Set((await getForks(id)).map((fork) => fork.id)),
+      new Set(['viz2', 'viz3'])
+    );
+
+    await forkViz({
+      newVizId: 'viz4',
+      newOwner: 'user2',
+      forkedFrom: primordialViz.id,
+      timestamp: ts4,
+    });
+
+    assert.deepEqual(
+      new Set((await getForks(id)).map((fork) => fork.id)),
+      new Set(['viz2', 'viz3', 'viz4'])
+    );
   });
 });

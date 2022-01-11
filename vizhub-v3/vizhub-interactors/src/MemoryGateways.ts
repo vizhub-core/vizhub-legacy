@@ -10,9 +10,8 @@ export const MemoryGateways = (): Gateways => {
   const vizContentById: { [id: VizId]: VizContent } = {};
 
   return {
-    saveVizInfo: (vizInfo) => {
+    saveVizInfo: async (vizInfo) => {
       vizInfoById[vizInfo.id] = vizInfo;
-      return Promise.resolve(null);
     },
 
     getVizInfo: (vizId) => {
@@ -22,13 +21,12 @@ export const MemoryGateways = (): Gateways => {
         : Promise.reject(vizInfoNotFound(vizId));
     },
 
-    deleteVizInfo: (vizId) => {
+    deleteVizInfo: async (vizId) => {
       delete vizInfoById[vizId];
     },
 
-    saveVizContent: (vizContent) => {
+    saveVizContent: async (vizContent) => {
       vizContentById[vizContent.id] = vizContent;
-      return Promise.resolve(null);
     },
 
     getVizContent: (vizId) => {
@@ -38,8 +36,13 @@ export const MemoryGateways = (): Gateways => {
         : Promise.reject(vizContentNotFound(vizId));
     },
 
-    deleteVizContent: (vizId) => {
+    deleteVizContent: async (vizId) => {
       delete vizContentById[vizId];
     },
+
+    getForks: async (vizId) =>
+      Object.values(vizInfoById).filter(
+        (vizInfo) => vizInfo.forkedFrom === vizId
+      ),
   };
 };
