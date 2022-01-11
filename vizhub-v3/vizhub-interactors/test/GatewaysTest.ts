@@ -1,11 +1,7 @@
 import * as assert from 'assert';
-import { describe, it, beforeEach } from 'mocha';
-import { Gateways } from '../src/Gateways';
-import { MemoryGateways } from '../src/MemoryGateways';
-import { ForkViz } from '../src/ForkViz';
-import { DeleteViz } from '../src/DeleteViz';
+import { describe, it } from 'mocha';
 import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../src/errors';
-import { primordialViz, ts2, ts3, ts4 } from './fixtures';
+import { primordialViz } from './fixtures';
 import { initGateways } from './initGateways';
 
 export const GatewaysTest = () => {
@@ -83,7 +79,7 @@ export const GatewaysTest = () => {
     it('getForks', async () => {
       const gateways = initGateways();
       const { saveVizInfo, getForks } = gateways;
-      const { id, vizInfo, vizContent } = primordialViz;
+      const { id, vizInfo } = primordialViz;
       await saveVizInfo(vizInfo);
 
       await saveVizInfo({ ...vizInfo, id: 'viz2', forkedFrom: id });

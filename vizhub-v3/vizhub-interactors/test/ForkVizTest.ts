@@ -1,11 +1,8 @@
 import * as assert from 'assert';
-import { describe, it, beforeEach } from 'mocha';
-import { Gateways } from '../src/Gateways';
-import { MemoryGateways } from '../src/MemoryGateways';
+import { describe, it } from 'mocha';
 import { ForkViz } from '../src/ForkViz';
-import { DeleteViz } from '../src/DeleteViz';
-import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../src/errors';
-import { primordialViz, ts2, ts3, ts4 } from './fixtures';
+import { VIZ_INFO_NOT_FOUND } from '../src/errors';
+import { primordialViz, ts2 } from './fixtures';
 import { initGateways } from './initGateways';
 
 export const ForkVizTest = () => {

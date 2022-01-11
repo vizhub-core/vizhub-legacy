@@ -1,4 +1,4 @@
-import { VizId, VizInfo, VizContent, UserId, Timestamp } from 'vizhub-entities';
+import { VizId, VizInfo } from 'vizhub-entities';
 import { Gateways } from './Gateways';
 
 export const DeleteViz = (gateways: Gateways) => {

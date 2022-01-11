@@ -9,7 +9,8 @@
     "test": "NODE_OPTIONS=--enable-source-maps mocha build/test.js",
     "build": "rm -rf build; node src/build.js",
     "dev": "tsc src/index.ts test/test.ts --noEmit --watch --lib ES2015",
-    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,9 @@
     "mocha": "^9.1.3",
     "prettier": "^2.5.1",
     "rollup": "^2.63.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "eslint": "^8.6.0"
   }
 }
