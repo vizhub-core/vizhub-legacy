@@ -51,6 +51,7 @@ describe('Gateways & Interactors', () => {
     const { vizInfo } = primordialViz;
     await saveVizInfo(vizInfo);
     await deleteVizInfo(vizInfo.id);
+
     await gateways.getVizInfo(vizInfo.id).then(
       () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
       (error) => {
@@ -121,37 +122,19 @@ describe('Gateways & Interactors', () => {
   });
 
   it('getForks', async () => {
-    const { saveVizInfo, saveVizContent, getForks } = gateways;
-    const forkViz = ForkViz(gateways);
+    const { saveVizInfo, getForks } = gateways;
     const { id, vizInfo, vizContent } = primordialViz;
     await saveVizInfo(vizInfo);
-    await saveVizContent(vizContent);
 
-    await forkViz({
-      newVizId: 'viz2',
-      newOwner: 'user2',
-      forkedFrom: id,
-      timestamp: ts2,
-    });
-
-    await forkViz({
-      newVizId: 'viz3',
-      newOwner: 'user2',
-      forkedFrom: id,
-      timestamp: ts3,
-    });
+    await saveVizInfo({ ...vizInfo, id: 'viz2', forkedFrom: id });
+    await saveVizInfo({ ...vizInfo, id: 'viz3', forkedFrom: id });
 
     assert.deepEqual(
       new Set((await getForks(id)).map((fork) => fork.id)),
       new Set(['viz2', 'viz3'])
     );
 
-    await forkViz({
-      newVizId: 'viz4',
-      newOwner: 'user2',
-      forkedFrom: primordialViz.id,
-      timestamp: ts4,
-    });
+    await saveVizInfo({ ...vizInfo, id: 'viz4', forkedFrom: id });
 
     assert.deepEqual(
       new Set((await getForks(id)).map((fork) => fork.id)),
