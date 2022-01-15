@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { HomePage } from './HomePage';
-import { ProfilePage } from './ProfilePage';
-import { VizPage } from './VizPage';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import { HomePage, ProfilePage, VizPage } from 'vizhub-ui';
 import { Nav } from 'react-bootstrap';
 
 const pages = {
@@ -10,7 +9,7 @@ const pages = {
   profile: ProfilePage,
 };
 
-export const DemoApp = () => {
+const DemoApp = () => {
   const [page, setPage] = useState('viz');
 
   const Page = pages[page];
@@ -32,3 +31,5 @@ export const DemoApp = () => {
     </>
   );
 };
+
+ReactDOM.render(<DemoApp />, document.getElementById('root'));

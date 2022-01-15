@@ -5,15 +5,15 @@
   "main": "src/index.js",
   "type": "module",
   "files": [
-    "build"
+    "dist"
   ],
   "scripts": {
-    "minify-css": "cleancss -o build/vizhub-ui.min.css build/vizhub-ui.css",
-    "build-css": "sass scss/vizhub-ui.scss build/vizhub-ui.css",
-    "watch-css": "sass --watch scss/vizhub-ui.scss build/vizhub-ui.css",
+    "minify-css": "cleancss -o dist/vizhub-ui.min.css dist/vizhub-ui.css",
+    "build-css": "sass scss/vizhub-ui.scss dist/vizhub-ui.css",
+    "watch-css": "sass --watch scss/vizhub-ui.scss dist/vizhub-ui.css",
     "build-js": "node src/build.js",
-    "build": "rm -rf build; npm run build-css && npm run build-js && cp index.html build",
-    "start": "http-server build",
+    "build": "rm -rf dist; npm run build-css && npm run build-js && cp index.html dist",
+    "start": "http-server dist",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
     "prepublishOnly": "npm run build; npm run minify-css"
   },

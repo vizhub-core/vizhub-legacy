@@ -20,7 +20,7 @@ export const sucraseOptions = {
 
 const inputOptions = {
   plugins: [sucrase(sucraseOptions)],
-  external: ['react', 'react-dom', 'react-bootstrap'],
+  external: ['react', 'react-dom', 'react-bootstrap', 'vizhub-ui'],
   // Ignore warnings from sucrase plugin.
   // https://github.com/rollup/rollup/issues/1518
   onwarn: (warning, warn) => {
@@ -31,21 +31,37 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  format: 'umd',
   sourcemap,
-  name: 'VizHubUI',
   globals: {
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-bootstrap': 'ReactBootstrap',
+    'vizhub-ui': 'VizHubUI',
   },
 };
 
-const build = async () => {
+const buildLib = async () => {
   await buildBundle({
     inputOptions: { input: 'src/index.js', ...inputOptions },
-    outputOptions: { file: 'build/vizhub-ui.js', ...outputOptions },
+    outputOptions: {
+      file: 'dist/vizhub-ui.js',
+      format: 'umd',
+      name: 'VizHubUI',
+      ...outputOptions,
+    },
   });
 };
 
-build();
+const buildDemoApp = async () => {
+  await buildBundle({
+    inputOptions: { input: 'src/DemoApp.js', ...inputOptions },
+    outputOptions: {
+      file: 'dist/demo-app.js',
+      format: 'iife',
+      ...outputOptions,
+    },
+  });
+};
+
+buildLib();
+buildDemoApp();
