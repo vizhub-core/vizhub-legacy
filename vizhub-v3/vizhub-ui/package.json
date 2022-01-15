@@ -1,9 +1,12 @@
 {
   "name": "vizhub-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "UI for the next generation VizHub UI.",
   "main": "src/index.js",
   "type": "module",
+  "files": [
+    "build"
+  ],
   "scripts": {
     "minify-css": "cleancss -o build/vizhub-ui.min.css build/vizhub-ui.css",
     "build-css": "sass scss/vizhub-ui.scss build/vizhub-ui.css",
