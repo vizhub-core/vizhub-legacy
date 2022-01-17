@@ -54,7 +54,7 @@ const buildLib = async () => {
 
 const buildDemoApp = async () => {
   await buildBundle({
-    inputOptions: { input: 'src/DemoApp.js', ...inputOptions },
+    inputOptions: { input: 'src/DemoApp/index.js', ...inputOptions },
     outputOptions: {
       file: 'dist/demo-app.js',
       format: 'iife',

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { HomePage, ProfilePage, VizPage } from 'vizhub-ui';
 import { Nav } from 'react-bootstrap';
+import { MarkdownExample } from './MarkdownExample';
 
 const pages = {
-  viz: VizPage,
+  viz: VizPage({ MarkdownBody: MarkdownExample }),
   home: HomePage,
   profile: ProfilePage,
 };
