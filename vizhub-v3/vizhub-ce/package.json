@@ -1,0 +1,28 @@
+{
+  "name": "vizhub-ce",
+  "version": "0.0.1",
+  "description": "vizhub.community",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vizhub-core/vizhub.git"
+  },
+  "keywords": [
+    "Code",
+    "d3",
+    "react",
+    "data",
+    "visualization",
+    "dataviz"
+  ],
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vizhub-core/vizhub/issues"
+  },
+  "homepage": "https://github.com/vizhub-core/vizhub#readme"
+}
+
