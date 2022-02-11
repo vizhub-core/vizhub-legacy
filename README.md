@@ -12,6 +12,22 @@ Try it out 👉 https://vizhub.com/
 
 VizHub version 2 is the product currently deployed at https://vizhub.com. Source code for this is located in the [vizhub-v2 directory](https://github.com/vizhub-core/vizhub/tree/main/vizhub-v2). This codebase will remain deployed for some time with maintenance fixes from time to time, but active development energy is going towards VizHub 3.
 
+### VizHub 2 Features
+
+VizHub has enough features to be useful for people who teach data visualization with D3 and React. It has been used in [Data Visualization Course 2018](https://curran.github.io/dataviz-course-2018/), [Datavis 2020](https://datavis.tech/datavis-2020/), and [Get it Right in Black and White](
+
+ * Fork and modify vizzes coded with ES6 in the browser.
+ * iFrame-based code execution environment.
+ * Uses [https://github.com/vizhub-core/magic-sandbox](https://github.com/vizhub-core/magic-sandbox), the same tech used for [Blockbuilder](http://blockbuilder.org/) circa 2016.
+ * Code editor based on CodeMirror 5.
+ * Ability to switch between files (only one file is viewable at a time currently).
+ * Code editor OT integration with ShareDB and JSON0.
+ * Real-time collaborative code editing with presence avatars (but [buggy](https://github.com/vizhub-core/vizhub/blob/main/vizhub-v2/packages/json0-with-presence/index.js#L8)).
+ * Embed a viz in any page (iframe-based embed with backlink).
+ * Embed a code snippet in any page (iframe-based embed with backlink).
+ * Mini mode
+ * Full screen mode
+
 ## VizHub 3
 
 Try it out 👉 https://beta.vizhub.com/
