@@ -32,7 +32,10 @@ export const updateBundleIfNeeded = async (
         submitVizContentOp(fileCreateOp(files, { name: 'bundle.js', text }));
       }
     } else {
-      submitVizContentOp(deleteFileOp(viz, 'bundle.js'));
+      const bundleJSExists = getFileIndex(files, 'bundle.js') !== -1;
+      if (bundleJSExists) {
+        submitVizContentOp(deleteFileOp(viz, 'bundle.js'));
+      }
     }
   }
 };
