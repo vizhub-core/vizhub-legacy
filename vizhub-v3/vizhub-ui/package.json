@@ -27,9 +27,9 @@
   "author": "Curran Kelleher",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vizhub-open-core/vizhub/issues"
+    "url": "https://github.com/vizhub-core/vizhub/issues"
   },
-  "homepage": "https://github.com/vizhub-open-core/vizhub/vizhub-ui#readme",
+  "homepage": "https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3/vizhub-ui",
   "devDependencies": {
     "@rollup/plugin-sucrase": "^4.0.2",
     "bootstrap": "^5.1.3",
