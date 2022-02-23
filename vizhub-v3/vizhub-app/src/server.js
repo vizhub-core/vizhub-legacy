@@ -9,6 +9,7 @@ const app = express();
 app.get('/', (req, res) => {
     res.send('VizHub Community Edition');
 });
+//https://unpkg.com/vizhub-ui@0.0.4/dist/vizhub-ui.min.css
 
 const server = http.createServer(app);
 
