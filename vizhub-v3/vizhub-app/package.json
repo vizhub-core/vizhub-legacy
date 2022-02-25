@@ -4,7 +4,8 @@
   "description": "vizhub.community",
   "main": "index.js",
   "scripts": {
-    "start": "rollup -c && node build/server.js"
+    "start": "rollup -c && node build/server.js",
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
   },
   "repository": {
     "type": "git",
@@ -25,9 +26,16 @@
   },
   "homepage": "https://github.com/vizhub-core/vizhub#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "jsesc": "^2.5.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@rollup/plugin-babel": "^5.3.0"
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "prettier": "^2.5.1"
   }
 }

@@ -1,10 +1,13 @@
 //Inspired by https://github.com/curran/sharedb-racer-react-demo/blob/main/rollup.config.js
 
 import { babel } from '@rollup/plugin-babel';
-//import json from '@rollup/plugin-json';
+import json from '@rollup/plugin-json';
 //import { nodeResolve } from '@rollup/plugin-node-resolve';
 //import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
+
+const plugins = [babel({ babelHelpers: 'bundled' }), json()];
+const external = [...Object.keys(pkg.dependencies), 'http', 'react-dom/server'];
 
 const server = {
   input: 'src/server.js',
@@ -12,19 +15,19 @@ const server = {
     dir: 'build',
     format: 'cjs',
   },
-  plugins: [babel({ babelHelpers: 'bundled' }),/* json()*/],
-  external: [...Object.keys(pkg.dependencies), 'http', 'react-dom/server'],
+  plugins,
+  external,
 };
 
-//const client = {
-//  input: 'src/client.js',
-//  output: {
-//    dir: 'build/public',
-//    format: 'iife',
-//    globals: { react: 'React', 'react-dom': 'ReactDOM' },
-//  },
-//  plugins: [nodePolyfills(),babel({ babelHelpers: 'bundled' }), nodeResolve(), commonjs()],
-//  external: ['react', 'react-dom'],
-//};
+const client = {
+  input: 'src/client.js',
+  output: {
+    dir: 'build/public',
+    format: 'iife',
+    globals: { react: 'React', 'react-dom': 'ReactDOM' },
+  },
+  plugins,
+  external,
+};
 
-export default [server, /*client*/];
+export default [server, client];

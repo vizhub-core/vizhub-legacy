@@ -1,0 +1,16 @@
+{
+  "name": "viz-name-goes-here",
+  "version": "0.0.1",
+  "description": "Truncated plain text README content goes here...",
+  "scripts": {
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
+  },
+  "author": "Barney Rubble <b@rubble.com> (https://vizhub.com/barnyrubble)",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@rollup/plugin-babel": "^5.3.1",
+    "prettier": "^2.5.1"
+  }
+}

@@ -1,4 +1,3 @@
-build
 .prettierignore
-.gitignore
 *.swp
+*.csv
