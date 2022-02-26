@@ -20,6 +20,6 @@
   "homepage": "https://github.com/vizhub-core/vizhub#readme",
   "devDependencies": {
     "prettier": "^2.5.1",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.5"
   }
 }
