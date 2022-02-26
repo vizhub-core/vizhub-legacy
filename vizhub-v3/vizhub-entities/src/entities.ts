@@ -122,3 +122,11 @@ export type VizHubErrorCode = string;
 // This type is complex, and is defined in detail here:
 // https://github.com/ottypes/json1/blob/master/spec.md#operations
 export type Op = any;
+
+// A ShareDB Snapshot. See:
+// https://share.github.io/sharedb/api/snapshot
+export interface Snapshot<Type> {
+  type: string;
+  data: Type;
+  v: number;
+}
