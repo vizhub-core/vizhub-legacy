@@ -2,6 +2,9 @@ import { VizId, VizInfo, VizContent } from 'vizhub-entities';
 import { Gateways } from './Gateways';
 import { vizInfoNotFound, vizContentNotFound } from './errors';
 
+// Fake snapshot
+const snapshot = (data) => ({ data, v: 1, type: 'json1' });
+
 // An in-memory implementation for gateways,
 // for use in unit tests (faster than using Mongo).
 export const MemoryGateways = (): Gateways => {
@@ -17,7 +20,7 @@ export const MemoryGateways = (): Gateways => {
     getVizInfo: (vizId) => {
       const vizInfo = vizInfoById[vizId];
       return vizInfo
-        ? Promise.resolve(vizInfo)
+        ? Promise.resolve(snapshot(vizInfo))
         : Promise.reject(vizInfoNotFound(vizId));
     },
 
@@ -32,7 +35,7 @@ export const MemoryGateways = (): Gateways => {
     getVizContent: (vizId) => {
       const vizContent = vizContentById[vizId];
       return vizContent
-        ? Promise.resolve(vizContent)
+        ? Promise.resolve(snapshot(vizContent))
         : Promise.reject(vizContentNotFound(vizId));
     },
 
@@ -41,8 +44,8 @@ export const MemoryGateways = (): Gateways => {
     },
 
     getForks: async (vizId) =>
-      Object.values(vizInfoById).filter(
-        (vizInfo) => vizInfo.forkedFrom === vizId
-      ),
+      Object.values(vizInfoById)
+        .filter((vizInfo) => vizInfo.forkedFrom === vizId)
+        .map(snapshot),
   };
 };

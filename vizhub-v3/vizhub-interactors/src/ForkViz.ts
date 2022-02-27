@@ -12,10 +12,10 @@ export const ForkViz = (gateways: Gateways) => {
   }): Promise<void> => {
     const { newVizId, newOwner, forkedFrom, timestamp } = options;
 
-    const [forkedFromVizInfo, forkedFromVizContent] = await Promise.all([
-      getVizInfo(forkedFrom),
-      getVizContent(forkedFrom),
-    ]);
+    const [forkedFromVizInfoSnapshot, forkedFromVizContentSnapshot] =
+      await Promise.all([getVizInfo(forkedFrom), getVizContent(forkedFrom)]);
+    const forkedFromVizInfo = forkedFromVizInfoSnapshot.data;
+    const forkedFromVizContent = forkedFromVizContentSnapshot.data;
 
     const newVizInfo: VizInfo = {
       ...forkedFromVizInfo,

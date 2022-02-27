@@ -38,14 +38,14 @@ export const DeleteVizTest = () => {
         timestamp: ts4,
       });
 
-      assert.equal((await getVizInfo('viz2')).forkedFrom, 'viz1');
-      assert.equal((await getVizInfo('viz5')).forkedFrom, 'viz2');
-      assert.equal((await getVizInfo('viz6')).forkedFrom, 'viz2');
+      assert.equal((await getVizInfo('viz2')).data.forkedFrom, 'viz1');
+      assert.equal((await getVizInfo('viz5')).data.forkedFrom, 'viz2');
+      assert.equal((await getVizInfo('viz6')).data.forkedFrom, 'viz2');
 
       await deleteViz('viz2');
 
-      assert.equal((await getVizInfo('viz5')).forkedFrom, 'viz1');
-      assert.equal((await getVizInfo('viz6')).forkedFrom, 'viz1');
+      assert.equal((await getVizInfo('viz5')).data.forkedFrom, 'viz1');
+      assert.equal((await getVizInfo('viz6')).data.forkedFrom, 'viz1');
 
       await gateways.getVizInfo('viz2').then(
         () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),

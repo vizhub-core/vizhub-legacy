@@ -24,7 +24,7 @@ export const ForkVizTest = () => {
 
       await forkViz({ newVizId, newOwner, forkedFrom, timestamp });
 
-      assert.deepEqual(await getVizInfo(newVizId), {
+      assert.deepEqual((await getVizInfo(newVizId)).data, {
         ...vizInfo,
         id: newVizId,
         owner: newOwner,
@@ -33,7 +33,7 @@ export const ForkVizTest = () => {
         lastUpdatedTimestamp: timestamp,
       });
 
-      assert.deepEqual(await getVizContent(newVizId), {
+      assert.deepEqual((await getVizContent(newVizId)).data, {
         ...vizContent,
         id: newVizId,
       });

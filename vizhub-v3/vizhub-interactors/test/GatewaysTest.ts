@@ -11,7 +11,7 @@ export const GatewaysTest = () => {
       const { saveVizInfo, getVizInfo } = gateways;
       const { vizInfo } = primordialViz;
       await saveVizInfo(vizInfo);
-      assert.deepEqual(await getVizInfo(vizInfo.id), vizInfo);
+      assert.deepEqual((await getVizInfo(vizInfo.id)).data, vizInfo);
     });
 
     it('saveVizContent & getVizContent', async () => {
@@ -19,7 +19,7 @@ export const GatewaysTest = () => {
       const { saveVizContent, getVizContent } = gateways;
       const { vizContent } = primordialViz;
       await saveVizContent(vizContent);
-      assert.deepEqual(await getVizContent(vizContent.id), vizContent);
+      assert.deepEqual((await getVizContent(vizContent.id)).data, vizContent);
     });
 
     it('getVizContent error case VIZ_INFO_NOT_FOUND', () => {
@@ -86,14 +86,14 @@ export const GatewaysTest = () => {
       await saveVizInfo({ ...vizInfo, id: 'viz3', forkedFrom: id });
 
       assert.deepEqual(
-        new Set((await getForks(id)).map((fork) => fork.id)),
+        new Set((await getForks(id)).map((fork) => fork.data.id)),
         new Set(['viz2', 'viz3'])
       );
 
       await saveVizInfo({ ...vizInfo, id: 'viz4', forkedFrom: id });
 
       assert.deepEqual(
-        new Set((await getForks(id)).map((fork) => fork.id)),
+        new Set((await getForks(id)).map((fork) => fork.data.id)),
         new Set(['viz2', 'viz3', 'viz4'])
       );
     });
