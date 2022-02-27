@@ -1,0 +1,22 @@
+{
+  "name": "babelinbrowser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-replace": "^4.0.0",
+    "rollup": "^2.68.0",
+    "rollup-plugin-polyfill-node": "^0.8.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.17.5"
+  }
+}
