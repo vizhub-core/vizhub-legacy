@@ -21,7 +21,7 @@ export const sucraseOptions = {
 
 const inputOptions = {
   plugins: [nodeResolve(), sucrase(sucraseOptions)],
-  external: ['assert', 'mocha'],
+  external: ['assert', 'mocha', 'sharedb', 'ot-json1'],
   // Ignore warnings from sucrase plugin.
   // https://github.com/rollup/rollup/issues/1518
   onwarn: (warning, warn) => {

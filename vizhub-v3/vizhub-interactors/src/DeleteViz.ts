@@ -12,7 +12,7 @@ export const DeleteViz = (gateways: Gateways) => {
     // For each fork forked from the viz to be deleted,
     // update its forkedFrom reference to the viz that the
     // viz to be deleted was forked from (tree node removal).
-    const forks: Array<Snapshot<VizInfo>> = (await getForks(vizId)).map(
+    const forks: Array<VizInfo> = (await getForks(vizId)).map(
       (snapshot) => snapshot.data
     );
     const updateForkedFrom = (fork) => saveVizInfo({ ...fork, forkedFrom });

@@ -17,6 +17,8 @@ const port = 8080;
 const app = express();
 
 ShareDB.types.register(json1.type);
+// TODO test this out
+//ShareDB.types.defaultType = json1.type;
 
 const shareDBBackend = new ShareDB();
 
