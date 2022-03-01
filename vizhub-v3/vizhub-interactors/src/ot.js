@@ -2,7 +2,7 @@ import * as json1 from 'ot-json1';
 import * as textUnicode from 'ot-text-unicode';
 import jsondiff from 'json0-ot-diff';
 import diffMatchPatch from 'diff-match-patch';
-import { Op } from 'vizhub-entities';
+import type { Op } from 'vizhub-entities';
 
 // The OT type used throughout the codebase.
 export const otType = json1.type;

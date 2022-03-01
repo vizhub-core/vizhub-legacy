@@ -4,6 +4,8 @@ import { vizInfoNotFound, vizContentNotFound } from './errors';
 import { diff } from './ot';
 
 type ShareDBConnection = any;
+type ShareDBDoc = any;
+type CollectionName = string;
 
 const VIZ_INFO_COLLECTION: CollectionName = 'vizInfo';
 const VIZ_CONTENT_COLLECTION: CollectionName = 'vizContent';
@@ -25,7 +27,11 @@ const fetchDoc = (
 // Fetches ShareDB query results. See also:
 // https://share.github.io/sharedb/api/query
 // https://share.github.io/sharedb/api/connection#createfetchquery
-const fetchQuery = (collectionName, mongoQuery, shareDBConnection) =>
+const fetchQuery = (
+  collectionName,
+  mongoQuery,
+  shareDBConnection
+): Promise<Array<ShareDBDoc>> =>
   new Promise((resolve, reject) => {
     const query = shareDBConnection.createFetchQuery(
       collectionName,
@@ -53,7 +59,7 @@ const saveDoc = (doc: ShareDBDoc, data) =>
   });
 
 // Deletes a fetched ShareDB doc.
-const deleteDoc = (doc: ShareDBDoc, data) =>
+const deleteDoc = (doc: ShareDBDoc) =>
   new Promise((resolve, reject) => {
     doc.del((error) => (error ? reject(error) : resolve(null)));
   });

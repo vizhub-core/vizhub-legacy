@@ -1,10 +1,9 @@
 import ShareDB from 'sharedb';
 import ShareDBMingo from 'sharedb-mingo-memory';
-import json1 from 'ot-json1';
+import * as json1 from 'ot-json1';
 import { Gateways } from '../src/Gateways';
 import { MemoryGateways } from '../src/MemoryGateways';
 import { DatabaseGateways } from '../src/DatabaseGateways';
-import { shareDBConnection } from './shareDBConnection';
 
 ShareDB.types.register(json1.type);
 ShareDB.types.defaultType = json1.type;
