@@ -1,0 +1,7 @@
+{
+  "name": "vizhub-build",
+  "version": "0.0.1",
+  "description": "Common build utilities used across packages.",
+  "main": "index.js",
+  "type": "module"
+}

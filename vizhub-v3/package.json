@@ -20,6 +20,7 @@
   "homepage": "https://github.com/vizhub-open-core/vizhub#readme",
   "workspaces": [
     "vizhub-app",
+    "vizhub-build",
     "vizhub-codemirror",
     "vizhub-entities",
     "vizhub-interactors",

@@ -10,6 +10,7 @@ const plugins = [
   babel({ babelHelpers: 'bundled', extensions: ['.ts', '.js'] }),
   commonjs(),
 ];
+
 const external = [
   ...Object.keys(pkg.dependencies),
   ...Object.keys(pkg.devDependencies),

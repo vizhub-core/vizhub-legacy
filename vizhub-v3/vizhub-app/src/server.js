@@ -1,14 +1,15 @@
 // Inspired by:
 // https://github.com/curran/sharedb-racer-react-demo/blob/main/src/server.js
 // https://github.com/vizhub-core/vizhub/blob/main/prototypes/open-core-first-attempt/packages/vizhub-core/src/server/index.js
+import http from 'http';
 import express from 'express';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
 import ShareDB from 'sharedb';
 import json1 from 'ot-json1';
-import http from 'http';
 import WebSocket from 'ws';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { DatabaseGateways } from 'vizhub-interactors';
 import { html } from './html';
 import { App } from './App';
 
@@ -24,6 +25,9 @@ const shareDBBackend = new ShareDB();
 
 // Make the singleton server-side connection.
 const shareDBConnection = shareDBBackend.connect();
+
+// Initialize the server-side gateways.
+const gateways = DatabaseGateways(shareDBConnection);
 
 // TODO refactor this out of here
 // TODO Insert fixtures from VizHub entities/interactors.
