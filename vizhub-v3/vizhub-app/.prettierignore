@@ -1,4 +1,5 @@
 build
 .prettierignore
 .gitignore
+*.ico
 *.swp

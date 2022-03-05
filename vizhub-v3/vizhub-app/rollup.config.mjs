@@ -3,6 +3,7 @@ import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 import { external, globals } from 'vizhub-build';
 
 const plugins = [
@@ -12,6 +13,7 @@ const plugins = [
   json(),
 ];
 
+// Builds the server.
 const server = {
   input: 'src/server.js',
   output: {
@@ -23,6 +25,7 @@ const server = {
   external,
 };
 
+// Builds the client and copies content of public directory.
 const client = {
   input: 'src/client.js',
   output: {
@@ -31,7 +34,12 @@ const client = {
     globals,
     sourcemap: true,
   },
-  plugins,
+  plugins: [
+    ...plugins,
+    copy({
+      targets: [{ src: 'public/*', dest: 'build/public' }],
+    }),
+  ],
   external,
 };
 

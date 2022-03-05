@@ -4,15 +4,15 @@ import pkg from '../package.json';
 //const cdn = 'https://unpkg.com';
 const cdn = 'https://cdn.jsdelivr.net/npm';
 
+// Derive the version of a given package from package.json.
+const version = (packageName) => pkg.dependencies[packageName].replace('^', '');
+
 // Use the same React version on the client and the server.
-const reactVersion = pkg.dependencies.react.replace('^', '');
+const reactVersion = version('react');
 
 // The ShareDB client is responsible for real time synchronization.
 // See https://github.com/vizhub-core/sharedb-client-browser
-const shareDBClientVersion = pkg.dependencies['sharedb-client-browser'].replace(
-  '^',
-  ''
-);
+const shareDBClientVersion = version('sharedb-client-browser');
 
 // TODO pull in vizhub-ui
 //https://unpkg.com/vizhub-ui@0.0.4/dist/vizhub-ui.min.css
@@ -31,6 +31,9 @@ const libraries = jsDelivrCombine([
   `sharedb-client-browser@${shareDBClientVersion}/sharedb-client-json1-browser.min.js`,
 ]);
 
+// A way to disable client side JS, for testing during development.
+const enableClientJS = true;
+
 // Renders the HTML served to the browser.
 export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
 <html>
@@ -42,6 +45,6 @@ export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
     <div id="root">${rootHTML}</div>
     <script src="${libraries}"></script>
     <script>window.pageData = ${jsesc(pageData)};</script>
-    <script src="client.js"></script>
+    ${enableClientJS ? '<script src="client.js"></script>' : ''}
   </body>
 </html>`;
