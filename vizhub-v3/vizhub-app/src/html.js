@@ -3,7 +3,16 @@ import pkg from '../package.json';
 
 //const cdn = 'https://unpkg.com';
 const cdn = 'https://cdn.jsdelivr.net/npm';
+
+// Use the same React version on the client and the server.
 const reactVersion = pkg.dependencies.react.replace('^', '');
+
+// The ShareDB client is responsible for real time synchronization.
+// See https://github.com/vizhub-core/sharedb-client-browser
+const shareDBClientVersion = pkg.dependencies['sharedb-client-browser'].replace(
+  '^',
+  ''
+);
 
 // TODO pull in vizhub-ui
 //https://unpkg.com/vizhub-ui@0.0.4/dist/vizhub-ui.min.css
@@ -19,6 +28,7 @@ const jsDelivrCombine = (libs) =>
 const libraries = jsDelivrCombine([
   `react@${reactVersion}/umd/react.production.min.js`,
   `react-dom@${reactVersion}/umd/react-dom.production.min.js`,
+  `sharedb-client-browser@${shareDBClientVersion}/sharedb-client-json1-browser.min.js`,
 ]);
 
 // Renders the HTML served to the browser.

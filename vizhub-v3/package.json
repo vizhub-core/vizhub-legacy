@@ -25,5 +25,8 @@
     "vizhub-entities",
     "vizhub-interactors",
     "vizhub-ui"
-  ]
+  ],
+  "dependencies": {
+    "sharedb-client-browser": "^2.2.0"
+  }
 }

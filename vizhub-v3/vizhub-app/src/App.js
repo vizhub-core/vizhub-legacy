@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { VizContext, VizContextProvider } from './VizContext';
 
-// TODO const snapshot = doc.toSnapshot()
+const Body = () => {
+  const { vizInfo } = useContext(VizContext);
+  return <div>Hello App! {vizInfo.title}</div>;
+};
 
 export const App = ({ pageData }) => {
-  return <div>Hello App!</div>;
+  return (
+    <VizContextProvider
+      vizInfoSnapshot={pageData.viz.vizInfo}
+      vizContentSnapshot={pageData.viz.vizContent}
+    >
+      <Body />
+    </VizContextProvider>
+  );
 };

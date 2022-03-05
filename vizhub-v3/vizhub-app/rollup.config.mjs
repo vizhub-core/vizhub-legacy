@@ -3,7 +3,7 @@ import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import { external } from 'vizhub-build';
+import { external, globals } from 'vizhub-build';
 
 const plugins = [
   nodeResolve({ extensions: ['.ts', '.js'] }),
@@ -17,6 +17,7 @@ const server = {
   output: {
     dir: 'build',
     format: 'cjs',
+    sourcemap: true,
   },
   plugins,
   external,
@@ -27,7 +28,8 @@ const client = {
   output: {
     dir: 'build/public',
     format: 'iife',
-    globals: { react: 'React', 'react-dom': 'ReactDOM' },
+    globals,
+    sourcemap: true,
   },
   plugins,
   external,
