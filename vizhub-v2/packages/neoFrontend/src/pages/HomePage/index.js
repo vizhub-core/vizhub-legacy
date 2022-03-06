@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { sendEvent } from '../../sendEvent';
 import { showSortOptions } from '../../featureFlags';
 import { LoadingScreen } from '../../LoadingScreen';
 import { NavBar } from '../../NavBar';
+import { Button } from '../../Button';
 //import { Feedback } from '../../Feedback';
 import { useVizzesSort } from '../../VizzesGrid/VizzesSortForm';
 import { Wrapper, WideContent } from '../styles';
-import { HtmlStylesOverride } from './styles';
+import { HtmlStylesOverride, HorizontalSplit } from './styles';
 import { HomePageDataProvider } from './HomePageDataContext';
 import { Vizzes } from './Vizzes';
 //import { Banner } from './Banner';
@@ -34,9 +36,14 @@ export const HomePage = () => {
         }
         <Wrapper>
           <WideContent>
-            {showSortOptions ? (
-              <Sort value={sort} onChange={handleSortChange} />
-            ) : null}
+            <HorizontalSplit>
+              {showSortOptions ? (
+                <Sort value={sort} onChange={handleSortChange} />
+              ) : null}
+              <Link to="/create-viz">
+                <Button isFilled>Create Viz</Button>
+              </Link>
+            </HorizontalSplit>
             <Vizzes />
           </WideContent>
         </Wrapper>
