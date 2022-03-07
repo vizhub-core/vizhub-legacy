@@ -5,7 +5,7 @@ import { Nav } from 'react-bootstrap';
 import { MarkdownExample } from './MarkdownExample';
 
 const pages = {
-  viz: VizPage({ MarkdownBody: MarkdownExample }),
+  viz: () => <VizPage markdownBody={MarkdownExample} />,
   home: HomePage,
   profile: ProfilePage,
 };
