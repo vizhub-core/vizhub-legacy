@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+ssh://git@github.com/vizhub-open-core/vizhub.git"
   },
+  "scripts":{
+    "prettier": "npm run prettier --workspaces"
+  },
   "keywords": [
     "Coding",
     "IDE",

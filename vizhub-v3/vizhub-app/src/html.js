@@ -5,17 +5,9 @@ import pkg from '../package.json';
 const cdn = 'https://cdn.jsdelivr.net/npm';
 
 // Derive the version of a given package from package.json.
-const version = (packageName) => pkg.dependencies[packageName].replace('^', '');
-
-// Use the same React version on the client and the server.
-const reactVersion = version('react');
+const v = (packageName) => pkg.dependencies[packageName].replace('^', '');
 
 // The ShareDB client is responsible for real time synchronization.
-// See https://github.com/vizhub-core/sharedb-client-browser
-const shareDBClientVersion = version('sharedb-client-browser');
-
-// TODO pull in vizhub-ui
-//https://unpkg.com/vizhub-ui@0.0.4/dist/vizhub-ui.min.css
 
 // Computes a JSDelivr CDN URL that will fetch multiple JS libraries
 // concatenated together (they all introduce globals).
@@ -26,10 +18,27 @@ const jsDelivrCombine = (libs) =>
 // Underlying Philosophy: Pull in large dependencies via CDN when possible.
 // Why? Minimize data transfer from our servers, less costly operations.
 const libraries = jsDelivrCombine([
-  `react@${reactVersion}/umd/react.production.min.js`,
-  `react-dom@${reactVersion}/umd/react-dom.production.min.js`,
-  `sharedb-client-browser@${shareDBClientVersion}/sharedb-client-json1-browser.min.js`,
+  `react@${v('react')}/umd/react.production.min.js`,
+  `react-dom@${v('react')}/umd/react-dom.production.min.js`,
+
+  // See https://github.com/vizhub-core/sharedb-client-browser
+  `sharedb-client-browser@${v(
+    'sharedb-client-browser'
+  )}/sharedb-client-json1-browser.min.js`,
+
+  // See https://github.com/react-bootstrap/react-bootstrap
+  `react-bootstrap@${v('react-bootstrap')}/dist/react-bootstrap.min.js`,
+
+  // See https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3/vizhub-ui
+  // TODO use minified build
+  `vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.js`,
+  //https://unpkg.com/react-bootstrap@2.0.2/dist/react-bootstrap.min.js
 ]);
+
+// See https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3/vizhub-ui
+const link = (href) => `<link rel="stylesheet" href="${href}">`;
+//               `https://cdn.jsdelivr.net/npm/vizhub-ui@0.0.4/dist/vizhub-ui.min.css
+const css = link(`${cdn}/vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.min.css`);
 
 // A way to disable client side JS, for testing during development.
 const enableClientJS = true;
@@ -40,6 +49,7 @@ export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
+    ${css}
   </head>
   <body>
     <div id="root">${rootHTML}</div>

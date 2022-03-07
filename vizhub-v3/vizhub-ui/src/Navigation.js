@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import {
   Nav,
   Navbar,
@@ -12,7 +13,7 @@ import {
 
 // Inspired by:
 // https://react-bootstrap.netlify.app/components/dropdowns/#custom-dropdown-components
-const AvatarToggle = React.forwardRef(({ children, onClick }, ref) => (
+const AvatarToggle = forwardRef(({ children, onClick }, ref) => (
   <button
     type="button"
     className="navbar__avatar-toggle dropdown-toggle"

@@ -3,5 +3,11 @@
   "version": "0.0.1",
   "description": "Common build utilities used across packages.",
   "main": "index.js",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
 }

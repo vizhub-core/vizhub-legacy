@@ -1,5 +1,9 @@
 import React, { useContext } from 'react';
 import { VizContext, VizContextProvider } from './VizContext';
+import { VizPage } from 'vizhub-ui';
+
+console.log('VizPage');
+console.log(VizPage);
 
 const Body = () => {
   const { vizInfo } = useContext(VizContext);
