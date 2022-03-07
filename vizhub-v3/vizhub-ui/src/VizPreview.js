@@ -1,3 +1,4 @@
+import React from 'react';
 import { classed } from './classed';
 
 const Wrapper = classed('viz-preview');

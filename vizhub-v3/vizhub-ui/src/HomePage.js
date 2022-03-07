@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Navigation } from './Navigation';
 import { VizPreview } from './VizPreview';
