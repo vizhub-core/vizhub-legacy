@@ -72,7 +72,7 @@ export const DescriptionSection = ({
           </AuthorshipMeta>
         </Authorship>
         <Description
-          className="viz-viewer-description"
+          className="viz-viewer-description markdown-body"
           size={size}
           dangerouslySetInnerHTML={{ __html: descriptionHTML }}
         />
