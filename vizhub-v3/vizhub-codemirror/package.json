@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "start": "http-server",
+    "start": "npm run build && http-server",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
     "prepublishOnly": "npm run build"
   },
@@ -30,7 +30,6 @@
     "rollup": "^2.67.2"
   },
   "dependencies": {
-    "@codemirror/basic-setup": "^0.19.1",
     "@codemirror/lang-javascript": "^0.19.7"
   }
 }
