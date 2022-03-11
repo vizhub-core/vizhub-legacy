@@ -15,7 +15,7 @@
     "watch-js": "rollup -c -w",
     "minify-js": "uglifyjs --compress --mangle -o dist/vizhub-ui.min.js dist/vizhub-ui.js",
     "build": "rm -rf dist; npm run build-css && npm run build-js && cp index.html dist",
-    "start": "http-server dist",
+    "start": "npm run build && http-server dist",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",
     "prepublishOnly": "npm run build && npm run minify-css && npm run minify-js"
   },
