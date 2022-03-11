@@ -9,6 +9,7 @@
   "scripts": {
     "minify-css": "cleancss -o dist/vizhub-ui.min.css dist/vizhub-ui.css",
     "build-css": "sass scss/vizhub-ui.scss dist/vizhub-ui.css",
+    "build-css-markdown-body": "sass scss/_markdown-body.scss dist/markdown-body.css",
     "watch-css": "sass --watch scss/vizhub-ui.scss dist/vizhub-ui.css",
     "build-js": "rollup -c",
     "watch-js": "rollup -c -w",
