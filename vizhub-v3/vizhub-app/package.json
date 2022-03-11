@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "vizhub.community",
   "scripts": {
-    "start": "rollup -c && NODE_OPTIONS=--enable-source-maps node build/server.js",
+    "build": "rollup -c",
+    "start": "npm run build && NODE_OPTIONS=--enable-source-maps node build/server.js",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write"
   },
   "repository": {
