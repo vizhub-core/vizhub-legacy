@@ -3,7 +3,7 @@ import {
   FullSVG,
   CloseSVG,
   ArrowSVG,
-  VimSVG,
+  //  VimSVG,
   PrettierSVG,
 } from '../../../../../../svg';
 import {
@@ -12,7 +12,7 @@ import {
   codeEditorHeaderExitFullEditorTooltip,
 } from '../../../../../../constants';
 import { isMobile } from '../../../../../../mobileMods';
-import { VimModeContext } from '../../../../VimModeContext';
+//import { VimModeContext } from '../../../../VimModeContext';
 import { PrettierContext } from '../../../../PrettierContext';
 import { CodeEditorIcon } from '../styles';
 import { Header } from './Header';
@@ -30,7 +30,7 @@ export const CodeEditorHeader = ({
   showTop,
   toggleShowTop,
 }) => {
-  const { isVimMode, toggleVimMode } = useContext(VimModeContext);
+  // const { isVimMode, toggleVimMode } = useContext(VimModeContext);
   const { prettify } = useContext(PrettierContext);
   const isBundle = activeFile === 'bundle.js';
   return (

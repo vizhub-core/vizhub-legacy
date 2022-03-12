@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { VIZ_INFO_DEFAULT_SORT_OPTION } from 'vizhub-entities';
 import { useSearchState } from '../../useSearchQuery';
 
-const isDefault = (sort) => VIZ_INFO_DEFAULT_SORT_OPTION.id === sort;
+// const isDefault = (sort) => VIZ_INFO_DEFAULT_SORT_OPTION.id === sort;
 
 export const useVizzesSort = () => {
   const [search, setSearch] = useSearchState();
@@ -10,7 +10,7 @@ export const useVizzesSort = () => {
 
   const handleSortChange = useCallback(
     (newSort) => {
-      setSearch({ sort: isDefault(newSort) ? undefined : newSort });
+      setSearch({ sort: newSort });
     },
     [setSearch]
   );
