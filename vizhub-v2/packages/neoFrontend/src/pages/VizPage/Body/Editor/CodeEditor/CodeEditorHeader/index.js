@@ -47,13 +47,18 @@ export const CodeEditorHeader = ({
         ) : null}
         {!isMobile ? (
           <>
-            <CodeEditorIcon
-              onClick={toggleVimMode}
-              title={`Toggle Vim mode\n(currently ${isVimMode ? 'on' : 'off'})`}
-              style={{ opacity: isVimMode ? 1 : 0.2 }}
-            >
-              <VimSVG height={20} />
-            </CodeEditorIcon>
+            {
+              // Started phasing out Vim mode feature on 3/12/22
+              // in preparation for CodeMirror 6 migration.
+              // Current status: Icon removed, keyboard shortcut still works.
+              //            <CodeEditorIcon
+              //              onClick={toggleVimMode}
+              //              title={`Toggle Vim mode\n(currently ${isVimMode ? 'on' : 'off'})`}
+              //              style={{ opacity: isVimMode ? 1 : 0.2 }}
+              //            >
+              //              <VimSVG height={20} />
+              //            </CodeEditorIcon>
+            }
             <CodeEditorIcon
               onClick={toggleShowTop}
               title={showTop ? 'Hide top bar' : 'Show top bar'}
