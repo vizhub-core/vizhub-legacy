@@ -1,16 +1,13 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container } from './Bootstrap';
 import { Navigation } from './Navigation';
 import { VizPreview } from './VizPreview';
-import { classed } from './classed';
-
-const VizPreviewCollection = classed('viz-preview-collection');
 
 export const HomePage = () => (
   <div className="overflow-auto">
     <Navigation />
     <Container className="mt-3 mb-3">
-      <VizPreviewCollection>
+      <div className="viz-preview-collection">
         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((d) => (
           <VizPreview
             title="Viz Title"
@@ -20,7 +17,7 @@ export const HomePage = () => (
             ownerAvatarURL="https://github.com/mdo.png"
           />
         ))}
-      </VizPreviewCollection>
+      </div>
     </Container>
   </div>
 );

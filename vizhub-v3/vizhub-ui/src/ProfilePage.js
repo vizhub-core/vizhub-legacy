@@ -1,16 +1,10 @@
 import React from 'react';
-import { Container, Image } from 'react-bootstrap';
+import { Container, Image } from './Bootstrap';
 import { Navigation } from './Navigation';
 import { VizPreview } from './VizPreview';
-import { classed } from './classed';
-
-const Wrapper = classed('profile-page');
-const FullName = classed('profile-page__full-name');
-const UserName = classed('profile-page__user-name');
-const VizPreviewCollection = classed('viz-preview-collection');
 
 export const ProfilePage = () => (
-  <Wrapper>
+  <div className="profile-page">
     <Navigation />
     <Container className="mt-3 mb-3">
       <div className="d-flex mb-3">
@@ -20,11 +14,11 @@ export const ProfilePage = () => (
           roundedCircle
         />
         <div className="d-flex flex-column justify-content-center">
-          <FullName>Full Name</FullName>
-          <UserName>username</UserName>
+          <div className="profile-page__full-name">Full Name</div>
+          <div className="profile-page__user-name">username</div>
         </div>
       </div>
-      <VizPreviewCollection>
+      <div className="viz-preview-collection">
         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((d) => (
           <VizPreview
             title="Viz Title"
@@ -34,7 +28,7 @@ export const ProfilePage = () => (
             ownerAvatarURL="https://github.com/mdo.png"
           />
         ))}
-      </VizPreviewCollection>
+      </div>
     </Container>
-  </Wrapper>
+  </div>
 );

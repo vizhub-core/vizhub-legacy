@@ -9,7 +9,7 @@ import {
   Button,
   InputGroup,
   FormControl,
-} from 'react-bootstrap';
+} from './Bootstrap';
 
 // Inspired by:
 // https://react-bootstrap.netlify.app/components/dropdowns/#custom-dropdown-components

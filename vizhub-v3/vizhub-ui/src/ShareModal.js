@@ -7,7 +7,7 @@ import {
   InputGroup,
   FormControl,
   Form,
-} from 'react-bootstrap';
+} from './Bootstrap';
 
 const LinkSection = () => (
   <>

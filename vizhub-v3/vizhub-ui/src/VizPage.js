@@ -1,21 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { Container, Button, Nav } from 'react-bootstrap';
-import { classed } from './classed';
+import { Container, Button, Nav } from './Bootstrap';
 import { Navigation } from './Navigation';
 import { ShareModal } from './ShareModal';
 import { ForkModal } from './ForkModal';
-
-const Wrapper = classed('viz-page');
-const TopbarPart = classed('topbar-part');
-const Icon = classed('vizhub-icon');
-const VizViewer = classed('viz-viewer');
-const VizFrame = classed('viz-frame', 'svg');
-const Title = classed('title', 'h4');
-const Split = classed('viz-page-split');
-const EditorContent = classed('editor-content');
-const Header = classed('editor-content-header');
-const HeaderLeft = classed('editor-content-header-left');
-const HeaderRight = classed('header-right');
 
 export const VizPage = ({ markdownBody = () => '' }) => {
   // This is invoked as a React component.
@@ -59,10 +46,10 @@ export const VizPage = ({ markdownBody = () => '' }) => {
   );
 
   return (
-    <Wrapper>
+    <div className="viz-page">
       <Navigation className={activeFile ? 'hide-on-mobile' : ''} />
       <div className={`topbar${activeFile ? ' hide-on-mobile' : ''}`}>
-        <TopbarPart>
+        <div className="topbar-part">
           <Button
             variant="white"
             onClick={handleToggleEditor}
@@ -75,8 +62,8 @@ export const VizPage = ({ markdownBody = () => '' }) => {
             />
             {showEditor ? 'Close' : 'Open'} Editor
           </Button>
-        </TopbarPart>
-        <TopbarPart>
+        </div>
+        <div className="topbar-part">
           <Button
             variant="white"
             onClick={handleShowShareModal}
@@ -87,11 +74,11 @@ export const VizPage = ({ markdownBody = () => '' }) => {
             onClick={handleShowForkModal}
             className="vizhub-icon icon-fork btn-flat btn-flat-light clickable"
           ></Button>
-        </TopbarPart>
+        </div>
       </div>
       <ShareModal show={showShareModal} handleClose={handleCloseShareModal} />
       <ForkModal show={showForkModal} handleClose={handleCloseForkModal} />
-      <Split>
+      <div className="viz-page-split">
         {showEditor ? (
           <div
             className={`editor-sidebar${activeFile ? ' hide-on-mobile' : ''}`}
@@ -116,10 +103,10 @@ export const VizPage = ({ markdownBody = () => '' }) => {
           </div>
         ) : null}
         {activeFile ? (
-          <EditorContent>
-            <Header>
-              <HeaderLeft>{activeFile}</HeaderLeft>
-              <HeaderRight>
+          <div className="editor-content">
+            <div className="editor-content-header">
+              <div className="editor-content-header-left">{activeFile}</div>
+              <div className="header-right">
                 <Button
                   variant="white"
                   className="vizhub-icon icon-expand btn-flat btn-flat-dark clickable"
@@ -129,22 +116,22 @@ export const VizPage = ({ markdownBody = () => '' }) => {
                   onClick={handleCloseEditorContent}
                   className="vizhub-icon icon-x btn-flat btn-flat-dark clickable"
                 ></Button>
-              </HeaderRight>
-            </Header>
-          </EditorContent>
+              </div>
+            </div>
+          </div>
         ) : null}
         <div
           className={`vertical-split-right${
             showEditor || activeFile ? ' hide-on-mobile' : ''
           }`}
         >
-          <VizViewer>
-            <VizFrame viewBox={`0 0 960 ${height}`} />
-            <Title>{title}</Title>
+          <div className="viz-viewer">
+            <svg className="viz-frame" viewBox={`0 0 960 ${height}`} />
+            <h4 className="title">{title}</h4>
             <MarkdownBody />
-          </VizViewer>
+          </div>
         </div>
-      </Split>
-    </Wrapper>
+      </div>
+    </div>
   );
 };

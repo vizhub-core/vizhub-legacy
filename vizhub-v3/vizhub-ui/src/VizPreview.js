@@ -1,14 +1,4 @@
 import React from 'react';
-import { classed } from './classed';
-
-const Wrapper = classed('viz-preview');
-const ContentContainer = classed('content-container');
-const Thumbnail = classed('thumbnail');
-const LastUpdatedDate = classed('last-updated-date');
-const Title = classed('title');
-const MetaContainer = classed('meta-container');
-const OwnerAvatarImage = classed('owner-avatar-image', 'img');
-const OwnerName = classed('owner-name');
 
 // See also
 // archive/vizhub-v3-false-start/src/App/VizPreview.js
@@ -19,22 +9,27 @@ export const VizPreview = ({
   ownerName,
   ownerAvatarURL,
 }) => (
-  <Wrapper>
-    <Thumbnail
+  <div className="viz-preview">
+    <div
+      className="thumbnail"
       style={{ backgroundImage: `url("${thumbnailImageURL}")` }}
       alt={title}
-    ></Thumbnail>
-    <ContentContainer>
-      <LastUpdatedDate>{lastUpdatedDateFormatted}</LastUpdatedDate>
-      <Title>{title}</Title>
-    </ContentContainer>
-    <MetaContainer>
+    ></div>
+    <div className="content-container">
+      <div className="last-updated-date">{lastUpdatedDateFormatted}</div>
+      <div className="title">{title}</div>
+    </div>
+    <div className="meta-container">
       {ownerName ? (
         <>
-          <OwnerAvatarImage src={ownerAvatarURL} alt={ownerName} />
-          <OwnerName>{ownerName}</OwnerName>
+          <img
+            className="owner-avatar-image"
+            src={ownerAvatarURL}
+            alt={ownerName}
+          />
+          <div className="owner-name">{ownerName}</div>
         </>
       ) : null}
-    </MetaContainer>
-  </Wrapper>
+    </div>
+  </div>
 );
