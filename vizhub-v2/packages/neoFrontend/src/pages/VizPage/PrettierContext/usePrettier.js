@@ -66,7 +66,7 @@ export const usePrettier = () => {
             parser,
             plugins,
             singleQuote: true,
-            printWidth: 60,
+            printWidth: 50,
           });
 
           const op = fileChangeOp(fileIndex, oldText, newText, realtimeModules);
