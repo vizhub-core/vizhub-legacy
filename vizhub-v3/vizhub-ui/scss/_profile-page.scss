@@ -8,11 +8,11 @@
 
   &__full-name {
     font-weight: bold;
-    font-size: $h3-font-size;
+    font-size: var(--vizhub-h3-font-size);
   }
 
   &__user-name {
-    color: $vizhub-foreground-color-light;
-    font-size: $small-font-size;
+    color: var(--vizhub-foreground-color-light);
+    font-size: var(--vizhub-small-font-size);
   }
 }

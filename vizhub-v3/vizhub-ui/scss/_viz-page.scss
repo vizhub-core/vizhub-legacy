@@ -45,24 +45,24 @@
     width: 200px;
   }
 
-  font-family: $font-family-monospace;
+  font-family: var(--vizhub-font-family-monospace);
 
   display: flex;
   flex-direction: column;
-  background-color: $vizhub-editor-bg-dark;
+  background-color: var(--vizhub-editor-bg-dark);
   &-items {
-    background-color: $vizhub-editor-bg-light;
+    background-color: var(--vizhub-editor-bg-light);
   }
   &-item {
-    color: $vizhub-editor-color;
+    color: var(--vizhub-editor-color);
     padding: 0 0.75rem;
     display: flex;
     align-items: center;
-    height: $vizhub-editor-entry-height;
+    height: var(--vizhub-editor-entry-height);
     border-left: 5px solid transparent;
     &:hover,
     &:focus {
-      color: $vizhub-editor-color;
+      color: var(--vizhub-editor-color);
     }
     &.active {
       border-left: 5px solid white;
@@ -72,12 +72,12 @@
 .editor-content {
   flex: 1;
   flex-direction: column;
-  background-color: $vizhub-editor-bg-darkest;
-  font-family: $font-family-monospace;
-  color: $vizhub-editor-color;
+  background-color: var(--vizhub-editor-bg-darkest);
+  font-family: var(--vizhub-font-family-monospace);
+  color: var(--vizhub-editor-color);
   &-header {
-    height: $vizhub-editor-entry-height;
-    background-color: $vizhub-editor-bg-dark;
+    height: var(--vizhub-editor-entry-height);
+    background-color: var(--vizhub-editor-bg-dark);
     display: flex;
     justify-content: space-between;
 
@@ -106,15 +106,15 @@
     /* Scale horizontally when width < max-width. */
     width: 100%;
 
-    /* Ensure that the _inner_ content has max-width: $vizhub-content-max-width, */
+    /* Ensure that the _inner_ content has max-width: vizhub-content-max-width, */
     /* while the _outer_ content shrinks to preserve 10px horizontal padding. */
-    max-width: calc($vizhub-content-max-width + 2 * $vizhub-padding-little);
-    padding: $vizhub-padding-little;
+    max-width: calc(var(--vizhub-content-max-width) + 2 * var(--vizhub-padding-little));
+    padding: var(--vizhub-padding-little);
 
     svg.viz-frame {
       background-color: white;
-      border-radius: $border-radius;
-      box-shadow: $vizhub-box-shadow;
+      border-radius: var(--vizhub-border-radius);
+      box-shadow: var(--vizhub-box-shadow);
 
       /* This in conjunction with viewBox causes */
       /* the rectangle to fill the appropriate width */
@@ -122,8 +122,8 @@
       width: 100%;
     }
     .title {
-      padding: $vizhub-padding-lots 0px;
-      border-bottom: 1px solid $vizhub-rule-color;
+      padding: var(--vizhub-padding-lots) 0px;
+      border-bottom: 1px solid var(--vizhub-rule-color);
     }
   }
 }

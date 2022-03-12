@@ -12,8 +12,8 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: white;
-  box-shadow: $vizhub-box-shadow;
-  border-radius: $vizhub-border-radius;
+  box-shadow: var(--vizhub-box-shadow);
+  border-radius: var(--vizhub-border-radius);
   cursor: pointer;
 
   &:hover {
@@ -42,17 +42,17 @@
   .content-container {
     display: flex;
     flex-direction: column;
-    padding: $vizhub-padding-lots;
-    border-top: 1px solid $vizhub-rule-color;
-    border-bottom: 1px solid $vizhub-rule-color;
+    padding: var(--vizhub-padding-lots);
+    border-top: 1px solid var(--vizhub-rule-color);
+    border-bottom: 1px solid var(--vizhub-rule-color);
 
     /* Handle single-line titles. */
     flex: 1;
     justify-content: flex-start;
 
     .last-updated-date {
-      color: $vizhub-foreground-color-light;
-      font-size: $small-font-size;
+      color: var(--vizhub-foreground-color-light);
+      font-size: var(--vizhub-small-font-size);
       padding-bottom: 4px;
     }
 
@@ -70,8 +70,8 @@
   .meta-container {
     display: flex;
     align-items: center;
-    padding: $vizhub-padding-little;
-    font-size: $small-font-size;
+    padding: var(--vizhub-padding-little);
+    font-size: var(--small-font-size);
 
     .owner-avatar-image {
       width: 32px;

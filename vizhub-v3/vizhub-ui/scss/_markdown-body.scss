@@ -1,6 +1,6 @@
 /* Inspired by GitHub README styling. */
 .markdown-body {
-  padding-top: $vizhub-padding-lots;
+  padding-top: var(--vizhub-padding-lots);
   line-height: 1.5;
 
   h1,
@@ -38,19 +38,19 @@
 
   h6 {
     font-size: 0.85em;
-    color: $vizhub-foreground-color-light;
+    color: var(--vizhub-foreground-color-light);
   }
 
   h1,
   h2 {
-    border-bottom: 1px solid $vizhub-rule-color;
+    border-bottom: 1px solid var(--vizhub-rule-color);
     padding-bottom: 0.3em;
   }
 
   hr {
     border: none;
     height: 2px;
-    background-color: $vizhub-rule-color;
+    background-color: var(--vizhub-rule-color);
   }
 
   blockquote,
@@ -72,9 +72,9 @@
 
   code,
   pre {
-    background-color: $vizhub-code-background;
-    color: $vizhub-code-foreground;
-    font-family: $font-family-monospace;
+    background-color: var(--vizhub-code-background);
+    color: var(--vizhub-code-foreground);
+    font-family: var(--vizhub-font-family-monospace);
     font-size: 1em;
   }
   code {
@@ -84,7 +84,7 @@
   pre {
     line-height: 1.45;
     overflow: auto;
-    padding: $vizhub-padding-little;
+    padding: var(--vizhub-padding-little);
   }
   pre code {
     border-radius: 0;
@@ -101,8 +101,8 @@
 
     th,
     td {
-      border: 1px solid $vizhub-rule-color;
-      padding: $vizhub-padding-miniscule $vizhub-padding-little;
+      border: 1px solid var(--vizhub-rule-color);
+      padding: var(--vizhub-padding-miniscule) var(--vizhub-padding-little);
     }
 
     /* Remove external borders, so that border-radius can shine. */
@@ -133,7 +133,7 @@
   pre,
   img,
   table {
-    border-radius: $vizhub-border-radius;
-    box-shadow: $vizhub-box-shadow;
+    border-radius: var(--vizhub-border-radius);
+    box-shadow: var(--vizhub-box-shadow);
   }
 }
