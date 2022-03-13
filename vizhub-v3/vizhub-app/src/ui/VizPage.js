@@ -37,7 +37,7 @@ export const VizPage = ({ markdownBody = () => '' }) => {
   const handleShowForkModal = useCallback(() => setShowForkModal(true), []);
 
   // TODO more this up and out
-  const title = 'Test Title';
+  const title = 'Testing';
   const height = 500;
 
   const handleToggleEditor = useCallback(

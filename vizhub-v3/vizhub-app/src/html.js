@@ -31,7 +31,7 @@ const libraries = jsDelivrCombine([
 
   // See https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3/vizhub-ui
   // TODO use minified build
-  `vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.js`,
+  //`vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.js`,
   //https://unpkg.com/react-bootstrap@2.0.2/dist/react-bootstrap.min.js
 ]);
 

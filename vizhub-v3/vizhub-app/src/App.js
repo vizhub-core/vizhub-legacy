@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { VizContext, VizContextProvider } from './VizContext';
-import { VizPage } from 'vizhub-ui';
+import { VizPage } from './ui';
 
 const Body = () => {
   const { vizInfo } = useContext(VizContext);
-  return <VizPage />
+  return <VizPage />;
 };
 
 export const App = ({ pageData }) => {

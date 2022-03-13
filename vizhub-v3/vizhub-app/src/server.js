@@ -10,6 +10,7 @@ import WebSocket from 'ws';
 import WebSocketJSONStream from '@teamwork/websocket-json-stream';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import SSRProvider from 'react-bootstrap/SSRProvider';
 import { DatabaseGateways, SaveViz, GetViz } from 'vizhub-interactors';
 import { primordialViz } from 'vizhub-interactors/test/fixtures';
 import { App } from './App';
@@ -41,7 +42,11 @@ app.get('/', async (req, res) => {
 
   const pageData = { viz };
 
-  const rootHTML = renderToString(<App pageData={pageData} />);
+  const rootHTML = renderToString(
+    <SSRProvider>
+      <App pageData={pageData} />
+    </SSRProvider>
+  );
   const title = 'VizHub Community Edition';
   res.send(html({ title, rootHTML, pageData }));
 });
