@@ -33,12 +33,12 @@
     "json0-ot-diff": "^1.1.2",
     "ot-json1": "^1.0.2",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.2.0",
+    "react-bootstrap": "^2.2.1",
     "react-dom": "^17.0.2",
     "sharedb": "^2.2.5",
     "sharedb-client-browser": "^2.2.42",
     "sharedb-mingo-memory": "^1.2.0",
-    "vizhub-ui": "^0.1.2",
+    "vizhub-ui": "^1.0.0",
     "ws": "^8.5.0"
   },
   "devDependencies": {
