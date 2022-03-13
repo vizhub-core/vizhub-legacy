@@ -21,7 +21,7 @@ export const enablePreviewEmbeding = false;
 export const showSortOptions = true;
 export const showForksCount = true;
 
-export const showAboutLink = true;
+export const showAboutLink = false;
 export const lintJs = false;
 
 export const showFacebookLogin = false;
