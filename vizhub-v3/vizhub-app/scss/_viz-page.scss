@@ -41,9 +41,10 @@
 .editor-sidebar {
   // Full width on mobile.
   width: 100%;
-  @include media-breakpoint-up(sm) {
+  @media (min-width: 576px) {
     width: 200px;
   }
+
 
   font-family: var(--vizhub-font-family-monospace);
 

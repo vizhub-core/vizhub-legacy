@@ -7,5 +7,5 @@ import { App } from './App';
 // that was rendered into the HTML on the server side (see indexHTML.js).
 ReactDOM.hydrate(
   <App pageData={window.pageData} />,
-  document.getElementById('root')
+  document.getElementById('vizhub-root')
 );

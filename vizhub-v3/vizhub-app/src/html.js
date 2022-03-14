@@ -52,7 +52,7 @@ export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
     ${css}
   </head>
   <body>
-    <div id="root">${rootHTML}</div>
+    <div id="vizhub-root">${rootHTML}</div>
     <script src="${libraries}"></script>
     <script>window.pageData = ${jsesc(pageData)};</script>
     ${enableClientJS ? '<script src="client.js"></script>' : ''}
