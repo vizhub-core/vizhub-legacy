@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "vizhub.community",
   "scripts": {
-    "build-js": "sass scss/vizhub-app.scss dist/vizhub-appcss",
+    "build-js": "sass scss/vizhub-app.scss build/vizhub-app.css",
     "build-css": "rollup -c",
     "build": "concurrently 'npm:build-*'",
     "start": "npm run build && NODE_OPTIONS=--enable-source-maps node build/server.js",

@@ -27,6 +27,7 @@ export const VizContextProvider = ({
   // In the client, connect the viz to real time updates via ShareDB.
   useEffect(() => {
     if (isClient) {
+      console.log('here');
       // TODO wss for prod
       const socket = new WebSocket('ws://' + window.location.host);
       const shareDBConnection = new ShareDB.Connection(socket);

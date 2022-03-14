@@ -4,7 +4,13 @@ import { Navigation } from './Navigation';
 import { ShareModal } from './ShareModal';
 import { ForkModal } from './ForkModal';
 
-export const VizPage = ({ markdownBody = () => '' }) => {
+export const VizPage = ({
+  markdownBody = () => '',
+  title,
+  sortedFileMetadata,
+  files,
+  renderCodeEditor,
+}) => {
   // This is invoked as a React component.
   const MarkdownBody = markdownBody;
 
@@ -17,18 +23,22 @@ export const VizPage = ({ markdownBody = () => '' }) => {
   const [showEditor, setShowEditor] = useState(false);
 
   // TODO move this up and out to URL state.
-  const [activeFile, setActiveFile] = useState(null);
+  const [activeFileId, setActiveFileId] = useState(null);
+
+  if (activeFileId) {
+    console.log(activeFileId);
+  }
 
   // Clicking on the already open item will close it.
   const handleSelectFile = useCallback(
     (eventKey) => {
-      setActiveFile(activeFile === eventKey ? null : eventKey);
+      setActiveFileId(activeFileId === eventKey ? null : eventKey);
     },
-    [activeFile]
+    [activeFileId]
   );
 
   const handleCloseEditorContent = useCallback(() => {
-    setActiveFile(null);
+    setActiveFileId(null);
   }, []);
 
   const handleCloseShareModal = useCallback(() => setShowShareModal(false), []);
@@ -37,7 +47,6 @@ export const VizPage = ({ markdownBody = () => '' }) => {
   const handleShowForkModal = useCallback(() => setShowForkModal(true), []);
 
   // TODO more this up and out
-  const title = 'Testing';
   const height = 500;
 
   const handleToggleEditor = useCallback(
@@ -47,8 +56,8 @@ export const VizPage = ({ markdownBody = () => '' }) => {
 
   return (
     <div className="viz-page">
-      <Navigation className={activeFile ? 'hide-on-mobile' : ''} />
-      <div className={`topbar${activeFile ? ' hide-on-mobile' : ''}`}>
+      <Navigation className={activeFileId ? 'hide-on-mobile' : ''} />
+      <div className={`topbar${activeFileId ? ' hide-on-mobile' : ''}`}>
         <div className="topbar-part">
           <Button
             variant="white"
@@ -81,31 +90,29 @@ export const VizPage = ({ markdownBody = () => '' }) => {
       <div className="viz-page-split">
         {showEditor ? (
           <div
-            className={`editor-sidebar${activeFile ? ' hide-on-mobile' : ''}`}
+            className={`editor-sidebar${activeFileId ? ' hide-on-mobile' : ''}`}
           >
             <Nav
               className="flex-column editor-sidebar-items"
               onSelect={handleSelectFile}
             >
-              <Nav.Link
-                eventKey="index.js"
-                className="editor-sidebar-item clickable btn-flat-dark"
-              >
-                index.js
-              </Nav.Link>
-              <Nav.Link
-                eventKey="styles.css"
-                className="editor-sidebar-item clickable btn-flat-dark"
-              >
-                styles.css
-              </Nav.Link>
+              {sortedFileMetadata.map(({ name, vizFileId }) => (
+                <Nav.Link
+                  eventKey={vizFileId}
+                  className="editor-sidebar-item clickable btn-flat-dark"
+                >
+                  {name}
+                </Nav.Link>
+              ))}
             </Nav>
           </div>
         ) : null}
-        {activeFile ? (
+        {activeFileId ? (
           <div className="editor-content">
             <div className="editor-content-header">
-              <div className="editor-content-header-left">{activeFile}</div>
+              <div className="editor-content-header-left">
+                {files[activeFileId].name}
+              </div>
               <div className="header-right">
                 <Button
                   variant="white"
@@ -118,11 +125,12 @@ export const VizPage = ({ markdownBody = () => '' }) => {
                 ></Button>
               </div>
             </div>
+            {renderCodeEditor(activeFileId)}
           </div>
         ) : null}
         <div
           className={`vertical-split-right${
-            showEditor || activeFile ? ' hide-on-mobile' : ''
+            showEditor || activeFileId ? ' hide-on-mobile' : ''
           }`}
         >
           <div className="viz-viewer">
