@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "vizhub.community",
   "scripts": {
-    "build-js": "sass scss/vizhub-app.scss build/vizhub-app.css",
+    "build-js": "sass scss/vizhub-app.scss build/public/vizhub-app.css",
     "build-css": "rollup -c",
     "build": "concurrently 'npm:build-*'",
     "start": "npm run build && NODE_OPTIONS=--enable-source-maps node build/server.js",
@@ -40,6 +40,7 @@
     "sharedb": "^2.2.5",
     "sharedb-client-browser": "^2.2.42",
     "sharedb-mingo-memory": "^1.2.0",
+    "vizhub-codemirror": "^0.0.1",
     "vizhub-ui": "^1.0.0",
     "ws": "^8.5.0"
   },

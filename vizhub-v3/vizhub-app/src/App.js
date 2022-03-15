@@ -1,8 +1,8 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useCallback } from 'react';
 import { VizContext, VizContextProvider } from './VizContext';
-import { VizPage } from './ui';
+import { VizPage, Spinner } from './ui';
 
-const Body = () => {
+const VizPagePresenter = () => {
   const {
     vizInfo: { title },
     vizContent: { files },
@@ -23,13 +23,20 @@ const Body = () => {
     [files]
   );
 
+  const getFileName = useCallback(
+    (vizFileId) => files[vizFileId].name,
+    [files]
+  );
+
   return (
     <VizPage
       title={title}
       sortedFileMetadata={sortedFileMetadata}
       files={files}
+      getFileName={getFileName}
       renderCodeEditor={(activeFileId) => {
-        return <pre>{files[activeFileId].text}</pre>;
+        return <Spinner />;
+        //return <pre>{files[activeFileId].text}</pre>;
       }}
     />
   );
@@ -40,6 +47,6 @@ export const App = ({ pageData }) => (
     vizInfoSnapshot={pageData.viz.vizInfo}
     vizContentSnapshot={pageData.viz.vizContent}
   >
-    <Body />
+    <VizPagePresenter />
   </VizContextProvider>
 );

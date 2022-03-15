@@ -1,0 +1,11 @@
+.spinner {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  svg {
+    transition: opacity 2s;
+  }
+}

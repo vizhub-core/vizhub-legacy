@@ -8,7 +8,7 @@ export const VizPage = ({
   markdownBody = () => '',
   title,
   sortedFileMetadata,
-  files,
+  getFileName,
   renderCodeEditor,
 }) => {
   // This is invoked as a React component.
@@ -24,10 +24,6 @@ export const VizPage = ({
 
   // TODO move this up and out to URL state.
   const [activeFileId, setActiveFileId] = useState(null);
-
-  if (activeFileId) {
-    console.log(activeFileId);
-  }
 
   // Clicking on the already open item will close it.
   const handleSelectFile = useCallback(
@@ -111,7 +107,7 @@ export const VizPage = ({
           <div className="editor-content">
             <div className="editor-content-header">
               <div className="editor-content-header-left">
-                {files[activeFileId].name}
+                {getFileName(activeFileId)}
               </div>
               <div className="header-right">
                 <Button

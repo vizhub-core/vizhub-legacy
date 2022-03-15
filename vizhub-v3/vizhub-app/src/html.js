@@ -28,17 +28,13 @@ const libraries = jsDelivrCombine([
 
   // See https://github.com/react-bootstrap/react-bootstrap
   `react-bootstrap@${v('react-bootstrap')}/dist/react-bootstrap.min.js`,
-
-  // See https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3/vizhub-ui
-  // TODO use minified build
-  //`vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.js`,
-  //https://unpkg.com/react-bootstrap@2.0.2/dist/react-bootstrap.min.js
 ]);
 
 // See https://github.com/vizhub-core/vizhub/tree/main/vizhub-v3/vizhub-ui
 const link = (href) => `<link rel="stylesheet" href="${href}">`;
-//               `https://cdn.jsdelivr.net/npm/vizhub-ui@0.0.4/dist/vizhub-ui.min.css
-const css = link(`${cdn}/vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.min.css`);
+
+const uiCSS = link(`${cdn}/vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.min.css`);
+const appCSS = link(`/vizhub-app.css`);
 
 // A way to disable client side JS, for testing during development.
 const enableClientJS = true;
@@ -49,12 +45,13 @@ export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
-    ${css}
+    ${uiCSS}
+    ${appCSS}
   </head>
   <body>
     <div id="vizhub-root">${rootHTML}</div>
     <script src="${libraries}"></script>
     <script>window.pageData = ${jsesc(pageData)};</script>
-    ${enableClientJS ? '<script src="client.js"></script>' : ''}
+    ${enableClientJS ? '<script src="/client.js"></script>' : ''}
   </body>
 </html>`;
