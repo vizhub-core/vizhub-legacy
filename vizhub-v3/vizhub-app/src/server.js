@@ -21,12 +21,18 @@ const port = 8080;
 const app = express();
 
 ShareDB.types.register(json1.type);
-ShareDB.types.defaultType = json1.type;
 
 const shareDBBackend = new ShareDB({ db: new ShareDBMingo() });
 
 // Make the singleton server-side connection.
 const shareDBConnection = shareDBBackend.connect();
+
+// Sanity check - this works.
+//const vizDoc = shareDBConnection.get('vizInfo', 'viz1');
+//vizDoc.subscribe();
+//vizDoc.on('op batch', () => {
+//  console.log(vizDoc.data);
+//});
 
 // Initialize the server-side gateways.
 const gateways = DatabaseGateways(shareDBConnection);
@@ -35,6 +41,11 @@ const saveViz = SaveViz(gateways);
 
 // Initialize the database with sample content.
 saveViz(primordialViz);
+
+// Test real-time updates.
+setInterval(() => {
+  gateways.saveVizInfo({ ...primordialViz.vizInfo, title: '' + Math.random() });
+}, 1000);
 
 // Serve the home page.
 app.get('/', async (req, res) => {

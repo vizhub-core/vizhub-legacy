@@ -6,7 +6,6 @@ import { MemoryGateways } from '../src/MemoryGateways';
 import { DatabaseGateways } from '../src/DatabaseGateways';
 
 ShareDB.types.register(json1.type);
-ShareDB.types.defaultType = json1.type;
 
 //
 //   `testDB`

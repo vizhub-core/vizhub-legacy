@@ -38,7 +38,7 @@
     "react-bootstrap": "^2.2.1",
     "react-dom": "^17.0.2",
     "sharedb": "^2.2.5",
-    "sharedb-client-browser": "^2.2.42",
+    "sharedb-client-browser": "^2.2.46",
     "sharedb-mingo-memory": "^1.2.0",
     "vizhub-codemirror": "^0.0.1",
     "vizhub-ui": "^1.0.0",

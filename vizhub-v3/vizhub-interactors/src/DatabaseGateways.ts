@@ -1,14 +1,12 @@
 import { VizId, VizInfo, VizContent } from 'vizhub-entities';
+import { VIZ_INFO_COLLECTION, VIZ_CONTENT_COLLECTION } from './DatabaseGatewaysConstants.ts';
 import { Gateways } from './Gateways';
 import { vizInfoNotFound, vizContentNotFound } from './errors';
-import { diff } from './ot';
+import { diff, otType } from './ot';
 
 type ShareDBConnection = any;
 type ShareDBDoc = any;
 type CollectionName = string;
-
-const VIZ_INFO_COLLECTION: CollectionName = 'vizInfo';
-const VIZ_CONTENT_COLLECTION: CollectionName = 'vizContent';
 
 // Fetches a ShareDB Doc. See also:
 // https://share.github.io/sharedb/api/doc
@@ -52,7 +50,7 @@ const saveDoc = (doc: ShareDBDoc, data) =>
   new Promise((resolve, reject) => {
     const callback = (error) => (error ? reject(error) : resolve(null));
     if (!doc.type) {
-      doc.create(data, callback);
+      doc.create(data, otType.uri, callback);
     } else {
       doc.submitOp(diff(doc.data, data), callback);
     }

@@ -1,14 +1,20 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import ShareDB from 'sharedb/lib/client';
+import {
+  VIZ_INFO_COLLECTION,
+  VIZ_CONTENT_COLLECTION,
+} from 'vizhub-interactors/constants';
 import { VizPage, Spinner } from '../ui';
 import { isClient } from '../isClient';
 
-const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
+export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
   // Initialize the viz from server rendered snapshot data.
   const [viz, setViz] = useState({
     vizInfo: vizInfoSnapshot.data,
     vizContent: vizContentSnapshot.data,
   });
+
+  const { id } = vizInfoSnapshot.data;
 
   // In the client, connect the viz to real time updates via ShareDB.
   useEffect(() => {
@@ -17,30 +23,34 @@ const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
       const socket = new WebSocket('ws://' + window.location.host);
       const shareDBConnection = new ShareDB.Connection(socket);
 
-      const { id } = vizInfoSnapshot;
-      const vizInfoShareDBDoc = shareDBConnection.get('documentInfo', id);
-      const vizContentShareDBDoc = shareDBConnection.get('documentContent', id);
+      const vizInfoDoc = shareDBConnection.get(VIZ_INFO_COLLECTION, id);
+      const vizContentDoc = shareDBConnection.get(VIZ_CONTENT_COLLECTION, id);
 
       const logError = (error) => {
         // TODO instrument this to log errors to the server, so they can be traced and fixed
         if (error) console.log(error);
       };
 
-      vizInfoShareDBDoc.ingestSnapshot(vizInfoSnapshot, logError);
-      vizInfoShareDBDoc.subscribe(logError);
+      vizInfoDoc.ingestSnapshot(vizInfoSnapshot, logError);
+      vizInfoDoc.subscribe(logError);
 
-      vizContentShareDBDoc.ingestSnapshot(vizContentSnapshot, logError);
-      vizContentShareDBDoc.subscribe(logError);
+      vizContentDoc.ingestSnapshot(vizContentSnapshot, logError);
+      vizContentDoc.subscribe(logError);
 
       const updateViz = () => {
         setViz({
-          vizInfo: VizInfo(vizInfoShareDBDoc.data),
-          vizContent: VizContent(vizContentShareDBDoc.data),
+          vizInfo: vizInfoDoc.data,
+          vizContent: vizContentDoc.data,
         });
       };
 
-      vizContentShareDBDoc.on('op batch', updateViz);
-      vizInfoShareDBDoc.on('op batch', updateViz);
+      vizContentDoc.on('op batch', updateViz);
+      vizInfoDoc.on('op batch', updateViz);
+
+      return () => {
+        vizContentDoc.off('op batch', updateViz);
+        vizInfoDoc.off('op batch', updateViz);
+      };
     }
   }, []);
 
@@ -81,7 +91,6 @@ export const VizPagePresenter = ({ pageData }) => {
       getFileName={getFileName}
       renderCodeEditor={(activeFileId) => {
         return <Spinner />;
-        //return <pre>{files[activeFileId].text}</pre>;
       }}
     />
   );
