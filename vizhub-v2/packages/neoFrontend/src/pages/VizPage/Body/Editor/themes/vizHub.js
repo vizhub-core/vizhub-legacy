@@ -1,14 +1,4 @@
 import { hcl } from 'd3-color';
-const entries = [
-  'keyword',
-  ['tag', 'variable', 'variable2', 'variable3', 'definition'],
-  ['qualifier', 'builtin', 'header'],
-  ['string', 'string2'],
-  ['atom', 'number'],
-  ['link', 'attribute', 'property'],
-];
-
-const lightEntries = ['operator'];
 
 const sidebarDark = hcl('#3d4b65');
 const sidebarLight = hcl('#5b677d');
@@ -36,6 +26,17 @@ export const light = hcl(0, 0, luminance).formatHex();
 const dark = hcl(sidebarDark.h, sidebarDark.c, 80).formatHex();
 
 export const vizHub = (rotation) => {
+  const entries = [
+    'keyword',
+    ['tag', 'variable', 'variable2', 'variable3', 'definition'],
+    ['qualifier', 'builtin', 'header'],
+    ['string', 'string2'],
+    ['atom', 'number'],
+    ['link', 'attribute', 'property'],
+  ];
+
+  const lightEntries = ['operator'];
+
   const theme = {
     container: {
       color: light,
