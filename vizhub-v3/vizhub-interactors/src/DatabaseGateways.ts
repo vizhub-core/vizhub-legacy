@@ -84,7 +84,7 @@ export const DatabaseGateways = (
       return null;
     },
 
-    getVizInfo: async (vizId) => {
+    getVizInfoSnapshot: async (vizId) => {
       const doc = await fetchVizInfoDoc(vizId);
       if (!doc.type) {
         throw vizInfoNotFound(vizId);
@@ -101,7 +101,7 @@ export const DatabaseGateways = (
       return null;
     },
 
-    getVizContent: async (vizId) => {
+    getVizContentSnapshot: async (vizId) => {
       const doc = await fetchVizContentDoc(vizId);
       if (!doc.type) {
         throw vizContentNotFound(vizId);

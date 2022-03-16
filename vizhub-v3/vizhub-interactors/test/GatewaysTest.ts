@@ -6,25 +6,28 @@ import { initGateways } from './initGateways';
 
 export const GatewaysTest = () => {
   describe('Gateways & Interactors', () => {
-    it('saveVizInfo & getVizInfo', async () => {
+    it('saveVizInfo & getVizInfoSnapshot', async () => {
       const gateways = initGateways();
-      const { saveVizInfo, getVizInfo } = gateways;
+      const { saveVizInfo, getVizInfoSnapshot } = gateways;
       const { vizInfo } = primordialViz;
       await saveVizInfo(vizInfo);
-      assert.deepEqual((await getVizInfo(vizInfo.id)).data, vizInfo);
+      assert.deepEqual((await getVizInfoSnapshot(vizInfo.id)).data, vizInfo);
     });
 
-    it('saveVizContent & getVizContent', async () => {
+    it('saveVizContent & getVizContentSnapshot', async () => {
       const gateways = initGateways();
-      const { saveVizContent, getVizContent } = gateways;
+      const { saveVizContent, getVizContentSnapshot } = gateways;
       const { vizContent } = primordialViz;
       await saveVizContent(vizContent);
-      assert.deepEqual((await getVizContent(vizContent.id)).data, vizContent);
+      assert.deepEqual(
+        (await getVizContentSnapshot(vizContent.id)).data,
+        vizContent
+      );
     });
 
-    it('getVizContent error case VIZ_INFO_NOT_FOUND', () => {
+    it('getVizContentSnapshot error case VIZ_INFO_NOT_FOUND', () => {
       const gateways = initGateways();
-      return gateways.getVizInfo('unknown-id').then(
+      return gateways.getVizInfoSnapshot('unknown-id').then(
         () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
         (error) => {
           assert.equal(error.name, 'VizHubError');
@@ -33,9 +36,9 @@ export const GatewaysTest = () => {
       );
     });
 
-    it('getVizContent error case VIZ_CONTENT_NOT_FOUND', () => {
+    it('getVizContentSnapshot error case VIZ_CONTENT_NOT_FOUND', () => {
       const gateways = initGateways();
-      return gateways.getVizContent('unknown-id').then(
+      return gateways.getVizContentSnapshot('unknown-id').then(
         () =>
           Promise.reject(new Error('Expected error VIZ_CONTENT_NOT_FOUND.')),
         (error) => {
@@ -52,7 +55,7 @@ export const GatewaysTest = () => {
       await saveVizInfo(vizInfo);
       await deleteVizInfo(vizInfo.id);
 
-      await gateways.getVizInfo(vizInfo.id).then(
+      await gateways.getVizInfoSnapshot(vizInfo.id).then(
         () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
         (error) => {
           assert.equal(error.name, 'VizHubError');
@@ -67,7 +70,7 @@ export const GatewaysTest = () => {
       const { vizContent } = primordialViz;
       await saveVizContent(vizContent);
       await deleteVizContent(vizContent.id);
-      await gateways.getVizContent(vizContent.id).then(
+      await gateways.getVizContentSnapshot(vizContent.id).then(
         () =>
           Promise.reject(new Error('Expected error VIZ_CONTENT_NOT_FOUND.')),
         (error) => {

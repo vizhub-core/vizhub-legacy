@@ -17,7 +17,7 @@ export const MemoryGateways = (): Gateways => {
       vizInfoById[vizInfo.id] = vizInfo;
     },
 
-    getVizInfo: (vizId) => {
+    getVizInfoSnapshot: (vizId) => {
       const vizInfo = vizInfoById[vizId];
       return vizInfo
         ? Promise.resolve(snapshot(vizInfo))
@@ -32,7 +32,7 @@ export const MemoryGateways = (): Gateways => {
       vizContentById[vizContent.id] = vizContent;
     },
 
-    getVizContent: (vizId) => {
+    getVizContentSnapshot: (vizId) => {
       const vizContent = vizContentById[vizId];
       return vizContent
         ? Promise.resolve(snapshot(vizContent))

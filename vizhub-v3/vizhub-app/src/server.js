@@ -11,7 +11,7 @@ import WebSocketJSONStream from '@teamwork/websocket-json-stream';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import SSRProvider from 'react-bootstrap/SSRProvider';
-import { DatabaseGateways, SaveViz, GetViz } from 'vizhub-interactors';
+import { DatabaseGateways, SaveViz, GetVizSnapshot } from 'vizhub-interactors';
 import { primordialViz } from 'vizhub-interactors/test/fixtures';
 import { App } from './App';
 import { html } from './html';
@@ -30,7 +30,7 @@ const shareDBConnection = shareDBBackend.connect();
 
 // Initialize the server-side gateways.
 const gateways = DatabaseGateways(shareDBConnection);
-const getViz = GetViz(gateways);
+const getVizSnapshot = GetVizSnapshot(gateways);
 const saveViz = SaveViz(gateways);
 
 // Initialize the database with sample content.
@@ -38,9 +38,7 @@ saveViz(primordialViz);
 
 // Serve the home page.
 app.get('/', async (req, res) => {
-  const viz = await getViz(primordialViz.id);
-
-  const pageData = { viz };
+  const pageData = { vizSnapshot: await getVizSnapshot(primordialViz.id) };
 
   const rootHTML = renderToString(
     <SSRProvider>

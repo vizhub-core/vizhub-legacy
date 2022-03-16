@@ -2,11 +2,18 @@ import { VizId, VizInfo } from 'vizhub-entities';
 import { Gateways } from './Gateways';
 
 export const DeleteViz = (gateways: Gateways) => {
-  const { getVizInfo, saveVizInfo, deleteVizInfo, deleteVizContent, getForks } =
-    gateways;
+  const {
+    getVizInfoSnapshot,
+    saveVizInfo,
+    deleteVizInfo,
+    deleteVizContent,
+    getForks,
+  } = gateways;
 
   return async (vizId: VizId): Promise<void> => {
-    const vizInfo = (await getVizInfo(vizId)).data;
+    // If the viz is not found, getVizInfoSnapshot will throw,
+    // so we can access .data on the result without risk of crashing.
+    const vizInfo = (await getVizInfoSnapshot(vizId)).data;
     const { forkedFrom } = vizInfo;
 
     // For each fork forked from the viz to be deleted,

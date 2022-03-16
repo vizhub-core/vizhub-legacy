@@ -9,8 +9,12 @@ export const ForkVizTest = () => {
   describe('ForkViz', async () => {
     it('forkViz', async () => {
       const gateways = initGateways();
-      const { saveVizInfo, getVizInfo, saveVizContent, getVizContent } =
-        gateways;
+      const {
+        saveVizInfo,
+        getVizInfoSnapshot,
+        saveVizContent,
+        getVizContentSnapshot,
+      } = gateways;
       const forkViz = ForkViz(gateways);
 
       const { vizContent, vizInfo } = primordialViz;
@@ -24,7 +28,7 @@ export const ForkVizTest = () => {
 
       await forkViz({ newVizId, newOwner, forkedFrom, timestamp });
 
-      assert.deepEqual((await getVizInfo(newVizId)).data, {
+      assert.deepEqual((await getVizInfoSnapshot(newVizId)).data, {
         ...vizInfo,
         id: newVizId,
         owner: newOwner,
@@ -33,7 +37,7 @@ export const ForkVizTest = () => {
         lastUpdatedTimestamp: timestamp,
       });
 
-      assert.deepEqual((await getVizContent(newVizId)).data, {
+      assert.deepEqual((await getVizContentSnapshot(newVizId)).data, {
         ...vizContent,
         id: newVizId,
       });

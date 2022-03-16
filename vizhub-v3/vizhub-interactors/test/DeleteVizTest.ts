@@ -10,7 +10,7 @@ export const DeleteVizTest = () => {
   describe('DeleteViz', async () => {
     it('deleteViz', async () => {
       const gateways = initGateways();
-      const { saveVizInfo, saveVizContent, getVizInfo } = gateways;
+      const { saveVizInfo, saveVizContent, getVizInfoSnapshot } = gateways;
       const forkViz = ForkViz(gateways);
       const deleteViz = DeleteViz(gateways);
       const { id, vizInfo, vizContent } = primordialViz;
@@ -38,16 +38,16 @@ export const DeleteVizTest = () => {
         timestamp: ts4,
       });
 
-      assert.equal((await getVizInfo('viz2')).data.forkedFrom, 'viz1');
-      assert.equal((await getVizInfo('viz5')).data.forkedFrom, 'viz2');
-      assert.equal((await getVizInfo('viz6')).data.forkedFrom, 'viz2');
+      assert.equal((await getVizInfoSnapshot('viz2')).data.forkedFrom, 'viz1');
+      assert.equal((await getVizInfoSnapshot('viz5')).data.forkedFrom, 'viz2');
+      assert.equal((await getVizInfoSnapshot('viz6')).data.forkedFrom, 'viz2');
 
       await deleteViz('viz2');
 
-      assert.equal((await getVizInfo('viz5')).data.forkedFrom, 'viz1');
-      assert.equal((await getVizInfo('viz6')).data.forkedFrom, 'viz1');
+      assert.equal((await getVizInfoSnapshot('viz5')).data.forkedFrom, 'viz1');
+      assert.equal((await getVizInfoSnapshot('viz6')).data.forkedFrom, 'viz1');
 
-      await gateways.getVizInfo('viz2').then(
+      await gateways.getVizInfoSnapshot('viz2').then(
         () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
         (error) => {
           assert.equal(error.name, 'VizHubError');
@@ -55,12 +55,33 @@ export const DeleteVizTest = () => {
         }
       );
 
-      await gateways.getVizContent('viz2').then(
+      await gateways.getVizContentSnapshot('viz2').then(
         () =>
           Promise.reject(new Error('Expected error VIZ_CONTENT_NOT_FOUND.')),
         (error) => {
           assert.equal(error.name, 'VizHubError');
           assert.equal(error.code, VIZ_CONTENT_NOT_FOUND);
+        }
+      );
+    });
+    it('getVizContentSnapshot error case VIZ_INFO_NOT_FOUND', () => {
+      const gateways = initGateways();
+      return gateways.getVizInfoSnapshot('unknown-id').then(
+        () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
+        (error) => {
+          assert.equal(error.name, 'VizHubError');
+          assert.equal(error.code, VIZ_INFO_NOT_FOUND);
+        }
+      );
+    });
+    it('deleteViz for non-existent viz', async () => {
+      const gateways = initGateways();
+      const deleteViz = DeleteViz(gateways);
+      return deleteViz('unknown-id').then(
+        () => Promise.reject(new Error('Expected error VIZ_INFO_NOT_FOUND.')),
+        (error) => {
+          assert.equal(error.name, 'VizHubError');
+          assert.equal(error.code, VIZ_INFO_NOT_FOUND);
         }
       );
     });

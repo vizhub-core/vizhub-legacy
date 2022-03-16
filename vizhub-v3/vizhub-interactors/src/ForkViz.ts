@@ -2,7 +2,12 @@ import { VizId, VizInfo, VizContent, UserId, Timestamp } from 'vizhub-entities';
 import { Gateways } from './Gateways';
 
 export const ForkViz = (gateways: Gateways) => {
-  const { getVizInfo, getVizContent, saveVizInfo, saveVizContent } = gateways;
+  const {
+    getVizInfoSnapshot,
+    getVizContentSnapshot,
+    saveVizInfo,
+    saveVizContent,
+  } = gateways;
 
   return async (options: {
     newVizId: VizId; // The ID for the new viz.
@@ -13,7 +18,10 @@ export const ForkViz = (gateways: Gateways) => {
     const { newVizId, newOwner, forkedFrom, timestamp } = options;
 
     const [forkedFromVizInfoSnapshot, forkedFromVizContentSnapshot] =
-      await Promise.all([getVizInfo(forkedFrom), getVizContent(forkedFrom)]);
+      await Promise.all([
+        getVizInfoSnapshot(forkedFrom),
+        getVizContentSnapshot(forkedFrom),
+      ]);
     const forkedFromVizInfo = forkedFromVizInfoSnapshot.data;
     const forkedFromVizContent = forkedFromVizContentSnapshot.data;
 
