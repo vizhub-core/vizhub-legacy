@@ -27,14 +27,12 @@ const AvatarToggle = forwardRef(({ children, onClick }, ref) => (
 export const Navigation = ({ className }) => (
   <Navbar bg="dark" variant="dark" expand="md" className={className}>
     <Container fluid>
-      <Navbar.Brand href="#home"></Navbar.Brand>
+      <Navbar.Brand href="/"></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto" />
         <Nav className="align-items-md-center">
-          <Nav.Link href="#about">About</Nav.Link>
-          <Nav.Link href="#forum">Forum</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="/forum">Forum</Nav.Link>
 
           <Dropdown align="end">
             <Dropdown.Toggle as={AvatarToggle}>

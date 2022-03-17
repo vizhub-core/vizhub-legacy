@@ -1,4 +1,7 @@
 import React from 'react';
-import { VizPagePresenter } from './presenters/VizPagePresenter';
+import * as presenters from './presenters';
 
-export const App = ({ pageData }) => <VizPagePresenter pageData={pageData} />;
+export const App = ({ pageData }) => {
+  const PagePresenter = presenters[pageData.pageName];
+  return <PagePresenter pageData={pageData} />;
+};

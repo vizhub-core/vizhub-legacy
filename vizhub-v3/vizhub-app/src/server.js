@@ -15,6 +15,7 @@ import { DatabaseGateways, SaveViz, GetVizSnapshot } from 'vizhub-interactors';
 import { primordialViz } from 'vizhub-interactors/test/fixtures';
 import { App } from './App';
 import { html } from './html';
+import { HomePagePresenter, VizPagePresenter } from './presenters';
 
 const port = 8080;
 
@@ -49,8 +50,25 @@ setInterval(() => {
 
 // Serve the home page.
 app.get('/', async (req, res) => {
-  const pageData = { vizSnapshot: await getVizSnapshot(primordialViz.id) };
+  const pageData = { pageName: HomePagePresenter.name };
+  const rootHTML = renderToString(
+    <SSRProvider>
+      <App pageData={pageData} />
+    </SSRProvider>
+  );
+  const title = 'VizHub Community Edition';
+  res.send(html({ title, rootHTML, pageData }));
+});
 
+// Serve the viz page.
+app.get('/:userName/:vizId', async (req, res) => {
+  // TODO if viz owner does not match userName,
+  // redirect to the correct username.
+  const vizSnapshot = await getVizSnapshot(primordialViz.id);
+  const pageData = {
+    pageName: VizPagePresenter.name,
+    vizSnapshot: await getVizSnapshot(primordialViz.id),
+  };
   const rootHTML = renderToString(
     <SSRProvider>
       <App pageData={pageData} />
