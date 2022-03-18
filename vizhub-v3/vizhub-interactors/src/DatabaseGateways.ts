@@ -1,5 +1,8 @@
 import { VizId, VizInfo, VizContent } from 'vizhub-entities';
-import { VIZ_INFO_COLLECTION, VIZ_CONTENT_COLLECTION } from './DatabaseGatewaysConstants.ts';
+import {
+  VIZ_INFO_COLLECTION,
+  VIZ_CONTENT_COLLECTION,
+} from './DatabaseGatewaysConstants.ts';
 import { Gateways } from './Gateways';
 import { vizInfoNotFound, vizContentNotFound } from './errors';
 import { diff, otType } from './ot';

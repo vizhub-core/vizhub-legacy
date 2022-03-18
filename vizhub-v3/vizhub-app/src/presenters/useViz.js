@@ -8,6 +8,7 @@ import { useShareDBConnection } from './useShareDBConnection';
 // This hook sets up a live updating representation of a viz.
 export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
   // Initialize the viz from server rendered snapshot data.
+  // Gets set to null when the viz is deleted.
   const [viz, setViz] = useState({
     vizInfo: vizInfoSnapshot.data,
     vizContent: vizContentSnapshot.data,
@@ -16,7 +17,7 @@ export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
   // Initialize the ShareDB connection via WebSocket.
   const shareDBConnection = useShareDBConnection();
 
-  // In the client, connect the viz to real time updates via ShareDB.
+  // In the client only, connect the viz to real time updates via ShareDB.
   useEffect(() => {
     if (shareDBConnection) {
       const { id } = vizInfoSnapshot.data;
@@ -56,12 +57,25 @@ export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
       vizContentDoc.on('op batch', updateViz);
       vizInfoDoc.on('op batch', updateViz);
 
+      // TODO handle deletion of the viz we are viewing.
+      // What should happen?
+      // Probably should display 404.
+      // Easiest way is to trigger a reload?
+      // But that would not work well with caching...
+      // Maybe we set a piece of state up high in the app "vizDeleted",
+      // and in that case we transition client-side to render the 404 page?
+      // Or, should we show a notice like "This viz was deleted." ?
+      vizInfoDoc.on('del', () => {
+        setViz(null);
+      });
+
       // TODO verify that this cleanup is working?
       // Note: with the current setup, this would never be invoked,
       // because page navigation is done using <a href="...">,
       // causing a full page reload, and navigating away from the viz page
       // using some sort of client-side routing (which does not exist here)
       // is the only circumstance where this cleanup would be triggered.
+      // This would trigger during the transition to show 404 page.
       return () => {
         vizContentDoc.off('op batch', updateViz);
         vizInfoDoc.off('op batch', updateViz);

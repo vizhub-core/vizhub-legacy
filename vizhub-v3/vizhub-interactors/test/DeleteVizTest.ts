@@ -1,7 +1,6 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import { ForkViz } from '../src/ForkViz';
-import { DeleteViz } from '../src/DeleteViz';
+import { ForkViz, DeleteViz, SaveViz } from '../src';
 import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../src/errors';
 import { primordialViz, ts2, ts3, ts4 } from './fixtures';
 import { initGateways } from './initGateways';
@@ -12,10 +11,10 @@ export const DeleteVizTest = () => {
       const gateways = initGateways();
       const { saveVizInfo, saveVizContent, getVizInfoSnapshot } = gateways;
       const forkViz = ForkViz(gateways);
+      const saveViz = SaveViz(gateways);
       const deleteViz = DeleteViz(gateways);
-      const { id, vizInfo, vizContent } = primordialViz;
-      await saveVizInfo(vizInfo);
-      await saveVizContent(vizContent);
+      const { id } = primordialViz;
+      await saveViz(primordialViz);
 
       await forkViz({
         newVizId: 'viz2',
@@ -63,6 +62,8 @@ export const DeleteVizTest = () => {
           assert.equal(error.code, VIZ_CONTENT_NOT_FOUND);
         }
       );
+
+      await deleteViz('viz1');
     });
     it('getVizContentSnapshot error case VIZ_INFO_NOT_FOUND', () => {
       const gateways = initGateways();
