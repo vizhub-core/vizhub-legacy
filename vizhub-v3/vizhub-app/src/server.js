@@ -26,7 +26,11 @@ import {
 import { primordialViz } from 'vizhub-interactors/test/fixtures';
 import { App } from './App';
 import { html } from './html';
-import { HomePagePresenter, VizPagePresenter } from './presenters';
+import {
+  HomePagePresenter,
+  VizPagePresenter,
+//  ProfilePagePresenter,
+} from './presenters';
 
 const port = 8080;
 
@@ -96,11 +100,11 @@ setInterval(async () => {
   }
 }, 3000);
 
+// The number of VizInfo results per page of pagination (infinite scroll).
+const paginationLimit = 100;
+
 // Serve the home page.
 app.get('/', async (req, res) => {
-  // The number of VizInfo results per page of pagination (infinite scroll).
-  const paginationLimit = 100;
-
   const vizInfoSnapshots = await new Promise((resolve, reject) => {
     // TODO unify definition
     const query = shareDBConnection.createFetchQuery(
@@ -132,6 +136,71 @@ app.get('/', async (req, res) => {
   const title = 'VizHub Community Edition';
   res.send(html({ title, rootHTML, pageData }));
 });
+
+// TODO Authentication
+//
+//   * Just use Okta?
+//     https://developer.okta.com/docs/guides/auth-js/main/
+//     https://github.com/okta/okta-auth-js/tree/master/samples/generated/static-spa
+//
+//
+//
+//
+// TODO Profile Page
+//
+//   What's involved?
+//
+//    * Iterate User entity
+//      * migrate fields from V2 (partially done)
+//    * User CRUD methods in Gateways
+//      * Add to Gateways interface (partially done)
+//      * Gateways tests
+//      * In memory implementation
+//      * ShareDB implementation
+//    * getUserByUserName method in Gateways
+//      * Gateways tests
+//      * In memory implementation
+//      * ShareDB implementation
+//
+//
+//
+// TODO refactor to unify commonalities between here and '/'
+//app.get('/:userName', async (req, res) => {
+//  const { userName } = req.params;
+//  const user = await getUserByUserName(userName);
+//  const owner = user.id;
+//
+//  const vizInfoSnapshots = await new Promise((resolve, reject) => {
+//    // TODO
+//    // TODO unify definition
+//    const query = shareDBConnection.createFetchQuery(
+//      VIZ_INFO_COLLECTION,
+//      { owner },
+//      {},
+//      (error, results) => {
+//        // TODO verify that error handling works.
+//        if (error) {
+//          reject(error);
+//        } else {
+//          // results is an array of Doc instances with their data populated
+//          resolve(results.map((doc) => doc.toSnapshot()));
+//          query.destroy();
+//        }
+//      }
+//    );
+//  });
+//
+//  const pageData = {
+//    pageName: ProfilePagePresenter.name,
+//    vizInfoSnapshots,
+//  };
+//  const rootHTML = renderToString(
+//    <SSRProvider>
+//      <App pageData={pageData} />
+//    </SSRProvider>
+//  );
+//  const title = user.res.send(html({ title, rootHTML, pageData }));
+//});
 
 // Serve the viz page.
 app.get('/:userName/:vizId', async (req, res) => {

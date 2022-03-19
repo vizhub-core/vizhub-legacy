@@ -14,4 +14,9 @@ export interface Gateways {
   deleteVizContent(vizId: VizId): Promise<void>;
 
   getForks(vizId: VizId): Promise<Array<Snapshot<VizInfo>>>;
+
+  // TODO add tests
+  // saveUser(user: User): Promise<void>;
+  // getUserSnapshot(userId: UserId): Promise<Snapshot<User>>;
+  // deleteUser(userId: UserId): Promise<void>;
 }

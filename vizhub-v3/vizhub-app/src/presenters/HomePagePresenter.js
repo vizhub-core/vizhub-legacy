@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer, useCallback } from 'react';
 import { useShareDBConnection } from './useShareDBConnection';
 import { VIZ_INFO_COLLECTION } from 'vizhub-interactors/constants';
+import { HomePage } from '../ui';
 
 // This hook sets up a live updating representation of VizInfo query results.
 const useVizInfos = ({ vizInfoSnapshots }) => {
@@ -120,14 +121,28 @@ const useVizInfos = ({ vizInfoSnapshots }) => {
 export const HomePagePresenter = ({ pageData }) => {
   const { vizInfos, requestNextPage } = useVizInfos(pageData);
 
-  return vizInfos.map(({ id, title }) => (
-    <a key={id} href={`testUser/${id}`}>
-      {title}
-    </a>
-  ));
+  const vizPreviewsProps = vizInfos.map(({ id, title }) => ({
+    id,
+    title,
+    thumbnailImageURL:
+      'https://vizhub.com/api/visualization/thumbnail/76631818791a48909d79d6562177e4dc.png',
+    lastUpdatedDateFormatted: 'December 6, 2021',
+    ownerName: 'Joe Schmo',
+    ownerAvatarURL: 'https://github.com/mdo.png',
+  }));
 
-  //return (
-  // TODO fire onScrollToBottom
-  //  <HomePage onScrollToBottom={requestNextPage}/>
-  //);
+  // Working
+  //  return vizInfos.map(({ id, title }) => (
+  //    <a key={id} href={`testUser/${id}`}>
+  //      {title}
+  //    </a>
+  //  ));
+
+  //TODO fire onScrollToBottom
+  return (
+    <HomePage
+      onScrollToBottom={requestNextPage}
+      vizPreviewsProps={vizPreviewsProps}
+    />
+  );
 };

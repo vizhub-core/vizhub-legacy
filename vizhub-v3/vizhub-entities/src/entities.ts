@@ -84,6 +84,13 @@ export interface VizContent {
 
 export interface User {
   id: UserId;
+
+  // This user's unique user name.
+  // Derived from GitHub user name if authenticated via GitHub.
+  userName: string;
+
+  // This user's full name (first name, last name).
+  fullName: string;
 }
 
 // A representation of when a user upvoted a viz.
