@@ -53,7 +53,6 @@ const useVizInfos = ({ vizInfoSnapshots }) => {
 
       // Process real time updates by updating state.
       const update = () => {
-        console.log('updating');
         setVizInfos(query.results.map((doc) => doc.data));
       };
 
@@ -136,23 +135,33 @@ const useVizInfos = ({ vizInfoSnapshots }) => {
   return { vizInfos, requestNextPage };
 };
 
+// Generates props for the VizPreview component
+// from a VizInfo instance.
+const vizPreviewProps = (vizInfo) => ({
+  id: vizInfo.id,
+  title: vizInfo.title,
+  thumbnailImageURL:
+    'https://vizhub.com/api/visualization/thumbnail/76631818791a48909d79d6562177e4dc.png',
+  lastUpdatedDateFormatted: 'December 6, 2021',
+  ownerName: 'Joe Schmo',
+  ownerAvatarURL: 'https://github.com/mdo.png',
+});
+const vizPreviewKey = (vizInfo) => vizInfo.id;
+
 export const HomePagePresenter = ({ pageData }) => {
   const { vizInfos, requestNextPage } = useVizInfos(pageData);
 
-  const vizPreviewsProps = vizInfos.map(({ id, title }) => ({
-    id,
-    title,
-    thumbnailImageURL:
-      'https://vizhub.com/api/visualization/thumbnail/76631818791a48909d79d6562177e4dc.png',
-    lastUpdatedDateFormatted: 'December 6, 2021',
-    ownerName: 'Joe Schmo',
-    ownerAvatarURL: 'https://github.com/mdo.png',
-  }));
+  // TODO consider optimizing this by just passing in vizInfos.
+  // Currently this creates a new object for each vizInfo,
+  // even when just a single field on a single vizInfo changes,
+  // causing each and ever VizPreview to be re-rendered.
 
-  // Simulate user scrolling.
-  useEffect(() => {
-    requestNextPage();
-  });
+  //
+
+  // TODO Simulate user scrolling.
+  // useEffect(() => {
+  //   requestNextPage();
+  // });
 
   // Working
   //  return vizInfos.map(({ id, title }) => (
@@ -161,11 +170,12 @@ export const HomePagePresenter = ({ pageData }) => {
   //    </a>
   //  ));
 
-  //TODO fire onScrollToBottom
   return (
     <HomePage
+      vizPreviewItems={vizInfos}
+      vizPreviewProps={vizPreviewProps}
+      vizPreviewKey={vizPreviewKey}
       onScrollToBottom={requestNextPage}
-      vizPreviewsProps={vizPreviewsProps}
     />
   );
 };
