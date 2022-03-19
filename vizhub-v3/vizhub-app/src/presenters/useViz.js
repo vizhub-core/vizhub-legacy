@@ -4,6 +4,7 @@ import {
   VIZ_CONTENT_COLLECTION,
 } from 'vizhub-interactors/constants';
 import { useShareDBConnection } from './useShareDBConnection';
+import { logShareDBError } from './logShareDBError';
 
 // This hook sets up a live updating representation of a viz.
 export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
@@ -24,24 +25,19 @@ export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
       const vizInfoDoc = shareDBConnection.get(VIZ_INFO_COLLECTION, id);
       const vizContentDoc = shareDBConnection.get(VIZ_CONTENT_COLLECTION, id);
 
-      const logError = (error) => {
-        // TODO instrument this to log errors to the server, so they can be traced and fixed
-        if (error) console.log(error);
-      };
-
       // Verified manually that ingestSnapshot is working 3/17/22.
       // To verify, comment out the following ingestSnapshot line,
-      // refresh, oepn DevTools, look in WebSocket (WS) section,
+      // refresh, in Chrome DevTools look in WebSocket (WS) section,
       // observe that a message is sent back with the entire vizInfo doc.
       // The message looks like `{"data":{"v":4,"data":{"id":"viz1", ... `.
       // Uncomment the following ingestSnapshot line and observe that the
       // message with the entire vizInfo doc is never sent, only the updates are.
-      vizInfoDoc.ingestSnapshot(vizInfoSnapshot, logError);
-      vizContentDoc.ingestSnapshot(vizContentSnapshot, logError);
+      vizInfoDoc.ingestSnapshot(vizInfoSnapshot, logShareDBError);
+      vizContentDoc.ingestSnapshot(vizContentSnapshot, logShareDBError);
 
       // Subscribe to real time updates.
-      vizInfoDoc.subscribe(logError);
-      vizContentDoc.subscribe(logError);
+      vizInfoDoc.subscribe(logShareDBError);
+      vizContentDoc.subscribe(logShareDBError);
 
       // Process real time updates by updating state.
       // Note: we are using JSON1, which uses immutable patterns, so we can

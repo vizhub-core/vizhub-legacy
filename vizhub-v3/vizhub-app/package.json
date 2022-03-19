@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "vizhub.community",
   "scripts": {
+    "test": "",
     "build-js": "sass scss/vizhub-app.scss build/public/vizhub-app.css",
     "build-css": "rollup -c",
     "build": "concurrently 'npm:build-*'",

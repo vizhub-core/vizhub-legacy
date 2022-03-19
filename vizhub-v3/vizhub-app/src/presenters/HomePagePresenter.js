@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useReducer, useCallback } from 'react';
-import { useShareDBConnection } from './useShareDBConnection';
 import { VIZ_INFO_COLLECTION } from 'vizhub-interactors/constants';
 import { HomePage } from '../ui';
+import { useShareDBConnection } from './useShareDBConnection';
+import { logShareDBError } from './logShareDBError';
 
 // This hook sets up a live updating representation of VizInfo query results.
 const useVizInfos = ({ vizInfoSnapshots }) => {
@@ -16,21 +17,38 @@ const useVizInfos = ({ vizInfoSnapshots }) => {
   // In the client only, connect the results to real time updates via ShareDB.
   useEffect(() => {
     if (shareDBConnection) {
-      // TODO ingest snapshots, verify.
+      const options = {
+        // Verified manually that results option is working 3/19/22.
+        // For details see https://github.com/share/sharedb/pull/546
+        //
+        // To verify, comment out the following `results` option field,
+        // refresh, in Chrome DevTools look in WebSocket (WS) section,
+        // observe that a message is sent back with the entire vizInfo doc.
+        // The message looks like `data: [{v: 7,…}, {v: 5,…}, {v: 1,…}]`.
+        // This is not what we want, since we already transferred that data.
+        //
+        // Uncomment the following `results` option field and observe that
+        // the message with the entire query results is never sent, only the updates are.
+        // When `results` is populated, the WS message looks like this:
+        // `a: [["viz0.798763221841988", 10], ["viz0.7951069903628012", 3],...`
+        // Note that it only contains versions, not full snapshots, which is what we want.
+        results: vizInfoSnapshots.map((vizInfoSnapshot) => {
+          const { id } = vizInfoSnapshot.data;
+          const vizInfoDoc = shareDBConnection.get(VIZ_INFO_COLLECTION, id);
+
+          // It "works" without the following line, but transfers data for each doc.
+          vizInfoDoc.ingestSnapshot(vizInfoSnapshot, logShareDBError);
+
+          return vizInfoDoc;
+        }),
+      };
+
       // TODO unify definition of this query with the one in server.js
       const query = shareDBConnection.createSubscribeQuery(
         VIZ_INFO_COLLECTION,
         {},
-        {},
-        (error) => {
-          // TODO verify that error handling works.
-          if (error) {
-            console.log(
-              'TODO verify that error handling works for invalid subscribe query.'
-            );
-            throw error;
-          }
-        }
+        options,
+        logShareDBError
       );
 
       // Process real time updates by updating state.
@@ -130,6 +148,11 @@ export const HomePagePresenter = ({ pageData }) => {
     ownerName: 'Joe Schmo',
     ownerAvatarURL: 'https://github.com/mdo.png',
   }));
+
+  // Simulate user scrolling.
+  useEffect(() => {
+    requestNextPage();
+  });
 
   // Working
   //  return vizInfos.map(({ id, title }) => (

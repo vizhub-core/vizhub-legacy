@@ -7,6 +7,7 @@
     "dist"
   ],
   "scripts": {
+    "test": "",
     "minify": "cleancss -o dist/vizhub-ui.min.css dist/vizhub-ui.css",
     "build": "sass scss/vizhub-ui.scss dist/vizhub-ui.css",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write",

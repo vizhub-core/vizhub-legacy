@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../src/errors';
+import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../constants';
 import { primordialViz } from './fixtures';
 import { initGateways } from './initGateways';
 

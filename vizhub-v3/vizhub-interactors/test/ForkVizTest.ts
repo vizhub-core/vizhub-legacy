@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
 import { ForkViz } from '../src/ForkViz';
-import { VIZ_INFO_NOT_FOUND } from '../src/errors';
+import { VIZ_INFO_NOT_FOUND } from '../constants';
 import { primordialViz, ts2 } from './fixtures';
 import { initGateways } from './initGateways';
 

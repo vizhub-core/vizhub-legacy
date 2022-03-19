@@ -7,6 +7,7 @@
     "url": "git+ssh://git@github.com/vizhub-open-core/vizhub.git"
   },
   "scripts":{
+    "test": "npm run test --workspaces",
     "prettier": "npm run prettier --workspaces"
   },
   "keywords": [
@@ -28,8 +29,5 @@
     "vizhub-entities",
     "vizhub-interactors",
     "vizhub-ui"
-  ],
-  "dependencies": {
-    "sharedb-client-browser": "^2.2.0"
-  }
+  ]
 }

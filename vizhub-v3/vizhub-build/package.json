@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "test": "",
     "prettier": "prettier {*.*,**/*.*} --single-quote --write"
   },
   "devDependencies": {

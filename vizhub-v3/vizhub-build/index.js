@@ -18,8 +18,8 @@ export const external = [
   'sharedb-client-browser',
   'sharedb-mingo-memory',
   'sharedb/lib/client',
-//  'vizhub-ui',
-  'ws'
+  //  'vizhub-ui',
+  'ws',
 ];
 
 export const globals = {

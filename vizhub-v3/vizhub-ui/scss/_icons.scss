@@ -16,13 +16,13 @@ $vizhub-icon-expand: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/
 }
 
 .icon-share {
-  background: escape-svg($vizhub-icon-share) center / var(--vizhub-icon-size) auto
-    no-repeat;
+  background: escape-svg($vizhub-icon-share) center / var(--vizhub-icon-size)
+    auto no-repeat;
 }
 
 .icon-chevron {
-  background: escape-svg($vizhub-icon-chevron) center / var(--vizhub-icon-size) auto
-    no-repeat;
+  background: escape-svg($vizhub-icon-chevron) center / var(--vizhub-icon-size)
+    auto no-repeat;
 
   &.left {
     transform: rotate(90deg);
@@ -33,8 +33,8 @@ $vizhub-icon-expand: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/
 }
 
 .icon-fork {
-  background: escape-svg($vizhub-icon-fork) center / var(--vizhub-icon-size) auto
-    no-repeat;
+  background: escape-svg($vizhub-icon-fork) center / var(--vizhub-icon-size)
+    auto no-repeat;
 }
 
 .icon-x {
@@ -43,6 +43,6 @@ $vizhub-icon-expand: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/
 }
 
 .icon-expand {
-  background: escape-svg($vizhub-icon-expand) center / var(--vizhub-icon-size) auto
-    no-repeat;
+  background: escape-svg($vizhub-icon-expand) center / var(--vizhub-icon-size)
+    auto no-repeat;
 }
