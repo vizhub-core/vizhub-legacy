@@ -82,7 +82,29 @@ export interface VizContent {
   files: VizFiles;
 }
 
+export interface GoogleProfileName {
+  familyName: string;
+  givenName: string;
+}
+
+export interface GoogleProfileEmail {
+  value: string;
+}
+
+export interface GoogleProfile {
+  id: string;
+  displayName: string;
+  name: GoogleProfileName;
+  emails: Array<GoogleProfileEmail>;
+}
+
+export interface Profiles {
+  googleProfile?: GoogleProfile;
+  //githubProfile?: GitHubProfile;
+}
+
 export interface User {
+  // The unique ID of this user.
   id: UserId;
 
   // This user's unique user name.
@@ -91,7 +113,55 @@ export interface User {
 
   // This user's full name (first name, last name).
   fullName: string;
+
+  // The email address of this user.
+  // This email is used as the "source of truth" for identity.
+  email: string;
+
+  profiles: Profiles;
 }
+
+// TODO migrate elements from the following VizHub v2 implementation:
+//
+//export class User {
+//  constructor(data) {
+//
+//    this.id = data.id;
+//
+//    // This user's unique camelCase user name.
+//    this.userName = data.userName;
+//
+//    // This user's full name (first name, last name).
+//    this.fullName = data.fullName;
+//
+//    // The email address of this user.
+//    this.email = data.email;
+//
+//    // The URL for loading this user's avatar image.
+//    this.avatarUrl = data.avatarUrl;
+//
+//    // The company that this user works for (if provided).
+//    this.company = data.company;
+//
+//    // The URL of the website or blog associated with this user (if provided).
+//    this.website = data.website;
+//
+//    // The physical location of this user (if provided).
+//    this.location = data.location;
+//
+//    // Biography.
+//    this.bio = data.bio;
+//
+//    // The plan that the user is on.
+//    // Possibly undefined (free plan) or "pro" (pro plan).
+//    this.plan = data.plan;
+//
+//    // After a user upgrades to "pro" plan,
+//    // this is the Stripd customer ID.
+//    // Use: lookup the customer later when changing plans.
+//    this.stripeCustomerId = data.stripeCustomerId;
+//  }
+//}
 
 // A representation of when a user upvoted a viz.
 export interface Upvote {

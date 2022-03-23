@@ -1,6 +1,6 @@
-import { VizId, VizInfo, VizContent } from 'vizhub-entities';
+import { VizId, VizInfo, VizContent, UserId, User } from 'vizhub-entities';
 import { Gateways } from './Gateways';
-import { vizInfoNotFound, vizContentNotFound } from './errors';
+import { vizInfoNotFound, vizContentNotFound, userNotFound } from './errors';
 
 // Fake snapshot
 const snapshot = (data) => ({ data, v: 1, type: 'json1' });
@@ -11,6 +11,8 @@ export const MemoryGateways = (): Gateways => {
   const vizInfoById: { [id: VizId]: VizInfo } = {};
 
   const vizContentById: { [id: VizId]: VizContent } = {};
+
+  const userById: { [id: UserId]: User } = {};
 
   return {
     saveVizInfo: async (vizInfo) => {
@@ -47,5 +49,27 @@ export const MemoryGateways = (): Gateways => {
       Object.values(vizInfoById)
         .filter((vizInfo) => vizInfo.forkedFrom === vizId)
         .map(snapshot),
+
+    saveUser: async (user) => {
+      userById[user.id] = user;
+    },
+
+    getUserSnapshot: (userId) => {
+      const user = userById[userId];
+      return user
+        ? Promise.resolve(snapshot(user))
+        : Promise.reject(userNotFound(userId));
+    },
+
+    getUserSnapshotByEmail: (email) => {
+      const user = Object.values(userById).find((user) => user.email === email);
+      return user
+        ? Promise.resolve(snapshot(user))
+        : Promise.reject(userNotFound(userId));
+    },
+
+    deleteUser: async (userId) => {
+      delete userById[userId];
+    },
   };
 };

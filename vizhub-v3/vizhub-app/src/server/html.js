@@ -1,5 +1,5 @@
 import jsesc from 'jsesc';
-import pkg from '../package.json';
+import pkg from '../../package.json';
 
 //const cdn = 'https://unpkg.com';
 const cdn = 'https://cdn.jsdelivr.net/npm';
@@ -24,8 +24,8 @@ const libraries = jsDelivrCombine([
   // See https://github.com/vizhub-core/sharedb-client-browser
   `sharedb-client-browser@${v(
     'sharedb-client-browser'
-  )}/sharedb-client-json1-browser.js`,
-  //)}/sharedb-client-json1-browser.min.js`,
+  )}/sharedb-client-json1-browser.min.js`,
+  //)}/sharedb-client-json1-browser.js`,
 
   // See https://github.com/react-bootstrap/react-bootstrap
   `react-bootstrap@${v('react-bootstrap')}/dist/react-bootstrap.min.js`,

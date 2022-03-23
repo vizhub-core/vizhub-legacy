@@ -2,9 +2,15 @@ import { VizId, VizInfo, VizContent } from 'vizhub-entities';
 import {
   VIZ_INFO_COLLECTION,
   VIZ_CONTENT_COLLECTION,
+  USER_COLLECTION,
 } from './DatabaseGatewaysConstants.ts';
 import { Gateways } from './Gateways';
-import { vizInfoNotFound, vizContentNotFound } from './errors';
+import {
+  vizInfoNotFound,
+  vizContentNotFound,
+  userNotFound,
+  userNotFoundByEmail,
+} from './errors';
 import { diff, otType } from './ot';
 
 type ShareDBConnection = any;
@@ -79,6 +85,12 @@ export const DatabaseGateways = (
   const fetchVizInfoQuery = async (mongoQuery) =>
     await fetchQuery(VIZ_INFO_COLLECTION, mongoQuery, shareDBConnection);
 
+  const fetchUserDoc = async (userId) =>
+    await fetchDoc(USER_COLLECTION, userId, shareDBConnection);
+
+  const fetchUserQuery = async (mongoQuery) =>
+    await fetchQuery(USER_COLLECTION, mongoQuery, shareDBConnection);
+
   return {
     saveVizInfo: async (vizInfo) => {
       await saveDoc(await fetchVizInfoDoc(vizInfo.id), vizInfo);
@@ -121,6 +133,33 @@ export const DatabaseGateways = (
           forkedFrom: vizId,
         })
       ).map((doc) => doc.toSnapshot());
+    },
+
+    saveUser: async (user) => {
+      await saveDoc(await fetchUserDoc(user.id), user);
+      return null;
+    },
+
+    getUserSnapshot: async (userId) => {
+      const doc = await fetchUserDoc(userId);
+      if (!doc.type) {
+        throw userNotFound(userId);
+      }
+      return doc.toSnapshot();
+    },
+
+    getUserSnapshotByEmail: async (email) => {
+      const results = await fetchUserQuery({ email });
+
+      if (results.length === 0) {
+        throw userNotFoundByEmail(email);
+      }
+
+      return results[0].toSnapshot();
+    },
+
+    deleteUser: async (userId) => {
+      await deleteDoc(await fetchUserDoc(userId));
     },
   };
 };

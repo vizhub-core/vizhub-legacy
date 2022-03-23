@@ -38,13 +38,6 @@ export const HomePagePresenter = ({ pageData }) => {
     shareDBConnection,
   });
 
-  // TODO consider optimizing this by just passing in vizInfos.
-  // Currently this creates a new object for each vizInfo,
-  // even when just a single field on a single vizInfo changes,
-  // causing each and ever VizPreview to be re-rendered.
-
-  //
-
   // TODO Simulate user scrolling.
   // useEffect(() => {
   //   requestNextPage();
@@ -61,11 +54,21 @@ export const HomePagePresenter = ({ pageData }) => {
     <HomePage
       renderVizPreviews={() => (
         <>
-          {vizInfosPages.map((vizInfos) =>
+          {vizInfosPages.map((vizInfos, pageIndex) =>
             vizInfos.map((vizInfo) => (
-              <VizPreviewPresenter key={vizInfo.id} vizInfo={vizInfo} />
+              <div
+                style={{
+                  backgroundColor: pageIndex % 2 ? 'red' : 'green',
+                  padding: '12px',
+                }}
+              >
+                <VizPreviewPresenter key={vizInfo.id} vizInfo={vizInfo} />
+              </div>
             ))
           )}
+          <div>
+            <button onClick={requestNextPage}>More</button>
+          </div>
         </>
       )}
       onScrollToBottom={requestNextPage}

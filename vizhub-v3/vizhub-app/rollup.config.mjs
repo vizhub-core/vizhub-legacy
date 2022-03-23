@@ -15,9 +15,9 @@ const plugins = [
 
 // Builds the server.
 const server = {
-  input: 'src/server.js',
+  input: 'src/server/index.js',
   output: {
-    dir: 'build',
+    file: 'build/server.js',
     format: 'cjs',
     sourcemap: true,
   },

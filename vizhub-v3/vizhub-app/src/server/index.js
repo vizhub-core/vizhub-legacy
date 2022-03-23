@@ -4,6 +4,7 @@
 import http from 'http';
 import express from 'express';
 import ShareDB from 'sharedb';
+
 import ShareDBMingo from 'sharedb-mingo-memory';
 import json1 from 'ot-json1';
 import WebSocket from 'ws';
@@ -11,28 +12,24 @@ import WebSocketJSONStream from '@teamwork/websocket-json-stream';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import SSRProvider from 'react-bootstrap/SSRProvider';
-import {
-  DatabaseGateways,
-  SaveViz,
-  GetVizSnapshot,
-  ForkViz,
-  DeleteViz,
-} from 'vizhub-interactors';
+import { DatabaseGateways, GetVizSnapshot } from 'vizhub-interactors';
 import {
   VIZ_INFO_COLLECTION,
   VIZ_CONTENT_COLLECTION,
   VIZ_INFO_NOT_FOUND,
 } from 'vizhub-interactors/constants';
-import { primordialViz } from 'vizhub-interactors/test/fixtures';
-import { App } from './App';
-import { html } from './html';
+import { App } from '../App';
 import {
   HomePagePresenter,
   VizPagePresenter,
+  LoginPagePresenter,
   //  ProfilePagePresenter,
-} from './presenters';
+} from '../presenters';
+import { html } from './html';
+import { vizBot } from './vizBot';
+import { authentication } from './authentication';
 
-const port = 8080;
+const port = 3000;
 
 const app = express();
 
@@ -45,68 +42,24 @@ const shareDBConnection = shareDBBackend.connect();
 
 // Initialize the server-side gateways.
 const gateways = DatabaseGateways(shareDBConnection);
+
+authentication(app, gateways);
+
 const getVizSnapshot = GetVizSnapshot(gateways);
-const saveViz = SaveViz(gateways);
 
-// Initialize the database with sample content.
-saveViz(primordialViz);
-
-// Gets a random viz id.
-const randomVizId = () =>
-  new Promise((resolve, reject) => {
-    shareDBConnection.createFetchQuery(
-      VIZ_INFO_COLLECTION,
-      {},
-      {},
-      (error, results) => {
-        if (results.length > 0) {
-          const i = Math.floor(Math.random() * results.length);
-          const vizId = results[i].data.id;
-          resolve(vizId);
-        } else {
-          resolve(null);
-        }
-      }
-    );
-  });
-
-// Test real-time updates of the title.
-setInterval(async () => {
-  const vizId = await randomVizId();
-  const vizInfo = (await gateways.getVizInfoSnapshot(vizId)).data;
-  gateways.saveVizInfo({ ...vizInfo, title: '' + Math.random() });
-}, 1000);
-
-// Fork a random viz repeatedly
-// to test real-time updates when adding entries to query results.
-const forkViz = ForkViz(gateways);
-setInterval(async () => {
-  const newVizId = 'viz' + Math.random();
-  const newOwner = 'user' + Math.random();
-  const forkedFrom = await randomVizId();
-  const timestamp = Date.now() / 1000;
-
-  forkViz({ newVizId, newOwner, forkedFrom, timestamp });
-}, 2000);
-
-// Periodically delete a random viz.
-// to test real-time updates when removing entries to query results.
-const deleteViz = DeleteViz(gateways);
-setInterval(async () => {
-  const vizId = await randomVizId();
-  console.log('Deleting ' + vizId);
-  if (vizId) {
-    deleteViz(vizId);
-  }
-}, 3000);
+// Simulate users.
+vizBot({ gateways, shareDBConnection });
 
 // The number of VizInfo results per page of pagination (infinite scroll).
 const paginationLimit = 100;
 
 // Serve the home page.
 app.get('/', async (req, res) => {
+  console.log('req.user');
+  console.log(req.user);
+
   const vizInfoSnapshots = await new Promise((resolve, reject) => {
-    // TODO unify definition
+    // TODO unify definition - add pagination
     const query = shareDBConnection.createFetchQuery(
       VIZ_INFO_COLLECTION,
       {},
@@ -137,15 +90,18 @@ app.get('/', async (req, res) => {
   res.send(html({ title, rootHTML, pageData }));
 });
 
-// TODO Authentication
-//
-//   * Just use Okta?
-//     https://developer.okta.com/docs/guides/auth-js/main/
-//     https://github.com/okta/okta-auth-js/tree/master/samples/generated/static-spa
-//
-//
-//
-//
+app.get('/login', (req, res, next) => {
+  // TODO refactor this duplicated logic
+  const pageData = { pageName: LoginPagePresenter.name };
+  const rootHTML = renderToString(
+    <SSRProvider>
+      <App pageData={pageData} />
+    </SSRProvider>
+  );
+  const title = 'Log in';
+  res.send(html({ title, rootHTML, pageData }));
+});
+
 // TODO Profile Page
 //
 //   What's involved?

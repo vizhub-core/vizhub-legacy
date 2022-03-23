@@ -1,4 +1,4 @@
-import { Viz, Timestamp } from 'vizhub-entities';
+import { Viz, Timestamp, User } from 'vizhub-entities';
 
 export const ts1: Timestamp = 1638100000;
 export const ts2: Timestamp = 1638200000;
@@ -20,4 +20,12 @@ export const primordialViz: Viz = {
     id: 'viz1',
     files: { '7548392': { name: 'index.html', text: '<body>Hello</body>' } },
   },
+};
+
+export const ciUser: User = {
+  id: '47895473289547832938754',
+  fullName: 'CI',
+  email: 'ci@testing.com',
+  userName: 'ci',
+  //avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4',
 };

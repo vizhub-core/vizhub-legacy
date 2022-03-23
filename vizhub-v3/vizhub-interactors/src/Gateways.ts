@@ -1,4 +1,4 @@
-import { VizId, VizInfo, VizContent, Snapshot } from 'vizhub-entities';
+import { VizId, VizInfo, VizContent, Snapshot, User } from 'vizhub-entities';
 
 // These gateways define external interfaces that interactors use.
 //
@@ -15,8 +15,12 @@ export interface Gateways {
 
   getForks(vizId: VizId): Promise<Array<Snapshot<VizInfo>>>;
 
-  // TODO add tests
-  // saveUser(user: User): Promise<void>;
-  // getUserSnapshot(userId: UserId): Promise<Snapshot<User>>;
-  // deleteUser(userId: UserId): Promise<void>;
+  saveUser(user: User): Promise<void>;
+  getUserSnapshot(userId: UserId): Promise<Snapshot<User>>;
+  getUserSnapshotByEmail(email: string): Promise<Snapshot<User>>;
+  deleteUser(userId: UserId): Promise<void>;
+
+  // TODO make this happen:
+  // const user = await upsertUser({ email, googleProfile })
+  // const user = await upsertUser({ email, githubProfile })
 }

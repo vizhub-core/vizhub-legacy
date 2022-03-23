@@ -10,67 +10,69 @@ import { HomePage } from '../ui';
 import { useShareDBConnection } from './useShareDBConnection';
 import { logShareDBError } from './logShareDBError';
 
+const pageSize = 4;
+
+// State machine
+// SETTLED --> NEXT_PAGE_REQUESTED --|
+//    |------<-----------------------|
+const SETTLED = 'SETTLED';
+const NEXT_PAGE_REQUESTED = 'NEXT_PAGE_NEEDED';
+
+const reducer = (state, action, dispatch) => {
+  switch (action.type) {
+    case 'RequestNextPage':
+      return { ...state, nextPageStatus: NEXT_PAGE_REQUESTED };
+    case 'ResolveNextPage':
+      return {
+        ...state,
+        nextPageStatus: SETTLED,
+        numPages: state.numPages + 1,
+      };
+    case 'UpdateVizInfos':
+      const pages = [...state.pages];
+      pages[action.pageIndex] = action.vizInfos;
+      return { ...state, pages };
+    default:
+      throw new Error('This should never happen.');
+  }
+};
+
 // This hook sets up a live updating representation of VizInfo query results.
 export const useVizInfos = ({
   pageData: { vizInfoSnapshots },
   shareDBConnection,
 }) => {
-  // TODO handle pagination, infinite scroll
-  // TODO optimize infinite scroll by rendering placeholders for offscreen results
-  // TODO make dynamically updating thumbnails work (e.g. home page should update in real time)
-
-  // Handle pagination.
-  //
-  // State machine
-  // SETTLED --> NEXT_PAGE_REQUESTED --|
-  //    |------<-----------------------|
-  const SETTLED = 'SETTLED';
-  const NEXT_PAGE_REQUESTED = 'NEXT_PAGE_NEEDED';
   const initialPaginationState = useMemo(
     () => ({
       // Initialize the viz from server rendered snapshot data.
       pages: [vizInfoSnapshots.map((snapshot) => snapshot.data)],
-      numPages: 1,
+      numPages: 0,
       nextPageStatus: SETTLED,
     }),
-    []
+    [vizInfoSnapshots]
   );
-  const [paginationState, paginationDispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case 'RequestNextPage':
-        // If the next page is requested again before the first request resolves,
-        // do nothing (wait for the first request resolve);
-        if (state.nextPageStatus === NEXT_PAGE_REQUESTED) {
-          return;
-        }
-        // TODO make request for next page
-        // Simulate request for now
-        setTimeout(() => {
-          paginationDispatch({ type: 'NextPageResolved' });
-        }, 1000);
-        return { ...state, nextPageStatus: NEXT_PAGE_REQUESTED };
-        break;
-      case 'NextPageResolved':
-        // TODO store the resulting subscribed query somewhere
-        return { ...state, nextPageStatus: SETTLED };
-      case 'UpdateVizInfos':
-        // TODO store the resulting subscribed query somewhere
-        return {
-          ...state,
-          pages: state.pages.map((vizInfos, i) =>
-            i === action.pageIndex ? action.vizInfos : vizInfos
-          ),
-        };
-        return state;
-      default:
-        throw new Error('This should never happen.');
-    }
-  }, initialPaginationState);
 
-  // In the client only, connect the results to real time updates via ShareDB.
-  useEffect(() => {
+  const [paginationState, paginationDispatch] = useReducer(
+    reducer,
+    initialPaginationState
+  );
+
+  const requestNextPage = useCallback(() => {
+    // If the next page is requested again before the first request resolves,
+    // do nothing (wait for the first request resolve);
+    if (paginationState.nextPageStatus === NEXT_PAGE_REQUESTED) {
+      return;
+    }
+
+    const { numPages } = paginationState;
+    const pageIndex = numPages;
+    paginationDispatch({ type: 'RequestNextPage' });
+
     if (shareDBConnection) {
-      const options = {
+      const options = {};
+
+      // For the first page only, ingest snapshots and pre-populate results.
+      if (pageIndex === 0) {
         // Verified manually that results option is working 3/19/22.
         // For details see https://github.com/share/sharedb/pull/546
         //
@@ -85,7 +87,7 @@ export const useVizInfos = ({
         // When `results` is populated, the WS message looks like this:
         // `a: [["viz0.798763221841988", 10], ["viz0.7951069903628012", 3],...`
         // Note that it only contains versions, not full snapshots, which is what we want.
-        results: vizInfoSnapshots.map((vizInfoSnapshot) => {
+        options.results = vizInfoSnapshots.map((vizInfoSnapshot) => {
           const { id } = vizInfoSnapshot.data;
           const vizInfoDoc = shareDBConnection.get(VIZ_INFO_COLLECTION, id);
 
@@ -93,13 +95,13 @@ export const useVizInfos = ({
           vizInfoDoc.ingestSnapshot(vizInfoSnapshot, logShareDBError);
 
           return vizInfoDoc;
-        }),
-      };
+        });
+      }
 
       // TODO unify definition of this query with the one in server.js
       const query = shareDBConnection.createSubscribeQuery(
         VIZ_INFO_COLLECTION,
-        {},
+        { $skip: pageIndex * pageSize, $limit: pageSize },
         options,
         logShareDBError
       );
@@ -108,7 +110,7 @@ export const useVizInfos = ({
       const update = () => {
         paginationDispatch({
           type: 'UpdateVizInfos',
-          pageIndex: 0,
+          pageIndex,
           vizInfos: query.results.map((doc) => doc.data),
         });
       };
@@ -139,23 +141,31 @@ export const useVizInfos = ({
         oldQueryResults = query.results;
       };
 
-      query.on('ready', handleQueryChange);
+      query.on('ready', () => {
+        paginationDispatch({ type: 'ResolveNextPage' });
+        handleQueryChange();
+      });
       query.on('changed', handleQueryChange);
     }
-  }, [shareDBConnection]);
+  }, [
+    paginationDispatch,
+    shareDBConnection,
+    paginationState.nextPageStatus,
+    paginationState.numPages,
+  ]);
 
-  const requestNextPage = useCallback(() => {
-    paginationDispatch({ type: 'RequestNextPage' });
-  }, [paginationDispatch]);
-
-  // Flatten the array of vizInfos from all pages.
-  //  const vizInfos = useMemo(() => {
-  //    let array = [];
-  //    for (let i = 0; i < paginationState.numPages; i++) {
-  //      array = array.concat(paginationState.pages[i]);
-  //    }
-  //    return array;
-  //  }, [paginationState.pages, paginationState.numPages]);
+  // Subscribe to the first page (special case).
+  useEffect(() => {
+    if (
+      shareDBConnection &&
+      paginationState.numPages === 0 &&
+      paginationState.nextPageStatus === 'SETTLED'
+    ) {
+      console.log('Requesting first page');
+      requestNextPage();
+    }
+    // Note that dependencies here are intentionally blank
+  }, [shareDBConnection, paginationState]);
 
   return { vizInfosPages: paginationState.pages, requestNextPage };
 };

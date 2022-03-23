@@ -1,7 +1,11 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import { VIZ_INFO_NOT_FOUND, VIZ_CONTENT_NOT_FOUND } from '../constants';
-import { primordialViz } from './fixtures';
+import {
+  VIZ_INFO_NOT_FOUND,
+  VIZ_CONTENT_NOT_FOUND,
+  USER_NOT_FOUND,
+} from '../constants';
+import { primordialViz, ciUser } from './fixtures';
 import { initGateways } from './initGateways';
 
 export const GatewaysTest = () => {
@@ -98,6 +102,38 @@ export const GatewaysTest = () => {
       assert.deepEqual(
         new Set((await getForks(id)).map((fork) => fork.data.id)),
         new Set(['viz2', 'viz3', 'viz4'])
+      );
+    });
+
+    it('saveUser & getUserSnapshot', async () => {
+      const gateways = initGateways();
+      const { saveUser, getUserSnapshot } = gateways;
+      const user = ciUser;
+      await saveUser(user);
+      assert.deepEqual((await getUserSnapshot(user.id)).data, user);
+    });
+
+    it('getUserSnapshotByEmail', async () => {
+      const gateways = initGateways();
+      const { saveUser, getUserSnapshotByEmail } = gateways;
+      const user = ciUser;
+      await saveUser(user);
+      assert.deepEqual((await getUserSnapshotByEmail(user.email)).data, user);
+    });
+
+    it('deleteUser', async () => {
+      const gateways = initGateways();
+      const { saveUser, deleteUser } = gateways;
+      const user = ciUser;
+      await saveUser(user);
+      await deleteUser(user.id);
+
+      await gateways.getUserSnapshot(user.id).then(
+        () => Promise.reject(new Error('Expected error USER_NOT_FOUND.')),
+        (error) => {
+          assert.equal(error.name, 'VizHubError');
+          assert.equal(error.code, USER_NOT_FOUND);
+        }
       );
     });
   });
