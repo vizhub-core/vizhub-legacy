@@ -9,7 +9,7 @@ import {
   vizInfoNotFound,
   vizContentNotFound,
   userNotFound,
-  userNotFoundByEmail,
+  userNotFoundByEmails,
 } from './errors';
 import { diff, otType } from './ot';
 
@@ -136,6 +136,7 @@ export const DatabaseGateways = (
     },
 
     saveUser: async (user) => {
+      console.log(user);
       await saveDoc(await fetchUserDoc(user.id), user);
       return null;
     },
@@ -148,11 +149,11 @@ export const DatabaseGateways = (
       return doc.toSnapshot();
     },
 
-    getUserSnapshotByEmail: async (email) => {
-      const results = await fetchUserQuery({ email });
+    getUserSnapshotByEmails: async (emails) => {
+      const results = await fetchUserQuery({ emails: { $in: emails } });
 
       if (results.length === 0) {
-        throw userNotFoundByEmail(email);
+        throw userNotFoundByEmails(emails);
       }
 
       return results[0].toSnapshot();

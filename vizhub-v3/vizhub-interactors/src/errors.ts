@@ -17,5 +17,8 @@ export const vizContentNotFound = (vizId: VizId): Error =>
 export const userNotFound = (userId: UserId): Error =>
   new VizHubError('User not found with id: ' + userId, USER_NOT_FOUND);
 
-export const userNotFoundByEmail = (email): Error =>
-  new VizHubError('User not found with email: ' + email, USER_NOT_FOUND);
+export const userNotFoundByEmails = (emails): Error =>
+  new VizHubError(
+    'User not found with any of these email addresses: ' + emails.join(', '),
+    USER_NOT_FOUND
+  );

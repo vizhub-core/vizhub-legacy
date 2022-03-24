@@ -12,9 +12,12 @@
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oidc';
 import session from 'express-session';
+import { FindOrCreateUser } from 'vizhub-interactors';
 
 // Inspired by https://www.passportjs.org/tutorials/google/
-export const authentication = (app, gateways) => {
+export const authentication = ({ app, gateways }) => {
+  const findOrCreateUser = FindOrCreateUser(gateways);
+
   app.use(
     session({
       secret: 'super duper secret',
@@ -35,32 +38,21 @@ export const authentication = (app, gateways) => {
         clientID: process.env['VIZHUB_GOOGLE_CLIENT_ID'],
         clientSecret: process.env['VIZHUB_GOOGLE_CLIENT_SECRET'],
         callbackURL: '/oauth2/redirect/google',
-        scope: ['googleProfile', 'email'],
+        scope: [
+          'profile',
+          'email',
+          // This might get us more emails (good for identity resolution),
+          // but this scope adds more barrier to entry as Googls asks
+          // the user something like "Are you sure you trust VizHub?"...
+          //'https://www.googleapis.com/auth/user.emails.read'
+        ],
       },
       async (issuer, googleProfile, cb) => {
-        // googleProfile looks like this
-        // {
-        //   id: '105450333734875361810',
-        //   displayName: 'Curran Kelleher',
-        //   name: { familyName: 'Kelleher', givenName: 'Curran' },
-        //   emails: [ { value: 'curran@vizhub.com' } ]
-        // }
-        if (
-          googleProfile &&
-          googleProfile.emails &&
-          googleProfile.emails[0] &&
-          googleProfile.emails[0].value
-        ) {
-          const email = googleProfile.emails[0].value;
-
-          // TODO look up user by email.
-          // TODO Create new user entry if it does not exist
-          // TODO store googleProfile for future reference.
-          //const user = await gateways.upsertUser({ email, googleProfile })
-
-          cb(null, { id: 'some-user', email, googleProfile });
-        } else {
-          cb(new Error('No email address available.'));
+        try {
+          const user = await findOrCreateUser({ googleProfile });
+          cb(null, user);
+        } catch (error) {
+          cb(error);
         }
       }
     )
@@ -76,10 +68,8 @@ export const authentication = (app, gateways) => {
   );
 
   passport.serializeUser((user, cb) => {
-    console.log('in serializeUser');
-    console.log(user);
     process.nextTick(() => {
-      cb(null, { id: user.id, username: user.username, name: user.name });
+      cb(null, user);
     });
   });
 

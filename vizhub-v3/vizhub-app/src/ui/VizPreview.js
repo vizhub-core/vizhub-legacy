@@ -9,6 +9,7 @@ export const VizPreview = ({
   lastUpdatedDateFormatted,
   ownerName,
   ownerAvatarURL,
+  href,
 }) => {
   // Verified useMemo optimizations 3/19/22.
   // To verify, uncomment the following line and make sure re-renders
@@ -16,7 +17,7 @@ export const VizPreview = ({
   // console.log('rendering VizPreview');
 
   return (
-    <div className="viz-preview">
+    <a className="viz-preview" href={href}>
       <div
         className="thumbnail"
         style={{ backgroundImage: `url("${thumbnailImageURL}")` }}
@@ -38,6 +39,6 @@ export const VizPreview = ({
           </>
         ) : null}
       </div>
-    </div>
+    </a>
   );
 };

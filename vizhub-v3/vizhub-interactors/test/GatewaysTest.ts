@@ -113,12 +113,15 @@ export const GatewaysTest = () => {
       assert.deepEqual((await getUserSnapshot(user.id)).data, user);
     });
 
-    it('getUserSnapshotByEmail', async () => {
+    it('getUserSnapshotByEmails', async () => {
       const gateways = initGateways();
-      const { saveUser, getUserSnapshotByEmail } = gateways;
+      const { saveUser, getUserSnapshotByEmails } = gateways;
       const user = ciUser;
       await saveUser(user);
-      assert.deepEqual((await getUserSnapshotByEmail(user.email)).data, user);
+      assert.deepEqual(
+        (await getUserSnapshotByEmails([user.primaryEmail])).data,
+        user
+      );
     });
 
     it('deleteUser', async () => {

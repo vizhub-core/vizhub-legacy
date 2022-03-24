@@ -25,6 +25,7 @@ export const external = [
   'sharedb-client-browser',
   'sharedb-mingo-memory',
   'sharedb/lib/client',
+  'uuid',
   'ws',
 ];
 

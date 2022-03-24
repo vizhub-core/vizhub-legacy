@@ -7,5 +7,4 @@ GatewaysTest();
 ForkVizTest();
 DeleteVizTest();
 
-// TODO get this working
-//FindOrCreateUserTest();
+FindOrCreateUserTest();

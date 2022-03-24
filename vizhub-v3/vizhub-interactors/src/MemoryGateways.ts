@@ -1,6 +1,11 @@
 import { VizId, VizInfo, VizContent, UserId, User } from 'vizhub-entities';
 import { Gateways } from './Gateways';
-import { vizInfoNotFound, vizContentNotFound, userNotFound } from './errors';
+import {
+  vizInfoNotFound,
+  vizContentNotFound,
+  userNotFound,
+  userNotFoundByEmails,
+} from './errors';
 
 // Fake snapshot
 const snapshot = (data) => ({ data, v: 1, type: 'json1' });
@@ -61,11 +66,13 @@ export const MemoryGateways = (): Gateways => {
         : Promise.reject(userNotFound(userId));
     },
 
-    getUserSnapshotByEmail: (email) => {
-      const user = Object.values(userById).find((user) => user.email === email);
+    getUserSnapshotByEmails: (emails) => {
+      const user = Object.values(userById).find((user) =>
+        user.emails.find((email) => emails.includes(email))
+      );
       return user
         ? Promise.resolve(snapshot(user))
-        : Promise.reject(userNotFound(userId));
+        : Promise.reject(userNotFoundByEmails(emails));
     },
 
     deleteUser: async (userId) => {

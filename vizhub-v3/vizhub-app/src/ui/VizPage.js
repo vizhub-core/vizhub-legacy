@@ -10,6 +10,7 @@ export const VizPage = ({
   sortedFileMetadata,
   getFileName,
   renderCodeEditor,
+  renderLogInWigdet,
 }) => {
   // This is invoked as a React component.
   const MarkdownBody = markdownBody;
@@ -52,7 +53,10 @@ export const VizPage = ({
 
   return (
     <div className="viz-page">
-      <Navigation className={activeFileId ? 'hide-on-mobile' : ''} />
+      <Navigation
+        className={activeFileId ? 'hide-on-mobile' : ''}
+        renderLogInWigdet={renderLogInWigdet}
+      />
       <div className={`topbar${activeFileId ? ' hide-on-mobile' : ''}`}>
         <div className="topbar-part">
           <Button

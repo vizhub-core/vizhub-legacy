@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { VizPage, Spinner } from '../ui';
 import { useViz } from './useViz';
+import { LogInWidgetPresenter } from './LogInWidgetPresenter';
 
 const Body = ({
   viz: {
     vizInfo: { title },
     vizContent: { files },
   },
+  renderLogInWigdet,
 }) => {
   // Compute an alphabetized list of file metadata
   // for use in the editor sidebar.
@@ -42,14 +44,24 @@ const Body = ({
         // TODO load CodeMirror async.
         return <Spinner />;
       }}
+      renderLogInWigdet={renderLogInWigdet}
     />
   );
 };
 
-export const VizPagePresenter = ({ pageData }) => {
+export const VizPagePresenter = ({ pageData, renderLogInWigdet }) => {
   const viz = useViz(pageData.vizSnapshot);
 
   // TODO transition to 404 page,
   // show toast with message 'This viz was deleted';
-  return viz ? <Body viz={viz} /> : 'This viz was deleted';
+  return viz ? (
+    <Body
+      viz={viz}
+      renderLogInWigdet={() => (
+        <LogInWidgetPresenter authenticatedUser={pageData.authenticatedUser} />
+      )}
+    />
+  ) : (
+    'This viz was deleted'
+  );
 };

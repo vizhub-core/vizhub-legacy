@@ -24,8 +24,8 @@ export const primordialViz: Viz = {
 
 export const ciUser: User = {
   id: '47895473289547832938754',
-  fullName: 'CI',
-  email: 'ci@testing.com',
   userName: 'ci',
-  //avatarUrl: 'https://avatars0.githubusercontent.com/u/639823?v=4',
+  displayName: 'Joe Shmoe',
+  primaryEmail: 'joe@shmoe.com',
+  emails: ['joe@shmoe.com', 'joe@hugecorp.com'],
 };

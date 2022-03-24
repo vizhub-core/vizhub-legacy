@@ -10,6 +10,7 @@ import { HomePage, VizPreview } from '../ui';
 import { useShareDBConnection } from './useShareDBConnection';
 import { logShareDBError } from './logShareDBError';
 import { useVizInfos } from './useVizInfos';
+import { LogInWidgetPresenter } from './LogInWidgetPresenter';
 
 // Only re-render a given VizPreview when its corresponding vizInfo changes.
 const VizPreviewPresenter = ({ vizInfo }) =>
@@ -24,6 +25,7 @@ const VizPreviewPresenter = ({ vizInfo }) =>
         lastUpdatedDateFormatted={'December 6, 2021'}
         ownerName={'Joe Schmo'}
         ownerAvatarURL={'https://github.com/mdo.png'}
+        href={'/ci/' + vizInfo.id}
       />
     ),
     [vizInfo]
@@ -70,6 +72,9 @@ export const HomePagePresenter = ({ pageData }) => {
             <button onClick={requestNextPage}>More</button>
           </div>
         </>
+      )}
+      renderLogInWigdet={() => (
+        <LogInWidgetPresenter authenticatedUser={pageData.authenticatedUser} />
       )}
       onScrollToBottom={requestNextPage}
     />

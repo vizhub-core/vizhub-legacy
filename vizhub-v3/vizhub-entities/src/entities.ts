@@ -91,6 +91,13 @@ export interface GoogleProfileEmail {
   value: string;
 }
 
+// GoogleProfile example:
+// {
+//   id: '105450333734875361810',
+//   displayName: 'Curran Kelleher',
+//   name: { familyName: 'Kelleher', givenName: 'Curran' },
+//   emails: [ { value: 'curran@vizhub.com' } ]
+// }
 export interface GoogleProfile {
   id: string;
   displayName: string;
@@ -111,14 +118,18 @@ export interface User {
   // Derived from GitHub user name if authenticated via GitHub.
   userName: string;
 
-  // This user's full name (first name, last name).
-  fullName: string;
+  // This user's display name (typically first name, last name).
+  displayName: string;
 
-  // The email address of this user.
-  // This email is used as the "source of truth" for identity.
-  email: string;
+  // This user's primary email address.
+  primaryEmail: string;
 
-  profiles: Profiles;
+  // The email addresses of this user.
+  // These emails are used as the "source of truth" for identity.
+  emails: Array<string>;
+
+  // Raw unmodified profile data from various identity providers.
+  profiles?: Profiles;
 }
 
 // TODO migrate elements from the following VizHub v2 implementation:

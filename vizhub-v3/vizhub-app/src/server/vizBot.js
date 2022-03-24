@@ -6,7 +6,6 @@ import {
 } from 'vizhub-interactors/constants';
 import { primordialViz } from 'vizhub-interactors/test/fixtures';
 
-// TODO Factor this out
 // Simulate users editing vizzes. Simulates:
 //  * Forking
 //  * Deleting

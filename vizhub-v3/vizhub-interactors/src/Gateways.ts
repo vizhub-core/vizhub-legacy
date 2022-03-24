@@ -17,10 +17,6 @@ export interface Gateways {
 
   saveUser(user: User): Promise<void>;
   getUserSnapshot(userId: UserId): Promise<Snapshot<User>>;
-  getUserSnapshotByEmail(email: string): Promise<Snapshot<User>>;
+  getUserSnapshotByEmails(emails: Array<string>): Promise<Snapshot<User>>;
   deleteUser(userId: UserId): Promise<void>;
-
-  // TODO make this happen:
-  // const user = await upsertUser({ email, googleProfile })
-  // const user = await upsertUser({ email, githubProfile })
 }
