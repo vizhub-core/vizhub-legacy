@@ -1,10 +1,22 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-export default {
-  input: 'src/index.js',
-  output: {
-    file: 'dist/bundle.js',
-    format: 'umd',
-    name: 'VizHubCodeMirror',
+import { terser } from 'rollup-plugin-terser';
+export default [
+  {
+    input: 'src/index.js',
+    output: {
+      file: 'dist/vizhubCodemirror.js',
+      format: 'umd',
+      name: 'VizHubCodeMirror',
+    },
+    plugins: [nodeResolve()],
   },
-  plugins: [nodeResolve()],
-};
+  {
+    input: 'src/index.js',
+    output: {
+      file: 'dist/vizhubCodemirror.min.js',
+      format: 'umd',
+      name: 'VizHubCodeMirror',
+    },
+    plugins: [nodeResolve(), terser()],
+  },
+];

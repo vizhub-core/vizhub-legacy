@@ -71,17 +71,18 @@
 }
 .editor-content {
   flex: 1;
+  display: flex;
   flex-direction: column;
   background-color: var(--vizhub-editor-bg-darkest);
   font-family: var(--vizhub-font-family-monospace);
   color: var(--vizhub-editor-color);
+  min-width: 0;
   &-header {
     height: var(--vizhub-editor-entry-height);
     background-color: var(--vizhub-editor-bg-dark);
     display: flex;
     justify-content: space-between;
 
-    // TODO figure out how to BEM-ify this
     &-left {
       padding-left: 0.75rem;
     }
@@ -90,6 +91,25 @@
       display: flex;
       align-items: center;
     }
+  }
+  &-code-editor {
+    flex: 1;
+    min-height: 0px;
+
+    .cm-editor {
+      height: 100%;
+    }
+    .cm-editor.cm-focused {
+      outline: 0;
+      box-shadow: inset 0 0 0 1px #fff;
+    }
+    .cm-editor .cm-content {
+      font-family: var(--vizhub-font-family-monospace);
+    }
+    .cm-line {
+      padding: 0 2px 0 12px;
+    }
+    /* TODO style cursor */
   }
 }
 

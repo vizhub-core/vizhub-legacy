@@ -30,6 +30,9 @@ const libraries = jsDelivrCombine([
 const link = (href) => `<link rel="stylesheet" href="${href}">`;
 
 const uiCSS = link(`${cdn}/vizhub-ui@${v('vizhub-ui')}/dist/vizhub-ui.min.css`);
+const ubuntuMonoFontCSS = link(
+  `${cdn}/ubuntu-mono-ligaturized@3.0.0/arrowized/ubuntu-mono-arrowized.css`
+);
 const appCSS = link(`/vizhub-app.css`);
 
 // A way to disable client side JS, for testing during development.
@@ -43,6 +46,7 @@ export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
     <title>${title}</title>
     ${uiCSS}
     ${appCSS}
+    ${ubuntuMonoFontCSS}
   </head>
   <body>
     <div id="vizhub-root">${rootHTML}</div>

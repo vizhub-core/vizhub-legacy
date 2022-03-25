@@ -45,7 +45,7 @@
     "sharedb-client-browser": "^2.2.46",
     "sharedb-mingo-memory": "^1.2.0",
     "uuid": "^8.3.2",
-    "vizhub-codemirror": "^0.0.1",
+    "vizhub-codemirror": "^0.1.0",
     "vizhub-ui": "^1.0.0",
     "ws": "^8.5.0"
   },
@@ -57,7 +57,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "concurrently": "^7.0.0",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.0",
     "rollup-plugin-copy": "^3.4.0",
     "sass": "^1.49.9"
   }

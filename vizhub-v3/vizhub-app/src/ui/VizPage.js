@@ -113,7 +113,7 @@ export const VizPage = ({
               <div className="editor-content-header-left">
                 {getFileName(activeFileId)}
               </div>
-              <div className="header-right">
+              <div className="editor-content-header-right">
                 {
                   // TODO bring this button back for expanding coding area.
                   // <Button

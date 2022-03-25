@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  useRef,
+} from 'react';
 import { VizPage, Spinner } from '../ui';
 import { useShareDBConnection } from './useShareDBConnection';
 import { useViz } from './useViz';
@@ -66,7 +72,9 @@ let cachedEditorModules = null;
 const useEditorModules = () => {
   const [editorModules, setEditorModules] = useState(cachedEditorModules);
 
-  const libraries = jsDelivrCombine([`vizhub-codemirror@0.1.0/dist/bundle.js`]);
+  const libraries = jsDelivrCombine([
+    `vizhub-codemirror@0.1.0/dist/vizhubCodemirror.min.js`,
+  ]);
 
   useEffect(async () => {
     await loadScript(libraries);
@@ -87,7 +95,7 @@ const CodeEditorBody = ({
     });
     ref.current.appendChild(editor.dom);
   }, []);
-  return <div ref={ref} />;
+  return <div className="editor-content-code-editor" ref={ref} />;
 };
 
 const CodeEditor = ({ vizContentDoc, activeFileId }) => {
