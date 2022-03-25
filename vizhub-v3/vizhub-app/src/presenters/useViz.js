@@ -3,11 +3,13 @@ import {
   VIZ_INFO_COLLECTION,
   VIZ_CONTENT_COLLECTION,
 } from 'vizhub-interactors/constants';
-import { useShareDBConnection } from './useShareDBConnection';
 import { logShareDBError } from './logShareDBError';
 
 // This hook sets up a live updating representation of a viz.
-export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
+export const useViz = ({
+  vizSnapshot: { vizInfoSnapshot, vizContentSnapshot },
+  shareDBConnection,
+}) => {
   // Initialize the viz from server rendered snapshot data.
   // Gets set to null when the viz is deleted.
   const [viz, setViz] = useState({
@@ -15,8 +17,7 @@ export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
     vizContent: vizContentSnapshot.data,
   });
 
-  // Initialize the ShareDB connection via WebSocket.
-  const shareDBConnection = useShareDBConnection();
+  const [vizContentDoc, setVizContentDoc] = useState(null);
 
   // In the client only, connect the viz to real time updates via ShareDB.
   useEffect(() => {
@@ -39,6 +40,9 @@ export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
       vizInfoDoc.subscribe(logShareDBError);
       vizContentDoc.subscribe(logShareDBError);
 
+      // Expose the VizContent ShareDB doc to downstream code (e.g. CodeMirror+JSON1).
+      setVizContentDoc(vizContentDoc);
+
       // Process real time updates by updating state.
       // Note: we are using JSON1, which uses immutable patterns, so we can
       // assume that `doc.data` is a fresh new object after each change.
@@ -53,14 +57,7 @@ export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
       vizContentDoc.on('op batch', updateViz);
       vizInfoDoc.on('op batch', updateViz);
 
-      // TODO handle deletion of the viz we are viewing.
-      // What should happen?
-      // Probably should display 404.
-      // Easiest way is to trigger a reload?
-      // But that would not work well with caching...
-      // Maybe we set a piece of state up high in the app "vizDeleted",
-      // and in that case we transition client-side to render the 404 page?
-      // Or, should we show a notice like "This viz was deleted." ?
+      // Handle deletion of the viz we are viewing.
       vizInfoDoc.on('del', () => {
         setViz(null);
       });
@@ -79,5 +76,5 @@ export const useViz = ({ vizInfoSnapshot, vizContentSnapshot }) => {
     }
   }, [shareDBConnection]);
 
-  return viz;
+  return { viz, vizContentDoc };
 };

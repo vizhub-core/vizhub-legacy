@@ -1,3 +1,4 @@
+// Inspired by @codemirror/basic-setup
 import {
   keymap,
   highlightSpecialChars,
@@ -5,20 +6,20 @@ import {
   highlightActiveLine,
   dropCursor,
 } from '@codemirror/view';
-import { EditorState } from '@codemirror/state';
-import { history, historyKeymap } from '@codemirror/history';
-import { foldGutter, foldKeymap } from '@codemirror/fold';
-import { indentOnInput } from '@codemirror/language';
-import { lineNumbers, highlightActiveLineGutter } from '@codemirror/gutter';
-import { defaultKeymap } from '@codemirror/commands';
-import { bracketMatching } from '@codemirror/matchbrackets';
-import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
-import { searchKeymap, highlightSelectionMatches } from '@codemirror/search';
-import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
-import { commentKeymap } from '@codemirror/comment';
-import { rectangularSelection } from '@codemirror/rectangular-selection';
-import { defaultHighlightStyle } from '@codemirror/highlight';
-import { lintKeymap } from '@codemirror/lint';
+//import { EditorState } from '@codemirror/state';
+//import { history, historyKeymap } from '@codemirror/history';
+//import { foldGutter, foldKeymap } from '@codemirror/fold';
+//import { indentOnInput } from '@codemirror/language';
+//import { lineNumbers, highlightActiveLineGutter } from '@codemirror/gutter';
+//import { defaultKeymap } from '@codemirror/commands';
+//import { bracketMatching } from '@codemirror/matchbrackets';
+//import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
+//import { searchKeymap, highlightSelectionMatches } from '@codemirror/search';
+//import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
+//import { commentKeymap } from '@codemirror/comment';
+//import { rectangularSelection } from '@codemirror/rectangular-selection';
+//import { defaultHighlightStyle } from '@codemirror/highlight';
+//import { lintKeymap } from '@codemirror/lint';
 
 /// This is an extension value that just pulls together a whole lot of
 /// extensions that you might want in a basic editor. It is meant as a

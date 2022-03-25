@@ -17,15 +17,19 @@ export const vizBot = ({ gateways, shareDBConnection }) => {
   saveViz(primordialViz);
 
   // Gets a random viz id.
-  const randomVizId = () =>
+  const randomVizId = (avoidPrimordialViz) =>
     new Promise((resolve, reject) => {
       shareDBConnection.createFetchQuery(
         VIZ_INFO_COLLECTION,
         {},
         {},
         (error, results) => {
-          if (results.length > 0) {
-            const i = Math.floor(Math.random() * results.length);
+          if (results.length > (avoidPrimordialViz ? 1 : 0)) {
+            // Never pick the primordial viz, so it's stable for manual testing.
+            const i = avoidPrimordialViz
+              ? 1 + Math.floor(Math.random() * (results.length - 1))
+              : Math.floor(Math.random() * results.length);
+
             const vizId = results[i].data.id;
             resolve(vizId);
           } else {
@@ -37,7 +41,7 @@ export const vizBot = ({ gateways, shareDBConnection }) => {
 
   // Test real-time updates of the title.
   setInterval(async () => {
-    const vizId = await randomVizId();
+    const vizId = await randomVizId(true);
     const vizInfo = (await gateways.getVizInfoSnapshot(vizId)).data;
     gateways.saveVizInfo({ ...vizInfo, title: '' + Math.random() });
   }, 1200);
@@ -58,7 +62,7 @@ export const vizBot = ({ gateways, shareDBConnection }) => {
   // to test real-time updates when removing entries to query results.
   const deleteViz = DeleteViz(gateways);
   setInterval(async () => {
-    const vizId = await randomVizId();
+    const vizId = await randomVizId(true);
     if (vizId) {
       deleteViz(vizId);
     }

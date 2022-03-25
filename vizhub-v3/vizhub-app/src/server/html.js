@@ -1,5 +1,6 @@
 import jsesc from 'jsesc';
 import pkg from '../../package.json';
+import { jsDelivrCombine } from '../jsDelivrCombine';
 
 //const cdn = 'https://unpkg.com';
 const cdn = 'https://cdn.jsdelivr.net/npm';
@@ -8,12 +9,6 @@ const cdn = 'https://cdn.jsdelivr.net/npm';
 const v = (packageName) => pkg.dependencies[packageName].replace('^', '');
 
 // The ShareDB client is responsible for real time synchronization.
-
-// Computes a JSDelivr CDN URL that will fetch multiple JS libraries
-// concatenated together (they all introduce globals).
-const jsDelivrCombine = (libs) =>
-  'https://cdn.jsdelivr.net/combine/' +
-  libs.map((lib) => `npm/${lib}`).join(',');
 
 // Underlying Philosophy: Pull in large dependencies via CDN when possible.
 // Why? Minimize data transfer from our servers, less costly operations.

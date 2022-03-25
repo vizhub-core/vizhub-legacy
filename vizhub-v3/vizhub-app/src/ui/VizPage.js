@@ -96,9 +96,9 @@ export const VizPage = ({
               className="flex-column editor-sidebar-items"
               onSelect={handleSelectFile}
             >
-              {sortedFileMetadata.map(({ name, vizFileId }) => (
+              {sortedFileMetadata.map(({ name, fileId }) => (
                 <Nav.Link
-                  eventKey={vizFileId}
+                  eventKey={fileId}
                   className="editor-sidebar-item clickable btn-flat-dark"
                 >
                   {name}
@@ -114,10 +114,13 @@ export const VizPage = ({
                 {getFileName(activeFileId)}
               </div>
               <div className="header-right">
-                <Button
-                  variant="white"
-                  className="vizhub-icon icon-expand btn-flat btn-flat-dark clickable"
-                ></Button>
+                {
+                  // TODO bring this button back for expanding coding area.
+                  // <Button
+                  //   variant="white"
+                  //   className="vizhub-icon icon-expand btn-flat btn-flat-dark clickable"
+                  // ></Button>
+                }
                 <Button
                   variant="white"
                   onClick={handleCloseEditorContent}

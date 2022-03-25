@@ -2,3 +2,9 @@
 <meta charset="utf8" />
 <h1>CodeMirror!</h1>
 <script src="dist/bundle.js"></script>
+<script>
+  const editor = VizHubCodeMirror.createEditor({
+    doc: 'Hello Text!',
+  });
+  document.body.appendChild(editor.dom);
+</script>
