@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Container, Button, Nav } from './Bootstrap';
 import { Navigation } from './Navigation';
+import { Layout } from './Layout';
 import { ShareModal } from './ShareModal';
 import { ForkModal } from './ForkModal';
 
@@ -52,7 +53,7 @@ export const VizPage = ({
   );
 
   return (
-    <div className="viz-page">
+    <Layout className="viz-page">
       <Navigation
         className={activeFileId ? 'hide-on-mobile' : ''}
         renderLogInWigdet={renderLogInWigdet}
@@ -143,6 +144,6 @@ export const VizPage = ({
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };

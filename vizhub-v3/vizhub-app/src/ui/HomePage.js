@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Container } from './Bootstrap';
+import { Layout } from './Layout';
 import { Navigation } from './Navigation';
 import { VizPreview } from './VizPreview';
 
@@ -12,11 +13,11 @@ export const HomePage = ({
   // to request the next page of the query.
 
   return (
-    <div className="overflow-auto">
+    <Layout className="overflow-auto">
       <Navigation renderLogInWigdet={renderLogInWigdet} />
       <Container className="mt-3 mb-3">
         <div className="viz-preview-collection">{renderVizPreviews()}</div>
       </Container>
-    </div>
+    </Layout>
   );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Image } from './Bootstrap';
-import { Navigation } from './Navigation';
+import { Layout } from './Layout';
 import { VizPreview } from './VizPreview';
 
 export const ProfilePage = () => (
-  <div className="profile-page">
+  <Layout className="profile-page">
     <Navigation />
     <Container className="mt-3 mb-3">
       <div className="d-flex mb-3">
@@ -30,5 +30,5 @@ export const ProfilePage = () => (
         ))}
       </div>
     </Container>
-  </div>
+  </Layout>
 );

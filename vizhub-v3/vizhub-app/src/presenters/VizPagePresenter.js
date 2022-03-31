@@ -83,6 +83,101 @@ const useEditorModules = () => {
   return editorModules;
 };
 
+// TODO get this to work
+//import { otPlugin, opsToTransaction } from 'codemirror-ot';
+//
+//// TODO unify with implementation in codemirror-ot tests.
+//const atPath = (obj, path) => path.reduce((d, key) => d[key], obj);
+//
+//// TODO research if this is already implemented elsewhere in the ShareDB universe.
+//const pathMatches = (op, path) => {
+//  if (op.length !== 1) {
+//    return false;
+//  }
+//  const opPath = op[0].p;
+//  if (opPath.length < path.length) {
+//    return false;
+//  }
+//  return path.every((pathEntry, i) => pathEntry === opPath[i]);
+//};
+
+// Inspired by https://github.com/vizhub-core/codemirror-6-experiments/blob/master/packages/experiments/src/client/codeMirrorShareDBBinding.js
+
+//export const createView = options => {
+//  const { doc, otPlugin } = options;
+//
+//  const mode = legacyMode(javascript({ indentUnit: 2 }, {}));
+//
+//  let plugins = [mode];
+//
+//    plugins = plugins.concat([
+//      gutter(),
+//      history(),
+//      matchBrackets({ decorationsPlugin: mode }),
+//      keymap(historyKeymap()),
+//      keymap(indentationKeymap(mode)),
+//      keymap(baseKeymap)
+//    ]);
+//    if (otPlugin) {
+//      plugins = plugins.concat(otPlugin);
+//    }
+//
+//  const state = EditorState.create({ doc, plugins });
+//
+//  return new EditorView(state);
+//};
+//const getOrCreateView = shareDBDoc => function(files, fileId) {
+//  if (!views[fileId]) {
+//    const path = ['files', fileId, 'text'];
+//
+//    this.views[fileName] = CodeMirrorShareDBBinding({
+//      path,
+//      shareDBDoc,
+//      createView
+//    });
+//  }
+//  return this.views[fileName];
+//};
+//export const CodeMirrorShareDBBinding = options => {
+//  const {
+//    shareDBDoc,
+//    editorView,
+//    path = [], // The path of the field in the json1 document
+//  } = options;
+//
+//  let otPlugin;
+//  let applyingOpTransaction = false;
+//
+//  if (isClient) {
+//    const submitOp = op => {
+//      if (!applyingOpTransaction) {
+//        shareDBDoc.submitOp(op)
+//      }
+//    };
+//
+//    otPlugin = otPlugin(path, emitOps);
+//  }
+//
+//  const doc = atPath(shareDBDoc.data, path);
+//
+//  const view = createView({
+//    otPlugin: otPluginBrowser,
+//    doc
+//  });
+//
+//  if (process.browser) {
+//    shareDBDoc.on('op', (op, originatedLocally) => {
+//      if (!originatedLocally && pathMatches(op, path)) {
+//        applyingOpTransaction = true;
+//        view.dispatch(opsToTransaction(path, view.state, op));
+//        applyingOpTransaction = false;
+//      }
+//    });
+//  }
+//
+//  return view;
+//};
+
 const CodeEditorBody = ({
   editorModules: { VizHubCodemirror },
   vizContentDoc,
