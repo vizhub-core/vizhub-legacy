@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <meta charset="utf8" />
 <h1>CodeMirror!</h1>
-<script src="dist/bundle.js"></script>
+<script src="dist/vizhubCodemirror.js"></script>
 <script>
   const editor = VizHubCodeMirror.createEditor({
-    doc: 'Hello Text!',
+    shareDBDoc: {
+      data: { content: { files: { 2432: { text: 'Hello Text!' } } } },
+      submitOp: (op) => {
+        console.log('Submit op ' + JSON.stringify(op));
+      },
+    },
+    path: ['content', 'files', '2432', 'text'],
   });
   document.body.appendChild(editor.dom);
 </script>
