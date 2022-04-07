@@ -24,7 +24,7 @@ wss.on('connection', (ws) => {
 const shareDBDoc = shareDBConnection.get('testCollection', 'testDocId');
 shareDBDoc.create(
   {
-    content: { files: { 2432: { text: 'Hello vizhub-codemirror' } } },
+    content: { files: { 2432: { text: 'const foo = "bar";' } } },
   },
   json1.type.uri
 );

@@ -1,0 +1,3 @@
+[submodule "vizhub-v3/codemirror-ot"]
+	path = vizhub-v3/codemirror-ot
+	url = git@github.com:vizhub-core/codemirror-ot.git

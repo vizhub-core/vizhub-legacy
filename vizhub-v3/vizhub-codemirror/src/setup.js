@@ -1,11 +1,5 @@
 // Inspired by @codemirror/basic-setup
-import {
-  keymap,
-  highlightSpecialChars,
-  drawSelection,
-  highlightActiveLine,
-  dropCursor,
-} from '@codemirror/view';
+//import { keymap, highlightSpecialChars, drawSelection, highlightActiveLine, dropCursor } from '@codemirror/view';
 //import { EditorState } from '@codemirror/state';
 //import { history, historyKeymap } from '@codemirror/history';
 //import { foldGutter, foldKeymap } from '@codemirror/fold';

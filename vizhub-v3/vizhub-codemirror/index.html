@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <meta charset="utf8" />
-<h1>CodeMirror!</h1>
 <script src="https://cdn.jsdelivr.net/npm/sharedb-client-browser@2.2.49/sharedb-client-json1-browser.min.js"></script>
 <script src="dist/vizhubCodemirror.js"></script>
 <script>
@@ -9,11 +8,20 @@
   const shareDBDoc = connection.get('testCollection', 'testDocId');
 
   shareDBDoc.subscribe(() => {
-    const editor = VizHubCodeMirror.createEditor({
+    const editor1 = VizHubCodeMirror.createEditor({
       shareDBDoc,
       path: ['content', 'files', '2432', 'text'],
+      fileExtension: 'js',
       debug: true,
     });
-    document.body.appendChild(editor.dom);
+    document.body.appendChild(editor1.dom);
+
+    //const editor2 = VizHubCodeMirror.createEditor({
+    //  shareDBDoc,
+    //  path: ['content', 'files', '2432', 'text'],
+    //  fileExtension: 'js',
+    //  debug: true,
+    //});
+    //document.body.appendChild(editor2.dom);
   });
 </script>
