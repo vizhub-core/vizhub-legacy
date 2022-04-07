@@ -11,6 +11,7 @@ export default [
       format: 'umd',
       name: 'VizHubCodeMirror',
       globals,
+      sourcemap: true,
     },
     plugins: [nodeResolve(), commonjs()],
     external,

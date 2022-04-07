@@ -28,6 +28,7 @@
     "vizhub-codemirror",
     "vizhub-entities",
     "vizhub-interactors",
-    "vizhub-ui"
+    "vizhub-ui",
+    "codemirror-ot"
   ]
 }

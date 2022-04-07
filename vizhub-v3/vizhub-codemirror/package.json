@@ -39,6 +39,6 @@
     "@codemirror/lang-javascript": "^0.19.7",
     "@codemirror/state": "^0.19.9",
     "@codemirror/view": "^0.19.48",
-    "codemirror-ot": "^3.1.0"
+    "codemirror-ot": "^3.2.0"
   }
 }
