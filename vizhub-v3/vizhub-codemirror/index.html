@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <meta charset="utf8" />
 <h1>CodeMirror!</h1>
+<script src="https://cdn.jsdelivr.net/npm/sharedb-client-browser@2.2.49/sharedb-client-json1-browser.min.js"></script>
 <script src="dist/vizhubCodemirror.js"></script>
 <script>
-  const editor = VizHubCodeMirror.createEditor({
-    shareDBDoc: {
-      data: { content: { files: { 2432: { text: 'Hello Text!' } } } },
-      submitOp: (op) => {
-        console.log('Submit op ' + JSON.stringify(op));
-      },
-    },
-    path: ['content', 'files', '2432', 'text'],
+  const socket = new WebSocket('ws://' + window.location.host);
+  const connection = new ShareDBClient.Connection(socket);
+  const shareDBDoc = connection.get('testCollection', 'testDocId');
+
+  shareDBDoc.subscribe(() => {
+    const editor = VizHubCodeMirror.createEditor({
+      shareDBDoc,
+      path: ['content', 'files', '2432', 'text'],
+      debug: true,
+    });
+    document.body.appendChild(editor.dom);
   });
-  document.body.appendChild(editor.dom);
 </script>

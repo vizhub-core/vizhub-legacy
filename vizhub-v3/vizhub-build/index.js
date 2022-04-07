@@ -37,4 +37,6 @@ export const globals = {
   'sharedb/lib/client': 'ShareDBClient',
   'react-bootstrap': 'ReactBootstrap',
   //'vizhub-ui': 'VizHubUI',
+  'ot-json1': 'ShareDBClient.json1',
+  'ot-text-unicode': 'ShareDBClient.textUnicode',
 };
