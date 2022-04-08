@@ -1,15 +1,9 @@
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useEffect, useMemo, useCallback, useRef } from 'react';
 import { VizPage, Spinner } from '../ui';
 import { useShareDBConnection } from './useShareDBConnection';
 import { useViz } from './useViz';
 import { LogInWidgetPresenter } from './LogInWidgetPresenter';
-import { jsDelivrCombine } from '../jsDelivrCombine';
+import { useEditorModules } from './useEditorModules';
 
 const Body = ({
   viz: {
@@ -53,34 +47,6 @@ const Body = ({
       renderLogInWigdet={renderLogInWigdet}
     />
   );
-};
-
-// Loads JavaScript dynamically.
-const loadScript = (url) =>
-  new Promise((resolve) => {
-    const script = document.createElement('script');
-    script.src = url;
-    script.onload = () => {
-      resolve();
-    };
-    document.head.appendChild(script);
-  });
-
-// Global singleton of cached modules,
-// because we don't want to append the same <script> tag twice.
-let cachedEditorModules = null;
-const useEditorModules = () => {
-  const [editorModules, setEditorModules] = useState(cachedEditorModules);
-
-  const libraries = jsDelivrCombine([
-    `vizhub-codemirror@0.1.0/dist/vizhubCodemirror.min.js`,
-  ]);
-
-  useEffect(async () => {
-    await loadScript(libraries);
-    setEditorModules({ VizHubCodemirror: window.VizHubCodemirror });
-  }, []);
-  return editorModules;
 };
 
 // TODO get this to work
@@ -186,8 +152,15 @@ const CodeEditorBody = ({
   const ref = useRef();
   useEffect(() => {
     const editor = VizHubCodeMirror.createEditor({
-      doc: vizContentDoc.data.files[activeFileId].text,
+      shareDBDoc: vizContentDoc,
+      path: ['files', '7548392', 'text'],
+      debug: true,
     });
+console.log(vizContentDoc.data)
+
+    //const editor = VizHubCodeMirror.createEditor({
+    //  doc: vizContentDoc.data.files[activeFileId].text,
+    //});
     ref.current.appendChild(editor.dom);
   }, []);
   return <div className="editor-content-code-editor" ref={ref} />;

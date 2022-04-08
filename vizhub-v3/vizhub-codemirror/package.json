@@ -1,6 +1,6 @@
 {
   "name": "vizhub-codemirror",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Code editor for VizHub 3.",
   "main": "src/index.js",
   "type": "module",
