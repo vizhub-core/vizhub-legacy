@@ -44,6 +44,7 @@ export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     ${uiCSS}
     ${appCSS}
     ${ubuntuMonoFontCSS}
