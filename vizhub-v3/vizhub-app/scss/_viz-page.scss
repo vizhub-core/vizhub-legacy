@@ -46,6 +46,7 @@
   }
 
   font-family: var(--vizhub-font-family-monospace);
+  font-size: var(--vizhub-font-size-monospace);
 
   display: flex;
   flex-direction: column;
@@ -75,6 +76,7 @@
   flex-direction: column;
   background-color: var(--vizhub-editor-bg-darkest);
   font-family: var(--vizhub-font-family-monospace);
+  font-size: var(--vizhub-font-size-monospace);
   color: var(--vizhub-editor-color);
   min-width: 0;
   &-header {
@@ -105,6 +107,7 @@
     }
     .cm-editor .cm-content {
       font-family: var(--vizhub-font-family-monospace);
+      font-size: var(--vizhub-font-size-monospace);
     }
     .cm-line {
       padding: 0 2px 0 12px;

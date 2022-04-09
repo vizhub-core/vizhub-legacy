@@ -38,12 +38,45 @@ const appCSS = link(`/vizhub-app.css`);
 // A way to disable client side JS, for testing during development.
 const enableClientJS = true;
 
+// TODO i18n, translations
+const locale = 'en-US';
+
+const seoMetaTags = (meta) => `<meta property="og:url" content="${meta.url}"/>
+    <meta property="og:title" content="${meta.title}"/>
+    <meta property="og:description" content="${meta.description}"/>
+    <meta property="og:image" content="${meta.image}"/>
+    <meta property="og:site_name" content="${meta.siteName}"/>
+    <meta property="og:locale" content="${locale}" />
+    <meta property="og:type" content="${meta.type}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+`;
+
+// TODO implement unique meta for each page
+const defaultMeta = {
+  url: 'https://vizhub.community',
+  title: 'VizHub Community Edition',
+  description: 'Open source CMS for interactives',
+  image: 'https://vizhub.com/images/unfurl-logo.png',
+  siteName: 'VizHub',
+
+  // See https://ogp.me/#types
+  // TODO use "article" for vizzes
+  // TODO use "profile" for user profiles
+  type: 'website',
+};
+
 // Renders the HTML served to the browser.
-export const html = ({ title, rootHTML, pageData }) => `<!DOCTYPE html>
+export const html = ({
+  title,
+  rootHTML,
+  pageData,
+  meta = defaultMeta,
+}) => `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>${title}</title>
+    ${seoMetaTags(meta)}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     ${uiCSS}
     ${appCSS}

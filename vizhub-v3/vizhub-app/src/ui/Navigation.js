@@ -17,7 +17,7 @@ export const Navigation = ({ className, renderLogInWigdet }) => (
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto" />
         <Nav className="align-items-md-center">
-          <Nav.Link href="/forum">Forum</Nav.Link>
+          <Nav.Link href="https://vizhub.com/forum/">Forum</Nav.Link>
           {renderLogInWigdet()}
         </Nav>
       </Navbar.Collapse>
