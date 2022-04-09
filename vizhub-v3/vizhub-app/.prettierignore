@@ -4,3 +4,4 @@ build
 .dockerignore
 *.ico
 *.swp
+*.sh
