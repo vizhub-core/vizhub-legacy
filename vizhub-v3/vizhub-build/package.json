@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "",
-    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "ncu": "ncu -u"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^2.6.2"
   }
 }

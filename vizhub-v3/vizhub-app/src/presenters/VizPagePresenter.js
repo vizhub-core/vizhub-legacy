@@ -156,7 +156,7 @@ const CodeEditorBody = ({
       path: ['files', '7548392', 'text'],
       debug: true,
     });
-console.log(vizContentDoc.data)
+    console.log(vizContentDoc.data);
 
     //const editor = VizHubCodeMirror.createEditor({
     //  doc: vizContentDoc.data.files[activeFileId].text,

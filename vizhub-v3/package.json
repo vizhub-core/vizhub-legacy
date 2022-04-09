@@ -6,9 +6,10 @@
     "type": "git",
     "url": "git+ssh://git@github.com/vizhub-open-core/vizhub.git"
   },
-  "scripts":{
+  "scripts": {
     "test": "npm run test --workspaces",
-    "prettier": "npm run prettier --workspaces"
+    "prettier": "npm run prettier --workspaces",
+    "ncu": "ncu -u && npm run ncu --workspaces"
   },
   "keywords": [
     "Coding",
@@ -30,5 +31,8 @@
     "vizhub-interactors",
     "vizhub-ui",
     "codemirror-ot"
-  ]
+  ],
+  "devDependencies": {
+    "npm-check-updates": "^12.5.8"
+  }
 }

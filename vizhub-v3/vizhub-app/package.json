@@ -8,7 +8,8 @@
     "build-css": "sass scss/vizhub-app.scss build/public/vizhub-app.css",
     "build": "concurrently 'npm:build-*'",
     "start": "npm run build && NODE_OPTIONS=--enable-source-maps node build/server.js",
-    "prettier": "prettier {*.*,**/*.*} --single-quote --write"
+    "prettier": "prettier {*.*,**/*.*} --single-quote --write",
+    "ncu": "ncu -u"
   },
   "repository": {
     "type": "git",
@@ -38,14 +39,14 @@
     "ot-json1": "^1.0.2",
     "passport": "^0.5.2",
     "passport-google-oidc": "^0.1.0",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.2.1",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0",
+    "react-bootstrap": "^2.2.3",
+    "react-dom": "^18.0.0",
     "sharedb": "^2.2.5",
     "sharedb-client-browser": "^2.2.49",
     "sharedb-mingo-memory": "^1.2.0",
     "uuid": "^8.3.2",
-    "vizhub-codemirror": "^0.1.0",
+    "vizhub-codemirror": "^1.0.0",
     "vizhub-ui": "^1.0.0",
     "ws": "^8.5.0"
   },
@@ -53,12 +54,12 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-commonjs": "^21.0.3",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
-    "concurrently": "^7.0.0",
-    "prettier": "^2.6.0",
+    "concurrently": "^7.1.0",
+    "prettier": "^2.6.2",
     "rollup-plugin-copy": "^3.4.0",
-    "sass": "^1.49.9"
+    "sass": "^1.50.0"
   }
 }
