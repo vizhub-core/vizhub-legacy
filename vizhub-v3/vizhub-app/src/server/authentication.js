@@ -16,6 +16,16 @@ import { FindOrCreateUser } from 'vizhub-interactors';
 
 // Inspired by https://www.passportjs.org/tutorials/google/
 export const authentication = ({ app, gateways }) => {
+  const clientID = process.env['VIZHUB_GOOGLE_CLIENT_ID'];
+
+  // Bail if authentication not configured.
+  if (!clientID) {
+    console.log(
+      'VIZHUB_GOOGLE_CLIENT_ID is not defined. Starting without authentication.'
+    );
+    return;
+  }
+  const clientSecret = process.env['VIZHUB_GOOGLE_CLIENT_SECRET'];
   const findOrCreateUser = FindOrCreateUser(gateways);
 
   app.use(
@@ -35,8 +45,8 @@ export const authentication = ({ app, gateways }) => {
   passport.use(
     new GoogleStrategy(
       {
-        clientID: process.env['VIZHUB_GOOGLE_CLIENT_ID'],
-        clientSecret: process.env['VIZHUB_GOOGLE_CLIENT_SECRET'],
+        clientID,
+        clientSecret,
         callbackURL: '/oauth2/redirect/google',
         scope: [
           'profile',

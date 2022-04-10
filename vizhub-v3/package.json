@@ -9,7 +9,8 @@
   "scripts": {
     "test": "npm run test --workspaces",
     "prettier": "npm run prettier --workspaces",
-    "ncu": "ncu -u && npm run ncu --workspaces"
+    "ncu": "ncu -u && npm run ncu --workspaces",
+    "start": "npm run start --workspace=vizhub-app"
   },
   "keywords": [
     "Coding",
