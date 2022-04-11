@@ -9,8 +9,7 @@ import { VIZ_INFO_COLLECTION } from 'vizhub-interactors/constants';
 import { HomePage } from '../ui';
 import { useShareDBConnection } from './useShareDBConnection';
 import { logShareDBError } from './logShareDBError';
-
-const pageSize = 4;
+import { homePageVizInfosQuery } from '../HomePage';
 
 // State machine
 // SETTLED --> NEXT_PAGE_REQUESTED --|
@@ -98,10 +97,9 @@ export const useVizInfos = ({
         });
       }
 
-      // TODO unify definition of this query with the one in server.js
       const query = shareDBConnection.createSubscribeQuery(
         VIZ_INFO_COLLECTION,
-        { $skip: pageIndex * pageSize, $limit: pageSize },
+        homePageVizInfosQuery(pageIndex),
         options,
         logShareDBError
       );

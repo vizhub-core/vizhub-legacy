@@ -14,6 +14,7 @@ import {
   //  ProfilePagePresenter,
 } from '../presenters';
 import { App } from '../App';
+import { homePageVizInfosQuery } from '../HomePage';
 import { html } from './html';
 
 export const pages = ({ app, gateways, shareDBConnection }) => {
@@ -54,10 +55,9 @@ export const pages = ({ app, gateways, shareDBConnection }) => {
   // Serve the home page.
   app.get('/', async (req, res) => {
     const vizInfoSnapshots = await new Promise((resolve, reject) => {
-      // TODO unify definition - add pagination
       const query = shareDBConnection.createFetchQuery(
         VIZ_INFO_COLLECTION,
-        {},
+        homePageVizInfosQuery(),
         {},
         (error, results) => {
           // TODO verify that error handling works.

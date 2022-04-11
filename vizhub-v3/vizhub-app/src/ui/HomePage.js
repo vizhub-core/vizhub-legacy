@@ -1,22 +1,23 @@
 import React, { useMemo } from 'react';
-import { Container } from './Bootstrap';
+import { Container, Button } from './Bootstrap';
 import { Layout } from './Layout';
 import { Navigation } from './Navigation';
 import { VizPreview } from './VizPreview';
 
 export const HomePage = ({
   renderVizPreviews,
-  onScrollToBottom,
+  requestNextPage,
   renderLogInWigdet,
 }) => {
-  //TODO fire onScrollToBottom when the user scrolls to the bottom,
-  // to request the next page of the query.
 
   return (
-    <Layout className="overflow-auto">
+    <Layout className="home-page">
       <Navigation renderLogInWigdet={renderLogInWigdet} />
       <Container className="mt-3 mb-3">
-        <div className="viz-preview-collection">{renderVizPreviews()}</div>
+        {renderVizPreviews()}
+          <div className="mt-3 mb-3 d-flex justify-content-center">
+            <Button onClick={requestNextPage}>More</Button>
+          </div>
       </Container>
     </Layout>
   );

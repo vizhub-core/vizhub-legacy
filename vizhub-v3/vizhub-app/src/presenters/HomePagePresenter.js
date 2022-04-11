@@ -52,31 +52,37 @@ export const HomePagePresenter = ({ pageData }) => {
   //    </a>
   //  ));
 
+  // Set to true to debug pagination visually.
+  const debug = false;
+
   return (
     <HomePage
       renderVizPreviews={() => (
         <>
-          {vizInfosPages.map((vizInfos, pageIndex) =>
-            vizInfos.map((vizInfo) => (
-              <div
-                style={{
-                  backgroundColor: pageIndex % 2 ? 'red' : 'green',
-                  padding: '12px',
-                }}
-              >
-                <VizPreviewPresenter key={vizInfo.id} vizInfo={vizInfo} />
-              </div>
-            ))
-          )}
-          <div>
-            <button onClick={requestNextPage}>More</button>
+          <div className="viz-preview-collection">
+            {vizInfosPages.map((vizInfos, pageIndex) =>
+              vizInfos.map((vizInfo) => (
+                <div
+                  style={
+                    debug
+                      ? {
+                          backgroundColor: pageIndex % 2 ? 'red' : 'green',
+                          padding: '12px',
+                        }
+                      : {}
+                  }
+                >
+                  <VizPreviewPresenter key={vizInfo.id} vizInfo={vizInfo} />
+                </div>
+              ))
+            )}
           </div>
         </>
       )}
       renderLogInWigdet={() => (
         <LogInWidgetPresenter authenticatedUser={pageData.authenticatedUser} />
       )}
-      onScrollToBottom={requestNextPage}
+      requestNextPage={requestNextPage}
     />
   );
 };
