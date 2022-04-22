@@ -22,9 +22,12 @@ export const useEditorModules = () => {
     `vizhub-codemirror@1.0.0/dist/vizhubCodemirror.min.js`,
   ]);
 
-  useEffect(async () => {
-    await loadScript(libraries);
-    setEditorModules({ VizHubCodemirror: window.VizHubCodemirror });
+  useEffect(() => {
+    const getEditorModules = async () => {
+      await loadScript(libraries);
+      setEditorModules({ VizHubCodemirror: window.VizHubCodemirror });
+    };
+    getEditorModules();
   }, []);
   return editorModules;
 };

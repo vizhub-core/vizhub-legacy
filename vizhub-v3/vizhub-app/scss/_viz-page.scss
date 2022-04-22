@@ -79,6 +79,7 @@
   font-size: var(--vizhub-font-size-monospace);
   color: var(--vizhub-editor-color);
   min-width: 0;
+  /*width: 580px; /* Fits 60 chars */
   &-header {
     height: var(--vizhub-editor-entry-height);
     background-color: var(--vizhub-editor-bg-dark);
@@ -136,15 +137,22 @@
     );
     padding: var(--vizhub-padding-little);
 
-    svg.viz-frame {
-      background-color: white;
-      border-radius: var(--vizhub-border-radius);
-      box-shadow: var(--vizhub-box-shadow);
+    .viz-frame {
+      position: relative;
+      svg {
+        background-color: white;
+        border-radius: var(--vizhub-border-radius);
+        box-shadow: var(--vizhub-box-shadow);
 
-      /* This in conjunction with viewBox causes */
-      /* the rectangle to fill the appropriate width */
-      /* _and_ preserve aspect ratio.*/
-      width: 100%;
+        /* This in conjunction with viewBox causes */
+        /* the rectangle to fill the appropriate width */
+        /* _and_ preserve aspect ratio.*/
+        width: 100%;
+      }
+      iframe {
+        position: absolute;
+        left: 0;
+      }
     }
     .title {
       padding: var(--vizhub-padding-lots) 0px;

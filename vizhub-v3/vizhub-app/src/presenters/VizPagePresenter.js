@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useCallback, useRef } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import { VizPage, Spinner } from '../ui';
 import { useShareDBConnection } from './useShareDBConnection';
 import { useViz } from './useViz';
@@ -12,6 +18,7 @@ const Body = ({
   },
   renderLogInWigdet,
   renderCodeEditor,
+  renderVizRunner,
 }) => {
   // Compute an alphabetized list of file metadata
   // for use in the editor sidebar.
@@ -45,104 +52,10 @@ const Body = ({
       getFileName={getFileName}
       renderCodeEditor={renderCodeEditor}
       renderLogInWigdet={renderLogInWigdet}
+      renderVizRunner={renderVizRunner}
     />
   );
 };
-
-// TODO get this to work
-//import { otPlugin, opsToTransaction } from 'codemirror-ot';
-//
-//// TODO unify with implementation in codemirror-ot tests.
-//const atPath = (obj, path) => path.reduce((d, key) => d[key], obj);
-//
-//// TODO research if this is already implemented elsewhere in the ShareDB universe.
-//const pathMatches = (op, path) => {
-//  if (op.length !== 1) {
-//    return false;
-//  }
-//  const opPath = op[0].p;
-//  if (opPath.length < path.length) {
-//    return false;
-//  }
-//  return path.every((pathEntry, i) => pathEntry === opPath[i]);
-//};
-
-// Inspired by https://github.com/vizhub-core/codemirror-6-experiments/blob/master/packages/experiments/src/client/codeMirrorShareDBBinding.js
-
-//export const createView = options => {
-//  const { doc, otPlugin } = options;
-//
-//  const mode = legacyMode(javascript({ indentUnit: 2 }, {}));
-//
-//  let plugins = [mode];
-//
-//    plugins = plugins.concat([
-//      gutter(),
-//      history(),
-//      matchBrackets({ decorationsPlugin: mode }),
-//      keymap(historyKeymap()),
-//      keymap(indentationKeymap(mode)),
-//      keymap(baseKeymap)
-//    ]);
-//    if (otPlugin) {
-//      plugins = plugins.concat(otPlugin);
-//    }
-//
-//  const state = EditorState.create({ doc, plugins });
-//
-//  return new EditorView(state);
-//};
-//const getOrCreateView = shareDBDoc => function(files, fileId) {
-//  if (!views[fileId]) {
-//    const path = ['files', fileId, 'text'];
-//
-//    this.views[fileName] = CodeMirrorShareDBBinding({
-//      path,
-//      shareDBDoc,
-//      createView
-//    });
-//  }
-//  return this.views[fileName];
-//};
-//export const CodeMirrorShareDBBinding = options => {
-//  const {
-//    shareDBDoc,
-//    editorView,
-//    path = [], // The path of the field in the json1 document
-//  } = options;
-//
-//  let otPlugin;
-//  let applyingOpTransaction = false;
-//
-//  if (isClient) {
-//    const submitOp = op => {
-//      if (!applyingOpTransaction) {
-//        shareDBDoc.submitOp(op)
-//      }
-//    };
-//
-//    otPlugin = otPlugin(path, emitOps);
-//  }
-//
-//  const doc = atPath(shareDBDoc.data, path);
-//
-//  const view = createView({
-//    otPlugin: otPluginBrowser,
-//    doc
-//  });
-//
-//  if (process.browser) {
-//    shareDBDoc.on('op', (op, originatedLocally) => {
-//      if (!originatedLocally && pathMatches(op, path)) {
-//        applyingOpTransaction = true;
-//        view.dispatch(opsToTransaction(path, view.state, op));
-//        applyingOpTransaction = false;
-//      }
-//    });
-//  }
-//
-//  return view;
-//};
 
 const CodeEditorBody = ({
   editorModules: { VizHubCodemirror },
@@ -156,12 +69,8 @@ const CodeEditorBody = ({
       path: ['files', '7548392', 'text'],
       debug: true,
     });
-    console.log(vizContentDoc.data);
-
-    //const editor = VizHubCodeMirror.createEditor({
-    //  doc: vizContentDoc.data.files[activeFileId].text,
-    //});
     ref.current.appendChild(editor.dom);
+    //return () => ref.current.removeChild(editor.dom);
   }, []);
   return <div className="editor-content-code-editor" ref={ref} />;
 };
@@ -187,6 +96,38 @@ export const VizPagePresenter = ({ pageData, renderLogInWigdet }) => {
   const { vizSnapshot } = pageData;
   const { viz, vizContentDoc } = useViz({ vizSnapshot, shareDBConnection });
 
+  const renderVizRunner = useCallback(
+    (svgRef) => {
+      const [dimensions, setDimensions] = useState(null);
+
+      useEffect(() => {
+        const { clientWidth, clientHeight } = svgRef.current;
+        setDimensions({ width: clientWidth, height: clientHeight });
+        console.log({ width: clientWidth, height: clientHeight });
+      }, [svgRef]);
+
+      //    console.log(viz.vizContent.files['7548392'].text);
+      const code = viz.vizContent.files['7548392'].text;
+
+      // TODO get this from vizInfo
+      // TODO listen for resize changes
+      const vizHeight = 500;
+
+      return dimensions ? (
+        <iframe
+          srcdoc={code}
+          style={{
+            width: dimensions.width + 'px',
+            height: dimensions.height + 'px',
+            transform: `scale(${Math.max(dimensions.height / vizHeight, 1)})`,
+            transformOrigin: '0 0',
+          }}
+        />
+      ) : null;
+    },
+    [viz]
+  );
+
   return viz ? (
     <Body
       viz={viz}
@@ -196,6 +137,7 @@ export const VizPagePresenter = ({ pageData, renderLogInWigdet }) => {
       renderCodeEditor={(activeFileId) => (
         <CodeEditor vizContentDoc={vizContentDoc} activeFileId={activeFileId} />
       )}
+      renderVizRunner={renderVizRunner}
     />
   ) : (
     // TODO styling for this case

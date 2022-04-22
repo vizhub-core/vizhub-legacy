@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { Container, Button, Nav } from './Bootstrap';
 import { Navigation } from './Navigation';
 import { Layout } from './Layout';
@@ -12,6 +12,7 @@ export const VizPage = ({
   getFileName,
   renderCodeEditor,
   renderLogInWigdet,
+  renderVizRunner,
 }) => {
   // This is invoked as a React component.
   const MarkdownBody = markdownBody;
@@ -37,7 +38,7 @@ export const VizPage = ({
 
   const handleCloseEditorContent = useCallback(() => {
     setActiveFileId(null);
-  }, []);
+  }, [setActiveFileId]);
 
   const handleCloseShareModal = useCallback(() => setShowShareModal(false), []);
   const handleShowShareModal = useCallback(() => setShowShareModal(true), []);
@@ -51,6 +52,8 @@ export const VizPage = ({
     () => setShowEditor(!showEditor),
     [showEditor]
   );
+
+  const svgRef = useRef();
 
   return (
     <Layout className="viz-page">
@@ -138,7 +141,10 @@ export const VizPage = ({
           }`}
         >
           <div className="viz-viewer">
-            <svg className="viz-frame" viewBox={`0 0 960 ${height}`} />
+            <div className="viz-frame">
+              <svg ref={svgRef} viewBox={`0 0 960 ${height}`} />
+              {renderVizRunner(svgRef)}
+            </div>
             <h4 className="title">{title}</h4>
             <MarkdownBody />
           </div>
