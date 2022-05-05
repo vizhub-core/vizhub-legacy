@@ -34,6 +34,6 @@
     "codemirror-ot"
   ],
   "devDependencies": {
-    "npm-check-updates": "^12.5.8"
+    "npm-check-updates": "^12.5.9"
   }
 }

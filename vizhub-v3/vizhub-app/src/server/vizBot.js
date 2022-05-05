@@ -4,7 +4,31 @@ import {
   VIZ_CONTENT_COLLECTION,
   VIZ_INFO_NOT_FOUND,
 } from 'vizhub-interactors/constants';
-import { primordialViz } from 'vizhub-interactors/test/fixtures';
+import { ts1 } from 'vizhub-interactors/test/fixtures';
+
+const firstViz = {
+  id: 'viz1',
+  vizInfo: {
+    id: 'viz1',
+    owner: 'user1',
+    title: 'Primordial Viz',
+    createdTimestamp: ts1,
+    lastUpdatedTimestamp: ts1,
+  },
+  vizContent: {
+    id: 'viz1',
+    files: {
+      7548392: {
+        name: 'index.js',
+        text: 'export const main = () => { console.log("Hello"); };',
+      },
+      4258474: {
+        name: 'package.json',
+        text: '{ "dependencies": { "d3": "7.4.4" } }',
+      },
+    },
+  },
+};
 
 // Simulate users editing vizzes. Simulates:
 //  * Forking
@@ -14,7 +38,7 @@ export const vizBot = ({ gateways, shareDBConnection }) => {
   const saveViz = SaveViz(gateways);
 
   // Initialize the database with sample content.
-  saveViz(primordialViz);
+  saveViz(firstViz);
 
   // Gets a random viz id.
   const randomVizId = (avoidPrimordialViz) =>

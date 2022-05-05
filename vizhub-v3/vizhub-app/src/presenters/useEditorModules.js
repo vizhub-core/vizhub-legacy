@@ -19,7 +19,7 @@ export const useEditorModules = () => {
   const [editorModules, setEditorModules] = useState(cachedEditorModules);
 
   const libraries = jsDelivrCombine([
-    `vizhub-codemirror@1.0.0/dist/vizhubCodemirror.min.js`,
+    `vizhub-codemirror@1.1.0/dist/vizhubCodemirror.min.js`,
   ]);
 
   useEffect(() => {

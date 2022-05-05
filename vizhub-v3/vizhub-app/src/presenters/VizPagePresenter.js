@@ -5,11 +5,11 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { VizPage, Spinner } from '../ui';
+import { VizPage } from '../ui';
 import { useShareDBConnection } from './useShareDBConnection';
 import { useViz } from './useViz';
 import { LogInWidgetPresenter } from './LogInWidgetPresenter';
-import { useEditorModules } from './useEditorModules';
+import { CodeEditor } from './CodeEditor';
 
 const Body = ({
   viz: {
@@ -29,11 +29,7 @@ const Body = ({
           fileId,
           name: file.name,
         }))
-        .sort((a, b) => {
-          items.sort((a, b) =>
-            a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-          );
-        }),
+        .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0)),
     [files]
   );
 
@@ -54,38 +50,6 @@ const Body = ({
       renderLogInWigdet={renderLogInWigdet}
       renderVizRunner={renderVizRunner}
     />
-  );
-};
-
-const CodeEditorBody = ({
-  editorModules: { VizHubCodemirror },
-  vizContentDoc,
-  activeFileId,
-}) => {
-  const ref = useRef();
-  useEffect(() => {
-    const editor = VizHubCodeMirror.createEditor({
-      shareDBDoc: vizContentDoc,
-      path: ['files', '7548392', 'text'],
-      debug: true,
-    });
-    ref.current.appendChild(editor.dom);
-    //return () => ref.current.removeChild(editor.dom);
-  }, []);
-  return <div className="editor-content-code-editor" ref={ref} />;
-};
-
-const CodeEditor = ({ vizContentDoc, activeFileId }) => {
-  const editorModules = useEditorModules();
-
-  return editorModules ? (
-    <CodeEditorBody
-      vizContentDoc={vizContentDoc}
-      activeFileId={activeFileId}
-      editorModules={editorModules}
-    />
-  ) : (
-    <Spinner />
   );
 };
 
