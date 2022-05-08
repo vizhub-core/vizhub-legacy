@@ -28,23 +28,23 @@
     "@babel/preset-typescript": "^7.16.7",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-node-resolve": "^13.2.1",
-    "@types/node": "^17.0.29",
-    "@typescript-eslint/eslint-plugin": "^5.21.0",
-    "@typescript-eslint/parser": "^5.21.0",
-    "eslint": "^8.14.0",
-    "mocha": "^9.2.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@types/node": "^17.0.31",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.15.0",
+    "mocha": "^10.0.0",
     "prettier": "^2.6.2",
-    "rollup": "^2.70.2",
-    "sharedb": "^2.2.5",
-    "typescript": "^4.6.3"
+    "rollup": "^2.72.1",
+    "sharedb": "^3.0.0",
+    "typescript": "^4.6.4"
   },
   "dependencies": {
     "diff-match-patch": "^1.0.5",
     "json0-ot-diff": "^1.1.2",
     "ot-json1": "^1.0.2",
     "ot-text-unicode": "^4.0.0",
-    "sharedb-mingo-memory": "^1.2.0",
+    "sharedb-mingo-memory": "^2.0.0",
     "uuid": "^8.3.2"
   }
 }

@@ -32,7 +32,7 @@
   "dependencies": {
     "@teamwork/websocket-json-stream": "^2.0.0",
     "diff-match-patch": "^1.0.5",
-    "express": "^4.18.0",
+    "express": "^4.18.1",
     "express-session": "^1.17.2",
     "jsesc": "^3.0.2",
     "json0-ot-diff": "^1.1.2",
@@ -42,13 +42,13 @@
     "react": "^18.1.0",
     "react-bootstrap": "^2.3.1",
     "react-dom": "^18.1.0",
-    "sharedb": "^2.2.5",
+    "sharedb": "^3.0.0",
     "sharedb-client-browser": "^2.2.49",
-    "sharedb-mingo-memory": "^1.2.0",
+    "sharedb-mingo-memory": "^2.0.0",
     "uuid": "^8.3.2",
-    "vizhub-codemirror": "^1.0.1",
+    "vizhub-codemirror": "^1.1.0",
     "vizhub-ui": "^1.0.0",
-    "ws": "^8.5.0"
+    "ws": "^8.6.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.16.7",
@@ -56,7 +56,7 @@
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.2.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "concurrently": "^7.1.0",
     "prettier": "^2.6.2",
     "rollup-plugin-copy": "^3.4.0",
