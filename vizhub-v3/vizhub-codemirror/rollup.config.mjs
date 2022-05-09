@@ -16,15 +16,15 @@ export default [
     plugins: [nodeResolve()], //, commonjs()],
     external,
   },
-  //  {
-  //    input: 'src/index.js',
-  //    output: {
-  //      file: 'dist/vizhubCodemirror.min.js',
-  //      format: 'umd',
-  //      name: 'VizHubCodeMirror',
-  //      globals,
-  //    },
-  //    plugins: [nodeResolve(), commonjs(), terser()],
-  //    external,
-  //  },
+  {
+    input: 'src/index.js',
+    output: {
+      file: 'dist/vizhubCodemirror.min.js',
+      format: 'umd',
+      name: 'VizHubCodeMirror',
+      globals,
+    },
+    plugins: [nodeResolve(), commonjs(), terser()],
+    external,
+  },
 ];

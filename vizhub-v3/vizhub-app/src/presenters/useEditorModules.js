@@ -20,9 +20,9 @@ let cachedEditorModules = null;
 export const useEditorModules = () => {
   const [editorModules, setEditorModules] = useState(cachedEditorModules);
 
-  //const libraries = jsDelivrCombine([
-  //  `vizhub-codemirror@1.1.0/dist/vizhubCodemirror.min.js`,
-  //]);
+  const libraries = jsDelivrCombine([
+    `vizhub-codemirror@1.2.2/dist/vizhubCodemirror.min.js`,
+  ]);
 
   useEffect(() => {
     const getEditorModules = async () => {
