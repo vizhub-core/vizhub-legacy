@@ -1,6 +1,7 @@
-import { EditorView, ViewPlugin } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
+import { EditorView, ViewPlugin } from '@codemirror/view';
 import { json1Sync } from 'codemirror-ot';
+import { vizhubHighlightStyle } from './vizhubHighlightStyle';
 
 // TODO pull in stuff from @codemirror/basic-setup
 
@@ -15,25 +16,15 @@ import { json1Sync } from 'codemirror-ot';
 //   // TODO "css", "md", "json", "html"
 // };
 
+//const json1Sync = ({ shareDBDoc, path = [], debug = false }) => {
+//  return ViewPlugin.fromClass(
+//    class {
+//    }
+//  )
+//}
 
 const getAtPath = ({ shareDBDoc, path }) =>
   path.reduce((accumulator, key) => accumulator[key], shareDBDoc.data);
-
-// TODO VizHub editor style
-// Inspired by
-// https://codemirror.net/6/examples/styling/
-const vizhubHighlightStyle = EditorView.theme(
-  {
-    '&': {
-      color: 'white',
-      backgroundColor: '#202e46',
-    },
-    '.cm-content': {
-      caretColor: 'white',
-    },
-  },
-  { dark: true }
-);
 
 export const createEditor = ({
   shareDBDoc,
@@ -46,7 +37,7 @@ export const createEditor = ({
       doc: getAtPath({ shareDBDoc, path }),
       extensions: [
         json1Sync({ shareDBDoc, path, debug }),
-        //vizhubHighlightStyle,
+        vizhubHighlightStyle,
         ///...(fileExtension && fileExtension in langByFileExtension
         ///  ? [langByFileExtension[fileExtension]()]
         ///  : []),

@@ -13,7 +13,7 @@ export default [
       globals,
       sourcemap: true,
     },
-    plugins: [nodeResolve(), commonjs()],
+    plugins: [nodeResolve()], //, commonjs()],
     external,
   },
   //  {
