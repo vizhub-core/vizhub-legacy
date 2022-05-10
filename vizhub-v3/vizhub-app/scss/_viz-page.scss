@@ -101,6 +101,9 @@
 
     .cm-editor {
       height: 100%;
+
+      /* Accentuate focus state outline against light right neighbor */
+      margin-right: 1px;
     }
     .cm-editor.cm-focused {
       outline: 0;

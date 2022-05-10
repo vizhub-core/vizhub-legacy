@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { jsDelivrCombine } from '../jsDelivrCombine';
-import { dependencies } from '../../package.json';
-console.log(dependencies['vizhub-codemirror'])
+
+//import { dependencies } from '../../package.json';
+//console.log(dependencies['vizhub-codemirror']);
 
 // Loads JavaScript dynamically.
 const loadScript = (url) =>

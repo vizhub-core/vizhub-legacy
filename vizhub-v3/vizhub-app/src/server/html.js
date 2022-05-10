@@ -1,6 +1,7 @@
 import jsesc from 'jsesc';
 import pkg from '../../package.json';
 import { jsDelivrCombine } from '../jsDelivrCombine';
+import { enableUbuntiMonoLigaturized } from '../environment';
 
 //const cdn = 'https://unpkg.com';
 const cdn = 'https://cdn.jsdelivr.net/npm';
@@ -12,6 +13,7 @@ const v = (packageName) => pkg.dependencies[packageName].replace('^', '');
 
 // Underlying Philosophy: Pull in large dependencies via CDN when possible.
 // Why? Minimize data transfer from our servers, less costly operations.
+// Reduce computation during the build step.
 const libraries = jsDelivrCombine([
   `react@${v('react')}/umd/react.production.min.js`,
   `react-dom@${v('react')}/umd/react-dom.production.min.js`,
@@ -80,7 +82,7 @@ export const html = ({
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     ${uiCSS}
     ${appCSS}
-    ${ubuntuMonoFontCSS}
+    ${enableUbuntiMonoLigaturized ? ubuntuMonoFontCSS : ''}
   </head>
   <body>
     <div id="vizhub-root">${rootHTML}</div>
