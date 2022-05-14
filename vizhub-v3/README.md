@@ -1,6 +1,6 @@
-# VizHub Community Edition
+# VizHub V3
 
-VizHub Community Edition (VizHub v3) is a free and open source CMS for interactive visual JavaScript.
+VizHub V3 is a CMS for interactive visual JavaScript.
 
 Status: alpha software, some core features are working, not enough features to be usable quite yet.
 
@@ -8,7 +8,9 @@ Demo instance 👉 https://vizhub.community
 
  * **Self-hosted.** (coming soon)
  * **Browser-based JavaScript IDE.** (coming soon)
+ * **Develop interactive dataviz collaboratively.** (coming soon)
  * **Embed interactive visuals in any Web page.** (coming soon)
+ * **Export code for integration with existing codebases.** (coming soon)
 
 ## Working Features So Far
 
@@ -22,7 +24,7 @@ So far this product has:
 
 ## Minimum Viable Product (MVP) Roadmap
 
-What features are needed to make this product usable as a self-hosted interactive dataviz CMS for enterprises? It should support small client service teams comprised of managers, designers, and developers. It should be the place where the dataviz deliverables are prototyped, collaboratively developed, iterated, hosted for presentation to clients (staging site), and ultimately exported for downstream workflows. VizHub should introduce operational efficiencies at all phases of dataviz projects including discovery, data exploration, rapid prototyping, agile iteration, high fidelity design implementation and finishing touches.
+What features are needed to make this product usable as a self-hosted interactive dataviz CMS for enterprises? It should support small client service teams comprised of managers, designers, and developers. It should be the place where the dataviz deliverables are prototyped, collaboratively developed, iterated, hosted for presentation to clients (staging site), and ultimately exported. Since the exported viz uses industry standards, it is suitable for delivery to clients (without any dependency on VizHub), hosting as a standalone microsite, integration into an existing app, or embedding within an existing site. VizHub should introduce operational efficiencies at all phases of dataviz projects including discovery, data exploration, rapid prototyping, agile iteration, high fidelity design implementation and finishing touches.
 
 The concrete features that need to be developed for the MVP include:
 
