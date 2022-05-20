@@ -3,6 +3,10 @@ import { input } from './constants';
 import { virtual } from './virtual';
 import { getGlobals } from './getGlobals';
 
+// Set to true to get values for test/expectedValues.js
+// Works well with `it.only()` to isolate a specific test.
+const printExpectedOutput = false;
+
 // TODO run in a Web Worker
 export const build = async ({ files, includeSourcemaps = false }) => {
   //const warnings = [];
@@ -39,10 +43,10 @@ export const build = async ({ files, includeSourcemaps = false }) => {
       return code + '\n//# sourceMappingURL=' + map.toUrl();
     }
 
-    // Uncomment the following to get values for test/expectedValues.js
-    // Works well with `it.only()` to isolate a specific test.
-    // console.log('code: `' + code + '`');
-    // console.log('warnings: `' + JSON.stringify(warnings, null, 2) + '`');
+    if (printExpectedOutput) {
+      console.log('code: `' + code + '`');
+      //      console.log('warnings: `' + JSON.stringify(warnings, null, 2) + '`');
+    }
 
     // TODO track warnings
     //return warnings.length > 0 ? { code, warnings } : { code };

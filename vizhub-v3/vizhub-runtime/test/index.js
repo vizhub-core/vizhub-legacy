@@ -14,4 +14,19 @@ describe('Build', () => {
       expectedValues.singleFileUMD
     );
   });
+
+  it('should handle modules', async () => {
+    assert.deepEqual(
+      await build({
+        files: {
+          'main.js': `
+            import { add } from './add';
+            export const main = () => console.log(add(1, 2));
+          `,
+          'add.js': 'export const add = (a, b) => a + b;',
+        },
+      }),
+      expectedValues.modules
+    );
+  });
 });
