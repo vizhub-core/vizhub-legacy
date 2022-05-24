@@ -13,7 +13,7 @@ const plugins = [
   json(),
 ];
 
-// Builds the tests.
+// Build the tests.
 const test = {
   input: 'test/index.js',
   output: {
@@ -22,25 +22,21 @@ const test = {
     sourcemap: true,
   },
   plugins,
+  external: [...external, 'puppeteer', 'rollup'],
+};
+
+// Build the library.
+const lib = {
+  input: 'src/index.js',
+  output: {
+    file: 'build/vizhub-runtime.js',
+    format: 'umd',
+    name: 'VizHubRuntime',
+    globals,
+    sourcemap: true,
+  },
+  plugins,
   external,
 };
 
-//// Builds the client and copies content of public directory.
-//const client = {
-//  input: 'src/client.js',
-//  output: {
-//    dir: 'build/public',
-//    format: 'iife',
-//    globals,
-//    sourcemap: true,
-//  },
-//  plugins: [
-//    ...plugins,
-//    copy({
-//      targets: [{ src: 'public/*', dest: 'build/public' }],
-//    }),
-//  ],
-//  external,
-//};
-
-export default [test /*, client*/];
+export default [test, lib];
