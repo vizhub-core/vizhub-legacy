@@ -9,7 +9,7 @@ describe('Build', () => {
     assert.deepEqual(
       await build({
         files: {
-          'main.js': 'export const main = () => console.log("Hello");',
+          'index.js': 'export const main = () => console.log("Hello");',
         },
       }),
       expectedValues.singleFileUMD
@@ -20,7 +20,7 @@ describe('Build', () => {
     assert.deepEqual(
       await build({
         files: {
-          'main.js': `
+          'index.js': `
             import { add } from './add';
             export const main = () => console.log(add(1, 2));
           `,
@@ -67,7 +67,7 @@ describe('run', () => {
       const iframe = document.createElement('iframe');
       iframe.id = 'runner-iframe';
       document.body.appendChild(iframe);
-      window.runner = await VizHubRuntime.Runner(iframe);
+      await VizHubRuntime.Runner(iframe);
     });
 
     const iframe = page
@@ -83,96 +83,60 @@ describe('run', () => {
     });
     const result = await page.evaluate(async () => {
       const iframe = document.createElement('iframe');
+      //const runner = await VizHubRuntime.Runner(iframe);
+      //runner.run();
 
+      // TODO remove these from this test, do a separate dedicated test for `cdn`
       const dependencies = {
-        d3: '7.4.4',
-        react: '18.1.0',
-        'react-dom': '18.1.0',
+        //d3: '7.4.4',
+        //react: '18.1.0',
+        //'react-dom': '18.1.0',
       };
       const libraries = {
-        // TODO remove these from this test, do a separate dedicated test for `cdn`
-        d3: {
-          global: 'd3',
-          path: '/dist/d3.min.js',
-        },
-        react: {
-          global: 'React',
-          path: '/umd/react.production.min.js',
-        },
-        'react-dom': {
-          global: 'ReactDOM',
-          path: '/umd/react-dom.production.min.js',
-        },
+        //d3: {
+        //  global: 'd3',
+        //  path: '/dist/d3.min.js',
+        //},
+        //react: {
+        //  global: 'React',
+        //  path: '/umd/react.production.min.js',
+        //},
+        //'react-dom': {
+        //  global: 'ReactDOM',
+        //  path: '/umd/react-dom.production.min.js',
+        //},
       };
-      // TODO make this robust to malformed arguments (add tests),
-      // since this can be sourced from user generated `package.json` content.
-      const cdn = ({ dependencies, libraries }) =>
-        Object.keys(dependencies)
-          .map((dependency, i) => {
-            const version = dependencies[dependency];
-            const path = libraries[dependency].path;
-            const src = `https://cdn.jsdelivr.net/npm/${dependency}@${version}${path}`;
-            const indent = i > 0 ? '    ' : '';
-            return `${indent}<script src="${src}"></script>`;
-          })
-          .join('\n');
+      // TODO test sourcemap support
       const { code } = await VizHubRuntime.build({
         files: {
-          'main.js': `
+          'index.js': `
             export const main = (node, configuration) => {
-              parent.postMessage({configuration, hasReact: !!React, hasD3: !!d3}, "*");
+              parent.postMessage({configuration}, "*");
             };
           `,
         },
       });
       const configuration = { foo: 'bar' };
-      const srcdoc = `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    ${cdn({ dependencies, libraries })}
-  </head>
-  <body>
-    <script>${code}</script>
-    <div id="root"></div>
-    <script>
-      (() => {
-        const node = document.getElementById("root");
-        const configuration = ${JSON.stringify(configuration)};
-        App.main(node, configuration);
-
-        // TODO receive dynamic configuration updates from the parent (add tests for this)
-        parent.addEventListener('message', (event) => {
-          // TODO validate it's coming from the right place (add a test for this validation)
-          if (event.data.context === 'update.configuration') {
-            console.log('received update.configuration message')
-            App.main(node, event.data.configuration);
-          }
-        });
-      })();
-    </script>
-  </body>
-</html>`;
 
       const data = await new Promise((resolve) => {
         // TODO validate it's coming from the right place
         window.addEventListener('message', (event) => {
           resolve(event.data);
         });
-        iframe.srcdoc = srcdoc;
+        iframe.srcdoc = VizHubRuntime.generateSrcdoc({
+          dependencies,
+          libraries,
+          code,
+          configuration,
+        });
+        console.log(iframe.srcdoc);
         document.body.appendChild(iframe);
       });
       return data;
     });
 
-    // Tests round trip of config through built app.
-    assert.deepEqual(result, {
-      configuration: {
-        foo: 'bar',
-      },
-      hasD3: true,
-      hasReact: true,
-    });
+    // Tests round trip of config through built app, and that libs are coming from CDN.
+    assert.deepEqual(result, { configuration: { foo: 'bar' } });
   });
 });
 // TODO test that it generates the HTML for use in initializing the iframe, and it runs.
@@ -180,3 +144,92 @@ describe('run', () => {
 // TODO test that it injects new JS into the existing iframe
 // TODO test that it generates the HTML with configuration for use in initializing the iframe.
 // TODO test that it injects new configuration into the existing iframe
+
+// it('should run JS', async () => {
+//   await page.evaluate(() => {
+//     window.runner.run({
+//       'index.js': "export const main = () => { window.foo = 'bar'; }",
+//     });
+//   });
+//   const foo = await frame.evaluate(() => window.foo);
+//   assert.equal(foo, 'bar');
+// });
+//
+// it('should fail silently if main is undefined', async () => {
+//   await page.evaluate(() => {
+//     window.runner.run({
+//       'index.js': `window.foo = 'bar'`,
+//     });
+//   });
+//   const foo = await frame.evaluate(() => window.foo);
+//   assert.equal(foo, 'bar');
+// });
+//
+// it('should set state from outside', async () => {
+//   await page.evaluate(() => {
+//     window.runner.setState('outside');
+//     window.runner.run({
+//       'index.js': 'export const main = (state) => { window.foo = state; }',
+//     });
+//   });
+//   const foo = await frame.evaluate(() => window.foo);
+//   assert.equal(foo, 'outside');
+// });
+//
+// it('should set state from inside', async () => {
+//   await page.evaluate(() => {
+//     window.runner.run({
+//       'index.js': `
+//         export const main = (state, setState) => {
+//           setState('inside');
+//           window.foo = state;
+//         }
+//       `,
+//     });
+//   });
+//   // Wait for inner requestAnimationFrame.
+//   // TODO wait for message that state was set instead of this hack.
+//   await new Promise((resolve) => setTimeout(resolve, 100));
+//
+//   const foo = await frame.evaluate(() => window.foo);
+//   assert.equal(foo, 'inside');
+// });
+//
+// it('should notify of state changes from inside', async () => {
+//   await page.evaluate(() => {
+//     window.runner.onstatechange = (state) => {
+//       window.newState = state;
+//     };
+//     window.runner.run({
+//       'index.js': `
+//         export const main = (state, setState) => {
+//           setState('new from inside');
+//         }
+//       `,
+//     });
+//   });
+//   // Wait for inner requestAnimationFrame.
+//   await new Promise((resolve) => setTimeout(resolve, 100));
+//
+//   const newState = await page.evaluate(() => window.newState);
+//   assert.equal(newState, 'new from inside');
+// });
+//
+// it('should notify of state changes from outside', async () => {
+//   await page.evaluate(() => {
+//     window.newState = 'not set';
+//     window.runner.onstatechange = (state) => {
+//       window.newState = state;
+//     };
+//     window.runner.run({
+//       'index.js': 'export const main = () => {}',
+//     });
+//     window.runner.setState('new from outside');
+//   });
+//
+//   // Wait for inner requestAnimationFrame.
+//   await new Promise((resolve) => setTimeout(resolve, 100));
+//
+//   const newState = await page.evaluate(() => window.newState);
+//   assert.equal(newState, 'new from outside');
+// });

@@ -1,3 +1,4 @@
+// This module is responsible for bundling the code using Rollup.
 import { rollup } from 'rollup';
 import { input } from './constants';
 import { virtual } from './virtual';

@@ -1,2 +1,3 @@
 export { build } from './build';
-export const Runner = (iframe) => {};
+export { Runner } from './Runner';
+export { generateSrcdoc } from './generateSrcdoc';
