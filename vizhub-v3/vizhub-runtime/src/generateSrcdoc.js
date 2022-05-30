@@ -1,10 +1,10 @@
 import { cdn } from './cdn';
 
 export const generateSrcdoc = ({
-  dependencies,
-  libraries,
   code,
-  configuration,
+  configuration = {},
+  dependencies = {},
+  libraries = {},
 }) => `<!DOCTYPE html>
 <html lang="en">
   <head>

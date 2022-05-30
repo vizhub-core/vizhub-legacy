@@ -77,6 +77,31 @@ describe('run', () => {
     assert.equal(iframe.name(), 'runner-iframe');
   });
 
+  it('should generate srcdoc', async () => {
+    await page.addScriptTag({
+      path: './build/vizhub-runtime.js',
+    });
+    const srcdoc = await page.evaluate(async () => {
+      const { code } = await VizHubRuntime.build({
+        files: {
+          'index.js': `
+            export const main = (node, configuration) => {
+              parent.postMessage({configuration}, "*");
+            };
+          `,
+        },
+      });
+      const configuration = { foo: 'bar' };
+
+      return VizHubRuntime.generateSrcdoc({
+        code,
+        configuration,
+      });
+    });
+
+    assert.deepEqual(srcdoc, expectedValues.srcdoc);
+  });
+
   it('should execute initial srcdoc', async () => {
     await page.addScriptTag({
       path: './build/vizhub-runtime.js',
@@ -129,7 +154,6 @@ describe('run', () => {
           code,
           configuration,
         });
-        console.log(iframe.srcdoc);
         document.body.appendChild(iframe);
       });
       return data;
