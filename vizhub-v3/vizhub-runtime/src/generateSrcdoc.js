@@ -8,8 +8,7 @@ export const generateSrcdoc = ({
 }) => `<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    ${cdn({ dependencies, libraries })}
+    <meta charset="utf-8">${cdn({ dependencies, libraries })}
   </head>
   <body>
     <script>${code}</script>

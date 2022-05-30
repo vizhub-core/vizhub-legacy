@@ -1,23 +1,22 @@
-export const srcdoc = `<!DOCTYPE html>
+export const srcdocCodeAndConfig = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    
   </head>
   <body>
     <script>(function (global, factory) {
-          typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-          typeof define === 'function' && define.amd ? define(['exports'], factory) :
-          (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.App = {}));
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.App = {}));
 })(this, (function (exports) { 'use strict';
 
-          const main = (node, configuration) => {
-                        parent.postMessage({configuration}, "*");
-                      };
+    const main = (node, configuration) => {
+            parent.postMessage({configuration}, "*");
+          };
 
-          exports.main = main;
+    exports.main = main;
 
-          Object.defineProperty(exports, '__esModule', { value: true });
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 </script>

@@ -6,7 +6,7 @@ export const cdn = ({ dependencies, libraries }) =>
       const version = dependencies[dependency];
       const path = libraries[dependency].path;
       const src = `https://cdn.jsdelivr.net/npm/${dependency}@${version}${path}`;
-      const indent = i > 0 ? '    ' : '';
+      const indent = i > 0 ? '    ' : '\n    ';
       return `${indent}<script src="${src}"></script>`;
     })
     .join('\n');

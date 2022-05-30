@@ -1,10 +1,13 @@
 import * as assert from 'assert';
 import { describe, it } from 'mocha';
-import { build } from '../src/build';
+import { build, generateSrcdoc } from '../src';
 import * as expectedValues from './expectedValues';
+import { updateExpectedSrcdocValue } from './updateExpectedSrcdocValue';
 import puppeteer from 'puppeteer';
 
-describe('Build', () => {
+const updateExpectedSrcdocValues = true;
+
+describe('build', () => {
   it('should build a single file as UMD', async () => {
     assert.deepEqual(
       await build({
@@ -29,6 +32,62 @@ describe('Build', () => {
       }),
       expectedValues.modules
     );
+  });
+});
+
+describe('generateSrcdoc', () => {
+  const files = {
+    'index.js': `
+      export const main = (node, configuration) => {
+        parent.postMessage({configuration}, "*");
+      };
+    `,
+  };
+
+  it('should generate srcdoc, code only', async () => {
+    const srcdoc = generateSrcdoc(await build({ files }));
+    if (updateExpectedSrcdocValues) {
+      updateExpectedSrcdocValue('srcdocCodeOnly', srcdoc);
+    }
+    assert.deepEqual(srcdoc, expectedValues.srcdocCodeOnly);
+  });
+
+  it('should generate srcdoc, code and configuration', async () => {
+    const { code } = await build({ files });
+    const configuration = { foo: 'bar' };
+    const srcdoc = generateSrcdoc({ code, configuration });
+    if (updateExpectedSrcdocValues) {
+      updateExpectedSrcdocValue('srcdocCodeAndConfig', srcdoc);
+    }
+    assert.deepEqual(srcdoc, expectedValues.srcdocCodeAndConfig);
+  });
+
+  it('should generate srcdoc, code and dependencies', async () => {
+    const { code } = await build({ files });
+    const dependencies = {
+      d3: '7.4.4',
+      react: '18.1.0',
+      'react-dom': '18.1.0',
+    };
+    const libraries = {
+      d3: {
+        global: 'd3',
+        path: '/dist/d3.min.js',
+      },
+      react: {
+        global: 'React',
+        path: '/umd/react.production.min.js',
+      },
+      'react-dom': {
+        global: 'ReactDOM',
+        path: '/umd/react-dom.production.min.js',
+      },
+    };
+    const srcdoc = generateSrcdoc({ code, dependencies, libraries });
+    if (updateExpectedSrcdocValues) {
+      updateExpectedSrcdocValue('srcdocCodeAndDependencies', srcdoc);
+    }
+    assert.deepEqual(srcdoc, expectedValues.srcdocCodeAndDependencies);
   });
 });
 
@@ -77,31 +136,6 @@ describe('run', () => {
     assert.equal(iframe.name(), 'runner-iframe');
   });
 
-  it('should generate srcdoc', async () => {
-    await page.addScriptTag({
-      path: './build/vizhub-runtime.js',
-    });
-    const srcdoc = await page.evaluate(async () => {
-      const { code } = await VizHubRuntime.build({
-        files: {
-          'index.js': `
-            export const main = (node, configuration) => {
-              parent.postMessage({configuration}, "*");
-            };
-          `,
-        },
-      });
-      const configuration = { foo: 'bar' };
-
-      return VizHubRuntime.generateSrcdoc({
-        code,
-        configuration,
-      });
-    });
-
-    assert.deepEqual(srcdoc, expectedValues.srcdoc);
-  });
-
   it('should execute initial srcdoc', async () => {
     await page.addScriptTag({
       path: './build/vizhub-runtime.js',
@@ -111,26 +145,6 @@ describe('run', () => {
       //const runner = await VizHubRuntime.Runner(iframe);
       //runner.run();
 
-      // TODO remove these from this test, do a separate dedicated test for `cdn`
-      const dependencies = {
-        //d3: '7.4.4',
-        //react: '18.1.0',
-        //'react-dom': '18.1.0',
-      };
-      const libraries = {
-        //d3: {
-        //  global: 'd3',
-        //  path: '/dist/d3.min.js',
-        //},
-        //react: {
-        //  global: 'React',
-        //  path: '/umd/react.production.min.js',
-        //},
-        //'react-dom': {
-        //  global: 'ReactDOM',
-        //  path: '/umd/react-dom.production.min.js',
-        //},
-      };
       // TODO test sourcemap support
       const { code } = await VizHubRuntime.build({
         files: {
@@ -148,12 +162,7 @@ describe('run', () => {
         window.addEventListener('message', (event) => {
           resolve(event.data);
         });
-        iframe.srcdoc = VizHubRuntime.generateSrcdoc({
-          dependencies,
-          libraries,
-          code,
-          configuration,
-        });
+        iframe.srcdoc = VizHubRuntime.generateSrcdoc({ code, configuration });
         document.body.appendChild(iframe);
       });
       return data;
