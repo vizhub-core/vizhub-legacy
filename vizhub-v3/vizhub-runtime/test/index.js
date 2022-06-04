@@ -110,6 +110,10 @@ describe('run', () => {
   beforeEach(async () => {
     page = await browser.newPage();
 
+    await page.addScriptTag({
+      path: './build/vizhub-runtime.js',
+    });
+
     // For debugging while writing tests.
     page.on('console', (msg) => console.log(msg.text()));
   });
@@ -119,14 +123,10 @@ describe('run', () => {
   });
 
   it('sanity check', async () => {
-    await page.addScriptTag({
-      path: './build/vizhub-runtime.js',
-    });
     await page.evaluate(async () => {
       const iframe = document.createElement('iframe');
       iframe.id = 'runner-iframe';
       document.body.appendChild(iframe);
-      await VizHubRuntime.Runner(iframe);
     });
 
     const iframe = page
@@ -136,14 +136,11 @@ describe('run', () => {
     assert.equal(iframe.name(), 'runner-iframe');
   });
 
+  // Test that it generates the HTML with built JS and configuration
+  // for use in initializing the iframe, and it runs.
   it('should execute initial srcdoc', async () => {
-    await page.addScriptTag({
-      path: './build/vizhub-runtime.js',
-    });
     const result = await page.evaluate(async () => {
       const iframe = document.createElement('iframe');
-      //const runner = await VizHubRuntime.Runner(iframe);
-      //runner.run();
 
       // TODO test sourcemap support
       const { code } = await VizHubRuntime.build({
@@ -158,9 +155,10 @@ describe('run', () => {
       const configuration = { foo: 'bar' };
 
       const data = await new Promise((resolve) => {
-        // TODO validate it's coming from the right place
         window.addEventListener('message', (event) => {
-          resolve(event.data);
+          if (event.data.configuration) {
+            resolve(event.data);
+          }
         });
         iframe.srcdoc = VizHubRuntime.generateSrcdoc({ code, configuration });
         document.body.appendChild(iframe);
@@ -168,14 +166,60 @@ describe('run', () => {
       return data;
     });
 
-    // Tests round trip of config through built app, and that libs are coming from CDN.
+    // Tests round trip of config through built app.
     assert.deepEqual(result, { configuration: { foo: 'bar' } });
   });
+
+  it('should execute injected JS', async () => {
+    const result = await page.evaluate(async () => {
+      const iframe = document.createElement('iframe');
+
+      const { code } = await VizHubRuntime.build({
+        files: {
+          'index.js': `
+            export const main = (node, configuration) => {
+              parent.postMessage({configuration, v: 1}, "*");
+            };
+          `,
+        },
+      });
+      const configuration = { foo: 'bar' };
+
+      const data = await new Promise((resolve) => {
+        window.addEventListener('message', async (event) => {
+          // After the initial srcdoc runs...
+          if (event.data.configuration && event.data.v === 1) {
+            // Inject new JS
+            const runner = await VizHubRuntime.Runner(iframe);
+            runner.run(
+              await VizHubRuntime.build({
+                files: {
+                  'index.js': `
+                    export const main = (node, configuration) => {
+                      parent.postMessage({configuration, v: 2}, "*");
+                    };
+                  `,
+                },
+              })
+            );
+          } else {
+            if (event.data.configuration) {
+              resolve(event.data);
+            }
+          }
+        });
+        iframe.srcdoc = VizHubRuntime.generateSrcdoc({ code, configuration });
+        document.body.appendChild(iframe);
+      });
+      return data;
+    });
+
+    // Tests round trip of config through built app.
+    assert.deepEqual(result, { configuration: { foo: 'bar' }, v: 2 });
+  });
 });
-// TODO test that it generates the HTML for use in initializing the iframe, and it runs.
 
 // TODO test that it injects new JS into the existing iframe
-// TODO test that it generates the HTML with configuration for use in initializing the iframe.
 // TODO test that it injects new configuration into the existing iframe
 
 // it('should run JS', async () => {

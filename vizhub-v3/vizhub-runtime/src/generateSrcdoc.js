@@ -11,7 +11,7 @@ export const generateSrcdoc = ({
     <meta charset="utf-8">${cdn({ dependencies, libraries })}
   </head>
   <body>
-    <script>${code}</script>
+    <script id="injected-script">${code}</script>
     <div id="root"></div>
     <script>
       (() => {
@@ -27,6 +27,25 @@ export const generateSrcdoc = ({
         //    App.main(node, event.data.configuration);
         //  }
         //});
+        parent.postMessage({type: 'initialized'}, "*");
+
+        const runJS = (code) => {
+          document.getElementById('injected-script')?.remove();
+          const script = document.createElement('script');
+          script.textContent = code;
+          script.id = 'injected-script';
+          document.body.appendChild(script);
+          App.main(node, configuration);
+        };
+
+        window.addEventListener('message', ({data}) => {
+          if(data.type === 'runJS') {
+            runJS(data.code);
+          }
+          //if(data.type === 'setConfiguration') {
+          //  setConfiguration(data.configuration);
+          //}
+        });
       })();
     </script>
   </body>
