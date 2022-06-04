@@ -170,6 +170,8 @@ describe('run', () => {
     assert.deepEqual(result, { configuration: { foo: 'bar' } });
   });
 
+  // This tests the case where the Runner constructor
+  // receives the initial "initialized" message.
   it('should execute injected JS', async () => {
     const result = await page.evaluate(async () => {
       const iframe = document.createElement('iframe');
@@ -177,45 +179,101 @@ describe('run', () => {
       const { code } = await VizHubRuntime.build({
         files: {
           'index.js': `
-            export const main = (node, configuration) => {
-              parent.postMessage({configuration, v: 1}, "*");
+            export const main = () => {
+              parent.postMessage({v: 1}, "*");
             };
           `,
         },
       });
-      const configuration = { foo: 'bar' };
 
       const data = await new Promise((resolve) => {
         window.addEventListener('message', async (event) => {
           // After the initial srcdoc runs...
-          if (event.data.configuration && event.data.v === 1) {
+          if (event.data.v === 1) {
             // Inject new JS
             const runner = await VizHubRuntime.Runner(iframe);
             runner.run(
               await VizHubRuntime.build({
                 files: {
                   'index.js': `
-                    export const main = (node, configuration) => {
-                      parent.postMessage({configuration, v: 2}, "*");
+                    export const main = () => {
+                      parent.postMessage({v: 2}, "*");
                     };
                   `,
                 },
               })
             );
-          } else {
-            if (event.data.configuration) {
-              resolve(event.data);
-            }
+          } else if (event.data.v === 2) {
+            resolve(event.data);
           }
         });
-        iframe.srcdoc = VizHubRuntime.generateSrcdoc({ code, configuration });
+        iframe.srcdoc = VizHubRuntime.generateSrcdoc({ code });
         document.body.appendChild(iframe);
       });
       return data;
     });
 
-    // Tests round trip of config through built app.
-    assert.deepEqual(result, { configuration: { foo: 'bar' }, v: 2 });
+    // Tests that the injected code executed.
+    assert.deepEqual(result, { v: 2 });
+  });
+
+  // This tests the case where the Runner constructor
+  // does not receive the initial "initialized" message,
+  // but instead receives a later one that is triggered
+  // by the handshake "initialize" message sent from the
+  // Runner constructor.
+  it('should confirm initialization via handshake', async () => {
+    const result = await page.evaluate(async () => {
+      const iframe = document.createElement('iframe');
+
+      const { code } = await VizHubRuntime.build({
+        files: {
+          'index.js': `
+            export const main = () => {
+              parent.postMessage({v: 1}, "*");
+            };
+          `,
+        },
+      });
+
+      const data = await new Promise((resolve) => {
+        window.addEventListener('message', (event) => {
+          // After the initial srcdoc runs...
+          if (event.data.v === 1) {
+            // Inject new JS _after a delay_.
+            // Introducing this delay sets up the condition that
+            // the "initialized" message was sent _before_
+            // the `Runner` constructor is invoked.
+            // This condition tests the initialization check that happens
+            // via a `postMessage` handshake between the Runner constructor
+            // and the iframe.
+
+            setTimeout(async () => {
+              const runner = await VizHubRuntime.Runner(iframe);
+              runner.run(
+                await VizHubRuntime.build({
+                  files: {
+                    'index.js': `
+                    export const main = () => {
+                      parent.postMessage({v: 2}, "*");
+                    };
+                  `,
+                  },
+                })
+              );
+            }, 10);
+          } else if (event.data.v === 2) {
+            resolve(event.data);
+          }
+        });
+        iframe.srcdoc = VizHubRuntime.generateSrcdoc({ code });
+        document.body.appendChild(iframe);
+      });
+      return data;
+    });
+
+    // Tests that the injected code executed.
+    assert.deepEqual(result, { v: 2 });
   });
 });
 

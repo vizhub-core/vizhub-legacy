@@ -11,7 +11,7 @@
 // What if this constructor runs before the srcdoc has been fully evaluated?
 // Sometimes srcdoc execution will be blocked on CDN network requests.
 // Solvable using some sort of initialization handshake?
-const initialize = (iframe) =>
+const handshake = (iframe) =>
   new Promise((resolve, reject) => {
     // Hey iframe, if you tell me you executed all your JS,
     // I will hear you.
@@ -26,8 +26,7 @@ const initialize = (iframe) =>
     // Hey iframe, did you execute all your JS yet?
     //  * If so, I'll proceed
     //  * If not, I'll wait until you do
-    //    TODO test both cases
-    iframe.contentWindow.postMessage({ type: 'initializedCheck' }, '*');
+    iframe.contentWindow.postMessage({ type: 'initialize' }, '*');
 
     // Oh and by the way, I know that if you haven't executed
     // all your JS yet, even though you won't receive my message,
@@ -46,7 +45,7 @@ const initialize = (iframe) =>
 export const Runner = async (iframe) => {
   // Guarantee that the iframe `srcdoc` JS has fully executed,
   // and is ready to receive messages.
-  await initialize(iframe);
+  await handshake(iframe);
 
   const run = ({ code }) => {
     iframe.contentWindow.postMessage({ type: 'runJS', code }, '*');

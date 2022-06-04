@@ -25,30 +25,32 @@ export const srcdocCodeAndConfig = `<!DOCTYPE html>
       (() => {
         const node = document.getElementById("root");
         const configuration = {"foo":"bar"};
-        App.main(node, configuration);
 
-        //// TODO receive dynamic configuration updates from the parent (add tests for this)
-        //parent.addEventListener('message', (event) => {
-        //  // TODO validate it's coming from the right place (add a test for this validation)
-        //  if (event.data.context === 'update.configuration') {
-        //    console.log('received update.configuration message')
-        //    App.main(node, event.data.configuration);
-        //  }
-        //});
-        parent.postMessage({type: 'initialized'}, "*");
+        const run = () => {
+          App.main(node, configuration);
+        }
+        run();
 
-        const runJS = (code) => {
+        const init = () => {
+          parent.postMessage({type: 'initialized'}, "*");
+        }
+        init();
+
+        const runJS = ({code}) => {
           document.getElementById('injected-script')?.remove();
           const script = document.createElement('script');
           script.textContent = code;
           script.id = 'injected-script';
           document.body.appendChild(script);
-          App.main(node, configuration);
+          run();
         };
 
         window.addEventListener('message', ({data}) => {
+          if(data.type === 'initialize') {
+            init();
+          }
           if(data.type === 'runJS') {
-            runJS(data.code);
+            runJS(data);
           }
           //if(data.type === 'setConfiguration') {
           //  setConfiguration(data.configuration);
