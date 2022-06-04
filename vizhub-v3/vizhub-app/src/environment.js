@@ -5,6 +5,3 @@ export const isClient = typeof window !== 'undefined';
 // True if the build is for production (with SSL and WSS enabled).
 // False if the build is for local development.
 export const isProd = isClient && window.location.protocol === 'https:';
-
-// Feature flags
-export const enableUbuntiMonoLigaturized = false;

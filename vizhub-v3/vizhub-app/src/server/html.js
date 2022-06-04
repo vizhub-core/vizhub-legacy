@@ -1,7 +1,7 @@
 import jsesc from 'jsesc';
 import pkg from '../../package.json';
 import { jsDelivrCombine } from '../jsDelivrCombine';
-import { enableUbuntiMonoLigaturized } from '../environment';
+import { enableUbuntuMonoLigaturized } from '../featureFlags';
 
 //const cdn = 'https://unpkg.com';
 const cdn = 'https://cdn.jsdelivr.net/npm';
@@ -82,7 +82,7 @@ export const html = ({
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     ${uiCSS}
     ${appCSS}
-    ${enableUbuntiMonoLigaturized ? ubuntuMonoFontCSS : ''}
+    ${enableUbuntuMonoLigaturized ? ubuntuMonoFontCSS : ''}
   </head>
   <body>
     <div id="vizhub-root">${rootHTML}</div>
