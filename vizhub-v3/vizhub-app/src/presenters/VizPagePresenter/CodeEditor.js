@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef } from 'react';
-import { Spinner } from '../ui';
+import { Spinner } from '../../ui';
 import { useEditorModules } from './useEditorModules';
 
 // Feature flag to enable verbose OT related logging.

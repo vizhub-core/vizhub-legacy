@@ -6,11 +6,11 @@ import React, {
   useMemo,
 } from 'react';
 import { VIZ_INFO_COLLECTION } from 'vizhub-interactors/constants';
-import { HomePage, VizPreview } from '../ui';
-import { useShareDBConnection } from './useShareDBConnection';
-import { logShareDBError } from './logShareDBError';
+import { HomePage, VizPreview } from '../../ui';
+import { useShareDBConnection } from '../useShareDBConnection';
+import { logShareDBError } from '../logShareDBError';
+import { LogInWidgetPresenter } from '../LogInWidgetPresenter';
 import { useVizInfos } from './useVizInfos';
-import { LogInWidgetPresenter } from './LogInWidgetPresenter';
 
 // Only re-render a given VizPreview when its corresponding vizInfo changes.
 const VizPreviewPresenter = ({ vizInfo }) =>

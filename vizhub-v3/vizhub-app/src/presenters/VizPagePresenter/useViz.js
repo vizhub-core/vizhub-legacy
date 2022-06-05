@@ -3,7 +3,7 @@ import {
   VIZ_INFO_COLLECTION,
   VIZ_CONTENT_COLLECTION,
 } from 'vizhub-interactors/constants';
-import { logShareDBError } from './logShareDBError';
+import { logShareDBError } from '../logShareDBError';
 
 // This hook sets up a live updating representation of a viz.
 export const useViz = ({

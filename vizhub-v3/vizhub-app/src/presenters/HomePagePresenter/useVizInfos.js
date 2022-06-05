@@ -6,10 +6,9 @@ import React, {
   useMemo,
 } from 'react';
 import { VIZ_INFO_COLLECTION } from 'vizhub-interactors/constants';
-import { HomePage } from '../ui';
-import { useShareDBConnection } from './useShareDBConnection';
-import { logShareDBError } from './logShareDBError';
-import { homePageVizInfosQuery } from '../HomePage';
+import { homePageVizInfosQuery } from '../../queries';
+import { useShareDBConnection } from '../useShareDBConnection';
+import { logShareDBError } from '../logShareDBError';
 
 // State machine
 // SETTLED --> NEXT_PAGE_REQUESTED --|

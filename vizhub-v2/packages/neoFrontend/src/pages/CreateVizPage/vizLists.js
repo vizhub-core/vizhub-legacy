@@ -3,8 +3,7 @@ export const starters = [
   '86a75dc8bdbe4965ba353a79d4bd44c8',
   'c3b14112dae34ef395999cef5783324f',
   '37268d9ccc02426e8f83fb8ef04d6e5c',
-  '161a5fcfe2e148f583cc75efb8ab3255',
-  //TODO Hello Svelte '2db71d53e8a44ac5a3056638ef5cfd12',
+  '96c12ef980e541f8abc9b2e7e140bf33'
 ];
 
 export const communityTemplates = [

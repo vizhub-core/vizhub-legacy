@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { jsDelivrCombine } from '../jsDelivrCombine';
+import { jsDelivrCombine } from '../../jsDelivrCombine';
 
 //import { dependencies } from '../../package.json';
 //console.log(dependencies['vizhub-codemirror']);

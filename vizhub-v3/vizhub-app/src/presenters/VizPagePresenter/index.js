@@ -5,10 +5,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { VizPage } from '../ui';
-import { useShareDBConnection } from './useShareDBConnection';
+import { VizPage } from '../../ui';
+import { useShareDBConnection } from '../useShareDBConnection';
+import { LogInWidgetPresenter } from '../LogInWidgetPresenter';
 import { useViz } from './useViz';
-import { LogInWidgetPresenter } from './LogInWidgetPresenter';
 import { CodeEditor } from './CodeEditor';
 
 const Body = ({

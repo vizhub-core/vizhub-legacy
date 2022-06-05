@@ -1,7 +1,7 @@
 import jsesc from 'jsesc';
 import pkg from '../../package.json';
 import { jsDelivrCombine } from '../jsDelivrCombine';
-import { enableUbuntuMonoLigaturized } from '../featureFlags';
+import { enableUbuntuMonoLigaturized, enableClientJS } from '../featureFlags';
 
 //const cdn = 'https://unpkg.com';
 const cdn = 'https://cdn.jsdelivr.net/npm';
@@ -36,9 +36,6 @@ const ubuntuMonoFontCSS = link(
   `${cdn}/ubuntu-mono-ligaturized@3.0.0/arrowized/ubuntu-mono-arrowized.css`
 );
 const appCSS = link(`/vizhub-app.css`);
-
-// A way to disable client side JS, for testing during development.
-const enableClientJS = true;
 
 // TODO i18n, translations
 const locale = 'en-US';

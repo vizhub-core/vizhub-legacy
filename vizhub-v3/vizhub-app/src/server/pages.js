@@ -14,7 +14,7 @@ import {
   //  ProfilePagePresenter,
 } from '../presenters';
 import { App } from '../App';
-import { homePageVizInfosQuery } from '../HomePage';
+import { homePageVizInfosQuery } from '../queries';
 import { html } from './html';
 
 export const pages = ({ app, gateways, shareDBConnection }) => {
