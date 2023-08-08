@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import { Button } from '../../../Button';
-import { isMobile } from '../../../mobileMods';
-import { Z_ABOVE, breathableHorizontal } from '../../../styles';
+import styled from "styled-components";
+import { Button } from "../../../Button";
+import { isMobile } from "../../../mobileMods";
+import { Z_ABOVE, breathableHorizontal } from "../../../styles";
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: ${isMobile ? 'column' : 'row'};
+  flex-direction: ${isMobile ? "column" : "row"};
   height: ${isMobile ? 600 : 400}px;
   position: relative;
   align-items: center;
   justify-content: center;
   color: ${(props) => props.theme.dark};
-  margin: ${isMobile ? '6px 6px 30px 6px' : 0};
+  margin: ${isMobile ? "6px 6px 30px 6px" : 0};
   background-image: url(/images/mountains.png);
   background-size: cover;
 `;
@@ -66,11 +66,11 @@ export const MessageLargeText = styled.div`
   max-width: 600px;
   font-size: 40px;
   text-shadow: #fff 0 0 4px, #fff 0 0 4px, #fff 0 0 4px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 `;
 
 export const MessageSmallText = styled.div`
-  max-width: 400px;
+  max-width: 460px;
   font-size: 24px;
   text-shadow: #fff 0 0 4px, #fff 0 0 4px, #fff 0 0 4px;
   margin-top: 25px;
@@ -82,7 +82,7 @@ export const MessageList = styled.ul`
 `;
 
 export const MessageLink = styled.a`
-  color: ${(props) => (props.isRed ? props.theme.attentionGrabber : 'white')};
+  color: ${(props) => (props.isRed ? props.theme.attentionGrabber : "white")};
   text-decoration: underline;
 `;
 
