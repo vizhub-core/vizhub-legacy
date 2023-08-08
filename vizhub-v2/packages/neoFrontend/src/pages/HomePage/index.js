@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { sendEvent } from '../../sendEvent';
-import { showSortOptions } from '../../featureFlags';
-import { LoadingScreen } from '../../LoadingScreen';
-import { NavBar } from '../../NavBar';
-import { Button } from '../../Button';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { sendEvent } from "../../sendEvent";
+import { showSortOptions } from "../../featureFlags";
+import { LoadingScreen } from "../../LoadingScreen";
+import { NavBar } from "../../NavBar";
+import { Button } from "../../Button";
 //import { Feedback } from '../../Feedback';
-import { useVizzesSort } from '../../VizzesGrid/VizzesSortForm';
-import { Wrapper, WideContent } from '../styles';
-import { HtmlStylesOverride, HorizontalSplit } from './styles';
-import { HomePageDataProvider } from './HomePageDataContext';
-import { Vizzes } from './Vizzes';
-//import { Banner } from './Banner';
-import { Sort } from './Sort';
+import { useVizzesSort } from "../../VizzesGrid/VizzesSortForm";
+import { Wrapper, WideContent } from "../styles";
+import { HtmlStylesOverride, HorizontalSplit } from "./styles";
+import { HomePageDataProvider } from "./HomePageDataContext";
+import { Vizzes } from "./Vizzes";
+import { Banner } from "./Banner";
+import { Sort } from "./Sort";
 
 export const HomePage = () => {
   const [sort, handleSortChange] = useVizzesSort();
 
   useEffect(() => {
-    sendEvent('event.pageview.home');
+    sendEvent("event.pageview.home");
   }, []);
 
   return (
@@ -32,7 +32,7 @@ export const HomePage = () => {
           // Removed as not required. Let the content speak for itself.
           // "Get started" CTA not required, as users will end up there after
           // logging in and noticing "Create viz" in the user dropdown.
-          // <Banner />
+          <Banner />
         }
         <Wrapper>
           <WideContent>
