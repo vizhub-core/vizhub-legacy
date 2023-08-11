@@ -12,6 +12,8 @@ import { HtmlStylesOverride, HorizontalSplit } from "./styles";
 import { HomePageDataProvider } from "./HomePageDataContext";
 import { Vizzes } from "./Vizzes";
 import { Banner } from "./Banner";
+import { EventBanner } from "./EventBanner";
+
 import { Sort } from "./Sort";
 
 export const HomePage = () => {
@@ -26,14 +28,8 @@ export const HomePage = () => {
       <HtmlStylesOverride />
       <HomePageDataProvider sort={sort} fallback={<LoadingScreen />}>
         <NavBar isHomePage={true} showSearch />
-        {
-          // The thing at the top that says
-          // "You're minutes away from creating a data visualization."
-          // Removed as not required. Let the content speak for itself.
-          // "Get started" CTA not required, as users will end up there after
-          // logging in and noticing "Create viz" in the user dropdown.
-          <Banner />
-        }
+        <Banner />
+        <EventBanner />
         <Wrapper>
           <WideContent>
             <HorizontalSplit>
