@@ -23,12 +23,10 @@ export const Banner = () => (
         <Message>
           <MessageLargeText>Join a Thriving Community</MessageLargeText>
           <MessageSmallText>
-            Join our online community in the{" "}
-            <a href="https://d3js.slack.com/join/shared_invite/zt-1neihq96a-xkXVPXYOmKg8ou7DL3kr7g">
-              D3 Slack
-            </a>
-            , in the <code>#platform-vizhub</code> channel, or use the{" "}
-            <a href="https://vizhub.com/forum/">VizHub Forum</a>
+            Join the <a href="https://discord.gg/wbtJ7SCtYr">VizHub Discord</a>,
+            or check out the{" "}
+            <a href="https://vizhub.com/forum/">VizHub Forum</a> to interact
+            with the community!
           </MessageSmallText>
           <CallToAction>
             <Link to="/create-viz">
