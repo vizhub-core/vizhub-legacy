@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { isMobile } from "../../../mobileMods";
+import styled from "styled-components";
 import {
   Wrapper,
   Gradient,
