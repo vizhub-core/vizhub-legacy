@@ -27,8 +27,7 @@ export const DesktopLayout = ({
   return (
     <>
       <RedBanner>
-        VizHub 3 coming soon! The site will be down during the transition on
-        January 2, 2024.
+        VizHub v2 will be available for use until February 1st, 2024.
       </RedBanner>
       <Banner isHomePage={isHomePage}>
         <Left>{Logo}</Left>
